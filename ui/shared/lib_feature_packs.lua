@@ -4,15 +4,7 @@ local object = object
 libFeaturePacks = {
 	
 	featurePacksThatExist = {
-		'lang_ru',
-		'lang_pt_br',
-		'lang_th',
-		-- 'lang_zh',
-		-- 'lang_es',
-		-- 'lang_fr',
-		-- 'lang_de',
-		-- 'lang_id',
-		-- 'lang_my',
+		'lang_fr',
 		-- 'lang_en', -- Hey you! Never enable this, it is always included
 	},
 	
