@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Tutorial2_Boss2"
+
+	icon="icon.tga"
+	
+	anim="tutorial_ability_2"
+	casttime="3500"
+	castactiontime="600"
+
+	actiontype="target_position"
+	targetradius="70"
+	casteffecttype="Magic"
+	targetscheme="enemy_units"
+	casteffect="effects/cast.effect"
+	
+	manacost="0"
+	cooldowntime="0"
+
+	range="1200"
+
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+	
+>
+	
+	<onimpact>
+		<areaofeffect
+			targetscheme="Tutorial2_Boss_Gadgets"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="random"
+			radius="1500"
+			maximpactspertarget="1"
+			maxtotalimpacts="2"
+		>
+			<setent2 name="BossPos1" />
+			<compare a="ent2" b="target_entity" op="eq">
+				<spawnaffector name="Affector_Tutorial2_Boss2" target="target_position" param="1"/>
+			</compare>
+
+			<setent2 name="BossPos2" />
+			<compare a="ent2" b="target_entity" op="eq">
+				<spawnaffector name="Affector_Tutorial2_Boss2" target="target_position" param="2"/>
+			</compare>
+
+			<setent2 name="BossPos3" />
+			<compare a="ent2" b="target_entity" op="eq">
+				<spawnaffector name="Affector_Tutorial2_Boss2" target="target_position" param="3"/>
+			</compare>
+
+		</areaofeffect>
+	</onimpact>
+	
+	
+</ability>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<style name="clanLadderShadow" width="+20s" height="+20s" align="center" valign="center" noclick="1" color="invisible" borderthickness="15s" bordercolor="0 0 0 0.6" texture="/ui/elements:squareglow" />	
+	<style name="clanLadderRowParent" height="36s" noclick="0" />
+	<style name="clanLadderRow" noclick="1" float="right" padding="1s" height="-2s" />
+	<style name="clanLadderRow_hover"  width="100%" height="100%" noclick="1" texture="/ui/shared/textures/scoreboard_highlight01.tga" visible="0"/>
+	
+	<template name="clanLadderHeaderEntry">
+		<panel name="clanLadderHeaderEntry_{content}" width="{width}" noclick="0" onclicklua="" >
+			<label color="#8294d6" outline="1" outlinecolor="0 0 0 .3" font="subdyn_14" textalign="{textalign=left}" content="{content}" noclick="1" />
+		</panel>
+	</template>
+	
+	<template name="clanLadderEntry">
+		<panel width="{width}" noclick="1">
+			<label name="{id}" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="{textalign=left}" textvalign="center" content="{content}" noclick="1" />
+		</panel>
+	</template>
+	
+	<template name="clanLadderRow">
+		<panel style="clanLadderRowParent" name="clanLadderEntry_parent_{id}" passivechildren="1" width="-30s"
+			onmouseoverlua="
+				if self:GetWidget('clanLadderRowParent_hover_{id}') then
+					self:GetWidget('clanLadderRowParent_hover_{id}'):FadeIn(125)
+				end
+			"
+			onmouseoutlua="
+				if self:GetWidget('clanLadderRowParent_hover_{id}') then
+					self:GetWidget('clanLadderRowParent_hover_{id}'):FadeOut(125)
+				end
+			"
+		>
+			<frame name="clanLadderRowParent_hover_{id}" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="3s" vmargin="4s" visible="0" />
+			<instance y="0" name="hr" valign="bottom" width="100%" noclick="1" />
+			<panel style="clanLadderRow" >				
+				<instance name="clanLadderEntry" color="{color}" id="clanLadderEntry_position_{id}"	width="54s"  content="{rank}"		textalign="center"  />
+				<instance name="clanLadderEntry" color="{color}" id="clanLadderEntry_player_{id}"	width="280s"  content="{displayname}"					/>			
+				<instance name="clanLadderEntry" color="{color}" id="clanLadderEntry_medals_{id}"	width="102s"  content="{medals}"		textalign="center"	/>				
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="clanLadder_data">
+		<panel noclick="1" name="clanLadder_data_parent{index}" visible="{visible=1}">			
+			<panel height="18s" float="right" padding="1s" noclick="1" >
+				<instance name="clanLadderHeaderEntry" width="54s"  content="{header1=ladder_slot_caps}"		textalign="center"  />
+				<instance name="clanLadderHeaderEntry" width="280s" content="{header2=ladder_playername_caps}" />
+				<instance name="clanLadderHeaderEntry" width="102s"  content="{header4=ladder_medals_caps}"	textalign="center"	/>
+			</panel>			
+			<scrollbox name="clanLadder_row_scrollbar{index}" noclick="1" float="bottom" y="20s" height="-120s" visible="1"
+				onshow="SetVScrollbarStep('18s');"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				scrollbaroffset="-4s" scrollbarsize="26s" handlewidth="26s" handleheight="64s" vscrollbar="1" exteriorscrollbars="0" scrollbarplaceholder="true"
+				hscrollbar="0" horizontal="false"							
+			>			
+			</scrollbox>			
+		</panel>
+	</template>
+
+	<template name="clan_ladder" >
+		<panel noclick="1" name="clan_ladder" visible="1" x="10s" width="-30s" >
+			
+			<panel noclick="1" visible="1" y="80s" >
+				<instance name="clanLadder_data" index="_clan_internal" visible="1" />
+			</panel>
+
+		</panel>
+	</template>		
+		
+</package>

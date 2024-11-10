@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			color="1 1.5 2"
+			startalpha="1"
+			midalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale=".75">
+		
+		
+		
+		
+				<terrainemitter
+					position="0 0 0"
+					delay="0"
+					spawnrate="25"
+					particlelife="1500"
+					range="25"
+				>
+					<particle>
+						<groundsprite
+							minlife="250"
+							maxlife="750"
+							material="/shared/effects/smaterials/water_overlay.material"
+							minstartsize="25"
+							maxstartsize="50"
+							minendsize="70"
+							maxendsize="90"
+							midsizepos=".25"
+							minyaw="-360"
+							maxyaw="360"
+							color="0 .35 1"
+							startalpha=".2"
+							midalpha=".1"
+							endalpha="0"
+							midalphapos=".5"
+						/>
+						
+						<billboard
+							minlife="250"
+							maxlife="750"
+							material="/shared/effects/smaterials/whitedot.material"
+							minstartsize="25"
+							maxstartsize="150"
+							minendsize="75"
+							maxendsize="150"
+							midsizepos=".25"
+							startcolor=".025 .075 .125"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-25"
+						/>
+					</particle>
+				</terrainemitter>
+		
+		
+		
+		
+		
+		
+		
+		
+			<template name="splashes">
+
+				<simpleemitter
+					spawnrate="10"
+					particlelife="1000"
+					offsetsphere="0 0 0"
+					position="{zpos}"
+					speed="50"
+				>
+					<particle
+					>
+					
+						<simpleemitter
+						count="25"
+							spawnrate="3000"
+							minparticlelife="250"
+							maxparticlelife="500"
+							material="/shared/effects/smaterials/water_white.material"
+							offsetsphere="15 15 0"
+							position="0 0 0"
+							speed="50"
+						>
+							<particle
+								startcolor="1 1 1"
+								endcolor="0 .5 1"
+								startsize="50"
+								maxangle="360"
+								minendsize="50"
+								maxendsize="100"
+								startalpha=".04"
+								endalpha="0"
+							/>
+						</simpleemitter>
+
+					</particle>
+				</simpleemitter>
+				
+				
+				
+
+
+			</template>
+
+			<instance name="splashes" zpos="20 15 0" />
+			<instance name="splashes" zpos="-20 15 0" />
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

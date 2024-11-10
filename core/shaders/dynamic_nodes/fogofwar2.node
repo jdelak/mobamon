@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="fogofwar2" novs="true">
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="mFowProjOffset" type="float4x4" source="mFowProjOffset" />
+	<dependency name="FogofwarSampler" type="sampler2D" source="fogofwar" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output type="float" name="Out" solution="Fogofwar" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float2 f2Texcoord = mul(float4(WorldPositionOffset, 1.0f), mFowProjOffset).xy;
+			Out = tex2D(FogofwarSampler, f2Texcoord).a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float2 f2Texcoord = mul(float4(WorldPositionOffset, 1.0f), mFowProjOffset).xy;
+			Out = FogofwarSampler_texture.Sample(FogofwarSampler_sampler, f2Texcoord).a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec2 f2Texcoord = (mFowProjOffset * vec4(WorldPositionOffset, 1.0f)).xy;
+			Out = texture2D(FogofwarSampler, f2Texcoord).a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec2 f2Texcoord = (mFowProjOffset * vec4(WorldPositionOffset, 1.0f)).xy;
+			Out = texture(FogofwarSampler, f2Texcoord).a;
+		?>
+	</case>
+</node>

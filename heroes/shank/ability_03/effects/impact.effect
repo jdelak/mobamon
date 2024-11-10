@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".7">
+		
+		
+		
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="10"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-15"
+			>
+				<particle
+					color=".35 0 .7"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					scale="250"
+					turn="true"
+				/>
+			</simpleemitter>
+				
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="15"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-15"
+			>
+				<particle
+					startcolor="1 .4 0"
+					endcolor="0 0 0"
+					scale="100"
+					turn="true"
+					minheight="2"
+					maxheight="4"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="3"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-30"
+			>
+				<particle
+					startcolor=".6 .2 0"
+					endcolor="0 0 0"
+					scale="100"
+					turn="true"
+					minheight="9"
+					maxheight="15"
+					minwidth=".5"
+					maxwidth="1.25"
+				/>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_centerofchest"
+				startcolor="0 0 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				life="400"
+				size="500"			
+				depthbias="-50"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+	
+	
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

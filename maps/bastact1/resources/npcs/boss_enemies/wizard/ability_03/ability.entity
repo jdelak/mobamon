@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability3_Bastact1_Enemy_Wizard"
+
+	icon="icon.tga"
+	
+	anim="ability_3"
+	casttime="0"
+	castactiontime="0"
+	channeltime="1000"
+	ischanneling="true"
+	casteffect=""
+
+	actiontype="target_self"
+	targetscheme="all"
+	targetradius="100"
+	targetmaterial=""
+	manacost="0"
+	cooldowntime="20000"
+	
+	range="1000"
+	forcerange="false"
+	
+	allowoutofboundscast="true"
+	allowoutofrangecast="true"
+
+	showlinecast="false"
+>
+	<onimpact>
+		<spawnunit source="source_entity" target="source_entity" name="Gadget_Bastact1_Wizard_Effect" count="1" lifetime="1500"/>
+		<!-- <expirestate name="State_Bastact1_Wizard_Enemy" source="source_entity" target="source_entity"/> -->
+	</onimpact>
+
+  	<onchannelend>
+  		<chance threshold="0.3">
+			<setent0 name="wizard_tele1" />
+			<spawnillusion source="source_entity" target="source_entity" owner="source_entity" count="1" pushentity="true" lifetime="6000" receivedamagemultiplier="5.0" playdeathanim="false" />
+			<activatemodifierkey name="fake" entity="stack_entity" />
+			<teleport source="stack_entity" target="ent0" />
+			<applystate name="State_Bastact1_Wizard_SlowFireBall" source="stack_entity" target="stack_entity" duration="1500" />
+			<playanim name="ability_2" target="stack_entity"/>
+
+			<setent0 name="wizard_tele2" />
+			<spawnillusion source="source_entity" target="source_entity" owner="source_entity" count="1" pushentity="true" lifetime="6000" receivedamagemultiplier="5.0" playdeathanim="false" />
+			<activatemodifierkey name="fake" entity="stack_entity" />
+			<teleport source="stack_entity" target="ent0" />
+			<applystate name="State_Bastact1_Wizard_SlowFireBall" source="stack_entity" target="stack_entity" duration="1500" />
+			<playanim name="ability_2" target="stack_entity"/>
+
+			<!-- Source Wizard -->
+			<setent0 name="wizard_tele3" />
+			<teleport source="source_entity" target="ent0" />
+			<playanim name="ability_2" target="source_entity"/>	
+			<applystate name="State_Bastact1_Wizard_SlowFireBall" source="source_entity" target="source_entity" duration="1500" />
+			<expirestate name="State_Bastact1_Wizard_Enemy" target="source_entity" />
+			<starttimer duration="4000"  />
+		</chance>
+		<else>
+			<chance threshold="0.5" >
+				<setent0 name="wizard_tele2" />
+				<spawnillusion source="source_entity" target="source_entity" owner="source_entity" count="1" pushentity="true" lifetime="6000" receivedamagemultiplier="5.0" playdeathanim="false" />
+				<activatemodifierkey name="fake" entity="stack_entity" />
+				<teleport source="stack_entity" target="ent0" />
+				<applystate name="State_Bastact1_Wizard_SlowFireBall" source="stack_entity" target="stack_entity" duration="1500" />
+				<playanim name="ability_2" target="stack_entity"/>
+
+				<setent0 name="wizard_tele3" />
+				<spawnillusion source="source_entity" target="source_entity" owner="source_entity" count="1" pushentity="true" lifetime="6000" receivedamagemultiplier="5.0" playdeathanim="false" />
+				<activatemodifierkey name="fake" entity="stack_entity" />
+				<teleport source="stack_entity" target="ent0" />
+				<applystate name="State_Bastact1_Wizard_SlowFireBall" source="stack_entity" target="stack_entity" duration="1500" />
+				<playanim name="ability_2" target="stack_entity"/>
+
+				<!-- Source Wizard -->
+				<setent0 name="wizard_tele1" />
+				<teleport source="source_entity" target="ent0" />
+				<playanim name="ability_2" target="source_entity"/>	
+				<applystate name="State_Bastact1_Wizard_SlowFireBall" source="source_entity" target="source_entity" duration="1500" />
+				<expirestate name="State_Bastact1_Wizard_Enemy" target="source_entity" />
+				<starttimer duration="4000"  />
+			</chance>
+			<else>
+				<setent0 name="wizard_tele3" />
+				<spawnillusion source="source_entity" target="source_entity" owner="source_entity" count="1" pushentity="true" lifetime="6000" receivedamagemultiplier="5.0" playdeathanim="false" />
+				<activatemodifierkey name="fake" entity="stack_entity" />
+				<teleport source="stack_entity" target="ent0" />
+				<applystate name="State_Bastact1_Wizard_SlowFireBall" source="stack_entity" target="stack_entity" duration="1500" />
+				<playanim name="ability_2" target="stack_entity"/>
+
+				<setent0 name="wizard_tele1" />
+				<spawnillusion source="source_entity" target="source_entity" owner="source_entity" count="1" pushentity="true" lifetime="6000" receivedamagemultiplier="5.0" playdeathanim="false" />
+				<activatemodifierkey name="fake" entity="stack_entity" />
+				<teleport source="stack_entity" target="ent0" />
+				<applystate name="State_Bastact1_Wizard_SlowFireBall" source="stack_entity" target="stack_entity" duration="1500" />
+				<playanim name="ability_2" target="stack_entity"/>
+
+				<!-- Source Wizard -->
+				<setent0 name="wizard_tele2" />
+				<teleport source="source_entity" target="ent0" />
+				<playanim name="ability_2" target="source_entity"/>	
+				<applystate name="State_Bastact1_Wizard_SlowFireBall" source="source_entity" target="source_entity" duration="1500" />
+				<expirestate name="State_Bastact1_Wizard_Enemy" target="source_entity" />
+				<starttimer duration="4000"  />
+			</else>
+		</else>
+  	</onchannelend>
+
+  	<ontimer>
+		<applystate name="State_Bastact1_Wizard_Enemy" target="source_entity" duration="-1" proxy="source_entity" />
+	</ontimer>
+	
+	
+	
+	
+</ability>

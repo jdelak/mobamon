@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" persistent="true">
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			life="1100"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+			startalpha="0"
+			endalpha="0"
+		/>
+	
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<simpleemitter
+				bone="_bone_Bip01 Neck"
+				life="2000"
+				spawnrate="5000"
+				count="50"
+				minparticlelife="200"
+				maxparticlelife="600"
+				gravity="25"
+				minspeed="100"
+				maxspeed="300"
+				drag=".01"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 25"
+				direction="0 0 0"
+				position="0 0 -25"
+			>
+				<particle
+				anchor="true"
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					minstartsize="5"
+					maxstartsize="15"
+					minmidsize="0"
+					maxmidsize="5"
+					endsize="0"
+					startalpha="0"
+					midalpha=".7"
+					endalpha="0"
+					midalphapos=".5"
+				/>
+			</simpleemitter>
+
+
+			
+			<billboard
+			position="0 0 -10"
+				bone="_bone_Bip01 Neck"
+				material="/shared/effects/smaterials/whitedot.material"
+				life="250"
+				startsize="100"
+				endsize="100"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				depthbias="-200"
+			/>
+		
+		
+		
+		
+		
+		
+		
+		
+			<model
+				parentmodel="true"
+				parentskeleton="true"
+				life="200"
+				startalpha="1"
+				endalpha="0"
+				color="1 1 1"
+				position="0 0 0"
+				startscale="1"
+				endscale="1"
+			>
+
+
+			
+			
+			</model>
+<!--
+			<model
+				parentmodel="true"
+				parentskeleton="true"
+				material="/shared/effects/smaterials/shell_glass.material"
+				life="200"
+				startalpha="1"
+				endalpha="0"
+				startcolor="2 2 2"
+				endcolor="0 0 0"
+				position="0 0 0"
+				startscale="1"
+				endscale="0"
+			/>
+-->
+
+
+
+
+
+		</particlesystem>
+		
+		
+	</definitions>
+<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<include file="postgame_splash_templates.package"/>
+
+	<template name="postgame_summary_template" >
+		<panel name="postgame_summary" noclick="1" visible="0" >
+			
+			<!-- Top Header -->
+			<panel name="postgame_summary_insert_game_results" noclick="1" valign="top" align="center" width="800s" y="90s" height="320s" >
+				<image name="postgame_summary_insert_game_results_header_flare" visible="0" texture="/ui/main/postgame/khanquest/textures/flare_seperator.tga" y="26s" width="540s" height="128s" align="center" noclick="1" rendermode="additive" />
+				<label name="postgame_summary_insert_game_results_header" visible="0" y="36s" height="32s" textalign="center" textvalign="center" style="h3" font="maindyn_72" content=""/>	
+			</panel>			
+			
+			<!-- Upcoming Unlocks -->
+			<panel name="postgame_summary_insert_upcoming_unlocks" visible="0" y="190s" noclick="1" valign="top" height="180s" align="center" width="800s" >				
+				<label name="postgame_summary_insert_upcoming_unlocks_label" height="32s" textalign="center" textvalign="center" color="#B3B3B3" outline="true" font="maindyn_26" content="postgame_upcoming_unlocks_header" visible="1"/>				
+				<!-- Account Reward(s) -->
+				<panel name="postgame_summary_insert_upcoming_unlocks_insert" y="37s" x="-10s" height="105s" align="center" grow="1" regrow="1" growinvis="0" float="right" padding="8s" noclick="1" visible="1">
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="10" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="9" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="8" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="7" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="6" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="5" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="4" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="3" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="2" height="105s" width="105s"/>
+					<instance name="postgame_summary_insert_upcoming_unlock_template" index="1" height="105s" width="105s"/>
+				</panel>				
+				<label name="postgame_summary_insert_upcoming_unlocks_label_2" y="145s" height="46s" textalign="center" textvalign="center" style="h1" font="maindyn_40" content="postgame_upcoming_unlocks_remaining_games" visible="1"/>				
+			</panel>				
+			
+			<!-- Account Progress Bar -->
+			<panel name="postgame_summary_insert_account_progression" visible="0" noclick="1" valign="top" align="center" width="98%" y="370s" height="130s" >
+				<panel name="postgame_summary_insert_account_progression_insert" noclick="1" >
+						
+						<panel width="2048s" height="256s" align="center" valign="center" noclick="1">
+							<image texture="/ui/main/postgame/textures/account_tab.tga" noclick="1" />
+							<image texture="/ui/main/postgame/textures/account_bar.tga" noclick="1" />
+						</panel>
+						
+						<!-- Booster -->
+						<panel name="playRewards_accountboost_parent" visible="0" noclick="0" x="-80s" y="-7s" width="230s" height="45s" align="right" >
+							<label name="player_card_purchase_bonus_label" x="-45s" y="0s" width="170s" height="40s" align="right" textalign="right" textvalign="center" color="1 1 1 1" outline="true" outlinecolor="#45342b" font="maindyn_30" content="" visible="1" noclick="1"/>
+							<image texture="/ui/main/postgame/textures/account_tab_glow.tga" width="2048s" height="256s" align="center" valign="center" color="1 1 1 0.4" noclick="1" />
+							<panel name="playRewards_accountboost_icon_parent" x="-52s" y="-44s" width="72s" height="72s" align="right" noclick="0">
+								<image name="player_card_purchase_bonus_icon" texture="/ui/main/shared/textures/acct_boost_on.tga" noclick="1" color="1 1 1 1" />						
+								<modelpanel name="player_card_purchase_bonus_fx" visible="1" height="100%" width="100%"
+									noclick="1"
+									model="/shared/models/invis.mdf"
+									effect="/ui/main/shared/effects/boost_rocket_flames.effect"
+									camerapos="0 0 0"
+									cameraangles="0 45 0"
+									camerafov="72"
+									depthclear="true"
+									depthcompress="true"
+								/>						
+							</panel>
+						</panel>
+
+						<!-- Progress Bars, Variety of Colors!! -->						
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- Boosted -->
+							<panel name="postgame_summary_insert_account_progression_bar_level_bar_boosted" align="left" clip="1" height="100%" width="55%" noclick="1">
+								<image texture="/ui/main/postgame/textures/account_bar_boosted.tga" width="1187s" height="90s" align="left" valign="center" noclick="1" />
+							</panel>
+						</panel>
+
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" height="80s" noclick="1" clip="1">
+							<!-- Boost-->
+							<panel name="postgame_summary_insert_account_progression_bar_level_bar_boosted_glow" align="left" height="200s" y="-60s" width="100%" noclick="1" visible="0">
+								<image name="postgame_summary_insert_account_progression_bar_level_bar_transition_glow_boosted" texture="/ui/main/postgame/textures/account_bar_edge_glow.tga" x="-30s" align="left" valign="center" rendermode="additive" width="30s" noclick="1" color="0.95 0.12 0.24 0.3" visible="0"/>
+								<panel width="100%" height="100%" clip="1" noclick="1">
+									<panel name="postgame_summary_insert_account_progression_bar_level_bar_boosted_glow_width" align="left" width="0%" noclick="1">
+									</panel>
+								</panel>
+							</panel>
+						</panel>						
+						
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- New -->
+							<panel name="postgame_summary_insert_account_progression_bar_level_bar_new" align="left" clip="1" height="100%" width="55%" noclick="1">
+								<image texture="/ui/main/postgame/textures/account_bar_new.tga" width="1187s" height="90s" align="left" valign="center" noclick="1" />
+							</panel>
+						</panel>
+
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" height="80s" noclick="1" clip="1" >
+							<!-- New -->
+							<panel name="postgame_summary_insert_account_progression_bar_level_bar_new_glow" align="left" height="200s" y="-60s" width="100%" noclick="1" visible="0">
+								<image name="postgame_summary_insert_account_progression_bar_level_bar_transition_glow_new" texture="/ui/main/postgame/textures/account_bar_edge_glow.tga" x="-30s" align="left" valign="center" rendermode="additive" width="30s" noclick="1" color="0.34 1 0.13 0.3" visible="0"/>
+								<panel width="100%" height="100%" clip="1" noclick="1">
+									<panel name="postgame_summary_insert_account_progression_bar_level_bar_new_glow_width" align="left" width="0%" noclick="1">
+									</panel>
+								</panel>
+							</panel>
+						</panel>						
+						
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- Previous -->
+							<panel name="postgame_summary_insert_account_progression_bar_level_bar" align="left" clip="1" height="100%" width="55%" noclick="1">
+								<image texture="/ui/main/postgame/textures/account_bar_previous.tga" width="1187s" height="90s" align="left" valign="center" noclick="1" />
+							</panel>
+						</panel>
+
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" height="80s" noclick="1" clip="1">
+							<!-- Previous -->
+							<panel name="postgame_summary_insert_account_progression_bar_level_bar_glow" align="left" height="200s" y="-60s" width="0%" noclick="1">
+							</panel>
+						</panel>						
+						
+						<image texture="/ui/main/postgame/textures/account_bar_top.tga" width="2048s" height="256s" align="center" valign="center" noclick="1" />
+						
+						<!--Pips-->
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- Section 1 -->
+							<panel x="4%" height="78s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="8%" height="78s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="12%" height="80s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="16%" height="82s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							
+							<!-- Section 2 -->
+							<panel x="24%" height="82s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="28%" height="82s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="32%" height="84s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="36%" height="84s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							
+							<!-- Section 3 -->
+							<panel x="44%" height="84s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="48%" height="84s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="52%" height="86s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="56%" height="86s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							
+							<!-- Section 4 -->
+							<panel x="64%" height="88s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="68%" height="88s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="72%" height="89s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel x="76%" height="90s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							
+							<!-- Section 5 -->
+							<panel y="-1s" x="84%" height="90s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel y="-2s" x="88%" height="89s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel y="-2s" x="92%" height="89s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+							<panel y="-2s" x="96%" height="89s" width="3s" valign="center" color="0 0 0 0.5" noclick="1" />
+						</panel>
+						
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- Boosted -->
+							<panel x="-17s" align="left" height="100%" width="100%" noclick="1">
+								<panel name="postgame_summary_insert_account_progression_bar_level_bar_boosted_leader" visible="0" noclick="1">
+									<image texture="/ui/main/postgame/textures/account_bar_progress_leading_red.tga" width="32s" height="135s" valign="center" align="left" noclick="1"/>
+									<panel width="32s" height="135s" valign="center" noclick="1">
+										<modelpanel
+											x="-26s" width="92s" height="130s" align="left" valign="center"
+											noclick="1"
+											model="/shared/models/invis.mdf"
+											camerapos="0 0 0"
+											cameraangles="0 0 0"
+											camerafov="20"
+											depthclear="true"
+											depthcompress="true"
+											onshowlua="self:SetEffect('/ui/main/postgame/effects/progress_bar_leader.effect')"
+										/>
+									</panel>
+								</panel>
+							</panel>
+						</panel>						
+						
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- New -->
+							<panel x="-17s" align="left" height="100%" width="100%" noclick="1">								
+								<panel name="postgame_summary_insert_account_progression_bar_level_bar_new_leader" visible="0" noclick="1">
+									<image  texture="/ui/main/postgame/textures/account_bar_progress_leading_green.tga" width="32s" height="135s" valign="center" align="left" noclick="1"/>
+									<panel width="32s" height="135s" valign="center" noclick="1">
+										<modelpanel
+											x="-26s" width="92s" height="130s" align="left" valign="center"
+											noclick="1"
+											model="/shared/models/invis.mdf"
+											camerapos="0 0 0"
+											cameraangles="0 0 0"
+											camerafov="20"
+											depthclear="true"
+											depthcompress="true"
+											onshowlua="self:SetEffect('/ui/main/postgame/effects/progress_bar_leader.effect')"
+										/>
+									</panel>								
+								</panel>
+							</panel>
+						</panel>							
+						
+						<panel x="30s" y="21s" align="left" valign="center" width="1187s" noclick="1">
+							<!-- Previous -->
+							<panel x="-17s" align="left" height="100%" width="100%" noclick="1">
+								<panel name="postgame_summary_insert_account_progression_bar_level_bar_leader" visible="0" noclick="1">
+									<image texture="/ui/main/postgame/textures/account_bar_progress_leading_blue.tga" width="32s" height="135s" valign="center" align="left" noclick="1"/>
+									<panel width="32s" height="135s" valign="center" noclick="1">
+										<modelpanel
+											x="-26s" width="92s" height="130s" align="left" valign="center"
+											noclick="1"
+											model="/shared/models/invis.mdf"
+											camerapos="0 0 0"
+											cameraangles="0 0 0"
+											camerafov="20"
+											depthclear="true"
+											depthcompress="true"
+											onshowlua="self:SetEffect('/ui/main/postgame/effects/progress_bar_leader.effect')"
+										/>
+									</panel>	
+								</panel>
+							</panel>
+						</panel>							
+
+						<image texture="/ui/main/postgame/textures/account_bar_levels.tga" width="2048s" height="256s" align="center" valign="center" noclick="1" />						
+						
+						<panel name="postgame_summary_insert_account_progression_bar_level_button_1" x="5s" y="22s" width="40s" align="left" valign="center" noclick="0" >
+							<image name="postgame_summary_insert_account_progression_bar_level_hover_1" noclick="1" texture="/ui/main/postgame/textures/account_bar_hover.tga" rendermode="additive" width="112s" height="80s" align="center" valign="center" color="1 1 1 0.5" visible="0"/>
+							<image name="postgame_summary_insert_account_progression_bar_level_glow_1" noclick="1" texture="/ui/main/shared/textures/circular.tga" rendermode="additive" height="50%" width="120%" align="center" valign="center" color="0.13 0.76 1 0.5" visible="0"/>
+							<label name="postgame_summary_insert_account_progression_bar_level_label_1" fitx="1" fity="1" align="center" valign="center" textalign="center" textvalign="center" color="0.24 0.26 0.3 1" outline="1" outlinecolor="0.18 0.39 0.45 0.8" font="maindyn_26" content="" noclick="1" />
+						</panel>
+						<panel name="postgame_summary_insert_account_progression_bar_level_button_2" x="244s" y="22s" width="45s" align="left" valign="center" noclick="0" >
+							<image name="postgame_summary_insert_account_progression_bar_level_hover_2" noclick="1" texture="/ui/main/postgame/textures/account_bar_hover.tga" rendermode="additive" width="116s" height="95s" align="center" valign="center" color="1 1 1 0.5" visible="0" />
+							<image name="postgame_summary_insert_account_progression_bar_level_glow_2" noclick="1" texture="/ui/main/shared/textures/circular.tga" rendermode="additive" height="50%" width="120%" align="center" valign="center" color="0.13 0.76 1 0.5" visible="0"/>
+							<label name="postgame_summary_insert_account_progression_bar_level_label_2" fitx="1" fity="1" align="center" valign="center" textalign="center" textvalign="center" color="0.24 0.26 0.3 1" outline="1" outlinecolor="0.18 0.39 0.45 0.8" font="maindyn_26" content="" noclick="1" />
+						</panel>
+						<panel name="postgame_summary_insert_account_progression_bar_level_button_3" x="482s" y="22s" width="47s" align="left" valign="center" noclick="0" >
+							<image name="postgame_summary_insert_account_progression_bar_level_hover_3" noclick="1" texture="/ui/main/postgame/textures/account_bar_hover.tga" rendermode="additive" width="123s" height="105s" align="center" valign="center" color="1 1 1 0.5" visible="0" />
+							<image name="postgame_summary_insert_account_progression_bar_level_glow_3" noclick="1" texture="/ui/main/shared/textures/circular.tga" rendermode="additive" height="50%" width="120%" align="center" valign="center" color="0.13 0.76 1 0.5" visible="0"/>
+							<label name="postgame_summary_insert_account_progression_bar_level_label_3" fitx="1" fity="1" align="center" valign="center" textalign="center" textvalign="center" color="0.24 0.26 0.3 1" outline="1" outlinecolor="0.18 0.39 0.45 0.8" font="maindyn_30" content="" noclick="1" />
+						</panel>
+						<panel name="postgame_summary_insert_account_progression_bar_level_button_4" x="717s" y="22s" width="50s" align="left" valign="center" noclick="0" >
+							<image name="postgame_summary_insert_account_progression_bar_level_hover_4" noclick="1" texture="/ui/main/postgame/textures/account_bar_hover.tga" rendermode="additive" width="125s" height="112s" align="center" valign="center" color="1 1 1 0.5" visible="0" />
+							<image name="postgame_summary_insert_account_progression_bar_level_glow_4" noclick="1" texture="/ui/main/shared/textures/circular.tga" rendermode="additive" height="50%" width="120%" align="center" valign="center" color="0.13 0.76 1 0.5" visible="0"/>
+							<label name="postgame_summary_insert_account_progression_bar_level_label_4" fitx="1" fity="1" align="center" valign="center" textalign="center" textvalign="center" color="0.24 0.26 0.3 1" outline="1" outlinecolor="0.18 0.39 0.45 0.8" font="maindyn_30" content="" noclick="1" />
+						</panel>
+						<panel name="postgame_summary_insert_account_progression_bar_level_button_5" x="952s" y="21s" width="52s" align="left" valign="center" noclick="0" >
+							<image name="postgame_summary_insert_account_progression_bar_level_hover_5" noclick="1" texture="/ui/main/postgame/textures/account_bar_hover.tga" rendermode="additive" width="127s" height="127s" align="center" valign="center" color="1 1 1 0.5" visible="0" />
+							<image name="postgame_summary_insert_account_progression_bar_level_glow_5" noclick="1" texture="/ui/main/shared/textures/circular.tga" rendermode="additive" height="50%" width="120%" align="center" valign="center" color="0.13 0.76 1 0.5" visible="0"/>
+							<label name="postgame_summary_insert_account_progression_bar_level_label_5" fitx="1" fity="1" align="center" valign="center" textalign="center" textvalign="center" color="0.24 0.26 0.3 1" outline="1" outlinecolor="0.18 0.39 0.45 0.8" font="maindyn_36" content="" noclick="1" />
+						</panel>
+						<panel name="postgame_summary_insert_account_progression_bar_level_button_6" x="1194s" y="20s" width="55s" align="left" valign="center" noclick="0">
+							<image name="postgame_summary_insert_account_progression_bar_level_hover_6" noclick="1" texture="/ui/main/postgame/textures/account_bar_hover.tga" rendermode="additive" width="128s" height="128s" align="center" valign="center" color="1 1 1 0.5" visible="0" />
+							<image name="postgame_summary_insert_account_progression_bar_level_glow_6" noclick="1" texture="/ui/main/shared/textures/circular.tga" rendermode="additive" height="50%" width="120%" align="center" valign="center" color="0.13 0.76 1 0.5" visible="0"/>
+							<label name="postgame_summary_insert_account_progression_bar_level_label_6" fitx="1" fity="1" align="center" valign="center" textalign="center" textvalign="center" color="0.24 0.26 0.3 1" outline="1" outlinecolor="0.18 0.39 0.45 0.8" font="maindyn_36" content="" noclick="1" />
+						</panel>
+
+						<image
+							name="postgame_progress_bar_back"
+							texture="/ui/main/shared/textures/scroll_arrow.tga"
+							x="24s" y="70s" width="64s" height="64s" valign="bottom" color=".6 .6 .6 .6'"
+							hflip="1"
+							usebitmask="1"
+							bitmaskfile="/ui/main/shared/textures/scroll_arrow.tga"
+						/>
+						<image
+							name="postgame_progress_bar_forward"
+							texture="/ui/main/shared/textures/scroll_arrow.tga"
+							x="-24s" y="70s" width="64s" height="64s" valign="bottom" align="right" color=".6 .6 .6 .6'"
+							usebitmask="1"
+							bitmaskfile="/ui/main/shared/textures/scroll_arrow.tga"
+						/>				
+				
+				</panel> 
+			</panel>
+
+			<!-- When there are 4 or less rewards -->
+			<panel y="-20s" x="-20s" valign="bottom" align="center" height="250s" grow="1" regrow="1" noclick="1">
+				<!--<label height="56s" textalign="center" textvalign="center" color="#FFBB00" outline="true" font="maindyn_48" content="postgame_rewards"/>-->
+				<panel name="postgame_summary_insert_match_awards_4less" y="54s" height="138s" align="center" grow="1" float="right" padding="8s" noclick="1">
+					<!-- Rewards Here -->
+				</panel>
+			</panel>
+			
+			<!-- When there are 5 or more rewards -->
+			<panel y="-55s" x="30s" valign="bottom" align="center" height="250s" width="100%" noclick="1" >
+				<!--<label y="10s" x="1%" height="56s" textalign="left" textvalign="center" color="#FFBB00" outline="true" font="maindyn_48" content="postgame_rewards"/>-->
+				<panel name="postgame_summary_insert_match_awards_5more" y="72s" height="138s" align="left" grow="1" float="right" padding="8s" noclick="1">
+					<!-- Rewards Here -->
+				</panel>
+			</panel>						
+					
+			<panel name="ui_dev_rankup" visible="0" noclick="1" >
+				<panel color="0 0 0 .8" />
+				<modelpanel model="/ui/main/shared/effects/hero_highlight.mdf" anim="idle" effect="/ui/main/shared/effects/screenedge_unlock.effect" camerapos="0 -30 0" cameraangles="0 0 180" camerafov="45" cameranear="1" camerafar="1400" depthclear="false" depthcompress="true" noclick="true" />								
+				<panel grow="1" height="256s" align="center" valign="center" float="right" noclick="1" >
+					<instance name="rankUP_item" id="5" color="slate" size="70" />
+					<instance name="rankUP_item" id="4" color="bronze" size="70" />
+					<instance name="rankUP_item" id="3" color="silver" size="70" />
+					<instance name="rankUP_item" id="2" color="gold" size="70" />
+					<instance name="rankUP_item" id="1" color="diamond" size="70" />		
+				</panel>		
+				<label name="ui_dev_rankup_label" fity="1" y="195s" width="300s" align="center" valign="center" textalign="center" wrap="1" lineheight="38s" style="labelBase" color="#c3dfeb" font="maindyn_40" content="" />		
+			</panel>			
+			
+		</panel>
+	</template>		
+	
+</package>

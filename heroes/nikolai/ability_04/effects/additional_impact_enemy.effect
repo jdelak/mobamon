@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<model
+				bone="_bone_head"
+				position="0 0 25"
+				life="2000"
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				startscale="1.25"
+				endscale="1.85"
+				startcolor="0 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".4"
+				yawspeed="360"
+				pitchspeed="180"
+				directionalspace="world"
+			>
+				<template name="star">
+					<billboard
+						life="500"
+						bone="{bone}"
+						position="0 0 0"
+						startscale=".1"
+						midscale=".6"
+						endscale="0"
+						material="/shared/effects/smaterials/star_blend.material"
+						minrollspeed="-100"
+						maxrollspeed="100"
+						color="1 .25 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+						depthbias="-25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+
+					<billboard
+						life="500"
+						bone="{bone}"
+						position="0 0 0"
+						startscale=".1"
+						midscale=".6"
+						endscale="0"
+						material="/shared/effects/materials/whitedot.material"
+						minrollspeed="-100"
+						maxrollspeed="100"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".85"
+						depthbias="-50"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+					
+					
+					<billboard
+						life="300"
+						position="0 0 0"
+						startscale="4.5"
+						endscale="0"
+						material="/shared/effects/materials/whitedot.material"
+						minrollspeed="-100"
+						maxrollspeed="100"
+						startcolor="0 0 0"
+						midcolor=".25 .06 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						depthbias="-50"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+					
+				</template>
+				
+				<instance name="star" bone="_bone_fx_09" scale=".3"/>
+				<instance name="star" bone="_bone_fx_05" scale=".25"/>
+				<instance name="star" bone="_bone_fx_06" scale=".2"/>
+				<instance name="star" bone="_bone_fx_02" scale=".35"/>
+
+			</model>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

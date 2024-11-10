@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".65"
+				sample="../sounds/sfx_trail.wav"
+			/>
+
+			<model
+				expirelife="0"
+				model="cage/model.mdf"
+				material="cage/material.material"
+				anim="projectile"
+				color="1.35 1.25 1.1"
+				scale="3"
+				yawspeed="720"
+			>
+			
+				<billboard
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".1 .05 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					life="600"
+					position="0 0 0"
+					scale="6"
+					depthbias="-150"			
+				/>
+			
+			</model>
+
+			
+			<simpleemitter
+				count="7"
+				spawnrate="20"
+				particlelife="2000"
+				position="0 0 0"
+			>
+				<particle
+				>
+					<simpleemitter
+						life="3000"
+						minspeed="0"
+						maxspeed="500"
+						count="1"
+						spawnrate="220"
+						gravity="50"
+						direction="0 0 0"
+						offsetsphere="30 30 30"
+						particlelife="2000"
+						collide="true"
+					>
+						<particle
+						>
+							<model
+								model="boards/model.mdf"
+								color="1.25"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="700"
+								maxlife="900"
+								minpitch="-360"
+								maxpitch="360"
+								startscale="2.6"
+								midscale="2.6"
+								minendscale="0"
+								maxendscale="2.6"
+								midscalepos=".75"
+								startalpha="1"
+								midalpha="1"
+								endalpha="1"
+								minyawspeed="-360"
+								maxyawspeed="360"
+							/>
+							
+							<billboard
+								material="/shared/effects/smaterials/whitedot.material"
+								startcolor=".1 .05 0"
+								midcolor=".1 .05 0"
+								endcolor="0 0 0"
+								life="600"
+								position="0 0 0"
+								scale="3"
+								depthbias="-150"			
+							/>
+							
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="500"
+				maxparticlelife="500"
+				material="/shared/effects/materials/whitedot.material"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					startcolor=".1 .05 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					startsize="200"
+					endsize="75"
+				/>
+			</simpleemitter>
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

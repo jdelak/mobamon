@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="tooltip" luatable="true" >
+
+	<lua file="/ui/shared/lib_thread.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/main/shared/cursors.lua"/>
+	<lua file="/ui/main/shared/custom_triggers.lua"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/main/shared/styles2.lua"/>
+	<lua file="/ui/shared/global_drag2.lua"/>
+	<lua file="/ui/shared/lib_button2.lua"/>
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<childinterface file="/ui/game/shared/game_shared_templates.interface"/>
+	
+	<if condition="host_islauncher">	
+		<style name="tipBody" wrap="true" fity="true" fitypadding="1h" style="labelBase" font="subdyn_15" textvalign="center"  />
+		<style name="tipHeader" fity="1" wrap="1" style="h1" font="maindyn_24" textvalign="center" />
+	</if>
+	<if condition="!host_islauncher" >
+		<style name="tipBody" wrap="true" fity="true" fitypadding="1h" style="labelBase" font="subdyn_11" textvalign="center"  />
+		<style name="tipHeader" fity="1" wrap="1" style="h1" font="maindyn_20" textvalign="center" />
+	</if>
+
+	<template name="iconFrame">
+		<frame name="{id2}" color="invisible" borderthickness="2" bordercolor="0 0 0 1" noclick="true"/>
+		<frame name="{id}" color="invisible" borderthickness="1" bordercolor=".2 .2 .2 1" noclick="true"/>
+	</template>	
+	
+	<panel color="black" noclick="0" blockinput="1"/>
+	
+	<panel width="34h" noclick="true" grow="true" regrow="true" visible="1" name="simpleTipGrowYContainer">
+	
+		<panel height="2h"/><!-- Minimum height -->
+		<panel width="-3.0h" align="center" grow="true" regrow="true" growinvis="false" float="bottom" padding="0.4h">
+			<panel height="0.8h"/><!-- Header pad -->
+			<panel grow="1" regrow="1" width="100%" name="simpleTipGrowYTitleContainer" sticky="true" stickytoinvis="false">				
+				<label style="tipHeader" name="simpleTipGrowYTitle"/>				
+				<panel width="3.4h" height="3.4h" align="right" name="simpleTipGrowYIconContainer" visible="false">
+					<image name="simpleTipGrowYIcon"/>
+				</panel>
+			</panel>
+			<instance name="horizRule1" height="0.1h" ruleName="simpleTipGrowYBodySeparator" sticky="true" stickytoinvis="false"/>
+			<panel width="100%" grow="true" regrow="true" sticky="true" stickytoinvis="false">
+				<panel height="2h"/>
+				<panel width="100%" grow="true" regrow="true">
+					<label style="tipBody" name="simpleTipGrowYBody"/>
+				</panel>
+			</panel>
+			<panel height="0.8h"/><!-- Footer pad -->
+		</panel>
+	</panel>
+
+	<lua file="/ui_dev/tooltip/tooltip_interface_script.lua"/>
+	
+</interface>

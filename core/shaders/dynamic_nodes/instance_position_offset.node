@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="instance_position_offset">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="InstancePosition" type="float3" source="InstancePosition" />
+	<dependency name="mWorldViewOffset" type="float4x4" source="mWorldViewOffset" />
+	<output name="Out" type="float3" solution="WorldPositionOffset" />
+	<?hlsl
+		float4x4 mInstanceOffset = float4x4(float4(1.0f, 0.0f, 0.0f, 0.0f),
+											float4(0.0f, 1.0f, 0.0f, 0.0f),
+											float4(0.0f, 0.0f, 1.0f, 0.0f),
+											float4(InstancePosition, 1.0f));
+		float4x4 mInstanceViewOffset = mul(mInstanceOffset, mWorldViewOffset);
+		Out = mul(float4(ObjectPosition, 1.0f), mInstanceViewOffset).xyz;
+	?>
+	<?glsl
+		mat4x4 mInstanceOffset(float4(1.0f, 0.0f, 0.0f, 0.0f),
+							   float4(0.0f, 1.0f, 0.0f, 0.0f),
+							   float4(0.0f, 0.0f, 1.0f, 0.0f),
+							   InstancePosition);
+		mat4x4 mInstanceViewOffset(mWorldViewOffset * mInstanceOffset);
+		Out = (mInstanceViewOffset * vec4(ObjectPosition, 1.0f)).xyz;
+	?>
+</node>

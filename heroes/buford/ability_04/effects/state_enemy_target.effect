@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" useentityeffectscale="1" deferred="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.0">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55"
+				sample="../sounds/sfx_target.wav"
+			/>
+
+			<model
+				position="0 0 275"
+				expirelife="150"
+				color="1.25"
+				model="board_target/model.mdf"
+				anim="idle"
+				scale="2"
+				startalpha="1"
+				endalpha="0"
+				pitch="50"
+				roll="-25"
+				rollspeed="15"
+				directionalspace="world"
+			/>
+			
+			<billboard
+				position="0 0 275"
+				expirelife="250"
+				startcolor=".7 .35 0"
+				endcolor="0"
+				scale="3"
+				depthbias="-50"
+				material="/shared/effects/smaterials/whitedot.material"
+				directionalspace="world"
+			/>
+
+			
+			<template name="green">
+<!--
+				<simpleemitter
+					position="0 0 275"
+					spawnrate="{zspawnrate}"
+					minparticlelife="150"
+					maxparticlelife="500"
+					material="/shared/effects/smaterials/powersteal.material"
+					depthbias="-50"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".25 .125 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="40"
+						maxstartscale="60"
+						endscale="0"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+						flare="true"
+					/>
+				</simpleemitter>
+-->
+			</template>
+			
+			
+			<instance name="green" zstartscale="50" zspawnrate="150"/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

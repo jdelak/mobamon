@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="3">
+
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.55" 
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+
+
+			
+<!--
+			<simpleemitter
+				bone="_bone_fx_muzzle"
+				life="500"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				spawnrate="100"
+				gravity="-25"
+				minspeed="0"
+				maxspeed="20"
+				minangle="0"
+				maxangle="20"
+				drag="0.2"
+				offsetsphere="5 5 0"
+				material="/shared/effects/smaterials/dust3.material"
+				dephtbias="100"
+			>
+				<particle
+					startcolor="1 .875 .775"
+					midcolor="1 .875 .775"
+					endcolor="0 0 0"
+					midcolorpos=".05"
+					startscale="0.2"
+					endscale="2"
+					startalpha="0"
+					midalpha=".4"
+					endalpha="0"
+					midalphapos=".1"
+					size="50"
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-50"
+					maxanglespeed="50"
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+	
+		<particlesystem name="system1" space="world" scale="0.7">
+
+			<sound
+				sample="../../sounds/ability_01/torch/sfx_impact_%.wav"
+				volume="0.45"
+				falloffstart="500"
+				falloffend="2400"
+			/>
+		
+			<simpleemitter
+				delay="200"
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				count="1"
+				spawnrate="1000"
+				particlelife="5000"
+				speed="0"
+				drag="0"
+				direction="0 0 0"
+				angle="0"
+			>
+				<particle>
+					
+					<simpleemitter
+						count="1"
+						particlelife="200"
+						spawnrate="1000"
+						speed="2.0"
+						position="0 0 0"
+						direction="0 0 1"
+						minangle="0"
+						maxangle="0"
+						offsetsphere="0"
+						depthbias="-100"
+						material="/shared/effects/smaterials/whitecircleblurred_additive.material"
+					>
+						<particle
+							size="77"
+							startscale="4"
+							endscale="0"
+							startcolor="2 .5 0"
+							endcolor="0"
+							turn="0"
+							lockup="1"
+							angle="50"
+							startwidth="3"
+							endwidth="0"
+						/>
+						
+						<particle
+							size="77"
+							startscale="4"
+							endscale="0"
+							startcolor="2 .5 0"
+							endcolor="0"
+							turn="0"
+							lockup="1"
+							angle="-50"
+							startwidth="3"
+							endwidth="0"
+						/>
+					
+					</simpleemitter>
+					
+					<simpleemitter
+						position="0"
+						count="5"
+						spawnrate="11340"
+						minparticlelife="250"
+						maxparticlelife="300"
+						minspeed="0"
+						maxspeed="50"
+						drag="0.1"
+						acceleration="0.0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/cartoon_smack_unlit.material"
+						particledirectionalspace="local"
+						
+					>
+						<particle
+							
+							startsize="0"
+							endsize="300"
+							color="1 .8 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos="0.5"
+							turn="1"
+							minangle="0"
+							maxangle="360"
+						>
+						</particle>
+					</simpleemitter>
+
+					<simpleemitter
+						life="200"
+						count="1"
+						particlelife="2000"
+						spawnrate="5000"
+						position="0 0 0"
+					>
+						<particle 
+						>
+
+							<billboard
+								
+								startcolor="0 0 0"
+								midcolor="3 0.8 0"
+								endcolor="0 0 0"
+								midcolorpos=".2"
+								life="200"
+								startscale="0"
+								endscale="5"
+								material="/shared/effects/smaterials/whitedot.material"
+								depthbias="-50"
+								lockup="0"
+								lockright="0"
+								pitch="0"
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					<!--Green sparkles-->
+					<!-- <simpleemitter
+						life="300"
+						bone="_bone_emissionpoint"
+						spawnrate="300"
+						particlelife="500"
+						speed="0"
+						gravity="0"
+						drag="0"
+						acceleration="0"
+						position="0 0 0"
+						direction="0 0 1"
+						offsetsphere="20 20 20"
+						material="/shared/effects/smaterials/star_add_orange.material"
+						inheritvelocity="0.05"
+					>
+						<particle
+							startcolor="1"
+							endcolor="0 0 0"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							startsize="10"
+							
+							endsize="0"
+							minscale=".2"
+							maxscale="1"
+						/>
+
+						<particle
+							startcolor="1"
+							endcolor="0 0 0"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							startsize="0"
+							
+							endsize="10"
+							minscale=".2"
+							maxscale="1"
+						/>
+
+					</simpleemitter> -->
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />	
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier 
+			name="modifier0"
+			life="250"
+			startcolor=".5"
+			endcolor="1 1 1"
+			startalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="entity" scale="1">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume="0.4"
+				sample="/shared/sounds/items/item_replenish_impact.wav"
+			/>
+		
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				bone="_bone_centerofchest"
+				life="500"
+				startcolor="0 .5 1"
+				alpha="0"
+				endcolor="0 0 0"
+				position="0 0 25"
+				size="100"
+				startheight="1000"
+				endheight="400"
+				width="100"
+				depthbias="0"
+				lockup="1"
+				lockright="1"
+				
+			/>
+			
+			<groundsprite
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				life="500"
+				startcolor="0 .5 1"
+				midcolor="0 .1 .5"
+				endcolor="0 0 0"
+				startsize="50"
+				endsize="500"
+				
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="20"
+				spawnrate="2500"
+				particlelife="1000"
+				offsetsphere="25 25 400"
+				position="0 0 500"
+				minspeed="250"
+				maxspeed="500"
+				direction="0 0 -1"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 0"
+						life="500"
+						material="/shared/effects/smaterials/whitedot.material"
+						startsize="150"
+						endsize="300"
+						midsizepos=".2"
+						startcolor="0 0 0"
+						midcolor="0 .15 .3"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						lockup="1"
+						lockright="1"
+						depthbias="-35"
+						minheight="150"
+						maxheight="300"
+						startwidth="3"
+						endwidth="6"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+<!--
+			<light
+				position="0 20 50"
+				life="500"
+				startcolor="2 1 .5"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="200"
+			/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

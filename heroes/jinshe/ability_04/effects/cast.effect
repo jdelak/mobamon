@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="entity" scale=".5">
+
+			<sound
+				life="6000"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0"
+				sample="../sounds/sfx_absorb.wav"
+			/>
+		
+			<template name="">
+
+
+<!--
+				<simpleemitter
+				life="250"
+				bone="{zbone}"
+					spawnrate="40"
+					minparticlelife="200"
+					maxparticlelife="800"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 0"
+					depthbias="0"
+					directionalspace="world"
+					offsetsphere="10"
+				>
+					<particle 
+					startanchor="1"
+					endanchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="1 0 0"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						minstartsize="30"
+						maxstartsize="60"
+						midsize="36"
+						endsize="0"
+						turn="true"
+					/>
+				</simpleemitter>
+-->
+				<simpleemitter
+				life="450"
+				bone="{zbone}"
+					spawnrate="20"
+					minparticlelife="200"
+					maxparticlelife="800"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					material="/shared/effects/smaterials/whitedot.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 0"
+					depthbias="-12"
+					directionalspace="world"
+					offsetsphere="10"
+				>
+					<particle 
+					startanchor="1"
+					endanchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="0 0 0"
+						midcolor=".25 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".125"
+						startframe="0"
+						endframe="1"
+						minstartsize="60"
+						maxstartsize="90"
+						endsize="60"
+						turn="true"
+					/>
+					
+					<particle 
+					startanchor="1"
+					endanchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="0 0 0"
+						midcolor=".25 .125 0"
+						endcolor="0 0 0"
+						midcolorpos=".125"
+						startframe="0"
+						endframe="1"
+						minstartsize="60"
+						maxstartsize="90"
+						endsize="60"
+						turn="true"
+					/>
+				</simpleemitter>
+				
+				
+			
+			</template>
+			
+
+			<instance name="" zbone="_bone_whipTwo01"/>
+			<instance name="" zbone="_bone_whipTwo02"/>
+			<instance name="" zbone="_bone_whipTwo03"/>
+			<instance name="" zbone="_bone_whipTwo04"/>
+			<instance name="" zbone="_bone_whipTwo05"/> 
+			<instance name="" zbone="_bone_whipTwo06"/>
+			<instance name="" zbone="_bone_whipTwo07"/>
+			<instance name="" zbone="_bone_whipTwo08"/>
+			<instance name="" zbone="_bone_whipTwo09"/>
+			<instance name="" zbone="_bone_whipTwo10"/> 
+			<instance name="" zbone="_bone_whipTwo11"/>
+			<instance name="" zbone="_bone_whipTwo12"/>
+			<instance name="" zbone="_bone_whipTwo13"/>
+
+
+<!--
+			<instance name="" zbone="_bone_whip01"/>
+			<instance name="" zbone="_bone_whip02"/>
+			<instance name="" zbone="_bone_whip03"/>
+			<instance name="" zbone="_bone_whip04"/>
+			<instance name="" zbone="_bone_whip05"/> 
+			<instance name="" zbone="_bone_whip06"/>
+			<instance name="" zbone="_bone_whip07"/>
+			<instance name="" zbone="_bone_whip08"/>
+			<instance name="" zbone="_bone_whip09"/>
+			<instance name="" zbone="_bone_whip10"/> 
+			<instance name="" zbone="_bone_whip11"/>
+			<instance name="" zbone="_bone_whip12"/>
+			<instance name="" zbone="_bone_whip13"/>
+-->
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>

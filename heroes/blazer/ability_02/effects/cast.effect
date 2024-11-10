@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="2.15">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.75"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+
+					<light
+						delay="250"
+						position="0 0 50"
+						life="500"
+						startcolor="1.5 6 0"
+						endcolor="0"
+						falloffstart="0"
+						startfalloffend="65"
+						endfalloffend="85"
+						directionalspace="world"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".65">
+		
+		
+			<beam
+				life="350"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_Bip01 L Hand"
+				bone_b="_bone_center"
+				startsize="130"
+				endsize="80"
+				startcolor=".25 0 0"
+				midcolor="1 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".85"
+				alpha="1"
+				material="/shared/effects/smaterials/whitedot.material"
+				startframe="0"
+				endframe="1"
+				framespeed=".1"
+			/>
+		
+		
+		
+		
+
+
+			<trackeremitter
+				count="1"
+				bone="_bone_Bip01 Head"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				tracktype="lerp"
+				trackspeed="1"
+				drag="0"
+				spawnrate="1000"
+				particlelife="3000"
+				gravity="0"
+				speed="3000"
+				acceleration="0"
+			>
+				<particle>
+					<model
+						life="1000"
+						bone="_bone_centerofchest"
+						name="skeleton"
+						model="/shared/effects/models/side_to_side/model.mdf"
+						anim="idle"
+						pitch="0"
+						yaw="90"
+						scale="1.5"
+					>
+						<simpleemitter
+							bone="_bone_fx_01"
+							spawnrate="200"
+							particlelife="500"
+							gravity="-5"
+							speed="200"
+							drag=".1"
+							acceleration="0"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							offsetsphere="6 6 6"
+							minangle="0"
+							maxangle="360"
+						>
+							<particle 
+								minangle="0"
+								maxangle="0"
+								minanglespeed="0"
+								maxanglespeed="0"
+								startcolor="1 1 1"
+								midcolor="1 .25 0"
+								endcolor="0 0 0"
+								midcolorpos=".75"
+								startframe="0"
+								endframe="1"
+								minsize="2"
+								maxsize="10"
+								startalpha="0"
+								midalpha=".7"
+								endalpha="0"
+								midalphapos=".5"
+								turn="true"
+								/>
+						</simpleemitter>
+
+						<simpleemitter
+							bone="_bone_fx_01"
+							position="0 0 0"
+							spawnrate="600"
+							minparticlelife="250"
+							maxparticlelife="500"
+							gravity="0"
+							offsetsphere="0 0 0"
+							drag="0"
+							acceleration="0"
+							direction="0 0 0"
+							minspeed="100"
+							maxspeed="100"
+							material="/shared/effects/smaterials/firesprite_01.material"
+						>
+							<particle
+								startcolor="1 1 1"
+								midcolor=".2 0 0"
+								endcolor="0 0 0"
+								midcolorpos=".6"
+								minangle="0"
+								maxangle="360"
+								startsize="25"
+								midsize="75"
+								endsize="75"
+								alpha="0"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								anchor=".25"
+								/>
+						</simpleemitter>
+					</model>
+				</particle>
+			</trackeremitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="flames">
+
+				<simpleemitter
+					life="250"
+					bone="{zbone}"
+					spawnrate="75"
+					minparticlelife="400"
+					maxparticlelife="600"
+					gravity="-5"
+					position="0 0 0"
+					offsetsphere="20"
+					material="/shared/effects/smaterials/firesprite_01.material"
+					depthbias="25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="1 1 1"
+						midcolor=".25 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startsize="25"
+						midsize="50"
+						endsize="50"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+			
+			
+			</template>
+
+			<instance name="flames" zbone="_bone_Bip01 L Hand"/>
+			<instance name="flames" zbone="_bone_Bip01 R Hand"/>
+			
+			
+			
+			<simpleemitter
+				life="500"
+				bone="_bone_Bip01 Spine02"
+				spawnrate="200"
+				minparticlelife="400"
+				maxparticlelife="600"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="55"
+				material="/shared/effects/smaterials/firesprite_01.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="1 1 1"
+					midcolor=".25 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					startsize="20"
+					midsize="65"
+					endsize="65"
+					startanchor="1"
+					endanchor="0"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				life="500"
+				bone="_bone_Bip01 Pelvis"
+				spawnrate="200"
+				minparticlelife="400"
+				maxparticlelife="600"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="55"
+				material="/shared/effects/smaterials/firesprite_01.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="1 1 1"
+					midcolor=".25 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					startsize="20"
+					midsize="65"
+					endsize="65"
+					startanchor="1"
+					endanchor="0"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			<light
+				life="500"
+				startcolor="5 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="400"
+				position="0 0 50"
+			/>
+			
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />		
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+
+
+
+
+
+

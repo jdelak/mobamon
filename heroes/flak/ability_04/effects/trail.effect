@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.25">
+
+			<sound
+				soundloop="true"
+				fadein="500"
+				volume="0.35"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_trail.wav"
+			/>	
+			
+			<light
+				position="0 0 35"
+				expirelife="1500"
+				startcolor="0 2 5"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="175"
+			/>
+			
+			<model
+				position="0 0 0"
+				model="orb/model.mdf"
+				anim="idle"
+				expirelife="250"
+				color="1 1 1"
+				startscale="1"
+				material="orb/material.material"
+			>
+				<template name="">
+
+					<beam
+						life="666"
+						bone_b="{zbone1}"
+						bone_a="{zbone2}"
+						size="{zsize}"
+						color="0 .5 .5"
+						startframe="0"
+						endframe="1"
+						material="/shared/effects/smaterials/lightning_new.material"
+						loop="true"
+					>
+					</beam>
+					
+					<beam
+						life="333"
+						bone_b="{zbone1}"
+						bone_a="{zbone2}"
+						size="{zsize}"
+						color="0 .5 .5"
+						startframe="0"
+						endframe="1"
+						material="/shared/effects/smaterials/lightning_new.material"
+						loop="true"
+					>
+					</beam>
+
+				</template>
+				
+				<instance name="" zbone1="_bone_fx_05" zbone2="_bone_fx_06" zsize="10"/>
+				<instance name="" zbone1="_bone_fx_06" zbone2="_bone_fx_07" zsize="20"/>
+				<instance name="" zbone1="_bone_fx_07" zbone2="_bone_fx_08" zsize="10"/>
+				<instance name="" zbone1="_bone_fx_08" zbone2="_bone_fx_05" zsize="30"/>
+
+				<instance name="" zbone1="_bone_fx_01" zbone2="_bone_fx_05" zsize="10"/>
+				<instance name="" zbone1="_bone_fx_01" zbone2="_bone_fx_06" zsize="15"/>
+				<instance name="" zbone1="_bone_fx_01" zbone2="_bone_fx_07" zsize="25"/>
+				<instance name="" zbone1="_bone_fx_01" zbone2="_bone_fx_08" zsize="35"/>
+				
+				<instance name="" zbone1="_bone_fx_02" zbone2="_bone_fx_05" zsize="10"/>
+				<instance name="" zbone1="_bone_fx_02" zbone2="_bone_fx_06" zsize="15"/>
+				<instance name="" zbone1="_bone_fx_02" zbone2="_bone_fx_07" zsize="25"/>
+				<instance name="" zbone1="_bone_fx_02" zbone2="_bone_fx_08" zsize="35"/>
+				
+				<instance name="" zbone1="_bone_fx_03" zbone2="_bone_fx_05" zsize="10"/>
+				<instance name="" zbone1="_bone_fx_03" zbone2="_bone_fx_06" zsize="15"/>
+				<instance name="" zbone1="_bone_fx_03" zbone2="_bone_fx_07" zsize="25"/>
+				<instance name="" zbone1="_bone_fx_03" zbone2="_bone_fx_08" zsize="35"/>
+				
+				<instance name="" zbone1="_bone_fx_04" zbone2="_bone_fx_05" zsize="10"/>
+				<instance name="" zbone1="_bone_fx_04" zbone2="_bone_fx_06" zsize="15"/>
+				<instance name="" zbone1="_bone_fx_04" zbone2="_bone_fx_07" zsize="25"/>
+				<instance name="" zbone1="_bone_fx_04" zbone2="_bone_fx_08" zsize="35"/>
+
+				<template name="">
+
+					<billboard
+						bone="{zbone}"
+						expirelife="250"
+						position="0 0 0"
+						startcolor="0 .2 .3"
+						endcolor="0"
+						size="50"
+						material="/shared/effects/smaterials/whitedot.material"
+					/>
+					
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="10"
+						minparticlelife="1000"
+						maxparticlelife="1000"
+						gravity="0"
+						acceleration="0"
+						timenudge="2000"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+						offsetsphere="0 0 0"
+					>
+						<particle
+							anchor="1"
+							startcolor="0 0 0"
+							midcolor="0 .15 .25"
+							endcolor="0 0 0"
+							startscale="0"
+							minendscale=".1"
+							maxendscale=".1"
+							width="500"
+							height="500"
+						/>
+					</simpleemitter>
+
+				</template>
+				
+				<instance name="" zbone="_bone_fx_05"/>
+				<instance name="" zbone="_bone_fx_06"/>
+				<instance name="" zbone="_bone_fx_07"/>
+				<instance name="" zbone="_bone_fx_08"/>
+
+				
+				
+				
+				
+					<simpleemitter
+						bone="_bone_CTRL_01"
+						spawnrate="10"
+						minparticlelife="1000"
+						maxparticlelife="1000"
+						gravity="0"
+						acceleration="0"
+						timenudge="2000"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+						offsetsphere="0 0 0"
+					>
+						<particle
+							anchor="1"
+							startcolor="0 0 0"
+							midcolor="0 .15 .25"
+							endcolor="0 0 0"
+							startscale=".15"
+							minendscale=".5"
+							maxendscale=".5"
+							width="500"
+							height="500"
+						/>
+					</simpleemitter>
+					
+					
+					
+					
+					<simpleemitter
+						bone="_bone_CTRL_01"
+						spawnrate="10"
+						minparticlelife="1000"
+						maxparticlelife="1000"
+						gravity="0"
+						acceleration="0"
+						timenudge="2000"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+						offsetsphere="0 0 0"
+					>
+						<particle
+							anchor="1"
+							startcolor="0 0 0"
+							midcolor="0 .04 .08"
+							endcolor="0 0 0"
+							midcolorpos=".85"
+							startscale=".15"
+							minendscale=".5"
+							maxendscale=".5"
+							width="2500"
+							height="2500"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</simpleemitter>
+				
+				
+				
+			</model>
+			
+			
+
+
+
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

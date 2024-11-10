@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Buford_Ability4_Slug"
+	
+	icon="icon.tga"
+
+	morphpriority="101"
+
+	frozen="true"
+	morphmodelscale=".9"
+
+	silenced="true"
+	disarmed="true"
+	perplexed="true"
+	stunned="true"
+	immobilized="true"
+	stunneddurationunmodifiable="true"
+	invulnerable="true"
+	
+	effecttype="StatusDebuff"
+	
+	ishidden="true"
+	
+
+	allowtransfer="true"
+	supersilenced="true"
+	alwaystransmitdata="true"
+
+>
+	<oninflict>
+		<expirestate name="Self_State_Buford_Ability4" target="this_owner_entity" />
+	</oninflict>
+	
+	<onframe />
+	
+	<onattackedpreimpact priority="-9999">
+		<setvalue name="combat_evasion" a="0" />
+	</onattackedpreimpact>
+	
+	<onattackedpredamage priority="-9999">
+		<setvalue name="combat_deflection" a="0" />
+	</onattackedpredamage>
+	
+
+	<onexpired>
+		<playeffect effect="effects/transition_out.effect" source="this_owner_entity" target="this_owner_entity" />
+		<playanim name="idle" target="target_entity" source="target_entity"/>
+		<areaofeffect
+			radius="100"
+			targetselection="all"
+			targetscheme="Buford_Cage"
+			effecttype="Magic Splash"
+		>
+			<kill target="target_entity" />
+		</areaofeffect>
+	</onexpired>
+
+</state>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+
+	<skin name="prentice">
+		<reference mesh="10k_witch"			material="material_prentice.material" />
+		<reference mesh="3k_witch"			material="material_prentice.material" />
+		<reference mesh="1k_witch"			material="material_prentice.material" />
+	</skin>	
+	
+	<skin name="ranger">
+		<reference mesh="10k_witch"			material="material_ranger.material" />
+		<reference mesh="3k_witch"			material="material_ranger.material" />
+		<reference mesh="1k_witch"			material="material_ranger.material" />
+	</skin>	
+	
+	<skin name="sorcerer">
+		<reference mesh="10k_witch"			material="material_sorcerer.material" />
+		<reference mesh="3k_witch"			material="material_sorcerer.material" />
+		<reference mesh="1k_witch"			material="material_sorcerer.material" />
+	</skin>	
+	
+	
+	<anim name="idle" clip="clips/default_1.clip"  loop="true" />
+
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="40" />
+	
+	<anim name="attack_2" clip="clips/attack_1.clip" fps="40" />
+	
+	<anim name="walk_1" clip="clips/walk_1.clip"  fps="26" loop="true" >
+		<frameevent frame="10" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2400 .25"/>
+		<frameevent frame="35" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2400 .25"/>
+	</anim>
+
+	<anim name="walk_channel_1" clip="clips/walk_channel_1.clip" fps="25" loop="true"/>
+	
+	<anim name="death_1" clip="clips/death_1.clip" fps="30" loop="true" loopbackframe="-1" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_foley_death.wav 500 2400 .85"/>
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/voice/vo_grunt_death_%.wav 500 2400 .85"/>
+		
+	</anim>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="45" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/voice/vo_grunt_%.wav 500 2400 .55"/>
+	</anim>
+
+	<anim name="ability_2" clip="clips/ability_2.clip"/>
+	
+	<anim name="ability_3" clip="clips/ability_3.clip" fps="45" />
+	
+	<anim name="ability_4" clip="clips/ability_4.clip" />
+
+	<anim name="bored_1" clip="clips/bored_1.clip" />
+	
+	<anim name="test" clip="clips/bored_1.clip" fps="70" />
+
+	<anim name="item_1" clip="clips/item_1.clip" />
+	
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip"  />
+	
+	<anim name="port_in" clip="clips/port_in.clip" />	
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+
+	<anim name="emote_1" clip="clips/emote_1.clip" >
+		<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_%.wav 500 2400 .85"/>
+	</anim>
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+</model>

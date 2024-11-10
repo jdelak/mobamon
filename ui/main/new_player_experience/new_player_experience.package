@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<panel name="newPlayerExperience_script" noclick="true" color="invisible"/>
+	
+	<panel name="newPlayerExperience_craftingCycleComponentHighlight" noclick="true" color="invisible" visible="false"/>
+	
+	<panel name="newPlayerExperience_enterName" align="center" valign="center" width="440s" grow="true" regrow="true" visible="false" >
+		<panel><!-- This exists so the +40s doesn't force the panel to grow when it shouldn't. -->
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 .9"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible"/>
+		</panel>
+		<panel grow="1" growinvis="0" width="100%" float="bottom" padding="30s">
+			<panel height="28s" noclick="1">
+				<label textvalign="center" textalign="center" style="h1" font="maindyn_40" content="new_player_experience_nameprompt"/>
+			</panel>			
+			<panel width="100%" height="46s">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>				
+					<!--
+					<label name="newPlayerExperience_enterName_input_hack" textcolor="invisible" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+					/>
+					-->
+					<textbox name="newPlayerExperience_enterName_input" taborder="10" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+						onenter="
+							Cmd('Script newPlayerExperience_enterName_enter()')
+						"
+						onesc="
+							Cmd('Script newPlayerExperience_enterName_esc()')
+						"
+				
+					/>
+					<!--
+						onchangelua="
+							self:GetWidget('newPlayerExperience_enterName_input_hack'):SetText(self:GetValue())
+							if string.len(self:GetValue()) > 0 then
+								self:GetWidget('newPlayerExperience_enterName_input_coverup'):SetVisible(0)
+							end
+						"
+						onfocuslua="
+							self:GetWidget('newPlayerExperience_enterName_input_coverup'):SetVisible(0)
+						"
+						onlosefocuslua="
+							if string.len(self:GetValue()) == 0 then
+								self:GetWidget('newPlayerExperience_enterName_input_coverup'):SetVisible(1)
+							end
+						"		
+					-->
+					<label name="newPlayerExperience_enterName_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="main_social_entername"/>
+			</panel>
+			<panel name="newPlayerExperience_enterName_submitContainer" height="48s">
+				<instance name="standardButton" id="newPlayerExperience_enterName_submit" font="maindyn_30" enabled="false" label="new_player_experience_enter_name"/>
+			</panel>			
+			<panel name="newPlayerExperience_enterName_haveAccountContainer" height="48s" visible="0">
+				<instance name="standardButton" id="newPlayerExperience_enterName_haveAccount" font="maindyn_26" label="new_player_experience_haveaccount"/>
+			</panel>						
+		</panel>		
+	</panel>
+	
+	<panel name="newPlayerExperience_loadMap" grow="1" width="475s" align="center" valign="center" visible="false">	
+		<panel><!-- This exists so the +40s doesn't force the panel to grow when it shouldn't -->
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 .9" noclick="true"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible" noclick="true"/>
+		</panel>
+		<panel grow="1" width="100%" float="bottom" padding="30s" noclick="true">
+			<panel height="90s" noclick="true">
+				<instance name="standardButton" id="newPlayerExperience_continue_tutorial" label="new_player_experience_continue_01" font="maindyn_40" borderthickness="1.5h"/>
+			</panel>
+		</panel>
+	</panel>
+	
+	<panel name="newPlayerExperience_loadMap_demo2" grow="1" width="475s" align="center" valign="center" visible="false">	
+		<panel><!-- This exists so the +40s doesn't force the panel to grow when it shouldn't -->
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 .9" noclick="true"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible" noclick="true"/>
+		</panel>
+		<panel grow="1" width="100%" float="bottom" padding="30s" noclick="true">
+			<panel height="90s" noclick="true">
+				<instance name="standardButton" id="newPlayerExperience_loadButton_demo2" label="general_play_strife" font="maindyn_40" borderthickness="1.5h"/>
+			</panel>
+		</panel>
+	</panel>
+	
+	<instance name="standardButton" id="newPlayerExperience_skipToLogin" width="320s" height="48s" align="right" valign="bottom" y="-54s" x="-16s" font="maindyn_22" label="new_player_experience_haveaccount" visible="false"/>
+	
+	<instance name="standardButton" id="newPlayerExperience_skipSection" width="320s" height="32s" align="right" valign="bottom" y="-4s" x="-352s" font="maindyn_22" label="new_player_experience_skipallnpe" visible="false"/>
+	
+	
+	<panel name="newPlayerExperience_saveIndicator" align="center" valign="bottom" y="-64s" height="32s" grow="true" float="right" padding="8s" visible="false" noclick="true" passivechildren="true">
+		<animatedimage name="main_parted_no_connection_overlay_wheel" texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+			width="100@" height="100%"
+		/>
+	
+		<label fitx="true" height="100%" color="white" outline="true" font="maindyn_16" textvalign="center" content="new_player_experience_saving"/>
+	</panel>
+</package>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model">
+
+	<skin name="blue">
+		<reference mesh="10k_blazer"		material="material_blue.material" />
+		<reference mesh="3k_blazer"			material="material_blue.material" />
+		<reference mesh="1k_blazer"			material="material_blue.material" />
+	</skin>	
+	
+	<skin name="gold">
+		<reference mesh="10k_blazer"		material="material_gold.material" />
+		<reference mesh="3k_blazer"			material="material_gold.material" />
+		<reference mesh="1k_blazer"			material="material_gold.material" />
+	</skin>	
+	
+	<skin name="yellowblack">
+		<reference mesh="10k_blazer"		material="material_yellowblack.material" />
+		<reference mesh="3k_blazer"			material="material_yellowblack.material" />
+		<reference mesh="1k_blazer"			material="material_yellowblack.material" />
+	</skin>	
+	
+	<skin name="mint">
+		<reference mesh="10k_blazer"		material="material_mint.material" />
+		<reference mesh="3k_blazer"			material="material_mint.material" />
+		<reference mesh="1k_blazer"			material="material_mint.material" />
+	</skin>
+	
+	<skin name="candy">
+		<reference mesh="10k_blazer"		material="material_candy.material" />
+		<reference mesh="3k_blazer"			material="material_candy.material" />
+		<reference mesh="1k_blazer"			material="material_candy.material" />
+	</skin>	
+	
+
+	<anim name="idle" clip="clips/default_1.clip" loop="true" />
+	
+	<anim name="item_1" clip="clips/item_1.clip"/>
+	
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+		
+	<anim name="ability_1" clip="clips/ability_2.clip"/>
+	
+	<anim name="ability_1_walk" clip="clips/ability_1_walk.clip" loop="true" fps="60"/>
+	
+	<anim name="ability_1_fire" clip="clips/ability_1_fire.clip"/>
+	
+	<anim name="ability_2" clip="clips/ability_1.clip" >
+		<frameevent frame="1" cmd="PlaySoundLinear ability_02/sounds/sfx_cast_pre.wav 500 2400 1"/>
+	</anim>
+	
+	<anim name="ability_3" clip="clips/ability_3.clip"/>
+	
+	<anim name="ability_4" clip="clips/ability_4.clip"/>
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="45"/>
+	
+	<anim name="attack_2" clip="clips/attack_1.clip" fps="45"/>
+	
+	<anim name="walk_1" clip="clips/walk_3.clip" loop="true" fps="30">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.2"/>
+		<frameevent frame="25" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.2"/>
+		<frameevent frame="50" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.2"/>
+		<frameevent frame="75" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.2"/>
+	</anim>
+	
+	
+	<anim name="walk_2" clip="clips/walk_1.clip" loop="true"/>  <!-- walk_1.clip= rocket boost   / walk_2.clip= swimmy    / walk_3.clip= floaty  -->
+
+	<anim name="walk_3" clip="clips/walk_3.clip" loop="true"/>
+	
+	<anim name="bored_1" clip="clips/bored_1.clip" />
+	
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="StartEffect effects/death.effect 0" />
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_death_foley.wav 500 2400 0.55"/>
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/voice/vo_death_grunt_%.wav 500 2400 0.35" />
+	</anim>
+	
+	<anim name="emote_1" clip="clips/emote_1.clip">
+		<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_%.wav 1000 3000 0.95"/>
+	</anim>
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip"/>
+	
+	<anim name="port_in" clip="clips/port_in.clip"/>
+
+</model>

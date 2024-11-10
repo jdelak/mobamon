@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+        life="3000"
+				volume="0.45"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_trail.wav"
+			/>
+
+ 			<template name="">
+				<trailemitter
+					bone="{zbone}"
+					position="0 0 0"
+					spawnrate="75"
+					particlelife="450"
+					texpostime="450"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/trail_blend.material"
+					subframepos="true"
+					startparticlealpha="1"
+					endparticlealpha="0"
+				>
+					<particle
+						startcolor=".3 .7 0"
+						midcolor=".3 .7 0"
+						endcolor=".3 .7 0"
+						midcolorpos=".2"
+						startsize="50"
+						endsize="0"
+						startalpha=".25"
+						endalpha="0"
+					/>
+				</trailemitter>
+
+				<trailemitter
+					spawnrate="75"
+					particlelife="400"
+					texpostime="400"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="25"
+						midsize="25"
+						endsize="0"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+			</template>
+			
+			<instance name=""/> 
+
+			<model
+				life="600"
+				model="flask/model.mdf"
+				anim="idle"
+				startscale="1"
+				midscale="2"
+				endscale="1"
+				midscalepos=".25"
+				startalpha="1"
+				endalpha="1"
+				color="1.2"
+				pitchspeed="-360"
+				minpitch="-180"
+				maxpitch="180"
+				rollspeed="720"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>

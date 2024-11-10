@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="1.88">
+
+			
+			
+			
+
+			<template name="goop">
+
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"
+					spawnrate="50"
+					particlelife="3000"
+					gravity="75"
+					speed="150"
+					acceleration="0"
+					offsetsphere="35 35 0"
+					minangle="0"
+					maxangle="10"
+					direction="0 0 1"
+					depthbias="-100"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							life="1000"
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="0 0 .5"
+							midcolor="0 .125 .5"
+							endcolor="0 0 0"
+							position="0 0 0"
+							minscale=".5"
+							maxscale="1"
+							lockup="true"
+							lockright="1"
+							pitch="90"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				<light
+					position="{zpos}"
+					life="4000"
+					startcolor="0 0 2"
+					midcolor="1 0 2"
+					endcolor="0 0 2"
+					midcolorpos=".2"
+					falloffstart="0"
+					falloffend="250"
+					loop="true"
+				/>
+
+				<billboard
+					position="{zpos}"
+					expirelife="250"
+					startcolor="0 0 .25"
+					endcolor="0 0 0"
+					size="100"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-295"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-20"
+				/>
+
+				
+
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="500"
+					maxparticlelife="1500"
+					offsetsphere="25"
+					material="/shared/effects/smaterials/firesprite_blue.material"
+					depthbias="-25"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					minspeed="50"
+					maxspeed="150"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 .125 .25"
+						midcolor="0 0 .25"
+						endcolor="0 0 0"
+						startsize="40"
+						endsize="0"
+					/>
+				</simpleemitter>
+
+				
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="20"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					offsetsphere="25 25 50"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					minspeed="50"
+					maxspeed="150"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0"
+						midcolor=".05 .1 .15"
+						endcolor="0 0 .25"
+						startsize="100"
+						endsize="0"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			
+			
+			<instance name="goop" zpos="-300 100 -10" zdelay="100"/>
+			<instance name="goop" zpos="-250 65 -7" zdelay="100"/>
+			<instance name="goop" zpos="-215 65 -7" zdelay="160"/>
+			<instance name="goop" zpos="-175 50 -7" zdelay="200"/>
+			<instance name="goop" zpos="-150 30 -5" zdelay="50"/>
+			<instance name="goop" zpos="-100 30 -20" zdelay="150"/>
+			<instance name="goop" zpos="-50 0 -20" zdelay="300"/>
+			<instance name="goop" zpos="0 0 -10" zdelay="250"/>
+			<instance name="goop" zpos="50 0 -10" zdelay="20"/>
+			<instance name="goop" zpos="100 0 -10" zdelay="150"/>
+			<instance name="goop" zpos="150 0 -10" zdelay="180"/>
+			<instance name="goop" zpos="200 15 -20" zdelay="250"/>
+			<instance name="goop" zpos="250 25 -20" zdelay="250"/>
+			<instance name="goop" zpos="300 35 -20" zdelay="250"/>
+			
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

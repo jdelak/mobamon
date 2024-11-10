@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="slash" scenewidth="100%" sceneheight="100%" luatable="true">
+
+	
+	<template name="slash_tab_target_user" >
+		<panel name="slash_tab_target_user_{index}" visible="0" noclick="1" height="4.0h" width="26h" >
+			<button name="slash_tab_target_user_{index}_button" color="invisible" >
+				<frame name="slash_tab_target_user_{index}_frame_1" texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s"/>
+				<frame name="slash_tab_target_user_{index}_frame_3" texture="/ui/elements:rounded_bg_white" color="1 1 1 0.22" borderthickness="0.6h" visible="0"/>				
+				<image name="slash_tab_target_user_{index}_icon" width="90@" height="90%" valign="center" x="5@"/>
+				<label name="slash_tab_target_user_{index}_username" x="115@" height="60%" textvalign="center" style="labelBase" color="1 1 1 1" font="maindyn_20" content="User Name"/>
+				<label name="slash_tab_target_user_{index}_usergroup" x="115@" y="-2s" height="40%" textvalign="center" style="labelBase" color=".8 .8 .8 1" font="maindyn_14" valign="bottom" content="1234"/>
+				<frame name="slash_tab_target_user_{index}_frame_2" texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h"/>
+			</button>
+		</panel>
+	</template>
+	
+	<panel name="slash_tab_target_parent" visible="0" noclick="1" grow="1" regrow="1" growinvis="0" valign="bottom">
+		<frame height="+4s" width="+4s" x="-2s" y="-2s" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="4s" color="0 0 0 .97" noclick="1"/>
+		<frame height="+4s" width="+4s" x="-2s" y="-2s" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="4s" color="invisible" noclick="1"/>		
+		<panel noclick="1" float="bottom" padding="0.2h" grow="1" regrow="1" growinvis="0" align="left" valign="top" >
+			<instance name="slash_tab_target_user" index="1" />
+			<instance name="slash_tab_target_user" index="2" />
+			<instance name="slash_tab_target_user" index="3" />
+			<instance name="slash_tab_target_user" index="4" />
+			<instance name="slash_tab_target_user" index="5" />
+			<instance name="slash_tab_target_user" index="6" />
+			<instance name="slash_tab_target_user" index="7" />
+			<instance name="slash_tab_target_user" index="8" />
+			<instance name="slash_tab_target_user" index="9" />
+			<instance name="slash_tab_target_user" index="10" />
+		</panel>
+	</panel>
+
+	<panel name="slash_tab_error_parent" visible="0" noclick="1" grow="1" regrow="1" growinvis="0" valign="bottom">
+		<frame height="+4s" width="+4s" x="-2s" y="-2s" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="4s" color="0 0 0 .97" noclick="1"/>
+		<frame height="+4s" width="+4s" x="-2s" y="-2s" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="4s" color="invisible" noclick="1"/>		
+		<panel noclick="1" float="bottom" padding="0.2h" grow="1" regrow="1" growinvis="0" align="left" valign="top" >
+			<panel name="slash_tab_target_error" visible="1" noclick="1" grow="1" regrow="1" growinvis="1" height="4.0h" width="25h" >
+				<button name="slash_tab_target_error_button" grow="1" regrow="1" growinvis="1" color="invisible" >
+					<frame name="slash_tab_target_error_frame_1" texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s" color="0.4 0.4 0.4 1" />
+					<frame name="slash_tab_target_error_frame_3" texture="/ui/elements:rounded_bg_white" color="0.4 0.4 0.4 0.22" borderthickness="0.6h" visible="0"/>				
+					<label name="slash_tab_target_error_username" fitx="1" x="15@" fitxpadding="2h" height="4h" textalign="left" textvalign="center" style="labelBase" color="1 0.5 0.5 1" font="maindyn_20" content="Error Contents Here"/>
+					<frame name="slash_tab_target_error_frame_2" texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h"/>
+				</button>
+			</panel>
+		</panel>
+	</panel>	
+
+</interface>

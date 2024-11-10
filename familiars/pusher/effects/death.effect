@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" usentityeffectscale="1">
+
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+
+		<particlesystem name="system0" space="world" scale=".175">
+
+			<template name="blast">
+			
+				<light
+					position="{zpos}"
+					life="600"			
+					startcolor="0 5 10"			
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					falloffstart="25"
+					startfalloffend="500"
+					endfalloffend="800"
+				/>
+
+				<simpleemitter
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					midspawnratepos=".99"
+					minparticlelife="150"
+					maxparticlelife="400"
+					mincount="50"
+					maxcount="65"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor="0 .4 1"
+						midcolor="0 .4 1"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						minwidth=".5"
+						maxwidth="1"
+						minheight="2"
+						maxheight="5"
+						turn="1"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					count="100"
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor="0 .25 1"
+						midcolor="0 .5 1"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						turn="1"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="blast" zpos="0 0 50"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

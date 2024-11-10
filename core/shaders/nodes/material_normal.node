@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_normal">
+	<dependency name="Normal" type="*" />
+	<output name="Out" type="*" solution="TangentBump" />
+	<case>
+		<dependency name="Normal" type="float3" />
+		<output name="Out" type="float3" solution="TangentBump" />
+		<?hlsl
+			Out = Normal;
+		?>
+		<?glsl
+			Out = Normal;
+		?>
+	</case>
+	<case default="true">
+		<dependency name="Normal" type="skip" />
+		<output name="Out" type="skip" solution="TangentBump" />
+	</case>
+</node>

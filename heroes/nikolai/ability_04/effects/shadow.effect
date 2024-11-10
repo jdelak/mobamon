@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+	<definitions>
+<!--
+		<modifier
+			life="2300"
+			name="modifier0"
+			startcolor="10 10 10"
+			midcolor="1 1 1"
+			endcolor="1 1 1"
+			midcolorpos=".8"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="entity" scale="3">
+<!--
+			<groundsprite
+				life="2300"
+				material="/shared/effects/smaterials/russian_shadow.material"
+				startsize="90"
+				midsize="50"
+				endsize="70"
+				color="0 0 0"
+				alpha=".075"
+				directionalspace="local"
+				yaw="0"
+			/>
+-->
+
+
+<!--
+			<light
+				life="2300"			
+				startcolor="5 1 0"			
+				endcolor="10 2 0"
+				falloffstart="0"
+				startfalloffend="150"
+				midfalloffend="120"
+				endfalloffend="175"
+				position="0 0 25"
+			/>
+-->
+
+<!--
+			<groundsprite
+				life="2300"
+				material="/shared/effects/smaterials/black_spot_sharper_ground.material"
+				startsize="25"
+				midsize="100"
+				endsize="25"
+				color="0 0 0"
+				alpha=".65"
+				directionalspace="local"
+				yaw="0"
+			/>
+-->
+			<groundsprite
+				life="2300"
+				material="/shared/effects/smaterials/black_spot_sharper_ground.material"
+				startsize="0"
+				midsize="115"
+				endsize="25"
+				color="0 0 0"
+				alpha=".65"
+				directionalspace="local"
+				yaw="0"
+			/>
+			
+			
+<!--
+			<groundsprite
+				life="2300"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				startsize="110"
+				midsize="160"
+				endsize="80"
+				color="0 0 0"
+				alpha=".65"
+				directionalspace="local"
+				yaw="0"
+			/>
+-->
+			
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

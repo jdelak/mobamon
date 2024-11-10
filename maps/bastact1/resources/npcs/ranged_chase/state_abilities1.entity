@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Ranged_Enemy_Chase"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	radius="1"
+	impactinterval="3000"
+	ishidden="true"
+	stack="false"
+
+>
+
+	<oninflict>
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="visible_enemy_heroes"
+			center="this_proxy_entity"
+			maxtotalimpacts="-1"
+		>
+			<useability source="this_proxy_entity" target="target_entity" slot="1" force="true" queue="front" />
+		</areaofeffect>	
+	</oninflict>
+
+	<onimpact>
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="visible_enemy_heroes"
+			center="this_proxy_entity"
+			maxtotalimpacts="-1"
+		>
+			<pushability entity="this_proxy_entity" slot="1" />
+			<canactivate entity="stack_entity">
+				<useability source="this_proxy_entity" target="target_entity" slot="1" force="true" queue="front" />
+			</canactivate>
+			
+		</areaofeffect>	
+	</onimpact>			
+	
+</state>

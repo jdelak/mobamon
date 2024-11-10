@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2">
+		
+		
+		
+
+
+		
+		
+
+			<template name="flame">
+			
+				<sound
+					volume="0.25"
+					falloffstart="100"
+					falloffend="1000"
+					sample="/shared/sounds/ambience/amb_obelisk_fire_2.wav"
+				/>
+			
+				<light
+					position="0 0 35"
+					expirelife="400"
+					startcolor="0 2 2"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="80"
+				/>
+			
+				<billboard
+					position="0 0 10"
+					expirelife="500"
+					startcolor="0 0 .2"
+					endcolor="0 0 0"
+					size="75"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-295"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-20"
+				/>
+				
+				
+<!--
+				<simpleemitter
+					position="0 0 10"
+					spawnrate="200"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-10"
+					offsetsphere="7 7 0"
+					material="/shared/effects/smaterials/firesprite_blue.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor=".025 .075 .15"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="20"
+						endsize="4"
+					/>
+				</simpleemitter>
+-->
+				
+				
+				
+<!--
+				<simpleemitter
+					position="0 0 10"
+					spawnrate="25"
+					minparticlelife="250"
+					maxparticlelife="500"
+					minspeed="50"
+					maxspeed="100"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="5"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize=".45"
+						maxsize=".55"
+						heightdistort=".005"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					position="0 0 10"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="750"
+					minspeed="50"
+					maxspeed="100"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="5"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize=".5"
+						maxsize=".75"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				<simpleemitter
+
+					spawnrate=".5"
+					minparticlelife="500"
+					maxparticlelife="750"
+				>
+					<particle 
+					>
+						<simpleemitter
+						count="32"
+							position="0 0 10"
+							spawnrate="2000"
+							minparticlelife="500"
+							maxparticlelife="500"
+							minspeed="10"
+							maxspeed="20"
+							gravity="-5"
+							offsetsphere="5 5 20"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-25"
+						>
+							<particle 
+								startcolor=".6 .85 1"
+								midcolor=".6 .85 1"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								minsize=".5"
+								maxsize=".75"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+				
+				<simpleemitter
+					spawnrate=".75"
+					minparticlelife="500"
+					maxparticlelife="750"
+				>
+					<particle 
+					>
+						<simpleemitter
+						count="32"
+							position="0 0 10"
+							spawnrate="2000"
+							minparticlelife="500"
+							maxparticlelife="500"
+							minspeed="10"
+							maxspeed="20"
+							gravity="-5"
+							offsetsphere="5 5 20"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-25"
+						>
+							<particle 
+								startcolor=".6 .85 1"
+								midcolor=".6 .85 1"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								minsize=".5"
+								maxsize=".75"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+-->
+			</template>
+
+			<instance name="flame"/>
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				timenudge="5000"
+				position="0 0 10"
+				minparticlelife="3000"
+				maxparticlelife="6000"
+				spawnrate="23"
+				material="/shared/effects/smaterials/whitedot.material"
+				gravity="-.2"
+				speed="5"
+				drag="0.0015"
+				acceleration="0"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".25 .75 1"
+					endcolor="0 0 0"
+					startscale=".5"
+					endscale="0"
+					heightdistort="0.01"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				timenudge="5000"
+				position="0 0 20"
+				spawnrate="5"
+				minparticlelife="2000"
+				maxparticlelife="4000"
+				gravity="-.6"
+				speed="3"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				direction="0 0 1"
+				depthbias="-100"
+			>	
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .2 .3"
+					endcolor="0 0 0"
+					scale="3"
+					midalphapos="0.9"
+					minheight="10"
+					maxheight="30"
+					width="1"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				timenudge="5000"
+				position="0 0 10"
+				minparticlelife="3000"
+				maxparticlelife="6000"
+				spawnrate="15"
+				material="/shared/effects/smaterials/whitedot.material"
+				gravity="0"
+				speed="0"
+				drag="0.0015"
+				acceleration="0"
+				offsetsphere="12 12 0"
+				depthbias="-100"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .05 .1"
+					endcolor="0 0 0"
+					minstartscale="5"
+					maxstartscale="20"
+					endscale="0"
+					heightdistort="0.01"
+				/>
+			</simpleemitter>
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

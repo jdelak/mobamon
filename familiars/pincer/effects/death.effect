@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+	
+		<particlesystem name="system0" space="world" scale="1">
+
+			<light
+				life="400"
+				startcolor="5 1.5 0"
+				endcolor="0"
+				falloffstart="00"
+				falloffend="150"
+				position="0 0 50"
+			/>
+
+			<simpleemitter
+				position="0 0 12"
+				count="10"
+				spawnrate="2000"
+				particlelife="1000"
+				offsetsphere="25"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="150"
+						maxlife="300"
+						color="1 1 1"
+						material="/shared/effects/smaterials/goop_blend_orange_ground.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="1"
+						minendscale="1"
+						maxendscale="2"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-20"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				position="0 0 12"
+				minlife="150"
+				maxlife="300"
+				startcolor="1 .75 0"
+				midcolor="1 .75 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				startscale="1"
+				endscale="5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+				depthbias="-50"
+			/>
+			
+			
+			
+			
+			<simpleemitter
+			position="0 0 12"
+				life="300"
+				spawnrate="5000"
+				midspawnratepos=".99"
+				minparticlelife="150"
+				maxparticlelife="400"
+				mincount="50"
+				maxcount="65"
+				material="/shared/effects/materials/whitedot.material"
+				minspeed="100"
+				maxspeed="500"
+				drag="0.02"
+				gravity="50"
+				direction="0 0 1"
+				directionalspace="local"
+				minangle="70"
+				maxangle="100"
+			>
+				<particle
+					startcolor="1 .25 0"
+					midcolor="1 .25 0"
+					endcolor="0"
+					midcolorpos=".7"
+					startscale="5"
+					endscale="0"
+					turn="1"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+
+			
+			<simpleemitter
+			count="4"
+				spawnrate="1000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="20 20 0"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+					<groundsprite
+						delay="125"
+						minlife="500"
+						maxlife="1000"
+						color="1 1 1"
+						material="/shared/effects/smaterials/goop_blend_orange_ground.material"
+						minscale=".4"
+						maxscale=".75"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						minyaw="0"
+						maxyaw="360"
+					/>
+					
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			<simpleemitter
+			count="4"
+				spawnrate="1000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="20 20 0"
+			>
+				<particle
+					turn="true"
+				> 
+					<groundsprite
+						delay="250"
+						minlife="500"
+						maxlife="1000"
+						color="1 1 1"
+						material="/shared/effects/smaterials/goop_blend_orange_ground.material"
+						minscale=".4"
+						maxscale=".75"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						minyaw="0"
+						maxyaw="360"
+					/>
+					
+					<billboard
+					position="0 0 5"
+						delay="250"
+						life="500"
+						startcolor="1 .5 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						scale=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-35"
+					/>
+					
+				</particle>
+			</simpleemitter>
+				
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+</effect>

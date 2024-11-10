@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<light
+				position="0 0 250"
+				expirelife="250"
+				startcolor="3 .75 0"
+				endcolor="0 0 0"
+				falloffstart="50"
+				falloffend="200"
+			/>
+
+		<template name="flame">
+<!--
+			<billboard
+				bone="{bone}"
+				size="40"
+				material="/shared/effects/smaterials/whitedot.material"
+				color=".2 .1 ..7"
+				depthbias="-130"
+			/>
+-->
+		
+			<simpleemitter
+				bone="{bone}"
+				spawnrate="14"
+				minparticlelife="444"
+				maxparticlelife="1100"
+				gravity="-3"
+				minspeed="0"
+				maxspeed="3"
+				drag=".003"
+				position="0 0 0"
+				material="/shared/effects/smaterials/firesprite_01.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="90"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="50"
+					startcolor="1 .8 .3"
+					endcolor="1 .25 .1"
+					maxanglespeed="0"
+					startsize="0"
+					midsize="15"
+					endsize="0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+				/>
+
+			</simpleemitter>	
+			
+			
+			<simpleemitter
+				bone="{bone}"
+				spawnrate="3"
+				minparticlelife="444"
+				maxparticlelife="2200"
+				gravity="-1"
+				minspeed="0"
+				maxspeed="0"
+				
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="50"
+					startcolor="0 0 0"
+					midcolor=".5 .2 0"
+					endcolor="0 0 0"
+					maxanglespeed="0"
+					startsize="0"
+					midsize="25"
+					endsize="0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+				/>
+
+			</simpleemitter>			
+			
+			<simpleemitter
+				bone="{bone}"
+				spawnrate="11"
+				minparticlelife="1"
+				maxparticlelife="2000"
+				gravity="-3"
+				minspeed="0"
+				maxspeed="4"
+				drag=".013"
+				position="0 0 0"
+				material="/shared/effects/smaterials/flare.material"
+				offsetsphere="5 4 0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 0"
+			>
+				<particle
+					startcolor="1 .2 .2"
+					endcolor="0 0 0"
+					alpha="1.0"
+					size="5"
+					minangle="-360"
+					maxangle="0"
+					minanglespeed="110"
+					maxanglespeed="-110"
+				/>
+				<particle
+					startcolor="1 .75 .2"
+					endcolor="0 0 0"
+					alpha="1.0"
+					size="5"
+					minangle="-360"
+					maxangle="0"
+					minanglespeed="110"
+					maxanglespeed="-110"
+				/>
+			</simpleemitter>				
+		</template>
+		
+		<instance name="flame" bone="_bone_fx_01"/>
+		<instance name="flame" bone="_bone_fx_02"/>
+		<instance name="flame" bone="_bone_fx_03"/>
+		<instance name="flame" bone="_bone_fx_04"/>
+
+		
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

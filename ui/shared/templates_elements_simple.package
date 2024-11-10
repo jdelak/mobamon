@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="deckTab">
+		<button name="{id}deckTabButton" grow="1" regrow="1" growinvis="0" height="64s" sticky="1" stickytoinvis="0" passivechildren="true" color="invisible"
+			onclicklua="
+				{onclicklua}
+			"
+			onmouseldownlua="
+				if ('{defaultsound=1}' == '1') then
+					PlaySound('/ui/sounds/shop/sfx_category_select.wav', 1.0)
+				end
+			"			
+			onmouseoverlua="GetWidget('{id}deckTabOffHover'):FadeIn(90)"
+			onmouseoutlua="GetWidget('{id}deckTabOffHover'):FadeOut(90)"			
+		>
+		
+			<panel name="{id}deckTabOff" group="deckTabsOff" height="64s" grow="1" clip="1" noclick="1" visible="{isOff=0}">
+				<image texture="/ui/main/shared/textures/tab_off_c.tga" width="-32s" height="64s" align="center" noclick="1"/>
+				<image texture="/ui/main/shared/textures/tab_off_l.tga" width="16s" height="64s" align="left" noclick="1"/>
+				<image texture="/ui/main/shared/textures/tab_off_R.tga" width="16s" height="64s" align="right" noclick="1"/>				
+				<image texture="/ui/main/shared/textures/tab_off_bottom.tga" width="-32s" height="64s" align="center" color="1 1 1 .2" noclick="1"/>
+				<panel name="{id}deckTabOffHover" noclick="1" visible="0">
+					<image texture="/ui/main/shared/textures/tab_off_c.tga" width="-32s" height="64s" align="center" noclick="1" rendermode="additive" color="1 1 1 .3" />
+					<image texture="/ui/main/shared/textures/tab_off_l.tga" width="16s" height="64s" align="left" noclick="1" rendermode="additive" color="1 1 1 .3"/>
+					<image texture="/ui/main/shared/textures/tab_off_R.tga" width="16s" height="64s" align="right" noclick="1" rendermode="additive" color="1 1 1 .3"/>
+				</panel>
+				<panel noclick="1" x="22s" y="10s" grow="1" regrow="1" growinvis="0" float="right">
+					<label font="maindyn_26" content="{label}" fitx="1" fitxpadding="6s" color="#aacee8" outline="1" outlinecolor="#003052" noclick="1" sticky="1" stickytoinvis="0" />					
+					<panel grow="1" regrow="1" growinvis="0" noclick="1">
+						<frame name="{id}deckTabButtonTab" texture="/ui/shared/frames/key.tga" y="2s" height="28s" borderthickness="6s" width="48s" color="#acd7f5" bordercolor="#acd7f5" noclick="1" visible="0">
+							<label y="-2s" font="maindyn_20" style="labelBase" outlinecolor="#d0dfea" color="#19527b" textalign="center" textvalign="center" content="decks_tab" noclick="1" />
+						</frame>
+					</panel>
+					<panel noclick="1" width="10s" sticky="1" stickytoinvis="0" />
+				</panel>
+			</panel>
+			<panel name="{id}deckTabOn" group="deckTabsCurrent" height="64s" grow="1" clip="1" noclick="1" visible="{isCurrent=0}">
+				<image texture="/ui/main/shared/textures/tab_on_c.tga" width="-32s" height="64s" align="center" noclick="1"/>
+				<image texture="/ui/main/shared/textures/tab_on_l.tga" width="16s" height="64s" align="left" noclick="1"/>
+				<image texture="/ui/main/shared/textures/tab_on_R.tga" width="16s" height="64s" align="right" noclick="1"/>		
+				<image texture="/ui/main/shared/textures/tab_on_bottom.tga" width="-32s" height="64s" align="center" color="1 1 1 1" noclick="1"/>								
+				<image texture="/ui/main/shared/textures/tab_on_arrow.tga" width="16s" height="64s" align="center" noclick="1"/>
+				<label font="maindyn_26" x="22s" y="10s" content="{label}" fitx="1" fitxpadding="22s" color="#f2f8ff" outline="1" outlinecolor="#1a57a8" noclick="1" />
+			</panel>	
+		</button>
+	</template>
+
+	<template name="NumberValue">
+		<panel name="{id}" grow="true" regrow="true" x="{x}" y="{y}" height="{height=22s}" align="{align}" valign="{valign}" visible="{countShown=1}" noclick="true" passivechildren="true">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+			<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+			<label name="{labelId}" x="6s" fitx="true" fitxpadding="6s" height="100%" font="{font=maindyn_18}" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .5" content="{label}" />
+		</panel>
+	</template>
+	
+	<template name="DropTarget">
+		<panel name="{index}_parent" width="{width=+10s}" x="{x}" y="{y}"	height="{height=+10s}" align="center" valign="center" noclick="1" visible="{visible=false}" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="{borderthickness=6s}" color="{color=#0cb9e5}2d" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="{borderthickness=6s}" bordercolor="{color=#0cb9e5}" color="invisible" noclick="1"/>
+			<droptarget name="{index}_droptarget" />
+			<label content="{label}" x="8s" y="-2s" fity="1" outline="1" outlinecolor="black" fitx="1" font="maindyn_20" align="left" textalign="left" valign="center" noclick="1" color="#0cb9e5" />
+		</panel>
+	</template>	
+	
+	<template name="DropLand">
+		<panel name="{id}" width="{width=+10s}" x="{x}" y="{y}"	height="{width=+10s}" align="center" valign="center" noclick="{noclick=0}" visible="{visible=false}">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="{borderthickness=6s}" color="{color=#0cb9e5}2d" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="{borderthickness=6s}" bordercolor="{color=#0cb9e5}" color="invisible" noclick="1"/>
+		</panel>
+	</template>
+
+	<template name="simpleDropdownItem">
+		<label x="6s" width="-45s" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textvalign="center" content="{label}"/>
+	</template>
+	<template name="simpleDropdownItem3Part">
+		<label x="6s" width="35%" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textvalign="center" content="{label1}"/>
+		<label x="48.5%" width="25%" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textvalign="center" content="{label2}"/>
+		<label x="76%" width="25%" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textvalign="center" content="{label3}"/>
+	</template>	
+	
+	<template name="simpleDropdownItem2Labels">
+		<label x="2s" fitx="1" fity="1" align="left" style="whiteTextColor" shadow="true" shadowoffset="2" font="maindyn_18" textvalign="center" content="{label1}"/>
+		<label x="-2s" fitx="1" fity="1" align="right" style="whiteTextColor" shadow="true" shadowoffset="2" font="maindyn_18" textvalign="center" content="{label2}"/>
+	</template>	
+	
+	<template name="simpleDropdownItemIcon">
+		<image texture="{icon=/ui/main/shared/textures/user_status_light.tga}" color="{iconcolor=1 1 1 1}" y="-1@" x="4s" width="53@" height="53%" valign="center"/>
+		<label y="-1s" x="92@" width="-10s" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textvalign="center" content="{label}"/>
+	</template>
+
+	<template name="simpleCombobox">
+		<combobox
+			width="{width=100%}"
+			height="{height=100%}"
+			align="{align}"
+			valign="{valign}"
+			color="invisible"
+			itemheight="3.0h"
+			texture="{texture}"
+			scrolltexture="/ui/shared/textures/slider.tga"
+			handleheight="48s"
+			scrollbarsize="24s"
+			highlight="over"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			maxlistheight="{maxlistheight=5}"
+			onloadlua="{onloadlua}"
+			onselectlua="{onselectlua}"
+			cvar="{cvar}"
+			name="{id}"
+			x="{x}"
+			y="{y}"
+			enabled="{enabled=true}"
+			visible="{visible=1}"
+			interactive="{interactive=false}"
+		>
+			<widgetstate statename="up">
+				<panel>
+					<image width="16@" texture="/ui/shared/textures/combobox_{isBlue}background_l.tga" color=".8 .8 .8 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_{isBlue}background_c.tga" color=".8 .8 .8 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_{isBlue}background_r.tga" color=".8 .8 .8 1" />
+				</panel>
+			</widgetstate>
+			<widgetstate statename="over">
+				<panel>
+					<image width="16@" texture="/ui/shared/textures/combobox_{isBlue}background_l.tga" color="1 1 1 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_{isBlue}background_c.tga" color="1 1 1 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_{isBlue}background_r.tga" color="1 1 1 1" />
+				</panel>
+			</widgetstate>
+			<widgetstate statename="disabled">
+				<panel>
+					<image width="16@" texture="/ui/shared/textures/combobox_{isBlue}background_l.tga" color=".4 .4 .4 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_{isBlue}background_c.tga" color=".4 .4 .4 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_{isBlue}background_r.tga" color=".4 .4 .4 1" />
+				</panel>
+			</widgetstate>
+			<widgetstate statename="itembg">
+			</widgetstate>
+			<widgetstate statename="listbg">				
+				<panel y="-0.8h" height="+1.6h" width="-0.4h" align="center" >
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" color="0 0 0 .9" noclick="true"/>
+					<frame texture="/ui/elements:roundframe" borderthickness="0.6h" color=".2 .2 .2 1" noclick="true" />					
+				</panel>			
+			</widgetstate>
+			<widgetstate statename="itemhighlight"> 
+				<panel x="1.0h" width="-3.5h">
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.4h" color="1 1 1 .15" noclick="true"/>
+				</panel>
+			</widgetstate>
+		</combobox>
+	</template>
+
+	<template name="simpleCombobox_icon">
+		<combobox
+			width="{width=100%}"
+			height="{height=100%}"
+			align="{align}"
+			valign="{valign}"
+			color="invisible"
+			itemheight="3.0h"
+			texture="{texture}"
+			scrolltexture="/ui/shared/textures/slider.tga"
+			handleheight="48s"
+			scrollbarsize="24s"
+			highlight="over"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			maxlistheight="{maxlistheight=5}"
+			onloadlua="{onloadlua}"
+			onselectlua="{onselectlua}"
+			cvar="{cvar}"
+			name="{id}"
+			x="{x}"
+			y="{y}"
+			enabled="{enabled=true}"
+			visible="{visible=1}"
+		>
+			<widgetstate statename="up">
+				<panel>
+					<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color=".8 .8 .8 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color=".8 .8 .8 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color=".8 .8 .8 1" />
+				</panel>
+			</widgetstate>
+			<widgetstate statename="over">
+				<panel>
+					<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color="1 1 1 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color="1 1 1 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color="1 1 1 1" />
+				</panel>
+			</widgetstate>
+			<widgetstate statename="disabled">
+				<panel>
+					<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color=".4 .4 .4 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color=".4 .4 .4 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color=".4 .4 .4 1" />
+				</panel>
+			</widgetstate>
+			<widgetstate statename="itembg">
+			</widgetstate>
+			<widgetstate statename="listbg">				
+				<panel y="-0.8h" height="+1.6h" width="-0.4h" align="center" >
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" color="0 0 0 .9" noclick="true"/>
+					<frame texture="/ui/elements:roundframe" borderthickness="0.6h" color=".2 .2 .2 1" noclick="true" />					
+				</panel>			
+			</widgetstate>
+			<widgetstate statename="itemhighlight"> 
+				<panel x="1.0h" width="-3.5h">
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.4h" color="1 1 1 .15" noclick="true"/>
+				</panel>
+			</widgetstate>
+		</combobox>
+	</template>
+
+	<template name="simple_combobox_textured">
+		<combobox
+			width="{width=100%}"
+			height="{height=100%}"
+			align="{align}"
+			valign="{valign}"
+			color="invisible"
+			itemheight="{itemheight=32s}"
+			texture="{texture}"
+			scrolltexture="/ui/shared/textures/slider.tga"
+			handleheight="{handleheight=48s}"
+			scrollbarsize="{scrollbarsize=24s}"			
+			scrollbaroffset="-1s"			
+			vscrollbar="1"
+			hscrollbar="0"
+			highlight="over"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			maxlistheight="{maxlistheight=6}"
+			onloadlua="{onloadlua}"
+			onselectlua="{onselectlua}"
+			cvar="{cvar}"
+			name="{id}"
+			oninstantiatelua="{oninstantiatelua}"
+			x="{x}"
+			y="{y}"			
+			visible="{visible=1}"
+		>
+			<widgetstate statename="up">
+				<image width="16@" texture="{texturel=/ui/shared/textures/combobox_background_l.tga}" color=".8 .8 .8 1" />
+				<image x="16@" width="-116@" texture="{texturec=/ui/shared/textures/combobox_background_c.tga}" color=".8 .8 .8 1" />
+				<image width="100@" align="right" texture="{texturer=/ui/shared/textures/combobox_background_r.tga}" color=".8 .8 .8 1" />
+			</widgetstate>
+			<widgetstate statename="over">
+				<image width="16@" texture="{texturel=/ui/shared/textures/combobox_background_l.tga}" color="1 1 1 1" />
+				<image x="16@" width="-116@" texture="{texturec=/ui/shared/textures/combobox_background_c.tga}" color="1 1 1 1" />
+				<image width="100@" align="right" texture="{texturer=/ui/shared/textures/combobox_background_r.tga}" color="1 1 1 1" />
+			</widgetstate>
+			<widgetstate statename="disabled">
+				<image width="16@" texture="{texturel=/ui/shared/textures/combobox_background_l.tga}" color=".4 .4 .4 1" />
+				<image x="16@" width="-116@" texture="{texturec=/ui/shared/textures/combobox_background_c.tga}" color=".4 .4 .4 1" />
+				<image width="100@" align="right" texture="{texturer=/ui/shared/textures/combobox_background_r.tga}" color=".4 .4 .4 1" />
+			</widgetstate>
+			<widgetstate statename="itembg">
+
+			</widgetstate>
+			<widgetstate statename="listbg">
+				<frame texture="{texture=/ui/elements:rounded_bg_white}" height="+10s" valign="center" color=".05 .05 .05 .95" borderthickness="5s" />
+				<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+			</widgetstate>
+			<widgetstate statename="itemhighlight">
+				<frame texture="{texture=/ui/elements:rounded_bg_white}" x="2s" width="-28s" valign="center" color="1 1 1 .1" borderthickness="3s" />
+			</widgetstate>
+		</combobox>
+	</template>		
+
+	<template name="simple_combobox_lightweight">
+		<combobox
+			width="{width=100%}"
+			height="{height=100%}"
+			align="{align}"
+			valign="{valign}"
+			color="invisible"
+			itemheight="{itemheight=32s}"
+			texture="{texture}"
+			scrolltexture="/ui/_textures/elements/combobox.tga"
+			handleheight="21s" handlewidth="21s"
+			scrollbarsize="21s"
+			highlight="over"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			maxlistheight="{maxlistheight=6}"
+			onloadlua="{onloadlua}"
+			onselectlua="{onselectlua}"
+			cvar="{cvar}"
+			name="{id}"
+			oninstantiatelua="{oninstantiatelua}"
+			x="{x}"
+			y="{y}"			
+			visible="{visible=1}"
+			hscrollbar="0"
+			horizontal="false"			
+		>
+			<widgetstate statename="up">
+
+			</widgetstate>
+			<widgetstate statename="over">
+			
+			</widgetstate>
+			<widgetstate statename="disabled">
+
+			</widgetstate>
+			<widgetstate statename="itembg">
+
+			</widgetstate>
+			<widgetstate statename="listbg">
+				<frame texture="{texture=/ui/elements:rounded_bg_white}" height="+10s" valign="center" color=".1 .1 .1 .95" borderthickness="5s" />
+				<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+			</widgetstate>
+			<widgetstate statename="itemhighlight">
+				<frame texture="{texture=/ui/elements:rounded_bg_white}" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+			</widgetstate>
+		</combobox>
+	</template>		
+
+	
+	<template name="tempSimpleCheckboxState">
+		<widgetstate statename="{statename}" x="{x}" y="{y}">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="{borderthickness=6s}" color="{bg_color}" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="{borderthickness=6s}" bordercolor=".4 .4 .4 1" color="invisible" noclick="1"/>
+			<image texture="/ui/main/shared/textures/close.tga" width="70@" height="70%" align="center" valign="center" color=".8 .8 .8 1" visible="{checkvisible=false}"/>
+		</widgetstate>
+	</template>
+
+	<template name="tempSimpleCheckbox">
+		<button name="{id}" width="{width=100%}" height="{height=100%}" x="{y}" y="{y}" align="{align}" valign="{valign}" color="{color=invisible}" numstates="2" cvar="{cvar}" interactive="false">
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" statename="up"/>
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" statename="over" />
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" statename="down" x="1" y="1"/>
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" statename="disabled"/>
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" checkvisible="true" statename="up2"/>
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" checkvisible="true" statename="over2"/>
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" checkvisible="true" statename="down2" x="1" y="1"/>
+			<instance name="tempSimpleCheckboxState" bg_color="{bg_color=0 0 0 .8}" checkvisible="true" statename="disabled2"/>
+		</button>
+	</template>
+
+	<template name="closeXButton">
+		<button
+			name="{buttonName}"
+			visible="{visible=true}"
+			x="{x}" y="{y}"
+			width="{width=100%}" height="{height=100%}"
+			align="{align}" valign="{valign}"
+			enabled="{enabled=true}"
+			color="invisible"
+			interactive="{interactive}"
+			onclicklua="{onclicklua}"
+			onloadlua="
+				libButton2.initializeButton(self, '{buttonName}', 'closeXButton')		
+				if Empty('{buttonName}') then
+					FindUnnamedWidget(self, 'closeXButton')
+				end					
+			"
+		>
+			<panel name="{buttonName}Body" align="center" valign="center">
+				<frame name="{buttonName}Backer" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" />
+				<image align="center" valign="center" width="70@" height="70%" texture="/ui/main/shared/textures/close.tga" />
+			</panel>
+		</button>
+	</template>
+
+	<!-- ================================ TEMP ================================ -->
+	
+	<template name="horizRule1">
+		<panel width="{width=100%}" height="{height=0.75h}" align="{align}" valign="{valign}" noclick="true" passivechildren="true" name="{ruleName}" sticky="{sticky}" stickytoinvis="{stickytoinvis}" visible="{visible}" >
+			<panel style="thinSeparatorDark" valign="center" align="center" height="1" width="{lineWidth=-0.75h}"/>
+			<panel style="thinSeparatorLight" valign="center" align="center" height="1" width="{lineWidth=-0.75h}" y="1"/>
+		</panel>
+	</template>
+	
+	<template name="craftingItemBonusLineEntry">
+		<panel name="{id}Container" grow="true" regrow="true" width="100%" sticky="true" stickytoinvis="false" visible="{visible=false}">
+			<panel>
+				<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+				<frame style="backerPanelGray2" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+			</panel>
+			<panel align="center" width="-0.75h" grow="true" regrow="true" float="bottom" padding="0.5h">
+				<panel height="0"/>
+				<panel height="2.75h">
+					<panel width="100@" height="100%">
+						<image name="{id}Icon" texture="{icon=/heroes/harrower/ability_01/icon.tga}"/>
+						<frame style="backerPanelGray2" texture="/ui/elements:rounded_corner_white" borderthickness="0.75h"/>
+						<frame color="black" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+					</panel>
+					<label name="{id}Title" align="right" width="-3.5h" textvalign="center" font="maindyn_14" color="{titleColor=#f5f2e2}" shadow="true" content="{title=}"/>
+				</panel>
+				<panel grow="true" width="100%">
+					<panel>
+						<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h"/>
+						<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+						<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h"/>
+					</panel>
+					<label name="{id}Description" width="-1h" textvalign="center" align="center" fity="true" fitypadding="1h" style="whiteTextColor" font="maindyn_12" wrap="true" content="{description=}"/>
+				</panel>
+				<panel height="0"/>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="standardButton2Check">
+		<button name="{id}" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onclicklua="{onclicklua}" numstates="2"
+			onloadlua="
+				local disableCheck = '{disableCheck=false}'
+				local rendermode = '{rendermode=normal}'
+				local infoTable = libGeneral.newTable()
+				infoTable.disableCheck  = AtoB(disableCheck)
+				infoTable.rendermode  	= rendermode
+				libButton2.initializeButton(
+					self, '{id}', 'standardButton2Check', infoTable
+				)
+				{onloadlua}
+				if Empty('{id}') then
+					FindUnnamedWidget(self, 'standardButton2Check')
+				end	
+			"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" color="1 1 1 1" rendermode="{rendermode=normal}"/>
+				<panel align="center" grow="true" height="100%" y="-0.2h" float="right">
+					<label name="{id}Label" textalign="center" textvalign="center" font="{font=maindyn_16}" color="{labelcolor=white}" shadow="true" content="{label=temp_button}" fitx="true"/>
+					<panel width="100@" height="100%">
+						<panel align="center" valign="center" width="65@" height="65%" y="0.2h">
+							<frame texture="/ui/elements:rounded_bg_solid" color="0 0 0 0.15" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:thick" color="0 0 0 0.5" borderthickness="0.5h"/>
+							<panel name="{id}Check" width="+10@" height="+10%" align="center" valign="center" y="-0.25h" visible="false">
+								<image texture="/ui/shared/textures/check_mark_white.tga" x="0.15h" y="0.15h" color="0 0 0 0.75"/>
+								<image texture="/ui/shared/textures/check_mark_white.tga"/>
+							</panel>
+						</panel>
+					</panel>
+				</panel>
+			</panel>
+		</button>
+	</template>
+	
+	<!-- Window Button -->
+	<template name="windowButtonState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<image texture="/ui/main/windowframe/textures/window_button.tga" width="64s" height="32s" align="center"  />
+			<image texture="/ui/main/windowframe/textures/window_button_hover.tga" width="64s" height="32s" align="center" visible="{hover=false}"  />
+			<image group="{id}_icon_group" align="center" valign="center" width="{iconsize}" height="{iconsize}" texture="{icon}" y="{icony}" color="{color}" />
+		</widgetstate>
+	</template>	
+	
+	<template name="windowButtonState2">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<image texture="/ui/main/windowframe/textures/window_button2{buttontype}.tga" width="64s" height="32s" align="center"  />
+			<image texture="/ui/main/windowframe/textures/window_button2{buttontype}_hover.tga" width="64s" height="32s" align="center" visible="{hover=false}"  />
+			<image group="{id}_icon_group" align="center" valign="center" width="{iconsize}" height="{iconsize}" texture="{icon}" y="{icony}" color="{colorized}" />
+		</widgetstate>
+	</template>	
+	
+	<template name="windowButton">
+		<button name="{id}" width="40s" height="23s" group="{group}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" onloadlua="{onloadlua}"  visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onrightclicklua="{onrightclicklua}" onclicklua="{onclicklua}"	>
+			<instance name="windowButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" color=".8 .8 .8 1" statename="up"/>
+			<instance name="windowButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" hover="true" statename="over"/>
+			<instance name="windowButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" statename="down"/>
+			<instance name="windowButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" statename="disabled"/>
+		</button>
+	</template>
+	
+	<template name="windowButtonSleek">
+		<button name="{id}" width="33s" height="21s" group="{group}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" onloadlua="{onloadlua}"  visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onrightclicklua="{onrightclicklua}" onclicklua="{onclicklua}"	>
+			<instance name="windowButtonState2" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=1 1 1 1}" color=".8 .8 .8 1" statename="up" buttontype="{buttontype}"/>
+			<instance name="windowButtonState2" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=1 1 1 1}" hover="true" statename="over" buttontype="{buttontype}"/>
+			<instance name="windowButtonState2" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=1 1 1 1}" statename="down" buttontype="{buttontype}"/>
+			<instance name="windowButtonState2" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=1 1 1 1}" statename="disabled" buttontype="{buttontype}"/>
+		</button>
+	</template>
+	
+	<template name="windowButtonLongState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<image texture="/ui/main/windowframe/textures/window_button.tga" width="192s" height="32s" align="center"  />
+			<image texture="/ui/main/windowframe/textures/window_button_hover.tga" width="192s" height="32s" align="center" visible="{hover=false}"  />
+			<image group="{id}_icon_group" align="left" valign="center" width="{iconsize}" height="{iconsize}" texture="{icon}" y="{icony}" color="{color}" />
+			<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="-{iconsize}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign=right}" valign="{labelValign=top}" textalign="center" textvalign="center" font="{font=maindyn_18}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" content="{label=temp_button}"/>
+		</widgetstate>
+	</template>		
+	<template name="windowButtonLong">
+		<button name="{id}" width="120s" height="23s" group="{group}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" onloadlua="{onloadlua}"  visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onrightclicklua="{onrightclicklua}" onclicklua="{onclicklua}"	>
+			<instance name="windowButtonLongState" id="{id}" label="{label}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" color=".8 .8 .8 1" statename="up"/>
+			<instance name="windowButtonLongState" id="{id}" label="{label}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" hover="true" statename="over"/>
+			<instance name="windowButtonLongState" id="{id}" label="{label}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" statename="down"/>
+			<instance name="windowButtonLongState" id="{id}" label="{label}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" statename="disabled"/>
+		</button>
+	</template>	
+	
+
+	<!-- Standard Button -->
+	<template name="standardButton">
+		<button name="{id}" width="{width=100%}" noclick="{noclick=0}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onloadlua="
+				local buttonInfo 
+				if (not {dontRegister=false}) then
+					buttonInfo = libButton2.initializeButton(self, '{id}', 'standardButton2', '{rendermode=normal}')
+				end
+				if Empty('{id}') then
+					FindUnnamedWidget(self, 'standardButton')
+				end
+				{onloadlua}
+			"
+			oninstantiatelua="
+				{oninstantiatelua}
+				if (libThread) then
+					local self = self
+					libThread.threadFunc(function()
+						wait(1)
+						local buttonInfo
+						if (not {dontRegister=false}) then
+							buttonInfo = libButton2.initializeButton(self, '{id}', 'standardButton2', '{rendermode=normal}')
+						end
+						if Empty('{id}') then
+							FindUnnamedWidget(self, 'standardButton')
+						end
+					end)
+				end
+			"
+			onclicklua="
+				{onclicklua}
+			"			
+			disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoutdisabled="{onmouseoutdisabled}"
+			onmouseoverdisabledlua="{onmouseoverdisabledlua}"
+			onmouseoutdisabledlua="{onmouseoutdisabledlua}"
+			onmouseoverlua="{onmouseoverlua}"
+			onmouseoutlua="{onmouseoutlua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame texture="/ui/shared/frames/squareglow.tga" borderthickness="30@" bordercolor="0 0 0 .8" color="0 0 0 .8" width="+16@" height="+16%" align="center" valign="center" visible="{glow=0}" />
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />				
+				<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="{labelWidth=100%}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign}" valign="{labelValign}" textalign="center" textvalign="center" font="{font=maindyn_20}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" outlinecolor="{outlinecolor}" content="{label=temp_button}"/>
+			</panel>
+		</button>
+	</template>
+	
+	<!-- Primary Button -->
+	<template name="primaryButton">
+		<button name="{id}" width="{width=100%}" noclick="{noclick=0}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onloadlua="
+				local buttonInfo
+				if (not {dontRegister=false}) then
+					buttonInfo = libButton2.initializeButton(self, '{id}', 'primaryButton', '{rendermode=normal}')
+				end
+				if Empty('{id}') then
+					FindUnnamedWidget(self, 'primaryButton')
+				end
+				{onloadlua}
+			"
+			oninstantiatelua="
+				{oninstantiatelua}
+				self:Sleep(1, function()
+					local buttonInfo
+					if (not {dontRegister=false}) then
+						buttonInfo = libButton2.initializeButton(self, '{id}', 'primaryButton', '{rendermode=normal}')
+					end
+					if Empty('{id}') then
+						FindUnnamedWidget(self, 'primaryButton')
+					end
+				end)
+			"
+			onclicklua="
+				{onclicklua}
+			"
+			onmouseldownlua="
+				if ('{defaultsound=1}' == '1') then
+					PlaySound('/ui/sounds/sfx_button_generic.wav', 0.5)
+				end
+			"
+			disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoutdisabled="{onmouseoutdisabled}"
+			onmouseoverlua="{onmouseoverlua}"
+			onmouseoverdisabledlua="{onmouseoverdisabledlua}"
+			onmouseoutlua="{onmouseoutlua}"
+			onmouseoutdisabledlua="{onmouseoutdisabledlua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame texture="/ui/shared/frames/squareglow.tga" borderthickness="30@" bordercolor="0 0 0 .4" color="0 0 0 .4" width="+16@" height="+16%" align="center" valign="center" visible="{glow=1}" />
+				<frame name="{id}Background" texture="/ui/shared/frames/primary_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />				
+			</panel>
+			<panel align="center" valign="center">
+				<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="{labelWidth=100%}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign}" valign="{labelValign}" textalign="center" textvalign="center" font="{font=maindyn_20}" style="labelBase" color="{labelcolor=#fff7f3}" shadow="{shadow=false}" outlinecolor="{outlinecolor=0 0 0 .4}" content="{label=temp_button}"/>			
+			</panel>
+		</button>
+	</template>	
+	
+	<!-- Icon Label Button -->
+	<template name="iconLabelButton">
+		<button name="{id}" width="{width=100@}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" 
+			stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" mouseoverdisabled="1" mouseoutdisabled="1" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" 
+			color="invisible" onclick="{onclick}" onclicklua="{onclicklua}"	
+			onmouseoverlua="{onmouseoverlua}" onmouseoutlua="{onmouseoutlua}"
+			cangrab="{cangrab}" dragexclusive="{dragexclusive}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoverdisabledlua="{onmouseoverdisabledlua}"
+			onmouseoutdisabled="{onmouseoutdisabled}"		
+			onmouseoutdisabledlua="{onmouseoutdisabledlua}"		
+			numstates="{numstates}"
+			group="{group}"
+			onloadlua="
+				if ({colorized=false}) then
+					libButton2.initializeButton(self, '{id}', 'iconButton', 'normal')
+				else
+					libButton2.initializeButton(self, '{id}', 'iconButton', 'grayscale')
+				end
+				{onloadlua}
+			"	
+			oninstantiatelua="
+				self:Sleep(1, function()
+					if ({colorized=false}) then
+						libButton2.initializeButton(self, '{id}', 'iconButton', 'normal')
+					else
+						libButton2.initializeButton(self, '{id}', 'iconButton', 'grayscale')
+					end
+					{oninstantiatelua}
+				end)
+			"			
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Backer" texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="{borderthickness=0.6h}" color="{color=.8 .8 .8 1}" rendermode="grayscale"/>
+				<frame texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="{borderthickness=0.6h}" visible="{colorized=false}" group="{id}BGGroup" />
+				<image align="left" valign="center" width="{iconsize=70}@" height="{iconsize=70}%" texture="{icon}" y="{iconY}" x="{iconX}" group="{id}IconGroup" />		
+				<label name="{id}Label" x="{labelX=110@}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="{labelWidth=100%}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign=left}" valign="{labelValign}" textalign="left" textvalign="center" font="{font=maindyn_20}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" content="{label=temp_button}"/>
+			</panel>			
+		</button>
+	</template>	
+	
+	<!-- Icon Button -->
+	<template name="iconButton">
+		<button name="{id}" width="{width=100@}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" 
+			stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" mouseoverdisabled="1" mouseoutdisabled="1" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" 
+			color="invisible" onclick="{onclick}" onclicklua="{onclicklua}"	
+			onmouseoverlua="{onmouseoverlua}" onmouseoutlua="{onmouseoutlua}"
+			cangrab="{cangrab}" dragexclusive="{dragexclusive}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoverdisabledlua="{onmouseoverdisabledlua}"
+			onmouseoutdisabled="{onmouseoutdisabled}"		
+			onmouseoutdisabledlua="{onmouseoutdisabledlua}"		
+			numstates="{numstates}"
+			group="{group}"
+			onloadlua="
+				if ({colorized=false}) then
+					libButton2.initializeButton(self, '{id}', 'iconButton', 'normal')
+				else
+					libButton2.initializeButton(self, '{id}', 'iconButton', 'grayscale')
+				end
+				{onloadlua}
+			"	
+			oninstantiatelua="
+				self:Sleep(1, function()
+					if ({colorized=false}) then
+						libButton2.initializeButton(self, '{id}', 'iconButton', 'normal')
+					else
+						libButton2.initializeButton(self, '{id}', 'iconButton', 'grayscale')
+					end
+					{oninstantiatelua}
+				end)
+			"			
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Backer" texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="{borderthickness=0.6h}" color="{color=.8 .8 .8 1}" rendermode="grayscale"/>
+				<frame texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="{borderthickness=0.6h}" visible="{colorized=false}" group="{id}BGGroup" />
+				<image align="center" valign="center" width="{iconsize=70}@" height="{iconsize=70}%" texture="{icon}" y="{iconY}" x="{iconX}" group="{id}IconGroup" />		
+			</panel>			
+		</button>
+	</template>
+	
+	<!-- Wrapper v1  - Double Border - Large Items -->
+	<template name="dialogWrapper1">
+		<panel name="{id}" group="{group}" visible="{visible=1}" x="{x}" y="{y}" width="{parent_width=100%}" height="{parent_height=100%}" align="{align=center}" valign="{valign=center}" noclick="true">
+			<frame width="{outerpadding=+40s}" height="{outerpadding=+40s}" align="center" valign="center" texture="/ui/elements:rounded_bg_solid" borderthickness="1.8h" color="#0a11125f" noclick="true" />			
+			<frame width="{innerpadding=+20s}" height="{innerpadding=+20s}" align="center" valign="center" texture="/ui/elements:rounded_bg_solid" borderthickness="0.8h" color="{inneralpha=#070c0df4}" noclick="true" />				
+		</panel>
+	</template>
+	
+	<!-- Wrapper v2  - Single Border - Input Boxes -->
+	<template name="dialogWrapper2">
+		<frame width="{innerpadding=+0.8h}" height="{innerpadding=+0.8h}" align="center" valign="center" texture="/ui/elements:rounded_bg_white" borderthickness="{borderthickness=.8h}" color="#0a11125f" noclick="true" />				
+	</template>	
+	
+	<!-- Stone Backer - Tall -->
+	<template name="stoneDialogTall">
+		<panel name="stoneBacker{id}Parent" group="{group}" width="{width=100%}" height="{height=100%}" align="{align}" valign="{valign}" visible="{visible=1}">
+			<frame name="stoneBacker{id}BackGlow" texture="/ui/elements:squareglow" color=".3 .91 .98 .1" borderthickness="16s" rendermode="additive" width="+24s" height="+24s" align="center" valign="center" visible="{backglow=0}" noclick="1"></frame>			
+			<image texture="/ui/shared/textures/stone_backer/tall_base_top.tga" color="{basecolor=1 1 1 1}" height="12.5@" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/tall_base_bottom.tga" color="{basecolor=1 1 1 1}" height="12.5@" valign="bottom" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/tall_base_center.tga" color="{basecolor=1 1 1 1}" vmargin="12.5@" noclick="1"/>			
+			<image texture="/ui/shared/textures/stone_backer/tall_base_top.tga" color="#287dbf" height="12.5@" noclick="1" rendermode="additive" />
+			<image texture="/ui/shared/textures/stone_backer/tall_base_bottom.tga" color="#287dbf" height="12.5@" valign="bottom" noclick="1" rendermode="additive"/>
+			<image texture="/ui/shared/textures/stone_backer/tall_base_center.tga"  color="#287dbf" vmargin="12.5@" noclick="1" rendermode="additive"/>			
+			<image texture="/ui/shared/textures/stone_backer/crack_type02.tga" hflip="true" width="14%" height="14@" align="right" valign="bottom" x="-8@" y="-0.4%" rotation="90" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/crack_type03.tga" hflip="true" width="8%" height="8@" align="right" valign="bottom" x="-3.4@" y="-0.2%" rotation="90" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/crack_type05.tga" hflip="true" width="10%" height="10@" align="left" valign="top" x="3@" y="0.5%" rotation="-90" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/crack_type04.tga" hflip="true" width="11%" height="11@" align="left" valign="bottom" x="4@" y="-0.6%" vflip="1" noclick="1"/>			
+			<panel name="stoneBacker{id}Highlight" visible="1" noclick="1">
+				<image color="{glowcolor=#1290e766}" rendermode="additive" texture="/ui/shared/textures/stone_backer/tall_glow_top.tga" height="12.5@" noclick="1"/>
+				<image color="{glowcolor=#1290e766}" rendermode="additive" texture="/ui/shared/textures/stone_backer/tall_glow_bottom.tga" height="12.5@" valign="bottom" noclick="1"/>
+				<image color="{glowcolor=#1290e766}" rendermode="additive" texture="/ui/shared/textures/stone_backer/tall_glow_center.tga" vmargin="12.5@" noclick="1"/>
+			</panel>			
+		</panel>
+	</template>
+		
+	
+	<!-- Text Input Menu -->
+	<template name="text_input_menu">
+		<panel width="6.0h" align="right" noclick="true">
+			<frame texture="/ui/shared/frames/text_input_menu.tga" borderthickness="{borderthickness=0.6h}" color="{color=1 1 1 1}"/>
+			<panel width="1" align="left" color=".25 .25 .25 1" />
+		</panel>
+	</template>
+	
+	<!-- Rules -->
+	<template name="vr">
+		<panel x="{x}" y="{y}" width="2" height="{height=100%}" align="{align=left}" valign="{valign}" noclick="1">
+			<panel width="1" align="left" color="1 1 1 .1" noclick="1" />
+			<panel width="1" align="right" color="0 0 0 .3" noclick="1" />
+		</panel>
+	</template>
+	<template name="hr">
+		<panel group="{group}" x="{x}" y="{y}" height="2" width="{width=100%}" valign="{valign=top}" align="{align}" noclick="1">
+			<panel height="1" valign="bottom" color="1 1 1 .1" noclick="1" />
+			<panel height="1" valign="top" color="0 0 0 .5" noclick="1" />
+		</panel>
+	</template>
+	
+
+</package>

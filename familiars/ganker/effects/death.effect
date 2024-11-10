@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+	
+		<particlesystem name="system0" space="world" scale=".4">
+
+			<template name="smoke">
+			
+				<light
+					position="{zpos}"
+					life="600"			
+					startcolor="2.5 0 10"			
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					falloffstart="25"
+					startfalloffend="500"
+					endfalloffend="800"
+				/>
+
+				<simpleemitter
+					count="10"
+					position="{zpos}"
+					spawnrate="80"
+					minparticlelife="350"
+					maxparticlelife="600"
+					gravity=".25"
+					speed="50"
+					drag=".01"
+					material="/shared/effects/materials/cartoon_dust.material"
+					offsetsphere="75"
+					direction="0 0 0"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						color=".55 .1 .7"
+						startalpha="0"
+						midalpha=".35"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="20"
+						endsize="40"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					count="50"
+					position="{zpos}"
+					spawnrate="500"
+					minparticlelife="150"
+					maxparticlelife="400"
+					gravity=".25"
+					speed="1500"
+					drag=".01"
+					material="/shared/effects/materials/cartoon_dust.material"
+					offsetsphere="75"
+					direction="0 0 0"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						color=".35 0 .6"
+						startalpha="0"
+						midalpha=".35"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="20"
+						endsize="40"
+					/>
+				</simpleemitter>				
+
+			</template>
+
+			<instance name="smoke" zpos="0 0 100" />
+
+		</particlesystem>
+
+	</definitions>
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>
+
+
+
+
+

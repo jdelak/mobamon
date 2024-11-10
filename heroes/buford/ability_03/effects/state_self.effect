@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+		
+	<definitions>
+<!--
+		<modifier
+			name="modifier0"
+			startcolor=".65 1 .5"
+			endcolor="1"
+			expirelife="200"
+		/>	
+-->
+		<particlesystem name="system0" space="world" scale="1">
+		
+		
+		
+			<template name="flashes">
+
+			<simpleemitter
+				bone="{zbone}"
+				spawnrate="35"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="{zdir}"
+				minspeed="150"
+				maxspeed="300"
+				gravity="70"
+				minangle="0"
+				maxangle="25"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="{zbone}"
+						minlife="300"
+						maxlife="600"
+						color=".8 0 1"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						startscale=".5"
+						minmidscale=".5"
+						maxmidscale=".8"
+						minendscale=".1"
+						maxendscale=".4"
+						depthbias="-10"
+					/>
+				</particle>
+			</simpleemitter>
+	
+			</template>
+
+			<instance name="flashes" zbone="_bone_fx_critter07" zdir="1 0 0"/>
+			<instance name="flashes" zbone="_bone_fx_critter07" zdir="0 1 0"/>
+<!--
+			<instance name="flashes" zbone="_bone_fx_critter07" zdir="0 -1 0"/>
+-->
+
+
+			<billboard
+			bone="_bone_fx_critter07"
+				life="500"
+				startcolor="0 0 0"
+				midcolor=".3 0 .6"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				scale="5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+				depthbias="-75"
+				loop="true"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

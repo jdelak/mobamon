@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+<!--
+		<modifier
+			expirelife="250"
+			startcolor=".65"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="0.8">
+
+			<template name="smoke">
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="100"
+					minparticlelife="300"
+					maxparticlelife="500"
+					gravity="-25"
+					minspeed="200"
+					maxspeed="400"
+					drag="0.025"
+					acceleration="0.0"
+					position="{zpos}"
+					direction="0 0 0"
+					offsetsphere="12 12 0"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					depthbias="0"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor=".25 .7 1"
+						midcolorpos=".35"
+						startalpha="0"
+						midalpha=".6"
+						endalpha="0"
+						midalphapos=".2"
+						minstartsize="40"
+						maxstartsize="60"
+						minendsize="0"
+						maxendsize="0"
+					/>
+				</simpleemitter>
+				
+				
+			</template>
+
+			<instance name="smoke" zbone="_bone_leftfoot" zpos="50 0 0"/>
+			<instance name="smoke" zbone="_bone_rightfoot" zpos="-50 0 0"/>
+
+			
+			
+
+			
+			
+			
+				<simpleemitter
+					spawnrate="10"
+					particlelife="600"
+					minspeed="0"
+					maxspeed="100"
+					offsetsphere="75 75 10"
+					direction="0 0 0"
+					gravity="-10"
+				>
+					<particle
+					>
+						<billboard
+							position="0 0 25"
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/smaterials/animated_wind_rush.material"
+							minstartsize="100"
+							maxstartsize="100"
+							minendsize="0"
+							maxendsize="100"
+							startcolor="0 0 0"
+							midcolor="1"
+							endcolor="0 0 0"
+							midcolorpos=".02"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+							framespeed="2"
+						/>
+
+					</particle>
+				</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		<particlesystem name="system1" space="entity" scale="1">
+<!--
+			<simpleemitter
+			life="1500"
+				bone="_bone_center"
+				position="0 0 0"
+				spawnrate="1"
+				particlelife="3000"
+				speed="0"
+				offsetsphere="0 0 25"
+			>
+				<particle
+					turn="1"
+				>
+					<template name="orbs">
+
+						<model
+						minlife="1000"
+						maxlife="2000"
+							bone="_bone_center"
+							model="/heroes/moxie/ability_01/effects/orbit/orbit.mdf"
+							anim="idle"
+							startscale="1.25"
+							endscale="1.75"
+							maxscale="2.1"
+							roll="{zroll}"
+							yaw="{zyaw}"
+							pitch="{zpitch}"
+							position="0 0 0"
+							yawspeed="720"
+						>
+							<trailemitter
+								bone="_bone_fx"
+								minlife="1250"
+								maxlife="1750"
+								spawnrate="60"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/rocket_smoke_blend.material"
+								startparticlealpha="1"
+								endparticlealpha="0"
+							>
+								<particle
+									startcolor=".5"
+									endcolor=".1 .35 .5"
+									startalpha=".25"
+									midalpha=".25"
+									endalpha="0"
+									midalphapos=".8"
+									minstartsize="12"
+									maxstartsize="18"
+									endsize="0"
+								/>
+							</trailemitter>
+
+							<trailemitter
+								bone="_bone_fx"
+								minlife="1250"
+								maxlife="1750"
+								spawnrate="60"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+							>
+								<particle
+									startcolor=".1 .15 .25"
+									midcolor=".05 .15 .15"
+									endcolor="0 0 0"
+									minstartsize="12"
+									maxstartsize="18"
+									endsize="0"
+								/>
+							</trailemitter>
+
+						</model>
+					
+					</template>
+
+					<instance name="orbs" zroll="0" zyaw="0" zpitch="0" zscale="1.85"/>
+					
+				</particle>
+			</simpleemitter>
+-->
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		<spawnmodifier instance="instance2"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/> 
+		<waitfordeath instance="instance2"/> 
+		
+	</thread>
+
+</effect>

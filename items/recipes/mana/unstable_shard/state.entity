@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Unstable_Shard"
+
+	icon="icon.tga"
+	passiveeffect=""
+
+	effecttype="Buff"
+	impactinterval="50"
+	
+>
+
+	<onimpact>
+		<haseffecttype name="Invulnerable"/>
+		<else>
+			<resetcooldown entity="tool_entity"/>
+			<startcooldown duration="60000" entity="tool_entity"/>
+			<damage effecttype="Indirect" significant="true" amount="1" b="1500" op="mult" target="this_owner_entity" />
+			<playeffect effect="effects/explosion_blue.effect" source="source_entity" target="" occlude="true" />
+			<applystate target="this_owner_entity" name="State_Stunned" duration="100"  />
+			<areaofeffect radius="250" targetscheme="enemy_units" targetselection="all" effecttype="Indirect">
+				<damage effecttype="Indirect" amount="1" b="250" op="mult" source="this_owner_entity" />
+			</areaofeffect>
+			<expirestate name="State_Unstable_Shard" target="this_owner_entity" />
+		</else>
+	</onimpact>
+
+</state>

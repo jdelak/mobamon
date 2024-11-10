@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="1.5">
+
+			<simpleemitter
+				position="0 0 0"
+				spawnrate="3"
+				particlelife="1000"
+				offsetsphere="5 5 5"
+			> 
+				<particle
+					turn="true"
+				>
+
+					<billboard					
+						life="750"
+						startcolor="0 0 0"
+						midcolor=".1 .18 .24"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						position="0 0 -24"
+						width="220"
+						height="100"
+						depthbias="-25"
+					/>
+
+					<billboard
+						life="750"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor=".25 .35 .35"
+						endcolor="0 0 0"
+						position="0 0 -24"
+						startheight="6"
+						midheight="6"
+						endheight="0"
+						width="140"
+						roll="0"
+						depthbias="-25"
+					/>					
+					
+					<billboard
+						life="750"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor=".25 .35 .35"
+						endcolor="0 0 0"
+						position="0 0 -24"
+						minstartheight="25"
+						maxstartheight="95"
+						endheight="0"
+						width="6"
+						roll="0"
+						depthbias="-25"
+					/>
+					
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

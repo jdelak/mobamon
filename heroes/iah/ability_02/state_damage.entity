@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Iah_Ability2_Damage"
+
+	ishidden="true"
+
+>
+	<onframe>
+		<cantarget targetscheme="enemy_units" >
+		<getconstant name="damage" adjustmentsource="tool_entity" />
+		<setvar0 a="result" b="frametime" op="mult" />
+		<setvar0 a="var0" b="3" op="div" />
+		<damage effecttype="Magic Splash DOT" source="source_owner_entity" amount="1" b="var0" op="mult"/>	
+		</cantarget>
+			<cantarget targetscheme="enemy_buildings" >
+			<getconstant name="damage" adjustmentsource="tool_entity" />
+			<setvar0 a="result" b="frametime" op="mult" />
+			<setvar0 a="var0" b="3" op="div" />
+			<damage effecttype="Magic Splash DOT" source="source_owner_entity" amount=".5" b="var0" op="mult"/>	
+			</cantarget>
+	</onframe>
+</state>

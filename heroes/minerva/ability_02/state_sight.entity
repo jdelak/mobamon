@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Minerva_Ability2_Sight"
+	
+	icon="icon.tga"
+	
+	passiveeffect="effects/state_enemy.effect"
+
+	movespeedslowstart="0.24,0.32,0.4,0.48"
+	movespeedslowmid="0.12,0.16,0.2,0.24"
+	movespeedslowend="0.0" 
+	movespeedslowmidpos="0.4"
+	effecttype="StatusDebuff CrowdControl StatusSlow"
+	allowtransfer="true"
+	ishidden="true"
+>
+
+	<oninflict>
+		<areaofeffect
+			radius="350"
+			targetselection="random"
+			targetscheme="enemy_units"
+			maxtotalimpacts="1,1,2,3"
+			effecttype="Magic"
+			ignore="target_entity"
+		>
+			<getconstant name="damage" adjustmentsource="this_entity"/>
+			<damage effecttype="Magic" amount=".25" b="result" op="mult" />
+			<recordheroaggression  />
+			<aggression />
+		</areaofeffect>
+	</oninflict>
+	
+</state>

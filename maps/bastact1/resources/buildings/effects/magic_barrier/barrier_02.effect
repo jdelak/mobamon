@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system2" space="entity" scale="1.2">
+			
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.65"
+				sample="sounds/sfx_wall.wav"
+			/>
+
+			<model
+				expirelife="100"
+				model="crystal_spire/model.mdf"
+				anim="rise"
+				startalpha="1"
+				endalpha="0"
+				color="1"
+				position="0 0 0"
+				scale="2"
+			>
+				<template name="holes">
+					
+					<groundsprite
+						bone="{newbone}"
+						delay="150"
+						expirelife="3000"							
+						material="/shared/effects/smaterials/torch_hole_overlay_nodepth.material"
+						color="1"				
+						scale="{newscale}"				
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+					/>
+					
+				</template>
+				
+				<instance name="holes" newbone="_bone_spire" newscale="2"/>
+				<instance name="holes" newbone="_bone_spire001" newscale="1.7"/>
+				<instance name="holes" newbone="_bone_spire002" newscale="1.5"/>
+				<instance name="holes" newbone="_bone_spire003" newscale="2"/>
+				<instance name="holes" newbone="_bone_spire004" newscale="2.5"/>
+				<instance name="holes" newbone="_bone_spire005" newscale="2"/>
+				<instance name="holes" newbone="_bone_spire006" newscale="1.7"/>
+				<instance name="holes" newbone="_bone_spire007" newscale="1"/>
+				<instance name="holes" newbone="_bone_spire008" newscale=".7"/>
+				<instance name="holes" newbone="_bone_spire009" newscale="1"/>
+				<instance name="holes" newbone="_bone_spire010" newscale="1"/>
+				
+			</model>
+			 
+			<simpleemitter
+				count="5"
+				spawnrate="50"
+				particlelife="2000"
+				position="0 45 0"
+				offsetsphere="500 0 0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 -25"
+						minlife="1000"
+						maxlife="1200"
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						material="crystal_spire/material.material"
+						minscale=".5"
+						maxscale=".5"
+						color="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						minyaw="0"
+						maxyaw="360"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				delay="100"
+				count="5"
+				spawnrate="50"
+				particlelife="2000"
+				position="-100 -200 0"
+				offsetsphere="500 0 0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 -25"
+						minlife="1000"
+						maxlife="1200"
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						material="crystal_spire/material.material"
+						minscale=".2"
+						maxscale=".5"
+						color="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						minyaw="0"
+						maxyaw="360"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				delay="50"
+				count="5"
+				spawnrate="50"
+				particlelife="2000"
+				position="300 -200 0"
+				offsetsphere="500 0 0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 -25"
+						minlife="1000"
+						maxlife="1200"
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						material="crystal_spire/material.material"
+						minscale=".2"
+						maxscale=".5"
+						color="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						minyaw="0"
+						maxyaw="360"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			<template name="splosion">
+		
+				<billboard
+					delay="{zdelay}"
+					position="{newposition}"
+					material="/shared/effects/smaterials/bulb_add.material"				
+					startcolor=".5"				
+					endcolor="0 0 0"
+					life="150"	
+					startsize="100"
+					endsize="500"
+					depthbias="-150"			
+				/>
+	
+			</template>
+
+			<instance name="splosion" newposition="-400 -200 300" zdelay="0"/>
+			<instance name="splosion" newposition="400 -200 300" zdelay="0"/>
+			<instance name="splosion" newposition="0 45 300" zdelay="0"/>
+
+			<simpleemitter
+				delay="0"
+				expirelife="3000"
+				spawnrate="50"					
+				position="300 -250 0"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="200 150 0"
+				minspeed="200"
+				maxspeed="620"
+				angle="10"
+				direction="0 0 1"
+				drag=".1"
+				gravity="15"
+			>
+				<particle 
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color=".3 0.15 .3"
+					minstartsize="100"
+					maxstartsize="300"
+					endsize="300"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter	
+				delay="0"
+				expirelife="3000"
+				spawnrate="50"					
+				position="-300 -250 0"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="200 150 0"
+				minspeed="200"
+				maxspeed="620"
+				angle="10"
+				direction="0 0 1"
+				drag=".1"
+				gravity="15"
+			>
+				<particle 
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color=".3 0.15 .3"
+					minstartsize="100"
+					maxstartsize="300"
+					endsize="300"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter	
+				delay="0"
+				expirelife="3000"
+				spawnrate="115"					
+				position="0"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="200 150 0"
+				minspeed="200"
+				maxspeed="620"
+				angle="10"
+				direction="0 0 1"
+				drag=".1"
+				gravity="15"
+			>
+				<particle 
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color=".3 0.15 .3"
+					minstartsize="100"
+					maxstartsize="300"
+					endsize="300"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+
+			<light
+				position="0 -200 0"
+				life="1000"
+				startcolor="0"
+				endcolor="2 0 2"
+				falloffstart="100"
+				falloffend="300"
+			/>
+			
+			<light
+				position="-300 -300 0"
+				life="1000"
+				startcolor="0"
+				endcolor="2 0 2"
+				falloffstart="100"
+				falloffend="300"
+			/>
+			
+			<light
+				position="300 -300 0"
+				life="1000"
+				startcolor="0"
+				endcolor="2 0 2"
+				falloffstart="100"
+				falloffend="300"
+			/>
+
+			<light
+				delay="1000"
+				position="0 -200 0"
+				expirelife="3000"
+				startcolor="2 0 2"
+				midcolor="2 0 2"
+				endcolor="0"
+				falloffstart="100"
+				startfalloffend="300"
+				endfalloffend="500"
+			/>
+			
+			<light
+				delay="1000"
+				position="-300 -300 0"
+				expirelife="3000"
+				startcolor="2 0 2"
+				midcolor="2 0 2"
+				endcolor="0"
+				falloffstart="100"
+				startfalloffend="300"
+				endfalloffend="500"
+			/>
+			
+			<light
+				delay="1000"
+				position="300 -300 0"
+				expirelife="3000"
+				startcolor="2 0 2"
+				midcolor="2 0 2"
+				endcolor="0"
+				falloffstart="100"
+				startfalloffend="300"
+				endfalloffend="500"
+			/>
+		
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance2" particlesystem="system2" />
+		<waitfordeath instance="instance2" />
+		<camerashake2 scale="100" radius="1200" duration="600" frequency="22" />
+	</thread>
+</effect>

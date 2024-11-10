@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+
+				
+				
+
+				<simpleemitter
+					count="1"
+					position="0 0 0"
+					spawnrate="50"
+					particlelife="2000"
+					direction="0 0 1"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+					>
+
+						
+						
+						
+						
+						
+						<simpleemitter
+							position="0 0 3"
+							spawnrate="3300"
+							count="20"
+							minparticlelife="250"
+							maxparticlelife="750"
+							gravity="25"
+							minspeed="100"
+							maxspeed="500"
+							drag=".01"
+							material="/shared/effects/materials/whitedot.material"
+							offsetsphere="5 5 8"
+							minangle="0"
+							maxangle="20"
+							direction="0 0 1"
+							depthbias="-50"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								startcolor="1 1 0"
+								midcolor="1 .25 0"
+								endcolor="0 0 0"
+								midcolorpos=".75"
+								minstartsize="20"
+								maxstartsize="40"
+								endsize="0"
+							/>
+						</simpleemitter>
+						
+
+						
+						
+						
+						
+						
+						
+
+						<simpleemitter
+							count="3"
+
+							position="0 0 0"
+							spawnrate="15"
+							particlelife="2000"
+							offsetsphere="35 35 0"
+						>
+							<particle
+								turn="true"
+							>
+								<billboard
+
+									position="0 0 0"
+									minlife="300"
+									maxlife="600"
+									startcolor="0 0 0"
+									midcolor="1 .5 0"
+									endcolor="0 0 0"
+									midcolorpos=".25"
+									material="/shared/effects/smaterials/whitedot_ground.material"
+									minscale=".3"
+									maxscale=".5"
+									depthbias="-50"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+								
+								<billboard
+									position="0 0 0"
+									minlife="300"
+									maxlife="600"
+									startcolor="0 0 0"
+									midcolor="1 .5 0"
+									endcolor="0 0 0"
+									midcolorpos=".25"
+									material="/shared/effects/smaterials/whitedot_ground.material"
+									minscale=".15"
+									maxscale=".25"
+									depthbias="-50"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+
+							</particle>
+						</simpleemitter>
+
+					</particle>
+				</simpleemitter>
+
+
+		</particlesystem>
+			
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

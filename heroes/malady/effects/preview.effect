@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+
+	
+			<template name="maladypassive" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<billboard expirelife="250" material="/shared/effects/smaterials/black_spot_ground_layer0.material" size="75" lockup="true" lockright="true" pitch="-90" directionalspace="local"/>
+				<twopointemitter bone_a="_bone_leftankle" bone_b="_bone_rightankle" spawnrate="50" gravity="-1" minparticlelife="500" maxparticlelife="700" minspeed="15" maxspeed="30" drag="0.075" material="/shared/effects/smaterials/cloud1.material" offsetsphere="8" inheritvelocity=".25" depthbias="0" directionalspace="local" particledirectionalspace="local">
+					<particle minangle="0" maxangle="360" minanglespeed="-45" maxanglespeed="45" color="1" startsize="50" minendsize="15" maxendsize="30" startalpha="0" midalpha=".5" endalpha="0" midalphapos=".25"/>
+				</twopointemitter>
+				<twopointemitter bone_a="_bone_leftankle" bone_b="_bone_rightankle" spawnrate="50" gravity="-1" minparticlelife="500" maxparticlelife="700" minspeed="25" maxspeed="50" drag="0.075" material="/shared/effects/smaterials/cloud2.material" offsetsphere="8" inheritvelocity=".25" depthbias="0" directionalspace="local" particledirectionalspace="local">
+					<particle minangle="0" maxangle="360" minanglespeed="-45" maxanglespeed="45" color="1" startsize="50" minendsize="15" maxendsize="30" startalpha="0" midalpha=".85" endalpha="0" midalphapos=".25"/>
+				</twopointemitter>
+				<billboard bone="_bone_leftankle" material="/shared/effects/smaterials/cloud2.material" size="85" lockup="1" lockupright="1" depthbias="25" position="8 0 0" pitch="90" directionalspace="local"/>
+				<billboard bone="_bone_leftankle" material="/shared/effects/smaterials/cloud2.material" size="70" lockup="1" lockupright="1" pitch="90" depthbias="25" position="8 0 0" roll="-45" directionalspace="local"/>
+			</template>
+			<instance name="maladypassive"/>
+
+
+
+			
+			<sound delay="360" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="610" falloffend="2500" volume="0.45" channel="90036" />		
+
+				<!-- Zap -->
+			<template name="zap" parentmodel="true" parentskeleton="true">
+				<controller delay="{zdelay}" parentmodel="true" parentskeleton="true" directionalspace="local" particledirectionalspace="local">
+				<sound sample="sounds/cast.wav" linearfalloff="true" falloffstart="500" falloffend="2800" volume="0.35" channel="90036" />	
+				<simpleemitter count="12" spawnrate="1340" particlelife="300" gravity="1.0" speed="350" drag="0.0" acceleration="0.0" position="0 100 70" minangle="0" maxangle="5" direction="0 11 5" offsetsphere="8 8 8"  directionalspace="local" particledirectionalspace="local">
+					<particle>
+						<trailemitter life="700" spawnrate="50" particlelife="250" texpostime="250" texposscale="0" texstretchscale="1" position="0 0 0" material="/shared/effects/smaterials/whitedot.material" startparticlecolor="1 1 1" endparticlecolor="0 0 0" directionalspace="local" particledirectionalspace="local">
+							<particle startcolor=".65" midcolor=".65" endcolor="0 0 0" startsize="0" midsize="8" endsize="0" midsizepos="0.2"/>
+						</trailemitter>
+					</particle>
+				</simpleemitter>
+				<simpleemitter count="22" spawnrate="1340" particlelife="500" gravity="1.0" speed="400" drag="0.0" acceleration="0.0" position="0 100 70" minangle="0" maxangle="8" direction="0 11 5" offsetsphere="8 8 8"  directionalspace="local" particledirectionalspace="local">
+					<particle>
+						<trailemitter life="700" spawnrate="50" particlelife="250" texpostime="250" texposscale="0" texstretchscale="1" position="0 0 0" material="/shared/effects/smaterials/whitedot.material" startparticlecolor="1 1 1" endparticlecolor="0 0 0" directionalspace="local" particledirectionalspace="local">
+							<particle startcolor="1 1 0" midcolor="1 1 0" endcolor="0 0 0" startsize="0" midsize="8" endsize="0" midsizepos="0.2"/>
+						</trailemitter>
+					</particle>
+				</simpleemitter>
+				<simpleemitter count="200" spawnrate="1340" minparticlelife="200" maxparticlelife="400" gravity="8" minspeed="200" maxspeed="1800" drag=".03" acceleration="0" position="0 150 70" minangle="0" maxangle="25" direction="0 11 5" offsetsphere="8 8 8" material="/shared/effects/smaterials/flare.material"  directionalspace="local" particledirectionalspace="local">
+					<particle heightdistort="0.01" minsize="2" maxsize="5" startcolor="1 1 1" midcolor="1 1 0" endcolor="1 1 0" midcolorpos=".2" turn="1"/>
+				</simpleemitter>
+				<simpleemitter count="150" spawnrate="2500" minparticlelife="500" maxparticlelife="1000" gravity="-1.0" minspeed="300" maxspeed="600" drag="0.05" acceleration="0.0" position="0 75 70" minangle="80" maxangle="80" direction="0 11 5" offsetsphere="8 8 8" material="/shared/effects/smaterials/cloud_single.material" depthbias="-35" directionalspace="local" particledirectionalspace="local">
+					<particle minangle="-180" maxangle="180" minanglespeed="-150" maxanglespeed="150" color="1 1 1" startsize="50" startalpha="0" midalpha=".65" endalpha="0" midalphapos=".2"/>
+				</simpleemitter>
+				<simpleemitter position="0 225 70" count="1" particlelife="1000" spawnrate="3000" offsetsphere="0 0 0" minangle="0" maxangle="1" direction="0 11 5" speed="0" directionalspace="local" particledirectionalspace="local">
+					<particle turn="true">
+						<billboard position="0 0 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" endcolor="0 0 0" scale="2" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="90" framespeed="10" depthbias="-75" width="150"/>
+						<billboard position="0 0 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" midcolor="1 .8 .8" endcolor="0 0 0" scale="2" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="90" framespeed="10" depthbias="-75" width="150"/>
+						<billboard position="0 0 0" material="/shared/effects/smaterials/lightning.material" life="110" startcolor="0 1 1" midcolor="0 1 1" endcolor="0 0 0" scale="1.85" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="90" framespeed="10" depthbias="-75" width="150"/>
+						<billboard position="0 0 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" endcolor="0 0 0" scale="2" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="90" framespeed="10" depthbias="-75" width="150"/>
+						<billboard position="25 0 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" endcolor="0 0 0" scale="1.25" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="135" framespeed="10" depthbias="-75" width="50"/>
+						<billboard position="25 0 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" endcolor="0 0 0" scale="1.25" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="135" framespeed="10" depthbias="-75" width="50"/>
+						<billboard position="-35 -90 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" endcolor="0 0 0" scale="1.5" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="45" framespeed="10" depthbias="-75" width="50"/>
+						<billboard position="-35 -90 0" material="/shared/effects/smaterials/lightning_yellow.material" life="110" startcolor="1 .8 .8" endcolor="0 0 0" scale="1.5" directionalspace="local" lockright="1" lockup="1" pitch="90" roll="45" framespeed="10" depthbias="-75" width="50"/>
+					</particle>
+				</simpleemitter>
+				<simpleemitter count="1" spawnrate="1250" minparticlelife="30" maxparticlelife="100" position="0 70 70" direction="0 11 5" directionalspace="local" particledirectionalspace="local">
+					<particle>
+						<billboard position="0 0 0" material="/shared/effects/smaterials/whitedot.material" life="200" color=".5 .5 .5"/>
+						<billboard position="0 0 0" material="/shared/effects/smaterials/whitedot.material" life="200" color=".25 .25 .25" size="200"/>
+						<light life="175" startcolor="1 5 10" midcolor="1 5 10" endcolor="0 0 0" midcolorpos=".75" falloffstart="0" falloffend="200" position="0 0 50"/>
+					</particle>
+				</simpleemitter>
+				</controller>
+			</template>	
+			<instance name="zap" zdelay="6000"/>	
+
+	
+
+
+
+
+
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

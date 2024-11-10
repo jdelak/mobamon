@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="ability_03">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.1">
+
+			<model
+				life="200"
+				name="spin"
+				model="../../model.mdf"
+				anim="ability_1_slower"
+				color="0 1 10"
+				startalpha=".3"
+				endalpha=".3"
+				scale="1"
+			>
+			</model>
+
+			<model
+				life="200"
+				name="spin"
+				model="../../model.mdf"
+				anim="ability_1_slowest"
+				color="0 1 10"
+				startalpha=".3"
+				endalpha=".3"
+				scale="1"
+			>
+			</model>
+
+			<billboard
+				position="0 0 75"
+				life="200"
+				material="/shared/effects/smaterials/swoosh_ring.material"
+				startcolor="0 .6 .8"
+				endcolor="0 0 0"
+				size="420"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				rollspeed="800"
+				roll="180"
+			/>
+
+			<billboard
+				position="0 0 75"
+				life="200"
+				material="/shared/effects/smaterials/swoosh_ring.material"
+				startcolor=".25 .25 .25"
+				endcolor="0 0 0"
+				size="420"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				rollspeed="800"
+				roll="180"
+			/>
+
+	</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="frostarmordebuff">
+	<definitions>
+		<particlesystem name="system0" space="entity" >
+
+			<sound
+				falloffstart="1500"
+				falloffend="3200"
+				volume="0.65" 
+				sample="ambience/sfx_waterfall.wav"
+				soundloop="true"
+			/>
+
+		</particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+
+      <waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

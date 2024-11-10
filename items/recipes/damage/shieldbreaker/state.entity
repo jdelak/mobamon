@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Shieldbreaker"
+
+	icon="icon.tga"
+
+	passiveeffect="passive.effect"
+
+	effecttype="StatusDebuff"
+	allowtransfer="true"
+	maxcharges="4"
+
+	ishidden="true"
+>
+
+	<oninflict>
+		<addcharges count="1" />
+	</oninflict>
+	
+	<onrefresh>
+		<addcharges count="1" />
+	</onrefresh>
+	
+	<onattackedstart>
+		<cantarget targetscheme="self" source="this_inflictor_entity">
+			<getconstant name="damage" entity="tool_entity" adjustmentsource="this_owner_entity" />
+			<setvar0 a="charges" b="result" op="mult" />
+			<bonusdamageadd target="" a="var0" />
+		</cantarget>
+	</onattackedstart>
+</state>

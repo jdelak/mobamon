@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="alt_info_hero" luatable="true">
+	
+	<style name="whiteTextColor" color="#f5f2e2"/>
+	<style name="mitigationColor" color="#da4733"/>
+	<style name="resistanceColor" color="#2f6ed7"/>
+	
+	<style name="altInfoHeroCenterGlosPos" width="+8%" height="+8@" align="center" valign="center"/>
+	<style name="altInfoHeroCombatPiegraph" style="altInfoHeroCenterGlosPos" start="-90" end="270" square="true" rendermode="additive" texture="/ui/game/alt_info/textures/altinfo_hero2_center_glow.tga" />	
+	<style name="altInfoHeroPlayerName" y="-100%" textalign="center" textvalign="center" font="maindyn_16" color="white" shadow="true" outline="1"/>	
+		
+	<style name="altInfoHeroIconRow" height="80%" y="-90%" align="center" grow="true" regrow="true" growinvis="false" float="right" padding="25@" />
+	<style name="altInfoHeroTalkingIcon" width="100@" height="100%" texture="/ui/shared/textures/megaphone.tga" sticky="true" stickytoinvis="false" visible="false"/>
+	<style name="altInfoHeroTypingIcon" width="100@" height="100%" texture="/ui/shared/textures/edit.tga" sticky="true" stickytoinvis="false" visible="false"/>
+	<style name="altInfoHeroShoppingIcon" width="100@" height="100%" texture="/ui/game/shared/textures/shopping_icon.tga" sticky="true" stickytoinvis="false" visible="false"/>		
+		
+	<style name="altInfoHeroShieldContainer" width="100%" height="8@" valign="bottom" y="6.25@"/>
+	<style name="altInfoHeroShieldBarSize" hmargin="10@" vmargin="10%"/>			
+		
+	<style name="altInfoHeroItem" texture="/ui/shared/textures/pack2.tga" valign="center" />	
+		
+	<style name="altInfoHeroStatContainer" width="50@" height="100%" x="-190@"/>
+	<style name="altInfoHeroDamageContainer" width="100@" height="100%" x="100@" align="right" />
+	<style name="altInfoHeroStatSection" height="47.5%" width="-8%" align="center" />
+	<style name="altInfoHeroStatSectionTop" style="altInfoHeroStatSection" y="0%"/>
+	<style name="altInfoHeroStatSectionBot" style="altInfoHeroStatSection" y="0%" valign="bottom"/>		
+	<style name="altInfoHeroMitigationLabel" textalign="center" textvalign="center" outline="true" font="maindyn_11"/>
+	<style name="altInfoHeroResistanceLabel" textalign="center" textvalign="center" outline="true" font="maindyn_11"/>
+	<style name="altInfoHeroMitigation" style="altInfoHeroMitigationLabel,mitigationColor" width="100%" textalign="right" />
+	<style name="altInfoHeroResistance" style="altInfoHeroResistanceLabel,resistanceColor" width="100%" textalign="right" />
+	<style name="altInfoHeroDamageLabel" textalign="center" textvalign="center" outline="true" font="maindyn_11"/>
+	<style name="altInfoHeroPower" style="altInfoHeroDamageLabel" color="#FFDD33" y="5%"/>
+	<style name="altInfoHeroDamage" style="altInfoHeroDamageLabel,whiteTextColor" y="-5%"/>
+	
+	<!-- Health / Mana bar -->
+	<panel name="AltInfoHeroContainer" x="-6.0h" y="-5.8h" width="12.0h" height="2.4h" >
+		<!-- mitigation -->
+		<panel style="altInfoHeroStatContainer" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+					widget:SetVisible(trigger.showMoreInfo)
+				end, true, nil, 'showMoreInfo')				
+			?>		
+			<panel style="altInfoHeroStatSectionTop">
+				<label name="AltInfoHeroMitigation" style="altInfoHeroMitigation" content="?">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetText(libNumber.round(trigger.mitigation, 0)) end, false, nil, 'mitigation')
+					?>
+				</label>			
+			</panel>
+			<panel style="altInfoHeroStatSectionBot">
+				<label name="AltInfoHeroResistance" style="altInfoHeroResistance" content="?">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetText(libNumber.round(trigger.resistance, 0)) end, false, nil, 'resistance')
+					?>
+				</label>
+			</panel>
+		</panel>
+		
+		<!-- damage -->
+		<panel style="altInfoHeroDamageContainer" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+					widget:SetVisible(trigger.showMoreInfo)
+					
+					local scaledPower = (trigger.power * (1 + (trigger.level/15)))
+					
+					if (scaledPower >= 325) or (trigger.dps >= 325) then	
+						widget:SetX('220@')
+					elseif ((scaledPower >= 175) or (trigger.dps >= 75)) and (trigger.showMoreInfo) then
+						widget:SetX('220@')
+					else
+						widget:SetX('100@')
+					end	
+					
+				end, true, nil, 'showMoreInfo', 'power', 'level', 'dps')						
+				
+			?>			
+			<panel style="altInfoHeroStatSectionTop">
+				<label name="AltInfoHeroPower" style="altInfoHeroPower" content="?">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetText(libNumber.round(trigger.power, 0)) end, false, nil, 'power')
+					?>
+				</label>
+			</panel>
+			<panel style="altInfoHeroStatSectionBot">
+				<label name="AltInfoHeroDamage" style="altInfoHeroDamage" content="?">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetText(libNumber.round(trigger.dps, 0)) end, false, nil, 'dps')
+					?>
+				</label>
+			</panel>
+		</panel>	
+		
+		
+		<!-- Items -->
+		<panel noclick="1" width="3.0h" height="3.0h" float="right" y="-3.4h" x="-200@" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+					widget:SetVisible(trigger.showMoreInfo)
+				end, true, nil, 'showMoreInfo')				
+			?>
+		
+			<!-- Items -->
+			<image name="AltInfoHeroItem1" style="altInfoHeroItem">
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem1) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item1)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem1', 'item1', 'isPlayerCrafted1')
+				?>
+			</image>
+			<image name="AltInfoHeroItem2" style="altInfoHeroItem">
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem2) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item2)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem2', 'item2', 'isPlayerCrafted2')
+				?>
+			</image>
+
+			<image name="AltInfoHeroItem3" style="altInfoHeroItem">
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem3) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item3)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem3', 'item3', 'isPlayerCrafted3')
+				?>
+			</image>
+			<image name="AltInfoHeroItem4" style="altInfoHeroItem">
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem4) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item4)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem4', 'item4', 'isPlayerCrafted4')
+				?>
+			</image>
+			<image name="AltInfoHeroItem5" style="altInfoHeroItem">
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem5) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item5)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem5', 'item5', 'isPlayerCrafted5')
+				?>
+			</image>	
+
+			<image name="AltInfoHeroItem6" style="altInfoHeroItem">
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem6) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item6)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem6', 'item6', 'isPlayerCrafted6')
+				?>
+			</image>
+			
+			<image name="AltInfoHeroItem0" style="altInfoHeroItem" >
+				<?lua
+					object:RegisterWatchLua('AltInfoHeroItems', function(widget, trigger)
+						if (trigger.hasItem0) then
+							widget:SetVisible(1)
+							widget:SetTexture(trigger.item0)
+							widget:SetColor(1, 1, 1)
+						else
+							widget:SetTexture('/ui/shared/textures/pack2.tga')
+							widget:SetColor(0.7, 0.7, 0.7, 0.5)
+						end
+					end, false, nil, 'hasItem0', 'item0', 'isPlayerCrafted0')
+				?>
+			</image>	
+		</panel>
+		
+		<label name="AltInfoHeroPlayerName" style="altInfoHeroPlayerName" width="15h" x="-1.5h">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetText(trigger.playerName) end, true, nil, 'playerName')
+				
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+					widget:SetVisible((trigger.showMoreInfo or trigger.isHovering or styles_alwaysShowHeroNames))
+					if (trigger.showMoreInfo) then
+						widget:SetY('-255%')
+					else
+						widget:SetY('-120%')
+					end
+				end, true, nil, 'showMoreInfo', 'isHovering')				
+				
+				local lastRelation = nil
+				object:RegisterWatchLua('updateHealthColors', function(widget)
+					if lastRelation == 1 then
+						widget:SetColor(styles_healthBarAllyNameColor)
+					else
+						widget:SetColor(styles_healthBarEnemyNameColor)
+					end
+				end)
+				
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					local relation		= trigger.relation
+					lastRelation = relation
+					if relation == 1 then
+						widget:SetColor(styles_healthBarAllyNameColor)
+					elseif relation == 2 then
+						widget:SetColor(styles_healthBarEnemyNameColor)
+					end
+				end, true, nil, 'relation')				
+				
+			?>
+		</label>	
+		
+		<!-- cv_counterstrife -->
+		<!-- Lives	-->
+		<panel y="-112%" width="100%" float="bottom" valign="bottom" grow="1" regrow="1" growinvis="0" noclick="1">
+			<panel name="AltInfoHeroLives" height="1.7h" width="100%" float="right" padding="0.2h" noclick="1" sticky="1" stickytoinvis="0" visible="0">
+				<?lua
+					--object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					--	widget:SetVisible(trigger.totalRespawns > 0)
+					--end, true, nil, 'totalRespawns')
+				?>
+				<image name="AltInfoHeroLife01" texture="/maps/counter-strife/resources/ui/textures/life_count.tga" color="1 1 1 0.7" height="100%" width="100@" noclick="1"/> <!-- There is a life remaining -->
+				<image name="AltInfoHeroLife02" texture="/maps/counter-strife/resources/ui/textures/life_count.tga" color="1 1 1 0.4" rendermode="grayscale" height="100%" width="100@" noclick="1"/> <!-- A life was lost -->
+			</panel>
+		</panel>
+	
+		<piegraph name="AltInfoHeroCombatPieRemainder" start="270" end="-90" style="altInfoHeroCombatPiegraph" color="#F2CC00CC" visible="0">
+			<?lua
+				
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+					widget:SetVisible(trigger.isHovering)
+					if (trigger.maxShield > 0) then
+						widget:SetHeight('+16@')
+						widget:SetY('2@')
+					else
+						widget:SetHeight('+8@')
+						widget:SetY('0')
+					end						
+				end, true, nil, 'isHovering', 'maxShield')				
+				
+				local lastRelation = nil
+				object:RegisterWatchLua('updateHealthColors', function(widget)
+					if not styles_healthBarAllyColor2 then return end
+					if lastRelation == 1 then
+						widget:SetColor(styles_healthBarAllyColor .. " 0.75")
+					else
+						widget:SetColor(styles_healthBarEnemyColor .. " 0.75")
+					end
+				end)
+				
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					local relation		= trigger.relation
+					lastRelation		= relation
+					if relation == 1 then
+						widget:SetColor(styles_healthBarAllyColor .. " 0.75")
+					elseif relation == 2 then
+						widget:SetColor(styles_healthBarEnemyColor .. " 0.75")
+					end
+				end, true, nil, 'relation')				
+				
+			?>
+		</piegraph>	
+	
+		<!-- Misc Icons and Overlays -->
+		<panel name="AltInfoHeroShoppingIconContainer">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+					if (trigger.showMoreInfo) then
+						widget:SetY('-5.2h')
+					elseif (trigger.isHovering) then
+						widget:SetY('-2.2h')
+					else
+						widget:SetY('0')
+					end
+				end, true, nil, 'showMoreInfo', 'isHovering')			
+			?>
+			<panel style="altInfoHeroIconRow">
+				<image name="AltInfoHeroShoppingIcon" style="altInfoHeroShoppingIcon">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetVisible(trigger.shopOpen) end, true, nil, 'shopOpen')
+					?>
+				</image>
+				<image name="AltInfoHeroTalkingIcon" style="altInfoHeroTalkingIcon">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetVisible(trigger.isTalking) end, true, nil, 'isTalking')
+					?>
+				</image>				
+				<image name="AltInfoHeroTypingIcon" style="altInfoHeroTypingIcon">
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetVisible(trigger.isTyping) end, true, nil, 'isTyping')
+					?>
+				</image>				
+			</panel>
+		</panel>	
+	
+		<!-- HP -->
+		<panel hmargin="5@" y="12%" height="48.4%">	
+
+			<!-- BG 1 -->
+			<image width="100%" height="100%" align="center" valign="center" texture="$white" color="0 0 0 1" visible="0">
+				<?lua
+					
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+						widget:SetVisible(trigger.isHovering)
+					end, true, nil, 'isHovering')						
+					
+				?>
+			</image>
+		
+			<!-- BG 2 -->
+			<image width="100%" texture="$white" visible="1">
+				<?lua
+				
+					local lastRelation = nil
+					object:RegisterWatchLua('updateHealthColors', function(widget)
+						if lastRelation == 1 then
+							widget:SetColor(styles_healthBarAllyColorBack)
+						else
+							widget:SetColor(styles_healthBarEnemyColorBack)
+						end
+					end)
+					
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						local relation		= trigger.relation
+						lastRelation = relation
+						if relation == 1 then
+							widget:SetColor(styles_healthBarAllyColorBack)
+						elseif relation == 2 then
+							widget:SetColor(styles_healthBarEnemyColorBack)
+						end
+					end, true, nil, 'relation')					
+					
+				?>
+			</image>				
+			
+			<!-- Nameplates lerp in team colours -->
+			<image  width="0%" texture="$white" noclick="1" color="1 0 0 0.65" visible="0"
+				onloadlua="
+					local lastRelation = nil
+					self:RegisterWatchLua('updateHealthColors', function(widget)
+						if lastRelation == 1 then
+							widget:SetColor(styles_healthBarAllyLerpColor)
+						else
+							widget:SetColor(styles_healthBarEnemyLerpColor)
+						end
+						if (GetCvarBool('_game_healthLerping')) then
+							widget:UnregisterWatchLua('AltInfoHero')
+							widget:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+								local relation		= trigger.relation
+								lastRelation = relation
+								if relation == 1 then
+									widget:SetColor(styles_healthBarAllyLerpColor)
+								else
+									widget:SetColor(styles_healthBarEnemyLerpColor)
+								end
+							end, true, nil, 'relation')						
+							
+							widget:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+								widget:SetVisible(trigger.healthLerp > 0) 
+								widget:SetWidth(ToPercent(trigger.healthLerp)) 
+							end, true, nil, 'healthLerp')	
+						else
+							widget:UnregisterWatchLua('AltInfoHero')
+							widget:SetVisible(0)						
+						end
+					end)
+					
+					if (GetCvarBool('_game_healthLerping')) then
+						self:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+							local relation		= trigger.relation
+							lastRelation = relation
+							if relation == 1 then
+								widget:SetColor(styles_healthBarAllyLerpColor)
+							else
+								widget:SetColor(styles_healthBarEnemyLerpColor)
+							end
+						end, true, nil, 'relation')						
+						
+						self:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+							widget:SetVisible(trigger.healthLerp > 0) 
+							widget:SetWidth(ToPercent(trigger.healthLerp)) 
+						end, true, nil, 'healthLerp')						
+					end
+				"
+			>
+			</image>
+			
+			<!-- Nameplates 'light up' while taking damage to draw attention --> 
+			<image  width="0%" texture="$white" color="0.0000 1.0000 0.0000 1.0000"  visible="0"
+					watch0="AltInfo0HealthPercent" ontrigger0="SetWidth(FtoP(param));" 
+					watch2="AltInfo0HealthLerp" ontrigger2="SetVisible(param gt 0);"
+			>
+				<?lua
+					
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						local relation		= trigger.relation
+						local colorR		= styles_healthBackerColorNeutralR
+						local colorG		= styles_healthBackerColorNeutralG
+						local colorB		= styles_healthBackerColorNeutralB
+						local colorA		= 0.75
+						if relation == 1 then
+							colorR = 0
+							colorG = 1
+							colorB = 0
+							colorA = 1
+						elseif relation == 2 then
+							colorR = 1
+							colorG = 0
+							colorB = 0
+							colorA = 1
+						end
+						widget:SetColor(colorR, colorG, colorB, colorA)
+					end, true, nil, 'relation')						
+
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetVisible(trigger.healthLerp > 0) end, true, nil, 'healthLerp')	
+
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+						widget:SetVisible(trigger.isHovering)
+					end, true, nil, 'isHovering')					
+					
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)						
+						widget:SetWidth(trigger.healthPercent)
+					end, true, nil, 'healthPercent')
+				?>
+			</image>
+			
+			<!-- Standard nameplate -->
+			<image width="100%" texture="$white" color="1.0000 1.0000 0.0000 0.7500" visible="1" >	
+				<?lua
+					
+					local lastRelation = nil
+					object:RegisterWatchLua('updateHealthColors', function(widget)
+						if lastRelation == 1 then
+							widget:SetColor(styles_healthBarAllyColor .. " 0.8")
+						else
+							widget:SetColor(styles_healthBarEnemyColor .. " 0.8")
+						end
+					end)
+
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						local relation		= trigger.relation
+						lastRelation = relation
+						if relation == 1 then
+							widget:SetColor(styles_healthBarAllyColor .. " 0.8")
+						elseif relation == 2 then
+							widget:SetColor(styles_healthBarEnemyColor .. " 0.8")
+						end
+					end, true, nil, 'relation')
+
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						widget:SetWidth(ToPercent(trigger.healthCurrent / (trigger.maxHealth)))
+					end, true, nil, 'healthCurrent', 'maxHealth')
+				?>
+			</image>							
+
+			<panel name="AltInfoHeroHealthPips" style="altInfoHeroHealthContainer" texture="$invis" uscale="64p" utile="true">
+				<?lua
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						local maxHealth = trigger.maxHealth
+						if maxHealth > 4500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_8.tga')
+						elseif maxHealth >= 3500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_16.tga')
+						elseif maxHealth > 1500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_32.tga')
+						else
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_128.tga')
+						end
+						widget:SetUScale(500 / maxHealth)
+					end, true, nil, 'maxHealth')
+				?>
+			</panel>	
+
+		</panel>
+		
+		<!-- Mana -->
+		<panel hmargin="5@" y="71%" height="18.0%" color="0 .17 .25 .6">
+			<!-- BG 1 -->
+			<image height="100%" width="+2" align="center" valign="center" texture="$white" color="0 0 0 1" visible="0">
+				<?lua
+					
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+						widget:SetVisible(trigger.isHovering)
+					end, true, nil, 'isHovering')						
+					
+				?>
+			</image>		
+			<panel width="100%" texture="/ui/game/alt_info/textures/mana_pos.tga" color="1 1 1 0.75" >
+				<?lua
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetWidth(ToPercent(trigger.manaPercent)) end, true, nil, 'manaPercent')		
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+						if (trigger.isHovering) then
+							widget:SetColor('1 1 1 1')
+						else
+							widget:SetColor('1 1 1 0.75')
+						end
+					end, true, nil, 'isHovering')					
+				?>				
+			</panel>
+		</panel>	
+		
+		<!-- Shield -->
+		<panel name="AltInfoHeroShieldContainer" style="altInfoHeroShieldContainer" visible="0" >
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					widget:SetVisible(trigger.maxShield > 0)
+				end, true, nil, 'maxShield')		
+			?>
+		
+			<panel style="altInfoHeroShieldBarSize" texture="/ui/elements:rounded_bg_white_vert" color="#0B0B0B">
+				<panel name="AltInfoHeroShieldBar" texture="/ui/elements:rounded_bg_white_vert" color="#DDDDDD" width="55%">	
+					<?lua
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger) widget:SetWidth(ToPercent(trigger.shieldPercent)) end, true, nil, 'shieldPercent')
+
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+							widget:SetVisible(trigger.maxShield > 0)
+						end, true, nil, 'maxShield')		
+					
+					?>
+				</panel>
+			</panel>
+		</panel>		
+
+		<panel style="altInfoHeroShieldContainer" visible="0">
+				<?lua
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						widget:SetVisible(trigger.maxShield > 0)
+					end, true, nil, 'maxShield')
+				?>
+			<panel name="AltInfoHeroShieldPips" style="altInfoHeroShieldBarSize" uscale="64p" utile="true" >
+				<?lua
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+						local maxShield = trigger.maxShield
+						
+						if maxShield > 4500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_8.tga')
+						elseif maxShield >= 3500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_16.tga')
+						elseif maxShield > 1500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_32.tga')
+						else
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_128.tga')
+						end
+						if maxShield > 0 then
+							widget:SetUScale(500 / maxShield)
+						else
+							widget:SetUScale(1)
+						end
+					end, true, nil, 'maxShield')
+				?>
+			</panel>
+		</panel>
+		
+		<panel name="AltInfoHeroShieldOverlay" style="altInfoHeroShieldContainer" texture="/ui/elements:altinfo_hero2_shield" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					widget:SetVisible(trigger.maxShield > 0)
+				end, true, nil, 'maxShield')		
+			?>		
+		</panel>
+		
+		<!-- RMM Framing - NOT ATLAS-ED CURRENTLY, DON'T KNOW HOW TO REGISTER THE NEW TEXTURES!
+			altinfo_hero_frame_0.tga = HP/Mana
+			altinfo_hero_frame_1.tga = +1 Bar
+			altinfo_hero_frame_2.tga = +2 Bar
+		-->
+		<panel width="100%" height="50@" texture="/ui/game/alt_info/textures/altinfo_hero_frame_0.tga" color=".5 .5 .5" >
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					if (trigger.shield == 0) then
+						widget:SetVisible(1)
+					else
+						widget:SetVisible(0)
+					end
+				end, false, nil, 'shield')			
+			?>	
+		</panel>
+		<panel width="100%" height="50@" texture="/ui/game/alt_info/textures/altinfo_hero_frame_1.tga" color=".5 .5 .5" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					if (trigger.shield > 0) then
+						widget:SetVisible(1)
+					else
+						widget:SetVisible(0)
+					end
+				end, false, nil, 'shield')			
+			?>	
+		</panel>
+		
+	
+		<!-- Iconised Armor Rating / XP Ring -->
+		<panel noclick="1" align="center" valign="center" height="4.2h" width="4.2h" x="-7.8h" y="-0.2h" >			
+			
+			<panel name="AltInfoHeroArmorIcon_Parent" visible="1" noclick="1" align="center" valign="center" height="96%" width="96%" x="0" y="0.2h" >			
+				<image name="AltInfoHeroArmorIcon_1" texture="/ui/game/alt_info/textures/np_def_1.tga" visible="1" noclick="1" align="center" valign="center" height="100%" width="100%" color="1 1 1 1" >
+					<?lua				
+									
+						object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+							
+							local totalArmor = trigger.armor + trigger.magicArmor + trigger.mitigation + trigger.resistance
+
+							if (totalArmor >= 150) then 	-- max 302 min 62
+							
+								widget:SetVisible(1)
+								widget:SetTexture('/ui/game/alt_info/textures/np_def_5.tga')
+								
+							elseif (totalArmor >= 120) then
+								
+								widget:SetVisible(1)
+								widget:SetTexture('/ui/game/alt_info/textures/np_def_4.tga')									
+								
+							elseif (totalArmor >= 90) then
+								
+								widget:SetVisible(1)
+								widget:SetTexture('/ui/game/alt_info/textures/np_def_3.tga')							
+								
+							elseif (totalArmor >= 60) and (trigger.showMoreInfo or styles_alwaysShowHeroLevel) then
+								
+								widget:SetVisible(1)
+								widget:SetTexture('/ui/game/alt_info/textures/np_def_2.tga')
+							
+							elseif (totalArmor >= 30) and (trigger.showMoreInfo or styles_alwaysShowHeroLevel) then
+								
+								widget:SetVisible(1)
+								widget:SetTexture('/ui/game/alt_info/textures/np_def_1.tga')					
+
+							elseif (trigger.showMoreInfo or styles_alwaysShowHeroLevel) then
+								
+								widget:SetVisible(1)
+								widget:SetTexture('/ui/game/alt_info/textures/np_def_1.tga')	
+								
+							else
+			
+								widget:SetVisible(0)
+			
+							end
+						end, true, nil, 'showMoreInfo', 'armor', 'magicArmor', 'mitigation', 'resistance')							
+									
+					?>					
+				</image>
+			</panel>
+				
+			<label visible="0" font="subdyn_11" content="?" color="1 1 1 1.0" textalign="center" textvalign="center" shadow="1" shadowcolor="0 0 0 1" outline="1" outlinecolor="0 0 0 0.9" >
+				<?lua					
+
+					object:RegisterWatchLua('AltInfoHero', function(widget, trigger) 
+						widget:SetVisible(((trigger.showMoreInfo or ((trigger.armor + trigger.magicArmor + trigger.mitigation + trigger.resistance)>= 120) or styles_alwaysShowHeroLevel)))
+						widget:SetText(trigger.level)
+					end, true, nil, 'showMoreInfo', 'level', 'armor', 'magicArmor', 'mitigation', 'resistance')
+				?>
+			</label>			
+			
+		</panel>			
+		
+		<!-- Iconised Power Rating  -->
+		<panel name="AltInfoHeroPowerIcon_Parent" noclick="1" align="center" valign="center" height="3.6h" width="3.6h" x="7.7h" y="-0.1h"  >
+		
+			<?lua	
+
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					
+					local scaledPower = ((trigger.power - 30) * (1 + (trigger.level/15)))
+					
+					if (scaledPower >= 450) or (trigger.dps >= 525) then
+					
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetVisible(1)
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetTexture('/ui/game/alt_info/textures/np_off_5.tga')
+						widget:GetWidget('AltInfoHeroPowerEffect'):SetVisible(1)
+					
+					elseif (scaledPower >= 400) or (trigger.dps >= 450) then
+						
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetVisible(1)
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetTexture('/ui/game/alt_info/textures/np_off_5.tga')		
+						widget:GetWidget('AltInfoHeroPowerEffect'):SetVisible(0)
+						
+					elseif (scaledPower >= 325) or (trigger.dps >= 325) then
+					
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetVisible(1)
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetTexture('/ui/game/alt_info/textures/np_off_3.tga')
+						widget:GetWidget('AltInfoHeroPowerEffect'):SetVisible(0)
+					
+					elseif ((scaledPower >= 250) or (trigger.dps >= 200)) and (trigger.showMoreInfo) then
+					
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetVisible(1)
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetTexture('/ui/game/alt_info/textures/np_off_2.tga')
+						widget:GetWidget('AltInfoHeroPowerEffect'):SetVisible(0)
+
+					elseif ((scaledPower >= 175) or (trigger.dps >= 75)) and (trigger.showMoreInfo) then
+					
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetVisible(1)
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetTexture('/ui/game/alt_info/textures/np_off_1.tga')
+						widget:GetWidget('AltInfoHeroPowerEffect'):SetVisible(0)
+						
+					else
+	
+						widget:GetWidget('AltInfoHeroPowerIcon_1'):SetVisible(0)
+						widget:GetWidget('AltInfoHeroPowerEffect'):SetVisible(0)
+	
+					end
+				end, true, nil, 'power', 'level', 'dps', 'showMoreInfo')
+			?>
+			<modelpanel name="AltInfoHeroPowerEffect" visible="0" height="200%" width="200%" align="center" valign="center"
+				noclick="true"
+				model="/shared/models/invis.mdf"
+				effect="/ui/game/alt_info/ability.effect"
+				camerapos="10 -1 15"
+				cameraangles="0 0 0"
+				camerafov="55"
+				depthclear="true"
+				depthcompress="true"
+			/>			
+			<image name="AltInfoHeroPowerIcon_1" texture="/ui/game/alt_info/textures/np_off_1.tga" visible="0" noclick="1" align="center" valign="center" height="100%" width="100%" color="1 1 1 1"/>
+			
+		</panel>		
+		
+		
+		<frame width="+2" height="+2" y="0" texture="/ui/elements:roundframe" borderthickness="5" valign="center" align="center" color="invisible" bordercolor="1 1 0 0.8" visible="1" >
+			<?lua
+				
+				local lastRelation = nil
+				object:RegisterWatchLua('updateHealthColors', function(widget)
+					if lastRelation == 1 then
+						widget:SetBorderColor(styles_healthBarAllyColor .. " 0.8")
+					else
+						widget:SetBorderColor(styles_healthBarEnemyColor .. " 0.8")
+					end
+				end)
+			
+				object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+					local relation		= trigger.relation
+					lastRelation 		= relation
+					if relation == 1 then
+						widget:SetBorderColor(styles_healthBarAllyColor .. " 0.8")
+					elseif relation == 2 then
+						widget:SetBorderColor(styles_healthBarEnemyColor .. " 0.8")
+					end
+			
+					if (trigger.shield > 0) then
+						widget:SetHeight('+8@')
+						widget:SetY('2@')
+					else
+						widget:SetHeight('+2')
+						widget:SetY('0')
+					end							
+					
+				end, true, nil, 'relation', 'shield')		
+	
+			?>
+		</frame>
+		
+		<!-- cv_counterstrife -->
+		<!-- Invulnerability Circle -->
+		<panel name="AltInfoHeroInvul" height="100%" width="100@" valign="center" align="center" noclick="1" visible="0">
+			<?lua
+				--object:RegisterWatchLua('AltInfoHero', function(widget, trigger)
+				--	widget:SetVisible(trigger.deathProtected)
+				--end, true, nil, 'deathProtected')
+			?>
+			<image texture="/ui/shared/textures/circle_filled.tga" noclick="1" color="0.1 0.1 0.1 0.6"/>
+			<piegraph name="AltInfoHeroInvulBar" end="270" start="-90" square="0" color="1 1 1 1" noclick="true" value="0.4" align="center" valign="center" height="95%" width="95%" />
+			<image texture="/ui/shared/textures/circle_outline.tga" noclick="1" color="0.1 0.1 0.1 1"/>
+			<image height="61%" width="61@" align="center" valign="center" texture="/ui/shared/textures/circle_filled.tga" noclick="1" color="0.1 0.1 0.1 1"/>
+		</panel>
+	</panel>
+	
+	<!-- SPE Stun Bar -->
+	<panel x="-6.0h" y="-5.8h" width="12.0h" height="2.4h" >	
+		<panel name="AltInfoHeroStun" hmargin="0" y="1.0h" valign="bottom" height="0.6h" width="-0.6h" x="0" align="center" visible="0">
+			<panel name="AltInfoHeroStunBar" width="100%" color="1 0.7 0 1" />
+			<panel name="AltInfoHeroStunBar02" style="altInfoHeroHealthContainer" texture="$invis" uscale="64p" utile="true"/>
+		</panel>
+	</panel>
+	
+	<lua file="/ui/game/alt_info/alt_info_hero.lua"/>
+
+</interface>

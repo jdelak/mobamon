@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+	
+		<sound delay="500" volume="0.47" linearfalloff="true" falloffstart="500" falloffend="2400" sample="sounds/v_%.wav" channel="90019" />	
+
+
+</particlesystem>
+
+<!-- 1 -->
+<particlesystem name="system1" space="entity" scale="1.3">
+	
+		<light life="1250" startcolor="1.5 0 5" endcolor="0 0 0" midcolorpos=".5" falloffstart="0" falloffend="125" position="0 0 50"/>
+		<template name="orbs">
+			<model life="3250" bone="_bone_center" model="../ability_02/effects/orbit/orbit.mdf" anim="idle" scale="{zscale}" rollspeed="{zrollspeed}" pitch="{zpitch}" roll="{zroll}" position="0 0 25" startalpha="0" midalpha="1" endalpha="0" midalphapos="0.5">
+				<billboard bone="_invis" expirelife="250" material="/shared/effects/smaterials/white_swoosh_short_one_feathered.material" startcolor=".25 0 .5" endcolor="0 0 0" position="0 0 -1" size="142" depthbias="50" lockup="1" lockright="1" pitch="-180" roll="-110" alpha="0" directionalspace="local"/>
+				<billboard bone="_invis" expirelife="250" material="/shared/effects/smaterials/yellow_swoosh_ring_one_add_short_01.material" startcolor=".25" endcolor="0 0 0" position="0 0 -1" size="142" depthbias="50" lockup="1" lockright="1" pitch="-180" roll="-110" alpha="0" directionalspace="local"/>
+				<billboard bone="_invis" expirelife="250" material="/shared/effects/smaterials/yellow_swoosh_ring_one_add_short_02.material" startcolor=".25" endcolor="0 0 0" position="0 0 -1" size="145" depthbias="50" lockup="1" lockright="1" pitch="-180" roll="-110" alpha="0" directionalspace="local"/>
+				<model expirelife="500" bone="_bone_fx" model="../ability_02/effects/castle/model.mdf" anim="idle" scale=".75" color=".2 .2 .35" position="0 0 0" pitchspeed="360" rollspeed="360" startalpha="1" endalpha="0"/>
+				<billboard expirelife="250" bone="_bone_fx" material="/shared/effects/smaterials/whitedot.material" startcolor=".25 0 .25" endcolor="0 0 0" scale="1.25" depthbias="-35"/>
+				<billboard expirelife="250" bone="_bone_fx" material="/shared/effects/smaterials/whitedot.material" startcolor=".25 0 .25" endcolor="0 0 0" scale=".5" depthbias="-35"/>
+			</model>
+		</template>
+		<instance name="orbs" zrollspeed="-340" zroll="0" zpitch="60" zscale="1.2"/>
+		<instance name="orbs" zrollspeed="-340" zroll="45" zpitch="120" zscale="1.2"/>
+	
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+<waitfordeath instance="instance0"/>
+<waitfordeath instance="instance1"/>
+</thread>
+</effect>

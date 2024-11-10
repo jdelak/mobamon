@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tracks of higher priority will stop playing lower priority tracks and keep playing until all layers are stopped. Lower priority tracks are still listening and responding to events.
+Tracks can have the same events as other tracks, but layers cannot.
+Tracks of the same priority will be swapped.
+	A)	If different tracks of the same priority have the same event, the track will not be swapped 
+	
+Layers will only play one sample at a time, if a new sample is played on the same layer, it will use the fade in/out, no file specified will stop the layer
+
+-->
+<conductor>
+	<track name="Lane" priority="1" >
+		<layer name="LaneMusic" volume="0.9" fadein="4000" fadeout="3000" loop="true" >
+			<!--Used for match beginning and after excitement scenerios if the player is not in the jungle-->
+			<event name="Normal"							file="ingame/music_normal.wav" >
+				<synctrack name="Jungle" />
+				<synctrack name="Excitement" />
+				<stoptrack name="BeginGame" />
+			</event>
+			
+			<event name="EnterRegion_sound_lane_wide_01"	file="ingame/music_normal.wav" />
+			<event name="EnterRegion_sound_lane_narrow_01"	file="ingame/music_normal.wav" />
+			<event name="EnterRegion_sound_lane_wide_02"	file="ingame/music_normal.wav" />
+			<event name="EnterRegion_sound_lane_narrow_02"	file="ingame/music_normal.wav" />
+			<event name="EnterRegion_sound_lane_wide_03"	file="ingame/music_normal.wav" />
+			<event name="EnterRegion_sound_lane_narrow_03"	file="ingame/music_normal.wav" />
+			
+			<event name="Tencitement"										file="ingame/music_normal.wav" >
+				<overrideevent name="EnterRegion_sound_lane_wide_01"		file="ingame/music_basecitement.wav" />
+				<overrideevent name="EnterRegion_sound_lane_narrow_01"		file="ingame/music_basecitement.wav" />
+				<overrideevent name="EnterRegion_sound_lane_wide_02"		file="ingame/music_basecitement.wav" />
+				<overrideevent name="EnterRegion_sound_lane_narrow_02"		file="ingame/music_basecitement.wav" />
+				<overrideevent name="EnterRegion_sound_lane_wide_03"		file="ingame/music_basecitement.wav" />
+				<overrideevent name="EnterRegion_sound_lane_narrow_03"		file="ingame/music_basecitement.wav" />
+			</event>
+		</layer>
+		
+		
+		<layer name="TowerDamageLayer" volume="0.4" fadein="1000" fadeout="3000" loop="true" >
+			<!--Used when the player is near a tower that is taking damage-->
+			<event name="TowerDamage"					file="ingame/music_tower_damage.wav" countdowntime="4000"/>
+			<event name="OurTowerDestroyed"	/>
+			<event name="EnemyTowerDestroyed" />
+			
+			
+		</layer>
+	</track>
+
+	<track name="Jungle" priority="1" >
+		<layer name="JungleMusic" volume="0.75" fadein="2000" fadeout="4000" loop="true" >
+			<event name="Normal"							file="ingame/music_tension.wav" >
+				<synctrack name="Normal" />
+				<synctrack name="Excitement" />
+				<stoptrack name="BeginGame" />
+			</event>
+			<event name="Tension"							file="ingame/music_tension.wav" />
+			<event name="EnterRegion_sound_jungle"			file="ingame/music_tension.wav" />
+			<event name="EnterRegion_sound_swamp"			file="ingame/music_tension.wav" />
+			<event name="EnterRegion_sound_mine"			file="ingame/music_tension.wav" />
+			<event name="EnterRegion_sound_graveyard"		file="ingame/music_tension.wav" />
+
+			<event name="Tencitement"								file="ingame/music_tension.wav" >
+				<overrideevent name="Tension"						file="ingame/music_tencitement.wav" />
+				<overrideevent name="EnterRegion_sound_jungle"		file="ingame/music_tencitement.wav" />
+				<overrideevent name="EnterRegion_sound_swamp"		file="ingame/music_tencitement.wav" />
+				<overrideevent name="EnterRegion_sound_mine"		file="ingame/music_tencitement.wav" />
+				<overrideevent name="EnterRegion_sound_graveyard"	file="ingame/music_tencitement.wav" />
+			</event>		
+		</layer>
+
+		<layer name="TowerDamageLayer" volume="0.4" fadein="1000" fadeout="2000" loop="true" >
+			<!--Used when the player is near a tower that is taking damage-->
+			<event name="TowerDamage"						file="ingame/music_tower_damage.wav" countdowntime="3000"/>
+			<event name="OurTowerDestroyed"	/>
+			<event name="EnemyTowerDestroyed" />
+		</layer>
+	</track>
+
+	<track name="Excitement" priority="2" >
+		<supportlayer name="ExcitementSupport"				file="ingame/music_excitement.wav" >
+			<playwithlayer name="SmallTeamFight" />
+			<playwithlayer name="LargeTeamFight" />
+			<playwithlayer name="Guardian" />
+			<playwithlayer name="Krytos" />
+		</supportlayer>
+		
+		<layer name="ExcitementLayer" volume="0.9" fadein="2000" fadeout="4000" loop="true" >
+			<event name="SmallTeamFight"					file="ingame/music_excitement.wav" >
+				<canceldelayedevents name="ActuallyStopTeamFightMusic" />
+			</event>
+			<event name="LargeTeamFight"					file="ingame/music_excitement.wav" />
+			<event name="NoTeamFight"						file="ingame/music_excitement.wav" >
+				<spawnevent name="ActuallyStopTeamFightMusic" delay="3000" />
+			</event>
+			<event name="ActuallyStopTeamFightMusic"  >
+				<stoplayer name="ExcitementLayer"		/>
+				<stoplayer name="SmallTeamFight"		/>
+				<stoplayer name="LargeTeamFight"		/>
+			</event>
+		</layer>
+
+		<layer name="SmallTeamFight" volume="0.6" fadein="2000" fadeout="2000" loop="true" >
+			<!--Used when there is at least 2 of one team and 3 of another nearby and someone taken hero damage -->
+			<event name="SmallTeamFightEngaged"				file="ingame/music_teamfight_small.wav" >
+				<stoplayer name="LargeTeamFight"		/>
+			</event>
+			<event name="SupportLargeTeamFight"				file="ingame/music_teamfight_small.wav" />
+		</layer>
+
+		<layer name="LargeTeamFight" volume="0.5" fadein="2000" fadeout="2000" loop="true" >
+			<!--Used when there is at least 3 of one team and 4 of another nearby and someone taken hero damage -->
+			<event name="LargeTeamFightEngaged"				file="ingame/music_teamfight_large.wav" >
+				<spawnevent name="SupportLargeTeamFight" delay="0" />
+			</event>
+		</layer>
+
+		<layer name="Guardian" volume="0.9" fadein="4000" fadeout="4000" loop="true" >
+			<!--Used when the player is fighting a guardian-->
+			<event name="Guardian"							file="ingame/music_guardian.wav" countdowntime="5000" />
+			<!--
+			<event name="EnterRegion_sound_guardian_1"		file="ingame/music_guardian.wav"  >
+				<spawnevent name="Excitement" delay="0" />
+			</event>
+			<event name="EnterRegion_sound_guardian_2"		file="ingame/music_guardian.wav"  >
+				<spawnevent name="Excitement" delay="0" />
+			</event>
+			-->
+		</layer>
+
+		<layer name="Krytos" volume="0.7" fadein="2000" fadeout="4000" loop="true" >
+			<event name="KrytosSpawn"						file="ingame/music_krytos.wav"	/>
+			<event name="KrytosDeath"	>
+				<stoplayer name="Krytos"/>
+			</event>
+		</layer>
+	</track>
+
+	<track name="BaseDefend" priority="3" >
+		<layer name="Base_1" volume="1" fadein="4000" fadeout="2000" loop="true" >
+			<!--Used when the player has destroyed a generator or a player's generator has been destroyed-->
+			<event name="BaseDefend_1"				file="ingame/music_base_defend_1.wav" countdowntime="10000"/>
+			<event name="NoBase"	>
+				<stoplayer name="Base_1"/>
+				<stoplayer name="Base_2"/>
+				<stoplayer name="Base_3"/>
+			</event>
+		</layer>
+
+		<layer name="Base_2" volume="0.5" fadein="2000" fadeout="2000" loop="true" >
+			<!--Used when the player has begun to attack the enemy crux or vice-versa-->
+			<event name="BaseDefend_2"				file="ingame/music_base_defend_2.wav" countdowntime="10000" >
+				<spawnevent name="BaseDefend_1" delay="0" />
+			</event>
+		</layer>
+
+		<layer name="Base_3" volume="0.8" fadein="2000" fadeout="2000" loop="true" >
+			<!--Used when the player's crux shield is gone or vice-versa-->
+			<event name="BaseDefend_3"				file="ingame/music_base_defend_3.wav" countdowntime="10000" >
+				<spawnevent name="BaseDefend_2" delay="0" />
+			</event>
+		</layer>
+	</track>
+
+	<track name="BaseAttack" priority="3" >
+		<layer name="Base_1" volume="0.9" fadein="4000" fadeout="4000" loop="true" >
+			<!--Used when the player has destroyed a generator or a player's generator has been destroyed-->
+			<event name="BaseAttack_1"				file="ingame/music_base_attack_1.wav" countdowntime="10000"/>
+			<event name="NoBase"	>
+				<stoplayer name="Base_1"/>
+				<stoplayer name="Base_2"/>
+				<stoplayer name="Base_3"/>
+			</event>
+		</layer>
+
+		<layer name="Base_2" volume="0.4" fadein="2000" fadeout="2000" loop="true" >
+			<!--Used when the player has begun to attack the enemy crux or vice-versa-->
+			<event name="BaseAttack_2"				file="ingame/music_base_attack_2.wav" countdowntime="10000" >
+				<spawnevent name="BaseAttack_1" delay="0" />
+			</event>
+		</layer>
+
+		<layer name="Base_3" volume="0.7" fadein="2000" fadeout="2000" loop="true" >
+			<!--Used when the player's crux shield is gone or vice-versa-->
+			<event name="BaseAttack_3"				file="ingame/music_base_attack_3.wav" countdowntime="10000" >
+				<spawnevent name="BaseAttack_2" delay="0" />
+			</event>
+		</layer>
+	</track>
+
+	<track name="Death" priority="4" nosync="true" >
+		<layer name="Death" volume="0.2" fadein="2000" fadeout="1000" loop="true" >
+			<!--Used when the player has died-->
+			<event name="Death"						file="ingame/music_death.wav" >
+				<!--<spawnevent name="DeathStinger"	/>-->
+			</event>
+			<event name="StopDeath" />
+		</layer>
+	</track>
+
+	<track name="BeginGame" priority="5" >
+		<layer name="HeroSelect" volume="0.4" fadein="0" fadeout="1000" loop="true" >
+			<event name="GamePhase_hero_select"		file="music_heroselect.wav" />
+			<event name="GamePhase_pre_match"		file="" />
+		</layer>
+	
+		<layer name="BeginGame" volume="0.3" fadein="0" fadeout="3000" loop="false" >
+			<event name="AllPlayersLoaded"		file="ingame/music_pregame.wav" >
+				<stoplayer name="HeroSelect" />
+				<spawnevent name="Normal" delay="58000" />
+			</event>
+		</layer>
+	</track>
+	
+	<track name="EndGame" priority="5" >
+		<layer name="EndGame" volume="0.5" fadein="0" fadeout="3000" loop="false" >
+			<!--End of match, player's team has won-->
+			<event name="Victory"					file="ingame/music_victory.wav" >
+				<stoptrack name="Lane" />
+				<stoptrack name="Jungle" />
+				<stoptrack name="Excitement" />
+				<stoptrack name="BaseDefend" />
+				<stoptrack name="BaseAttack" />
+				<stoptrack name="Death"	/>
+			</event>
+
+			<!--End of match, player's team has lost-->
+			<event name="Defeat"					file="ingame/music_defeat.wav"	>
+				<stoptrack name="Lane" />
+				<stoptrack name="Jungle" />
+				<stoptrack name="Excitement" />
+				<stoptrack name="BaseDefend" />
+				<stoptrack name="BaseAttack" />
+				<stoptrack name="Death"	/>
+			</event>
+		</layer>
+	</track>
+
+	<stingers>
+		<layer name="FireAndForget" volume="1" fadein="0" fadeout="0" loop="false" fireandforget="true" >
+			<event name="RespawningSoon"			file="" >
+				<spawnevent name="StopDeath" delay="3000"  />
+			</event>
+		</layer>
+		<layer name="FireAndForget2" volume="0.5" fadein="1000" fadeout="0" loop="false" fireandforget="true" >
+			<event name="OurTowerDestroyed"			file="ingame/music_tower_destroy_negative.wav" />
+			<event name="EnemyTowerDestroyed"		file="ingame/music_tower_destroy_positive.wav" />
+		</layer>
+	</stingers>
+
+</conductor>

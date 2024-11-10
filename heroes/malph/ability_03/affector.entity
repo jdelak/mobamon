@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Malph_Ability3"
+
+	radius="400"
+	lifetime="5000"
+	effect="effects/aoe.effect"
+	targetselection="all"
+	targetscheme="enemy_units"
+	effecttype="Magic"
+	deathtime="1000"
+>
+	<onframeimpact>
+		<applystate name="State_Malph_Ability2_Debuff" duration="1500" />
+	</onframeimpact>
+	
+	<onspawn>
+		<playeffect effect="effects/ring_ally.effect" target="this_entity" source="this_entity" occlude="true" visibility="allies"/>
+		<playeffect effect="effects/ring.effect" target="this_entity" source="this_entity" occlude="true" visibility="enemies"/>
+	</onspawn>
+	
+	<onexpired>
+		<playeffect effect="effects/death.effect" source="this_position" occlude="true" />		
+	</onexpired>
+	
+</affector>

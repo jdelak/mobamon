@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Pusher_Ult_3"
+
+	icon="icon.tga"
+	
+	passiveeffect="effects/state.effect"
+	
+	maxhealth="300,309,327,354,390,435,489,552,624,705,795,894,1002,1119,1245"
+	attackspeed="0.35"
+	basedamagemultiplier=".75"
+	
+	modifierkey="promote_brawler"
+	
+>
+	<onkill>
+		<targettype type="building"/>
+		<else>
+			<targettype type="hero"/>
+			<else>
+				<givegold amount="20" source="target_entity" target="this_proxy_entity" position="target_entity" />
+				<!-- <changekillcredit source="target_entity" target="this_proxy_entity" /> -->
+			</else>
+		</else>
+	</onkill>
+
+</state>

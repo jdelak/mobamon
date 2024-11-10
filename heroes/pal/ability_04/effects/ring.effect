@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="6">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume="0.75"
+				sample="pulse.wav"
+			/>
+
+			<light
+				life="1000"
+				startcolor="0 2 9"
+				endcolor="0 0 0"
+				falloffstart="50"
+				falloffend="350"
+				position="0 0 150"
+			/>
+
+			<simpleemitter
+				delay="0"
+				position="0 0 0"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				directionalspace="local"
+			>
+				<particle
+				>
+					<groundsprite
+						life="1250"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						size="75"
+						color=".8 .7 .6"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+					/>
+				
+					<groundsprite
+						bone="_bone_righthand"
+						material="/shared/effects/smaterials/big_cracks.material"
+						startsize="55"
+						midsize="60"
+						endsize="60"
+						midsizepos=".1"
+						life="1250"
+						color="1 1 1"
+						startalpha=".85"
+						midalpha=".85"
+						endalpha="0"
+						midalphapos=".8"
+						startframe="1"
+						endframe=".01"
+					/>
+
+<!--
+					<template name="wheelDust">
+						<simpleemitter
+							count="150"
+							position="0 0 0"
+							delay="{zdelay}"
+							spawnrate="5000"
+							life="50"
+							minparticlelife="350"
+							maxparticlelife="700"
+							minspeed="0"
+							maxspeed="200"
+							material="/shared/effects/smaterials/cartoon_dust_brown_desaturated.material"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="20 0 0"
+							offsetsphere="6 6 0"
+							depthbias="-75"
+							directionalspace="world"
+						>
+							<particle
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-55"
+								maxanglespeed="55"
+								startcolor="1"
+								endcolor=".25"
+								startsize="5"
+								endsize="10"
+								startalpha=".6"
+								endalpha="0"
+								midalphapos=".5"
+								turn="true"
+							/>
+							<particle
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-55"
+								maxanglespeed="55"
+								startcolor="1"
+								endcolor=".25"
+								startsize="15"
+								endsize="20"
+								startalpha=".6"
+								endalpha="0"
+								midalphapos=".5"
+								turn="true"
+							/>
+						</simpleemitter>
+					</template>
+					
+					<instance name="wheelDust" zdelay="0"/>
+-->
+
+					
+					<template name="">
+					
+						<simpleemitter
+							bone="_bone_center"
+							count="1"
+							position="{zpos}"
+							spawnrate="50"
+							particlelife="2000"
+							offsetsphere="0 0 0"
+						>
+							<particle
+							>
+								<debris
+									minscale=".08"
+									maxscale=".11"
+									minlife="600"
+									maxlife="1000"
+									model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf"
+									anim="idle"
+									minspeed="500"
+									maxspeed="3000"
+									minangle="0"
+									maxangle="1"
+									direction="0 0 1"
+									gravity="250"
+									acceleration="0"
+									drag="0"
+									color="1 .8 .6"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									bounce=".1"
+									reflect=".8"
+									collide="false"
+									animpose="false"
+									offsetsphere="75 75 200"
+									directionalspace="local"
+								>
+								</debris>
+							</particle>
+						</simpleemitter>
+						
+					</template>
+					
+					<instance name="" zpos="0 0 10"/>
+					
+					
+					<template name="">
+						<simpleemitter
+							delay="0"
+							bone="_bone_center"
+							count="2"
+							position="{zpos}"
+							spawnrate="50"
+							particlelife="2000"
+							offsetsphere="0 0 0"
+						>
+							<particle
+							>
+								<debris
+									minscale=".1"
+									maxscale=".125"
+									minlife="500"
+									maxlife="1000"
+									model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf"
+									anim="idle"
+									minspeed="200"
+									maxspeed="1800"
+									minangle="0"
+									maxangle="45"
+									direction="0 0 1"
+									gravity="250"
+									acceleration="0"
+									drag="0"
+									color="1 .8 .6"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									bounce=".1"
+									reflect=".8"
+									collide="false"
+									animpose="false"
+									offsetsphere="75 75 0"
+									directionalspace="local"
+								>
+								</debris>
+							</particle>
+						</simpleemitter>
+					</template>
+					
+					<instance name="" zpos="0 0 20"/>
+
+				</particle>
+			</simpleemitter>
+
+			
+			<simpleemitter
+				delay="0"
+				position="0 0 0"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				directionalspace="local"
+			>
+				<particle
+				>
+					<template name="">
+<!--
+						<billboard
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/materials/refract_ring.material"
+							param=".025"
+							life="550"
+							startsize="0"
+							endsize="500"
+							depthbias="-75"
+							roll="{zroll}"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+-->
+						<billboard
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .05 .2"
+							endcolor="0 0 0"
+							midcolorpos=".75"
+							life="1100"
+							startsize="450"
+							endsize="450"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+<!--
+						<billboard
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .025 .1"
+							endcolor="0 0 0"
+							midcolorpos=".75"
+							life="1100"
+							startsize="400"
+							endsize="400"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+-->
+					</template>
+
+					<instance name="" zroll="0" zdelay="0"/>
+					<instance name="" zroll="45" zdelay="0"/>
+					<instance name="" zroll="90" zdelay="0"/>
+					<instance name="" zroll="0" zdelay="100"/>
+					<instance name="" zroll="45" zdelay="100"/>
+					<instance name="" zroll="90" zdelay="100"/>
+
+					<groundsprite
+						material="/shared/effects/smaterials/ground_ring.material"
+						startsize="0"
+						endsize="260"
+						life="1100"
+						startcolor="0 .3 1"
+						endcolor="0 0 0"
+					/>
+
+					<groundsprite
+						material="/shared/effects/smaterials/ground_ring.material"
+						startsize="0"
+						endsize="250"
+						life="1100"
+						startcolor="0 .075 .5"
+						endcolor="0 0 0"
+					/>
+
+					<groundsprite
+						material="/shared/effects/smaterials/ground_ring.material"
+						startsize="0"
+						endsize="240"
+						life="1100"
+						startcolor="0 .035 .25"
+						endcolor="0 0 0"
+					/>
+
+					<model
+						position="0 0 0"
+						life="1100"
+						model="/shared/effects/models/circle_of_bones/model.mdf"
+						anim="idle"
+						startscale="0"
+						endscale="8"
+					>
+					
+						<template name="trails">
+							<beam
+								life="900"
+								bone_a="{bone01}"
+								bone_b="{bone02}"
+								minsize="2"
+								maxsize="10"
+								startcolor=".5 .75 1"
+								midcolor=".5 .75 1"
+								endcolor="0 0 0"
+								midcolorpos=".6"
+								material="/shared/effects/smaterials/lightning_new.material"
+								tile="1"
+								startframe="0"
+								endframe="1"
+								framespeed="3"
+							>
+							</beam>
+						</template>
+						
+						<instance name="trails" bone01="_bone_fx_01"  bone02="_bone_fx_02"/>
+						<instance name="trails" bone01="_bone_fx_02"  bone02="_bone_fx_03"/>
+						<instance name="trails" bone01="_bone_fx_03"  bone02="_bone_fx_04"/>
+						<instance name="trails" bone01="_bone_fx_04"  bone02="_bone_fx_05"/>
+						<instance name="trails" bone01="_bone_fx_05"  bone02="_bone_fx_06"/>
+						<instance name="trails" bone01="_bone_fx_06"  bone02="_bone_fx_07"/>
+						<instance name="trails" bone01="_bone_fx_07"  bone02="_bone_fx_08"/>
+						<instance name="trails" bone01="_bone_fx_08"  bone02="_bone_fx_09"/>
+						<instance name="trails" bone01="_bone_fx_09"  bone02="_bone_fx_10"/>
+						<instance name="trails" bone01="_bone_fx_10"  bone02="_bone_fx_11"/>
+						<instance name="trails" bone01="_bone_fx_11"  bone02="_bone_fx_12"/>
+						<instance name="trails" bone01="_bone_fx_12"  bone02="_bone_fx_01"/>
+						
+					</model>
+					
+					<model
+						position="0 0 0"
+						life="1100"
+						model="/shared/effects/models/circle_of_bones/model.mdf"
+						anim="idle"
+						startscale="0"
+						endscale="7.25"
+					>
+					
+						<template name="trails">
+							<beam
+								life="900"
+								bone_a="{bone01}"
+								bone_b="{bone02}"
+								minsize="2"
+								maxsize="8"
+								startcolor=".25 .5 .75"
+								midcolor=".25 .5 .75"
+								endcolor="0 0 0"
+								midcolorpos=".6"
+								material="/shared/effects/smaterials/lightning_new.material"
+								tile="1"
+								startframe="0"
+								endframe="1"
+								framespeed="2"
+							>
+							</beam>
+						</template>
+						
+						<instance name="trails" bone01="_bone_fx_01"  bone02="_bone_fx_02"/>
+						<instance name="trails" bone01="_bone_fx_02"  bone02="_bone_fx_03"/>
+						<instance name="trails" bone01="_bone_fx_03"  bone02="_bone_fx_04"/>
+						<instance name="trails" bone01="_bone_fx_04"  bone02="_bone_fx_05"/>
+						<instance name="trails" bone01="_bone_fx_05"  bone02="_bone_fx_06"/>
+						<instance name="trails" bone01="_bone_fx_06"  bone02="_bone_fx_07"/>
+						<instance name="trails" bone01="_bone_fx_07"  bone02="_bone_fx_08"/>
+						<instance name="trails" bone01="_bone_fx_08"  bone02="_bone_fx_09"/>
+						<instance name="trails" bone01="_bone_fx_09"  bone02="_bone_fx_10"/>
+						<instance name="trails" bone01="_bone_fx_10"  bone02="_bone_fx_11"/>
+						<instance name="trails" bone01="_bone_fx_11"  bone02="_bone_fx_12"/>
+						<instance name="trails" bone01="_bone_fx_12"  bone02="_bone_fx_01"/>
+
+					</model>
+
+					<template name="rocks">
+					
+						<simpleemitter
+							delay="{zdelay}"
+							count="{zcount}"
+							spawnrate="2000"
+							particlelife="5000"
+							offsetradial="{zoffset}"
+							offsetsphere="0 0 0"
+							direction="0 0 1"
+							directionalspace="world"
+						>
+							<particle>
+<!--
+								<billboard
+									life="1000"
+									material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+									size="150"
+									color=".8 .7 .6"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+
+								<billboard
+									bone="_bone_righthand"
+									material="/shared/effects/smaterials/big_cracks.material"
+									startsize="55"
+									midsize="60"
+									endsize="60"
+									midsizepos=".1"
+									life="1000"
+									color="1 1 1"
+									startalpha=".85"
+									midalpha=".85"
+									endalpha="0"
+									startframe="1"
+									endframe=".01"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+-->
+
+								<debris
+									position="0 0 -15"
+									minscale=".1"
+									maxscale=".125"
+									minlife="500"
+									maxlife="500"
+									model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf"
+									anim="idle"
+									minspeed="200"
+									maxspeed="1800"
+									minangle="0"
+									maxangle="45"
+									direction="0 0 1"
+									gravity="250"
+									acceleration="0"
+									drag="0"
+									color="1 .8 .6"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									collide="false"
+									animpose="false"
+									offsetsphere="50 50 75"
+									directionalspace="world"
+								>
+								</debris>
+								
+								<billboard
+									material="/shared/effects/smaterials/whitedot.material"
+									startcolor="0 0 0"
+									midcolor="0 .25 1"
+									endcolor="0 0 0"
+									life="500"
+									position="0 0 0"
+									size="100"
+									depthbias="-150"
+									lockup="true"
+									lockright="true"
+									pitch="90"
+								/>
+
+							</particle>
+						</simpleemitter>
+
+					</template>
+
+					<instance name="rocks" zoffset="25 0 0" zdelay="0" zcount="3" zminscale=".3" zmaxscale="1"/>
+					<instance name="rocks" zoffset="50 0 0" zdelay="125" zcount="3" zminscale=".3" zmaxscale="1"/>
+					<instance name="rocks" zoffset="75 0 0" zdelay="225" zcount="3" zminscale=".3" zmaxscale="1"/>
+					<instance name="rocks" zoffset="100 0 0" zdelay="325" zcount="3" zminscale=".4" zmaxscale="1"/>
+					<instance name="rocks" zoffset="125 0 0" zdelay="425" zcount="3" zminscale=".4" zmaxscale="1"/>
+					<instance name="rocks" zoffset="150 0 0" zdelay="525" zcount="3" zminscale=".4" zmaxscale="1"/>
+					<instance name="rocks" zoffset="175 0 0" zdelay="625" zcount="6" zminscale=".5" zmaxscale="1"/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+
+					<billboard
+						life="1100"
+						material="/shared/effects/smaterials/blue_cracks_reveal.material"
+						size="550"
+						color=".25"
+						startframe="1"
+						endframe=".01"
+						startalpha=".6"
+						endalpha="0"
+						midalphapos=".6"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						roll="90"
+						depthbias="-35"
+					/>
+
+					<template name="">
+					
+						<billboard
+							life="1100"
+							material="/shared/effects/smaterials/blue_cracks_reveal_add.material"
+							size="550"
+							startcolor="1"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							midcolorpos=".55"
+							startframe="1"
+							endframe=".01"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							roll="90"
+							depthbias="-35"
+						/>
+
+					</template>
+					
+					<instance name="" zbone=""/>
+					<instance name="" zbone=""/>
+					<instance name="" zbone=""/>
+					<instance name="" zbone=""/>
+					<instance name="" zbone=""/>
+
+
+					
+					
+					
+					<billboard
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".25 0 1"
+						midcolor=".25 0 1"
+						endcolor="0 0 0"
+						life="1100"
+						position="0 0 65"
+						size="100"
+						depthbias="-150"
+						height="250"
+						width="150"
+						lockup="true"
+					/>
+					
+					<billboard
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".25 0 1"
+						midcolor=".25 0 1"
+						endcolor="0 0 0"
+						life="1100"
+						position="0 0 65"
+						size="100"
+						depthbias="-150"
+						height="250"
+						width="150"
+						lockup="true"
+					/>
+<!--
+					<billboard
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor="0 0 .5"
+						endcolor="0 0 0"
+						midcolorpos=".85"
+						life="1100"
+						position="0 0 65"
+						size="500"
+						depthbias="-150"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+					/>
+-->
+					
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	  	<camerashake2 scale="10" radius="1200" duration="600" frequency="22" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

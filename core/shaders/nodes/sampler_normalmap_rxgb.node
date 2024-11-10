@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="sampler_normalmap_rxgb" novs="true">
+	<parameter name="Sampler" type="sampler2DMulti" />
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="Sampler_0" type="sampler2D" source="Sampler" sourceindex="0" />
+	<dependency name="Sampler_1" type="sampler2D" source="Sampler" sourceindex="1" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" />
+	<output name="a" type="float" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float3 f3NormalmapColor = tex2D(Sampler_0, Texcoord).agb;
+			Out = float3(f3NormalmapColor * 2.0f - 1.0f);
+			a = tex2D(Sampler_1, Texcoord).g;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float3 f3NormalmapColor = Sampler_0_texture.Sample(Sampler_0_sampler, Texcoord).agb;
+			Out = float3(f3NormalmapColor * 2.0f - 1.0f);
+			a = Sampler_1_texture.Sample(Sampler_1_sampler, Texcoord).g;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec3 f3NormalmapColor = texture2D(Sampler_0, Texcoord).agb;
+			Out = vec3(f3NormalmapColor * 2.0f - 1.0f);
+			a = texture2D(Sampler_1, Texcoord).g;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec3 f3NormalmapColor = texture(Sampler_0, Texcoord).agb;
+			Out = vec3(f3NormalmapColor * 2.0f - 1.0f);
+			a = texture(Sampler_1, Texcoord).g;
+		?>
+	</case>
+</node>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				sample="../../sounds/amb_well_team_1.wav"
+				falloffstart="500"
+				falloffend="2000"
+				volume="0.1"
+				linearfalloff="false"
+				soundloop="true"
+			/>
+
+			<light
+				bone="_bone_fx_04New"
+				position="0 0 0"
+				expirelife="250"
+				startcolor="0 2 5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="500"
+			/>
+
+			<light
+				position="0 0 300"
+				life="5000"
+				startcolor="0 2 5"
+				midcolor="0 4 10"
+				endcolor="0 2 5"
+				falloffstart="0"
+				falloffend="350"
+				loop="true"
+			/>
+
+			<simpleemitter
+				bone="_bone_fx_04New"
+				spawnrate="200"
+				particlelife="610"
+				gravity="0"
+				speed="0"
+				position="0 0 0"
+				acceleration="11"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="150"
+				drag="0.01"
+				direction="1 0 0"
+			>
+				<particle
+					startstickiness="0"
+					endstickiness="1"
+					startcolor=".15 .8 1"
+					midcolor=".15 .8 1"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="4"
+					midsize="4"
+					endsize="0"
+					turn="1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_fx_04New"
+				spawnrate="500"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				speed="0"
+				position="0 0 35"
+				acceleration="11"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="70"
+				drag="0.01"
+				direction="1 0 0"
+			>
+				<particle
+					startcolor=".15 .8 1"
+					midcolor=".15 .8 1"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="4"
+					midsize="4"
+					endsize="0"
+					turn="1"
+					anchor="1"
+				/>
+			</simpleemitter>
+			
+			
+		
+
+
+
+
+			<simpleemitter
+				timenudge="5000"
+				bone="_bone_fx_04New"
+				spawnrate=".3"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 -1 0"
+			>
+				<particle
+					turn="true"
+				>
+
+					<simpleemitter
+						count="25"
+						bone="_bone_fx_04New"
+						spawnrate="5000"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 -1 0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								spawnrate="500"
+								count="1"
+								minlife="1000"
+								maxlife="1000"
+								position="0 0 0"
+								material="/shared/effects/materials/whitedot.material"
+								directionalspace="local"
+								yaw="180"
+								roll="180"
+								lockup="true"
+								lockright="true"
+								minwidth="30"
+								maxwidth="60"
+								pitch="90"
+								startcolor="0 0 0"
+								midcolor="0 .075 .15"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								minheight="100"
+								maxheight="700"
+								depthbias="-75"
+							/>
+
+							<billboard
+								spawnrate="500"
+								count="1"
+								minlife="1000"
+								maxlife="1000"
+								position="0 0 0"
+								material="/shared/effects/materials/whitedot.material"
+								directionalspace="local"
+								yaw="180"
+								roll="180"
+								lockup="true"
+								lockright="true"
+								minwidth="30"
+								maxwidth="60"
+								pitch="90"
+								startcolor="0 0 0"
+								midcolor=".075"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								minheight="100"
+								maxheight="200"
+								depthbias="-75"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+
+
+
+
+
+
+
+
+
+
+		
+
+
+			
+			
+			
+			
+
+			<model
+				position="0 0 -125"
+				bone="_bone_fx_04New"
+				expirelife="250"
+				color="1 1 1"
+				size="100"
+				model="hammer/model.mdf"
+				anim="idle"
+				startalpha="1"
+				endalpha="0"
+				yawspeed="45"
+			>
+			</model>
+
+			<billboard
+				bone="_bone_fx_04New"
+				life="2000"
+				startcolor="0 .5 1"
+				midcolor="0 .1 .25"
+				endcolor="0 .5 1"
+				startsize="350"
+				midsize="350"
+				endsize="350"
+				midsizepos=".1"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				loop="true"
+				depthbias="-200"
+			/>
+
+			<simpleemitter
+				timenudge="5000"
+				spawnrate="5"
+				particlelife="4400"
+				gravity="-1.5"
+				minspeed="0"
+				maxspeed="100"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="120 120 50"
+				position="0 -25 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .1 .4"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					startheight="110"
+					endheight="600"
+					width="20"
+					depthbias="-75"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				timenudge="5000"
+				spawnrate="4"
+				particlelife="4400"
+				gravity="-1.5"
+				speed="4"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="120 120 0"
+				position="0 -25 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .1 .2"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					minstartheight="750"
+					maxstartheight="1750"
+					endheight="750"
+					width="50"
+					depthbias="-75"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				timenudge="5000"
+				position="0 -15 250"
+				particlelife="3000"
+				spawnrate="5"
+				gravity="-5"
+				speed="0"
+				drag="0.0015"
+				acceleration="0"
+				offsetsphere="75 75 250"
+				depthbias="-100"
+			>
+				<particle
+				>
+					<billboard
+						life="3000"
+						startcolor="0 0 0"
+						midcolor="0 .25 .5"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="-50"
+						material="/shared/effects/materials/whitedot.material"
+						width="16"
+						height="400"
+						minroll="0"
+						maxroll="0"
+						lockup="1"
+					/>
+					
+					<billboard
+						life="2000"
+						startcolor="0 0 0"
+						midcolor=".3 .4 .5"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="-50"
+						material="/shared/effects/materials/whitedot.material"
+						width="16"
+						height="60"
+						lockup="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="500"
+				particlelife="610"
+				gravity="-25"
+				speed="0"
+				position="0 -15 250"
+				acceleration="11"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="45 45 500"
+				drag="0.01"
+				direction="1 0 0"
+			>
+				<particle
+					startcolor=".15 .8 1"
+					midcolor=".15 .8 1"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="4"
+					midsize="4"
+					endsize="0"
+					turn="1"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

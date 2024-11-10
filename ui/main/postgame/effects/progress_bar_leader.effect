@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">		
+
+			<template name="dust_particle_blend">
+				<particle
+					minanglespeed="{minanglespeed=-80}"
+					maxanglespeed="{maxanglespeed=80}"
+					startcolor="0 0 0"
+					midcolor="{color}"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					minscale="{minscale}"
+					maxscale="{maxscale}"
+					lockup="true"
+					startalpha="0"
+					midalpha="{midalpha=.05}"
+					endalpha="0"
+				/>
+			</template>
+
+
+			<simpleemitter
+				position="0 410 0"
+				spawnrate="2400"
+				minparticlelife="200"
+				maxparticlelife="2600"
+				minspeed="-70"
+				maxspeed="10"
+				offsetcube="5 0 90"
+				direction="60 0 0"
+				minangle="90"
+				maxangle="-90"
+				material="/shared/effects/smaterials/flare.material"
+				timenudge="0"
+				depthbias="0"
+				gravity="-.2"
+			>				
+				<instance name="dust_particle_blend" color=".8 .8 .8" minscale=".2" maxscale="6.0"/>
+				<instance name="dust_particle_blend" color=".5 .5 .5" minscale=".08" maxscale=".4"/>
+				<instance name="dust_particle_blend" color="1 1 1" minscale=".6" maxscale=".8"/>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

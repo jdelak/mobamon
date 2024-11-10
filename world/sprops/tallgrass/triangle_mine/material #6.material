@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_lightmap_opacity.shader" vDiffuseColor=".4" fSpecularLevel="0.0" fGlossiness="36.0" fOpacity="1" fReflect="1.0" />
+	<phase name="shadow" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="../color_mine.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="color" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="../color_mine.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="lightmap" texture="$white" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" color_orangewrite="false" alphawrite="false" depthwrite="true" blend="alphatest">
+		<sampler name="diffuse" texture="../color_mine.tga" repeat_u="true" repeat_v="true" />
+		<multipass cull="back" blend="translucent">
+			<sampler name="diffuse" texture="../color_mine.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="lightmap" texture="$white" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+</material>

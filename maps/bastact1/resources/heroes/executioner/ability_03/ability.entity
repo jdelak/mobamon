@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Stunning Slam -->
+<ability
+	name="Ability_Executioner3_Enemy3"
+
+	icon="icon.tga"
+	
+	anim=""
+	casttime="2500"
+	castactiontime="1000"
+
+	actiontype="target_position"
+	targetradius="200"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	casteffecttype="Magic"
+	targetscheme="enemy_units_and_buildings"
+	casteffect="effects/cast.effect"
+
+	cooldowntime="5000"
+	range="300"
+	forcerange="300"
+>
+
+	<onstart>
+		<!-- <print text="Slam start" /> -->
+		<playanim name="ability_3" target="source_entity" speed=".42" />
+		<playeffect effect="effects/ring.effect" target="" source="target_position" occlude="true" visibility="all"/>
+	</onstart>
+	
+	<constant name="damage" value="100,100,100,100" adjustment="ability" />
+	
+	<!-- tooltiponly -->
+	<constant name="stun" value="0.7,0.9,1.1,1.3" adjustment="none" floatprecision="1" />
+	
+
+
+	<onimpact>		
+		<!-- <spawnaffector name="Affector_Executioner_Ability3" target="target_position" /> -->
+		
+		<areaofeffect
+			radius="185"
+			targetselection="all"
+			targetscheme="Rook_Bastact1_Ult"
+			effecttype="Magic Splash"
+			maxtotalimpacts="-1"
+			center="target_position"
+			ignore="source_entity"
+			ignoreinvulnerable="false"
+		>
+			<!-- <print text="Enemy hit by slam" /> -->
+			<applystate target="target_entity" name="State_Stunned" duration="3000"  />
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+			<playeffect effect="effects/initial_impact.effect" source="source_entity" target="source_entity"  />
+			
+		</areaofeffect>
+		<else>
+			<!-- <print text="No enemy hit"/> -->
+	
+			<applystate name="State_SlamStun" target="source_entity" duration="4000" />
+			<playeffect effect="effects/initial_impact_long.effect" source="source_entity" target="source_entity"  />
+		</else>
+
+				
+
+		<!-- <playeffect effect="effects/ring.effect" target="target_position" source="target_position" occlude="true" visibility="enemies"/>		 -->
+	</onimpact>
+
+	
+		
+	
+</ability>

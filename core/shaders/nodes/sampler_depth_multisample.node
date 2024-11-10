@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="sampler_depth_multisample" novs="true">
+	<parameter name="Sampler" type="sampler2DMS" />
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="Sampler" type="sampler2DMS" source="Sampler" />
+	<dependency name="CameraFarClip" type="float" source="fCameraFarClip" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = tex2D(Sampler, Texcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			Out = Sampler_texture.Sample(Sampler_sampler, Texcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			#error Not available for glsl 120
+		?>
+	</case>
+		<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<extension name="GL_ARB_sample_shading" />
+		<?glsl
+			float n = 501.0f;
+			//float f = CameraFarClip;
+			float f = 3500.0f;
+			float z = texelFetch(Sampler, ivec2(textureSize(Sampler) * Texcoord), 0).r;
+			Out.rgb = vec3((n * z) / (f - z * (f - n)));
+			Out.a = 1.0f;
+		?>
+	</case>
+</node>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="2.15">
+
+			<sound
+				volume=".55" 
+				falloffstart="100"
+				falloffend="1250"
+				sample="../../sounds/sfx_ui_outofcombat.wav"
+			/>
+
+			<simpleemitter
+				bone="_bone_head"
+				minspawnrate=".5"
+				maxspawnrate="1.5"
+				particlelife="1500"
+				gravity="-15"
+				speed="00"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/plus.material"
+				offsetsphere="10 10 20"
+				minangle="90"
+				maxangle="-90"
+				depthbias="-50"
+			>
+				<particle
+					startsize="00"
+					midsize="20"
+					midsizepos=".1"
+					endsize="10"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_head"
+				minspawnrate="1"
+				maxspawnrate="2"
+				particlelife="1500"
+				gravity="-15"
+				speed="00"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/plus2.material"
+				offsetsphere="10 10 20"
+				minangle="90"
+				maxangle="-90"
+				depthbias="-50"
+			>
+				<particle
+					startsize="00"
+					midsize="20"
+					midsizepos=".1"
+					endsize="10"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="200"
+				bone="_bone_head"
+				minspawnrate="1"
+				maxspawnrate="2"
+				particlelife="1500"
+				gravity="-15"
+				speed="00"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/plus_purple.material"
+				offsetsphere="10 10 20"
+				minangle="90"
+				maxangle="-90"
+				depthbias="-50"
+			>
+				<particle
+					startsize="00"
+					midsize="20"
+					midsizepos=".1"
+					endsize="10"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+	</particlesystem>
+	
+	
+	
+	
+		<particlesystem name="system1" space="entity" scale="2.5">
+
+			<light
+				position="0 0 75"
+				life="1000"
+				startcolor="0 0 0"
+				midcolor="0 1 2.5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="75"
+				loop="true"
+			/>
+
+			<template name="">
+
+				<simpleemitter
+					position="0 0 35"
+					bone="{zbone}"
+					spawnrate="100"
+					particlelife="500"
+					gravity="0"
+					speed="100"
+					material="/shared/effects/smaterials/whitedot.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="-20"
+					directionalspace="world"
+					offsetsphere="15"
+				>
+					<particle 
+					anchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startcolor="0 0 0"
+						midcolor="0 .025 .05"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						startframe="0"
+						endframe="1"
+						startscale="50"
+						minmidscale="0"
+						maxmidscale="25"
+						endscale="0"
+						turn="true"
+					/>
+					
+					<particle 
+					anchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startcolor="0 0 0"
+						midcolor="0 .05 .025"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						startframe="0"
+						endframe="1"
+						startscale="50"
+						minmidscale="0"
+						maxmidscale="25"
+						endscale="0"
+						turn="true"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				<simpleemitter
+					position="0 0 35"
+					bone="{zbone}"
+					spawnrate="100"
+					particlelife="500"
+					gravity="0"
+					speed="100"
+					material="/shared/effects/smaterials/whitedot.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="-20"
+					directionalspace="world"
+					offsetsphere="15"
+				>
+					<particle 
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .025 .05"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						startframe="0"
+						endframe="1"
+						startscale="50"
+						minmidscale="0"
+						maxmidscale="25"
+						endscale="0"
+						lockup="true"
+						height="5"
+						width=".5"
+					/>
+					
+					<particle 
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .05 0"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						startframe="0"
+						endframe="1"
+						startscale="50"
+						minmidscale="0"
+						maxmidscale="25"
+						endscale="0"
+						lockup="true"
+						height="5"
+						width=".5"
+					/>
+
+				</simpleemitter>
+				
+
+			</template>
+
+			<instance name="" zbone="_bone_center"/> 
+
+		</particlesystem>
+	
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".6">
+
+		
+
+		
+		
+			<simpleemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="5000"
+			> 
+				<particle
+				>
+				
+					<light
+						bone="_bone_fx_01"
+						life="200"
+						startcolor="5"
+						endcolor="0 0 0"
+						falloffstart="0"
+						falloffend="1000"
+						position="0 200 0"
+					/>
+					
+					<light
+					delay="200"
+						bone="_bone_fx_01"
+						life="200"
+						startcolor="10 5 0"
+						endcolor="0 0 0"
+						falloffstart="0"
+						falloffend="1000"
+						position="0 200 0"
+					/>
+					
+					
+					
+					
+					
+					
+					
+			<simpleemitter
+			life="100"
+				position="0 0 250"
+				spawnrate="100"
+				particlelife="1000"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 0 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="500"
+					maxstartheight="750"
+					endheight="500"
+					width="100"
+					depthbias="-100"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			<simpleemitter
+			life="100"
+				position="0 100 -10"
+				spawnrate="75"
+				particlelife="1000"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".25 .1 .25"
+					endcolor="0 0 0"
+					scale="3.1"
+					minheight="100"
+					maxheight="200"
+					minwidth="10"
+					maxwidth="20"
+					anchor="1"
+					minangle="0"
+					maxangle="360"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+				<template name="lightning">
+
+					<billboard
+						delay="{zdelay}"
+						life="1000"
+						position="-80 100 155"
+						height="800"
+						width="100"
+						startcolor=".7 .35 0"
+						endcolor="0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startframe="0"
+						endframe="1"
+						framespeed=".05"
+						lockup="true"
+						lockright="true"
+						roll="25"
+					/>
+					
+					
+					<billboard
+						delay="{zdelay}"
+						life="1000"
+						position="50 100 100"
+						height="200"
+						width="150"
+						startcolor=".3 .15 0"
+						endcolor="0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startframe="0"
+						endframe="1"
+						framespeed=".05"
+						lockup="true"
+						lockright="true"
+						roll="-10"
+					/>
+
+
+
+
+				</template>
+
+				<instance name="lightning" zdelay="50"/>
+				<instance name="lightning" zdelay="250"/>
+			
+					
+					
+					
+					
+					
+				
+
+					
+					
+					
+					
+
+					
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+					<template name="clouds">
+
+						<simpleemitter
+							delay="{zdelay}"
+							life="250"
+							spawnrate="100"
+							particlelife="5000"
+							gravity="0"
+							drag="0.05"
+							minspeed="0"
+							maxspeed="20"
+							acceleration="0"
+							position="0 0 8"
+							direction="0 1 0"
+							offsetradial="{zradial}"
+						> 
+							<particle
+							>
+								<billboard
+									minlife="250"
+									maxlife="500"
+									material="/shared/effects/smaterials/cartoon_dust.material"
+									color=".8 .9 1"
+									position="0 75 0"
+									depthbias="0"
+									startalpha="0"
+									midalpha=".75"
+									endalpha="0"
+									midalphapos=".1"
+									minstartscale=".5"
+									maxstartscale="1"
+									endscale="0"
+									minroll="0"
+									maxroll="360"
+									minrollspeed="-90"
+									maxrollspeed="90"
+								/>
+
+								<billboard
+									minlife="250"
+									maxlife="500"
+									material="/shared/effects/smaterials/whitedot.material"
+									startcolor="0 0 0"
+									midcolor=".15 .075 0"
+									endcolor="0 0 0"
+									midcolorpos=".25"
+									position="0 100 0"
+									depthbias="-25"
+									minstartscale=".5"
+									maxstartscale="1"
+									endscale="0"
+								/>
+							</particle>
+						</simpleemitter>
+					
+					</template>
+
+					<instance name="clouds" zdelay="0" zradial="10 0 0"/>
+					<instance name="clouds" zdelay="50" zradial="20 0 0"/>
+					<instance name="clouds" zdelay="100" zradial="30 0 0"/>
+					<instance name="clouds" zdelay="150" zradial="40 0 0"/>
+					<instance name="clouds" zdelay="250" zradial="50 0 0"/>
+					<instance name="clouds" zdelay="300" zradial="60 0 0"/>
+					<instance name="clouds" zdelay="350" zradial="70 0 0"/>
+					<instance name="clouds" zdelay="400" zradial="80 0 0"/>
+					<instance name="clouds" zdelay="450" zradial="90 0 0"/>
+
+					<billboard
+						position="0 150 8"
+						life="750"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						depthbias="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".1"
+						scale="2.5"
+						minroll="0"
+						maxroll="360"
+						minrollspeed="-5"
+						maxrollspeed="-15"
+					/>
+					
+					<billboard
+						position="0 0 8"
+						life="750"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						depthbias="50"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".1"
+						scale="10"
+						minroll="0"
+						maxroll="360"
+						minrollspeed="-5"
+						maxrollspeed="-15"
+					/>
+
+				</particle>
+			</simpleemitter>
+		
+		
+
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+
+
+	

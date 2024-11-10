@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<panel name="main_simple_ui_signup_parent" x="-15.5h" y="-10h" width="42h" height="18h" align="right" valign="bottom" noclick="1" visible="false">
+		<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.8h" color=".15 .15 .15 .8"/>
+		<frame texture="/ui/elements:thick" borderthickness="0.8h" color=".2 .2 .2 1"/>
+		<label x="-1.0h" y="-2.6h" font="maindyn_30" outline="true" outlinecolor=".2 .2 .2 1" color="#08c3d9" content="main_simple_learnmore"/>
+		<panel hmargin="1.8h" vmargin="1.8h" noclick="1" visible="1">
+			<label wrap="true" font="maindyn_18" shadow="true" color="white" content="" onloadlua="self:SetText(FormatStringNewline(Translate('main_simple_learn_msg')))" />				
+			<!-- Form -->
+			<panel noclick="1" height="4.2h" y="9.8h">
+				<panel noclick="1" width="-11h">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+					<textbox name="main_simple_ui_signup_input"  taborder="11" textcolor="0 0 0 .9" textshadow="1" textshadowcolor="black" shadow="1" shadowcolor="black" font="maindyn_20" color="invisible" y="0.6h" width="-1.2h" align="right"
+						onenter="Call('main_simple_ui_signup_parent', 'DoEvent()')"
+					/>
+				</panel>			
+				<instance
+					id="main_simple_ui_signup_submit" 
+					width="10h" align="right" borderthickness="0.8h"	
+					name="standardButton"
+					label="Submit"
+					font="maindyn_18"
+					enabled="false"
+				/>
+			</panel>
+			<!-- Response - Show for a short time after submission? -->
+			<panel name="main_simple_ui_signup_response" noclick="1" height="4.2h" y="9.8h" visible="0">
+				<frame align="center" valign="center" width="+0.8h" height="+0.8h" texture="/ui/elements:rounded_bg_white" borderthickness="0.8h" color=".1 .1 .1 1"/>
+				<frame align="center" valign="center" width="+0.8h" height="+0.8h" texture="/ui/elements:thick" borderthickness="0.8h" color=".2 .2 .2 1"/>
+				<label name="main_simple_ui_signup_response_label" textalign="center" textvalign="center" font="maindyn_18" shadow="true" color="white" content="main_simple_email_response_1"/>				
+			</panel>
+			
+		</panel>
+	</panel>
+</package>

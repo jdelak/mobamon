@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Bastact1_Projectile_Executioner_Ability5_Cast"
+
+	lifetime="1510"
+	speed="1600"
+	gravity="0"
+	
+	canturn="false"
+	flying="true"
+	flyheight="0"
+
+	effectscale="1.0"
+	traileffect=""
+	impacteffect=""
+>
+
+	<onimpact>
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			effecttype="Magic Splash"
+			center="source_entity"
+			maxtotalimpacts="1"
+			
+		>
+			
+			<playeffect effect="../effects/sound2.effect" source="target_entity" target="target_entity" />
+			<playeffect effect="../effects/dustfall.effect" source="target_position" target="target_position"  offset="0 0 1500" />
+			<playeffect effect="../effects/camshake.effect" source="target_entity" target="target_entity" />
+			<chance threshold="0.5">
+			<setpos0 position="target_position" offset="-300 0 0" offsetspace="target_entity"  />
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="target_position"  />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability5" source="pos1" target="pos0"  />
+			</chance>
+			<else>
+			<setpos0 position="target_position" offset="300 0 0" offsetspace="target_entity"  />
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="target_position"  />
+			<spawnprojectile name="Bastact1_Projectile2_Executioner_Ability5" source="pos1" target="pos0"  />	
+			</else>	
+			
+			<chance threshold="0.5">
+			<setpos0 position="target_position" offset="0 400 100" offsetspace="target_entity" />
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="ptarget_position"  />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability5" source="pos1" target="pos0" />	
+			</chance>
+			<else>
+			<setpos0 position="target_position" offset="0 -400 100" offsetspace="target_entity" />
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="ptarget_position"  />
+			<spawnprojectile name="Bastact1_Projectile3_Executioner_Ability5" source="pos1" target="pos0"  />
+			</else>
+
+			<chance threshold="0.5">
+			<setpos0 position="target_position" offset="282 282 100" offsetspace="target_entity" />
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="target_positiony"  />
+			<spawnprojectile name="Bastact1_Projectile2_Executioner_Ability5" source="pos1" target="pos0"  />
+			</chance>
+			<else>
+			<setpos0 position="target_position" offset="282 -282 100" offsetspace="target_entity" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="target_position"  /> 
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile3_Executioner_Ability5" source="pos1" target="pos0"   />
+			</else>
+
+			<setpos0 position="target_position" offset="0 0 0" offsetspace="target_entity"  />
+			<playeffect effect="effects/ringx4.effect" source="pos0" target="pos0" />
+			<setpos1 position="target_position" offset="0 0 1000" offsetspace="target_position"  />
+			<spawnprojectile name="Bastact1_Projectile2_Executioner_Ability5" source="pos1" target="pos0"  />
+		</areaofeffect>
+	</onimpact>	
+
+
+</projectile>

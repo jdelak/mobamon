@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Tutorial_Boss3"
+
+	icon="icon.tga"
+	
+	anim="ability_3_start"
+	casttime="1000"
+	castactiontime="1000"
+
+	actiontype="target_position"
+	targetradius="70"
+	casteffecttype="Magic"
+	targetscheme="enemy_units"
+	casteffect="effects/cast.effect"
+	
+	manacost="0"
+	cooldowntime="0"
+
+	range="900"
+	forcerange="900"
+
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+	
+>
+	
+	<onimpact>
+		<spawnprojectile name="Projectile_Tutorial_Boss_Ability3_Bind" source="source_entity" target="target_position" proxy="target_entity" bind="source_entity" bindstate="State_Tutorial_Baldir_Stun" unbindondeath="true" pushentity="true"/>
+		<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="950" />
+		<spawnprojectile name="Projectile_Tutorial_Boss_Ability3_Damage" source="source_entity" target="pos0" proxy="stack_entity" offset="0 50 0" pushentity="true"/>
+		<spawnprojectile name="Projectile_Tutorial_Boss_Ability3_Cliff" source="source_entity" target="pos0" proxy="stack_entity" offset="0 50 0"/>
+		<playanim name="ability_3_mid" target="source_entity"/>
+	</onimpact>
+	
+	
+</ability>

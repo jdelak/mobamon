@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="water_position">
+	<dependency name="Height" type="float" source="Height" />
+	<dependency name="Data0" type="float4" source="Data0" />
+	<dependency name="Data1" type="float4" source="Data1" />
+	<dependency name="WorldSizes" type="float4" source="vWorldSizes" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" solution="ObjectPosition" />	
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float2 f2Tile = float2(Data0.w, Data1.w);
+			Out = float3(f2Tile.x * WorldSizes.x, f2Tile.y * WorldSizes.x, Height);
+		?>
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float2 f2Tile = float2(Data0.w, Data1.w) * 255.0f;
+			Out = float3(f2Tile.x * WorldSizes.x, f2Tile.y * WorldSizes.x, Height);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec2 f2Tile = vec2(Data0.w, Data1.w);
+			Out = vec3(f2Tile.x * WorldSizes.x, f2Tile.y * WorldSizes.x, Height);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec2 f2Tile = vec2(Data0.w, Data1.w);
+			Out = vec3(f2Tile.x * WorldSizes.x, f2Tile.y * WorldSizes.x, Height);
+		?>
+	</case>
+</node>

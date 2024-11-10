@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="loading_npe_1" luatable="true">
+	
+	<style name="loading_hero_slice" noclick="1" width="9.1w" height="100%" clip="1" />	
+	<style name="loading_hero_slice_image" noclick="1" width="100w" height="100h" color="1 1 1 1" rendermode="normal" />	
+	
+	<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center" visible="1" />
+	
+	<splashimage
+		noclick="true"
+		visible="1"
+		bgcolor="black"
+		style="loading_hero_slice_image"
+		image=""
+		onhidelua=""
+		onshowlua=""
+		onloadlua="self:SetImage('/ui/main/shared/concept_art/hero_caprice_default.jpg'); self:RegisterWatchLua('RemoveLoadingAssets', function (widget, trigger) self:SetImage('') end)"
+
+		view="pad"
+	/>
+
+	<!-- Progress Pie -->
+	<panel width="16h" height="16h" align="center" valign="center" y="0" noclick="1" >
+		<image noclick="1" texture="/ui/game/loading/textures/loading_disc.tga"/>
+		<piegraph name="loadingProgressBar" end="-90" start="270" square="0" color="0 0 0 0.7" noclick="true" value="1.0" align="center" valign="center" height="87.2%" width="87.2%" />
+	</panel>	
+	
+	<!-- Tip -->
+	<panel grow="1" align="center" valign="bottom" y="-3h" noclick="1" clip="true">
+		<frame bordercolor=".3 .3 .3 .7" color="0 0 0 .7" texture="/ui/elements:rounded_bg_white" borderthickness="0.25h" noclick="true"/>
+		<label fity="1" color="white" outline="1" outlinecolor="black" fitypadding="2.0h" fitxpadding="4.0h" textvalign="center" textalign="center" fitx="1" fitxmax="55h" noclick="1" content="main_simple_load_tip" font="maindyn_22" wrap="1" />
+	</panel>	
+
+	<?lua
+		object:GetWidget('loadingProgressBar'):RegisterWatchLua('LoadingProgress', function(widget, trigger)
+			widget:SetValue(1.0 - trigger.loadPercent)
+		end, true, nil, 'loadPercent')
+	?>	
+	
+</interface>

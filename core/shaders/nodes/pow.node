@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="pow">
+	<dependency name="X" type="*" source="X" />
+	<dependency name="Y" type="*" source="Y" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="X" type="float" />
+		<dependency name="Y" type="float" />
+		<output type="float" name="Out" />
+	</case>
+	<case>
+		<dependency name="X" type="float2" />
+		<dependency name="Y" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="X" type="float3" />
+		<dependency name="Y" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="X" type="float4" />
+		<dependency name="Y" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = pow(X, Y);
+	?>
+	<?glsl
+		Out = pow(X, Y);
+	?>
+</node>

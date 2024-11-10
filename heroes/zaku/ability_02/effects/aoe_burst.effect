@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+	<definitions>
+<!--
+		<modifier
+			life="1100"
+			color="1 1 1"
+			startalpha="0"
+			midalpha="0"
+			endalpha="1"
+			midalphapos=".8"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume=".65"
+				sample="../sounds/sfx_state.wav"
+				linearfalloff="true"
+				falloffstart="500" 
+				falloffend="2400" 
+			/>
+			
+			<light
+				position="0 0 50"
+				expirelife="500"
+				startcolor="1.5 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="500"
+				endfalloffend="500"
+			/>
+			
+			<groundsprite
+				expirelife="500"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				scale=".65"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				minyaw="0"
+				maxyaw="360"
+			/>
+
+			<simpleemitter
+				count="18"
+				spawnrate="2000"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="-5"
+				drag="0"
+				minspeed="50"
+				maxspeed="125"
+				acceleration="0"
+				position="0 0 50"
+				material="/shared/effects/smaterials/web_1.material"
+				minangle="-180"
+				maxangle="180"
+				direction="0 0 0"
+				offsetsphere="50 50 0"
+			>
+				<particle 
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 1 1"
+					startframe="0"
+					endframe="1"
+					minscale="25"
+					maxscale="75"
+					startalpha=".65"
+					midalpha=".65"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<light
+				position="0 0 50"
+				expirelife="250"
+				startcolor=".75 1.5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="500"
+				endfalloffend="500"
+			/>
+-->
+			
+<!--
+			<template name="groundsprite">
+
+				<groundsprite
+				delay="300"
+				position="{zpos}"
+					minlife="900"
+					maxlife="1100"
+					material="/shared/effects/smaterials/torch_hole_overlay.material"
+					minscale=".8"
+					maxscale="1"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".65"
+					maxyaw="360"
+				/>
+
+			</template>
+			
+			<instance name="groundsprite" zpos="25 0 0"/>
+			<instance name="groundsprite" zpos="-25 0 0"/>
+			<instance name="groundsprite" zpos="0 25 0"/>
+			<instance name="groundsprite" zpos="0 -25 0"/>
+			<instance name="groundsprite" zpos="0 0 0"/>
+-->
+			
+			
+
+			<template name="groundsprite">
+			
+				<groundsprite
+					bone="{zbone}"
+					expirelife="250"
+					material="/shared/effects/smaterials/tornado_crack.material"
+					minstartscale=".45"
+					maxstartscale=".5"
+					endscale="0"
+					startalpha=".5"
+					endalpha="0"
+					midalphapos=".65"
+					maxyaw="360"
+					directionalspace="local"
+				/>
+				
+				<groundsprite
+					bone="{zbone}"
+					expirelife="250"
+					material="/shared/effects/smaterials/tornado_crack.material"
+					minstartscale=".5"
+					maxstartscale=".55"
+					endscale="0"
+					startalpha=".5"
+					endalpha="0"
+					midalphapos=".65"
+					maxyaw="360"
+					directionalspace="local"
+				/>
+				
+			</template>
+			
+			<instance name="groundsprite" zbone="_bone_fx_base_01"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_02"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_03"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_04"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_05"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_06"/>
+
+
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+

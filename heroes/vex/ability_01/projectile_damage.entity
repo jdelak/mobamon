@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Vex_Ability1_Orbit"
+
+	lifetime="1000"
+	speed="200"
+	acceleration="1850"
+	gravity="0"
+	touchradius="60"
+	touchpropradius="60"
+	touchpropanim="hit"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+	modelscale="1.1"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	effectscale="1.0"
+	canturn="true"
+	
+
+	
+	hazardradius="440"
+	hazardoffset="380"
+	homing="true"
+	homingturnspeed="0.08"
+	homingspeedmul="1"
+	homingseekrange="440"
+	hominglocktarget="true"
+	homingunlockrange="9999"
+	homingtargetscheme="enemy_heroes"
+	homingseekstealth="false"
+	
+	
+>
+	
+	<ontouch>
+		<applystate name="State_Vex_Ability1_Damage" duration="300" />
+		<recordheroaggression  />
+		<aggression />
+		<kill target="this_entity" source="" />
+	</ontouch>
+	
+	
+	
+	<ondeath>
+		<playeffect effect="effects/impact.effect" source="this_position" occlude="true" />
+	</ondeath>
+		
+</projectile>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="ability_02">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+			
+			
+
+
+		
+			<model					
+				model="anch/anchor.mdf"
+				anim="idle"
+													
+				startscale="0.2"
+				midscale="0.2"
+				endscale="0"
+				midscalepos=".96"
+				life="1700"	
+				
+			>	
+			</model>
+			
+			<simpleemitter
+				life="400"
+				delay="320"
+				
+				spawnrate="200"
+				
+				particlelife="1200"	
+				position="0 0 600"
+				gravity="434"
+				speed="0"
+				
+				drag=".01"
+				material="/shared/effects/materials/rain.material"
+				offsetsphere="55 55 33"
+				
+				directionalspace="global"
+			>
+			
+				<particle 
+					lockup="1"
+					color=".7 .7 1"
+					height="33"
+					width="5"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					angle="0"
+				/>
+			</simpleemitter>			
+								
+						
+						
+			<groundsprite
+				delay="500"
+				life="1200"
+				material="/shared/effects/smaterials/anchor_smash_ground.material"
+				size="130"
+				color="1.0 1.0 1.0"
+				startalpha="1"
+				midalpha="1"
+				midalphapos="0.9"
+				endalpha="0"
+				yaw="-10"
+			/>
+		
+			<light
+				delay="500"
+				life="450"			
+				startcolor="3 2 0"			
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="200"
+				falloffend="300"
+				position="0 0 50"	
+			/>
+
+
+		
+		
+
+
+			<simpleemitter
+				life="100"
+				delay="500"
+				spawnrate="500"
+				count="166"
+				particlelife="800"			
+				gravity="24"
+				minspeed="500"
+				maxspeed="1500"
+				drag=".01"
+				material="/shared/effects/materials/fire_11.material"
+				offsetsphere="55 55 33"
+				minangle="-10"
+				maxangle="20"
+				directionalspace="global"
+			>
+				<particle 
+					color="1 1 1"
+					startsize="30"
+					midsize="15"
+					endsize="6"
+					turn="true"
+				/>
+			
+			</simpleemitter>			
+						
+
+			<billboard
+				delay="500"
+				life="400"
+				startcolor="1 .5 0"
+				endcolor="0"
+				midalphapos="0.75"
+				size="400"
+				depthbias="-70"
+				position="0 0 80"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+			<simpleemitter
+				delay="400"
+				count="17"
+				particlelife="1200"
+				spawnrate="55"
+				speed="425.0"
+				gravity="32"
+				drag="0.00"
+				material="/shared/effects/smaterials/ground_whitewater_blend.material"
+				minangle="0"
+				maxangle="11"
+				direction="0 0 1"
+				offsetsphere="40"				
+			>
+				<particle
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor="1 1 1"
+					midcolorpos="0.2"
+					startalpha="0.3"
+					endalpha="0.0"					
+					startsize="35"
+					endsize="140"
+					
+					minanglespeed="-50"
+					maxanglespeed="50"
+					
+					minangle="-360"
+					maxangle="360"
+			
+				/>
+			</simpleemitter>	
+
+
+
+					
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

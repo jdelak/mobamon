@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<billboard
+				expirelife="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="2"
+				startcolor="0"
+				endcolor="0"
+			/>
+			
+			
+			
+			
+			
+			<template name="flashes">
+<!--
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="25"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						anchor="1"
+						color=".25 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="0"
+						minendscale="25"
+						maxendscale="50"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+-->
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="60"
+					minparticlelife="250"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="25"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						anchor="1"
+						startcolor="0 .05 .05"
+						midcolor="0 .05 .05"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="10"
+						minendscale="18"
+						maxendscale="35"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="flashes" zbone="_bone_fx_01" zstartscale="25" zendscale="75" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_fx_02" zstartscale="25" zendscale="75" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_fx_03" zstartscale="25" zendscale="75" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_fx_04" zstartscale="25" zendscale="75" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_fx_05" zstartscale="25" zendscale="75" zoffset="25" zdepthbias="50"/>
+
+			
+			
+			
+			
+			
+			
+			
+
+			<light
+				position="12 0 75"
+				expirelife="250"
+				startcolor="0 2 5"
+				endcolor="0"
+				falloffstart="25"
+				falloffend="165"
+			/>
+
+			
+<!--
+			<model
+				life="1000"
+				model="sword/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				parentskeleton="true"
+				color="0 2 3"
+				directionalspace="local"
+				loop="true"
+			>
+			</model>
+-->
+			<template name="flashes">
+			
+				<billboard
+					expirelife="250"
+					bone="{zbone}"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="1.25"
+					depthbias="-75"
+					startcolor="0 .2 .5"
+					endcolor="0 0 0"
+				/>
+				
+				<billboard
+					life="1000"
+					bone="{zbone}"
+					material="/shared/effects/smaterials/bulb_add.material"
+					scale=".65"
+					depthbias="-75"
+					startcolor="0 0 0"
+					midcolor="0 .05 .1"
+					endcolor="0 0 0"
+					loop="true"
+				/>
+
+				
+				
+				<billboard
+					life="1000"
+					bone="{zbone}"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale=".4"
+					depthbias="-50"
+					startcolor="0"
+					midcolor=".5 1 1"
+					endcolor="0"
+					loop="true"
+					directionalspace="local"
+					lockup="1"
+					lockright="1"
+				/>
+
+			</template>
+
+			<instance name="flashes" zbone="_bone_fx_04" zstartscale="25" zendscale="75" zoffset="25" zdepthbias="50"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+			bone="_bone_fx_04"
+				spawnrate="1.5"
+				timenudge="2000"
+				particlelife="2000"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				speed="0"
+			>
+				<particle
+				>
+					<template name="">
+<!--
+						<billboard
+							bone="{zbone}"
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/materials/refract_ring.material"
+							param=".02"
+							life="300"
+							startsize="125"
+							endsize="1000"
+							depthbias="-65"
+							roll="{zroll}"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+						
+						<billboard
+							bone="{zbone}"
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/materials/whitedot.material"
+							param=".02"
+							startcolor="0 .1 .3"
+							endcolor="0 0 0"
+							life="300"
+							startsize="125"
+							endsize="1000"
+							depthbias="-65"
+							roll="{zroll}"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+
+
+						<billboard
+							bone="{zbone}"
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .0125 .05"
+							endcolor="0 0 0"
+							life="600"
+							startsize="650"
+							endsize="750"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+
+						<billboard
+							bone="{zbone}"
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .025 .1"
+							endcolor="0 0 0"
+							life="300"
+							startsize="50"
+							endsize="100"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+-->
+					</template>
+
+					<instance name="" zroll="0" zdelay="0" zbone="_bone_fx_04"/>
+					<instance name="" zroll="45" zdelay="0" zbone="_bone_fx_04"/>
+					<instance name="" zroll="90" zdelay="0" zbone="_bone_fx_04"/>
+					<instance name="" zroll="0" zdelay="100" zbone="_bone_fx_04"/>
+					<instance name="" zroll="45" zdelay="100" zbone="_bone_fx_04"/>
+					<instance name="" zroll="90" zdelay="100" zbone="_bone_fx_04"/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

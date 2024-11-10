@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_RingOfSorcery"
+
+	icon="icon.tga"
+	
+	cost="750"
+	components="Item_Blade Item_Healthstone Item_Manastone"
+	
+	actiontype="self_position"
+	targetscheme="ally_mana_units"
+	targetradius="600"
+	frontqueue="true"
+	inheritmovement="true"
+	casttime="0"
+	castactiontime="0"
+	anim="item_self_1"
+	cooldowntime="35000"
+	cooldowntype="replenish"
+	manacost="0"
+	botitem="RingOfSorceryItem"
+	noentercombat="true"
+
+	filters="mana,activatable,utility,buff_team,maxmana"
+
+	maxmana="50"
+	maxmanaperquality="5.0"
+
+	empoweredeffects="Item_RingOfSorcery_Empower_1,Item_RingOfSorcery_Empower_2,Item_RingOfSorcery_Empower_3"
+	
+	showinpractice="true"
+>
+	<constant name="mana" value="20" adjustment="none" qualityvalue="11" qualityadjustment="common" op="add"/>
+	<constant name="mana_percent" value="2" adjustment="none" qualityvalue="2" qualityadjustment="legendary" op="add"/>
+
+	<!--Tooltip only-->
+	<constant name="manamax" value="50" adjustment="none" qualityvalue="5" qualityadjustment="common" op="add"/>
+	<constant name="common_increase" value="0" adjustment="none" qualityvalue="10" qualityadjustment="common" op="add"/>
+
+	<onframe />
+	
+	<onimpact>
+		<playeffect effect="effects/cast.effect" source="source_position" target="" occlude="true" />
+		
+		<areaofeffect
+			radius="600"
+			targetselection="all"
+			targetscheme="ally_mana_units"
+			effecttype=""
+			ignoreinvulnerable="true"
+		>
+			<getconstant name="mana"/>
+			<setvar0 a="result" b="0.01" op="mult" />
+			<setvar0 a="source_maxmana" b="var0" op="mult" />
+
+			<givemana amount="var0"/>
+			
+			<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" occlude="true" />
+		</areaofeffect>
+	</onimpact>
+</crafteditem>

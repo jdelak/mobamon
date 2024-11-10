@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+<!--
+		<modifier 
+			name="modifier0"
+			expirelife="100"
+			startalpha="1"
+			endalpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="entity" scale="4.5">
+
+
+
+
+
+			<light
+
+				position="0 0 10"
+				life="500"
+				startcolor="0 2.5 10"
+				midcolor="0 2.5 10"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="35"
+				endfalloffend="75"
+			/>
+
+
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2500"
+				volume=".75"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+
+<!--
+			<simpleemitter
+				count="150"
+				bone="_bone_centerofchest"
+				spawnrate="5000"
+				minparticlelife="100"
+				maxparticlelife="200"
+				material="/shared/effects/smaterials/powersteal.material"
+				depthbias="-100"
+				offsetsphere="0 0 0"
+			>
+				<particle
+					anchor="1"
+					startcolor="0 1 1"
+					midcolor="0 .85 1"
+					endcolor="0 0 0"
+					startscale="0"
+					minendscale="10"
+					maxendscale="15"
+					minangle="0"
+					maxangle="360"
+					endscale="0"
+					turn="true"
+					flare="true"
+				/>
+			</simpleemitter>
+-->
+			<simpleemitter
+				count="75"
+				bone="_bone_centerofchest"
+				spawnrate="5000"
+				minparticlelife="100"
+				maxparticlelife="200"
+				material="/shared/effects/smaterials/powersteal.material"
+				depthbias="-100"
+				offsetsphere="0 0 0"
+			>
+				<particle
+					anchor="1"
+					startcolor="1"
+					endcolor="0 0 0" 
+					startscale="0"
+					minendscale="20"
+					maxendscale="25"
+					minangle="0"
+					maxangle="360"
+					endscale="0"
+					turn="true"
+					flare="true"
+				/>
+			</simpleemitter>
+
+			
+
+			<template name="">
+			
+				<simpleemitter
+				delay="{zdelay}"
+					count="1"
+					bone="_bone_centerofchest"
+					spawnrate="50"
+					particlelife="100"
+					material="/shared/effects/smaterials/white_star.material"
+					depthbias="-100"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="1"
+						midcolor="1"
+						endcolor="0" 
+						midcolorpos=".25"
+						startscale="0"
+						endscale="35"
+						minangle="0"
+						maxangle="360"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zdelay="0"/>
+			<instance name="" zdelay="25"/>
+			<instance name="" zdelay="50"/>
+			<instance name="" zdelay="75"/>
+			<instance name="" zdelay="100"/>
+			
+
+			
+			
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				life="500"
+				size="100"
+				startcolor="0 .175 .75"
+				midcolor="0 .175 .75"
+				endcolor="0 0 0"
+				depthbias="-150"
+			/>
+			
+			
+		</particlesystem>
+			
+			
+			
+			
+			
+			
+			
+		<particlesystem name="system1" space="world" scale="1">
+<!--
+			<simpleemitter
+			bone="_bone_center"
+				life="100"
+				particlelife="2000"
+				spawnrate="100"
+				offsetsphere="30 30 0"
+				position="0 0 0"
+				depthbias="0"
+			>
+				<particle
+				>
+
+					<simpleemitter
+					bone="_bone_center"
+						life="2000"
+						spawnrate="3300"
+						count="5"
+						minparticlelife="200"
+						maxparticlelife="600"
+						gravity="25"
+						minspeed="300"
+						maxspeed="1500"
+						drag=".01"
+						material="/shared/effects/smaterials/whitedot.material"
+						offsetsphere="25"
+						minangle="0"
+						maxangle="35"
+						direction="0 0 1"
+						position="0 0 0"
+					>
+						<particle
+							minangle="0"
+							maxangle="360"
+							startcolor="1 1 1"
+							midcolor="1 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".75"
+							minstartsize="30"
+							maxstartsize="70"
+							minmidsize="12"
+							maxmidsize="25"
+							endsize="0"
+							startalpha="0"
+							midalpha=".7"
+							endalpha="0"
+							midalphapos=".5"
+						/>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+-->
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

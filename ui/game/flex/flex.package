@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="flex_helper_template" >
+		<sizingframe name="flex_helper_{index}" group="flex_helpers" visible="1" align="left" height="20h" width="20h" x="0" y="0" valign="top" color="1 1 0 0.1" noclick="0" constraintoparent="1"
+			canmove="{canMove=0}" minwidth="1s" maxwidth="100w" minheight="1s" maxheight="100h"	
+		>	
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="bottom" />
+			
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="bottom" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="bottom" />	
+			
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="center" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="bottom" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="top" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="center" />
+			
+			<instance name="standardButton" id="flex_helper_{index}_btn_cancel" visible="1"
+				height="2.7h" width="2.7h" align="right" valign="top" x="-5.5@" y="5.5%"
+				label="X"
+				font="maindyn_18"
+				onclicklua=""
+			/>				
+		</sizingframe>	
+	</template>
+	
+	<template name="flex_helper_template_nosize" >
+		<panel name="flex_helper_{index}" group="flex_helpers" visible="1" align="left" height="20h" width="20h" x="0" y="0" valign="top" color="1 1 0 0.1" noclick="0" constraintoparent="1"
+			cangrab="{canMove=0}" canmove="{canMove=0}" minwidth="1s" maxwidth="100w" minheight="1s" maxheight="100h"	
+		>	
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="bottom" />
+			
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="bottom" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="bottom" />	
+			
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="center" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="bottom" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="top" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="center" />
+			
+			<instance name="standardButton" id="flex_helper_{index}_btn_cancel" visible="1"
+				height="2.7h" width="2.7h" align="right" valign="top" x="-5.5@" y="5.5%"
+				label="X"
+				font="maindyn_18"
+				onclicklua=""
+			/>				
+		</panel>	
+	</template>	
+	
+	<panel noclick="1" name="flex_helper_layer" visible="0" />
+	<panel noclick="1" name="flex_command_layer" visible="0" >
+		<panel noclick="1" height="6.7h" width="42h" align="center" y="18h" >
+			<instance name="dialogWrapper1" visible="1" inneralpha="0 0 0 .9" noclick="1" innerheight="2.5h" innerwidth="2.5h" align="right" valign="top" x="-5.5@" y="5.5%" />
+			<label textalign="center" textvalign="center" fity="1" y="0.0h" font="maindyn_22" style="labelBase" content="flex_keep_changes" noclick="1"/>
+			<instance name="standardButton" id="flex_command_layer_btn_cancel" visible="1" y="0.5h" valign="bottom"
+				height="3.5h" width="20.0h" align="left"
+				label="general_undo"
+				font="maindyn_18"
+				onclicklua=""
+			/>	
+			<instance name="standardButton" id="flex_command_layer_btn_keep" visible="1" y="0.5h" valign="bottom"
+				height="3.5h" width="20.0h" align="right"
+				label="general_ok"
+				font="maindyn_18"
+				onclicklua=""
+			/>					
+		</panel>
+	</panel>
+
+</package>

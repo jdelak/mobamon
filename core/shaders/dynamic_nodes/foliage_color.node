@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="foliage_color">
+	<dependency name="Position" type="float3" source="ObjectPosition" />
+	<dependency name="CameraPosition" type="float3" source="vCameraPosition" />
+	<dependency name="Foliage" type="float4" source="vFoliage" />
+	<output name="Out" type="float4" solution="ObjectColor" />
+	<?hlsl
+		float3 f3CamOffset = CameraPosition - Position;
+		Out = float4(float3(1.0f, 1.0f, 1.0f), 1.0f - saturate((length(f3CamOffset) * Foliage.x + Foliage.y)));
+	?>
+	<?glsl
+		vec3 f3CamOffset = CameraPosition - Position;
+		Out = vec4(vec3(1.0f, 1.0f, 1.0f), 1.0f - clamp((length(f3CamOffset) * Foliage.x + Foliage.y), 0.0f, 1.0f));
+	?>
+</node>

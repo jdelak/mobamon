@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1">
+		
+		
+			<light
+				life="100"
+				startcolor="5 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="00"
+				falloffend="500"
+				position="0 0 25"
+			/>
+			
+			<sound
+				life="4000"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.65"
+				sample="/items/recipes/damage/assassins_shroud/sounds/sfx_cast.wav"
+			/>
+
+			<terrainemitter
+				spawnrate="100"
+				offsetsphere="35 35 0"
+				direction="1 0 0"
+				minangle="-180"
+				maxangle="180"
+				speed="0"
+				directionalspace="global"
+				inheritvelocity="0"
+				depthbias="-20"
+			>
+				<particle
+				>
+					<groundsprite
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						scale="2.75"
+						minlife="1500"
+						maxlife="2000"
+						color="0 0 0"
+						minyaw="-360"
+						maxyaw="360"
+						startalpha="0"
+						midalpha=".4"
+						endalpha="0"
+						midalphapos=".2"
+					/>
+				</particle>
+			</terrainemitter>
+			
+			
+			
+			<model
+				position="0 100 0"
+				expirelife="150"
+				parentskeleton="1"
+				parentmodel="1"
+				alpha="1"
+
+			>
+			
+			
+				<simpleemitter
+				count="10"
+					bone="_bone_centerofchest"
+					spawnrate="300"
+					minparticlelife="500"
+					maxparticlelife="750"
+					gravity=".25"
+					speed="40"
+					drag=".01"
+					position="0 0 0"
+					material="/shared/effects/materials/neb_blend.material"
+					offsetsphere="50 50 50"
+					direction="0 0 0"
+					depthbias="-35"
+				>
+					<particle
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						color="0 0 0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="25"
+						endsize="100"
+					/>
+				</simpleemitter>
+			
+
+
+				<simpleemitter
+					delay="75"
+					bone="_bone_centerofchest"
+					spawnrate="750"
+					minparticlelife="500"
+					maxparticlelife="750"
+					gravity=".25"
+					speed="40"
+					drag=".01"
+					position="0 0 0"
+					material="/shared/effects/materials/neb_blend.material"
+					offsetsphere="50 50 50"
+					direction="0 0 0"
+					depthbias="-35"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						startcolor=".1 0 0"
+						midcolor=".1 0 0"
+						endcolor=".275 0 0"
+						midcolorpos=".2"
+						startalpha="0"
+						midalpha=".3"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="50"
+						endsize="125"
+					/>
+					
+					<particle
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						color="0 0 0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="25"
+						endsize="100"
+					/>
+				</simpleemitter>
+
+			</model>
+
+			<template name="trails">
+			
+			<trailemitter
+				spawnrate="50"
+				particlelife="250"
+				texpostime="250"
+				texposscale="1"
+				texstretchscale=".5"
+				position="{zpos}"
+				material="/shared/effects/smaterials/black_trail.material"
+				startparticlealpha="1"
+				endparticlealpha="0"
+				
+			>
+				<particle
+					color="0 0 0"
+					startsize="0"
+					midsize="50"
+					endsize="0"
+					midsizepos=".2"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".1"
+			 />
+			</trailemitter>	
+
+		</template>
+		
+		<instance name="trails" zpos="35 0 25"/>
+		<instance name="trails" zpos="-35 0 25"/>
+		<instance name="trails" zpos="0 0 25"/>
+		
+		
+		
+		
+		
+		
+		
+		
+
+			<simpleemitter
+				spawnrate="50"
+				count="1"
+				particlelife="5500"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				speed="5000"
+
+			>
+				<particle
+				turn="true"
+				>
+					<model
+						position="0 0 -10"
+						scale="1.7"
+						life="175"
+						model="/maps/tutorial/resources/heroes/thief/model.mdf"
+						anim="jump_1"
+						color="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+					>
+					</model>	
+					
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="50"
+				count="1"
+				particlelife="5500"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				speed="7000"
+
+			>
+				<particle
+				turn="true"
+				>
+					<model
+						position="0 0 -10"
+						scale="1.7"
+						life="175"
+						model="/maps/tutorial/resources/heroes/thief/model.mdf"
+						anim="jump_1"
+						color="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+					>
+					</model>	
+					
+				</particle>
+			</simpleemitter>
+		
+
+      </particlesystem>
+	  
+		<modifier
+			name="modifier0"
+			expirelife="300"
+			startcolor="0 0 0"
+			endcolor="1 1 1"
+		/>
+	  
+   </definitions>
+   <thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

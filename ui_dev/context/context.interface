@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="context"  luatable="true" >
+
+	<lua file="/ui/shared/lib_thread.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/main/shared/cursors.lua"/>
+	<lua file="/ui/main/shared/custom_triggers.lua"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/main/shared/styles2.lua"/>
+	<lua file="/ui/shared/global_drag2.lua"/>
+	<lua file="/ui/shared/lib_button2.lua"/>
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+
+	<template name="general_context_menu_item">
+		<listitem name="context_menu_listitem_{index=0}" color="red" value="{index=0}" visible="1" onmouseover="PlaySound('/shared/sounds/ui/ccpanel/button_over_02.wav');" onselect="" onselectlua="" command="true">
+			<label x="5s" style="labelClickable" outlinecolor="0 0 0 .4" font="maindyn_16" textvalign="center" noclick="1" content="{label}" />
+		</listitem>
+	</template>
+
+	<template name="general_context_menu_player">
+		<menu name="general_context_menu_player" visible="1" y="6s"
+			width="0" height="0"
+			color="invisible"
+			listwidth="200s"
+			listpaddingy="0s"
+			itemoffsetx="4s"
+			itemoffsety="0"
+			itemheight="26s"
+			itemwidth="200s"
+			highlight="under"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			exteriorscrollbars="false"
+			onloadlua=""
+			onmouseover="PlaySound('/shared/sounds/ui/ccpanel/button_over_02.wav');"
+			luatable="1"
+			noautoposition="true"
+		>
+			<widgetstate statename="listbg">
+				<!--
+				<frame texture="{texture=/ui/elements:rounded_bg_white}" height="+10s" valign="center" color=".05 .05 .05 .95" borderthickness="5s" />
+				<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+				-->
+			</widgetstate>
+			<widgetstate statename="itemhighlight">
+				<frame texture="/ui/elements:rounded_bg_solid" color="#094953" bordercolor="#094953" borderthickness="3s" noclick="1" />
+				<frame texture="/ui/shared/frames/border_double.tga" color="invisible" bordercolor="#00d9f9" borderthickness="3s" noclick="1" />
+			</widgetstate>
+
+			<instance name="general_context_menu_item" index="0" label="general_send_message" />
+			<instance name="general_context_menu_item" index="22" label="general_form_party" />
+			<instance name="general_context_menu_item" index="1" label="general_view_profile" />
+			<instance name="general_context_menu_item" index="12" label="general_view_profile" />
+			<instance name="general_context_menu_item" index="9" label="context_approve_friend" />
+			<instance name="general_context_menu_item" index="10" label="context_reject_friend" />			
+			<instance name="general_context_menu_item" index="2" label="context_invite_to_party" />
+			<instance name="general_context_menu_item" index="13" label="context_invite_to_lobby" />
+			<instance name="general_context_menu_item" index="17" label="social_action_bar_spectate" />
+			<instance name="general_context_menu_item" index="18" label="social_action_bar_join_lobby" />
+			<instance name="general_context_menu_item" index="19" label="social_action_bar_join_party" />
+			<instance name="general_context_menu_item" index="20" label="social_action_bar_challenge_issue" />			
+			<instance name="general_context_menu_item" index="21" label="social_action_bar_edit_group" />
+			<instance name="general_context_menu_item" index="3" label="general_add_friend" />
+			<instance name="general_context_menu_item" index="5" label="Customise Account" />
+			<instance name="general_context_menu_item" index="6" label="general_view_options" />
+			<instance name="general_context_menu_item" index="7" label="general_log_out" />
+			<instance name="general_context_menu_item" index="8" label="general_quit" />
+			<instance name="general_context_menu_item" index="11" label="context_leave_channel" />
+			<instance name="general_context_menu_item" index="14" label="context_leave_party" />
+			<instance name="general_context_menu_item" index="23" label="social_action_bar_kick_player" />
+			<instance name="general_context_menu_item" index="4" label="general_remove_friend" />
+			<instance name="general_context_menu_item" index="15" label="general_add_ignore" />
+			<instance name="general_context_menu_item" index="16" label="general_remove_ignore" />
+			
+			<instance name="general_context_menu_item" index="25" label="social_action_bar_promote" />	
+			<instance name="general_context_menu_item" index="26" label="social_action_bar_demote" />	
+			<instance name="general_context_menu_item" index="27" label="social_action_bar_clankick" />	
+			<instance name="general_context_menu_item" index="28" label="social_action_bar_claninvite" />	
+			<instance name="general_context_menu_item" index="29" label="social_action_bar_claninvite_accept" />	
+			<instance name="general_context_menu_item" index="30" label="social_action_bar_claninvite_reject" />	
+			<instance name="general_context_menu_item" index="31" label="social_action_bar_promotetoowner" />	
+			<instance name="general_context_menu_item" index="32" label="social_action_bar_leaveclan" />				
+			
+		</menu>
+	</template>
+
+	<panel noclick="1" color="0 0 0 1" >
+		<frame texture="/ui/shared/frames/context.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="3s" noclick="true"/>
+		<panel noclick="1" >
+			<instance name="general_context_menu_player" />
+		</panel>	
+	</panel>
+
+	<lua file="/ui_dev/context/context_interface_script.lua"/>
+	
+</interface>

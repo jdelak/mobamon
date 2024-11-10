@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_lightmap.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="0.0" fGlossiness="23.0" fOpacity="1.0" fReflect="1.0" />
+	<phase name="shadow" cull="back" blend="none" />
+	<phase name="color" cull="back" blend="none">
+		<sampler name="diffuse" texture="../boss_minion2/color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="lightmap" texture="../boss_minion2/glow.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="../boss_minion2/normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="../boss_minion2/color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="lightmap" texture="../boss_minion2/glow.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="../boss_minion2/normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

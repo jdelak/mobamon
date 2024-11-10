@@ -1,0 +1,1462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="tutorial_game_rules"
+
+	startinggold="0"
+	repickcost="0"
+	randombonus="0"
+	
+	goldpertick="1"
+	experiencepertick="0"
+	goldincomeinterval="675"
+	experienceincomeinterval="1000"
+	
+	experiencemultiplier="1.0"
+	towerdenygoldmultiplier="0.5"
+	
+	norepick="true"
+	noswap="true"
+	forcerandom="false"
+	
+	allowallheroes="false" 
+
+	heropoolsize="0"
+	bancount="0"
+	usecaptains="false"
+	
+	spawnpowerups="true"
+	alternatepicks="false"
+	
+	respawntimeperlevel="4000"
+	repickonrespawn="false"
+	
+	nolobby="true"
+	noheroselect="true"
+	nodev="true"
+>
+	
+	<onaddplayer>
+		<setteamsize team="0" size="1" />
+		<changeteam entity="target_entity" team="1" />
+	</onaddplayer>
+
+	<onprematchstart>
+		
+		<spawnthread name="tutorialstart" />
+		<spawnthread name="objective1ScriptedPing"/>
+	</onprematchstart>
+
+	<scriptthread name="objective1ScriptedPing">
+		<waituntilmessage name="tutorial_objective1ScriptValue" value="1" />
+		<!--<setscriptvalue name="tutorial_objective1ScriptValue" value="0" /> This would reset -->
+	</scriptthread>
+
+	<scriptthread name="tutorialstart">
+	
+		<foreachplayer excludebots="true">
+			<setoverlayinterface entity="target_entity" name="game_tutorial1" />
+		</foreachplayer>
+
+
+		<waitforallclientsfirstsnapshot />
+
+		<setscriptvalue name="video_finished" value="0" />
+		
+		
+		
+		<!-- play video -->
+
+		
+		
+
+		<!-- Initalize the script values for the main and side quests -->	
+		<setscriptvalue name="waypoint_hit" value="0" />
+		<setscriptvalue name="waypoint_hit_2" value="0" />
+		<setscriptvalue name="creeps_killed" value="0" />
+		<setscriptvalue name="tutorial_objective1ScriptValue" value="0" />
+		<setscriptvalue name="ooc_on" value="0" />
+		<setscriptvalue name="learned_skill" value="0" />
+		<setscriptvalue name="used_skill" value="0" />
+		<setscriptvalue name="obs_lit" value="0" />
+		<setscriptvalue name="thief_hit" value="0" />
+		<setscriptvalue name="thief_help" value="0" />
+		<setscriptvalue name="gold_collected" value="0" />
+		<setscriptvalue name="boots_purchased" value="0" />
+		<setscriptvalue name="boots_used" value="0" />
+		<setscriptvalue name="tower_in_view" value="0" />
+		<setscriptvalue name="tower_damaged" value="0" />
+		<setscriptvalue name="tower_killed" value="0" />
+		<setscriptvalue name="boss_killed" value="0" />
+		<setscriptvalue name="creepwave_alert" value="0" />
+		<setscriptvalue name="goheal" value="0" />
+		<setscriptvalue name="paused" value="0" />
+		<setscriptvalue name="last_hitting" value="0" />
+		<setscriptvalue name="bot_dead" value="0" />
+		<setscriptvalue name="teleport_break" value="0" />
+		<setscriptvalue name="enemy_hero_arrived" value="0" />
+		<setscriptvalue name="ui_levelUpPanelOpen" value="0" />
+		<setscriptvalue name="ui_levelUpPanelClose" value="0" />
+		<setscriptvalue name="ui_shopOpen" value="0" />
+		<setscriptvalue name="ui_shopClose" value="0" />
+		<setscriptvalue name="death" value="0" />
+		<setscriptvalue name="tower_aggro" value="0" />
+		<setscriptvalue name="attack_hero" value="0" />
+		<setscriptvalue name="ui_camModeSetting" value="2" />
+		<setscriptvalue name="ui_camModeSettingRemember" value="2" />
+		<setscriptvalue name="isDead" value="0" />
+		<setscriptvalue name="first_waypoint" value="0" />
+		<setscriptvalue name="damaged_by_baldir" value="0" />
+		<setscriptvalue name="tutorial_seenTowerDamageWarningFalse" value="0" />
+		<setscriptvalue name="tutorial_seenTowerDamageWarningTrue" value="0" />
+		<setscriptvalue name="tutorial_seenAttackHeroWarningTrue" value="0" />
+		<setscriptvalue name="tutorial_seenAttackHeroWarningFalse" value="0" />
+		
+		<foreachplayer excludebots="true">
+			<wait duration="250" />
+			<clientuitrigger name="videostart" />
+		</foreachplayer>
+
+		<waituntilmessage name="video_finished" value="1" />
+			
+		<foreachplayer excludebots="true">
+			<setgold entity="target_entity" value="0" />
+			<lockshop />
+			<pushhero />
+			<delete target="stack_entity" />
+			<spawn name="tutorial_hero" />
+			<setent1 name="tutorial_hero" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			<padminimap entity="target_entity" top="0.0" right="0.5" bottom="0.0" left="0.0" />
+			<createcamera name="pcam1" source="ent1" pushentity="true" />
+			
+			<setent3 name="allied_tower" />
+			<applystate name="State_Tutorial_Hidden" target="ent3" duration="-1" />
+
+			<spawnthread name="objective1" />
+
+			<clientuitrigger name="tutorial_fadeBlackOutSlow" />
+			<playconductorevent name="Normal" />
+			
+			<wait duration="700" /><!-- Portions of the tutorial prior to this wait may not work.  Needed to lock shop after 700ms! -->
+			<lockshop />
+
+			<scriptcondition name="ui_camModeSetting" value="0" >
+				<clientuitrigger name="tutorial_toggleLockedCam" />
+			</scriptcondition>
+			<setscriptvalue name="ui_camModeSetting" value="2" />
+
+			<!--<clientuitrigger name="tutorial_tip_start" />-->
+			<clientuitrigger name="mapWidgetVis_arcadeText_hide" />
+			<clientuitrigger name="tutorial_shopBootsOnly" />
+			<!--
+				<clientuitrigger name="tutorial_shopAllItems"/>
+			-->
+			<clientuitrigger name="mapWidgetVis_buildControls_disable" />
+			<!--<clientuitrigger name="mapWidgetVis_canToggleShop_disable" />-->
+
+			<clientuitrigger name="mapWidgetVis_abilityPanel_hide" />
+			
+			<clientuitrigger name="mapWidgetVis_abilityBarPet_hide" />
+			<clientuitrigger name="mapWidgetVis_pushBar_hide" />
+			<clientuitrigger name="mapWidgetVis_heroInfos_hide" />
+			<clientuitrigger name="mapWidgetVis_shopItemList_hide" />
+			<!--<clientuitrigger name="mapWidgetVis_courierButton_hide" />-->
+			<!--<clientuitrigger name="mapWidgetVis_portHomeButton_hide" />-->
+			<clientuitrigger name="mapWidgetVis_shopQuickSlots_hide" />
+			<clientuitrigger name="tutorial_shopForceListView" />
+			
+			<clientuitrigger name="tutorial_objectivePanelShow" />
+
+			<!--<clientuitrigger name="tutorial_objectivePanelHide" />-->
+			
+			<clientuitrigger name="tutorial_objective1" />
+			
+
+			<clientuitrigger name="mapWidgetVis_minimap_show" />
+			<!--
+				<clientuitrigger name="mapWidgetVis_minimap_hide" />
+				<clientuitrigger name="mapWidgetVis_abilityBarPet_show" />
+				<clientuitrigger name="mapWidgetVis_pushBar_show" />
+				<clientuitrigger name="mapWidgetVis_heroInfos_show" />
+				<clientuitrigger name="mapWidgetVis_shopItemList_show" />
+				<clientuitrigger name="mapWidgetVis_courierButton_show" />
+				<clientuitrigger name="mapWidgetVis_portHomeButton_show" />
+				<clientuitrigger name="mapWidgetVis_shopQuickSlots_show" />
+			-->
+			
+			
+		</foreachplayer >
+	</scriptthread>
+	
+	<scriptthread name="objective1" >
+		<foreachplayer excludebots="true">
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+		
+			<lockcontrol entity="ent1" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> 
+			<movecamera entity="ent0" positionname="intro_position"  block="true" /> 
+			<wait duration="50" />
+			<removeloadscreen entity="ent1" />
+			<wait duration="200" />
+			
+			<setpos0 position="ent1" />
+			<spawnthread name="dialogue1" />
+			<translatestring name="tutorial_dialogue1_length"/>
+			<setvar0 a="result" b="6000" op="max" />
+			<movecamera entity="ent0" positionentity="pos0" duration="var0" block="true" />
+			<clientuitrigger name="tutorial_setCamMode2" />
+			<setcamera entity="target_entity" camera="" /> 
+
+			<wait duration="1800" />
+			<clientuitrigger name="tutorial_tip1" />
+			<spawnthread name="objective1b" />
+			<unlockcontrol entity="ent1" />
+			
+			<spawn name="move1" owner="ent1" />	
+			<setent3 name="move1" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<spawnthread name="dialogue_death" />
+			
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<setscriptvalue name="first_waypoint" value="1" />
+			
+			<setent2 name="move1" />
+			<delete target="ent2" />
+
+			<spawnthread name="objective2" />
+			<translatestring name="tutorial_tip1_length"/>
+			<setvar0 a="result" b="2000" op="sub" />
+			<setvar0 a="0" b="result" op="max" />
+			<wait duration="var0" />
+			<clientuitrigger name="tutorial_tip1Hide" />
+			<clientuitrigger name="tutorial_tip1bHide" />
+			<translatestring name="tutorial_dialogue2_length"/>
+			<clientuitrigger name="tutorial_dialogue2" value="result"/>
+			
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="objective1b" >
+		<foreachplayer excludebots="true">
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+		
+			<wait duration="10000" />
+			<waituntilmessage name="first_waypoint" value="0" />
+			<clientuitrigger name="tutorial_tip1b" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="dialogue_death" >
+		<waituntilmessage name="death" value="1" />
+		<wait duration="500" />
+		<translatestring name="tutorial_tip_death_length"/>
+		<clientuitrigger name="tutorial_tip_death" value="result"/>
+	</scriptthread>
+
+	<scriptthread name="dialogue_toweraggro" >
+
+		<setent1 name="tutorial_hero" />
+		<waituntilmessage name="tower_aggro" value="1" />
+		<clientuitrigger name="tutorial_getSeenTowerDamageWarning" />
+		<wait duration="50" />
+		<printvalue value="tutorial_seenTowerDamageWarningFalse"/>
+		<printvalue value="tutorial_seenTowerDamageWarningTrue"/>
+		<waituntilmessage name="tutorial_seenTowerDamageWarningFalse" value="1" />
+		<setscriptvalue name="paused" value="1" />
+		<wait duration="200" />
+		<clientuitrigger name="tutorial_spawnCreepsOff" />
+		<applystate name="State_Tutorial_PauseMap" duration="-1" source="ent1" target="ent1" />
+		<translatestring name="tutorial_tip_toweraggro_length"/>
+		<clientuitrigger name="tutorial_tip_toweraggro" value="result"/>
+		<wait duration="50" />
+		<waituntilmessage name="tower_in_range" value="0" />
+		<clientuitrigger name="tutorial_setSeenTowerDamageWarningTrue" />
+		<clientuitrigger name="tutorial_spawnCreepsOn" />
+		<setscriptvalue name="paused" value="0" />
+		<expirestate name="State_Tutorial_PauseMap" target="ent1" />
+
+	</scriptthread>
+
+	<scriptthread name="dialogue_attackhero" >
+
+		<setent1 name="tutorial_hero" />
+		<waituntilmessage name="attack_hero" value="1" />
+		<clientuitrigger name="tutorial_getSeenAttackHeroWarning" />
+		<wait duration="50" />
+		<printvalue value="tutorial_seenAttackHeroWarningFalse"/>
+		<printvalue value="tutorial_seenAttackHeroWarningTrue"/>
+		<waituntilmessage name="tutorial_seenAttackHeroWarningFalse" value="1" />
+		<setscriptvalue name="paused" value="1" />
+		<wait duration="200" />
+		<clientuitrigger name="tutorial_spawnCreepsOff" />
+		<applystate name="State_Tutorial_PauseMap" duration="-1" source="ent1" target="ent1" />
+		<translatestring name="tutorial_tip_attackhero_length"/>
+		<clientuitrigger name="tutorial_tip_attackhero" value="result"/>
+		<wait duration="50" />
+		<waituntilmessage name="tower_in_range" value="0" />
+		<clientuitrigger name="tutorial_setSeenAttackHeroWarningTrue" />
+		<clientuitrigger name="tutorial_spawnCreepsOn" />
+		<setscriptvalue name="paused" value="0" />
+		<expirestate name="State_Tutorial_PauseMap" target="ent1" />
+
+	</scriptthread>
+	
+	<scriptthread name="dialogue1" >
+		<translatestring name="tutorial_dialogue1_length"/>
+		<setvar0 a="7800" b="result" op="sub" />
+		<setvar0 a="var0" b="0" op="max" />
+		<printvalue value="var0" />
+		<wait duration="var0" />
+		<translatestring name="tutorial_dialogue1_length"/>
+		<clientuitrigger name="tutorial_dialogue1" value="result"/>
+	</scriptthread>
+	
+	<scriptthread name="objective2">
+		<foreachplayer excludebots="true">
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			<spawn name="move2" owner="ent1" />	
+			<setent3 name="move2" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<setent2 name="move2" />
+			<delete target="ent2" />
+			<order command="hold" source="ent1" />
+			<lockcontrol entity="ent1" />
+			
+			<setpos0 position="ent1" />
+			<spawnthread name="dialogue3" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="creep1_position" duration="1500" block="true" clientmode="true" />
+			<translatestring name="tutorial_dialogue3_length"/>
+			<setvar0 a="result" b="3000" op="sub"/>
+			<wait duration="var0" />
+			<movecamera entity="ent0" positionentity="ent1" duration="1500" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent1" />
+			
+			<spawn name="creep1_check" owner="ent1" />	
+			<waituntilmessage name="creeps_killed" value="1" />
+			<wait duration="1000" />
+			<setscriptvalue name="creeps_killed" value="0" />
+			<clientuitrigger name="tutorial_tip2Hide" />
+			<translatestring name="tutorial_dialogue4_length"/>
+			<clientuitrigger name="tutorial_dialogue4" value="result"/>
+			<spawnthread name="objective3" />
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="dialogue3" >
+		<wait duration="2000" />
+		<translatestring name="tutorial_dialogue3_length"/>
+		<clientuitrigger name="tutorial_dialogue3" value="result"/>
+		<wait duration="result" />
+		<clientuitrigger name="tutorial_tip2" />
+	</scriptthread>
+	
+	<scriptthread name="objective3">
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			
+			<spawnthread name="dialogue5" />
+			
+			<spawn name="move3" owner="ent1" />	
+			<setent3 name="move3" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setscriptvalue name="waypoint_hit_2" value="1" />
+			<setent2 name="move3" />
+			<delete target="ent2" />
+			<setent2 name="move3_2" />
+			<delete target="ent2" />
+			<setent2 name="revive0" />
+			<delete target="ent2" />
+
+			
+			<spawn name="move4" owner="ent1" />	
+			<setent3 name="move4" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<wait duration="2000" />
+			<spawn name="revive1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setent2 name="move4" />
+			<delete target="ent2" />
+			<setent2 name="move4_2" />
+			<delete target="ent2" />
+			<order command="hold" source="ent1" />
+			<lockcontrol entity="ent1" />
+			
+			<setpos0 position="ent1" />
+			<setent0 name="pcam1" />
+			<spawnthread name="dialogue6" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="creep2_position" duration="1500" block="true" clientmode="true" />
+
+			<translatestring name="tutorial_dialogue6_length"/>
+			<setvar0 a="result" b="2700" op="sub" />
+			<wait duration="var0" />
+			<movecamera entity="ent0" positionentity="pos0" duration="1500" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			
+			<pushability entity="ent1" slot="4" />
+			<setlevel entity="stack_entity" value="0" />
+			<clientuitrigger name="mapWidgetVis_abilityPanel_show" />
+			<waituntilmessage name="learned_skill" value="1" />
+			<unlockcontrol entity="ent1" />
+			
+			<spawn name="creep2_check" owner="ent1" />	
+			<setent2 name="creep2_check" />
+			<wait duration="2500" />
+			<playeffect effect="/maps/tutorial/resources/triggers/waypoint_anim/direction.effect" source="ent1" target="ent2" />
+			<applystate name="State_Tutorial_Goal" target="ent1" duration="-1" proxy="ent2" />
+			<waituntilmessage name="creeps_killed" value="1" />
+			<setscriptvalue name="creeps_killed" value="0" />
+			
+			<clientuitrigger name="tutorial_tip4Hide" />
+			<clientuitrigger name="tutorial_pointWidgetHide" />
+			
+			<spawn name="move6" owner="ent1" />	
+			<setent3 name="move6" />
+			<applystate name="State_Tutorial_Goal" target="ent1" duration="-1" proxy="ent3" />
+			
+			<wait duration="1800" />
+			<spawnthread name="dialogue4a" />
+			<spawnthread name="objective5" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="dialogue4a" >
+		<wait duration="2500" />
+		<clientuitrigger name="tutorial_tip4a" />
+		<wait duration="6000" />
+		<clientuitrigger name="tutorial_tip4b" />
+	</scriptthread>
+	
+	<scriptthread name="dialogue5" >
+		<setent1 name="tutorial_hero" />
+	
+		<wait duration="6000" />
+		<setent1 name="tutorial_hero" />
+		<lockcontrol entity="ent1" />
+		<scriptcondition name="waypoint_hit_2" value="0" >
+			<setent2 name="move3" />
+			<delete target="ent2" />
+		</scriptcondition>
+		<else>
+			<setent2 name="move4" />
+			<delete target="ent2" />
+		</else>
+		<order command="hold" source="ent1" />
+		<expirestate name="State_Tutorial_Direction" target="ent1" />
+		<translatestring name="tutorial_tip2a_length"/>
+		<clientuitrigger name="tutorial_tip2a" value="result"/>
+		<wait duration="result" />
+		<clientuitrigger name="tutorial_tip2aHide" />
+		<translatestring name="tutorial_tip2b_length"/>
+		<clientuitrigger name="tutorial_tip2b" value="result"/>
+		<setvar0 a="result" b="3500" op="sub" />
+		<wait duration="var0" />
+		<scriptcondition name="waypoint_hit_2" value="1" >
+			<spawn name="move4_2" owner="ent1" />	
+			<setent3 name="move4_2" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+		</scriptcondition>
+		<else>
+			<spawn name="move3_2" owner="ent1" />	
+			<setent3 name="move3_2" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+		</else>
+		<unlockcontrol entity="ent1" />
+		<wait duration="4500" />
+		<setscriptvalue name="waypoint_hit_2" value="0" />
+		<clientuitrigger name="tutorial_tip2bHide" />
+		
+
+	</scriptthread>
+	
+	<scriptthread name="dialogue6" >
+		<wait duration="1500" />
+		<translatestring name="tutorial_dialogue6_length"/>
+		<clientuitrigger name="tutorial_dialogue6" value="result"/>
+		<wait duration="result" />
+		<clientuitrigger name="tutorial_tip3" />
+
+		<clientuitrigger name="tutorial_PointAtLevelUpButton" />
+		
+		<waituntilmessage name="ui_levelUpPanelOpen" value="1" />
+		<setscriptvalue name="ui_levelUpPanelClose" value="0" />
+
+		<clientuitrigger name="tutorial_pointWidgetHide"/>
+		
+		<wait duration="200" />
+		
+		<clientuitrigger name="tutorial_tip3Hide" />
+		<scriptcondition name="learned_skill" value="0" >
+			<clientuitrigger name="tutorial_tip3a" />
+			<clientuitrigger name="tutorial_spotlightWidgetAbilityPanel0" />
+			<spawnthread name="skillsClose" />
+		</scriptcondition>
+		
+		<waituntilmessage name="learned_skill" value="1" />
+	
+		<clientuitrigger name="tutorial_spotlightWidgetHide"/>
+		<clientuitrigger name="tutorial_tip3aHide" />
+		<clientuitrigger name="tutorial_PointAtInventory0" />
+		<clientuitrigger name="tutorial_tip4" />
+		
+		<waituntilmessage name="used_skill" value="1" />
+		<setscriptvalue name="used_skill" value="0" />
+
+		<wait duration="300" />
+			
+		<clientuitrigger name="tutorial_tip4Hide" />
+		<clientuitrigger name="tutorial_pointWidgetHide" />
+		
+		<wait duration="700" />
+		<translatestring name="tutorial_dialogue6a_length"/>
+		<clientuitrigger name="tutorial_dialogue6a" value="result"/>
+		
+	</scriptthread>
+
+	<scriptthread name="skillsOpen" >
+		
+		<waituntilmessage name="ui_levelUpPanelOpen" value="1" />
+		<setscriptvalue name="ui_levelUpPanelClose" value="0" />
+		<wait duration="200" />
+		<clientuitrigger name="tutorial_spotlightWidgetAbilityPanel0" />
+		<scriptcondition name="learned_skill" value="0" >
+			<spawnthread name="skillsClose" />
+		</scriptcondition>
+		
+	</scriptthread>
+
+	<scriptthread name="skillsClose" >
+		
+		<waituntilmessage name="ui_levelUpPanelClose" value="1" />
+		<setscriptvalue name="ui_levelUpPanelOpen" value="0" />
+		<clientuitrigger name="tutorial_spotlightWidgetHide"/>
+		<scriptcondition name="learned_skill" value="0" >
+			<spawnthread name="skillsOpen" />
+		</scriptcondition>
+		
+	</scriptthread>
+	
+	<scriptthread name="objective5" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			
+			<setent3 name="move6" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<lockcontrol entity="ent1" />
+			<setent2 name="move6" />
+			<delete target="ent2" />
+			
+			<setent2 name="bridge_position" />
+			<order command="move" source="ent1" target="ent2" />
+			
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="shop_camera_position" duration="2000" block="true" clientmode="true" />
+
+			<spawnthread name="dialogue9" />
+			
+			<wait duration="2000" />
+			<spawn name="shopkeeper"  />	
+			<setent3 name="shopkeeper" />
+			<setent2 name="shop_position" />
+			<order command="move" source="ent3" target="ent2" />
+			<order command="hold" source="ent3" queue="back" />
+			<wait duration="32000" />
+			
+			<movecamera entity="ent0" positionentity="ent1" duration="2000" block="true" />
+			<setcamera entity="target_entity" camera="" />
+
+			<unlockcontrol entity="ent1" />
+			<spawnthread name="objective6" />
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="dialogue9" >
+		<wait duration="1000" />
+		<translatestring name="tutorial_dialogue9_length"/>
+		<clientuitrigger name="tutorial_dialogue9" value="result"/>
+		<wait duration="result" />
+		<translatestring name="tutorial_dialogue10_length"/>
+		<clientuitrigger name="tutorial_dialogue10" value="result"/>
+		<wait duration="result" />
+		<translatestring name="tutorial_dialogue11_length"/>
+		<clientuitrigger name="tutorial_dialogue11" value="result"/>
+		<wait duration="result" />
+		<translatestring name="tutorial_dialogue12_length"/>
+		<clientuitrigger name="tutorial_dialogue12" value="result"/>
+		<wait duration="result" />
+		<translatestring name="tutorial_dialogue13_length"/>
+		<clientuitrigger name="tutorial_dialogue13" value="result"/>
+		<wait duration="result" />
+		<clientuitrigger name="tutorial_tip5a" />
+	</scriptthread>
+	
+	<scriptthread name="objective6" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			
+			<spawn name="thief" />
+			<spawn name="move6a" owner="ent1" />	
+			<setent3 name="move6a" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<clientuitrigger name="tutorial_tip5aHide" />
+			<setent2 name="move6a" />
+			<delete target="ent2" />
+			
+			<spawnthread name="thief_help" />
+			
+			<order command="hold" source="ent1" />
+			<lockcontrol entity="ent1" />
+			
+			<spawnthread name="dialogue14" />
+			<setpos0 position="ent1" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> 
+			<movecamera entity="ent0" positionname="thief_position" duration="2000" block="true" clientmode="true" />
+			<translatestring name="tutorial_dialogue14_length"/>
+			<setvar0 a="result" b="4000" op="sub" />
+			<wait duration="var0" />
+			<movecamera entity="ent0" positionentity="pos0" duration="2000" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent1" />
+			
+			<waituntilmessage name="thief_hit" value="1" />
+			<setscriptvalue name="thief_hit" value="0" />
+			<clientuitrigger name="tutorial_tip6aHide" />
+			
+			<setent0 name="brush1" />
+			<delete target="ent0" />
+			<setent0 name="brush2" />
+			<delete target="ent0" />
+			<setent0 name="brush3" />
+			<delete target="ent0" />
+			
+			<spawnthread name="dialogue15" />
+			
+			<lockcontrol entity="ent1" />
+			<wait duration="5000" />
+			<unlockcontrol entity="ent1" />
+			
+			<waituntilmessage name="gold_collected" value="1" />
+			<clientuitrigger name="tutorial_tip6cHide" />
+			
+			<givegold amount="1900" position="ent1" target="ent1" />
+			<spawnthread name="dialogue16" />
+
+			<spawnthread name="objective7" />
+			<translatestring name="tutorial_dialogue16_length"/>
+			<setvar0 a="result" b="500" op="add" />
+			<wait duration="var0" />
+			<clientuitrigger name="tutorial_tip6b" />
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="thief_help" >
+		<waituntilmessage name="thief_help" value="1" />
+		<wait duration="1200" />
+		<waituntilmessage name="thief_help" value="1" />
+		<setscriptvalue name="thief_help" value="0" />
+		<clientuitrigger name="tutorial_tip6a" />
+		
+		<setent0 name="brush1" />
+		<playeffect effect="/maps/tutorial/resources/triggers/waypoint.effect" source="ent0" target="ent0" />
+		<setent0 name="brush2" />
+		<playeffect effect="/maps/tutorial/resources/triggers/waypoint.effect" source="ent0" target="ent0" />
+		<setent0 name="brush3" />
+		<playeffect effect="/maps/tutorial/resources/triggers/waypoint.effect" source="ent0" target="ent0" />
+		
+	</scriptthread>
+	
+	<scriptthread name="dialogue14" >
+		<wait duration="1000" />
+		<translatestring name="tutorial_dialogue14_length"/>
+		<clientuitrigger name="tutorial_dialogue14" value="result"/>
+	</scriptthread>
+	
+	<scriptthread name="dialogue15" >
+		<setent1 name="tutorial_hero" />
+		<wait duration="1000" />
+		<translatestring name="tutorial_dialogue15_length"/>
+		<clientuitrigger name="tutorial_dialogue15" value="result"/>
+		<setvar0 a="result" b="6000" op="add" />
+		<wait duration="result" />
+		<waituntilmessage name="gold_collected" value="0" />
+		<clientuitrigger name="tutorial_tip6c" />
+	</scriptthread>
+	
+	<scriptthread name="dialogue16" >
+		<wait duration="1000" />
+		<translatestring name="tutorial_dialogue16_length"/>
+		<clientuitrigger name="tutorial_dialogue16" value="result"/>
+	</scriptthread>
+	
+	<scriptthread name="objective7">
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			
+			<spawn name="move7" owner="ent1" />	
+			<setent3 name="move7" />
+			<playeffect effect="/maps/tutorial/resources/triggers/waypoint_anim/direction.effect" source="ent1" target="ent3" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<clientuitrigger name="tutorial_tip6bHide" />
+			<setent2 name="move7" />
+			<delete target="ent2" />
+			
+			<lockcontrol entity="ent1" />
+			<setent2 name="move6" />
+			<delete target="ent2" />
+			
+			<setent2 name="bridge_position" />
+			<order command="move" source="ent1" target="ent2" />
+			
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="shop_camera_position" duration="2000" block="true" clientmode="true" />
+
+			<translatestring name="tutorial_dialogue17_length"/>
+			<clientuitrigger name="tutorial_dialogue17" value="result"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue18_length"/>
+			<clientuitrigger name="tutorial_dialogue18" value="result"/>
+			<wait duration="result" />
+			
+			<movecamera entity="ent0" positionentity="ent1" duration="2000" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent1" />
+			
+			<wait duration="500" />
+			<clientuitrigger name="tutorial_tip7" />
+			<clientuitrigger name="tutorial_PointAtGoldContainer" />
+			<unlockshop />
+			
+			<clientuitrigger name="mapWidgetVis_shopItemList_show" /><!-- Hope this is the right spot - Merc -->
+			
+			<waituntilmessage name="ui_shopOpen" value="1" />
+			<setscriptvalue name="ui_shopClose" value="0" />
+			<clientuitrigger name="tutorial_shopBootsOnly" />
+			
+			<clientuitrigger name="tutorial_pointWidgetHide" />
+			
+			<clientuitrigger name="tutorial_tip7Hide" />
+			<clientuitrigger name="tutorial_tip7a" />
+			<wait duration="500" />
+			<clientuitrigger name="tutorial_spotlightWidgetShop_Item_TeleportBoots" />
+			<spawnthread name="shopClose" />
+			
+			<waituntilmessage name="boots_purchased" value="1" />
+			
+			<clientuitrigger name="tutorial_closeShop"/>
+			<wait duration="300" />
+			<clientuitrigger name="tutorial_spotlightWidgetHide"/>
+			<clientuitrigger name="tutorial_tip7aHide" />
+			<translatestring name="tutorial_dialogue21_length"/>
+			<clientuitrigger name="tutorial_dialogue21" value="result"/>
+			<clientuitrigger name="tutorial_PointAtInventory96" />
+
+			<spawnthread name="dialogue22" />
+			<spawnthread name="objective8" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="shopOpen" >
+		
+		<waituntilmessage name="ui_shopOpen" value="1" />
+		<setscriptvalue name="ui_shopClose" value="0" />
+		<wait duration="200" />
+		<clientuitrigger name="tutorial_spotlightWidgetShop_Item_TeleportBoots" />
+		<scriptcondition name="boots_purchased" value="0" >
+			<spawnthread name="shopClose" />
+		</scriptcondition>
+		
+	</scriptthread>
+
+	<scriptthread name="shopClose" >
+		
+		<waituntilmessage name="ui_shopClose" value="1" />
+		<setscriptvalue name="ui_shopOpen" value="0" />
+		<clientuitrigger name="tutorial_spotlightWidgetHide"/>
+		<scriptcondition name="boots_purchased" value="0" >
+			<spawnthread name="shopOpen" />
+		</scriptcondition>
+		
+	</scriptthread>
+	
+	<scriptthread name="dialogue22" >
+		<translatestring name="tutorial_dialogue21_length"/>
+		<wait duration="result" />
+		<scriptcondition name="waypoint_hit_2" value="0" >
+			<clientuitrigger name="tutorial_tip9" />
+			<waituntilmessage name="teleport_break" value="1" />
+			<wait duration="50" />
+			<clientuitrigger name="tutorial_tip9Hide" />
+			<clientuitrigger name="tutorial_tip9b" />
+		</scriptcondition>
+	</scriptthread>
+	
+	
+	<scriptthread name="objective8" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			
+			<spawn name="move8" owner="ent1" />	
+			<setent3 name="move8" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setscriptvalue name="waypoint_hit_2" value="1" />
+			<setent2 name="move8" />
+			<delete target="ent2" />
+
+			<lockcontrol entity="ent1" />
+			
+			<clientuitrigger name="tutorial_pointWidgetHide"/>
+
+			<clientuitrigger name="tutorial_tip9Hide" />
+			<clientuitrigger name="tutorial_tip9bHide" />
+			<wait duration="500" />
+			<translatestring name="tutorial_dialogue22a_length"/>
+			<clientuitrigger name="tutorial_dialogue22a" value="result" />
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue22_length"/>
+			<clientuitrigger name="tutorial_dialogue22" value="result"/>
+			<setvar0 a="result" b="1500" op="sub" />
+			<wait duration="var0" />
+			<unlockcontrol entity="ent1" />
+
+			<spawnthread name="objective9" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="objective9">
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+				
+			<spawn name="move9" owner="ent1" />	
+			<setent3 name="move9" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setent2 name="move9" />
+			<delete target="ent2" />
+			
+			<spawnthread name="dialogue7" />
+			<setent2 name="obs_post" />
+			<applystate name="State_Tutorial_BuildingHighlight" target="ent2" duration="-1" />
+			
+			<waituntilmessage name="obs_lit" value="1" />
+			<expirestate name="State_Tutorial_BuildingHighlight" target="ent2" />
+			<clientuitrigger name="tutorial_tip5Hide" />
+			<wait duration="1500" />
+			<spawnthread name="dialogue8" />
+			
+			<spawn name="footman3" />
+			<spawn name="footman4" />
+			<spawn name="archer3" />
+			
+			<waituntilmessage name="tower_in_view" value="1" />
+			<setscriptvalue name="tower_in_view" value="0" />
+
+			<spawn name="revive2" owner="ent1" />	
+			
+			<setent3 name="shopkeeper" />
+			<delete target="ent3" />
+			
+			<setent3 name="allied_tower" />
+			<expirestate name="State_Tutorial_Hidden" target="ent3" />
+			
+			<order command="hold" source="ent1" />
+			<lockcontrol entity="ent1" />
+			
+			<setent0 name="tower" />
+			<spawn name="army_affector2" owner="ent1" />
+			<setent3 name="army_affector2" />
+			<setproxy entity="ent3" target="ent0" />
+			
+			<spawn name="footman1" />
+			<spawn name="footman2" />
+			<spawn name="archer1" />
+			<spawn name="archer2" />
+			<spawn name="allied_tower" />
+			
+			<setent0 name="pcam1" />
+			<setent1 name="tutorial_hero" />
+			<setpos0 position="ent1" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="tower_position" duration="1000" block="true" clientmode="true" />
+						
+			<wait duration="1500" />
+			<translatestring name="tutorial_dialogue8_length"/>
+			<clientuitrigger name="tutorial_dialogue8" value="result"/>	
+			<wait duration="result" />
+			
+			<addbot botname="TutorialBot" personality="hard" unitname="ally1" team="1" startinactive="true" />
+			<setent2 name="ally_intro_position" />
+			<setent3 name="ally1" />
+			<teleport source="ent3" target="ent2"  />	
+			
+			<spawn name="door_check" owner="ent1" />
+			<wait duration="1200" />
+
+			<movecamera entity="ent0" positionname="army_introduction_position" duration="1500" block="true" />
+			<wait duration="1000" />
+			<translatestring name="tutorial_dialogue8b_length"/>
+			<clientuitrigger name="tutorial_dialogue8b" value="result"/>
+
+			<setent2 name="army_caprice_position" />
+			<order command="move" source="ent1" target="ent2" />
+			<translatestring name="tutorial_dialogue8b_length"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue8c_length"/>
+			<clientuitrigger name="tutorial_dialogue8c" value="result" />
+			
+			<setpos0 position="ent3" positionend="ent2" positionmodifier="pointonline" positionvalue="75" />
+			<order command="move" source="ent3" target="pos0" />
+			<translatestring name="tutorial_dialogue8c_length"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue8d_length"/>
+			<clientuitrigger name="tutorial_dialogue8d" value="result"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue8e_length"/>
+			<clientuitrigger name="tutorial_dialogue8e" value="result"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue8f_length"/>
+			<clientuitrigger name="tutorial_dialogue8f" value="result"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue8g_length"/>
+			<clientuitrigger name="tutorial_dialogue8g" value="result"/>
+			<setvar0 a="result" b="4300" op="sub" />
+			<wait duration="var0" />
+			
+			<setent0 name="tower" />
+			<spawn name="army_affector" owner="ent1" />
+			<setent3 name="army_affector" />
+			<setproxy entity="ent3" target="ent0" />
+			
+			<setent3 name="ally1" />
+			<wait duration="3000"/>
+			<order command="attack" source="ent3" target="ent0" />
+
+			<spawnthread name="dialogue_toweraggro" />
+			<spawnthread name="dialogue_attackhero" />
+			
+			<setent1 name="tutorial_hero" />
+			<setpos0 position="ent1" />
+			<setent0 name="pcam1" />
+			<movecamera entity="ent0" positionentity="pos0" duration="800" block="true" />
+			
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent1" />
+			
+			<scriptcondition name="ui_camModeSettingRemember" value="2" >
+				<scriptcondition name="ui_camModeSetting" value="0" >
+					<clientuitrigger name="tutorial_promptLockCameraShow" />
+					<clientuitrigger name="tutorial_pauseGame" />
+				</scriptcondition>
+			</scriptcondition>
+		
+			<spawnthread name="objective10" />
+
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="dialogue7" >
+		<translatestring name="tutorial_dialogue7_length"/>
+		<clientuitrigger name="tutorial_dialogue7" value="result"/>
+		<wait duration="result" />
+		<wait duration="500" />
+		<waituntilmessage name="obs_lit" value="0" />
+		<clientuitrigger name="tutorial_tip5" />
+	</scriptthread>
+	
+	<scriptthread name="dialogue8" >
+		<setent1 name="tutorial_hero" />
+		<scriptcondition name="ui_camModeSetting" value="0" >
+			<setscriptvalue name="ui_camModeSettingRemember" value="0" />
+		</scriptcondition>
+		<scriptcondition name="ui_camModeSetting" value="2" >
+			<clientuitrigger name="tutorial_tip6" />
+		</scriptcondition>
+
+		<wait duration="150" />
+		<waituntilmessage name="ui_camModeSetting" value="0" />
+		<clientuitrigger name="tutorial_tip6Hide" />
+		<clientuitrigger name="tutorial_tip6d" />
+
+		<setent1 name="tutorial_hero" />
+		<spawn name="cam_test" owner="ent1" />	
+		<setent3 name="cam_test" />
+		<setpos3 position="ent3" />
+	
+		<setcompassposition source="ent1" target="ent3" />
+		<starttutoriallook entity="ent1" position="pos3" radius="850" />
+
+		<delete target="ent3" />
+		<clientuitrigger name="tutorial_tip6dHide" />
+
+		<setscriptvalue name="tower_in_view" value="1" />
+		<setgamephase name="pre_match" duration="0" /> 
+		<disablecompass/>
+	</scriptthread>
+	
+	<scriptthread name="objective10" >
+		<foreachplayer excludebots="true" >
+		
+			<setent3 name="ally1" />
+			<setent1 name="tutorial_hero" />
+			<setent0 name="tower" />
+			
+			<applystate name="State_Tutorial_Goal" target="ent1" duration="-1" proxy="ent0" />
+			
+			<setent0 name="tower" />
+			<spawn name="army_affector" owner="ent1" />
+			<setent3 name="army_affector" />
+			<setproxy entity="ent3" target="ent0" />
+			
+			<setent3 name="tower" />
+			<playeffect effect="/maps/tutorial/resources/triggers/waypoint_anim/direction_timed6.effect" source="ent1" target="ent3" />
+			
+			<setent0 name="pcam1" />
+			
+			<spawnthread name="armyspawn" />
+			
+			<wait duration="5500" />
+			<translatestring name="tutorial_tip10_length"/>
+			<clientuitrigger name="tutorial_tip10" value="result"/>
+			<setent3 name="ally1" />
+			<setent1 name="tutorial_hero" />
+			<applystate name="State_Tutorial_General" target="ent3" proxy="ent1" duration="-1" />
+			<translatestring name="tutorial_dialogue23_length"/>
+			<spawnthread name="dialogue23" value="result"/>
+			<spawnthread name="tip11" />
+			<spawnthread name="enemy_arrival" />
+
+			<wait duration="16000" />
+			<setent3 name="ally1" />
+			<setent2 name="backup_point" />
+			<order command="move" source="ent3" target="ent2"/>	
+			<wait duration="6000" />
+			<setbotactiveflag entity="ent3" active="1" />
+			
+			<waituntilmessage name="tower_killed" value="1" />
+			<setscriptvalue name="tower_killed" value="0" />
+			
+			<setent1 name="tutorial_hero" />
+			<expirestate name="State_Tutorial_DamageCheck" target="ent1" />
+			<expirestate name="State_Tutorial_CreepCheck" target="ent1" />
+			
+			<applystate name="State_Tutorial_TipBusy" target="ent1" duration="7000" />
+			<spawn name="lane_move" owner="ent1" />
+			<setent3 name="lane_move" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<spawn name="door_check2" owner="ent1" />
+			<order command="hold" source="ent1" />	
+
+			<distance source="ent1" target="ent3" />
+			<compare a="result" b="2000" op="le" >
+				<scriptcondition name="isDead" value="0" >
+					<applystate name="State_Tutorial_IgnoreDamage" target="ent1" duration="2000" />
+					<spawnthread name="camera_pan" />
+					<lockcontrol entity="ent1" />
+					<setent2 name="goodbye_position1" />
+					<order command="move" source="ent1" target="ent2"/>
+				</scriptcondition>
+			</compare>
+			
+			<setent3 name="army_spawner" />
+			<delete target="ent3" />
+			<setent3 name="army_spawner2" />
+			<delete target="ent3" />
+			
+			<spawn name="kill_creeps" owner="ent1" />
+			
+			<setent3 name="ally1" />
+			<setbotactiveflag entity="ent3" active="0" />
+			
+			<setent2 name="enemy1" />
+			<setbotactiveflag entity="ent2" active="0" />
+			<setent3 name="enemy_leave_position" />
+			<order command="move" source="ent2" target="ent3" />
+
+			<setent3 name="ally1" />
+			<setent2 name="goodbye_position2" />
+			<order command="move" source="ent3" target="ent2"/>	
+		
+			<setent1 name="tutorial_hero" />
+			<setent2 name="goodbye_position1" />
+			
+			<wait duration="2000" />
+			
+			<clientuitrigger name="tutorial_tip11Hide" />
+			<translatestring name="tutorial_dialogue25_length"/>
+			<clientuitrigger name="tutorial_dialogue25" value="result"/>
+			<setvar0 a="0.6" b="result" op="mult" />
+			<wait duration="var0" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setent3 name="lane_move" />
+			<delete target="ent3" />
+			<lockcontrol entity="ent1" />
+
+			<setent3 name="ally1" />
+			<setent2 name="goodbye_position2" />
+			<distance source="ent3" target="ent2" />
+			<compare a="result" b="1500" op="gt" >
+				<setent2 name="goodbye_teleport2" />
+				<teleport source="ent3" target="ent2"  />	
+
+				<setent3 name="ally1" />
+				<setent2 name="goodbye_position2" />
+				<order command="move" source="ent3" target="ent2"/>	
+			</compare>
+
+			<setent2 name="goodbye_position1" />
+			<order command="move" source="ent1" target="ent2"/>
+
+			<setent3 name="goodbye_cam" />
+			<distance source="ent1" target="ent3" />
+
+			<compare a="result" b="800" op="gt" >
+				<spawnthread name="camera_pan" />
+			</compare>
+			<translatestring name="tutorial_dialogue25_length"/>
+			<setvar0 a="0.4" b="result" op="mult" />
+			<wait duration="var0" />
+
+			<setent3 name="ally1" />
+			<setpos0 position="ent1" positionend="ent3" positionmodifier="pointonline" positionvalue="40" />
+			<order command="move" source="ent1" target="pos0"/>	
+			<setpos0 position="ent3" positionend="ent1" positionmodifier="pointonline" positionvalue="40" />
+			<order command="move" source="ent3" target="pos0"/>	
+			<wait duration="500" />
+	
+			<translatestring name="tutorial_dialogue26_length"/>
+			<clientuitrigger name="tutorial_dialogue26" value="result"/>
+			<wait duration="result" />
+			<translatestring name="tutorial_dialogue27_length"/>
+			<clientuitrigger name="tutorial_dialogue27" value="result"/>
+			<setvar0 a="0.5" b="result" op="mult" />
+			<wait duration="var0" />
+			<setent2 name="caprice_exit" />
+			<order command="move" source="ent1" target="ent2"/>	
+			<wait duration="var0" />
+			<translatestring name="tutorial_dialogue27a_length"/>
+			<clientuitrigger name="tutorial_dialogue27a" value="result"/>
+			
+
+			<wait duration="result" />
+			
+			
+			
+			<setpos0 position="ent1" />
+			<movecamera entity="ent0" positionentity="pos0" duration="1000" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent1" />
+<!--
+			<setent2 name="ally1" />
+			<removebot entity="ent2" />
+			<setent2 name="enemy1" />
+			<removebot entity="ent2" />
+-->
+			
+			<spawnthread name="objective11" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="camera_pan" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			<setpos0 position="ent1" />
+			<movecamera entity="ent0" positionname="pos0" duration="0" block="true" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="goodbye_cam" duration="1200" block="true" clientmode="true" />
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="armyspawn" >
+		<wait duration="12000" />
+		<spawn name="army_spawner" />
+		<spawn name="army_spawner2" />
+	</scriptthread>
+	
+	<scriptthread name="dialogue23" >
+		<waituntilmessage name="creepwave_alert" value="1" />
+		<setscriptvalue name="creepwave_alert" value="0" />
+		<wait duration="2000" />
+		<clientuitrigger name="tutorial_dialogue23" />
+
+	</scriptthread>
+	
+	<scriptthread name="tip11" >
+		<setent1 name="tutorial_hero" />
+		<setent3 name="lane_well" />
+		<waituntilmessage name="goheal" value="1" />
+		<setscriptvalue name="goheal" value="0" />
+		<wait duration="1000" />
+		<translatestring name="tutorial_tip11_length"/>
+		<clientuitrigger name="tutorial_tip11" value="result"/>
+		<playeffect effect="/maps/tutorial/resources/triggers/waypoint_anim/direction_timed6.effect" source="ent1" target="ent3" />
+	</scriptthread>
+	
+	<scriptthread name="tip11a" >
+		<waituntilmessage name="last_hitting" value="1" />
+		<setscriptvalue name="last_hitting" value="0" />
+		<wait duration="100" />
+		<clientuitrigger name="tutorial_tip11a" />
+	</scriptthread>
+	
+	<scriptthread name="enemy_arrival" >
+		<setent1 name="tutorial_hero" />	
+		
+		<waituntilmessage name="tower_damaged" value="1" />
+		<setscriptvalue name="tower_damaged" value="0" />
+		<wait duration="15000" />
+		<waituntilmessage name="paused" value="0" />
+		
+		<addbot botname="TutorialBot2" personality="easy" unitname="enemy1" team="2" startinactive="true" />
+		<setent2 name="lane_end_position" />
+		<setent3 name="enemy1" />
+		<teleport source="ent3" target="ent2"  />	
+		<applystate name="State_Tutorial_Invulnerability" target="ent3" duration="-1" />
+		<setent0 name="goodbye_cam" />
+		<order command="move" source="ent3" target="ent0" />
+		<order command="hold" source="ent3" queue="back" />
+		
+		<applystate name="State_Tutorial_EnemyHeroCheck" target="ent1" duration="-1" />
+		
+		<waituntilmessage name="enemy_hero_arrived" value="1" />
+		<setscriptvalue name="enemy_hero_arrived" value="0" />
+		
+		<waituntilmessage name="paused" value="0" />
+		<translatestring name="tutorial_dialogue24_length"/>
+		<clientuitrigger name="tutorial_dialogue24" value="result"/>
+		<wait duration="result" />
+		<waituntilmessage name="paused" value="0" />
+		<translatestring name="tutorial_dialogue24a_length"/>
+		<clientuitrigger name="tutorial_dialogue24a" value="result"/>
+
+		<wait duration="result" />
+		<waituntilmessage name="paused" value="0" />
+		<translatestring name="tutorial_dialogue24b_length"/>
+		<clientuitrigger name="tutorial_dialogue24b" value="result"/>
+		<wait duration="result" />
+		<waituntilmessage name="paused" value="0" />
+		<expirestate name="State_Tutorial_Invulnerability" target="ent3" />
+		<setbotactiveflag entity="ent3" active="1" />
+
+
+		<waituntilmessage name="bot_dead" value="1" />
+		<setscriptvalue name="bot_dead" value="0" />
+		<wait duration="1000" />
+<!--
+		<removebot entity="ent2" />
+-->
+
+	</scriptthread>
+	
+	<scriptthread name="objective11" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+
+			<spawn name="shopkeeper2"  />
+			<clientuitrigger name="tutorial_shopAbilityOnly" />			
+			
+			<spawn name="move9a" owner="ent1" />	
+			<setent3 name="move9a" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<delete target="ent3" />
+			<translatestring name="tutorial_dialogue27b_length"/>
+			<clientuitrigger name="tutorial_dialogue27b" value="result"/>
+			
+			<unlockshop />
+			<wait duration="2000" />
+			<spawn name="revive3" />
+			<clientuitrigger name="tutorial_tip7silent" />
+			<wait duration="2000" />
+			
+			<spawn name="move10" owner="ent1" />	
+			<setent3 name="move10" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<delete target="ent3" />
+			<clientuitrigger name="tutorial_tip7silentHide" />
+			<translatestring name="tutorial_dialogue28_length"/>
+			<clientuitrigger name="tutorial_dialogue28" value="result"/>
+			
+			<spawn name="move11" owner="ent1" />	
+			<setent3 name="move11" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<spawn name="boss_vision" owner="ent1" />	
+			<delete target="ent3" />
+			
+			<order command="hold" source="ent1" />
+			
+			<spawn name="boss_vision" owner="ent1" />	
+			<lockcontrol entity="ent1" />
+			<setpos0 position="ent1" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="boss_cam_position" duration="2000" block="true" clientmode="true" />
+			
+			<spawnthread name="dialogue_boss" />
+
+			<wait duration="2500" />
+			<spawn name="boss" />
+			<setent3 name="boss" />
+			<spawn name="boss_vision2" owner="ent3" />	
+
+			<applystate name="State_Tutorial_Goal" target="ent1" duration="-1" proxy="ent3" />
+			<applystate name="State_Tutorial_Death" target="ent1" duration="-1" />
+
+			<setpos1 position="ent3" offsetspace="ent3" offset="0 0 2000" />
+			<spawnprojectile name="Projectile_Tutorial_BossLanding" source="pos1" target="ent3" bind="ent3"  />
+			<playanim name="tutorial_spawn" target="ent3"/>
+			<playconductorevent name="Guardian" entity="ent1" />
+			<wait duration="11000" />
+			
+			<movecamera entity="ent0" positionentity="pos0" duration="2000" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent1" />
+			<spawnthread name="objective11b" />
+			
+			<wait duration="3000" />
+
+			<waituntilmessage name="boss_killed" value="1" />
+			<setscriptvalue name="boss_killed" value="0" />
+			<playconductorevent name="StopGuardian" entity="ent1" />
+			<wait duration="3000" />
+			<delete target="ent3" />
+
+			<spawnthread name="objective12" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="objective11b" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+
+			<waituntilmessage name="damaged_by_baldir" value="1" />
+			<waituntilmessage name="boss_killed" value="0" />
+			<translatestring name="tutorial_tip13_length"/>
+			<clientuitrigger name="tutorial_tip13" value="result"/>
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="objective12" >
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />
+			
+			<translatestring name="tutorial_dialogue31_length"/>
+			<clientuitrigger name="tutorial_dialogue31" value="result"/>
+			<wait duration="result" />
+			<spawn name="move12" owner="ent1" />
+			<setent3 name="move12" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent3" duration="-1" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<translatestring name="tutorial_dialogue32_length"/>
+			<clientuitrigger name="tutorial_dialogue32" value="result"/>
+			<lockcontrol entity="ent1" />
+			<setent2 name="portal_position" />
+			<order command="move" source="ent1" target="ent2" />
+			<setpos0 position="ent1" />
+			<setcamera entity="target_entity" source="ent1" camera="ent0" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent0" positionname="portal_position" duration="2000" block="true" clientmode="true" />
+			<delete target="ent3" />
+			<wait duration="1500" />
+			<applystate name="State_Tutorial_GoHome" duration="100" target="ent1" />
+			<clientuitrigger name="tutorial_finishMap1" />
+			<wait duration="8000" />
+			<clientuitrigger name="tutorial_endgame" />
+			<clientuitrigger name="tutorial_fadeBlackIn"/>
+			<wait duration="650" />
+			<clientuitrigger name="tutorial_fadeLogoIn"/>
+			<clientuitrigger name="tutorial_endTutorial"/>
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="dialogue_boss" >
+		<wait duration="500" />
+		<translatestring name="tutorial_dialogue29_length"/>
+		<clientuitrigger name="tutorial_dialogue29" value="result"/>
+		<wait duration="result" />
+		<translatestring name="tutorial_dialogue30_length"/>
+		<clientuitrigger name="tutorial_dialogue30" value="result"/>
+		<wait duration="result" />
+		<wait duration="2000" />
+		<translatestring name="tutorial_tip12_length"/>
+		<clientuitrigger name="tutorial_tip12" value="result"/>
+	</scriptthread>
+	
+	<scriptthread name="testing_lane">
+		<foreachplayer excludebots="true" >
+			<setent1 name="tutorial_hero" />
+			<setent0 name="pcam1" />		
+			
+			<setent3 name="allied_tower" />
+			<applystate name="State_Tutorial_Hidden" target="ent3" duration="-1" />
+
+			<setcamera entity="target_entity" camera="" /> 			
+			<unlockcontrol entity="ent1" />
+
+			<spawn name="footman1" />
+			<spawn name="footman2" />
+			<spawn name="archer1" />
+			<spawn name="archer2" />
+			<spawn name="allied_tower" />
+			
+			<addbot botname="TutorialBot" unitname="ally1" team="1" startinactive="true" />
+			<setent2 name="footman1" />
+			<setent3 name="ally1" />
+			<teleport source="ent3" target="ent2"  />	
+			
+			
+			<setgamephase name="pre_match" duration="4000" /> 
+			<wait duration="13000" />
+			<spawnthread name="objective10" />
+			
+			<setent3 name="ally1" />
+			<spawnthread name="objective10" />
+			<wait duration="3000"/>
+			<setent0 name="tower" />
+			<order command="attack" source="ent3" target="ent0" />
+
+
+		</foreachplayer>
+	</scriptthread>
+</game>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game" scenewidth="100%" sceneheight="100%" luatable="true" onloadlua="LoadState()">
+	
+	<!-- Shared -->
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<childinterface file="/ui/game/shared/game_shared_templates.interface"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	
+	<!-- Standard Game Content-->
+	
+	<!-- Flex - Custom Game Content -->
+	<include file="/ui/shared/flex/flex.package"/>
+	
+	<!-- Dev Tools  -->
+	<childinterface file="/ui/game/test/game_test.interface"/>
+	<childinterface file="/ui/shared/flex/flex_edit.interface"/>
+	
+	<!-- Shared Dialog -->
+	<childinterface file="/ui/shared/options/options.interface"/>
+	<include file="/ui/game/dialog/dialog.package"/>
+	
+	<!-- Shared Tips -->
+	<include file="/ui/shared/shop/shop_itemtip.package"/>
+	<childinterface file="/ui/game/button_binder/button_binder.interface"/>
+	<childinterface file="/ui/game/ability/abilitytip.interface"/>
+	<include file="/ui/game/shared/itemtip/itemtip.package"/>	
+	<childinterface file="/ui/shared/simpletip_growy.interface"/>
+	<childinterface file="/ui/shared/simpletip_nofloat.interface"/>	
+	
+	<panel noclick="1" color="black" onshowlua="self:Sleep(500, function() self:FadeOut(500) end)" />
+	
+</interface>

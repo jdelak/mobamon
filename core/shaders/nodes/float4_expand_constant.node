@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="float4_expand_constant">
+	<parameter name="Constant" type="float4" />
+	<dependency name="Value" type="*" />
+	<dependency name="Constant" type="float4" source="Constant" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="Value" type="float" />
+		<?hlsl
+			Out = float4(Value.x, Constant.y, Constant.z, Constant.w);
+		?>
+		<?glsl
+			Out = vec4(Value, Constant.yzw);
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float2" />
+		<?hlsl
+			Out = float4(Value.x, Value.y, Constant.z, Constant.w);
+		?>
+		<?glsl
+			Out = vec4(Value, Constant.zw);
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<?hlsl
+			Out = float4(Value.x, Value.y, Value.z, Constant.w);
+		?>
+		<?glsl
+			Out = vec4(Value, Constant.w);
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<?hlsl
+			Out = float4(Value.x, Value.y, Value.z, Value.w);
+		?>
+		<?glsl
+			Out = Value;
+		?>
+	</case>
+</node>

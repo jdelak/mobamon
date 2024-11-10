@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_VampiricBlade_Empower_3"
+
+	icon="icon.tga"
+
+	passiveeffect="effects/state.effect"
+	effecttype="StatusBuff"
+>
+	<onframe>
+		<getconstant name="healthrestore_kill_enchant" />
+		<setvar0 a="result" b="300" op="div" />
+		<setvar0 a="source_maxhealth" b="var0" op="mult" />
+		<setvar0 a="var0" b="frametime" op="mult" />
+		<heal target="source_entity" a="var0" />
+	</onframe>
+
+</state>

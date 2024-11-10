@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Building_Tutorial_Tower"
+
+	icon="/buildings/base/attack_tower/icon.tga"
+	portrait="/buildings/base/attack_tower/icon.tga"
+	model="/world/sprops/towers/cannon/model.mdf,/world/sprops/towers/5_cannon/model.mdf"
+	mapicon="/shared/icons/minimap_tower.tga"
+	mapiconsize="0.03"
+	skin=""
+	
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	passiveeffect="effects/idle.effect"
+	
+	aggroteamheropassiveeffect="/shared/tower_range_indicators/effects/attack_tower/aoe_1.effect,/shared/tower_range_indicators/effects/attack_tower/aoe.effect"
+	aggromyheropassiveeffect="/shared/tower_range_indicators/effects/attack_tower/aoe_aggroMe_1.effect,/shared/tower_range_indicators/effects/attack_tower/aoe_aggroMe.effect"
+	herothreatradiuspassiveeffect="/shared/tower_range_indicators/effects/attack_tower/aoe_1.effect,/shared/tower_range_indicators/effects/attack_tower/aoe.effect"
+	herothreatradius="1300"
+	
+	destroyedsound=""
+	lowhealtheffect="effects/damage.effect"
+	lowhealthsound=""
+	selectsound=""
+	
+	aggrosound="towertestaggro"	
+	
+	preglobalscale="1, 0.9, 1"
+	modelscale="1.0,1.2,1.2"
+	effectscale="1,1.2,1.2"
+	boundsheight="256"
+	radiusheight="256"
+	boundsradius="86"
+	selectionradius="115"
+	targetoffset="0 0 64"
+
+	maxhealth="7500"
+	healthregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	canattack="true"
+	
+	attackduration="1200,1200,1200,1200"
+	attackactiontime="100" 
+	attackcooldown="1200,1200,1200,1200"
+	attackdamagemin="80"
+	attackdamagemax="80"
+	attacknumanims="1"
+	attackoffset="0 125 350,0 200 350,100 130 240"
+	attackprojectile="Projectile_Cannon"
+	attackrange="700"
+	attackstarteffect="effects/attack.effect"
+	attackactioneffect=""
+	attackimpacteffect=""
+	attacktype="ranged"
+	attackdamagetype="AttackDamage"
+	combattype="Tower"
+	noheroarmorreduction="false,false,false,false"
+	attacktargetscheme="attack_minus_neutrals_plus_mines"
+
+	aggrorange="700"
+	sightrangeday="1900"
+	sightrangenight="1900"
+	revealrange="850"
+	revealtype="tower"
+	
+	goldbountymin="580,685"
+	goldbountymax="580,685"
+	goldbountyteam="0"
+	goldbountyconsolation="0"
+	goldbountypercentsplit="0.348,0.51,0.674,0.837,1.0"
+	unsharedexperiencebounty="150,200,250,250"
+	deadexperience="true"
+	globalexperience="true"
+	
+	hazardradius="800"
+	
+	corpsetime="0"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	unittype="Tower"
+	
+	turnrate="320"
+	ismobile="false"
+	canrotate="true"
+	
+	istower="true"
+	deathtime="0"
+>
+	<onspawn>
+		<spawnunit name="Building_HellbourneTower_Base" target="source_entity" count="1" pushentity="true" />
+		<setproxy target="stack_entity" />
+		<applystate name="State_TowerDamage" target="source_entity" proxy="stack_entity" duration="-1" />
+	</onspawn>
+
+	<onframe>
+		<areaofeffect
+			radius="1000"
+			targetselection="all"
+			targetscheme="tutorial_hero"
+		/>
+		<compare a="result" b="0" op="ne">
+			<areaofeffect
+				radius="700"
+				targetselection="all"
+				targetscheme="tutorial_hero"
+			/>
+			<compare a="result" b="0" op="ne">
+				<setscriptvalue name="tower_in_range" value="1" />
+			</compare>
+			<else>
+				<setscriptvalue name="tower_in_range" value="0" />
+			</else>
+		</compare>
+	</onframe>
+
+	<ondamage>
+		<areaofeffect
+			radius="700"
+			targetselection="all"
+			targetscheme="tutorial_hero"
+			center="this_entity"
+		/>
+		<compare a="result" b="0" op="ne">
+			<areaofeffect
+				radius="750"
+				targetselection="all"
+				targetscheme="enemy_creeps"
+				center="this_entity"
+				ignoreinvulnerable="true"
+			/>
+			<compare a="result" b="0" op="eq">
+				<targettype type="alive" target="this_entity" >
+					<setscriptvalue name="tower_aggro" value="1" />
+				</targettype>
+			</compare>
+		</compare>
+	</ondamage>
+
+	<ondamaged>
+		<areaofeffect
+			radius="1500"
+			targetselection="all"
+			targetscheme="all_heroes"
+		>
+			<playconductorevent name="TowerDamage" entity="target_entity" />
+		</areaofeffect>
+		
+		<compare a="source_health_percent" b="0.7" op="le" >
+			<setscriptvalue name="tower_damaged" value="1" />
+		</compare>
+	</ondamaged>
+
+	<ondeath>
+		<kill target="this_proxy_entity" source="" />
+		<areaofeffect
+			radius="8000"
+			targetselection="all"
+			targetscheme="ally_units"
+		>
+			<setent2 name="enemy_leave_position" />
+			<order command="move" source="target_entity" target="ent2" />
+
+		</areaofeffect>
+		
+		<areaofeffect
+			radius="8000"
+			targetselection="all"
+			targetscheme="enemy_creeps"
+		>
+			<setent2 name="enemy_leave_position" />
+			<order command="move" source="target_entity" target="ent2" />
+
+		</areaofeffect>
+		
+		<setscriptvalue name="tower_killed" value="1" />
+	</ondeath>
+
+	<onattackdamageevent >
+		<damagesupertype supertype="attack">
+			<playeffect effect="effects/attacked.effect" target="source_entity" />
+		</damagesupertype>
+	</onattackdamageevent>
+
+</building>

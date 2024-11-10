@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Ladytinder_Ability2"
+	
+	icon="icon.tga"
+	passiveeffect=""
+
+	revealed="true"
+	stunned="true"
+	stunneddurationunmodifiable="true"
+	
+	effecttype="StatusDebuff CrowdControl"
+	ishidden="true"
+>
+	<onframe >
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="1.6,1.9,2.2,2.5" op="div" />
+		<setvar0 a="var0" b="frametime" op="mult" />
+		<damage effecttype="Magic DOT" target="this_owner_entity" amount="1" b="var0" op="mult"/>
+	</onframe>
+	
+	<onexpired>
+		<breakchannel entity="this_spawner_entity" />
+		<playanim name="idle" />
+	</onexpired>
+	
+</state>

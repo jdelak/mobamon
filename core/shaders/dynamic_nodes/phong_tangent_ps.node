@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="phong_tangent_ps">
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Light" type="float3" source="MaterialLight" />
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Specular" type="float3" source="MaterialSpecular" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<dependency name="Shadowed" type="float" source="MaterialShadowed" />
+	<dependency name="GroundAmbient" type="bool" source="MaterialGroundAmbient" />
+	<dependency name="SelfOcclusionScaleBias" type="float2" source="MaterialSelfOcclusionScaleBias" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	
+	<dependency name="TangentBump" type="float3" source="TangentBump" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	<dependency name="SpecParams" type="float3" source="vSpec" />
+	
+	<dependency name="PhongTangentLight" type="float3" source="PhongTangentLight" />
+	<dependency name="PhongTangentHalfAngle" type="float3" source="PhongTangentHalfAngle" />
+	<dependency name="PhongTangentGroundAmbient" type="float" source="PhongTangentGroundAmbient" />
+
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+	
+	if (TEXKILL)
+	{
+		clip(Opacity - 91.0f / 255.0f);
+	}
+
+	float3 f3Normal = TangentBump;
+	
+	float fShadow = Shadowed;
+	float fSpecular = SpecParams.x;
+	
+	float3 f3Light = normalize(PhongTangentLight);
+	float3 f3HalfAngle = normalize(PhongTangentHalfAngle);
+	float fSelfOcclude = saturate(f3Light.z * SelfOcclusionScaleBias.x + SelfOcclusionScaleBias.y);
+	
+	float2 f2Lit; // x = diffuse, y = specular
+	f2Lit.x = saturate(dot(f3Normal, f3Light));
+	f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+	f2Lit *= fShadow * fSelfOcclude;
+	
+	float3 f3Diffuse = WorldAmbient;
+	float3 f3Specular = float3(0.0f, 0.0f, 0.0f);
+	
+	if (GROUND_AMBIENT && GroundAmbient)
+		f3Diffuse *= PhongTangentGroundAmbient;
+
+	f3Diffuse += Light;
+
+	f3Diffuse += SunColor * f2Lit.x;
+	f3Specular += SunColor * f2Lit.y;
+	
+	float4 f4DiffuseColor = float4(Diffuse, Opacity) * Color;
+	
+	float3 f3FinalColor = Emissive + f4DiffuseColor.rgb * f3Diffuse + Specular * f3Specular;
+	
+	f3FinalColor *= Fogofwar;
+	
+	Out.rgb = lerp(f3FinalColor, FogColor, Fog);
+	Out.a = f4DiffuseColor.a;
+	
+	?>
+	<?glsl
+	
+	if (TEXKILL != 0)
+	{
+		if (Opacity < 91.0f / 255.0f)
+			discard;
+	}
+
+	vec3 f3Normal = TangentBump;
+	
+	float fShadow = Shadowed;
+	float fSpecular = SpecParams.x;
+	
+	vec3 f3Light = normalize(PhongTangentLight);
+	vec3 f3HalfAngle = normalize(PhongTangentHalfAngle);
+	float fSelfOcclude = clamp(f3Light.z * SelfOcclusionScaleBias.x + SelfOcclusionScaleBias.y, 0.0f, 1.0f);
+	
+	vec2 f2Lit; // x = diffuse, y = specular
+	f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+	f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+	f2Lit *= fShadow * fSelfOcclude;
+	
+	vec3 f3Diffuse = WorldAmbient;
+	vec3 f3Specular = vec3(0.0f, 0.0f, 0.0f);
+	
+	if (GROUND_AMBIENT != 0 && GroundAmbient)
+		f3Diffuse *= PhongTangentGroundAmbient;
+
+	f3Diffuse += Light;
+
+	f3Diffuse += SunColor * f2Lit.x;
+	f3Specular += SunColor * f2Lit.y;
+	
+	vec4 f4DiffuseColor = vec4(Diffuse, Opacity) * Color;
+	
+	vec3 f3FinalColor = Emissive + f4DiffuseColor.rgb * f3Diffuse + Specular * f3Specular;
+	
+	f3FinalColor *= Fogofwar;
+	
+	Out.rgb = mix(f3FinalColor, FogColor, Fog);
+	Out.a = f4DiffuseColor.a;
+	
+	?>
+</node>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<groundsprite
+				position="0 -100 0"
+				expirelife="100"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				size="150"
+				directionalspace="local"
+				height="300"
+				width="150"
+			/>
+			
+			<groundsprite
+				position="0 -100 0"
+				expirelife="100"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".25 .25 .125"
+				endcolor="0 0 0"
+				size="75"
+				directionalspace="local"
+				height="150"
+				width="75"
+			/>
+
+			<template name="lightning">
+				<beam
+					delay="{zdelay}"
+					life="{zlife}"
+					owner_a="target"
+					bone_a="_bone_centerofchest"
+					position_b="0 0 0"
+					size="{zsize}"
+					startcolor="{zcolor}"
+					midcolor="{zcolor}"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/animated_shockstick.material"
+					framespeed="{zframespeed}"
+				/>
+			</template>
+
+			<instance name="lightning" zcolor="0 .5 1" zlife="250" zsize="85" zframespeed="5" zdelay="50"/>
+			<instance name="lightning" zcolor="1 .25 0" zlife="250" zsize="60" zframespeed="5" zdelay="50"/>
+			<instance name="lightning" zcolor="0 .15 1" zlife="250" zsize="110" zframespeed="5" zdelay="50"/>
+			<instance name="lightning" zcolor="1 .75 0" zlife="250" zsize="40" zframespeed="5" zdelay="50"/>
+
+			<instance name="lightning" zcolor="0 .5 1" zlife="125" zsize="85" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" zcolor="1 .25 .0" zlife="125" zsize="60" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" zcolor="0 .15 1" zlife="125" zsize="110" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" zcolor="1 .75 0" zlife="125" zsize="40" zframespeed="10" zdelay="0"/>
+
+			<terrainemitter
+				count="1"
+				position="0 0 0"
+				spawnrate="10000"
+				particlelife="1500"
+			>
+				<particle>
+
+					<model
+						life="200"
+						model="staff/model.mdf"
+						anim="idle"
+						color="1"
+						startscale="1"
+						midscale="1.1"
+						endscale="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						directionalspace="local"
+					>
+						<simpleemitter
+							bone="_bone_fx_01"
+							count="12"
+							spawnrate="1055"
+							particlelife="200"
+							gravity="0"
+							minspeed="22.0"
+							maxspeed="22"
+							acceleration="0.0"
+							timenudge="0"
+							position="0 0 0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/cartoon_smack_white.material"
+							depthbias="50"
+						>
+							<particle
+								color=".65 0 1"
+								startalpha=".35"
+								endalpha="0"
+								startscale="150"
+								minendscale="200"
+								maxendscale="300"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<light
+							position="0 0 50"
+							delay="0"
+							life="500"
+							startcolor="2.5 2.5 1"
+							midcolor="2 0 4"
+							endcolor="0 0 0"
+							falloffstart="0"
+							startfalloffend="250"
+							endfalloffend="350"
+						/>
+
+						<groundsprite
+							life="250"
+							material="/shared/effects/smaterials/tornado_crack.material"
+							directionalspace="local"
+							scale=".75"
+							minyaw="0"
+							maxyaw="180"
+							startalpha=".75"
+							endalpha="0"
+						/>
+						
+						<billboard
+							life="300"
+							bone="_bone_fx_01"
+							material="/shared/effects/smaterials/black_spot_ground.material"
+							color="0 0 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".3"
+							startsize="250"
+							endsize="100"
+							depthbias="50"
+						/>
+
+						<billboard
+							life="300"
+							bone="_bone_fx_01"
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="1 1 .5"
+							midcolor=".25 0 .5"
+							endcolor="0 0 0"
+							startsize="250"
+							endsize="100"
+							depthbias="50"
+						/>
+
+						<billboard
+							life="500"
+							bone="_bone_fx_01"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor=".5 .15 0"
+							endcolor="0 0 0"
+							startsize="0"
+							endsize="250"
+							depthbias="50"
+						/>
+
+						<simpleemitter
+							bone="_bone_fx_01"
+							count="35"
+							spawnrate="11340"
+							minparticlelife="250"
+							maxparticlelife="500"
+							gravity="25"
+							minspeed="0"
+							maxspeed="1500"
+							drag="0.005"
+							acceleration="0.0"
+							offsetsphere="25"
+							material="/shared/effects/smaterials/whitedot.material"
+							particledirectionalspace="local"
+							depthbias="50"
+						>
+							<particle
+								minstartheightdistort="0"
+								maxstartheightdistort=".2"
+								endheightdistort="0"
+								startsize="4"
+								endsize="4"
+								startcolor="1 .35 0"
+								midcolor="1 .5 0"
+								endcolor="0 0 0"
+								midcolorpos=".75"
+								turn="1"
+							>
+							</particle>
+						</simpleemitter>
+
+					</model>
+
+				</particle>
+			</terrainemitter>
+
+			<simpleemitter
+				minparticlelife="150"
+				maxparticlelife="300"
+				spawnrate="200"
+				minspeed="500"
+				maxspeed="1500"
+				drag="0.1"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0"
+				direction="0 0 0"
+				depthbias="20"
+			>
+				<particle
+					turn="true"
+					startcolor=".125 .05 0"
+					endcolor="0 0 0"
+					startscale="100"
+					midscale="100"
+					endscale="100"
+				>
+				</particle>
+			</simpleemitter>
+
+			<model
+				position="0 0 0"
+				expirelife="1500"
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				scale="1.5"
+				startcolor="0 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".4"
+				rollspeed="2000"
+			>
+				<template name="trails">
+				
+					<twopointtrailemitter
+						position="0 0 0"
+						bone_a="{bone01}"
+						bone_b="{bone02}"
+						spawnrate="100"
+						particlelife="250"
+						subframepose="1"
+						texpostime="250"
+						texposscale="0"
+						texstretchscale="1"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+						inheritvelocity="0"
+					>
+						<particle
+							startcolor="{zcolor}"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							startscale="500"
+							endscale="0"
+						/>
+					</twopointtrailemitter>
+					
+				</template>
+				
+				<instance name="trails" bone01="_bone_fx_01"  bone02="_bone_fx_02" zcolor="1 .7 .25"/>
+				<instance name="trails" bone01="_bone_fx_03"  bone02="_bone_fx_04" zcolor="1 .7 .25"/>
+				<instance name="trails" bone01="_bone_fx_05"  bone02="_bone_fx_06" zcolor="1 .7 .25"/>
+				<instance name="trails" bone01="_bone_fx_05"  bone02="_bone_fx_08" zcolor="1 .7 .25"/>
+				<instance name="trails" bone01="_bone_fx_05"  bone02="_bone_fx_10" zcolor="1 .7 .25"/>
+			</model>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

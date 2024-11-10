@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attachablegadget
+	name="Bastact1_Bomb"
+
+	model="../effects/models/bomb.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+
+	isselectable="true"
+	iscontrollable="false"
+	passiveeffect="../../../../buildings/effects/item_flash.effect"
+	preglobalscale="2"
+	modelscale="1.6"
+	effectscale="1.0"
+	boundsheight="125"
+	boundsradius="60"
+	selectionradius="80"
+
+	canattack="false"
+
+	canrotate="true"
+	ismobile="false"
+	
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	flying="true"
+	flyheight="0"
+
+	infoheight="200"
+
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="0"
+	lifetime="7500"
+	hidealtinfo="true"
+	unittype="throwable"
+	unitwalking="true"
+>
+
+	<onspawn>	
+		<playeffect effect="effects/ring.effect" source="this_entity" target="this_entity"  visibility="all"/>
+		<playeffect effect="../effects/fuse.effect" source="this_entity" target="this_entity" visibility="all"/>		
+		<playeffect effect="../effects/pickup_indicator.effect" source="this_entity" target="this_entity" visibility="all"/>
+		<applystate name="State_Bastact1_EffectPlay" target="this_entity" duration="-1"/>
+	</onspawn>
+
+	<onexpired>
+		<areaofeffect
+			radius="240"
+			targetselection="all"
+			targetscheme="all"
+			center="this_entity"
+			maxtotalimpacts="-1"
+			effecttype="Magic Splash"
+		>	
+			<damage amount="200" effecttype="Magic Splash" />
+		</areaofeffect>	
+
+		<print text="Bomb Expired"/>
+		<!-- <printdebuginfo/> -->
+		<!-- <resettimer entity="this_owner_target_entity" /> -->
+		
+		<condition test="hasstate State_Bastion1Bastact1_BombIsHeld" target="this_entity">
+			<print text="Bomb Is Held"/>
+			<!-- This should only be done when the bomb is not currently being held -->
+			<pushability entity="this_owner_target_entity" slot="2" />
+			<deactivatemodifierkey entity="this_owner_target_entity" name="with_nohitch_withsword" />
+			<activatemodifierkey entity="this_owner_target_entity" name="with_sword" />
+			<playanim name="idle" target="this_owner_target_entity"/>
+			<expirestate target="this_owner_target_entity" name="State_Bastion1Bastact1_HasBomb" />
+			<deactivatemodifierkey entity="stack_entity" name="throw2" />
+			<deactivatemodifierkey entity="stack_entity" name="throw" />
+			<activatemodifierkey entity="stack_entity" name="pickup2" />
+			<attach source="this_proxy_entity" target="" boneslot="1" />
+			<pushability entity="this_owner_target_entity" slot="2" />
+			<multcharges entity="stack_entity" value="0"/>
+		</condition>
+
+		<spawnunit name="Gadget_Bastact1_Bomb1_Blank" target="this_entity" lifetime="7500" pushentity="true" />
+		<playeffect effect="../effects/death_orange_scorched.effect" source="stack_entity" occlude="true" visibility="all"/>
+	</onexpired>
+
+	<onkill>
+		<entitytype type="Hero_Bastion1Bastact1">	
+			<playeffect effect="effects/deathbomb_taunt.effect" source="this_owner_entity" target="this_owner_entity"/>
+		</entitytype>
+	</onkill>	
+
+	<onkilled>
+		<areaofeffect
+			radius="240"
+			targetselection="all"
+			targetscheme="all"
+			center="this_entity"
+			maxtotalimpacts="-1"
+			effecttype="Magic Splash"
+		>	
+			<damage amount="200" effecttype="Magic Splash" />
+			
+			
+		</areaofeffect>	
+		<spawnunit name="Gadget_Bastact1_Bomb1_Blank" target="this_entity" lifetime="7500" pushentity="true" />
+		<playeffect effect="../effects/death_orange_scorched.effect" source="stack_entity" occlude="true" visibility="all"/>
+	</onkilled>
+
+
+
+	<modifier key="flying" modpriority="100"
+		flying="true"
+		flyheight="0"
+
+	>
+		<onframe>
+				<print text="mod on" />
+		</onframe>
+	</modifier>
+
+	<modifier key="flying2" modpriority="100"
+		flying="true"
+		flyheight="160"
+		unitwalking="true"
+
+	>
+		<onframe>
+				<teleport source="this_entity" target="this_owner_target_entity" interpolate="true" facetarget="true"/>
+		</onframe>
+	</modifier>
+	
+</attachablegadget>

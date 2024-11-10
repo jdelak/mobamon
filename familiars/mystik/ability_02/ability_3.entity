@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Mystik_TriggeredPassive_3"
+
+	icon="icon.tga"
+	
+	maxlevel="15"
+	
+
+	actiontype="passive"
+	manacost="0"
+	cooldowntime="16000"
+	cooldowntype="familiar" 
+
+>
+
+	<constant name="pure_damage" value="68" adjustment="none" />
+
+	<onframe>
+		<setactivemodifierkey entity="this_entity" name="mystikspawned" />
+	</onframe>
+	
+	<ondamage>
+		<isready>
+			<damageeffecttype effecttype="Magic" >
+				<damageeffecttype effecttype="Indirect" />
+				<else>
+					<targettype type="self" />
+					<else>
+						<targettype type="hero">
+							<damageeffecttype effecttype="TrapDamage" >
+								<distance target="source_entity" source="target_entity" />
+								<compare a="result" b="1600" op="le">
+									<spawnprojectile name="Projectile_Mystik_3" source="this_proxy_entity" bind="this_proxy_entity" bindturn="true" target="target_entity" offset="-50 0 0" noresponse="true" proxy="this_proxy_entity" />
+									<playanim name="walk_1_fast" target="this_proxy_entity" />
+									<playeffect effect="effects/cast.effect" />
+									<startcooldown entity="this_entity" duration="16000" />
+									<setactivemodifierkey entity="this_proxy_entity" name="" />
+								</compare>
+							</damageeffecttype>
+							<else>
+								<spawnprojectile name="Projectile_Mystik_3" source="this_proxy_entity" bind="this_proxy_entity" bindturn="true" target="target_entity" offset="-50 0 0" noresponse="true" proxy="this_proxy_entity" />
+								<playanim name="walk_1_fast" target="this_proxy_entity" />
+								<playeffect effect="effects/cast.effect" />
+								<startcooldown entity="this_entity" duration="16000" />
+								<setactivemodifierkey entity="this_proxy_entity" name="" />
+							</else>
+						</targettype>
+					</else>
+				</else>
+			</damageeffecttype>
+		</isready>
+	</ondamage>
+
+	<modifier key="mystikspawned" modpriority="100"
+	>
+		<onframe>
+			<isready>
+				<setactivemodifierkey entity="this_proxy_entity" name="nuke_ready" />
+			</isready>
+		</onframe>
+	</modifier>	
+</ability>

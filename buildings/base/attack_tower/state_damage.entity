@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_TowerDamage"
+	ishidden="true"
+>
+
+	<onframe>
+		 <compare a="source_health_percent" b="0.2" op="lt" >
+			<setactivemodifierkey name="tower_damaged2" />
+			<setactivemodifierkey entity="this_proxy_entity" name="tower_damaged2" />
+		 </compare>
+		 <else>
+			 <compare a="source_health_percent" b="0.6" op="lt" >
+				<setactivemodifierkey name="tower_damaged1" />
+				<setactivemodifierkey entity="this_proxy_entity" name="tower_damaged1" />
+			 </compare>		 
+			 <else>
+				<setactivemodifierkey name="" />
+				<setactivemodifierkey entity="this_proxy_entity" name="" />
+			 </else>
+		 </else>
+		 <areaofeffect
+			targetscheme="enemy_units"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="930"
+			maximpactspertarget="1"
+		>
+			<applystate name="State_Enemy_Range" duration="3000" target="source_entity" />
+		</areaofeffect>
+	</onframe>
+	
+	<ondeath>
+		<kill target="this_proxy_entity" source="" />
+	</ondeath>
+	
+	<modifier key="tower_damaged1" modpriority="100">
+	</modifier>
+	
+	<modifier key="tower_damaged2" modpriority="100">
+	</modifier>
+
+</state>

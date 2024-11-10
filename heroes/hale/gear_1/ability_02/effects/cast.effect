@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="1"
+				sample="../sounds/sfx_cast_1.wav"
+			/>
+			
+			<model
+				bone="_bone_sword1"
+				life="300"
+				model="sword/model.mdf"
+				anim="idle"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				color=".5 0 2"
+				startscale="1"				
+				endscale="1"
+				directionalspace="local"
+				pitch="180"
+			/>
+			
+			
+			
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="0 0 7"
+				midcolor="0 0 7"
+				endcolor="0"
+				falloffstart="25"
+				falloffend="300"
+			/>
+			
+
+			<template name="model">
+			
+<!--
+				<model
+				bone="_bone_sword1"
+					delay="{zdelay}"
+					life="250"
+					model="sword_larger/model.mdf"
+					anim="idle"
+					material="sword_larger/material.material"
+					startalpha="1"			
+					endalpha="0"
+					color="2"
+					startscale="1.1"				
+					endscale="1.1"
+					directionalspace="local"
+					pitch="180"
+				/>
+-->
+				
+			</template>
+
+			<instance name="model" zdelay="0"/>
+			<instance name="model" zdelay="250"/>
+			<instance name="model" zdelay="500"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="duplos">
+				
+				<simpleemitter
+				position="0 0 -20"
+					bone="_bone_centerofchest"
+					count="1"
+					delay="{zdelay}"
+					spawnrate="10"
+					particlelife="500"
+				>
+					<particle
+					>
+						<template name="waves">
+						
+<!--
+							<groundsprite
+								material="/shared/effects/smaterials/black_spot_ground.material"
+								scale="3"
+								life="500"
+								color="0 0 0"
+								minyaw="-360"
+								maxyaw="360"
+								startalpha=".75"
+								midalpha=".75"
+								endalpha="0"
+								midalphapos=".25"
+							/>
+-->
+							
+						
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay1}"
+								startsize="30"
+								endsize="{endsize1bigger}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/smaterials/sound_waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalpha}"
+								midalpha="{zalpha}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+							/>
+							
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay2}"
+								startsize="30"
+								endsize="{endsize2bigger}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/smaterials/sound_waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalpha}"
+								midalpha="{zalpha}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+							/>
+
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay3}"
+								startsize="30"
+								endsize="{endsize3bigger}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/smaterials/sound_waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalpha}"
+								midalpha="{zalpha}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+							/>
+						
+						
+						
+						
+						
+						
+						
+						
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay1}"
+								startsize="30"
+								endsize="{endsize1}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/smaterials/sound_waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalpha}"
+								midalpha="{zalpha}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+							/>
+							
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay2}"
+								startsize="30"
+								endsize="{endsize2}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/smaterials/sound_waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalpha}"
+								midalpha="{zalpha}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+							/>
+
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay3}"
+								startsize="30"
+								endsize="{endsize3}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/smaterials/sound_waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalpha}"
+								midalpha="{zalpha}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+							/>
+							
+							
+							
+							
+							
+							
+							
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay1}"
+								startsize="30"
+								endsize="{endsize1}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/materials/waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalphaless}"
+								midalpha="{zalphaless}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+								depthbias="-12"
+							/>
+							
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay2}"
+								startsize="30"
+								endsize="{endsize2}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/materials/waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalphaless}"
+								midalpha="{zalphaless}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+								depthbias="-12"
+							/>
+
+							<billboard
+							bone="_bone_centerofchest"
+								delay="{delay3}"
+								startsize="30"
+								endsize="{endsize3}"
+								position="0 0 10"
+								life="200"
+								material="/shared/effects/materials/waves.material"
+								startcolor="{zstartcolor}"
+								endcolor="{zendcolor}"
+								startalpha="{zalphaless}"
+								midalpha="{zalphaless}"
+								endalpha="0"
+								midalphapos=".4"
+								lockup="1"
+								pitch="90"
+								depthbias="-12"
+							/>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<billboard
+								bone="_bone_centerofchest"
+								delay="{delay1}"
+								startsize="30"
+								endsize="400"
+								position="0 0 10"
+								life="250"
+								material="/shared/effects/smaterials/whitedot.material"
+								color="0 0 1"
+								lockup="1"
+								pitch="90"
+								depthbias="-25"
+							/>
+							
+							<billboard
+								bone="_bone_centerofchest"
+								delay="{delay2}"
+								startsize="30"
+								endsize="450"
+								position="0 0 10"
+								life="250"
+								material="/shared/effects/smaterials/whitedot.material"
+								color="0 0 .75"
+								lockup="1"
+								pitch="90"
+								depthbias="-25"
+							/>
+
+							<billboard
+								bone="_bone_centerofchest"
+								delay="{delay3}"
+								startsize="30"
+								endsize="500"
+								position="0 0 10"
+								life="250"
+								material="/shared/effects/smaterials/whitedot.material"
+								color="0 0 .5"
+								lockup="1"
+								pitch="90"
+								depthbias="-25"
+							/>
+							
+
+							
+							
+							
+							
+						</template>
+
+						<instance
+							name="waves"
+							delay1="0"
+							delay2="100"
+							delay3="200"
+							zalpha="1"
+							zalphaless="1"
+							endsize1="250"
+							endsize2="300"
+							endsize3="350"
+							endsize1bigger="260"
+							endsize2bigger="310"
+							endsize3bigger="360"
+							zstartcolor="1 .25 1"
+							zendcolor=".5 0 1"
+							
+						/>
+
+					</particle>
+				</simpleemitter>
+					
+			</template>
+			
+			<instance name="duplos" zdelay="0"/>
+			
+			
+
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

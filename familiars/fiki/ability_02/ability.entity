@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Fiki_TriggeredPassive"
+
+	icon="icon.tga"
+	
+	maxlevel="15"
+
+	actiontype="passive"
+	
+	manacost="0"
+	cooldowntime="40000"
+	cooldowntype="familiar"
+	
+	
+>
+	<constant name="heal" value="55,60,65,70,75,80,85,90,95,100,105,110,115,120,125" adjustment="none" />
+	
+		<onframe>
+			<isready>
+				<compare a="source_health_percent" b=".75" op="lt">
+					<getconstant name="heal" adjustmentsource="source_entity" />
+					<setvar0 a="result" b="1" op="mult" />
+					<setvar1 a="source_power" b="100" op="div" />
+					<heal target="source_entity" a="var0" b="var1" op="mult"/>
+					<startcooldown />
+				</compare>
+			</isready>
+		</onframe>
+
+</ability>

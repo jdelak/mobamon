@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_Bastion_Ability3"
+
+	icon="icon.tga"
+	passiveeffect="effects/state.effect"
+	impactinterval="50"
+	effecttype="StatusBuff Assist"
+	allowtransfer="true"
+	
+>
+	<onimpact>	
+		<compare a="accumulator" b="0" op="gt" >
+			<setvalue source="this_entity" name="source_max_shield" a="accumulator" />
+			<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="accumulator" op="add" />
+			<setaccumulator value="0" />
+		</compare>
+		
+		<compare source="this_owner_entity" a="source_shield" b="0" op="le" >
+			<expire />
+		</compare>
+	</onimpact>
+	
+	
+	
+</statenetaccum>

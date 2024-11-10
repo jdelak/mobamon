@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+
+	<definitions>
+<!--
+		<modifier
+			name="modifier0"
+			startcolor="1 1 1"
+			midcolor="1 1 1"
+			endcolor="1 1 1"
+			midcolorpos=".5"
+			expirelife="500"
+			startalpha="1"
+			endalpha="0"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="2">
+
+
+
+		
+<!--
+
+			<simpleemitter
+				spawnrate="30"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+			>
+				<particle
+					turn="1"
+				>	
+				
+					<groundsprite
+						life="1000"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						size="200"
+						color=".4 .85 1"
+						startalpha=".65"
+						endalpha="0"
+						midalphapos=".5"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				
+					<groundsprite
+						life="1000"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						size="100"
+						color="1 1 1"
+						startalpha=".85"
+						endalpha="0"
+						midalphapos=".75"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+					
+				</particle>
+			</simpleemitter>
+-->
+
+
+
+
+
+
+
+<!--
+			<simpleemitter
+				spawnrate="20"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+						minlife="1000"
+						maxlife="1000"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						minscale="1.5"
+						maxscale="2.5"
+						color=".75 .65 .5"
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+						midalphapos=".5"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				
+					<groundsprite
+						minlife="800"
+						maxlife="1000"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						minscale="1"
+						maxscale="1.5"
+						color="1 1 1"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".75"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				scale="2.5"
+				startcolor=".1 0 .5"
+				endcolor="0 0 0"
+			/>
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				spawnrate="6"
+				particlelife="2000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="750"
+						maxlife="1000"
+						name="emitter0" 
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						minscale=".25"
+						maxscale=".5"
+						color="1 .75 .5"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+						minyaw="0"
+						maxyaw="0"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<template name="wheelDust">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="150"
+					minparticlelife="400"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="150"
+					material="/shared/effects/smaterials/cartoon_dust_brown.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					offsetsphere="20 20 5"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-55"
+						maxanglespeed="55"
+						startcolor="1"
+						endcolor=".25"
+						startsize="25"
+						midsize="50"
+						endsize="0"
+						midsizepos=".95"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".8"
+						turn="true"
+					/>
+					
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-55"
+						maxanglespeed="55"
+						startcolor="1"
+						endcolor=".25"
+						startsize="25"
+						midsize="75"
+						endsize="0"
+						midsizepos=".95"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".8"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="100"
+					minparticlelife="100"
+					maxparticlelife="200"
+					minspeed="0"
+					maxspeed="75"
+					material="/shared/effects/smaterials/cartoon_dust_brown.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					offsetsphere="20 20 5"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-55"
+						maxanglespeed="55"
+						startcolor="1"
+						endcolor="1"
+						startsize="20"
+						midsize="40"
+						endsize="0"
+						midsizepos=".95"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".5"
+						turn="true"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="wheelDust" zbone="_bone_fx_01"/>
+			<instance name="wheelDust" zbone="_bone_fx_02"/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

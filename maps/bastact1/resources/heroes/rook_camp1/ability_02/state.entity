@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Rook_Ability2_Bastact1"
+
+	icon="icon.tga"
+	
+	passiveeffect="effects/state.effect"
+	invulnerable="true"
+	
+	channeltime="1000"
+	ischanneling="true"
+	impactinterval="400"
+
+	nothreat="true"
+	effecttype=""
+
+>
+	<onframe/>
+	
+	<onchannelstart>
+		<showchannelbar duration="1200"/>
+		<spawnunit name="Gadget_Rook_Ability2_Bastact1" count="1" target="source_position" pushentity="true" />
+		<spawnprojectile name="Projectile_Rook_Ability2_Orbit_Bastact1" target="source_entity" source="source_entity" bind="stack_entity" bindturn="true" orbitstartingtheta="120" />
+	
+	</onchannelstart>
+	
+	<onimpact>
+		
+		<spawnunit name="Gadget_Rook_Ability2_Bastact1" count="1" target="source_position" pushentity="true" />
+		<spawnprojectile name="Projectile_Rook_Ability2_Orbit_Bastact1" target="source_entity" source="source_entity" bind="stack_entity" bindturn="true" orbitstartingtheta="120" />
+		
+	</onimpact>
+	
+	<onexpired>
+		<areaofeffect
+				radius="625"
+				maxtotalimpacts="1"
+				targetselection="closest"
+				targetscheme="visible_enemy_heroes"
+		>
+			<setproxy target="target_entity" />
+			<setaccumulator value="1" />
+		</areaofeffect>
+		<else>
+			<areaofeffect
+					radius="625"
+					maxtotalimpacts="1"
+					targetselection="closest"
+					targetscheme="visible_enemy_units"
+			>
+				<setproxy target="target_entity" />
+				<setaccumulator value="1" />
+			</areaofeffect>
+		</else>
+
+
+		<hasmodifier entity="source_entity" name="cinematic_mode">
+			<areaofeffect
+				radius="300"
+				targetselection="all"
+				targetscheme="OwnedOrbitGadget"
+				ignoreinvulnerable="true"
+			>
+				<kill source="" />
+			</areaofeffect>
+
+			
+
+
+		</hasmodifier>
+		<else>
+			<compare a="accumulator" b="1" op="eq" >
+				<areaofeffect
+					radius="300"
+					targetselection="all"
+					targetscheme="OwnedOrbitGadget"
+					ignoreinvulnerable="true"
+				>
+					<unbind target="target_entity" />
+					<kill source="" />
+					<spawnprojectile name="Projectile_Rook_Ability2_Damage_Bastact1" target="this_proxy_entity" source="target_entity" bind="target_entity" bindturn="true" proxy="target_entity"  />
+				</areaofeffect>
+			</compare>
+			<else>
+				<areaofeffect
+					radius="300"
+					targetselection="all"
+					targetscheme="OwnedOrbitGadget"
+					ignoreinvulnerable="true"
+				>
+					<kill source="" />
+				</areaofeffect>
+			</else>
+		</else>
+		
+	</onexpired>
+
+	
+	
+
+</state>

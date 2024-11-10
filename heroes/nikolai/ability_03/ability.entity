@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Nikolai3"
+	
+	icon="icon.tga"
+	anim="ability_3"
+	casttime="350"
+	castactiontime="350"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+	
+	actiontype="target_self"
+	manacost="75"
+	
+	queue="front"
+	inheritmovement="true"
+	
+	casteffect="effects/cast.effect"
+	
+	range="600"
+
+	cooldowntime="13000"
+	hoverareacastrange="600"
+	alwaysshowtimer="true"
+>
+	<constant name="percent_maxhp" value="6,8,10,12" adjustment="none" />
+	
+	
+	<onstart>
+		<spawnunit name="Gadget_Nikolai_Ability3" target="source_position" count="1" pushentity="true" />
+		<bind target="stack_entity" entity="source_entity" position="false" />
+		<setproxy target="stack_entity" />
+	
+		<starttimer duration="6300" />
+		<setaccumulator value="0" />
+		
+		<areaofeffect
+			radius="600"
+			targetselection="all"
+			targetscheme="visible_enemy_units"
+			effecttype="Magic"
+		>
+		
+			<targettype type="Boss">
+				<getconstant name="percent_maxhp" adjustmentsource="this_entity" />
+				<setvar0 a="result" b="0.3" op="mult" />
+				<setvar0 a="var0" b="100" op="div" />
+				<setvar0 a="var0" b="target_maxhealth" op="mult" />
+				<damage effecttype="Magic" significant="true" amount="1" b="var0" op="mult" />
+				<changeaccumulator b="var0" op="add" />
+
+				<recordheroaggression  />
+				<aggression />
+			
+				<spawnprojectile name="Projectile_Nikolai_Ability3_Visual" source="target_entity" target="this_proxy_entity" />
+			
+			</targettype>
+			<else>
+				<getconstant name="percent_maxhp" adjustmentsource="this_entity" />
+				<setvar0 a="result" b="100" op="div" />
+				<setvar0 a="var0" b="target_maxhealth" op="mult" />
+				<damage effecttype="Magic" significant="true" amount="1" b="var0" op="mult" />
+				<changeaccumulator b="var0" op="add" />
+
+				<recordheroaggression  />
+				<aggression />
+			
+				<spawnprojectile name="Projectile_Nikolai_Ability3_Visual" source="target_entity" target="this_proxy_entity" />
+			
+			</else>
+		
+		</areaofeffect>
+		<compare a="result" b="0" op="gt" >
+			<spawnprojectile name="Projectile_Nikolai_Ability3" source="target_entity" target="source_entity" />
+		</compare>
+	
+	</onstart>
+
+	<onimpact >
+		
+
+
+	</onimpact>
+	
+	<modifier key="Nikolai_flying" modpriority="100" disabled="true"
+	/>
+	
+
+	
+</ability>

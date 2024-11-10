@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="Dialogue_Message_Model_Panel">
+		<modelpanel
+			name="{id}"
+			group="Dialogue_Message_Models"
+			width="90%"
+			height="90%"
+			valign="center"
+			align="center"
+			visible="{visible=0}"
+			noclick="1"
+			anim="tutorial_1_2"
+			lookat="false"
+			camerapos="{camerapos=3 145 120}" 
+			cameraangles="{cameraangles=0 0 180}"
+			modelangles="{modelangles=0 0 30}"
+			camerafov="22"			
+			cameranear="1"
+			carmerafar="{carmerafar=180}"
+			depthclear="true"
+			depthcompress="true"
+			sunazimuth="130"
+			sunaltitude="20"
+			suncolor=".72 .7 .68"
+			ambientcolor="{ambientcolor=.8 .8 .7}"
+			model="{model}"
+			effect="{effect}"
+		/>
+	</template>
+	
+	<template name="Dialogue_Message_Text_Cracks">
+		<image
+			x="{x=0}"
+			y="{y=0}"
+			name="Dialogue_Message_Text_Crack{number}"
+			group="Dialogue_Message_Text_CracksGroup"
+			texture="/ui/game/dialogue/textures/crack_type{image}.tga"
+			width="0h"
+			height="0h"
+			hflip="{hflip=0}"
+			vflip="{vflip=0}"
+			align="{align=center}"
+			valign="{valign=center}"
+			noclick="1"
+			visible="0"
+		/>
+	</template>
+	
+	<template name="Dialogue_Message_Model_TopFrame">
+		<!-- Restrict within panel limits -->
+		<panel width="137%" height="120%" align="left" valign="top" noclick="1">
+			<image name="Dialogue_Message_Model_GlowConstant" texture="/ui/game/dialogue/textures/model_glow.tga" noclick="1"/>
+			<image name="Dialogue_Message_Model_GlowFlicker" texture="/ui/game/dialogue/textures/model_glow.tga" noclick="1"/>
+			
+			<!-- Doors-->
+			<image y="3%" x="-12%" name="Dialogue_Message_Model_TopDoor" texture="/ui/game/dialogue/textures/model_doorsTop_ally.tga" valign="top" align="left" noclick="1"/>
+			<image y="-15%" x="-12%" name="Dialogue_Message_Model_BottomDoor" texture="/ui/game/dialogue/textures/model_doorsBottom_ally.tga" valign="bottom" align="left" noclick="1"/>
+			
+			<image name="Dialogue_Message_Model_TopFrame" texture="/ui/game/dialogue/textures/model_frame_ally.tga" noclick="1"/>
+			<image name="Dialogue_Message_Model_DetailTL" x="-4%" y="-1%" texture="/ui/game/dialogue/textures/detail_ally_tl.tga" width="30%" height="15%" align="left" valign="top" noclick="1"/>
+			<image name="Dialogue_Message_Model_DetailTR" x="-21%" y="-3%" texture="/ui/game/dialogue/textures/detail_ally_tr.tga" width="30%" height="15%" align="right" valign="top" noclick="1"/>
+			
+			<!-- Boss Decal, within a panel for centering of animations -->
+			<panel x="-36%" y="-14%" width="90%" height="45%" align="left" valign="top" noclick="1">
+				<image name="Dialogue_Message_Model_Icon" texture="/ui/game/dialogue/textures/decal_boss.tga" align="center" valign="center" noclick="1"/>
+			</panel>
+		</panel>
+		
+		<image y="8%" name="Dialogue_Message_Model_DetailB" texture="/ui/game/dialogue/textures/detail_ally_b.tga" width="135%" height="32%" align="center" valign="bottom" noclick="1"/>
+	</template>
+	
+	<template name="Dialogue_Message_Text_Base">
+		<panel x="-2h" y="1%" width="106%" height="104%" valign="center" noclick="1">
+			<!--<frame x="-1h" y="-0.2h" texture="/ui/elements:squareglow" color="0 0 0 .9" width="+0.5h" height="78%" align="center" valign="center" borderthickness="10s" noclick="1"/>-->
+			
+			<image name="Dialogue_Message_Text_BaseC" texture="/ui/game/dialogue/textures/windowWide_stoneCenter.tga" width="-5.9h" height="100%" align="center" valign="center" noclick="1"/>
+			<image name="Dialogue_Message_Text_BaseL" texture="/ui/game/dialogue/textures/windowWide_stoneLeft.tga" width="3h" height="100%" align="left" valign="center" noclick="1"/>
+			<image name="Dialogue_Message_Text_BaseR" texture="/ui/game/dialogue/textures/windowWide_stoneRight.tga" width="3h" height="100%" align="right" valign="center" noclick="1"/>
+			
+			<image name="Dialogue_Message_Text_GlowC" texture="/ui/game/dialogue/textures/windowWide_glowCenter.tga" width="-5.9h" height="100%" align="center" valign="center" noclick="1"/>
+			<image name="Dialogue_Message_Text_GlowL" texture="/ui/game/dialogue/textures/windowWide_glowLeft.tga" width="3h" height="100%" align="left" valign="center" noclick="1"/>
+			<image name="Dialogue_Message_Text_GlowR" texture="/ui/game/dialogue/textures/windowWide_glowRight.tga" width="3h" height="100%" align="right" valign="center" noclick="1"/>
+		</panel>
+	</template>
+	
+	<!-- Smoke no longer needed
+	<template name="Dialogue_Message_Text_SmokeHolder">
+		<panel x="{x=0h}" y="{y=0h}" width="6h" height="6h" align="right" valign="bottom" noclick="1">
+			<instance name="Dialogue_Message_Text_Smoke" number="{number}_a" direction="{direction}" visible="0"/>
+			<instance name="Dialogue_Message_Text_Smoke" number="{number}_b" direction="{direction}" visible="0"/>
+			<instance name="Dialogue_Message_Text_Smoke" number="{number}_c" direction="{direction}" visible="0"/>
+		</panel>
+	</template>
+	
+	<template name="Dialogue_Message_Text_Smoke">
+		<image
+			name="Dialogue_Message_Smoke_{number}"
+			group="Dialogue_Message_Text_Smoke{direction}"
+			texture="/ui/game/dialogue/textures/smoke_effect.tga"
+			width="8h"
+			height="8h"
+			noclick="1"
+			visible="0"
+		/>
+	</template>
+	-->
+		
+	<template name="Dialogue_Message_Text_Rubble">
+		<panel x="{x=4.5h}" y="{y=2.5h}" width="6h" height="6h" align="right" valign="bottom" noclick="1">
+			<image name="Dialogue_Message_Text_Rubble{number}" group="{group=Dialogue_Message_Text_Rubbles}" texture="/ui/game/dialogue/textures/rubble.tga" width="0h" height="0h" valign="top" noclick="1" visible="0"/>
+		</panel>
+	</template>
+	
+	<!--
+	===========================	
+	End-Game Screen
+	===========================
+	-->	
+	<template name="Cinematic_EndGame_resourcesImage" >
+		<panel name="{id}_imageHolder" y="10%" width="80%" height="80@" align="center" noclick="1">
+			<image texture="/ui/main/shared/textures/circular.tga" color="{imagecolor}" align="center" valign="center" noclick="1"/>
+			<image texture="/ui/main/shared/textures/{texture}.tga" noclick="1"/>
+		</panel>
+	</template>
+	
+	<template name="Cinematic_EndGame_accountIconImage" >
+		<panel name="{id}_imageHolder" y="10%" width="75%" height="75@" align="center" noclick="1">
+			<image width="145%" height="145@" texture="/ui/main/shared/textures/circular.tga" color="{imagecolor}" align="center" valign="center" noclick="1"/>
+			<panel width="90%" height="90@" color="black" align="center" valign="center" noclick="1"/>
+			<image x="-1%" width="90%" height="90@" texture="/ui/shared/textures/account_icons/{texture}.tga" align="center" valign="center" noclick="1"/>
+			<image texture="/ui/main/shared/textures/iconframe_displayinfo2.tga" noclick="1"/>
+		</panel>	
+	</template>
+	
+	<template name="Cinematic_EndGame_quest_template" >
+		<panel width="33.33%" height="100%" noclick="1">
+			<modelpanel name="{id}_MP1" group="endgame_modelPanel" width="300%" height="300%" align="center" valign="center" noclick="1" visible="0"
+				effect="/maps/bastact1/resources/ui/fx/UI_poof.effect"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -400 -300" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+			/>
+				
+			<panel width="300%" height="300%" name="{id}" valign="center" align="center" noclick="1" visible="0"> 			
+				<panel width="92%" align="center" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="2h" color="0.07 0.04 0.04 0.95" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="2h" color="invisible" bordercolor="#3e2228" noclick="1"/>	
+					
+					<instance name="Cinematic_EndGame_{imagetype}" id="{id}" texture="{texture}" imagecolor="{imagecolor}"/>
+						
+					<panel name="{id}_resources" y="10%" width="80%" height="80@" align="center" noclick="1">
+						<panel height="23%" width="45%" align="right" valign="bottom" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1h" color="0 0 0 0.95" noclick="1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="1h" color="invisible" bordercolor="#1b2020" noclick="1"/>	
+							
+							<label group="origin_resourceLG" font="maindyn_22" content="{amount}" color="{color}" outline="1" outlinecolor="{outlinecolor}" textalign="center" textvalign="center" align="center" valign="center" noclick="1"/>
+							<label group="origin_resourceSM" font="maindyn_16" content="{amount}" color="{color}" outline="1" outlinecolor="{outlinecolor}" textalign="center" textvalign="center" align="center" valign="center" noclick="1" visible="0"/>
+						</panel>
+					</panel>
+					
+					<label group="origin_resourceLG" y="-20%" font="maindyn_24" content="{label}" color="#773d56" outline="1" outlinecolor="#040103" textalign="center" align="center" valign="bottom" noclick="1" fitx="1" grow="1"/>
+					<label group="origin_resourceSM" y="-20%" font="maindyn_18" content="{label}" color="#773d56" outline="1" outlinecolor="#040103" textalign="center" align="center" valign="bottom" noclick="1" fitx="1" grow="1" visible="0"/>
+				
+					<frame group="origin_alreadyCompleted" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="2h" color="0 0 0 0.6" noclick="1"/>
+					
+					<image group="origin_alreadyCompleted" y="5%" x="11%" width="50%" height="50@" texture="/ui/main/shared/textures/stylized_check.tga" align="right" valign="bottom" noclick="1"/>
+				</panel>
+			</panel>
+			
+			<modelpanel name="{id}_MP2" group="endgame_modelPanel" width="300%" height="300%" align="center" valign="center" noclick="1" visible="0"
+				effect="/maps/bastact1/resources/ui/fx/UI_sparkles.effect"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -300 -300" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+			/>
+		</panel>
+	</template>
+	
+	<template name="standardButton_endGame">
+		<button name="{id}" width="{width=100%}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onloadlua="self:DoEventN(9)"
+			onevent9lua="
+				libButton2.initializeButton(self, '{id}', 'standardButton2', '{rendermode=normal}')
+				if Empty('{id}') then
+					FindUnnamedWidget(self, 'standardButton')
+				end
+			"
+			onclicklua="{onclicklua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />
+				<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" width="{labelWidth=100%}" height="{labelHeight=100%}" align="{labelAlign}" valign="{labelValign}" textalign="center" textvalign="center" font="{font=maindyn_20}" outline="1" color="{labelcolor=white}" shadow="{shadow=false}" content="{label=temp_button}"/>
+				<instance name="{bodyTemplate}"/>
+			</panel>
+		</button>
+	</template>
+</package>

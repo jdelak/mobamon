@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastact1_Barrel"
+
+	speed="1000"
+	gravity="5000"
+
+	modelscale="4"
+	model="/shared/models/invis.mdf"
+	traileffect=""
+	
+	deatheffect=""
+	canturn="0"
+	flying="false"
+	flyheight="0"
+	touchradius="105"
+	touchcliffs="false"
+	hazardradius="300"
+	hazardoffset="200"
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="Doom_Door"
+	touchignoreinvulnerable="true"
+>
+	
+
+
+<ontouch>
+	<kill target="proxy_entity" />
+	<kill target="this_entity" />
+	<playeffect effect="effects/fireball_impact2.effect" source="this_position" target="this_position" />
+	<playeffect effect="effects/death.effect" source="this_position" target="this_position" />
+				<cantarget targetscheme="Rook_Reveal_Gadget" ignoreinvulnerable="true">
+					<kill target="target_entity"/>
+				</cantarget>
+					<else>
+						<cantarget targetscheme="player_controlled_units">
+							<damage amount="1000" effecttype="Magic" />
+						</cantarget>
+							<else>
+								<cantarget targetscheme="enemy_units">
+									<damage amount="200" effecttype="Magic" />
+								</cantarget>
+									<else>
+										<cantarget targetscheme="ally_units">
+											<damage amount="200" effecttype="Magic" />
+										</cantarget>
+
+									</else>
+								</else>
+							</else>
+</ontouch>
+
+<onimpact>
+	<playeffect effect="effects/impact.effect" source="target_entity" target=""/>
+	<setpos1 position="source_position" offsetspace="source_entity" offset="0 500 50" />
+	<setpos2 position="source_position" offsetspace="source_entity" offset="100 5000 50" />
+	<spawnprojectile name="Projectile_Bastact1_Barrel2" source="pos1" target="pos2" bind="proxy_entity" proxy="proxy_entity" />
+</onimpact>	
+
+</projectile>

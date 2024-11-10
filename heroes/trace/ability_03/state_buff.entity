@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Trace_Ability3_AttackBuff"
+	
+	icon="icon.tga"
+
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	ishidden="true"
+>
+	<onattack>
+		<getconstant name="attack_charged" adjustmentsource="this_entity" />
+
+		<bonusdamageadd target="" a="result" />	
+		<expire />
+	</onattack>
+
+	<onattackstart >
+		<playanim name="attack_1" speed="source_attackspeed" target="source_entity" />
+	</onattackstart>
+	
+	<onattackimpact>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" occlude="true"/>
+	</onattackimpact>
+
+
+
+</state>

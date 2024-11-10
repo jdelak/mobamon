@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="0" useentityeffectscale="1" >
+
+<definitions>
+
+	<modifier
+		name="modifier0"
+		life="3700"
+		startalpha="1"
+		midalpha=".1"
+		endalpha=".1"
+		color="1"
+		
+	/>
+	<modifier
+		name="modifier1"
+		life="300"		
+		alpha="0"
+		color="0"	
+		scale="1"		
+		
+	/>
+	
+	<particlesystem name="system0" space="world" scale="1.4">
+
+		<sound
+			life="4000"
+			linearfalloff="true" 
+			falloffstart="500"
+			falloffend="1800"
+			volume=".8" 
+			sample="../sounds/sfx_teleport_start.wav"
+		/>
+		
+		<sound
+			life="3000"
+			linearfalloff="true" 
+			falloffstart="500"
+			falloffend="1800"
+			volume=".75" 
+			sample="/shared/homecoming_stone/sounds/sfx_teleport_loop.wav"
+		/>
+	
+		<model
+			delay="3200"
+			life="200"
+			startcolor="1"
+			endcolor="0"	
+			startscale="1"	
+			endscale="0"
+			parentmodel="true"
+			parentskeleton="true"
+			material="/shared/effects/tp/tp2.material"		
+		>		
+
+		
+			<billboard			
+				bone="_bone_centerofchest"
+				life="200"
+				color=".2 .8 .8"
+				position="0 0 170"
+				startscale="28"
+				endscale="1"
+				depthbias="-50"	
+									
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+		</model>	
+		
+
+		<model
+			delay="0"
+			life="3200"
+			startcolor="1"
+			endcolor="1"	
+			
+			
+			parentmodel="true"
+			parentskeleton="true"
+			material="/shared/effects/tp/tp2.material"	
+			
+		/>
+		
+
+		
+		<groundsprite										
+			alpha="1"
+			delay="0"
+			framespeed="0.23"
+			startframe="0"
+			endframe="1"
+			color="1 1 1"
+			size="80"
+			
+							
+			
+			position="0 0 50"
+			material="/shared/effects/smaterials/tp.material"
+		/>		
+		
+		
+			<!--		-->		
+		<light
+			delay="1000"
+			startcolor="0 0 0"
+			endcolor="1 2 3"			
+			position="0 0 100"
+			life="500"
+			falloffstart="100"
+			falloffend="300"
+		/>
+		<light
+			delay="1500"			
+			color="1 2 3"			
+			position="0 0 100"
+			life="1000"
+			falloffstart="100"
+			falloffend="300"
+		/>
+		<light
+			delay="2500"			
+			endcolor="0 0 0"
+			startcolor="1 2 3"		
+			position="0 0 100"
+			life="1000"
+			falloffstart="100"
+			falloffend="300"
+		/>		
+				
+		<billboard				
+			bone="_bone_centerofchest"
+			delay="0"				
+			life="3200"
+			color=".2 .8 .8"
+			position="0 0 0"
+			scale="5"
+			depthbias="50"					
+			material="/shared/effects/smaterials/streak_flare.material"
+		/>			
+		
+
+		<template name="track">	
+		
+			 
+		
+			<trackeremitter
+				delay="510"
+				bone="{bone}"
+				owner="source"
+				
+				tracktype="linear"
+				trackspeed="5"
+				drag="0"
+				spawnrate="20"
+				particlelife="430"
+				gravity="0"
+				speed="132"
+				acceleration="0.1"
+				offsetsphere="4"
+				material="/shared/effects/smaterials/neb_blend.material"
+			>
+				<particle
+					turn="0"
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-30"
+					maxanglespeed="30"
+					startalpha="0"
+					midalpha=".4"
+					endalpha="0"
+					color="0 1 1"				
+					startsize="55"
+					endsize="0"
+				>
+				</particle>
+			</trackeremitter>		
+			<trackeremitter
+				delay="510"
+				bone="{bone}"
+				owner="source"
+				
+				tracktype="linear"
+				trackspeed="31"
+				drag="0"
+				spawnrate="110"
+				particlelife="1730"
+				gravity="0"
+				speed="132"
+				acceleration="0.2"
+				offsetsphere="21"
+				material="/shared/effects/smaterials/streak_flare.material"
+			>
+				<particle
+					
+					turn="1"
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-30"
+					maxanglespeed="30"
+					startalpha="0"
+					midalpha=".4"
+					endalpha="0"
+					startcolor="0"				
+					midcolor="0.3"
+					endcolor="0"
+					midcolorpos=".2"
+					startsize="15"
+					endsize="0"
+				>
+				</particle>
+			</trackeremitter>		
+			<billboard				
+				bone="{bone}"
+				delay="500"				
+				life="1000"
+				position="0 0 0"
+				startscale="0"
+				
+				endscale="3"
+				roll="{angle}"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+			<billboard				
+				bone="{bone}"
+				delay="1500"				
+				life="1000"
+				position="0 0 0"
+				
+				scale="3"
+				
+				roll="{angle}"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+		</template>
+		
+		
+		<instance name="track" bone="_bone_righthand" scale="0.5" angle="0"/>
+		<instance name="track" bone="_bone_lefthand" scale="0.5" angle="0"/>
+		<instance name="track" bone="_bone_centerofchest" scale="4" angle="90"/>	
+
+
+		
+		
+		
+		
+		
+		
+		
+		<simpleemitter
+			spawnrate="6"
+			particlelife="2400"
+			gravity="-1.5"
+			minspeed="0"
+			maxspeed="100"
+			drag="0"
+			acceleration="0"
+			material="/shared/effects/smaterials/whitedot.material"
+			offsetsphere="90 90 50"
+			position="0 0 630"
+			direction="0 0 1"
+			minangle="0"
+			maxangle="1"
+			depthbias="-222"
+		>
+			<particle
+				startcolor="0 0 0"
+				midcolor=".2 .1 .4"
+				endcolor="0 0 0"
+				scale="3.1"
+				midalphapos="0.9"
+				startheight="110"
+				endheight="600"
+				width="20"
+				depthbias="-75"
+				position="0 0 4"
+				lockup="true"
+				pitch="0"
+			>
+			</particle>
+		</simpleemitter>
+
+					
+
+		<simpleemitter
+			spawnrate="6"
+			particlelife="2400"
+			gravity="-1.5"
+			speed="4"
+			drag="0"
+			acceleration="0"
+			material="/shared/effects/smaterials/whitedot.material"
+			offsetsphere="90 90 0"
+			position="0 0 630"
+			direction="0 0 1"
+			depthbias="-222"
+		>
+			<particle
+				startcolor="0 0 0"
+				midcolor="0 .05 .1"
+				endcolor="0 0 0"
+				scale="3.1"
+				midalphapos="0.9"
+				minstartheight="750"
+				maxstartheight="1750"
+				endheight="750"
+				width="50"
+				depthbias="-75"
+				position="0 0 4"
+				lockup="true"
+				pitch="0"
+			>
+			</particle>
+		</simpleemitter>
+
+
+		<simpleemitter
+			spawnrate="116"
+			particlelife="2400"
+			gravity="1.5"
+			speed="14"
+			drag="0"
+			acceleration="0"
+			material="/shared/effects/smaterials/whitedot.material"
+			offsetsphere="90 90 550"
+			position="0 0 630"
+			direction="0 0 1"
+			depthbias="-222"
+		>
+			<particle
+				startcolor="0 0 0"
+				midcolor="0 .5 .5"
+				endcolor="0 0 0"
+			
+				midalphapos="0.9"
+				scale="1"				
+				position="0 0 0"				
+			>
+			</particle>
+		</simpleemitter>		
+		
+
+		
+	</particlesystem>
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<wait duration="1000"/>
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<wait duration="2200"/>
+	<spawnmodifier instance="instance2" modifier="modifier1"/>  
+	
+	<waitfordeath instance="instance0" />	
+	<!-- <die /> -->
+</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

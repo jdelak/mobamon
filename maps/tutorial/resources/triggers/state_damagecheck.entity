@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_DamageCheck"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	deathpersist="true"
+>
+
+	<ondamaged>
+		<compare a="source_health_percent" b="0.4" op="lt" >
+			<condition test="not_hasstate State_Tutorial_TipBusy" target="this_owner_entity">
+				<targettype type="alive" target="this_owner_entity">
+					<setscriptvalue name="goheal" value="1" />
+					<applystate name="State_Tutorial_TipBusy" target="this_owner_entity" duration="8000" />
+				</targettype>
+			</condition>
+		</compare>
+	</ondamaged>
+	
+
+
+</state>

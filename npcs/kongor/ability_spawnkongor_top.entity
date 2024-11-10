@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_SpawnKongor_Top"
+	
+	icon="icon.tga"
+	
+	casttime="0"
+	castactiontime="0"
+	
+	actiontype="no_target"
+	manacost="0"
+	
+	frontqueue="true"
+	inheritmovement="true"
+	cooldowntime="0"
+	canusewhiledead="true"
+	nostun="true"
+	freecast="false"
+	maxcharges="1"
+	
+>
+	<onframe>
+		<compare a="accumulator" b="1" op="lt">
+			<starttimer duration="44900" />
+			<setaccumulator value="1" />
+
+			<!-- set charges > 0 depending where the default spawn position is for krytos based on the killed logic in tower master -->
+			<compare a="target_team" b="1" op="eq" target="source_entity">
+				<pushentitybyname name="good_creep1" />
+				<areaofeffect
+					radius="2050"
+					targetselection="closest"
+					maxtotalimpacts="1"
+					targetscheme="any_marker"
+					effecttype=""
+					ignoreinvulnerable="true"
+					center="stack_entity"
+				>
+					<areaofeffect
+						radius="500"
+						targetselection="closest"
+						maxtotalimpacts="1"
+						effecttype=""
+						ignoreinvulnerable="true"
+						targetscheme="kongor_spawner"
+						center="target_entity"
+					/>
+						
+					<compare a="result" b="1" op="ge">
+						<setcharges a="1" entity="this_entity" />
+						<applystate name="State_Kongor_LaneWasManuallySelected_Top" continuous="true" target="source_entity"  proxy="this_entity" />
+						<expirestate name="State_Kongor_LaneWasManuallySelected_Mid" target="source_entity" />
+						<expirestate name="State_Kongor_LaneWasManuallySelected_Bottom" target="source_entity" />
+					</compare>
+				</areaofeffect>
+			</compare>
+			<compare a="target_team" b="2" op="eq" target="source_entity">
+				<pushentitybyname name="bad_creep1" />
+				<areaofeffect
+					radius="2050"
+					targetselection="closest"
+					maxtotalimpacts="1"
+					targetscheme="any_marker"
+					effecttype=""
+					ignoreinvulnerable="true"
+					center="stack_entity"
+				>
+					<areaofeffect
+						radius="500"
+						targetselection="closest"
+						maxtotalimpacts="1"
+						effecttype=""
+						ignoreinvulnerable="true"
+						targetscheme="kongor_spawner"
+						center="target_entity"
+					/>
+						
+					<compare a="result" b="1" op="ge">
+						<setcharges a="1" entity="this_entity" />
+						<applystate name="State_Kongor_LaneWasManuallySelected_Top" continuous="true" target="source_entity"  proxy="this_entity" />
+						<expirestate name="State_Kongor_LaneWasManuallySelected_Mid" target="source_entity" />
+						<expirestate name="State_Kongor_LaneWasManuallySelected_Bottom" target="source_entity" />
+					</compare>
+				</areaofeffect>
+			</compare>
+
+		</compare>
+	</onframe>
+	
+	<ontimer>
+		<setactivemodifierkey entity="source_entity" name="" />
+	</ontimer>
+	
+	<onimpact>
+		<applystate name="State_Kongor_LaneWasManuallySelected_Top" continuous="true" target="source_entity"  proxy="this_entity" />
+		<expirestate name="State_Kongor_LaneWasManuallySelected_Mid" target="source_entity" />
+		<expirestate name="State_Kongor_LaneWasManuallySelected_Bottom" target="source_entity" />
+
+		<!-- logic for moving the krytos-indicator around -->
+		<compare a="target_team" b="1" op="eq" target="source_entity">
+			<pushentitybyname name="good_creep1" />
+			<areaofeffect
+				radius="2050"
+				targetselection="closest"
+				maxtotalimpacts="1"
+				targetscheme="any_marker"
+				effecttype=""
+				ignoreinvulnerable="true"
+				center="stack_entity"
+			>
+				<setpos0 position="target_position"  />
+				<areaofeffect
+					global="true"
+					maxtotalimpacts="1"
+					targetselection="all"
+					targetscheme="kongor_spawner"
+					ignoreinvulnerable="true"
+				>
+					<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+					<teleport source="target_entity" positionorigin="stack_entity" target="pos0" interpolate="false" facetarget="true" specifyangle="true" angle="180"/>
+				</areaofeffect>
+			</areaofeffect>
+		</compare>
+
+		<compare a="target_team" b="2" op="eq" target="source_entity">
+			<pushentitybyname name="bad_creep1" />
+			<areaofeffect
+				radius="2050"
+				targetselection="closest"
+				maxtotalimpacts="1"
+				targetscheme="any_marker"
+				effecttype=""
+				ignoreinvulnerable="true"
+				center="stack_entity"
+			>
+				<setpos0 position="target_position"  />
+				<areaofeffect
+					global="true"
+					maxtotalimpacts="1"
+					targetselection="all"
+					targetscheme="kongor_spawner"
+					ignoreinvulnerable="true"
+				>
+					<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+					<teleport source="target_entity" positionorigin="stack_entity" target="pos0" interpolate="false" facetarget="true" specifyangle="true" angle="180"/>
+				</areaofeffect>
+			</areaofeffect>
+		</compare>
+
+	</onimpact>
+	
+</ability>

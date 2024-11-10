@@ -1,0 +1,3732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="bastact1_game_rules"
+
+	startinggold="0"
+	repickcost="0"
+	randombonus="0"
+	
+	goldpertick="0"
+	experiencepertick="0"
+	goldincomeinterval="675"
+	experienceincomeinterval="1000"
+	
+	experiencemultiplier="1.0"
+	
+	norepick="true"
+	noswap="true"
+	forcerandom="false"
+	
+	allowallheroes="false" 
+
+	heropoolsize="0"
+	bancount="0"
+	usecaptains="false"
+	
+	spawnpowerups="true"
+	alternatepicks="false"
+	
+	respawntimeperlevel="4000"
+	repickonrespawn="false"
+	
+	nolobby="true"
+	noheroselect="true"
+	nodev="true"
+	
+>
+	<onaddplayer>
+		<setteamsize team="0" size="1" />
+		<changeteam entity="target_entity" team="1" />
+	</onaddplayer>
+
+	<onprematchstart> 	
+		<spawnthread name="bastact1_initialize" />
+	</onprematchstart>
+
+	<scriptthread name="bastact1_initialize">
+
+		<!-- Initialize Bastion and the camera -->
+		<foreachplayer excludebots="true">
+			<setoverlayinterface entity="target_entity" name="game_bastact1" />
+		</foreachplayer>
+
+		<waitforallclientsfirstsnapshot />
+		
+		<!-- Initalize the script values for the main and side quests	 -->
+		<setscriptvalue name="waypoint_hit" value="0" />
+		<setscriptvalue name="spawn_monsters" value="0" />
+		<setscriptvalue name="campoint_hit" value="0" />
+		<setscriptvalue name="guard_dead" value="0" />
+		<setscriptvalue name="zoom_in" value="0" />
+		<setscriptvalue name="monsters_killed" value="0" />
+		<setscriptvalue name="loop_spawn1" value="0" />
+		<setscriptvalue name="door_closed" value="0" />
+		<setscriptvalue name="half_damage" value="0" />
+		<setscriptvalue name="has_club" value="0" />
+		<setscriptvalue name="hitseweraffector" value="0"/>
+		<setscriptvalue name="guard_waypoint_hit" value="0" />
+		<setscriptvalue name="isDead" value="0" />
+		<setscriptvalue name="death" value="0" />
+		<setscriptvalue name="guard_spider" value="0" />
+		<setscriptvalue name="RookThroughWindow" value="0" />
+		<setscriptvalue name="AllGuardsDead" value="0" />
+		<setscriptvalue name="endStage1" value="0" />
+		<setscriptvalue name="endStage2" value="0" />
+		<setscriptvalue name="wait_time" value="0" />
+		<setscriptvalue name="flyspot" value="0"/>
+		<setscriptvalue name="found_opening" value="0"/>
+		<setscriptvalue name="DoomDoor_Defeat" value="0"/>
+		<setscriptvalue name="stationary_guard" value="0" />
+		<setscriptvalue name="guard_talk" value="0" />
+		<setscriptvalue name="guard_is_talking" value="0" />
+		<setscriptvalue name="inWineCellar1" value="0" />
+		<setscriptvalue name="inWineCellar2" value="0" />
+		<setscriptvalue name="playTensionMusic" value="0" />
+		<setscriptvalue name="startTension" value="0" />
+		<setscriptvalue name="video_finished" value="0" />
+
+		<setscriptvalue name="ability0_isVisble" value="0" />
+		<setscriptvalue name="ability1_isVisble" value="0" />
+		<setscriptvalue name="ability2_isVisble" value="0" />
+		<setscriptvalue name="ability3_isVisble" value="0" />
+
+		<!-- For determining which death variable to increment -->
+		<setscriptvalue name="analytics_playerDeath" value="0" />
+		<setscriptvalue name="analytics_InSewer" value="0" />	
+		<setscriptvalue name="analytics_InWineCellar" value="0" />
+		<setscriptvalue name="analytics_inGauntlet" value="0" />
+		<setscriptvalue name="analytics_InChaseScene" value="0" />
+		<setscriptvalue name="analytics_InHeroDefense" value="0" />
+		<setscriptvalue name="analytics_InWizardBoss" value="0" />
+		<setscriptvalue name="analytics_InExecutionerBoss" value="0" />
+		<setscriptvalue name="analytics_InExecutionerBoss_stage2" value="0" />
+		<setscriptvalue name="analytics_InExecutionerBoss_stage3" value="0" />
+
+		<foreachplayer excludebots="true">
+			<!--Map Specific Turn Off Triggers hide the abilities on the UI completely-->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_tabbing" /> <!-- Insures tab is disabled, but the hotkey is still kept -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_respawnTimer" /> <!-- respawn timer is hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_minimap" /> <!-- minimap is hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_items" /> <!-- player items are hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_arcadeText" /> <!-- arcade text is hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_buildControls" /> <!-- build controls are hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_abilityPanel" /> <!-- ability panel is hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_abilityBarPet" /> <!-- pet ability panel is hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_heroInfos" /> <!-- top hero portraits are hidden -->
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_shopItemList" />
+			<clientuitrigger name="genericMapTriggerHide" param="mapWidgetVis_shopQuickSlots" />
+
+			<clientuitrigger name="altInfoSelfMapTriggerHide" param="manaVis"/> <!-- player mana is hidden -->
+			<clientuitrigger name="altInfoSelfMapTriggerHide" param="levelVis"/> <!-- player level is hidden -->
+			<clientuitrigger name="altInfoSelfMapTriggerShow" param="ifFullHealthHideThis"/> <!-- player health is customized for SPE -->
+			
+			<clientuitrigger name="altInfoHeroMapTriggerShow" param="stunVis"/> <!-- stun bars are visible -->
+			<clientuitrigger name="altInfoHeroMapTriggerHide" param="healthVis"/> <!-- all 'other' hero entity healthbars are hidden for hero entities already created at this point -->
+			
+			<!-- Turning Off the Abilities -->
+			<clientuitrigger name="mapTriggerAbilityHide" param="ShowActiveAbility0" />
+			<clientuitrigger name="mapTriggerAbilityHide" param="ShowActiveAbility1" />
+			<clientuitrigger name="mapTriggerAbilityHide" param="ShowActiveAbility2" />
+			<clientuitrigger name="mapTriggerAbilityHide" param="ShowActiveAbility3" />
+			
+			<clientuitrigger name="mapTriggerActObjectives" param="act1" /> <!-- act 1 objectives -->
+
+			<wait duration="250" />
+			<!-- We split the sound and video and are playing them separately
+			Sound is being played through the interface and tutorial_config -->
+			<!-- <clientuitrigger name="bastact1_opening_sound" /> -->
+			<wait duration="60" />
+			<clientuitrigger name="video_start" param="opening"/>
+		</foreachplayer>
+
+		<waituntilmessage name="video_finished" value="1" />
+		<setscriptvalue name="video_finished" value="0" />
+
+		<foreachplayer excludebots="true">		
+			<clientuitrigger name="cinematic_turnOn"/>
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+
+			<setgamephase name="pre_match" duration="0" /> <!-- Without this, the Player can't target Building entities -->
+			<setgold entity="target_entity" value="0" />
+		
+			<spawnthread name="Bastact1_InitializeBastionAndOtherThings" />
+			<spawnthread name="bastact1_initialAnalyticsVariables" />
+			<spawnthread name="bastact1_analytics_monitorPlayerDeaths" />
+
+			<!-- Spawn these threads to start from the beginning -->
+			<spawnthread name="bastact1_sewer_cutscene"/> 
+			<spawnthread name="bastact1_startCinematics" />  
+			<spawnthread name="bastact1_getClub" /> 
+			<spawnthread name="bastact1_prison" />
+
+			<!-- Spawn this to start right before capture
+			<spawnthread name="bastact1_captured" /> -->
+
+			<!-- Spawn this to just fight the executioner -->
+			<!-- <spawnthread name="bastact1_executioner_battle"/> -->
+
+			<!-- Spawn these threads if starting at Hero D
+			<spawnthread name="bastact1_spawn_rook" />
+			<spawnthread name="bastact1_spawn_melee_statues" />
+			<spawnthread name="bastact1_greathall_cinematic" /> -->
+
+			<!-- These are test threads -->
+			<!-- <spawnthread name="bastact1_startGuard2" /> -->
+			<!-- <setentitycullrange value="6666"/> -->
+			<!-- <spawnthread name="bastact1_initializeObjectives" /> -->
+
+			<!--<clientuitrigger name="cinematic_fadeBlackOut" />    This and its corresponding interface nonsense are 100% necessary for UI to work  -->
+		</foreachplayer >
+	</scriptthread>
+
+	<scriptthread name="Bastact1_InitializeBastionAndOtherThings" >
+		<foreachplayer excludebots="true">
+			<!-- Initialize Bastion and the camera -->
+			<spawn name="Hero_Bastion1" />
+			<setent0 name="Hero_Bastion1" />
+			<setowner entity="ent0" player="target_entity" />
+			<sethero entity="target_entity" hero="ent0" />
+			<createcamera name="pcam1" source="ent0"/>
+			<pushability entity="ent0" slot="1" />
+			<setlevel entity="stack_entity" value="1" />
+			<activatemodifierkey name="with_nohitch" entity="stack_entity" />
+
+			<!-- Activating necessary entities -->
+			<spawn name="Rat_Enemy" />
+			<spawn name="bomb1" />
+			<spawn name="Spider_Enemy"/>
+			<setent1 name="Spider_Enemy"/>
+			<expirestate name="State_Bastact1_Spider_Abilities" target="ent1" />
+			<spawn name="Spider_Enemy1"/>
+			<setent1 name="Spider_Enemy1"/>
+			<expirestate name="State_Bastact1_Spider_Abilities" target="ent1" />
+			<spawn name="Box_Breakable"/>
+			<spawn name="door_vo" owner="ent0" />
+			
+			<spawn name="Revive1" owner="ent0" />
+			<spawn name="Cam_Focus"/>
+			<spawn name="enemy_trigger2" owner="ent0"/>
+			<spawn name="rook_trigger1" owner="ent0" />
+			<spawn name="rat_trigger" owner="ent0" />
+			<spawn name="sticky_floor1" owner="ent0" />
+			<spawn name="seweraffector" owner="ent0"/>
+			<spawn name="seweraffector2" owner="ent0"/>
+			<spawn name="babyspider1" />
+			<spawn name="door_locked1" />
+			<spawn name="egg_spawner1" owner="ent0" />
+			<lockshop/>
+
+			<spawnthread name="bastact1_setBreakableCrates" />
+			<!-- Set back to default in get club thread -->
+			<setentitycullrange value="2700"/>
+
+		</foreachplayer >
+	</scriptthread>
+
+	<scriptthread name="bastact1_initialAnalyticsVariables" >
+		<foreachplayer>
+			<clientuitrigger name="bastact1_initializeDeaths" />
+			<clientuitrigger name="bastact1_initializeRespawns" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_setBreakableCrates">
+		<foreachplayer excludebots="true">
+			<setent0 name="bottom_crate1" />
+			<setent1 name="top_crate1" />
+			<setowner entity="ent1" target="ent0" />
+			<setent2 name="top_crate2" />
+			<setowner entity="ent1" target="ent0" />
+
+			<setent0 name="bottom_crate2" />
+			<setent1 name="top_crate3" />
+			<setowner entity="ent1" target="ent0" />
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_prison" >
+		<foreachplayer excludebots="true" >
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<!-- <clientuitrigger name="interface_turnOff"/>	 -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<!-- Dont remove this thread. It's vital for something in the opening sequence-->
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_startCinematics">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<lockcontrol entity="ent0" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<playanim name="idle_2" target="ent0" speed="1"/>
+			<spawn name="executioner_cinematic" owner="ent0"/>.
+
+			<setent1 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<setent2 name="cam_move1"/>
+			<movecamera entity="ent1" positionentity="ent0" useindirectheight="true" newheight="1000" duration="10" block="true"/>
+
+			<wait duration="500"/>
+			<!-- <clientuitrigger name="act1_startCinematicOverlay" />
+			<clientuitrigger name="bastact1_cinematic_executioner1" />
+			<wait duration="7000"/> -->
+
+			<translatestring name="bastact1_cinematic_executioner1_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner1" value="result"/>
+			<wait duration="7000" />
+
+			<clientuitrigger name="act1_endCinematicOverlay" />
+			<clientuitrigger name="cinematic_fadeBlackOutSlow" />
+			<wait duration="1000"/>
+
+			<movecamera entity="ent1" positionentity="ent2" useindirectheight="true" newheight="3000" duration="8000"/>
+			<setcameraheight value="3000"/>	
+			<wait duration="7000"/>
+			<spawnthread name="bastact1_move_executioner"/>
+			<wait duration="1000"/>
+			
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="pcam1"/>
+			<setent2 name="cam_move2"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<movecamera entity="ent1" positionentity="ent2" useindirectheight="true" duration="8000" block="true"/>
+			
+			<wait duration="5000"/>
+			
+			<movecamera entity="ent1" positionentity="ent0" useindirectheight="true" newheight="2500" duration="5000" block="false"/>
+			<wait duration="2000"/>
+			<spawn name="rook_bird_cinematic2" owner="ent0"/>
+			
+			<translatestring name="bastact1_cinematic_executioner3_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner3" value="result"/>
+			<wait duration="result"/>
+			<setcameraheight value="2500"/>
+			<setcamera entity="target_entity"/>
+			<translatestring name="bastact1_cinematic_executioner4_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner4" value="result"/>
+
+			<playanim name="smack_1" target="ent0" speed="1"/>
+			<wait duration="1866"/>
+			<playanim name="idle_2" target="ent0" speed="1"/>
+			
+			<wait duration="1130"/>
+			
+			<playanim name="smack_2" target="ent0" speed="1"/>
+			<wait duration="1000"/>
+			
+			<spawn name="key_pickup1" owner="ent0"/>
+			<wait duration="1133"/>
+			
+			<playanim name="pickup_and_rise_1" target="ent0" speed="1"/>
+			
+			<wait duration="650"/>
+			<translatestring name="bastact1_cinematic_executioner6_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner6" value="result"/>
+			<setent0 name="Hero_Bastion1" />
+			<wait duration="600"/>
+			<setent3 name="rook_bird_cinematic2"/>
+			
+			<delete target="ent3"/>
+			
+			<wait duration="3500"/>
+			<spawn name="bird_fly_trigger" owner="ent0"/>
+			<setent0 name="rook_bird_cinematic"/>
+			<playanim name="flytorch1" target="ent0" speed="1"/>
+
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<setent3 name="Hero_Bastion1" />
+			<unlockcontrol entity="ent3" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent3" />
+			<waituntilmessage name="door_open" value="1"/>
+			
+			<setent3 name="Hero_Bastion1" />
+			<setent2 name="Bastion_Vis_Point"/>
+			
+			<lockcontrol entity="ent3"/>
+			<order command="move" target="ent2" source="ent3"/>
+			<wait duration="1500"/>
+			<spawnunit source="ent3" target="ent3" count="1" lifetime="2500" name="Bastact1_Gadget_Bastvision"/>
+			<order command="stop" target="ent3" source="ent3"/>
+			<playanim name="proph_begin" target="ent3"/>
+			<wait duration="1200"/>
+			<playanim name="proph_idle" target="ent3"/>
+
+			<spawnthread name="bastact1_initializeObjectives" />
+			<wait duration="100" />
+			<clientuitrigger name="spe_objective1Unlock" />
+			<wait duration="100" />
+			<clientuitrigger name="spe_objective1Complete" />
+
+			<activatemodifierkey name="cinematic_mode" entity="ent3" />
+			<clientuitrigger name="objectives_turnOff" />
+			<wait duration="900"/>
+			<playanim name="proph_end" target="ent3"/>
+			<deactivatemodifierkey name="cinematic_mode" entity="ent3" />
+			<clientuitrigger name="objectives_turnOn" />
+			<unlockcontrol entity="ent3"/>
+			<translatestring name="bastact1_cinematic_executioner9_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner9" value="result"/>
+			<clientuitrigger name="bastact1_startCampaign" />
+
+			<!-- Spawn thread that manages the reminder sound effect -->
+			<spawnthread name="bastact1_torchReminder" />
+
+			<waituntilmessage name="flyspot" value="1"/>
+			<wait duration="500"/>
+			<translatestring name="bastact1_cinematic_executioner7_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner7" value="result"/>
+			
+			<playanim name="flytorch2" target="ent0" speed="1"/>
+			<spawn name="foundopening2" owner="ent3"/>
+			
+
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_move_executioner">
+		<foreachplayer excludebots="true">
+			<setent0 name="executioner_cinematic"/>
+			
+			<!-- Move the executioner -->
+			<setent3 name="Hero_Bastion1"/>
+			<spawn name="executioner_droppoint" owner="ent3"/>
+			<setent1 name="executioner_droppoint"/>
+			<order command="move" source="ent0" target="ent1" />
+
+			<!-- Wait until something? -->
+			<waituntilmessage name="drop_status" value="1"/>
+			<translatestring name="bastact1_cinematic_executioner2_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner2" value="result"/>
+			<setvar0 a="result" b="1900" op="sub"/>
+			<wait duration="var0" />
+			<!-- English Duration is 3500 for this message, so we want to subtract the difference between the display time (3500) and the wait time after (1600) to get the 'b' value for our setvar0 (1900) -->
+			<!-- <wait duration="1600"/> -->
+
+			<spawn name="rook_bird_cinematic" owner="ent3"/>
+			<wait duration="400"/>
+			<!-- <spawnunit name="Bastact1_Gadget_Torch" source="ent0" target="ent0" count="1" pushentity="true" /> -->
+			<!-- <wait duration="50 "/> -->
+			
+			<!-- <playanim name="toss" target="stack_entity" speed="1"/> -->
+			<playanim name="toss" target="ent0" speed="1" />
+			
+			<wait duration="2000"/>
+			<spawn name="club_pickup" owner="ent3" />
+			<!-- <wait duration="600" /> -->
+			
+			<setent2 name="executioner_endpoint"/>
+			<!-- Swap the executioner's model -->
+			<activatemodifierkey entity="ent0" name="no_torch"/>
+			<wait duration="100" />
+			<order command="move" source="ent0" target="ent2"/>	
+
+			<wait duration="5000"/>
+			<delete target="ent0"/>
+
+			<waituntilmessage name="has_club" value="2"/>
+
+			<spawn name="foundopening" owner="ent3"/>
+			
+			
+			<!-- Show Bastion's Q on the UI -->
+			<translatestring name="bastact1_cinematic_executioner11_length"/>
+			<clientuitrigger name="bastact1_cinematic_executioner11" value="result"/>
+			<setvar0 a="result" b="2200" op="sub"/>
+			<wait duration="var0" />
+
+			<!-- Play music stinger and layer in flute music -->
+			<playconductorevent name="OurTowerDestroyed" />
+			<!-- bastact1_cinematic_executioner8 is calling the same thing -->
+			<setent0 name="rook_bird_cinematic"/>
+			<playanim name="flybarrels" target="ent0" speed="1"/>
+			<delete target="stack_entity"/>
+
+			<waituntilmessage name="got_opening" value="1"/>
+			<wait duration="2000"/>
+			<delete target="ent0"/>
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_torchReminder" >
+		<foreachplayer>
+			<setent0 name="Hero_Bastion1" />
+			<applystate name="State_Bastact1_Reminder_Torch" target="ent0" pushentity="true" duration="-1" />
+			<waituntilmessage name="has_club" value="2"/>
+			<wait duration="100" />
+			<setscriptvalue name="has_club" value="0"/>
+			<expirestate name="State_Bastact1_Reminder_Torch" target="ent0" />
+		</foreachplayer>		
+	</scriptthread>
+
+	<scriptthread name="bastact1_sewer_cutscene">
+		<foreachplayer excludebots="true">
+
+			<!-- Hit seweraffector2 -->
+			<waituntilmessage name="hitseweraffector" value="1" />
+			<setscriptvalue name="hitseweraffector" value="0" />
+
+			<!-- Show Bastion's W on the UI -->
+			<setent0 name="Hero_Bastion1" />
+			<clientuitrigger name="spe_abilities2" />
+			<pushability entity="ent0" slot="1" />
+			<deactivatemodifierkey name="with_nohitch" entity="stack_entity" />
+			<clientuitrigger name="mapTriggerAbilityShow" param="ShowActiveAbility1" />
+			<setscriptvalue name="ability1_isVisble" value="1" />
+
+			<!-- Analytics -->
+			<setscriptvalue name="analytics_InSewer" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_sewer" />
+
+			<!-- Hit original seweraffector -->
+			<waituntilmessage name="hitseweraffector" value="1" />
+			<translatestring name="bastact1_cinematic_sewer2_length"/>
+			<clientuitrigger name="bastact1_cinematic_sewer2" value="result"/>
+
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<activatemodifierkey name="slowed" entity="ent0" />
+			<setent1 name="pcam1"/>
+			<setent2 name="sewer_cam_point"/>
+			<setent3 name="bast_teleport"/>
+			<!-- <deactivatemodifierkey name="torch_is_lit" entity="ent0" /> -->
+			
+			<!-- ===================== Pacing Break 1 ===================== -->
+			<!-- Get rid of all enemies in the sewer by spawning the pacing affector-->
+			<lockcontrol entity="ent0" />
+			<spawn name="kill_sewer_creeps1" owner="ent0" />
+			<spawn name="kill_sewer_creeps2" owner="ent0" />
+			<clientuitrigger name="cinematic_fadeBlackInSlow"/>
+			<wait duration="600" />
+			<!-- ========================================================== -->
+			
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<clientuitrigger name="cinematic_fadeBlackInSlow"/>
+
+			<spawnthread name="bastact1_startGuard1" />
+			<!-- Spawn two vision gadgets to grant sight to the Player -->
+			<spawn name="vision1a" />
+			<spawn name="vision1b" />
+			<spawn name="vision1c" />
+			<movecamera entity="ent1" positionentity="ent2" useindirectheight="true" newheight="500" duration="5000"/>
+			<setent2 name="bastion_sewer_exit"/>
+			<order command="move" source="ent0" target="ent2" force="true"/>
+			<wait duration="5000"/>
+			<teleport source="ent0" target="ent3"/>
+			<wait duration="500"/>
+			<movecamera entity="ent1" positionentity="ent0" useindirectheight="true" newheight="700" duration="10"/>
+			<wait duration="500"/>
+			<clientuitrigger name="cinematic_fadeBlackOutSlow"/>
+			<deactivatemodifierkey name="slowed" entity="ent0" />
+			<movecamera entity="ent1" positionentity="ent0" useindirectheight="true" newheight="2500" duration="4000"/>
+
+			<setcameraheight value="2500"/>
+			<wait duration="5000"/>
+			<setcamera entity="target_entity"/>
+			<unlockcontrol entity="ent0" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+		</foreachplayer>
+	</scriptthread>		
+
+	<!-- Spawn the first guard and set his patrol	 -->
+	<scriptthread name="bastact1_startGuard1" >
+		<foreachplayer excludebots="true">
+			
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="patrol_trigger1" owner="ent0" />
+			<!-- Spawn the guards and teleport them to their position for cinematics so their patrol gadgets are right -->
+			<spawnthread name="bastact1_spawnGuards1_cinematic" />
+
+			<!-- Create the pacing door -->
+			<spawn name="door_locked_cellar" />
+			<setent0 name="door_locked_cellar" />
+			<activatemodifierkey entity="ent0" name="inactive" />
+			<activatemodifierkey entity="ent0" name="cellar_door" />
+			<playanim name="open_n_stay" target="ent0" />
+
+			<spawn name="guard_deaggro_device" owner="ent0" />
+			<spawn name="barrel_hider1" />
+			<spawn name="barrel_hider2" />
+		 
+		 	<!-- Player hits patrol_trigger1 -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setscriptvalue name="inWineCellar1" value="1" />
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InWineCellar" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_wineCellar1" />
+
+			<spawnthread name="bastact1_startTensionMusic" />
+
+			<!-- Cinematic for explaining to go around guards needs to go here -->
+			<setent0 name="Hero_Bastion1" />
+			<!-- <clientuitrigger name="campaign_startCinematicOverlay" /> -->
+			<clientuitrigger name="interface_turnOff"/>
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<lockcontrol entity="ent0" />
+			<order command="stop" source="ent0" />
+			<wait duration="100" />
+			<translatestring name="bastact1_cinematic_wineceller1_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller1" value="result"/>
+			<wait duration="result" />			
+			
+			<setent1 name="bastion_movepoint1" />
+			<order command="move" source="ent0" target="ent1" force="true"/>
+			<translatestring name="bastact1_cinematic_wineceller14_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller14" value="result"/>
+			<setvar0 a="result" b="500" op="add"/>
+			<wait duration="var0" />
+			
+			<setent1 name="pcam1"/>
+			<setent2 name="cellar_movepoint2"/> <!-- change to guard movepoint -->
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<movecamera entity="ent1" positionentity="ent2" useindirectheight="true" duration="3000"/>
+
+			<wait duration="1600" />
+			<!-- Guard dialogue -->			
+			<translatestring name="bastact1_cinematic_wineceller2_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller2" value="result"/>
+			<wait duration="result" />
+			<translatestring name="bastact1_cinematic_wineceller3_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller3" value="result"/>
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_wineceller4_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller4" value="result"/>
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_wineceller5_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller5" value="result"/>
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_wineceller6_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller6" value="result"/>
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_wineceller7_length"/>
+			<clientuitrigger name="bastact1_cinematic_wineceller7" value="result"/>
+			<wait duration="result"/>
+			
+			<!-- <setent1 name="guard1a" />
+			<setent2 name="guard_movepoint1" />
+			<order command="move" source="ent1" target="ent2" />
+			<setent1 name="guard1b" />
+			<setent2 name="guard_movepoint2" />
+			<order command="move" source="ent1" target="ent2" /> -->
+
+			<!-- Expire the cinematic movement state-->
+			<areaofeffect
+				radius="3000"
+				targetselection="all"
+				targetscheme="patrol_guard"
+				maximpactspertarget="1"
+				maxtotalimpacts="-1"
+				center="ent0"
+				source="ent0"
+			>
+				<expirestate name="State_Bastact1_CinematicMovement" source="ent0" target="target_entity" />
+			</areaofeffect>
+
+			<wait duration="2000" />
+			<setent1 name="pcam1"/>
+			<movecamera entity="ent1" positionentity="ent0" useindirectheight="true" duration="2000"/>
+			<wait duration="2000" />
+			<setexperience entity="ent0" value="500" />
+			<unlockcontrol entity="ent0" />
+			<setcamera entity="target_entity" camera="" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>
+
+			<!-- Show Bastion's E on the UI -->
+			<clientuitrigger name="spe_abilities3" />
+			<pushability entity="ent0" slot="2" />
+			<setlevel entity="stack_entity" value="1" />
+			<clientuitrigger name="mapTriggerAbilityShow" param="ShowActiveAbility2" />
+			<setscriptvalue name="ability2_isVisble" value="1" />
+
+			<!-- Spawn triggers A, B, and C	 -->
+			<spawn name="guard_affector_1a" owner="ent0"/>
+			<setent1 name="guard_affector_1a" />
+			<spawn name="guard_affector_1b" owner="ent0" />
+			<setent2 name="guard_affector_1b" />
+			<spawn name="guard_affector_1c" owner="ent0" />
+			<setent3 name="guard_affector_1c" />
+
+			<!-- Point triggers: 
+				A -> B
+				B -> C
+				C -> A	 -->
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<setproxy entity="ent3" target="ent1" />
+
+			<!-- Spawn triggers D and E and point them to each other	 -->
+			<spawn name="guard_affector_1d" owner="ent0"/>
+			<setent1 name="guard_affector_1d" />
+			<spawn name="guard_affector_1e" owner="ent0" />
+			<setent2 name="guard_affector_1e" />
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent1" />
+
+			<spawnthread name="bastact1_startGuard2"/>
+		</foreachplayer >
+	</scriptthread>
+
+	<!-- Spawn the second room of guards and set their patrol routes	 -->
+	<scriptthread name="bastact1_startGuard2" >
+		<foreachplayer excludebots="true" >
+			<!-- Set up stationary guard first -->
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="patrol_trigger2" owner="ent0" />
+			<spawn name="guard_trigger1" owner="ent0" />
+			<spawn name="spider_trigger" owner="ent0" />
+			<spawn name="door_locked2" />
+			<spawn name="cinematic_egg" />
+			<spawn name="barrel_hider3" />
+			<spawn name="barrel_hider4" />
+			<spawn name="barrel_hider5" />
+			<spawn name="barrel_hider6" />
+			<setent0 name="cinematic_egg" />
+			<activatemodifierkey entity="ent0" name="cinematic_egg" />
+			
+			<!-- Player hits patrol_trigger2 -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setscriptvalue name="inWineCellar1" value="0" />
+			<setscriptvalue name="inWineCellar2" value="1" />
+			 
+			<!-- Start monitoring Bastion for respawning purposes -->
+			<spawnthread name="bastact1_monitorDeath2" />
+
+			<!-- Need to move Bastion into the room a bit before spawing the door -->
+			<clientuitrigger name="campaign_startCinematicOverlay" />  
+			<clientuitrigger name="interface_turnOff"/>
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="bastion_movepoint_cellar" />
+			<lockcontrol entity="ent0" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<order command="move" source="ent0" target="ent1" force="true" />
+			<wait duration="3000" />
+
+			<!-- ===================== Pacing Break 2 ===================== -->
+			<!-- When Bastion enters the second part of the wine cellar, we need to clean up the previous section -->
+			<setent0 name="vision1a" />
+			<delete target="ent0" />
+			<setent0 name="vision1b" />
+			<delete target="ent0" />
+			<setent0 name="vision1c" />
+			<delete target="ent0" />
+			<setent0 name="barrel_hider1" />
+			<delete target="ent0" />
+			<setent0 name="barrel_hider2" />
+			<delete target="ent0" />
+			<!-- Need to delete all previously spawned entities -->	
+			<!-- Close doors for pacing -->
+			<setent0 name="door_locked_cellar" />
+			<playanim name="close" target="ent0" />
+			<spawn name="pacing_blocker1" />
+			<!-- We need to do something to prevent guards that might be chasing Bastion from following him -->
+			<!-- ========================================================== -->
+
+			<!-- Begin Guard running from Spider cinematic -->
+			<spawn name="scared_guard" />
+			
+			<wait duration="100" />
+			<spawn name="guard2" />
+			<spawn name="vision2a" />
+			<spawn name="vision2b" />
+			<spawn name="vision2c" />
+			<spawn name="vision2d" />
+			<spawn name="vision2e" />
+			<wait duration="100" />
+			<!-- Camera Panning -->
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="pcam1"/>
+			<setent2 name="guard_movepoint"/>
+			<setent3 name="scared_guard" />
+			<setpos0 position="ent0" />
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<movecamera entity="ent1" positionentity="ent3" duration="750"  block="false" clientmode="true" useindirectheight="true" newheight="2500" />
+			<setent1 name="cinematic_egg" />
+			<setpos0 position="ent1" offsetspace="ent1" offset="150 150 0" />
+			<order command="move" source="ent3" target="pos0" />
+
+			<!-- Start doing stuff to guard -->	
+			<wait duration="2700" />
+			<order command="stop" source="ent3" target="ent3" />
+			<playanim name="idle" target="ent3" />	
+			<wait duration="1000" />
+			<kill target="ent1" />
+			<!-- <wait duration="500" /> -->
+			<activatemodifierkey entity="ent3" name="speedy" />
+			<translatestring name="bastact1_cinematic_wineceller12_length" />
+			<clientuitrigger name="bastact1_cinematic_wineceller12" value="result" />
+			<order command="move" source="ent3" target="ent2" />
+			<!-- Spawning a parallel thread to show dialogue during the camera pan -->
+			<!-- <spawnthread name="bastact1_guard_dialogue11b" /> -->
+
+			<wait duration="500" />
+			<!-- Move camera to halfway point -->
+			<setent1 name="pcam1" />
+			<setent2 name="guard_campoint1" />
+			<movecamera entity="ent1" positionentity="ent2" duration="5000"  block="true" useindirectheight="true" newheight="3250" />
+			<wait duration="200" />
+
+			<!-- Move camera to end point guard_campoint2 -->
+			<!-- <setent2 name="guard_campoint2"/> -->
+			<setent2 name="guard_movepoint" />
+			<movecamera entity="ent1" positionentity="ent2" duration="5500"  block="true" useindirectheight="true" newheight="2500" />
+			<wait duration="2000" />
+
+			<!-- Move camera back to spider eggs -->
+			<setent0 name="spideregg1a" />
+			<!-- <setent1 name="pcam1" /> -->
+			<movecamera entity="ent1" positionentity="ent0" duration="1500"  block="true" useindirectheight="true" newheight="2500" />
+			<clientuitrigger name="" />
+			<!-- The following trigger doesn't do anything? -->
+			<print text="The following trigger may not do anything" />
+			<translatestring name="bastact1_spiderguard2_length" />
+			<clientuitrigger name="bastact1_spiderguard2" value="result" />
+			<wait duration="3000" />
+
+			<!-- Reset camera to Bastion here -->
+			<setent0 name="Hero_Bastion1" />
+			<movecamera entity="ent1" positionentity="ent0" duration="1000" block="true" useindirectheight="true" newheight="2500" />
+			<setcamera entity="target_entity" camera="" />
+
+			<!-- Vision 2 -->
+			<!-- Need to unlock spider objective -->
+			<clientuitrigger name="spe_objective2Unlock" />
+			<playeffect effect="heroes/bastion1BastAct1/effects/sound_wonder.effect" target="ent0" source="ent0"/>
+
+			<clientuitrigger name="campaign_endCinematicOverlay" /> 
+			<clientuitrigger name="interface_turnOn"/>
+			<unlockcontrol entity="ent0" />
+			<wait duration="500" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_checkpoint_wineCellar2_start" />
+
+			<spawn name="Spider_Enemy2"/>
+			<setent1 name="Spider_Enemy2"/>
+			<activatemodifierkey entity="ent1" name="stronk" />
+			<applystate name="State_Bastact1_Generic" target="ent1" duration="-1"/>
+			<spawn name="Spider_Affector1" owner="ent0"/>
+			<setent2 name="Spider_Affector1"/>
+			<spawn name="Spider_Affector2" owner="ent0"/>
+			<setent3 name="Spider_Affector2"/>
+			<setproxy entity="ent3" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<spawn name="Spider_Affector3" owner="ent0"/>
+			<setent2 name="Spider_Affector3"/>
+			<spawn name="Spider_Affector4" owner="ent0"/>
+			<setent3 name="Spider_Affector4"/>
+			<setproxy entity="ent3" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<spawn name="Spider_Enemy2ab"/>
+			<setent1 name="Spider_Enemy2ab"/>
+			<activatemodifierkey entity="ent1" name="stronk" />
+			
+
+			<!-- Temp spawning this guard here so that he doesn't react to the spider -->
+			<spawn name="guard2_stationed" />
+			<setent0 name="guard2_stationed" />
+			<activatemodifierkey name="creep3" entity="ent0" />
+			<setent1 name="cellar_movepoint3" />
+			<teleport source="ent0" target="ent1" />
+
+			<!-- Setting up the 3 Guards and their patrols in the stealthy/egg room -->
+			<!-- Letters aren't exactly sequential because it was leftover from previous encounter design -->
+			<setent0 name="Hero_Bastion1" />
+			<!-- Spawn triggers A, B, and C	 -->	
+			<spawn name="guard_affector_2a" owner="ent0" />
+			<setent1 name="guard_affector_2a" />
+			<spawn name="guard_affector_2b" owner="ent0" />
+			<setent2 name="guard_affector_2b" />
+			<spawn name="guard_affector_2c" owner="ent0" />
+			<setent3 name="guard_affector_2c" />
+
+			<!-- Point Triggers
+				A -> B
+				B -> C
+				C -> A  -->
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<setproxy entity="ent3" target="ent1" />
+
+			<!-- Spawn triggers D and E and point them to each other -->
+			<spawn name="guard_affector_2d" owner="ent0" />
+			<setent1 name="guard_affector_2d" />
+			<spawn name="guard_affector_2e" owner="ent0" />
+			<setent2 name="guard_affector_2e" />
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent1" />
+
+			<!-- Spawn triggers F, G, and H	 -->	
+			<spawn name="guard_affector_2f" owner="ent0" />
+			<setent1 name="guard_affector_2f" />
+			<spawn name="guard_affector_2g" owner="ent0" />
+			<setent2 name="guard_affector_2g" />
+			<spawn name="guard_affector_2h" owner="ent0" />
+			<setent3 name="guard_affector_2h" />
+
+			<!-- Point Triggers
+				F -> G
+				G -> H
+				H -> F  -->
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<setproxy entity="ent3" target="ent1" />
+
+			<!-- Spawn triggers I, J, and K	 -->	
+			<spawn name="guard_affector_2i" owner="ent0" />
+			<setent1 name="guard_affector_2i" />
+			<spawn name="guard_affector_2j" owner="ent0" />
+			<setent2 name="guard_affector_2j" />
+			<spawn name="guard_affector_2k" owner="ent0" />
+			<setent3 name="guard_affector_2k" />
+
+			<!-- Point Triggers
+				I -> J
+				J -> K
+				K -> I  -->
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<setproxy entity="ent3" target="ent1" />
+
+			<!-- guard_trigger1 gets hit by the scared guard -->
+			<waituntilmessage name="guard_waypoint_hit" value="1" />
+			<setscriptvalue name="guard_waypoint_hit" value="0" />
+			<wait duration="1000" />
+			<setent0 name="scared_guard" />
+			<activatemodifierkey name="looking_for_spider" entity="ent0" />
+			<deactivatemodifierkey name="speedy" entity="ent0" />
+
+			<!-- Start threads for scared guard text -->
+			<!-- <spawnthread name="bastact1_spiderGuard" /> -->
+			<!-- Thread to move the stationary guard once Bastion moves to the bottom left of the cellar -->
+			<spawnthread name="bastact1_stationaryGuard" />
+
+			<!-- Wait until the guard at the top gets hit by an egg -->
+			<waituntilmessage name="guard_spider" value="1" />
+			<!-- <setscriptvalue name="guard_spider" value="0" /> -->
+			<!-- Disable the spider guard from being able to speak -->
+			<setscriptvalue name="guard_is_talking" value="2" />
+
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="Bastact1_kill_spider" owner="ent0"/>
+			<spawn name="Bastact1_kill_guard" owner="ent0"/>
+			<setent2 name="Bastact1_kill_guard"/>
+			<!-- Stop Bastion and lock control -->
+			<lockcontrol entity="ent0" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<translatestring name="bastact1_dialogue11a_length" />
+			<clientuitrigger name="bastact1_dialogue11a" value="result" />
+
+			<!-- Move Guard away and delete him -->
+			<setent1 name="scared_guard" />
+			<activatemodifierkey name="speedy" entity="ent1" />
+			<setent3 name="door_locked2" />
+			<activatemodifierkey name="inactive" entity="ent3" />
+			<wait duration="100" />
+			<order command="move" source="ent1" target="ent2" />
+			<playanim name="open_doors" target="ent3" />
+			<spawn name="patrol_trigger3" owner="ent0" />
+			<wait duration="1000" />
+			<kill target="ent2"/>
+			<unlockcontrol entity="ent0" />
+			<!-- Complete Objective 2 -->
+			<clientuitrigger name="spe_objective2Complete" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>	
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<!-- Transition to next gameplay arc-->
+			<spawnthread name="bastact1_captured" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_checkpoint_wineCellar2_complete" />
+
+		</foreachplayer >
+	</scriptthread>
+
+	<scriptthread name="bastact1_captured" >
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<activatemodifierkey entity="ent0" name="with_club" />
+			<spawn name="executioner_cinematic2" />
+			<setent1 name="executioner_cinematic2" />
+			<activatemodifierkey entity="ent1" name="cinematic_mode" />
+			<activatemodifierkey entity="ent1" name="no_bag" />
+
+			<setentitycullrange value="3500"/>
+
+			<spawn name="guard_cinematic1" />
+			<setent1 name="guard_cinematic1" />
+			<activatemodifierkey entity="ent1" name="cinematic_mode" />
+			<activatemodifierkey entity="ent1" name="cutscene_guard" />
+			<spawn name="guard_cinematic2" />
+			<setent1 name="guard_cinematic2" />
+			<activatemodifierkey entity="ent1" name="cinematic_mode" />
+			<activatemodifierkey entity="ent1" name="cutscene_guard" />
+			<spawn name="patrol_trigger4" owner="ent0" />
+			<spawn name="patrol_trigger_rook_objective" owner="ent0" />
+
+			<!-- Player hit patrol_trigger_rook_objective -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<!-- Unlock Objective 3 with vision effect -->
+			<lockcontrol entity="ent0" />
+			<setent2 name="bastion_vision_movepoint1"/>
+			<order command="move" target="ent2" source="ent0" force="true" forceduration="1000"/>
+			<!-- Let's force the Player to give up anything they might be carrying -->
+			<useability source="ent0" target="ent3" slot="2" force="true" />
+
+			<clientuitrigger name="objectives_turnOff" />			
+			<wait duration="1700"/>
+			<spawnunit source="ent0" target="ent0" count="1" lifetime="2500" name="Bastact1_Gadget_Bastvision"/>
+			<order command="stop" target="ent0" source="ent0"/>
+			<playanim name="proph_begin" target="ent0"/>
+			<wait duration="1200"/>
+			<playanim name="proph_idle" target="ent0"/>
+			<wait duration="900"/>
+			<playanim name="proph_end" target="ent0"/>
+			<clientuitrigger name="spe_objective3Unlock" />
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+
+			<!-- Player has hit Patrol_trigger4 -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setscriptvalue name="inWineCellar2" value="0" />
+			<setscriptvalue name="playTensionMusic" value="1" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_checkpoint_captured" />
+			
+			<!-- ===================== Pacing Break 3 ===================== -->
+			<!-- Delete previous vision gadgets -->
+			<setent1 name="vision2a" />
+			<delete target="ent1" />
+			<setent1 name="vision2b" />
+			<delete target="ent1" />
+			<setent1 name="vision2c" />
+			<delete target="ent1" />
+			<setent1 name="vision2d" />
+			<delete target="ent1" />
+			<setent1 name="vision2e" />
+			<delete target="ent1" />
+			<setent0 name="barrel_hider3" />
+			<delete target="ent0" />
+			<setent0 name="barrel_hider4" />
+			<delete target="ent0" />
+			<setent0 name="barrel_hider5" />
+			<delete target="ent0" />
+			<setent0 name="barrel_hider6" />
+			<delete target="ent0" />
+			<spawn name="pacing_blocker2" />
+			<setent3 name="door_locked2" />
+			<playanim name="close_doors" target="ent3" />				
+			<!-- Remove all previously activated guards and patrol points -->
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="kill_cellar_guards1" owner="ent0" />
+			<spawn name="kill_cellar_guards2" owner="ent0" />
+			<spawn name="kill_spiderden_creeps" owner="ent0" />	
+			<!-- ========================================================== -->	
+
+			<!-- Take control of the Player and tell them to move into the Room -->
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+
+			<setent1 name="captured_movepoint1" />
+			
+			<order command="move" source="ent0" target="ent1" />
+			<activatemodifierkey entity="ent0" name="cinematic_mode" />
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+
+			<!-- Wait until Bastion makes it into the room -->
+			<wait duration="4000" />
+			<!-- Start executioner music -->
+			<playconductorevent name="TowerDamage" />			
+
+			<!-- Move all entities into position -->
+			<order command="move" source="ent1" target="ent2" />
+			<setent1 name="guard_cinematic1" />
+			<setent2 name="captured_movepoint6" />
+			<order command="move" source="ent1" target="ent2" />
+			<setent1 name="guard_cinematic2" />
+			<setent2 name="captured_movepoint4" />
+			<order command="move" source="ent1" target="ent2" />
+			<setent1 name="executioner_cinematic2" />
+			<setent2 name="captured_movepoint5" />
+			<order command="move" source="ent1" target="ent2" />
+
+			<setent1 name="pcam1"/>
+			<setent2 name="captured_campoint"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<movecamera entity="ent1" positionentity="ent2" duration="2000"  block="false" clientmode="true" useindirectheight="true"  />
+			
+
+			<!-- Wait until everyone is in position before starting text, for now -->
+			<wait duration="2000" />
+			<translatestring name="bastact1_cinematic_courtyard1_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard1" value="result" />
+			<wait duration="result"/>
+			<!-- Doesn't need a translate because there is no sound -->
+			<clientuitrigger name="bastact1_cinematic_nothing"/>
+			<wait duration="1000"/>
+			<translatestring name="bastact1_cinematic_courtyard2_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard2" value="result" />
+			<setvar0 a="result" b="1000" op="sub" />
+			<wait duration="var0"/>
+
+			<!-- Spawn Rook and move him into position -->
+			<spawn name="Rook_Gauntlet"/>
+			<setent0 name="Rook_Gauntlet"/>
+			<!-- Set Rook to level 14 -->
+			<setexperience entity="ent0" value="9440" />
+			<pushability entity="ent0" slot="0" />
+			<setlevel entity="stack_entity" value="4" />
+			<pushability entity="ent0" slot="1" />
+			<setlevel entity="stack_entity" value="4" />
+			<pushability entity="ent0" slot="2" />
+			<setlevel entity="stack_entity" value="4" />
+			<activatemodifierkey entity="ent0" name="cinematic_mode" />
+			<setent1 name="Rook_Gauntlet" />
+			<setent2 name="captured_rookpoint" />
+			<activatemodifierkey entity="ent1" name="cinematic_mode" />
+			
+			<wait duration="250"/>
+			<order command="stop" source="ent1" target="ent1" />
+			<teleport source="ent1" target="ent2"/>
+			<order command="stop" source="ent1" target="ent1" />
+			<useability source="ent1" target="ent1" slot="1" forceduration="3000"/>
+			<setent2 name="captured_movepoint1" />
+
+			<wait duration="1000" />
+			<translatestring name="bastact1_cinematic_courtyard3_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard3" value="result" />
+			<wait duration="result"/>
+			
+			<!-- Shoot everyone with arrows -->
+			<playanim source="ent1" target="ent1" name="ability_4_start_cinematic" />
+			<wait duration="500"/>
+			<playanim source="ent1" target="ent1" name="ability_4_end_cinematic" />
+			<setent0 name="guard_cinematic2"/>
+			<wait duration="50" />
+			<spawnprojectile name="Projectile_Rook_Ability2_Cinematic" target="ent0" source="ent1" bindturn="true" proxy="ent0"  />
+			<setent0 name="guard_cinematic1"/>
+			<wait duration="50" />
+			<spawnprojectile name="Projectile_Rook_Ability2_Cinematic" target="ent0" source="ent1" bindturn="true" proxy="ent0"  />
+			<setent0 name="executioner_cinematic2"/>
+			<wait duration="50" />
+			<spawnprojectile name="Projectile_Rook_Ability2_Cinematic" target="ent0" source="ent1" bindturn="true" proxy="ent0"  />
+
+			<!-- Stop executioner music -->
+			<playconductorevent name="Temp1" />	
+
+			<setent0 name="Hero_Bastion1" />
+			<wait duration="1500"/>
+
+			<activatemodifierkey name="no_boundingbox" entity="ent0"/>
+			
+			<translatestring name="bastact1_cinematic_courtyard6_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard6" value="result" />
+			<setvar0 a="result" b="2000" op="sub" />
+			<wait duration="var0"/>
+			
+			<setent3 name="bastion_crouch_point"/>
+			<order command="move" source="ent0" target="ent3" />
+			<wait duration="2000"/>
+
+			<translatestring name="bastact1_cinematic_courtyard8_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard8" value="result" />
+			<wait duration="result"/>
+
+			<translatestring name="bastact1_cinematic_courtyard9_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard9" value="result" />
+			<wait duration="result"/>
+
+			<translatestring name="bastact1_cinematic_courtyard10_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard10" value="result" />
+			<setvar0 a="result" />
+			<setent3 name="bastion_crouch_point2"/>
+			<order command="move" source="ent0" target="ent3" />
+			<wait duration="var0"/>
+			<translatestring name="bastact1_cinematic_courtyard11_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard11" value="result" />
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_courtyard12_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard12" value="result" />
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_courtyard13_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard13" value="result" />
+			<wait duration="result"/>
+			<translatestring name="bastact1_cinematic_courtyard14_length" />
+            <clientuitrigger name="bastact1_cinematic_courtyard14" value="result" />
+            <activatemodifierkey name="slowed" entity="ent1"/>
+            <setent2 name="captured_movepoint7" />
+			<order command="move" source="ent1" target="ent2" />
+			
+            <setent3 name="bastion_crouch_point3"/>
+            <wait duration="500"/>
+			<order command="move" source="ent0" target="ent3" />
+			<wait duration="500"/>
+
+			<spawnunit name="Bastact1_Gadget_Torch_bastion" source="ent0" target="ent0" count="1" pushentity="true"/>
+			<deactivatemodifierkey name="with_club" entity="ent0" />
+			<deactivatemodifierkey name="torch_is_lit" entity="ent0" />
+			<playanim name="placedown" target="stack_entity" speed="1"/>
+			<playanim name="placedown" target="ent0" speed="1" /> 
+			<wait duration="1000"/>
+			<order command="stop" source="ent1" target="ent1" />
+			<wait duration="2200"/>
+			
+			<playanim name="getup" target="ent0" speed="1" />
+			
+			
+			<setent1 name="pcam1"/>
+			<setent2 name="Rook_Gauntlet"/>
+			
+			<movecamera entity="ent1" positionentity="ent2" duration="2000"  block="false"  useindirectheight="true"  />
+			
+			<wait duration="1800"/>
+			<translatestring name="bastact1_cinematic_courtyard15_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard15" value="result" />
+			<wait duration="500"/>
+			<setent1 name="Rook_Gauntlet"/>
+
+			<!-- Need to not deactivate here, but need to make sure that script_trigger2 hits rook -->
+			<!-- <deactivatemodifierkey entity="ent0" name="cinematic_mode" /> -->
+			<setent1 name="Rook_Gauntlet" />
+			
+			<deactivatemodifierkey entity="ent1" name="cinematic_mode" />			
+
+			<!-- Move Rook towards the Gauntlet -->
+			<setent2 name="captured_movepoint7" />
+			<order command="move" source="ent1" target="ent2" />
+
+			<setent1 name="Rook_Gauntlet" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			<lockcontrol entity="ent1" />
+			<clientuitrigger name="objectives_turnOff" />			
+			<setcamera entity="target_entity" source="" />
+			
+
+			<wait duration="500"/>
+			<setent2 name="captured_movepoint7_b" />
+			<order command="move" source="ent0" target="ent2"/>
+			<activatemodifierkey name="slowed" entity="ent0"/>
+
+			<!-- Complete Objective 3 -->
+			<clientuitrigger name="spe_objective3Complete" />
+			
+			<wait duration="2500"/>
+			<translatestring name="bastact1_cinematic_courtyard5_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard5" value="result" />
+			<wait duration="result"/>
+
+			<translatestring name="bastact1_cinematic_courtyard7_length" />
+			<clientuitrigger name="bastact1_cinematic_courtyard7" value="result" />
+			
+			<spawnthread name="Bastact1_Gauntlet" />
+
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="Bastact1_Walking_Dialogue">
+		<foreachplayer excludebots="true">
+			
+		</foreachplayer>
+	</scriptthread>
+
+
+	<!-- Play dialogue while the camera is moving for the guard being chased by the spider -->
+	<scriptthread name="bastact1_guard_dialogue11b" >
+		<foreachplayer excludebots="true">
+			<wait duration="3000" />
+			<translatestring name="bastact1_dialogue11b_length" />
+			<clientuitrigger name="bastact1_dialogue11b" value="result" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="Bastact1_Gauntlet" >
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="Rook_Gauntlet" />
+			<deactivatemodifierkey name="no_boundingbox" entity="ent0"/>
+			
+			<spawn name="script_trigger1" owner="ent0" />
+			<spawn name="script_trigger2" owner="ent0" />
+			<spawn name="Hook_Magnet" owner="ent1" />
+			<spawn name="Gauntlet_Enemies" />
+			<spawn name="Gauntlet_Enemies1" />
+			<spawn name="Gauntlet_Enemies2" />
+			<spawn name="Gauntlet_Enemies3" />
+			<spawn name="Gauntlet_Enemies4" /> 
+			<spawn name="Gauntlet_Enemies5" /> 
+			<setent1 name="Gauntlet_Enemies5"/>
+			<activatemodifierkey entity="ent1" name="gib" />
+			<setent1 name="Gauntlet_Enemies1"/>
+			<activatemodifierkey entity="ent1" name="invuln" />
+			<activatemodifierkey entity="ent1" name="hammer" />
+			<setent1 name="Gauntlet_Enemies2"/>
+			<activatemodifierkey entity="ent1" name="invuln" />
+			<setent1 name="Gauntlet_Enemies3"/>
+			<activatemodifierkey entity="ent1" name="invuln" />
+			<setent1 name="Gauntlet_Enemies4"/>
+			<activatemodifierkey entity="ent1" name="invuln" />
+			<spawn name="Gauntlet_WindowAffector" owner="ent0"/>
+			<spawn name="Gauntlet_Door1" />
+			<spawn name="Gauntlet_Door2" />
+
+			<!-- Temp wait for testing -->
+			<waituntilmessage name="waypoint_hit" value="1" /> <!-- script_trigger1 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<deactivatemodifierkey name="slowed" entity="ent0"/>
+			<!-- Need to switch control over to Rook. Assume he has been on screen -->
+			
+			<!-- Bastion follows Rook to a point -->
+			<setent0 name="Rook_Gauntlet" />
+			<setent1 name="Hero_Bastion1" />
+			
+			<order command="follow" source="ent1" target="ent0" />		
+			
+			<!-- Need to seamlessly switch between Bastion and Rook without spawning anything -->
+			<!-- <spawn name="Bastion_NPC" /> -->
+
+			<waituntilmessage name="waypoint_hit" value="1" /> <!-- script_trigger2 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<deactivatemodifierkey name="slowed" entity="ent0"/>
+
+			<!-- Rook and Bastion discuss how/why they need to get through this room -->
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			
+			<spawn name="vision3" />
+			<wait duration="2000" />
+			<order command="stop" source="ent1" target="ent1" />
+
+			<!-- Spawn immobilizing gadgets -->
+			<spawn name="immobilizer1" />
+			<spawn name="immobilizer2" />
+
+			<!-- Move the camera and lock its position. ent0 is rook -->
+			<setent1 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />			
+			<setent2 name="cam_gauntlet1"/>
+			<movecamera entity="ent1" positionentity="ent2" useindirectheight="true" newheight="3500" duration="5000"/>
+			<clientuitrigger name="bastact1_cinematic_guardhouse1" />
+			<wait duration="4000"/>		
+			
+			<clientuitrigger name="bastact1_cinematic_guardhouse4" />
+			<wait duration="1000"/>
+			<setent3 name="captured_movepoint7_c"/>
+			<setent1 name="Hero_Bastion1" />
+			<order command="move" source="ent1" target="ent3"/>
+			
+			<wait duration="2500"/>
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InGauntlet" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_guardTower_start" />
+
+			<!-- Pacing Break 3 -->
+			<spawn name="pacing_blocker3" />
+			<!-- ============== -->
+
+			<!-- Start awesome Rook stealth music -->
+			<playconductorevent name="Temp2" />
+
+			<!-- Wait until Rook busts through window, and show brief dialogue -->
+			<waituntilmessage name="RookThroughWindow" value="1" />
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<setent1 name="Gauntlet_Enemies5"/>
+			<wait duration="150"/>
+			<order source="ent0" target="ent1" command="attack" queue="front" />
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<clientuitrigger name="bastact1_cinematic_guardhouse5" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+		
+			<!-- Move the camera back to Rook -->
+			<setent1 name="pcam1"/>
+			<movecamera entity="ent1" positionentity="ent0" useindirectheight="true" newheight="2500" duration="1000" block="true"/>
+			<setcameraheight value="2500" />
+
+			
+			<setcamera entity="target_entity" />
+			<setent1 name="Hero_Bastion1"/>
+			<setent3 name="captured_movepoint7_b"/>
+			<order command="move" source="ent1" target="ent3"/>
+
+			<setowner entity="ent0" player="target_entity" />
+			<sethero entity="target_entity" hero="ent0" />
+			<wait duration="1000" />
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>	
+			<spawn name="Nocast"/>
+			<activatemodifierkey entity="ent0" name="Cinematic" />
+			<deactivatemodifierkey entity="ent0" name="Cinematic" />
+			<wait duration="100" />
+			<setent1 name="Gauntlet_Enemies1"/>
+			<deactivatemodifierkey entity="ent1" name="invuln" />
+			<setent1 name="Gauntlet_Enemies2"/>
+			<deactivatemodifierkey entity="ent1" name="invuln" />
+			<setent1 name="Gauntlet_Enemies3"/>
+			<deactivatemodifierkey entity="ent1" name="invuln" />
+			<setent1 name="Gauntlet_Enemies4"/>
+			<deactivatemodifierkey entity="ent1" name="invuln" />
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<wait duration="200" />
+			<setent1 name="Gauntlet_Enemies1"/>
+			<applystate name="State_Campaign_AttackPlayerOnImpact_Chase" target="ent1" duration="-1" proxy="ent1" />
+			<setent1 name="Gauntlet_Enemies2"/>
+			<applystate name="State_Campaign_AttackPlayerOnImpact_Chase" target="ent1" duration="-1" proxy="ent1" />
+			<setent1 name="Gauntlet_Enemies3"/>
+			<applystate name="State_Campaign_AttackPlayerOnImpact_Chase" target="ent1" duration="-1" proxy="ent1" />
+			<setent1 name="Gauntlet_Enemies4"/>
+			<applystate name="State_Campaign_AttackPlayerOnImpact_Chase" target="ent1" duration="-1" proxy="ent1" />
+
+			<!-- Wait until Rook has killed all the guards to spawn the last hiding one -->
+			<setent2 name="Gauntlet_Door1" />
+			<waituntilmessage name="AllGuardsDead" value="1" />
+			<setscriptvalue name="AllGuardsDead" value="0" />
+			<activatemodifierkey entity="ent2" name="unlocked" />
+			<spawn name="Gauntlet_LastGuardInRoom" />
+			<setent1 name="Gauntlet_LastGuardInRoom" />
+			<setactivemodifierkey entity="ent1" name="openGate" />
+			<setowner entity="ent1" player="target_entity" />
+			<wait duration="100" />
+			<order source="ent1" target="ent2" command="move" queue="front"/>
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<setent2 name="Hero_Bastion1" />
+			<activatemodifierkey name="cinematic_mode" entity="ent2" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<clientuitrigger name="bastact1_gauntlet_guardRunningForDoor" />
+			
+			
+
+			<spawn name="Gauntlet_OutOfRoomTarget" />
+			<setent3 name="Gauntlet_OutOfRoomTarget" />
+			<!-- <setpos0  -->
+			<order source="ent1" target="ent3" command="move" queue="back"/>
+
+			<!-- Stop Rook music -->
+			<playconductorevent name="Temp1" />
+
+			<setent3 name="pcam1" />
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="2500" duration="3000" block="true"/>
+			<!-- Send Bastion in to follow rook -->
+			<wait duration="500" />
+			<setcamera entity="target_entity" source="ent2" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent0" useindirectheight="true" newheight="2500" duration="3000" block="false"/>
+			<setent2 name="Hero_Bastion1" />
+			<order source="ent2" target="ent0" command="follow" queue="front" />
+	
+						
+			<!-- Kill off the last guard -->
+			<wait duration="3000" />
+			<setcamera entity="target_entity" />
+			<kill source="" target="ent1" />
+			<setent3 name="Gauntlet_OutOfRoomTarget" />
+			<delete source="" target="ent3" />
+
+			<clientuitrigger name="bastact1_cinematic_guardhouse6" />
+			<wait duration="2000"/>
+
+			
+			<clientuitrigger name="bastact1_cinematic_guardhouse15"/>
+			<spawn name="Gauntlet_DoorOpener" /> <!-- Gadget that opens top door when ulted by rook" -->
+			<!-- Level Rook up to Level 15 -->
+			<setexperience entity="ent0" value="11420" />
+			
+			<!-- Show Rook's R on the UI -->
+			<clientuitrigger name="spe_abilities5" />
+			<pushability entity="ent0" slot="3" />
+			
+			<setlevel entity="stack_entity" value="1" />
+			<clientuitrigger name="mapTriggerAbilityShow" param="ShowActiveAbility3" />
+			<setscriptvalue name="ability3_isVisble" value="1" />
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>	
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent2" />
+			<wait duration="200"/>
+			<applystate name="State_Bastact1_Follow_Logic" continuous="true" source="ent0" target="ent2" proxy="ent0" />
+			<spawnthread name="bastact1_RookDeathDoor"/>
+
+			
+		</foreachplayer >
+	</scriptthread>
+
+	<scriptthread name="bastact1_RookDeathDoor" >
+		<foreachplayer excludebots="true">
+			<!-- Spawn Guards and Door -->
+			<setent0 name="Hero_Bastion1"/> <!-- Cant be Rook for some reason because of affectors... -->
+			<setent1 name="Rook_Gauntlet" />
+			<order source="ent0" target="ent1" command="follow" queue="front" />
+
+			<spawn name="script_trigger_guardhouse" owner="ent0"/>
+
+			<waituntilmessage name="waypoint_hit" value="1"/> <!-- script_trigger3 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_checkpoint_guardTower_complete" />
+
+			<lockcontrol entity="ent1" />
+			<clientuitrigger name="objectives_turnOff" />
+			<order command="stop" source="ent1" target="ent1" />
+			<order command="stop" source="ent0" target="ent0"/>
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<!-- We need script_trigger3 to ignore invuln as well as script_trigger2 -->
+			<!-- <activatemodifierkey name="cinematic_mode" entity="ent0" /> -->
+			<!-- <activatemodifierkey name="cinematic_mode" entity="ent1" /> -->
+
+			<!-- Remove the follow state from Bastion -->
+			<expirestate name="State_Bastact1_Follow_Logic" source="ent0" target="ent0" />
+
+			<wait duration="1000" />
+			<spawnunit source="ent0" target="ent0" count="1" lifetime="2500" name="Bastact1_Gadget_Bastvision"/>
+			<order command="stop" target="ent0" source="ent3"/>
+			<playanim name="proph_begin" target="ent0"/>
+			<wait duration="1200"/>
+			<playanim name="proph_idle" target="ent0"/>
+			<wait duration="900"/>
+			<playanim name="proph_end" target="ent0"/>
+			<clientuitrigger name="spe_objective4Unlock" />
+			<!-- Apply the follow state to Bastion -->
+			<applystate name="State_Bastact1_Follow_Logic" continuous="true" source="ent0" target="ent2" proxy="ent0" />
+
+			<clientuitrigger name="bastact1_cinematic_guardhouse9" />
+
+			<wait duration="4000"/>
+			<clientuitrigger name="bastact1_cinematic_guardhouse10" />
+			<wait duration="8000"/>
+			
+
+			
+			<setent2 name="Gauntlet_Runpoint" />
+			<order command="move" source="ent1" target="ent2" />
+			<order command="follow" source="ent0" target="ent1"/>
+			<activatemodifierkey name="slowed" entity="ent0"/>
+			<activatemodifierkey name="slowed" entity="ent1"/>
+
+			
+			<clientuitrigger name="bastact1_cinematic_guardhouse13" />
+
+			<spawn name="script_trigger3" owner="ent0" />
+			<spawn name="script_trigger4" owner="ent0" />
+			<spawn name="MeleeGuard"/>
+			<spawn name="ChaseArcher1"/>
+			<spawn name="ChaseArcher1"/>
+			<setent1 name="ChaseArcher1"/>
+			<activatemodifierkey entity="ent1" name="attack2" />
+			<spawn name="ChaseArcher3"/>
+			<setent1 name="ChaseArcher3"/>
+			<activatemodifierkey entity="ent1" name="attack2" />
+			<spawn name="ChaseArcher4"/>
+			<setent1 name="ChaseArcher4"/>
+			<activatemodifierkey entity="ent1" name="attack2" />
+			<spawn name="ChaseArcher2"/>
+			<setent1 name="ChaseArcher2"/>
+			<activatemodifierkey entity="ent1" name="attack2" />
+			<spawn name="Block_Chase1"/>
+			<setent1 name="Block_Chase1"/>
+			<activatemodifierkey entity="ent1" name="can_shoot" />
+			<spawn name="Block_Chase2"/>
+			<setent1 name="Block_Chase2"/>
+			<activatemodifierkey entity="ent1" name="can_shoot" />
+			<spawn name="Block_Chase3"/>
+			<setent1 name="Block_Chase3"/>
+			<activatemodifierkey entity="ent1" name="can_shoot" />
+			<spawn name="Block_Chase4"/>
+			<setent1 name="Block_Chase4"/>
+			<activatemodifierkey entity="ent1" name="can_shoot" />
+			<spawn name="Block_Chase5"/>
+			<spawn name="Block_Chase6"/>
+			<spawn name="Block_Chase7"/>
+			<spawn name="Block_Chase8"/>
+			<spawn name="ShieldGuard"/>
+			<spawn name="DeathDoor"/>
+			<setent1 name="DeathDoor"/>
+			<spawn name="BarrelTarget"/>
+			<setent2 name="BarrelTarget"/>
+			<spawn name="BarrelSpawner" owner="ent0"/>
+			<setproxy entity="ent1" target="ent2"/>
+
+			<waituntilmessage name="waypoint_hit" value="1"/> <!-- script_trigger3 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<setent1 name="Rook_Gauntlet"/>
+			<lockcontrol entity="ent1"/>
+			<clientuitrigger name="objectives_turnOff" />
+			<order command="stop" source="ent1" target="ent1" />
+			<spawn name="guantlet_dialogue1" owner="ent0"/>
+			<setent2 name="Gauntlet_Campoint_Entrance"/>
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent1" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" duration="1000" block="false"/>
+
+			<deactivatemodifierkey name="slowed" entity="ent0"/>
+			<deactivatemodifierkey name="slowed" entity="ent1"/>
+
+			<clientuitrigger name="bastact1_cinematic_guantlet1"/>
+			<wait duration="2600"/>
+			<movecamera entity="ent3" positionentity="ent1" useindirectheight="true" duration="1000" block="true"/>
+			<setcamera entity="target_entity" camera="" />
+			<clientuitrigger name="bastact1_cinematic_guantlet2"/>
+			<wait duration="5500"/>
+			<unlockcontrol entity="ent1"/>
+			<clientuitrigger name="objectives_turnOn" />
+			<applystate name="State_Bastact1_Rook_Reminder" target="ent1" duration="-1"/>
+
+			<!-- Start awesome Rook stealth music -->
+			<playconductorevent name="Temp2" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_checkpoint_deathDoor" />
+
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>	
+			<!-- <deactivatemodifierkey name="cinematic_mode" entity="ent1" /> -->
+			<setent2 name="Gauntlet_Door1" />
+			<kill target="ent2" />
+			<spawn name="Gauntlet_Door3" />
+			
+			<setent1 name="vision3" />
+			<delete target="vision3" />
+			<spawn name="vision4a" /> <!-- Separate names so we can delete them later -->
+			<spawn name="vision4b" />		
+			<spawn name="vision_hell4a" />
+			<spawn name="vision_hell4b" />	
+			<spawn name="vision5" />	
+			<!-- Need to have Bastion wait while Rook does the encounter -->
+			<order command="stop" source="ent0" target="ent0" />
+			<activatemodifierkey entity="ent0" name="invuln" />
+
+			<waituntilmessage name="AllGuardsDead" value="1" />
+
+
+			<setent1 name="Rook_Gauntlet"/>
+			<expirestate name="State_Bastact1_Rook_Reminder" target="ent1" />
+			<pushability entity="ent1" slot="3" />
+			<activatemodifierkey name="temp_invuln" entity="stack_entity" />
+			<setent1 name="BarrelSpawner"/>
+			<delete target="ent1" />
+			<spawn name="BarrelSpawner2" owner="ent0"/>
+			<clientuitrigger name="bastact1_cinematic_guantlet3" />
+
+			<!-- Door Exploded, delete patherblockers -->
+			<waituntilmessage name="DoomDoor_Defeat" value="1" />
+			<setscriptvalue name="DoomDoor_Defeat" value="0" />
+			<setent0 name="Rook_Gauntlet"/> 
+			<lockcontrol entity="ent0"/>
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<setent1 name="DeathDoor" />
+			<playanim name="close_explode" source="ent1" target="ent1" speed=".09" />
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<setent2 name="BarrelSpawner2"/>
+			<delete target="ent2"/>
+			
+			<clientuitrigger name="objectives_turnOff" />
+			<!-- Script_trigger4 needs to ignore invuln -->
+			<setent2 name="tower_cam_move2"/>
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" duration="1000" block="true"/>
+			<spawnthread name="bastact1_doorcam_move" />
+			<playeffect effect="buildings/castle_gate/new_splosion/mini_impacts.effect" target="ent1" source="ent1" />
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake.effect" target="ent0" source="ent0" />
+			<wait duration="1500"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_02.effect" target="ent0" source="ent0" />
+			<wait duration="1500"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_03.effect" target="ent0" source="ent0"/>
+			<activatemodifierkey entity="ent1" name="explode" />
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_04.effect" target="ent0" source="ent0"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_05.effect" target="ent0" source="ent0"/>
+			<wait duration="3000"/>
+			<spawn name="Block_Chase1"/>
+			<setent1 name="Block_Chase1"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase2"/>
+			<setent1 name="Block_Chase2"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase3"/>
+			<setent1 name="Block_Chase3"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase4"/>
+			<setent1 name="Block_Chase4"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase5"/>
+			<setent1 name="Block_Chase5"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase6"/>
+			<setent1 name="Block_Chase6"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase7"/>
+			<setent1 name="Block_Chase7"/>
+			<kill target="ent1" />
+			<spawn name="Block_Chase8"/>
+			<setent1 name="Block_Chase8"/>
+			<kill target="ent1" />
+			<setent1 name="script_trigger4"/>
+			<wait duration="1000" />
+			<order command="move" source="ent0" target="ent1"/>
+			
+			<!-- Wait until the encounter is done -->
+			<waituntilmessage name="waypoint_hit" value="1"/> <!-- script_trigger4 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<spawn name="Debris"/>
+			<wait duration="500"/>
+
+			<setent0 name="Hero_Bastion1"/> <!-- Cant be Rook for some reason because of affectors... -->
+			<expirestate name="State_Bastact1_Follow_Logic" target="ent0"/>
+			<order command="stop" source="ent0" target="ent0" />
+			<setent1 name="Rook_Gauntlet" />
+			<pushability entity="ent1" slot="3" />
+			<activatemodifierkey name="temp_invuln" entity="stack_entity" />
+			<setent2 name="tower_cam_point"/>
+
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="3500" duration="1000" block="true"/>
+			<setcameraheight value="3500"/>
+
+			<setent2 name="Gauntlet_Runpoint"/>
+			<useability source="ent1" target="ent2" slot="3" force="true" queue="front" />
+			<wait duration="500"/>
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent0" useindirectheight="true" newheight="2500" duration="4000" block="false"/>
+			<setcameraheight value="2500"/>
+
+			<wait duration="3000"/>
+			
+			<clientuitrigger name="interface_turnOn"/>	
+			<clientuitrigger name="bastact1_cinematic_guantlet5" />
+			<wait duration="1000"/>
+			<!-- Set control back to Bastion -->
+			<setowner entity="ent0" player="target_entity" />
+			<sethero entity="target_entity" hero="ent0" />
+			<setent0 name="Hero_Bastion1"/>
+			<deactivatemodifierkey entity="ent0" name="invuln" />
+			<deactivatemodifierkey entity="ent0" name="cinematic_mode" />
+			<activatemodifierkey entity="ent0" name="bastion_gauntlet"/>
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<!-- Executioner dialog and Chase -->
+			<spawn name="script_trigger6" owner="ent0" />
+			<spawn name="Executioner_Chase"/>
+			<setent1 name="pcam1"/>
+			<setent2 name="Executioner_Chase" />
+			<spawnunit name="Gadget_Bastact1_GrantSight_Small" source="ent0" target="ent2" lifetime="9000" team="1"/>
+			<setpos0 position="ent0"/>
+			
+			<setcamera entity="target_entity" camera="" />
+			<setent0 name="Hero_Bastion1"/>
+			<pushability entity="ent0" slot="0" />
+			<activatemodifierkey name="disable" entity="stack_entity" />
+			<pushability entity="ent0" slot="2" />
+			<activatemodifierkey name="disable" entity="stack_entity" />
+			<!-- Hide the ability UI that we had to enable for Rook -->
+			<clientuitrigger name="mapTriggerAbilityHide" param="ShowActiveAbility3" />
+			<setscriptvalue name="ability3_isVisble" value="0" />
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>	
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InChaseScene" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_chaseScene" />
+			
+			<wait duration="500" />
+			<clientuitrigger name="bastact1_cinematic_guantlet4" />
+			<wait duration="2800" />
+
+		
+			<!-- Move Rook up into the Hall and remove him? -->
+			<setent1 name="Rook_Gauntlet" />
+			<activatemodifierkey name="cinematic_mode" entity="ent1" />
+			<spawn name="Rook_Move1" />
+			<setent2 name="Rook_Move1" />
+			<order command="move" source="ent1" target="ent2" />
+			<waituntilmessage name="waypoint_hit" value="1"/> <!-- script_trigger6 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<spawn name="Chase2Archer1"/>
+			<setent1 name="Chase2Archer1"/>
+			<activatemodifierkey entity="ent1" name="invis" />
+			<wait duration="2000" />
+			<spawn name="Chase2Archer2"/>
+			<setent1 name="Chase2Archer2"/>
+			<activatemodifierkey entity="ent1" name="invis" />
+			<activatemodifierkey entity="ent1" name="attack3" />
+			<wait duration="2000" />
+			<spawn name="Chase2Archer3"/>
+			<setent1 name="Chase2Archer3"/>
+			<activatemodifierkey entity="ent1" name="invis" />
+			<wait duration="2000" />
+			<spawn name="Chase2Archer4"/>
+			<setent1 name="Chase2Archer4"/>
+			<activatemodifierkey entity="ent1" name="invis" />
+			<activatemodifierkey entity="ent1" name="attack3" />
+			<wait duration="2000" />
+			<spawn name="Chase2Archer5"/>
+			<setent1 name="Chase2Archer5"/>
+			<activatemodifierkey entity="ent1" name="invis" />
+			<wait duration="2000" />
+			<spawn name="Chase2Archer6"/>
+			<setent1 name="Chase2Archer6"/>
+			<activatemodifierkey entity="ent1" name="invis" />
+			<spawn name="script_trigger5" owner="ent0" />
+
+			<!-- Wait for Bastion to finish the encounter -->
+			<waituntilmessage name="waypoint_hit" value="1"/> <!-- script_trigger5 -->
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_checkpoint_chaseScene_complete" />
+
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<pushability entity="ent0" slot="0" />
+			<deactivatemodifierkey name="disable" entity="stack_entity" />
+			<pushability entity="ent0" slot="2" />
+			<deactivatemodifierkey name="disable" entity="stack_entity" />
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<setent1 name="Rook_Gauntlet" />
+			<activatemodifierkey name="cinematic_mode" entity="ent1" />
+			<spawn name="executioner_cinematic3" />
+			<setent2 name="executioner_cinematic3"/>
+
+			<setent3 name="executioner_tower_move"/>
+
+			<order command="move" source="ent2" target="ent3" />
+			<activatemodifierkey name="fast" entity="ent2"/>
+
+			<setent2 name="tower_cam_point"/>
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="4000" duration="1000" block="true"/>
+			<setcameraheight value="3000"/>
+
+			<setent2 name="tower_arrow_target"/>
+
+			<useability source="ent1" target="ent2" slot="3" force="true" queue="front" />
+			<wait duration="500"/>
+			<setent2 name="gauntlet_runaway_point"/>
+			<order command="move" source="ent0" target="ent2"/>
+			<order command="move" source="ent1" target="ent2"/>
+			<clientuitrigger name="bastact1_cinematic_guardhouse14"/>
+
+
+			<wait duration="1000"/>
+
+			<setent2 name="DeathDoor"/>
+			<playanim name="towerfall" source="ent2"  target="ent2"  />
+			<wait duration="1000"/>
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<!-- <clientuitrigger name="bastact1_cinematic_guantlet6" /> -->
+
+
+			<setent2 name="executioner_tower_move2"/>
+			<spawn name="MeleeGuard_kill" owner="ent0"/>
+			<setent1 name="MeleeGuard_kill"/>
+			<wait duration="200" />
+
+			<order command="move" source="ent1" target="ent2" force="true" queue="front"/>
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="2500" duration="1500" block="false"/>
+			<wait duration="500"/>
+			<setent2 name="DeathDoor"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_03.effect" target="ent2" source="ent2"/>
+			<!-- <wait duration="1500"/> -->
+			
+			<wait duration="900"/>
+			<setent2 name="executioner_cinematic3"/>
+			<useability source="ent2" target="ent1" slot="2" force="true" queue="front" />
+			<clientuitrigger name="bastact1_cinematic_guantlet8"/>
+			
+			<!-- Stop Rook stealth music -->
+			<playconductorevent name="Temp1" />
+			
+			<spawnthread name="bastact1_spawn_rook" />
+			<!-- Move into Great Hall -->
+			
+			<wait duration="1000"/>
+			<clientuitrigger name="objectives_turnOff" />
+			<clientuitrigger name="cinematic_fadeBlackIn"/>
+			
+			<wait duration="1000"/>
+			<kill target="ent1"/>
+
+			<wait duration="1000"/>
+			<clientuitrigger name="bastact1_cinematic_guantlet9"/>
+			
+			<!-- Delete Gauntlet Rook and Spawn Hero Defense Rook -->
+			<delete target="ent1" />
+			<spawnthread name="bastact1_transitionToHall" />
+
+			<!-- Delete old vision gadgets -->
+			<setent1 name="vision4a" />
+			<delete target="ent1" />
+			<setent1 name="vision4b" />
+			<delete target="ent1" />
+			<setent1 name="vision_hell4a" />
+			<delete target="ent1" />
+			<setent1 name="vision_hell4b" />
+			<delete target="ent1" />
+
+			<!-- Need to kill off side archers -->
+			<setent1 name="Chase2Archer1" />
+			<kill target="ent1" />
+			<setent1 name="Chase2Archer2" />
+			<kill target="ent1" />
+			<setent1 name="Chase2Archer3" />
+			<kill target="ent1" />
+			<setent1 name="Chase2Archer4" />
+			<kill target="ent1" />
+			<setent1 name="Chase2Archer5" />
+			<kill target="ent1" />
+			<setent1 name="Chase2Archer6" />
+			<kill target="ent1" />			
+
+		</foreachplayer >
+	</scriptthread>
+
+	<scriptthread name="bastact1_doorcam_move" >
+		<foreachplayer excludebots="true">
+			<setent0 name="Rook_Gauntlet"/> 
+			<setent1 name="DeathDoor" />
+			<setent2 name="tower_cam_move2"/>
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent2" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="3500" duration="4000" block="true"/>
+			<setcameraheight value="3500"/>
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_transitionToHall" >
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="start_position_HeroD" />
+			
+			<wait duration="4000" />
+			<setcamera entity="target_entity"/>
+			<setcameraheight value="2500"/>
+			<!-- Position the Player and Rook -->
+			<lockcontrol entity="ent0" />
+			<order command="stop" source="ent0" target="ent0" />
+			<teleport source="ent0" target="ent1"/>
+			<spawnthread name="bastact1_spawn_melee_statues" />
+			<wait duration="1000" />
+			<clientuitrigger name="cinematic_fadeBlackOutSlow" />
+			
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			
+			<!-- Cinematics and positioning for Hero D here -->
+
+			<!-- Start the encounter -->
+			<setentitycullrange value="2500"/>
+
+			<setent0 name="Executioner_Chase" />
+			<delete target="ent0" />
+			<setent0 name="GH_door_main" />
+			<activatemodifierkey name="cellar_door" entity="ent0" />
+			<spawnthread name="bastact1_greathall_cinematic" />
+
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_greathall_cinematic">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1"/>
+			<deactivatemodifierkey entity="ent0" name="bastion_gauntlet" />
+			<setent1 name="Hero_Rook_HeroD"/>
+			<lockcontrol entity="ent0"/>
+			<clientuitrigger name="objectives_turnOff" />
+			<setent2 name="wizard_entry_camera"/>
+			<setent3 name="pcam1"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent0" useindirectheight="true" newheight="2500" duration="100" block="true"/>
+
+			<setscriptvalue name="bast_got_sword" value="0"/>
+
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="3500" duration="2000" block="false"/>
+			<setcameraheight value="3500"/>
+
+			<setent2 name="bast_mp1"/>
+			<order command="move" source="ent0" target="ent2"/>
+			
+			<setent2 name="rook_mp1"/>
+			<order command="move" source="ent1" target="ent2"/>
+
+			<!-- Dialogue between Rook and Bastion -->
+			<clientuitrigger name="bastact1_cinematic_greathall1"/>
+			<wait duration="6000"/>
+			
+			<clientuitrigger name="bastact1_cinematic_greathall2"/>
+			<clientuitrigger name="spe_objective4Complete" />
+			<wait duration="5400"/>
+			<clientuitrigger name="bastact1_cinematic_greathall3"/>
+			
+			<wait duration="2500"/>
+			<clientuitrigger name="bastact1_cinematic_greathall4" />
+			
+			<wait duration="3200"/>
+			<clientuitrigger name="bastact1_cinematic_greathall5"/>
+			<wait duration="2000"/>
+
+			<!-- Spawn in wizard -->
+			<setent2 name="wizard_entrypoint" />
+			<wait duration="500" />
+	
+			<!-- Start the music for wizard battle -->
+			<playconductorevent name="Temp4" />
+
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent2" source="ent0" />
+			<wait duration="675" />
+			<spawn name="wizard_cinematic" />
+			<setent2 name="wizard_cinematic" />
+
+			<playanim source="ent2" target="ent2" name="ability_2" />
+			<activatemodifierkey name="dontshootstuff" entity="ent2"/>
+			<!-- Wizard Dialogue -->
+			<clientuitrigger name="bastact1_cinematic_greathall6"/>
+			<wait duration="1000"/>
+				
+			<wait duration="3500"/>
+			<spawn name="armor_animator_cinematic" owner="ent0"/>
+			<clientuitrigger name="bastact1_cinematic_greathall7"/>
+			<setent2 name="wizard_cinematic" />
+
+			<!-- Wizard leaves -->
+			<playanim name="ability_3" source="ent2" target="ent2"/>
+			<setent2 name="melee_frozen_cinematicSword"/>
+			
+			<wait duration="2000"/>
+			<spawn name="armor_animator_cinematic1" owner="ent0"/>
+			<spawn name="armor_animator_cinematic2" owner="ent0"/>
+			<setent2 name="wizard_cinematic" />
+			<wait duration="1500"/>
+			
+			<spawn name="armor_animator2" owner="ent0"/>
+			
+			<playanim source="ent2" target="ent2" name="ability_1" />
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent2" source="ent2" />
+			<wait duration="850" />
+			<delete target="ent2" />
+
+			<setent2 name="melee_frozen_cinematicSword"/>
+			<order command="move" source="ent2" target="ent0"/>
+			<wait duration="700"/>
+			<clientuitrigger name="bastact1_cinematic_greathall8"/>
+			<useability slot="3" source="ent1" target="ent2"/>
+			<deactivatemodifierkey name="cinematic_mode" entity="ent1" />
+			<applystate name="state_arc4_hook" target="ent1" duration="-1"/>
+
+			<wait duration="825"/>
+			<applystate name="state_bastact1_executioner_quick_stun" target="ent2" duration="-1"/>
+			
+			<activatemodifierkey name="dead_cinematic_model" entity="ent2"/>
+			<playanim name="death_1" target="ent2" source="ent2" speed="1.5"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			<movecamera entity="ent3" positionentity="ent0" useindirectheight="true" newheight="2500" duration="1250" block="false"/>
+			
+			<wait duration="1250"/>
+			<setcameraheight value="2500"/>
+			<setcamera entity="target_entity"/>
+			<spawn name="sword_grab" owner="ent0"/>
+			<setent2 name="sword_grab"/>
+			<order command="move" source="ent0" target="ent2"/>
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			
+			
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			
+
+			<waituntilmessage name="bast_got_sword" value="1"/>
+			<unlockcontrol entity="ent0"/>
+			<clientuitrigger name="objectives_turnOn" />
+			
+			<clientuitrigger name="interface_turnOn"/>	
+			<clientuitrigger name="spe_objective5Unlock" />
+
+			<!-- 3b. Give bastion level 2 Q -->
+			<pushability entity="ent0" slot="0" />
+			<activatemodifierkey entity="stack_entity" name="Ability1_level2"  />
+			<!-- Need to wait for setcharges to work properly -->
+			<wait duration="100" />
+			<setcharges entity="stack_entity" a="3" />
+			<!-- Change out model to be with sword -->
+			<deactivatemodifierkey entity="ent0" name="with_club" />
+			
+			<pushability entity="ent0" slot="2" />
+			<activatemodifierkey entity="stack_entity" name="pickup2" />
+			
+			<wait duration="12000"/>
+			<spawnthread name="bastact1_sword_cinematic" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_sword_cinematic" >
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1"/>
+			<activatemodifierkey entity="ent0" name="Great_Hall_Begin" />
+			<setent1 name="Hero_Rook_HeroD"/>
+			<setent3 name="pcam1"/>
+			
+
+			<spawnthread name="bastact1_arc4"/>
+		</foreachplayer>
+	</scriptthread>
+
+	<!--Test thread for hero defense -->
+	<scriptthread name="bastact1_arc4" >
+		<foreachplayer excludebots="true">
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InHeroDefense" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_greatHall" />
+
+			<!-- 1. Initialize relevant entities -->
+			<setent0 name="GH_main_door" />
+			<activatemodifierkey name="cellar_door" entity="ent0" />
+			<spawn name="Revive_GreatHall3" />
+			<spawn name="Revive_GreatHall2" />
+			<spawn name="vision_hell1" /> <!-- Some invisible gadgets to grant vision to enemies -->
+			<spawn name="vision_greathall1" />
+			<spawn name="vision_greathall2" />
+			<spawn name="Revive_Wizard" />
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="Hero_Rook_HeroD" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0" />
+			<deactivatemodifierkey name="cinematic_mode" entity="ent1" />
+			<spawnthread name="bastact1_archer_movepoints" />
+			
+
+			<!-- 2. Set up affectors and spawnpoints for enemies -->
+			<spawn name="enemy_attack3" owner="ent0" />
+			<setent2 name="enemy_attack3" />
+			<setproxy entity="ent2" target="ent0" />
+			<spawn name="enemy_attack4" owner="ent0" />
+			<setent2 name="enemy_attack4" />
+			<setproxy entity="ent2" target="ent0" />
+			<spawn name="enemy_attack5" owner="ent0" />
+			<setent2 name="enemy_attack5" />
+			<setproxy entity="ent2" target="ent0" />
+			<spawn name="enemy_spawnpoint1" owner="ent0" />
+			<setent1 name="enemy_spawnpoint1"/>
+			<spawn name="enemy_spawnpoint2" owner="ent0" />
+			<setent2 name="enemy_spawnpoint2"/>
+			<spawn name="enemy_spawnpoint3" owner="ent0" />
+			<setent3 name="enemy_spawnpoint3"/>			
+
+			<!-- 4. Spawn Wave 1 -->
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" />	
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent1" source="ent1" />
+			<setent1 name="GH_door_left" />
+			<playanim name="open" source="ent1" target="ent1" />
+			<setent1 name="enemy_spawnpoint1"/>	
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" pushentity="true" />	
+			<activatemodifierkey entity="stack_entity" name="bastion_enemy"  />
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent3" source="ent3" />
+			<setent3 name="GH_door_right" />
+			<playanim name="open" source="ent3" target="ent3" />
+			<setent3 name="enemy_spawnpoint3"/>
+			<wait duration="10000" />
+
+			<!-- 5. Spawn Wave 2 -->
+			<!-- <clientuitrigger name="bastact1_warning1" /> -->
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" />	
+			<wait duration="1000" />
+			<setent1 name="GH_door_left" />
+			<playanim name="open" source="ent1" target="ent1" />
+			<setent1 name="enemy_spawnpoint1"/>	
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent1" source="ent1" />	
+			<wait duration="1000" />
+			<setent3 name="GH_door_right" />
+			<playanim name="open" source="ent3" target="ent3" />
+			<setent3 name="enemy_spawnpoint3"/>	
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent3" source="ent3" />		
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" pushentity="true" />	
+			<activatemodifierkey entity="stack_entity" name="bastion_enemy"  />
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" pushentity="true" />	
+			<activatemodifierkey entity="stack_entity" name="bastion_enemy"  />
+			<wait duration="1000" />
+			<setent1 name="GH_door_left" />
+			<playanim name="open" source="ent1" target="ent1" />
+			<setent1 name="enemy_spawnpoint1"/>	
+			<wait duration="500" />qui
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent1" source="ent1" />
+			<wait duration="2000" />
+			<spawn name="armor_animator1" owner="ent0" /> <!-- Activates an armor inside the room -->
+			
+			<!-- 6. Wait 15 seconds		 -->
+			<wait duration="15000" />
+
+			<!-- 7. Spawn Wave 3 -->
+			<!-- <clientuitrigger name="bastact1_warning1" /> -->
+			<wait duration="2000" />
+			<setent3 name="GH_door_right" />
+			<playanim name="open" source="ent3" target="ent3" />
+			<setent3 name="enemy_spawnpoint3"/>	
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent3" source="ent3" />	
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" />	
+			<wait duration="1000" />
+			<setent1 name="GH_door_left" />
+			<playanim name="open" source="ent1" target="ent1" />
+			<setent1 name="enemy_spawnpoint1"/>	
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent1" source="ent1" />	
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent2" source="ent2" />
+			<wait duration="1000" />
+			<setent1 name="GH_door_right" />
+			<playanim name="open" source="ent3" target="ent3" />
+			<setent1 name="enemy_spawnpoint3"/>	
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent3" source="ent3" />
+		<!-- 	<spawn name="armor_animator2" owner="ent0" /> Activates an armor inside the room -->
+
+			<!-- 8. Spawn enemy manager and wait for all enemies to die -->
+			<spawn name="enemy_manager1" owner="ent0" />
+			<waituntilmessage name="monsters_killed" value="1" />
+			<setscriptvalue name="monsters_killed" value="0" />
+			<waituntilmessage name="isDead" value="0" />
+			<setent0 name="enemy_manager1" />
+			<delete target="ent0" />
+			<wait duration="1000" />
+
+			<!-- 9. Move Rook back to the center of the Room -->
+			<setent0 name="Hero_Rook_HeroD" />
+			<setent1 name="hook_point1" />
+			<order command="move" source="ent0" target="ent1" queue="none" />
+			<!-- <applystate name="State_Bastact1_Rook_vo" source="ent0" target="ent0" duration="4000" /> -->
+
+			<!-- 10. First Door Event-->
+
+			<!-- 11. Spawn the wizard vision and open the West door -->
+			<spawn name="vision_wizard1" />
+
+			<!-- 12a. Pan camera to objective -->
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="pcam1" />
+			<setent2 name="Hero_Rook_HeroD"/>
+			<order command="hold" source="ent0" />
+			<lockcontrol entity="ent0" />
+			<wait duration="1000" />
+			<setpos0 position="ent0" />
+			<setcamera entity="target_entity" source="ent0" camera="ent1" /> <!-- Link player's view to camera1 -->
+			<movecamera entity="ent1" positionname="camera_movepoint1" duration="1000" block="true" clientmode="true" useindirectheight="true" />
+			<order command="move" source="ent0" target="ent2" force="true" forceduration="3000"/>
+		
+
+			<!-- 12b. Spawn in the wizard -->
+			<setent2 name="wizard_entrypoint2" />
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent2" source="ent0" />
+			<wait duration="675" />
+			<spawn name="enemy_wizard1" />
+			<setent0 name="enemy_wizard1"/>
+			<activatemodifierkey name="dontshootstuff" entity="ent0"/>
+			<playanim source="ent0" target="ent0" name="ability_2" />
+			<clientuitrigger name="bastact1_cinematic_greathall14" />
+			<wait duration="3500" />
+			<setent0 name="Hero_Bastion1"/>
+			<setent1 name="pcam1" />
+			<movecamera entity="ent1" positionentity="ent0" duration="1000" block="true" useindirectheight="true" />
+			<setcamera entity="target_entity" camera="" />	
+			<clientuitrigger name="bastact1_warning2" />		
+			<wait duration="3500" />
+			<playeffect effect="buildings/effects/bird_vision.effect" source="ent0" target="ent0"/>
+			<wait duration="1500" />
+
+			
+			<!-- Level up Bastion to level 4 so he gets the Rook bird ability -->
+			<setent0 name="Hero_Bastion1" />
+			<setexperience entity="ent0" value="900" />
+			
+			<!-- Show Bastion's R on the UI -->
+			<clientuitrigger name="spe_abilities4" />
+			<pushability entity="ent0" slot="3" />
+			<setlevel entity="stack_entity" value="1" />
+			<clientuitrigger name="mapTriggerAbilityShow" param="ShowActiveAbility3" />
+			<setscriptvalue name="ability3_isVisble" value="1" />
+
+			<!-- 12c. Pan back to the Player -->
+			<movecamera entity="ent1" positionentity="ent0" duration="1000" block="true" useindirectheight="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent0" />
+
+			<!-- Apply reminder state to Bastion -->
+			<applystate name="State_Bastact1_Rook_Reminder_GreatHall" source="ent0" target="ent0" />
+
+			<wait duration="500" />
+
+			<!-- 13. Move Rook towards the top left of the Room -->
+			<setent0 name="Hero_Rook_HeroD" />
+			<setent1 name="move_point_nw" />
+			<order command="move" source="ent0" target="ent1" queue="none"/>
+			<!-- <applystate name="State_Bastact1_Rook_vo" source="ent0" target="ent0" duration="4000" /> -->
+
+			<!-- 14. Spawn enemy manager 2 and start endless flow of enemies for wizard 1-->
+			<wait duration="1500" />
+			<setscriptvalue name="loop_spawn1" value="0" />
+			<spawnthread name="bastact1_arc4DoorSpawn"/>
+			<setent1 name="enemy_spawnpoint1"/>
+			<!-- 15. <spawnunit name="Bastact1_Enemy_Fast" count="4" target="ent1" source="ent1" /> -->
+			<!-- 16. <spawnunit name="Bastact1_Enemy_Ranged" count="2" target="ent1" source="ent1" /> -->
+				
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="Wizard_Attack1" owner="ent0"/>
+			
+			<!-- 17. Wizard Room 1 Encounter should go here? -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<expirestate name="State_Bastact1_Rook_Reminder_GreatHall" source="ent0" target="ent0" />
+
+			<!-- 18. Cinematics for Wizrad -->
+			<setent0 name="Hero_Bastion1" />
+			<order command="hold" source="ent0" />
+			<lockcontrol entity="ent0" />
+
+			<!-- Move camera to new movepoint -->
+			<setent1 name="pcam1" />
+			<setent2 name="cam_movepoint_wiz1" />
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<movecamera entity="ent1" positionentity="ent2" duration="1000" block="true" useindirectheight="true" />
+
+			<!-- Wait for cinematics to be done -->
+			<clientuitrigger name="bastact1_cinematic_greathall9" />
+			<wait duration="3000" />
+			<spawn name="armor_animator10" owner="ent0" />
+			<wait duration="250" />
+			<spawn name="armor_animator11" owner="ent0" />
+			<wait duration="250" />
+			<spawn name="armor_animator12" owner="ent0" />
+			<wait duration="250" />
+			<spawn name="armor_animator13" owner="ent0" />
+			<wait duration="1000" />
+			<!-- 19. Wizard leaves and enemies are spawned -->
+			<setent1 name="enemy_wizard1"/>
+
+			<!-- Play animations and effects for fleeing wizrad -->
+			<playanim source="ent1" target="ent1" name="ability_4" />
+			<wait duration="1000" />	
+			<setscriptvalue name="door_closed" value="1" />
+			<spawn name="wallWizardFight" owner="ent0"/>
+			<setent2 name="wallWizardFight" />
+			<activatemodifierkey name="wizard_blocked" entity="ent2" />
+			<playanim source="ent1" target="ent1" name="ability_1" />
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent1" source="ent1" />
+			<wait duration="800" />
+			<delete target="ent1"/>
+			<!-- Move the camera back -->
+			<setent0 name="Hero_Bastion1"/>
+			<setent1 name="pcam1" />
+			<movecamera entity="ent1" positionentity="ent0" duration="500" block="true" useindirectheight="true" />
+			<setcamera entity="target_entity" camera="" />
+
+
+			<unlockcontrol entity="ent0" />
+			<wait duration="1000" />
+
+
+
+
+			<!-- 20. Wait for Wizard Room 1 Enemies to die -->
+			<wait duration="3500" />
+			<spawn name="wizardEnemyChecker" owner="ent0"/>
+			<waituntilmessage name="wizard_monsters_killed" value="1" />
+			<setscriptvalue name="wizard_monsters_killed" value="0"/>
+			<setent1 name="wizardEnemyChecker" />
+			<delete target="ent1" />
+			<setent1 name="wallWizardFight" />
+			<kill target="ent1"/>
+			<!-- Remove the revive gadget in the top left -->
+			<setent1 name="Revive_Wizard" />
+			<delete target="ent1" />
+
+			<!-- 21. Wait for encounters to be finished -->
+			<waituntilmessage name="door_closed" value="1"/>
+			<setscriptvalue name="door_closed" value="0" />
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="waypoint_west" owner="ent0" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+
+			<!-- <spawn name="door4b" /> -->
+			<setscriptvalue name="loop_spawn1" value="1" />
+			
+			<!-- 22. Clean up enemies outside of the room, if any, by telling them to run to their deaths -->
+			<setent0 name="enemy_attack3" />
+			<delete target="ent0" />
+			<setent0 name="vision_wizard1" />
+			<delete target="ent0" />
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="enemy_cleanup1" owner="ent0"/>
+			<spawn name="kill_creeps1" owner="ent0"/>
+			<setent0 name="enemy_cleanup1" />
+			<setent1 name="enemy_spawnpoint1" />
+			<setproxy entity="ent0" target="ent1" />
+
+			<!-- Cinematic Mode -->
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<setent0 name="Hero_Bastion1" />
+			<order command="hold" source="ent0" target="ent0" /> 
+			<lockcontrol entity="ent0" />
+
+			<!-- Move command for bastion -->
+			<!-- <order command="stop" source="ent0" target="ent0" /> -->
+			<setent1 name="bastion_movepoint_GH1" />
+			
+			<order command="move" source="ent0" target="ent1" />
+			<wait duration="2000" />
+
+			<!-- Spawn both side barriers -->
+			<spawn name="wallWizardFightMid1" />
+			<setent0 name="wallWizardFightMid1" />
+			<activatemodifierkey entity="ent0" name="wizard_blocked" />
+			<spawn name="wallWizardFightMid2" />
+			<setent0 name="wallWizardFightMid2" />
+			<activatemodifierkey entity="ent0" name="wizard_blocked" />
+			<spawn name="blocker_GH1" />
+			<spawn name="blocker_GH1b" />
+			<spawn name="blocker_GH2" />
+			<spawn name="blocker_GH2b" />
+
+			<setent0 name="Hero_Bastion1" />
+			<!-- <order command="stop" source="ent0" target="ent0" />
+			<setent1 name="bastion_movepoint_GH1" />
+			<order command="move" source="ent0" target="ent1" /> -->
+
+			<!-- Move camera to wizard place -->
+			<setent1 name="pcam1"/>
+			<setent2 name="wizard_entrypoint"/>
+			<setcamera entity="target_entity" source="ent0" camera="ent1" />
+			<movecamera entity="ent1" positionname="wizard_entrypoint" duration="500"  block="true" clientmode="true" useindirectheight="true"  />
+
+			<!-- Spawn in wizard 2 -->
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent2" source="ent0" />
+			<wait duration="675" />
+			<spawn name="wizard_cinematic2" />
+			<setent2 name="wizard_cinematic2" />
+			<playanim source="ent2" target="ent2" name="ability_2" />
+			<activatemodifierkey name="dontshootstuff" entity="ent2"/>
+			<wait duration="1000" />
+			<clientuitrigger name="bastact1_cinematic_greathall15" />
+			<wait duration="3000" />
+
+			<!-- Animate wizard and armor -->
+			<spawn name="armor_animator14" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator15" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator8" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator3" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<wait duration="600" />
+			<playanim source="ent2" target="ent2" name="ability_4" />
+			<wait duration="2700" />
+
+			<!-- Get rid of the wizard -->
+			<playanim source="ent2" target="ent2" name="ability_1" />
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent2" source="ent2" />
+			<wait duration="800" />
+			<delete target="ent2"/>
+			<wait duration="1000" />
+
+			<!-- Camera to Bastion -->
+			<!-- <setent2 name="bastion_movepoint_GH1" /> -->
+			<movecamera entity="ent1" positionentity="ent0" duration="1000" block="true"  useindirectheight="true"  />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			
+			<!-- Get rid of cinematics -->
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>	
+
+			<!-- Animate all of the armor on the side. Need to add a few more in. -->
+			<spawn name="armor_animator9" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator4" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator5" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator7" owner="ent0" /> <!-- Activates an armor inside the room -->
+			<spawn name="armor_animator6" owner="ent0" /> <!-- Activates an armor inside the room -->
+
+			<wait duration="5000" />
+			<spawn name="enemy_manager2" owner="ent0" />
+
+			<!-- 23. Wait until all enemies are dealt with -->
+			<waituntilmessage name="monsters_killed" value="1" />
+			<setscriptvalue name="monsters_killed" value="0" />
+			<waituntilmessage name="isDead" value="0" />
+			<setent0 name="enemy_manager2" />
+			<delete target="ent0" />
+
+			<!-- Kill Both Side Barriers -->
+			<setent0 name="wallWizardFightMid1" />
+			<kill target="ent0" />
+			<setent0 name="wallWizardFightMid2" />
+			<kill target="ent0" />
+			<setent0 name="blocker_GH1" />
+			<delete target="ent0" />
+			<setent0 name="blocker_GH1b" />
+			<delete target="ent0" />
+			<setent0 name="blocker_GH2" />
+			<delete target="ent0" />
+			<setent0 name="blocker_GH2b" />			
+			<delete target="ent0" />
+
+			<!-- 26. Move Rook back to the center of the Room -->
+			<setent0 name="Hero_Rook_HeroD" />
+			<setent1 name="hook_point1" />
+			<order command="move" source="ent0" target="ent1" queue="none" />
+			<!-- <applystate name="State_Bastact1_Rook_vo" source="ent0" target="ent0" duration="4000" /> -->
+			
+			<setent0 name="Hero_Bastion1" />
+			<!-- Spawn health and mana pickups -->
+			<!-- <spawn name="mb_wb2_1" owner="ent0"/>
+			<spawn name="hb_wb2_1" owner="ent0"/> -->
+			<spawn name="waypoint_east1" owner="ent0" />
+			<setscriptvalue name="loop_spawn1" value="0" />
+
+			<!-- 28. Pan camera to the 2nd wizard and then back to the Player -->
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="pcam1" />
+			<!-- <wait duration="1000" /> -->
+			<order command="hold" source="ent0" />
+			<lockcontrol entity="ent0" />
+			
+			<!-- <wait duration="3000" /> -->
+			<setent2 name="Hero_Rook_HeroD" />
+			<setpos0 position="ent0" />
+			<setcamera entity="target_entity" source="ent0" camera="ent1" /> <!-- Link player's view to camera1 -->
+			<order command="move" source="ent0" target="ent2" force="true" forceduration="3000"/>
+			<movecamera entity="ent1" positionname="camera_movepoint2" duration="1000" block="true" clientmode="true" useindirectheight="true" />
+
+			<!-- 27. Spawn 3rd wizard and open the east door -->
+			<setent0 name="Hero_Bastion1" />
+			<setent2 name="wizard_entrypoint3" />
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent2" source="ent0" />
+			<wait duration="675" />
+			<spawn name="enemy_wizard2"/>
+			<setent0 name="enemy_wizard2" />
+			<activatemodifierkey name="dontshootstuff" entity="ent0"/>
+			<playanim source="ent0" target="ent0" name="ability_2" />
+			<expirestate name="State_Bastact1_Wizard_Enemy" target="ent0" />
+			<applystate name="State_Bastact1_Wizard_Enemy_Death" target="ent0" duration="-1" />
+			<spawn name="vision_wizard2" />
+			<clientuitrigger name="bastact1_cinematic_greathall11" />
+			<wait duration="2500" />
+			<setent0 name="Hero_Bastion1"/>
+			<setent1 name="pcam1" />
+			<movecamera entity="ent1" positionentity="ent0" duration="1000" block="true" useindirectheight="true" />
+			<setcamera entity="target_entity" camera="" />	
+			<clientuitrigger name="bastact1_warning3" />
+
+			<!-- Move the camera back to the Player -->
+			<wait duration="4000" />
+			<setent0 name="Hero_Bastion1" />
+			<movecamera entity="ent1" positionentity="ent0" duration="1000" block="true" useindirectheight="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="ent0" />
+			<wait duration="500" />
+
+			<applystate name="State_Bastact1_Rook_Reminder_GreatHall" source="ent0" target="ent0" />
+
+			<!-- 29. Move Rook towards the bottom of the Room -->
+			<setent0 name="Hero_Rook_HeroD" />
+			<setent1 name="move_point1" />
+			<order command="move" source="ent0" target="ent1" queue="none" />
+			<!-- <applystate name="State_Bastact1_Rook_vo" source="ent0" target="ent0" duration="4000" /> -->
+
+			<!-- 30. Start second stream of endless Rook enemies from the eastern spawnpoint and a wave of Player enemies -->
+			<wait duration="1000" />
+			<spawnthread name="bastact1_arc4DoorSpawn2"/>
+			<setent3 name="enemy_spawnpoint3"/>
+			<!-- <spawnunit name="Bastact1_Enemy_Fast" count="4" target="ent3" source="ent3" /> -->
+			<!-- <spawnunit name="Bastact1_Enemy_Ranged" count="2" target="ent3" source="ent3" /> -->
+
+			<!-- 31. Wait for player to enter the room, then spawn archers move them onto balcony -->
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<!-- <spawnthread name="bastact1_spawn_archers" /> -->
+			<!-- Activate the second wizard door and allow the wizard to fight -->
+			<clientuitrigger name="bastact1_cinematic_greathall12"/>
+			<setent1 name="enemy_wizard2" />
+			<deactivatemodifierkey name="dontshootstuff" entity="ent1"/>
+			<applystate name="State_Bastact1_Wizard_Enemy" target="ent1" source="ent1" proxy="ent1" duration="-1"/>
+			<spawn name="wallWizardFight2" />
+			<setent1 name="wallWizardFight2" />
+			<activatemodifierkey entity="ent1" name="wizard_blocked" />
+			<spawn name="Revive_Wizard2" />
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InWizardBoss" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_wizard" />
+
+			<!-- 32. Wait for 2nd Wizard to be killed -->
+			<waituntilmessage name="door_closed" value="1"/>
+			<setscriptvalue name="door_closed" value="0" />
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_killedWizard" />
+
+			<setent0 name="Hero_Bastion1" />
+			<expirestate name="State_Bastact1_Rook_Reminder_GreatHall" source="ent0" target="ent0" />
+			<setent0 name="enemy_wizard2" />
+			<playanim name="death_1" source="enemy_wizard2" target="ent0" />
+			<clientuitrigger name="bastact1_cinematic_greathall13" />
+			<wait duration="3200" />
+			<spawnunit name="Gadget_Bastact1_Wizard_Effect" count="1" target="ent0" source="ent0" />
+			<playanim name="ability_1" source="enemy_wizard2" target="ent0" />
+			<wait duration="850" />
+			<delete target="ent0" />
+			<!-- Kill the door/blocker -->
+			<kill target="ent1" />
+			<!-- Stop Wizard battle music -->
+			<playconductorevent name="Temp1" />
+			<clientuitrigger name="spe_objective5Complete" />
+
+			<!-- Kill all armors -->
+			<setent0 name="Hero_Bastion1" />
+			<areaofeffect
+			    radius="4000"
+			    targetselection="all"
+			    targetscheme="enemy_units"
+			    center="ent0"
+			    source="ent0"
+			    maximpactspertarget="1"
+			    maxtotalimpacts="-1"
+			>
+	   			<kill target="target_entity" />
+  			</areaofeffect>
+
+			<!-- Wait for Player to leave the side room and close the door -->
+			<setscriptvalue name="loop_spawn1" value="1" />
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="waypoint_east2" owner="ent0"/>
+
+			<wait duration="250" />
+			<!-- A second AoE just to make sure -->
+			<setent0 name="Hero_Rook_HeroD" />
+			<areaofeffect
+			    radius="4000"
+			    targetselection="all"
+			    targetscheme="enemy_units"
+			    center="ent0"
+			    source="ent0"
+			    maximpactspertarget="2"
+			    maxtotalimpacts="-1"
+			>
+	   			<kill target="target_entity" />
+  			</areaofeffect>
+
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<clientuitrigger name="bastact1_cinematic_final1" />
+			<setent1 name="Revive_Wizard2" />
+			<delete target="ent1" />
+			<spawn name="door3b" />
+			<spawn name="enemy_manager4" owner="ent0" />
+			<setent0 name="vision_wizard2" />
+			<delete target="ent0" />
+			
+			<!-- 33. Clean up enemies outside of the room, if any, by telling them to run to their deaths -->
+			<setent0 name="enemy_attack5" />
+			<delete target="ent0" />
+			<setent0 name="vision_wizard2" />
+			<delete target="ent0" />
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="enemy_cleanup2" owner="ent0"/>
+			<spawn name="kill_creeps2" owner="ent0" /> 	<!-- Kill the balcony archers -->
+			<setent0 name="enemy_cleanup2" />
+			<setent1 name="enemy_spawnpoint3" />
+			<setproxy entity="ent0" target="ent1" />
+			<wait duration="3000" />
+
+			<!-- 34. Wait for enemies to die -->
+			<waituntilmessage name="monsters_killed" value="1" />
+			<setscriptvalue name="monsters_killed" value="0" />
+			<setent0 name="enemy_manager4" />
+			<delete target="ent0" />
+
+			<!-- 35. Move Rook and Bastion back to the center of the Room -->
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<setent0 name="Hero_Rook_HeroD" />
+			<setent1 name="hook_point1" />
+			<order command="move" source="ent0" target="ent1" queue="none" />
+			<setent0 name="Hero_Bastion1" />
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<order command="stop" target="ent0" />
+			<setent1 name="bastion_movepoint_GH1" />
+			<order command="move" source="ent0" target="ent1" />
+
+			<!-- 36. Boss Transition Stuff -->
+			
+			<clientuitrigger name="bastact1_cinematic_final2" />
+			<wait duration="3000" />
+			<setent1 name="bastion_movepoint_GH2" />
+			<order command="move" source="ent0" target="ent1" />
+			<!-- Teleport Rook Away -->
+			<spawn name="Rook_Teleport_Exit" />
+			<setent1 name="Rook_Teleport_Exit" />
+			<setent0 name="Hero_Rook_HeroD" />
+			<activatemodifierkey name="cinematic_mode" entity="ent0" />
+			<pushability entity="ent0" slot="1" />
+			<setlevel entity="stack_entity" value="4" />
+			<useability source="ent0" target="ent0" slot="1"/>
+			<wait duration="1100" />
+			<teleport source="ent0" target="ent1" />
+			<wait duration="2000" />
+			<clientuitrigger name="bastact1_cinematic_final3" />
+			<wait duration="6250" />
+			<!-- Start the music for executioner battle -->
+			<playconductorevent name="Temp5" />
+			<setent0 name="Hero_Bastion1" />
+			<playeffect effect="effects/sound.effect" source="ent0" target="ent0" occlude="true" />
+			<wait duration="5000" />
+			<spawnthread name="bastact1_executioner_battle" />
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_archer_movepoints" >
+		<foreachplayer excludebots="true" >
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="archer_movepoint1" owner="ent0" />
+			<spawn name="archer_movepoint2" owner="ent0" />
+			<spawn name="archer_movepoint3" owner="ent0" />
+			<spawn name="archer_movepoint4" owner="ent0" />
+			<spawn name="archer_movepoint5" owner="ent0" />
+			<spawn name="archer_movepoint6" owner="ent0" />
+			<spawn name="archer_movepoint7" owner="ent0" />
+			<spawn name="archer_movepoint8" owner="ent0" />
+			<spawn name="archer_movepoint9" owner="ent0" />
+			<spawn name="archer_movepoint10" owner="ent0" />
+		</foreachplayer>
+	</scriptthread>
+
+	<!-- ======================================================= -->
+	<!-- First Looping thread to spawn enemies until a condition -->
+	<!-- enemy_spawnpoint3 should be by GH_door_right -->
+	<!-- enemy_spawnpoint1 should be by GH_door_left -->
+	<scriptthread name="bastact1_arc4DoorSpawn">
+		<foreachplayer excludebots="true">
+
+			<setent1 name="enemy_spawnpoint1"/>
+			<setent2 name="enemy_spawnpoint2"/>
+			<setent0 name="GH_main_door" />
+			<setent3 name="GH_door_left" />
+
+			<!--Spawn 2 Rook Enemies/10 Seconds from each door-->
+
+			<playanim name="open" source="ent3" target="ent3" />
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent1" source="ent1" />
+			<wait duration="1000" />
+			<!-- <spawnunit name="Bastact1_Enemy_Fast" count="1" target="ent1" source="ent1" /> -->
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent1" source="ent1" />
+			<!-- <playanim name="open" source="ent0" target="ent0" /> -->
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" />
+
+			<scriptcondition name="loop_spawn1" value="0" >
+				<spawnthread name="bastact1_arc4DoorSpawn_Loop"/>
+			</scriptcondition>
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_arc4DoorSpawn_Loop">
+		<foreachplayer excludebots="true">
+			<wait duration="10000" />
+			<scriptcondition name="loop_spawn1" value="0" >
+				<spawnthread name="bastact1_arc4DoorSpawn" />
+			</scriptcondition>
+		</foreachplayer>
+	</scriptthread>
+	<!-- End for Looping group -->
+	<!-- ======================================================= -->
+
+	<!-- ======================================================= -->
+	<!-- Second Looping thread to spawn enemies until a condition -->
+	<!-- enemy_spawnpoint3 should be by GH_door_right -->
+	<!-- enemy_spawnpoint2 should be by GH_main_door-->
+	<scriptthread name="bastact1_arc4DoorSpawn2">
+		<foreachplayer excludebots="true">
+
+			<setent1 name="enemy_spawnpoint3"/>
+			<setent2 name="enemy_spawnpoint2"/>
+			<setent0 name="GH_main_door" />
+			<setent3 name="GH_door_right" />
+
+			<!--Spawn 2 Rook Enemies/10 Seconds from each door-->
+			<playanim name="open" source="ent3" target="ent3" />
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent1" source="ent1" />
+			<!-- <playanim name="open" source="ent0" target="ent0" /> -->
+			<wait duration="500" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" />
+			<wait duration="1000" />
+			<spawnunit name="Bastact1_Enemy_Rook" count="1" target="ent2" source="ent2" />
+
+			<scriptcondition name="loop_spawn1" value="0" >
+				<spawnthread name="bastact1_arc4DoorSpawn_Loop2"/>
+			</scriptcondition>
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_arc4DoorSpawn_Loop2">
+		<foreachplayer excludebots="true">
+			<wait duration="10000" />
+			<scriptcondition name="loop_spawn1" value="0" >
+				<spawnthread name="bastact1_arc4DoorSpawn2" />
+			</scriptcondition>
+		</foreachplayer>
+	</scriptthread>
+	<!-- End for Looping group -->
+	<!-- ======================================================= -->
+
+	<scriptthread name="bastact1_spawn_archers" >
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="archer_attack1" owner="ent0"/>
+			<setent1 name="archer_attack1" />
+			<spawn name="enemy_spawnpoint4" owner="ent0" />
+			<setent3 name="enemy_spawnpoint4" />
+
+			<!-- Point archer to movepoint 7 -->
+			<!-- <setent2 name="archer_movepoint7" />
+			<setproxy entity="ent1" target="ent2" />
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent3" source="ent3" pushentity="true"/>
+			<activatemodifierkey entity="stack_entity" name="balconyarcher"/>
+			<setproxy entity="stack_entity" target="ent2" />
+			<wait duration="1500" /> -->
+
+			<!-- Point archer to movepoint 8 -->
+			<setent2 name="archer_movepoint8" />
+			<setproxy entity="ent1" target="ent2" />
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent3" source="ent3" pushentity="true"/>
+			<activatemodifierkey entity="stack_entity" name="balconyarcher"/>
+			<setproxy entity="stack_entity" target="ent2" />
+			<wait duration="2000" />
+
+			<!-- Point archer to movepoint 9 -->
+			<!-- <setent2 name="archer_movepoint9" />
+			<setproxy entity="ent1" target="ent2" />
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent3" source="ent3" pushentity="true" />
+			<activatemodifierkey entity="stack_entity" name="balconyarcher"/>
+			<setproxy entity="stack_entity" target="ent2" />
+			<wait duration="1500" /> -->
+
+			<!-- Point archer to movepoint 10 -->
+			<setent2 name="archer_movepoint10" />
+			<setproxy entity="ent1" target="ent2" />
+			<spawnunit name="Bastact1_Enemy_Ranged" count="1" target="ent3" source="ent3" pushentity="true"/>
+			<activatemodifierkey entity="stack_entity" name="balconyarcher"/>
+			<setproxy entity="stack_entity" target="ent2" />
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_getClub">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<!-- 
+				Wait until club is picked up
+				Level up
+				Change model (modifier key)
+				Tell the Player they can break things-->
+
+
+			<waituntilmessage name="has_club" value="1" />
+			<setscriptvalue name="has_club" value="2" />
+
+			<setexperience entity="ent0" value="200" />
+			<activatemodifierkey entity="ent0" name="with_club" />
+			<activatemodifierkey entity="ent0" name="torch_is_lit" />
+			<pushability entity="ent0" slot="0" />
+			<setlevel entity="stack_entity" value="1" />
+			<setcharges entity="stack_entity" a="2" />
+			<setaccumulator entity="stack_entity" value="1" />
+			<clientuitrigger name="interface_turnOn"/>
+			<clientuitrigger name="mapTriggerAbilityShow" param="ShowActiveAbility0" />
+			<setscriptvalue name="ability0_isVisble" value="1" />
+			<!-- Set the cull range back to default -->
+			<setentitycullrange value="2500"/>
+			<!-- <clientuitrigger name="bastact1_dialogue9" /> -->
+
+			<setent0 name="Hero_Bastion1" />
+			<spawn name="Rat_Crates1" />
+			<setent1 name="Rat_Crates1" />
+			<order command="attack" source="ent1" target="ent0" force="true" forceduration="5000" />
+			<spawn name="Rat_Crates2" />
+			<setent1 name="Rat_Crates2" />
+			<order command="attack" source="ent1" target="ent0" force="true" forceduration="5000" />
+			
+		
+			<!-- play rook bird anim here-->
+		</foreachplayer>
+	</scriptthread>
+
+
+
+	<scriptthread name="bastact1_executioner_battle" >
+		<foreachplayer excludebots="true" >
+		<spawn name="bomb_pos_gadget" />
+			<spawn name="spin_pos1" />
+			<setent0 name="spin_pos1" />
+			<spawn name="spin_pos2" />
+			<setent1 name="spin_pos2" />
+			<spawn name="spin_pos3" />
+			<setent2 name="spin_pos3" />
+			<spawn name="spin_pos4" />
+			<setent3 name="spin_pos4" />
+
+			<setproxy entity="ent0" target="ent1" />
+			<setproxy entity="ent1" target="ent2" />
+			<setproxy entity="ent2" target="ent3" />
+			<setproxy entity="ent3" target="ent0" />
+			<spawn name="Teleport1"/>
+			<spawn name="Teleport2"/>
+			<spawn name="Teleport3"/>
+			<spawn name="Teleport4"/>
+			<spawnthread name="make_tables_breakable" />
+			<wait duration="1000"/>
+			<spawnthread name="bastact1_executioner_entrance"/>
+			<setent0 name="Hero_Bastion1" />
+			<activatemodifierkey entity="ent0" name="ExecutionerBattle" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_executioner_entrance">
+		<foreachplayer excludebots="true">
+			
+			<spawn name="executioner"/>			
+			<setent0 name="Hero_Bastion1" />
+			<setent1 name="executioner" />
+			<setexperience entity="ent1" value="32000" />
+			<expirestate name="State_NonCombatRegenTutorial" target="ent1"/>
+			<setent2 name="rook_mp1"/>
+			<useability slot="6" source="ent1" target="ent2"/>
+			<spawn name="rubblepile"/>
+			<setactivemodifierkey entity="ent0" name="invuln"/>
+			<setactivemodifierkey entity="ent1" name="invuln"/>
+			<wait duration="1000"/>
+			<spawn name="rubble_blocker" />
+			<clientuitrigger name="bastact1_cinematic_final5"/>
+			<wait duration="8300"/>
+			<setent2 name="bombthrowpoint1"/>
+			<playanim name="bombthrow_2" source="ent1" target="ent1"/>
+			<wait duration="1000"/>
+			
+			<spawnunit name="Bastact1_Bomb2" source="ent1" count="1" target="ent1" team="1" pushentity="true" lifetime="2500" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" source="ent1" target="ent2" bind="stack_entity" proxy="stack_entity" />
+
+			<setent2 name="bombthrowpoint2"/>
+			<spawnunit name="Bastact1_Bomb2" source="ent1" count="1" target="ent1" team="1" pushentity="true" lifetime="2500" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" source="ent1" target="ent2" bind="stack_entity" proxy="stack_entity" />
+			
+			<wait duration="2500"/>
+			<playeffect effect="heroes/executioner/ability_04/sounds/sound.effect" source="ent0" target="ent0"/>
+			<wait duration="1200"/>
+			<setent2 name="bastact1_column_1"/>
+			<!-- <playanim source="ent2" target="ent2" name="fall" /> -->
+			<setent2 name="bastact1_column_2"/>
+			<!-- <playanim source="ent2" target="ent2" name="fall" /> -->
+			<setactivemodifierkey entity="ent0" name=""/>
+			<setactivemodifierkey entity="ent1" name=""/>
+
+			<spawn name="rubblepile2" />	
+
+			<!-- Spawn invisible gates that block the player from going up the stairs -->
+			<spawn name="wall_executioner_blocker" />
+			<spawn name="wall_executioner1" />
+			<setent2 name="wall_executioner1" />
+			<activatemodifierkey name="not_visible" entity="ent2" />
+			<spawn name="wall_executioner2" />
+			<setent2 name="wall_executioner2" />
+			<activatemodifierkey name="not_visible" entity="ent2" />
+
+			<unlockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOn" />
+			<clientuitrigger name="spe_objective6Unlock" />
+			
+			<!-- Trigger boss healthbars -->
+			<clientuitrigger name="bossHealthbar_TurnOn"/>
+			
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>
+
+
+			<spawnthread name="bastact1_rookult" />
+		</foreachplayer>
+	</scriptthread>
+
+	<!-- Cinematics for mid boss battle -->
+	<scriptthread name="bastact1_rookult" >
+		<foreachplayer excludebots="true">
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InExecutionerBoss" value="1" />
+			<clientuitrigger name="bastact1_checkpoint_executioner_start" />
+
+			<setent1 name="Revive1"/>
+			<!-- <delete target="ent1"/> -->
+			<setscriptvalue name="endStage1" value="0" />
+			<setscriptvalue name="endStage2" value="0" />
+			<setscriptvalue name="Executioner_dead" value="0" />
+			<!-- Get rid of Rook -->
+			<!-- <setent1 name="Hero_Rook_Camp1" />
+			<expirestate target="ent1" name="Camp1_State_Teleport"/>
+			<setactivemodifierkey entity="ent1" name="noattack"/>
+			<setactivemodifierkey entity="ent1" name="hide"/>
+			<spawn name="Teleport5"/>
+			<setent3 name="Teleport5"/>
+			<teleport source="ent1" target="ent3"/> -->
+
+			<setent0 name="Hero_Bastion1" />
+			<setent2 name="executioner" />
+			<waituntilmessage name="endStage1" value="1" />
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InExecutionerBoss_stage2" value="1" />
+			<clientuitrigger name="bastact1_executioner_startStage2" />
+
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			<clientuitrigger name="bossHealthbar_TurnOff" />
+			
+			<setactivemodifierkey entity="ent0" name="invuln"/>
+			<setactivemodifierkey entity="ent2" name="invuln"/>
+
+			<!-- Cinematic mode on -->
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<clientuitrigger name="altInfoSelfMapTriggerHide" param="healthVis" />
+			<clientuitrigger name="altInfoHeroMapTriggerHide" param="stunVis"/>
+
+			<clientuitrigger name="bastact1_cinematic_final12" />
+			<wait duration="1800" />
+			<clientuitrigger name="bastact1_cinematic_final13" />
+			<wait duration="3750" />
+			<clientuitrigger name="bastact1_cinematic_final14" />
+			<playanim source="ent2" target="ent2" name="taunt_1" />
+			<wait duration="2000"/>
+			<!-- Cinematic Mode Off -->
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>
+			<clientuitrigger name="altInfoSelfMapTriggerShow" param="healthVis" />
+			<clientuitrigger name="altInfoHeroMapTriggerShow" param="stunVis"/>
+			<wait duration="1000" />
+
+			<setactivemodifierkey entity="ent0" name=""/>
+			<setactivemodifierkey entity="ent2" name=""/>
+			
+			<clientuitrigger name="bossHealthbar_TurnOn" />
+			
+			<unlockcontrol entity="ent0"/>
+			<clientuitrigger name="objectives_turnOn" />
+			<expirestate name="Bastact1_State_Executioner2_PreStage2" target="ent2" />
+			<waituntilmessage name="endStage2" value="1" />
+
+			<applystate name="State_Bastact1_Death" target="ent0" duration="-1"/>
+			<lockcontrol entity="ent0" />
+			<clientuitrigger name="objectives_turnOff" />
+			
+			<clientuitrigger name="bossHealthbar_TurnOff" />
+			
+			<setactivemodifierkey entity="ent0" name="invuln"/>
+			<setactivemodifierkey entity="ent2" name="invuln"/>
+
+			<!-- Cinematic Mode On -->
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<clientuitrigger name="altInfoSelfMapTriggerHide" param="healthVis" />
+			<clientuitrigger name="altInfoHeroMapTriggerHide" param="stunVis"/>
+
+			<clientuitrigger name="bastact1_cinematic_final16" />
+			<playanim source="ent2" target="ent2" name="taunt_2" />
+			<wait duration="6000" />
+			<playanim source="ent2" target="ent2" name="taunt_1" />
+			<wait duration="2000"/>
+			<!-- Cinematic Mode Off -->
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>
+			<clientuitrigger name="altInfoSelfMapTriggerShow" param="healthVis" />
+			<clientuitrigger name="altInfoHeroMapTriggerShow" param="stunVis"/>
+			<wait duration="1000" />
+
+			<setactivemodifierkey entity="ent0" name=""/>
+			<setactivemodifierkey entity="ent2" name=""/>
+			
+			<clientuitrigger name="bossHealthbar_TurnOn" />
+			
+			<unlockcontrol entity="ent0"/>
+			<clientuitrigger name="objectives_turnOn" />
+
+			<!-- Analytics -->
+			<spawnthread name="bastact1_analytics_resetScriptVariables" />
+			<wait duration="50" />
+			<setscriptvalue name="analytics_InExecutionerBoss_stage3" value="1" />
+			<clientuitrigger name="bastact1_executioner_startStage3" />
+
+			<expirestate name="Bastact1_State_Executioner2_PreStage3" target="ent2" />
+			<setscriptvalue name="battle_end" value="0"/>			
+			<spawnthread name="Bastact1_Executioner_EndScene"/>
+		</foreachplayer >
+	</scriptthread>
+
+	<scriptthread name="Bastact1_Executioner_EndScene">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1"/>
+			<setent2 name="hook_point1" />
+			<setent1 name="executioner"/>
+			<setent3 name="pcam1"/>
+			<applystate name="state_bastact1_executioner_end_invincible" target="ent1" duration="-1"/>
+			
+			<waituntilmessage name="battle_end" value="1"/>	
+
+			<!-- Cinematic Mode On -->
+			<clientuitrigger name="campaign_startCinematicOverlay" />
+			<clientuitrigger name="interface_turnOff"/>
+			<clientuitrigger name="altInfoSelfMapTriggerHide" param="healthVis" />
+			<clientuitrigger name="altInfoHeroMapTriggerHide" param="stunVis"/>
+
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_killedExecutioner" />		
+
+			<activatemodifierkey name="cinematic_mode" entity="ent0"/>
+			<clientuitrigger name="bastact1_cinematic_final17"/>
+
+			<lockcontrol entity="ent0"/>
+			
+			<!-- Hide Boss Healthbars -->
+			<clientuitrigger name="bossHealthbar_TurnOff" />
+			
+
+			<order command="move" target="ent2" source="ent0"/>
+			<order command="stop" target="ent1" source="ent1"/>
+			
+			<setcamera entity="target_entity" source="ent0" camera="ent3" />
+			
+			<movecamera entity="ent3" positionentity="ent1" useindirectheight="true"  duration="1000" block="false"/>
+			<setcamera entity="target_entity" source="ent1" camera="ent3" />
+			
+			<wait duration="500"/>
+			
+
+
+			<playanim name="death_kneel" target="ent1"/>
+			<wait duration="500"/>
+			<playanim name="death_kneel_idle" target="ent1"/>
+			<wait duration="2500"/> 
+
+
+			
+			<playanim name="death_kneel_bomb" target="ent1" />
+			<wait duration="1000"/>
+			<playanim name="death_idle" target="ent1" />
+			<wait duration="1000"/>
+			<spawnprojectile name="Bastact1_Projectile_Executioner_End" source="ent1" target="ent2" bind="ent1" bindturn="true"  unbindondeath="true" bindpriority="1"/> 
+			<playanim name="death_run" source="ent1" target="ent1" />
+			<movecamera entity="ent3" positionentity="ent0" useindirectheight="true"  duration="1000" block="false"/>
+			<setent2 name="Revive1"/>
+			<wait duration="1600"/>
+			<useability slot="1" source="ent0" target="ent2"/>
+			<applystate name="state_bastact1_executioner_end2_invincible" target="ent1" source="ent1" duration="-1" />
+			<wait duration="480"/>
+			<setpos1 position="ent1"/>
+			<playeffect source="pos1" target="pos1" effect="heroes/executioner/death_explosion/explosion.effect"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_04.effect" target="ent0" source="ent0"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_05.effect" target="ent0" source="ent0"/>
+			<playanim name="death_blastoff" target="ent1" speed="1"/>
+			<clientuitrigger name="bastact1_cinematic_final19"/>
+			<wait duration="1500"/>
+			<delete target="ent1"/>
+			<wait duration="500"/>
+			<applystate name="state_bastact1_executioner_end2_invincible" target="ent0" source="ent0" duration="-1" />
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_02.effect" target="ent0" source="ent0"/>
+			<setent2 name="hook_point1" />
+			<setpos2 position="ent2" offset="0 400 0" offsetspace="ent2"/>
+			<spawnprojectile name="Bastact1_Projectile_Executioner_EndRocks" source="ent0" target="pos2" proxy="ent0"/>
+			<setpos2 position="ent2" offset="800 400 0" offsetspace="ent2"/>
+			<spawnprojectile name="Bastact1_Projectile_Executioner_EndRocks" source="ent0" target="pos2" proxy="ent0"/>
+			<setpos2 position="ent2" offset="-700 -200 0" offsetspace="ent2"/>
+			<wait duration="1000"/>
+			<spawnprojectile name="Bastact1_Projectile_Executioner_EndRocks" source="ent0" target="pos2" proxy="ent0"/>
+			<movecamera entity="ent3" positionentity="ent0" useindirectheight="true"  duration="1000" block="false"/>
+			<expirestate name="state_bastact1_executioner_end2_invincible" target="ent0"  />
+			<applystate name="state_bastact1_executioner_end2_invincible" target="ent0" source="ent0" duration="-1" />
+			<playanim name="lookup" target="ent0" />
+			<wait duration="1200"/>
+			<setent2 name="Revive1"/>
+			<playeffect source="ent2" target="ent2" effect="heroes/executioner/axe/axe_fall.effect"/>
+			<wait duration="800"/>
+			<setent2 name="Hearthstone"/>
+			<useability slot="1" source="ent0" target="ent2"/>
+			<wait duration="1000"/>
+			
+			<!-- Should play after the executioner blows up -->
+			<clientuitrigger name="spe_objective6Complete" />
+			<setent2 name="Hearthstone"/>
+			<wait duration="500"/>
+
+			<spawn name="vision_ending" owner="ent0"/>
+			<movecamera entity="ent3" positionentity="ent2" useindirectheight="true" newheight="2000" duration="2000" block="true"/>
+			<setcameraheight value="2000"/>
+			<setent2 name="Hearthstone"/>
+			<setpos2 position="ent2" offset="-300 200 0" offsetspace="ent2"/>
+			<setpos1 position="ent2" offset="0 0 750" offsetspace="ent2"/>
+			<spawnprojectile name="Bastact1_Projectile3_Executioner_Ability5" source="pos1" target="pos2" proxy="ent0"/>
+			<setpos2 position="ent2" offset="300 150 0" offsetspace="ent2"/>
+			<setpos1 position="ent2" offset="0 0 750" offsetspace="ent2"/>
+			<spawnprojectile name="Bastact1_Projectile2_Executioner_Ability5" source="pos1" target="pos2" proxy="ent0"/>
+			<setpos2 position="ent2" offset="-300 100 0" offsetspace="ent2"/>
+			<setpos1 position="ent2" offset="0 0 750" offsetspace="ent2"/>
+			<spawnprojectile name="Bastact1_Projectile2_Executioner_Ability5" source="pos1" target="pos2" proxy="ent0"/>
+			<setpos2 position="ent2" offset="0 400 0" offsetspace="ent2"/>
+			<setpos1 position="ent2" offset="0 0 750" offsetspace="ent2"/>
+			<spawnprojectile name="Bastact1_Projectile_Executioner_EndingStone" source="pos1" target="pos2" proxy="ent0"/>
+			
+
+			<!-- Stop the executioner music -->
+			<playconductorevent name="Temp1" />
+
+			<wait duration="1400"/>
+			<playanim name="crack" target="ent2"/>
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_05.effect" target="ent2" source="ent2"/>
+			<!-- <setent2 name="rook_mp2"/>
+			<teleport source="ent0" target="ent2"/> -->
+
+			<wait duration="1000"/>
+			<setent2 name="end_scene_marker"/>
+			<!-- <order command="move" source="ent0" target="ent2"/> -->
+			<applystate name="state_bastact1_executioner_end3_invincible" target="ent0" source="ent0" duration="-1" />
+
+			<wait duration="1000"/>
+			<clientuitrigger name="spe_objective7Unlock" />
+			<wait duration="500"/>
+			<setent2 name="Hearthstone"/>
+			<setpos2 position="ent2" offset="0 400 0" offsetspace="ent2"/>
+			<movecamera entity="ent3" positionentity="pos2" useindirectheight="true" newheight="3000" duration="1000" block="false"/>
+			<setcameraheight value="3000"/>
+			<clientuitrigger name="bastact1_cinematic_final26"/>
+			<wait duration="1500"/>
+			<setactivemodifierkey entity="ent0" name=""/>
+			<!-- <setcamera entity="target_entity"  /> -->
+			<unlockcontrol entity="ent0"/>
+
+			<!-- Cinematic Mode Off -->
+			<clientuitrigger name="campaign_endCinematicOverlay" />
+			<clientuitrigger name="interface_turnOn"/>
+			<clientuitrigger name="altInfoSelfMapTriggerShow" param="healthVis" />
+			<clientuitrigger name="altInfoHeroMapTriggerShow" param="stunVis"/>
+
+			<setscriptvalue name="bast_stone" value="0"/>
+			<deactivatemodifierkey name="cinematic_mode" entity="ent0"/>
+			<spawn name="bastact1_end_trigger_stone" owner="ent0"/>
+			<setent2 name="Hearthstone"/>
+			<waituntilmessage name="bast_stone" value="1"/>
+			<playanim name="present" target="ent2"/>
+			<clientuitrigger name="spe_objective7Complete" />
+			<playeffect effect="buildings/castle_gate/new_splosion/camshake_06.effect" target="ent0" source="ent0"/>
+			<wait duration="1000"/>
+
+			<clientuitrigger name="objectives_turnOff" />
+			<clientuitrigger name="interface_turnOff"/>
+			<spawnthread name="bastact1_ending_cutscene"/>
+			<clientuitrigger name="cinematic_turnOff"/>
+
+
+		</foreachplayer>
+	</scriptthread>
+
+
+	<scriptthread name="bastact1_ending_cutscene">
+		<foreachplayer excludebots="true">
+			<!-- Analytics -->
+			<clientuitrigger name="bastact1_finishedAct1" />
+			<print text="Thanks for playing!" />
+			
+			<wait duration="500" />
+			<!-- Calls the second video to play -->
+			<clientuitrigger name="video_start" param="closing"/>
+
+			<waituntilmessage name="video_finished" value="1" />
+			<clientuitrigger name="interface_turnOn"/>
+			<clientuitrigger name="cinematic_turnOn"/>
+			<clientuitrigger name="bastact1_endGame"/>
+		</foreachplayer>
+	</scriptthread>
+
+
+	<!-- =============================== -->
+	<!-- Utility Threads -->
+	<!-- =============================== -->
+
+	<!-- Monitoring and reporting Player deaths for analytics -->
+	<scriptthread name="bastact1_analytics_monitorPlayerDeaths" >
+		<foreachplayer>
+			<!-- When Bastion dies, set in hero.entity -->
+			<waituntilmessage name="analytics_playerDeath" value="1" />
+			<setscriptvalue name="analytics_playerDeath" value="0" />
+
+			<!-- Is the Player in the Sewer? -->
+			<scriptcondition name="analytics_InSewer" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inSewer" />
+			</scriptcondition>
+
+			<!-- Is the Player in the wine cellar? -->
+			<scriptcondition name="analytics_InWineCellar" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inWineCellar" />
+			</scriptcondition>
+
+			<!-- Is the Player in the gauntlet? -->
+			<scriptcondition name="analytics_InGauntlet" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inGauntlet" />
+			</scriptcondition>
+
+			<!-- Is the Player in the chase scene playing as bastion? -->
+			<scriptcondition name="analytics_InChaseScene" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inChaseScene" />
+			</scriptcondition>
+
+			<!-- Is the Player in Hero Defense before fighting the 3rd wizard? -->
+			<scriptcondition name="analytics_InHeroDefense" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inHeroDefense" />
+			</scriptcondition>
+
+			<!-- Is the Player fighting the 3rd wizard? -->
+			<scriptcondition name="analytics_InWizardBoss" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inWizardBoss" />
+			</scriptcondition>
+
+			<!-- Is the Player fighting the executioner? -->
+			<scriptcondition name="analytics_InExecutionerBoss" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inExecutionerBoss" />
+			</scriptcondition>
+
+			<!-- Is the Player fighting the executioner in stage 2? -->
+			<scriptcondition name="analytics_InExecutionerBoss_stage2" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inExecutionerBoss_stage2" />
+			</scriptcondition>
+
+			<!-- Is the Player fighting the executioner in stage 3? -->
+			<scriptcondition name="analytics_InExecutionerBoss_stage3" value="1" >
+				<clientuitrigger name="bastact1_playerDied_inExecutionerBoss_stage3" />
+			</scriptcondition>
+
+			<spawnthread name="bastact1_analytics_monitorPlayerDeaths_loop" />
+
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_analytics_monitorPlayerDeaths_loop" >
+		<foreachplayer>
+			<!-- Arbitrary wait time, just in case -->
+			<wait duration="250" />
+			<spawnthread name="bastact1_analytics_monitorPlayerDeaths" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_analytics_resetScriptVariables" >
+		<setscriptvalue name="analytics_playerDeath" value="0" />
+		<setscriptvalue name="analytics_InSewer" value="0" />	
+		<setscriptvalue name="analytics_InWineCellar" value="0" />
+		<setscriptvalue name="analytics_InGauntlet" value="0" />
+		<setscriptvalue name="analytics_InChaseScene" value="0" />
+		<setscriptvalue name="analytics_InHeroDefense" value="0" />
+		<setscriptvalue name="analytics_InWizardBoss" value="0" />
+		<setscriptvalue name="analytics_InExecutionerBoss" value="0" />
+		<setscriptvalue name="analytics_InExecutionerBoss_stage2" value="0" />
+		<setscriptvalue name="analytics_InExecutionerBoss_stage3" value="0" />
+	</scriptthread>
+
+	<!-- ================== For Respawning Guards 1 ===================== -->
+	<!-- Need to set it up so the threads don't spawn if Bastion isn't in the area -->
+	<!-- Do a script condition that terminates the thread if not true -->
+	<scriptthread name="bastact1_spawnGuards1_cinematic">
+		<foreachplayer excludebots="true">
+			<setent0 name="guard_spawnpoint1a" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" />
+
+			<setent0 name="guard_spawnpoint1b" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" pushentity="true" />
+			<activatemodifierkey name="creep2" entity="stack_entity" />
+			<applystate name="State_Bastact1_CinematicMovement" target="stack_entity" duration="-1" proxy="ent0" />
+			<setent1 name="cellar_movepoint1" />
+			<teleport source="stack_entity" target="ent1" />
+			<popstack/>
+
+			<setent0 name="guard_spawnpoint1c" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" pushentity="true" facing="ent0" />
+			<applystate name="State_Bastact1_CinematicMovement" target="stack_entity" duration="-1" proxy="ent0" />
+			<setent1 name="cellar_movepoint2" />
+			<teleport source="stack_entity" target="ent1" />
+
+			<spawnthread name="bastact1_monitorDeath" />
+		</foreachplayer>	
+	</scriptthread>
+
+	<scriptthread name="bastact1_spawnGuards1">
+		<foreachplayer excludebots="true">
+			<!-- If the Player is not in the wine cellar, terminate this thread -->
+			<scriptcondition name="inWineCellar1" value="0" >
+				<terminate/>
+			</scriptcondition>
+
+			<setent0 name="guard_spawnpoint1a" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" />
+
+			<setent1 name="guard_movepoint2" />
+			<setent0 name="guard_spawnpoint1b" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" pushentity="true" facing="ent1" />
+			<applystate name="State_Bastact1_CinematicMovement" target="stack_entity" duration="-1" proxy="ent0" />
+			<activatemodifierkey name="creep2" entity="stack_entity" />
+			<popstack/>
+
+			<setent0 name="guard_spawnpoint1c" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" pushentity="true" />
+			<applystate name="State_Bastact1_CinematicMovement" target="stack_entity" duration="-1" proxy="ent0" />
+			<activatemodifierkey name="creep1" entity="stack_entity" />
+
+			<wait duration="100" />
+			<spawnthread name="bastact1_monitorDeath" />
+		</foreachplayer>	
+	</scriptthread>
+
+	<scriptthread name="bastact1_monitorDeath">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<waituntilmessage name="isDead" value="1" />
+			<spawnthread name="bastact1_monitorRespawn" />
+		</foreachplayer>	
+	</scriptthread>
+
+	<scriptthread name="bastact1_monitorRespawn">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<waituntilmessage name="isDead" value="0" />
+			<!-- Kill guards -->
+			<areaofeffect
+				radius="15000"
+				targetselection="all"
+				targetscheme="patrol_guard"
+				maximpactspertarget="1"
+				maxtotalimpacts="-1"
+				center="ent0"
+				source="ent0"
+			>
+				<delete target="target_entity" />
+			</areaofeffect>
+			<spawnthread name="bastact1_spawnGuards1" />
+		</foreachplayer>	
+	</scriptthread>	
+	<!-- ================================================================ -->
+
+	<!-- ================== For Respawning Guards 2 ===================== -->
+	<scriptthread name="bastact1_spawnGuards2">
+		<foreachplayer excludebots="true">
+			<!-- If the Player is not in the wine cellar, terminate this thread -->
+			<scriptcondition name="inWineCellar2" value="0" >
+				<terminate/>
+			</scriptcondition>
+
+			<setent0 name="guard_spawnpoint2a" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" />
+
+			<setent0 name="guard_spawnpoint2b" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" pushentity="true" />
+			<activatemodifierkey name="creep3" entity="stack_entity" />
+
+			<setent0 name="guard_spawnpoint2c" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" />
+
+			<setent0 name="guard_spawnpoint2d" />
+			<spawnunit name="Bastact1_Enemy_Guard2" source="ent0" target="ent0" team="2" count="1" />
+
+			<wait duration="100" />
+			<spawnthread name="bastact1_monitorDeath2" />
+		</foreachplayer>	
+	</scriptthread>
+
+	<scriptthread name="bastact1_monitorDeath2">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<waituntilmessage name="isDead" value="1" />
+			<spawnthread name="bastact1_monitorRespawn2" />
+		</foreachplayer>	
+	</scriptthread>
+
+	<scriptthread name="bastact1_monitorRespawn2">
+		<foreachplayer excludebots="true">
+			<setent0 name="Hero_Bastion1" />
+			<waituntilmessage name="isDead" value="0" />
+			<!-- Kill guards -->
+			<areaofeffect
+				radius="20000"
+				targetselection="all"
+				targetscheme="patrol_guard"
+				maximpactspertarget="1"
+				maxtotalimpacts="-1"
+				center="ent0"
+				source="ent0"
+			>
+				<delete target="target_entity" />
+			</areaofeffect>
+			<spawnthread name="bastact1_spawnGuards2" />
+		</foreachplayer>	
+	</scriptthread>	
+	<!-- ================================================================ -->
+
+	<!-- ===================== Guards 2 Section ========================= -->
+	<scriptthread name="bastact1_stationaryGuard">
+		<foreachplayer excludebots="true">
+			<!-- Wait until the Player has reached the spider trigger in the bottom left -->
+			<waituntilmessage name="stationary_guard" value="1"/>
+			<setscriptvalue name="stationary_guard" value="0" />
+			<!-- Move the stationed guard out of the way so he begins partrolling -->
+			<setent0 name="guard2_stationed" />
+			<!-- <activatemodifierkey name="creep2" entity="ent0" /> -->
+			<setent1 name="guard_movepoint4" />
+			<order command="move" source="ent0" target="ent1" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_spiderGuard">
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="guard_talk" value="1" />
+			<setscriptvalue name="guard_talk" value="0" />
+
+			<!-- For some reason script conditions can only have one line? -->
+			<scriptcondition name="guard_is_talking" value="0" >
+				<spawnthread name="bastact1_spiderGuard_Text" />
+			</scriptcondition>			
+
+			<spawnthread name="bastact1_spiderGuard_Loop" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_spiderGuard_Text">
+		<foreachplayer excludebots="true">
+			<setscriptvalue name="guard_is_talking" value="1" />
+			<clientuitrigger name="bastact1_spiderguard1" />
+			<wait duration="4500" />
+			<clientuitrigger name="bastact1_spiderguard2" />
+			<wait duration="3000" />
+			<setscriptvalue name="guard_is_talking" value="0" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_spiderGuard_Loop">
+		<foreachplayer excludebots="true">
+			<wait duration="500" />
+			<spawnthread name="bastact1_spiderGuard" />
+		</foreachplayer>
+	</scriptthread>
+	<!-- ================================================================ -->
+
+	<!-- Spawn and set up Rook -->
+	<scriptthread name="bastact1_spawn_rook" >
+		<foreachplayer excludebots="true">
+			<spawn name="Hero_Rook_HeroD"/>
+			<setent1 name="Hero_Rook_HeroD" />
+			<activatemodifierkey name="cinematic_mode" entity="ent1" />
+			<applystate name="state_bastact1_invincible" target="ent1" duration="-1" />
+
+			<pushability entity="ent1" slot="0" />
+			<activatemodifierkey entity="stack_entity" name="great_hall_ability" />
+			<setlevel entity="stack_entity" value="3" />
+			<pushability entity="ent1" slot="1" />
+			<setlevel entity="stack_entity" value="3" />
+			<pushability entity="ent1" slot="2" />
+			<setlevel entity="stack_entity" value="3" />
+			<pushability entity="ent1" slot="3" />
+			<setlevel entity="stack_entity" value="3" />
+			<setexperience entity="ent1" value="10000" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_startTensionMusic" >
+		<foreachplayer excludebots="true">
+			<!-- We don't want this thread to be waiting if the player isn't in the wine cellar anymore -->
+			<scriptcondition name="playTensionMusic" value="1" >
+				<terminate/>
+			</scriptcondition>
+
+			<waituntilmessage name="startTension" value="1" />
+			<playconductorevent name="Temp3" />	
+			<spawnthread name="bastact1_endTensionMusic" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_endTensionMusic" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="startTension" value="0" />
+			<playconductorevent name="Temp1" />	
+			<spawnthread name="bastact1_startTensionMusic" />
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="bastact1_initializeObjectives" >
+		<foreachplayer>
+			<clientuitrigger name="spe_objective1" />
+			<clientuitrigger name="spe_objective2" />
+			<clientuitrigger name="spe_objective3" />
+			<clientuitrigger name="spe_objective4" />
+			<clientuitrigger name="spe_objective5" />
+			<clientuitrigger name="spe_objective6" />
+			<clientuitrigger name="spe_objective7" />
+		</foreachplayer>
+	</scriptthread>
+
+	<!-- =============================== -->
+	<!--           Misc Threads          -->
+	<!-- =============================== -->
+	<scriptthread name="bastact1_spawn_melee_statues" >
+		<foreachplayer excludebots="true" >
+			<spawn name="melee_frozen1" />
+			<setent0 name="melee_frozen1" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen2" />
+			<setent0 name="melee_frozen2" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<activatemodifierkey entity="ent0" name="slow" />
+			<spawn name="melee_frozen3" />
+			<setent0 name="melee_frozen3" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen4" />
+			<setent0 name="melee_frozen4" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen5" />
+			<setent0 name="melee_frozen5" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen6" />
+			<setent0 name="melee_frozen6" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen7" />
+			<setent0 name="melee_frozen7" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen8" />
+			<setent0 name="melee_frozen8" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen9" />
+			<setent0 name="melee_frozen9" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen10" />
+			<setent0 name="melee_frozen10" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen11" />
+			<setent0 name="melee_frozen11" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen12" />
+			<setent0 name="melee_frozen12" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen13" />
+			<setent0 name="melee_frozen13" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen14" />
+			<setent0 name="melee_frozen14" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen15" />
+			<setent0 name="melee_frozen15" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<spawn name="melee_frozen_cinematicSword" />
+			<setent0 name="melee_frozen_cinematicSword" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<activatemodifierkey name="dead_cinematic" entity="ent0"/>
+			<spawn name="melee_frozen_cinematic1" />
+			<setent0 name="melee_frozen_cinematic1" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<activatemodifierkey entity="ent0" name="slow" />
+			<spawn name="melee_frozen_cinematic2" />
+			<setent0 name="melee_frozen_cinematic2" />
+			<activatemodifierkey entity="ent0" name="frozen" />
+			<activatemodifierkey entity="ent0" name="slow" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+	<scriptthread name="make_tables_breakable">
+		<setent0 name="breakable_table1" />
+		<activatemodifierkey entity="ent0" name="takes_damage" />
+		<setent0 name="breakable_table2" />
+		<activatemodifierkey entity="ent0" name="takes_damage" />
+		<setent0 name="breakable_table3" />
+		<activatemodifierkey entity="ent0" name="takes_damage" />
+		<setent0 name="breakable_table4" />
+		<activatemodifierkey entity="ent0" name="takes_damage" />
+		<setent0 name="breakable_table5" />
+		<activatemodifierkey entity="ent0" name="takes_damage" />
+	</scriptthread>
+</game>

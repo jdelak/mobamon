@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Frostbrand_Empower_1"
+	
+	cost="1400"
+
+>
+	<!-- Tooltip only -->
+	<constant name="movespeed_enchant" value="16" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onattackimpact  >
+		<condition test="bounce_count lt 2">
+			<cantarget targetscheme="enemy_units" effecttype="">
+				<applystate name="State_Frostbrand" duration="2500" />
+				
+				<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+
+				<applystate name="State_Frostbrand_Legendary" target="source_entity" duration="2500" />
+			</cantarget>
+		</condition>
+	</onattackimpact>
+
+</qualityitem>

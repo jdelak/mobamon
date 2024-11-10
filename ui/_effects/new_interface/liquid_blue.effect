@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="body_01">
+	<definitions>
+		<particlesystem name="system0" space="world">
+
+			<simpleemitter
+				position="0 0 -40"
+				spawnrate="5"
+				timenudge="1500"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				offsetsphere="10 10 30"
+				minspeed="25"
+				maxspeed="50"
+				material="/shared/effects/smaterials/bulb_add.material"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".125 .35 .5"
+					endcolor="0 0 0"
+					minstartscale="5"
+					maxstartscale="25"
+					minendscale="5"
+					maxendscale="25"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 -40"
+				spawnrate="5"
+				timenudge="1500"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				offsetsphere="10 10 30"
+				minspeed="25"
+				maxspeed="50"
+				material="/shared/effects/smaterials/whitedot.material"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".15 .6 .8"
+					endcolor="0 0 0"
+					minstartscale="10"
+					maxstartscale="45"
+					minendscale="15"
+					maxendscale="45"
+				/>
+				
+				<particle
+					startcolor="0 0 0"
+					midcolor=".125 .35 .5"
+					endcolor="0 0 0"
+					minstartscale="10"
+					maxstartscale="25"
+					minendscale="15"
+					maxendscale="25"
+				/>
+			</simpleemitter>
+
+			<template name="">
+
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="{zspawnrate}"
+					timenudge="1500"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					offsetsphere="{zoffset}"
+					minspeed="6"
+					maxspeed="12"
+					material="/shared/effects/smaterials/bulb_add.material"
+					direction="{zdir}"
+					minangle="0"
+					maxangle="0"
+				>
+				
+					<particle
+						startcolor="0 0 0"
+						midcolor=".175 .4 .5"
+						endcolor="0 0 0"
+						minstartscale="5"
+						maxstartscale="20"
+						minendscale="5"
+						maxendscale="20"
+					/>
+				
+					<particle
+						startcolor="0 0 0"
+						midcolor=".2 .5 .7"
+						endcolor="0 0 0"
+						minstartscale="5"
+						maxstartscale="20"
+						minendscale="5"
+						maxendscale="20"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="{zspawnrate}"
+					timenudge="1500"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					offsetsphere="{zoffset}"
+					minspeed="6"
+					maxspeed="12"
+					material="/shared/effects/smaterials/whitedot.material"
+					direction="{zdir}"
+					minangle="0"
+					maxangle="0"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".125 .2 .4"
+						endcolor="0 0 0"
+						minstartscale="10"
+						maxstartscale="40"
+						minendscale="10"
+						maxendscale="40"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zpos="40 0 5" zoffset="15" zspawnrate="4" zdir="-.3 0 1"/>
+			<instance name="" zpos="0 0 25" zoffset="25" zspawnrate="5" zdir=".3 0 1"/>
+			<instance name="" zpos="-30 0 -35" zoffset="20" zspawnrate="5" zdir="-.35 0 1"/>
+			<instance name="" zpos="25 0 -35" zoffset="25" zspawnrate="5" zdir=".3 0 1"/>
+
+			<simpleemitter
+				spawnrate="10"
+				minparticlelife="500"
+				maxparticlelife="500"
+				material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .5 1"
+					endcolor="0 0 0"
+					startscale="85"
+					endscale="105"
+					lockup="1"
+					lockright="1"
+					pitch="0"
+				/>
+			</simpleemitter>
+			
+			
+			
+			<model
+				position="0 2 0"
+				expirelife="250"
+				color="0 0 10"
+				scale="4.5"
+				model="panning/model.mdf"
+				material="panning/material.material"
+				anim="idle"
+				pitch="90"
+			/>
+			
+			<model
+				position="0 2 0"
+				expirelife="250"
+				color="0 4 10"
+				scale="4.5"
+				model="panning/model.mdf"
+				material="panning/material_faster.material"
+				anim="idle"
+				pitch="90"
+			/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

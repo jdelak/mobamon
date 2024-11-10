@@ -1,0 +1,16 @@
+-- Game List
+-- local interface = object
+
+-- function PlayerFinderDebug()
+	-- println('PlayerFinderDebug')
+	-- local triggerPanelStatus		= LuaTrigger.GetTrigger('mainPanelStatus')
+	-- triggerPanelStatus.main = 40
+	-- triggerPanelStatus:Trigger(false)		
+	-- GetWidget('party_finder'):SetVisible(1)
+-- end
+-- if (GetCvarBool('ui_debug_party_finder')) then
+	-- GetWidget('party_finder'):Sleep(2500, function()
+		-- PlayerFinderDebug() -- RMM
+		-- end
+	-- )
+-- end

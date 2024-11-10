@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item
+	name="Item_HealthElixir"
+	
+	statuseffecttooltip="State_HealthElixir"
+	icon="icon.tga"
+	category="consumable"
+	
+	cost="120"
+	initialcharges="1"
+	chargecost="1"
+	destroyonempty="true"
+	allowsharing="true"
+	
+	actiontype="target_self"
+	frontqueue="true"
+	casttime="0"
+	castactiontime="0"
+	maxcharges="1"
+
+	itemtype="Consumable"
+	noentercombat="true"
+	responsetype="NoResponse"
+	casteffecttype="NoResponse"
+	botitem="HealthElixirItem"
+	filters="consumable"
+	hidefromall="true"
+	
+	ignoredynamicactivation="true"
+>
+	<checkcost>
+		<compare a="source_health_percent" b="1" op="ge" >
+			<invalidate/>
+		</compare>
+	</checkcost>
+	
+	<onimpact>
+		<applystate name="State_HealthElixir" duration="10000" />
+		<playanim name="item_1" target="source_entity" />
+	</onimpact>
+	
+	<ondamaged priority="1">
+		<currentdamageeffecttype effecttype="DOT">
+			<applystate name="State_HealthElixir_Disabled" target="source_entity" duration="100" />
+		</currentdamageeffecttype>
+	</ondamaged>
+	
+	<modifier key="health_elixir_disabled" modpriority="100"
+		disabled="true"
+	/>
+	
+</item>

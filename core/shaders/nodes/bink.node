@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="bink">
+	<dependency name="Y" type="float" />
+	<dependency name="cR" type="float" />
+	<dependency name="cB" type="float" />
+	<output type="float4" name="Out" />
+	<?hlsl
+		const float4 YSCALE = float4(1.0f, 1.0f, 1.0f, 1.0f);
+		const float4 CRC = float4(1.402f, -0.71414f, 0.0f, 0.0f);
+		const float4 CBC = float4(0.0f, -0.34414f, 1.772f, 0.0f);
+		const float4 ADJ = float4(-0.70374902f, 0.53121506f, -0.88947451f, 0.0f);
+
+		float4 p = Y * YSCALE;
+		p += (CRC * cR) + (CBC * cB) + ADJ;
+
+		Out = float4(p.rgb, 1.0f);
+	?>
+	<?glsl
+		const vec4 YSCALE = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+		const vec4 CRC = vec4(1.402f, -0.71414f, 0.0f, 0.0f);
+		const vec4 CBC = vec4(0.0f, -0.34414f, 1.772f, 0.0f);
+		const vec4 ADJ = vec4(-0.70374902f, 0.53121506f, -0.88947451f, 0.0f);
+
+		vec4 p = Y * YSCALE;
+		p += (CRC * cR) + (CBC * cB) + ADJ;
+
+		Out = vec4(p.rgb, 1.0f);
+	?>
+</node>

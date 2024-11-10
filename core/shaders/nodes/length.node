@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="length">
+	<dependency name="Value" type="*" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="Value" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = length(Value);
+	?>
+	<?glsl
+		Out = length(Value);
+	?>
+</node>

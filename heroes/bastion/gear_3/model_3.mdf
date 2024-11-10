@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high_3.model" type="K2" high="high_3.model" med="high_3.model" low="high_3.model" >
+
+	<skin name="blue">
+		<reference mesh="boyArmorC_10k"					material="material_blue.material" />
+		<reference mesh="dragonC_10k"					material="material_blue_b.material" />
+		<reference mesh="boyArmorC_3k"					material="material_blue_low_c.material" />
+		<reference mesh="dragonC_3k"					material="material_blue_d.material" />
+		<reference mesh="boyArmorC_1k"					material="material_blue_low_c.material" />
+		<reference mesh="dragonC_1k"					material="material_blue_d.material" />
+	</skin>
+	
+	<skin name="black">
+		<reference mesh="boyArmorC_10k"					material="material_black.material" />
+		<reference mesh="dragonC_10k"					material="material_black_b.material" />
+		<reference mesh="boyArmorC_3k"					material="material_black_low_c.material" />
+		<reference mesh="dragonC_3k"					material="material_black_d.material" />
+		<reference mesh="boyArmorC_1k"					material="material_black_low_c.material" />
+		<reference mesh="dragonC_1k"					material="material_black_d.material" />
+	</skin>
+	
+	<skin name="green">
+		<reference mesh="boyArmorC_10k"					material="material_green.material" />
+		<reference mesh="dragonC_10k"					material="material_green_b.material" />
+		<reference mesh="boyArmorC_3k"					material="material_green_low_c.material" />
+		<reference mesh="dragonC_3k"					material="material_green_d.material" />
+		<reference mesh="boyArmorC_1k"					material="material_green_low_c.material" />
+		<reference mesh="dragonC_1k"					material="material_green_d.material" />
+	</skin>	
+	
+	<skin name="pink">
+		<reference mesh="boyArmorC_10k"					material="material_purple.material" />
+		<reference mesh="dragonC_10k"					material="material_purple_b.material" />
+		<reference mesh="boyArmorC_3k"					material="material_purple_low_c.material" />
+		<reference mesh="dragonC_3k"					material="material_purple_d.material" />
+		<reference mesh="boyArmorC_1k"					material="material_purple_low_c.material" />
+		<reference mesh="dragonC_1k"					material="material_purple_d.material" />
+	</skin>	
+
+	<skin name="red">
+		<reference mesh="boyArmorC_10k"					material="material_red.material" />
+		<reference mesh="dragonC_10k"					material="material_red_b.material" />
+		<reference mesh="boyArmorC_3k"					material="material_teal_low_c.material" />
+		<reference mesh="dragonC_3k"					material="material_teal_d.material" />
+		<reference mesh="boyArmorC_1k"					material="material_teal_low_c.material" />
+		<reference mesh="dragonC_1k"					material="material_teal_d.material" />
+	</skin>
+	
+	<skin name="gold">
+		<reference mesh="boyArmorC_10k"					material="material_gold.material" />
+		<reference mesh="dragonC_10k"					material="material_gold_b.material" />
+		<reference mesh="boyArmorC_3k"					material="material_yellow_low_c.material" />
+		<reference mesh="dragonC_3k"					material="material_yellow_d.material" />
+		<reference mesh="boyArmorC_1k"					material="material_yellow_low_c.material" />
+		<reference mesh="dragonC_1k"					material="material_yellow_d.material" />
+	</skin>
+	
+	
+	<anim name="idle"  clip="clips/default_1.clip" loop="true" blendtime="500"/>
+	 
+	<anim name="item_1" clip="clips/item_1.clip"/>
+
+	<anim name="bored_1" clip="clips/bored_1.clip"/> 
+
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" fps="25">
+		<frameevent frame="7" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="27" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="109" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="137" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="159" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 2000 0.1"/>
+	</anim>	
+
+	<anim name="ability_3" clip="clips/walk_1.clip"  fps="80" loop="true"/>
+	
+	<anim name="taunt_1" clip="clips/taunt_1.clip"/>
+
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="2" cmd="PlaySoundLinear ../sounds/sfx_foley_death.wav 1500 3000 0.85"/>
+	</anim>
+
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="30">
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/sfx_attack_%.wav 500 2000 0.2"/>
+	</anim>	
+ 
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="38">
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/sfx_attack_%.wav 500 2000 0.2"/>
+	</anim>	
+
+	<anim name="ability_1" fps="30" clip="clips/ability_1.clip"/>
+
+	<anim name="ability_2_up" clip="clips/ability_2_up.clip" fps="30"/>
+	
+	<anim name="ability_2_fly" clip="clips/ability_2_fly.clip" loop="true" fps="30"/>
+
+	<anim name="ability_4" clip="clips/ability_4.clip" fps="45" />
+	
+	<anim name="emote_1" clip="clips/emote_2.clip" >
+		<frameevent frame="1" cmd="PlayStreamLinear ../sounds/voice/vo_emote_3.wav 1500 3000 1"/>
+	</anim>
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip"/>
+	
+	<anim name="port_in" clip="clips/port_in.clip"/>
+	
+</model>

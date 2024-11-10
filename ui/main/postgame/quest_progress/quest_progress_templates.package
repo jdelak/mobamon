@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="postgame_progress_quest_item_card">
+		<panel group="postgame_progress_quests_entries" width="216s" height="250s" noclick="1"  sticky="1" stickytoinvis="0">
+			<panel width="196s" height="230s" valign="bottom" align="center" noclick="0" passivechildren="1" >
+				<image texture="/ui/main/quests/textures/quest_item_card.tga" width="100@" height="100%" align="center" noclick="1" />
+				<image texture="{backgroundTexture1=$checker}" width="100@" height="100%" align="center" noclick="1" />			
+				<panel grow="1" regrow="1" y="-17%" width="80%" align="center" valign="bottom" noclick="1">
+					<panel height="-14s" valign="bottom" noclick="1" color="0 0 0 .7"/>				
+					<image y="-16s" height="32s" texture="/ui/main/shared/textures/grad_vert.tga" color="0 0 0 .7" noclick="1" />				
+				</panel>
+				<!-- 1 Reward -->
+				<panel y="18%" x="-13%" width="44@" height="44%" align="right" noclick="1" visible="{hasReward1=0}" 
+					oninstantiate="SetVisible({hasReward1=0} and !{hasReward2=0} and !{hasReward3=0})"
+				>
+					<image texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<instance
+						name="NumberValue"
+						labelId="" countShown="{showCount=0}"
+						valign="bottom" align="right" x="-2s" y="0" height="19s" font="subdyn_13"
+						label="{rewardText1=1}"
+					/>
+				</panel>
+				<!-- 2 Rewards -->
+				<panel y="22%" x="-12%" width="40@" height="40%" align="right" noclick="1" visible="{hasReward2=0}" 
+					oninstantiate="SetVisible({hasReward2=0} and !{hasReward3=0})"
+				>
+					<image texture="/ui/main/quests/textures/quest_chest_bg.tga" noclick="0" />					
+					<image x="-14%" y="1%" width="72@" height="72%" align="center" texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="14%" y="1%" width="72@" height="72%" align="center" texture="{rewardIcon2=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />					
+					<image texture="/ui/main/quests/textures/quest_chest_fg.tga" noclick="0" />
+					<panel grow="true" y="67%" height="24s" align="center" noclick="true" passivechildren="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+						<panel grow="1" height="100%" x="3s" noclick="1">
+							<label fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText1=1}" />
+							<label y="14s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText2=1}" />
+						</panel>
+					</panel>					
+				</panel>
+				<!-- 3 Rewards -->
+				<panel y="7%" x="41%" width="30@" height="30%" align="left" noclick="1" visible="{hasReward3=0}" 
+					oninstantiate="SetVisible({hasReward3=0})"
+				>					
+					<image texture="/ui/main/quests/textures/quest_chest_bg.tga" noclick="0" />					
+					<image x="-20%" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="20%" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon3=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="0" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon2=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />					
+					<image texture="/ui/main/quests/textures/quest_chest_fg.tga" noclick="0" />
+					<panel grow="true" y="57%" height="34s" align="center" noclick="true" passivechildren="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+						<panel grow="1" height="100%" x="3s" noclick="1">
+							<label fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText1=1}" />
+							<label y="14s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText2=1}" />
+							<label y="28s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText3=1}" />
+						</panel>
+					</panel>
+				</panel>	
+				<panel grow="1" regrow="1" y="-17%" width="80%" align="center" valign="bottom" noclick="1">		
+					<label textalign="center" y="-8s" fity="true" width="-8s" align="center" wrap="1" lineheight="20s" style="h1" font="maindyn_24" content="{questName1=Quest Name Here}" noclick="1" />
+				</panel>					
+				<image noclick="1" texture="{questTypeIcon=$invis}" x="5%" y="-3%" height="26%" width="26@" align="right" />		
+				<panel y="-4.0%" width="78%" height="10.4%" align="center" valign="bottom" noclick="1">
+					<instance name="progress_bar" id="postgame_progress_quest_item_card_{id}1" startwidth="{oldProgressPercent}%" width="{progressPercent}%" borderthickness="4s" barstyle="barCommon" />
+					<instance name="progress_bar" id="postgame_progress_quest_item_card_{id}2" width="{oldProgressPercent}%" borderthickness="4s" barstyle="barDefault" />
+					<label textalign="center" y="-1s" fity="true" width="-8s" valign="center" align="center" wrap="1" style="h1" color="white" shadow="1" shadowcolor="black" font="maindyn_18" content="{progressLabel1=? / ?}" noclick="1" />
+				</panel>
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="postgame_progress_template" >
+		<panel name="postgame_progress" noclick="1" visible="0">
+			
+			<listbox name="postgame_progress_listbox_2" y="145s" width="865s" height="600s" color="invisible"
+				visible="1" valign="top" align="center" clip="1" itemwidth="216s" itemheight="250s"
+				noclick="1" float="right" wrap="row"
+				vscrollboxstep="4.0h"
+				scrollbarplaceholder="0"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				handleheight="64s"
+				scrollbarsize="32s"
+				exteriorscrollbars="1"
+				vscrollbar="1"
+				hscrollbar="0"
+				horizontal="false"
+				clipx="0"
+				clipy="0"
+				clipwidth="0"
+				clipheight="0"
+				scrollbaroffset="0"
+				clipoffsetx="0"
+				clipoffsety="0"
+				onslide=""
+				hoverselect="false"
+				select="false"
+			>			
+			</listbox>	
+			
+		</panel>	
+	</template>		
+	
+</package>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="biggie_map"  luatable="true" >
+
+	<panel noclick="1" color="0 0 0 1" >
+		<frame texture="/ui/elements:rounded_bg_white" color=".11 .11 .14 1" borderthickness="0.4h" noclick="true"/>
+		<panel noclick="1" >
+			<map name="game_biggie_map" hoversize="0.5" outlinesize="0.19h" texture="!minimap_texture" watch="Minimap" />
+		</panel>	
+	</panel>
+	
+	<sizingframe borderthickness="8" window="true" noclickcenter="true" />
+	
+	<panel visible="1" height="24s" color="0.2 0.2 0.4 1"
+		onloadlua="
+			self:SetCallback('onclick',
+			function(widget, x, y)
+				self:GetWindow():StartDrag(x, y)
+			end)		
+		" 	
+	>		
+		<panel x="2s" width="95@" height="95%" valign="center" align="right">
+
+			<button
+				visible="1"
+				enabled="1"
+				color="invisible"
+				onclicklua="Windows.ToggleBiggieMap()"
+			>
+				<panel align="center" valign="center">
+					<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="4s" />
+					<image align="center" valign="center" width="70@" height="70%" texture="/ui/main/shared/textures/close.tga" />
+				</panel>
+			</button>		
+		
+		</panel>	
+	</panel>
+	
+</interface>

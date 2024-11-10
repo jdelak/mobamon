@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- =============================================================== -->
+
+	<template name="socialPanelListEntry"><!-- This existed for the sample only -->
+		<panel name="socialPanelListEntry{id=1}" height="5h" noclick="true">
+			<frame name="socialPanelListEntry{id=1}BGShadow" style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" noclick="true" x="0.25h" y="0.25h"/>
+			<frame name="socialPanelListEntry{id=1}Background" style="backerPanelGray2" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" noclick="true"/>
+			<panel name="socialPanelListEntry{id=1}BGMargin" hmargin="0.5h" vmargin="0.5h" noclick="true">
+				<panel name="socialPanelListEntry{id=1}IconContainer" width="100@" height="100%">
+					<image name="socialPanelListEntry{id=1}Icon" texture="/heroes/legionnaire/icon.tga" noclick="{noclick=false}"/>
+					<frame style="backerPanelGray2" texture="/ui/elements:rounded_corner_white" borderthickness="0.75h" noclick="true"/>
+					<frame color="black" texture="/ui/elements:thick" borderthickness="0.75h" noclick="true"/>
+				</panel>
+				<label name="socialPanelListEntry{id=1}Label1" height="2.25h" textvalign="center" x="125@" noclick="true" shadow="true" style="whiteTextColor" font="maindyn_14" content="temp_game_playername" />
+				<label name="socialPanelListEntry{id=1}Label2" height="2h" valign="bottom" textvalign="center" x="125@" noclick="true" shadow="true" color="#CCCCCC" font="maindyn_11" content="temp_clanname" />
+			</panel>
+			<frame name="socialPanelListEntry{id=1}Outline" color="#444444" texture="/ui/elements:thick" borderthickness="0.75h" visible="false" noclick="true"/>
+			<button name="socialPanelListEntry{id=1}Button" color="invisible"/>
+		</panel>
+	</template>
+	
+	<!-- =============================================================== -->
+	
+	<template name="gameShopBuyQueueDragged">
+		<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+		<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+		<panel hmargin="0.35h" vmargin="0.35h" color="black">
+			<image texture="{icon}" align="center" valign="center" width="{iconWidth=100@}" height="{iconHeight=100%}"/>
+			<frame color="invisible" bordercolor="black" borderthickness="0.1h"/>
+			<image texture="/ui/elements:scroll_overlay" visible="{showScroll=false}"/>
+		</panel>
+	</template>
+	
+	<!-- =============================================================== -->
+	
+	
+	<template name="social2Entry">
+		<panel height="4.0h" name="social2Entry{id}">
+			<panel name="social2Entry{id}UserBody" noclick="true" visible="{isUser=true}">
+				<button name="social2Entry{id}UserButton" color="invisible" cangrab="true" dragexclusive="false">
+					<frame texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s"/>
+					
+					<panel noclick="true" passivechildren="true">
+						<panel width="100@" height="100%">
+							<image name="social2Entry{id}UserIcon" texture="{userIcon=/ui/fe2/store/icons/account_icons/koalatea.tga}"/>
+						</panel>
+										
+						<label name="social2Entry{id}UserName" x="115@" height="50%" textvalign="center" color="1 1 1" outline="1" outlinecolor="0 0 0 .6" font="maindyn_16" content="{userName}"/>
+						<label name="social2Entry{id}UserGroup" x="115@" height="50%" textvalign="center" color=".8 .8 .8 1" font="maindyn_11" valign="bottom" content="{userGroup}"/><!-- Group / Subtitle -->
+						<!-- Status Light
+							Needs color for each status: flag/light
+								Ready: #86bb00/#b7ff00
+								Online: #86bb00/#86bb00
+								AFK: #c2432e/#ab2f1a
+								DND: #c2432e/#e82000
+								In Game: #2875bc/#138dff
+								Spectating: #2875bc/#138dff
+								Mentoring: #2875bc/#138dff
+
+						-->
+						<panel name="" align="right" x="-.05h" vmargin="0.1h" width="86@" height="100%">
+							<image name="" texture="/ui/main/shared/textures/social_entry_flag.tga" color=".6 .6 .6 1" noclick="1" />
+							<image name="" texture="/ui/main/shared/textures/user_status_light.tga" x="10@" width="36@" height="36%" align="center" valign="center" color="#b7ff00" noclick="1" />
+						</panel>
+						
+					</panel>			
+					<frame name="social2Entry{id}UserDarken" color="0 0 0 0.5" texture="/ui/elements:rounded_Bg_white" borderthickness="0.5h" noclick="true" visible="false"/>
+					<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h" noclick="1"/>
+				</button>
+			</panel>
+			<panel name="social2Entry{id}HeaderBody" align="center" valign="center" height="2.5h" noclick="true" visible="{isHeader=false}">
+				<panel valign="center" height="1" color="#393939"/>
+				<panel height="100%" grow="true" x="0.75h">
+					<frame texture="/ui/elements:rounded_bg_solid" color="#191716" borderthickness="0.35h" noclick="1"/>
+					<label name="social2Entry{id}HeaderName"  fitx="true" fitxpadding="1.5h" textalign="center" textvalign="center" font="maindyn_14" color="#b1531d" outline="true" outlinecolor="0 0 0 .6"/>
+				</panel>
+				<panel align="right" x="-0.75h" width="100@" height="100%">
+					<frame texture="/ui/elements:rounded_bg_solid" color="#191716" borderthickness="0.35h" noclick="1"/>
+					<image name="social2Entry{id}HeaderExpandArrow" texture="/ui/shared/textures/arrow_rounded_up.tga" color="#b1531d" align="center" valign="center" width="46@" height="46%"/>
+				</panel>
+				<button name="social2Entry{id}HeaderExpandButton" color="invisible"/>
+			</panel>
+
+			
+		</panel>
+	</template>
+	
+	<!-- ===================================================================== -->
+	
+	<template name="playerProfilePinnedItemQuest">
+		<frame texture="/ui/elements:rounded_bg_white" borderthickness="1.0h" color="#d7c9af" noclick="true"/>
+		<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="1.0h" noclick="true"/>
+		<panel hmargin="0.8h" noclick="true" passivechildren="true">
+			<label y="0.4h" textalign="center" font="maindyn_20" color="#3e371a" outline="true" outlinecolor="0 0 0 .15" content="QUEST" />
+			<image y="3.5h" align="center" width="80%" height="80@" texture="{icon}" />
+			<label y="-0.5h" textvalign="bottom" textalign="center" font="maindyn_14" color="#3e371a" content="{label1}" />
+		</panel>
+	</template>
+
+	<template name="playerProfilePinnedItemReplay">
+		<frame texture="/ui/elements:rounded_bg_white" borderthickness="1.0h" color="#d7c9af" noclick="true"/>
+		<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="1.0h" noclick="true"/>
+		<panel hmargin="0.8h" noclick="true" passivechildren="true">
+			<label y="0.4h" textalign="center" font="maindyn_20" color="#3e371a" outline="true" outlinecolor="0 0 0 .15" content="REPLAY" />
+			<image y="3.5h" align="center" width="68%" height="68@" texture="{icon}" />
+			<label y="-2.0h" textvalign="bottom" textalign="center" font="maindyn_14" color="#3e371a" content="{label1}" />
+			<label y="-0.5h" textvalign="bottom" textalign="center" font="maindyn_12" color="#3e371a" content="{label2}" />
+		</panel>
+	</template>
+
+	<template name="playerProfilePinnedItemStat">
+		<image texture="{icon=/ui/_textures/elements/designimages/end_match_icon_deaths.tga}" noclick="true"/>
+		<panel height="2.5h" valign="bottom" noclick="true" passivechildren="true">
+			<image texture="/ui/main/shared/textures/title_overlay.tga" width="100%" height="50@" valign="bottom"/>
+			<label textvalign="center" x="0.5h" color="white" font="maindyn_16" outline="true" content="{label1}"/>
+		</panel>
+		<label textalign="right" x="-0.6h" y="0" color="white" font="maindyn_26" outline="true" content="{label2}" noclick="true"/>
+	</template>
+	
+	<template name="playerProfilePinnedItemEdgeDrop">
+		<button name="{prefix=playerProfilePinnedItem}{id}DropTargetTop" color="#00CCFF66" height="3h" visible="false">
+			<panel name="{prefix=playerProfilePinnedItem}{id}DropTargetTopOver" color="0.15 0.15 0.15" rendermode="additive" visible="false"/>
+		</button>
+		<button name="{prefix=playerProfilePinnedItem}{id}DropTargetBottom" color="#00CCFF66" height="3h" valign="bottom" visible="false">
+			<panel name="{prefix=playerProfilePinnedItem}{id}DropTargetBottomOver" color="0.15 0.15 0.15" rendermode="additive" visible="false"/>
+		</button>
+	</template>
+	
+	<template name="playerProfilePinnedItem">
+		<panel name="{prefix=playerProfilePinnedItem}{id}" height="15.5h" noclick="true">
+			<instance name="{body}" label1="{label1}" label2="{label2}" icon="{icon}"/>
+			<instance id="{prefix=playerProfilePinnedItem}{id}" name="playerProfileRemoveOverlay"/>
+			<image y="-2.7h" width="8.6h" height="8.6h" align="center" texture="/ui/_textures/icons/pin.tga" noclick="true" visible="{showPin=true}"/>
+
+			<button name="{prefix=playerProfilePinnedItem}{id}Button" color="invisible"/>
+			<button name="{prefix=playerProfilePinnedItem}{id}DropTargetCenter" valign="center" height="-6h" color="#FFDD3366" visible="false">
+				<panel name="{prefix=playerProfilePinnedItem}{id}DropTargetCenterOver" color="0.15 0.15 0.15" rendermode="additive" visible="false"/>
+			</button>
+			<instance name="{edgeDropTemplate=playerProfilePinnedItemEdgeDrop}" prefix="{prefix=playerProfilePinnedItem}" id="{id}"/>
+		</panel>
+	</template>
+
+	<!-- ===================================================================== -->
+	
+	<template name="craftingDraggedComponent">
+		<panel color="#0B0B0B" noclick="true" passivechildren="true">
+			<image texture="{icon=/ui/shared/textures/itemtype_crafted.tga}"/>
+			<frame borderthickness="0.15h" color="invisible" bordercolor="#666666"/>
+		</panel>
+	</template>
+
+</package>

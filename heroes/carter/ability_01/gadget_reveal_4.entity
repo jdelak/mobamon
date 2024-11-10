@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Carter_Ability1_Reveal_4"
+
+	icon=""
+	portrait=""
+	model="effects/missile/model.mdf"
+	passiveeffect="effects/trail_orange.effect"
+	deatheffect=""
+	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	canattack="false"
+
+	sightrangeday="400"
+	sightrangenight="400"
+
+	deathtime="0"
+	corpsetime="0"
+	
+	unittype="carter_projectile"
+	
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="true"
+	flyheight="120"
+	clearvision="true"
+	drawonmap="false"
+	lifetime="5000"
+>
+	<onkilled>
+		<combatevent effecttype="Magic" source="this_owner_entity" target="this_proxy_entity">
+			<onimpact>	
+				<recordheroaggression  />
+				<aggression />
+				<getconstant name="damage" entity="tool_entity" adjustmentsource="this_owner_entity" />
+				<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult" />
+				
+				<!-- logic for the "half damage" when gone through third skill -->
+				<getconstant name="damage" entity="tool_entity" adjustmentsource="this_owner_entity" />
+				<setvar0 a="result"  />
+				<pushability target="source_entity" entity="source_entity" name="Ability_Carter3" />
+				<getconstant name="damage_increase" entity="stack_entity" adjustmentsource="source_entity" />
+				<setvar1 a="result" b="100" op="div" />
+				<setvar0 a="var1" b="var0" op="mult" />
+				<setvar2 a="target_entity" />
+				<areaofeffect
+					radius="175"
+					targetselection="all"
+					targetscheme="enemy_units_and_buildings"
+					effecttype="Magic"
+					center="this_entity"
+				>
+					<compare a="var2" b="target_entity" op="eq" />
+					<else>
+						<getconstant name="damage" entity="tool_entity" adjustmentsource="this_owner_entity" />
+						<damage effecttype="Magic Splash" significant="true" amount="0.5" b="result" op="mult" />
+						<compare a="accumulator" b="0" op="ne">
+							<applystate name="State_Carter_Ability3_Projectiles" stack="true" inflictor="this_owner_entity" source="this_owner_entity" target="target_entity" pushentity="true" duration="950"/>
+							<setaccumulator entity="stack_entity" value="var0" valueb="0.5" valueop="mult" />
+						</compare>
+					</else>
+				</areaofeffect>
+				<compare a="accumulator" b="0" op="ne">	
+					<playeffect effect="myeffect" source="target_position" target="target_position" occlude="true" />
+					<applystate name="State_Carter_Ability3_Projectiles" stack="true" inflictor="this_owner_entity" source="this_owner_entity" target="target_entity" pushentity="true" duration="950"/>
+					<setaccumulator entity="stack_entity" value="var0" />
+				</compare>
+			</onimpact>
+		</combatevent>
+	</onkilled>
+	
+	<modifier key="carter_flame_wall_active" modpriority="100"
+		passiveeffect="effects/spin.effect"
+	>
+	</modifier>
+</gadget>

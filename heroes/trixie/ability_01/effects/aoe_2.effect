@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="0">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="0.9">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../sounds/sfx_impact_2.wav"
+			/>
+
+			
+
+			<groundsprite
+				life="400"
+				material="/shared/effects/smaterials/goo_area_round.material"
+				color="1 1 1"
+				startsize="290"
+				endsize="315"
+				startalpha=".25"
+				midalpha=".25"
+				endalpha="0"
+				midalphapos=".85"
+				minyaw="-45"
+				maxyaw="45"
+			/>
+			
+			<groundsprite
+				life="400"
+				material="/shared/effects/smaterials/goo_area_round.material"
+				color="1 1 1"
+				startsize="180"
+				endsize="205"
+				startalpha=".35"
+				midalpha=".35"
+				endalpha="0"
+				midalphapos=".85"
+				minyaw="-45"
+				maxyaw="45"
+			/>
+
+			<light
+				life="750"
+				startcolor="4 8 0"
+				midcolor="2 4 0"
+				endcolor="0"
+				falloffstart="00"
+				falloffend="300"
+				position="0 0 50"
+			/>
+
+			<simpleemitter
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-25"
+			>
+				<particle
+					color="0 .5 0"
+					startscale="150"
+					endscale="250"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-25"
+			>
+				<particle
+					color=".35 .5 0"
+					startscale="75"
+					endscale="150"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				count="100"
+				spawnrate="1500"
+				particlelife="1000"
+				position="0 0 25"
+				offsetsphere="50 50 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="500"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="_bone_center"
+						minlife="300"
+						maxlife="600"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1.5"
+						maxstartscale="3"
+						midscale="1.5"
+						endscale=".5"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="10"
+				spawnrate="200"
+				particlelife="1000"
+				position="0 0 0"
+				offsetradial="0 0 0"
+				offsetsphere="100 100 0"
+			>
+				<particle
+				>
+
+					<billboard
+						position="0 0 0"
+						delay="250"
+						minlife="150"
+						maxlife="300"
+						startcolor=".35 1 0"
+						midcolor=".35 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".5"
+						maxscale="1.25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+
+					<billboard
+						position="0 15 0"
+						delay="250"
+						minlife="150"
+						maxlife="300"
+						startcolor=".35 1 0"
+						midcolor=".35 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".5"
+						maxscale="1.25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="splats">
+
+				<simpleemitter
+					count="25"
+					life="5500"
+					position="0 0 10"
+					spawnrate="75"
+					particlelife="2000"
+					direction="0 0 1"
+					offsetsphere="200 200 0"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="250"
+							maxlife="500"
+							material="/shared/effects/smaterials/animated_goop.material"
+							startcolor="{zcolor}"
+							midcolor="{zcolor}"
+							endcolor="0 0 0"
+							midcolorpos=".8"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".75"
+							position="0 0 0"
+							startframe="0"
+							endframe="1"
+							framspeed="5"
+							minscale=".35"
+							maxscale="1.1"
+							lockup="true"
+							lockright="90"
+							pitch="-25"
+							depthbias="-50"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			
+			<instance name="splats" zpos="0 0 0" zcolor="1 1 .5"/>
+
+			
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2500"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<billboard
+						life="250"
+						color="0 .3 0"
+						endcolor="0 0 0"
+						midcolorpos="0.8"
+						startsize="650"
+						endsize="650"
+						lockup="1"
+						pitch="90"
+						lockright="1"
+						maxroll="360"
+						material="/shared/effects/materials/ring_ground.material"
+						loop="false"
+						depthbias="-100"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

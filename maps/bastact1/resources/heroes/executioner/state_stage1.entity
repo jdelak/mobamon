@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+
+	name="Bastact1_State_Executioner2_Stage1"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	
+	impactinterval="500"
+	ishidden="true"
+	
+
+	wanderrange="90"
+>
+	<!-- This state represents the Executioner abilities and behavior in Stage 1 of the boss battle -->
+	<onspawn> <print text="Stage1 spawned" /> </onspawn>
+
+	<onimpact>
+		<changeaccumulator b="0" op="min" />
+
+		<!-- Can SLAM? -->
+		<pushability entity="source_entity" slot="2" />
+		<canactivate entity="stack_entity">
+			<areaofeffect
+				radius="400"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				center="source_entity"
+				maxtotalimpacts="-1"
+			>
+				<changeaccumulator b="1" op="add" />
+				<useability slot="2"/>
+				<order command="attack" source="source_entity" target="target_entity" queue="back" />
+			</areaofeffect>
+		</canactivate>
+		
+		<!-- If slam wasn't used, try to use bomb -->
+		<condition test="accumulator eq 0">
+			<pushability entity="source_entity" slot="3" />
+			<canactivate entity="stack_entity">
+				<areaofeffect
+					radius="1200"
+					innerradiusoffset="500"
+					targetselection="all"
+					targetscheme="visible_enemy_heroes"
+					center="source_entity"
+					maxtotalimpacts="1"
+				>
+					<useability slot="3"/>
+					<order command="attack" source="source_entity" target="target_entity" queue="back" />
+				</areaofeffect>
+			</canactivate>
+		</condition>
+	</onimpact>				
+
+	<ondamaged>
+		<setvar0 a="source_health" b="damage_applied" op="sub" />
+		<setvar1 a="var0" b="source_maxhealth" op="div" />
+  		<compare a="var1" b=".65" op="le">
+ 			<expirestate source="" target="source_entity" name="Bastact1_State_Executioner2_Stage1" />
+  		</compare>
+ 	</ondamaged>
+	
+	<onexpired> 
+		<print text="stage1 expired" />
+		<order command="stop" source="source_entity" />
+		<applystate name="Bastact1_State_Executioner2_PreStage2" target="source_entity" duration="-1" />
+		<setscriptvalue name="endStage1" value="1" />
+	</onexpired>
+
+	
+
+</state>

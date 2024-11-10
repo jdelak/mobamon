@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Buford_Ability3"
+
+	speed="1600"
+	gravity="8000"
+	
+
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	canturn="0"
+	impacteffect="effects/impact_enemy.effect"
+	traileffect="effects/trail.effect"
+	
+
+>
+	<onimpact>
+		<areaofeffect
+			targetscheme="enemy_heroes"
+			effecttype="Magic"
+			targetselection="closest"
+			radius="200"
+			maxtotalimpacts="1"
+			maximpactspertarget="1"
+		>
+			<combatevent effecttype="AbilityBasedProjectile">
+				<onimpact>
+					<applystate target="target_entity" name="State_Buford_Drain" duration="3500" />
+					<recordheroaggression  />
+					<aggression />
+					<delete target="this_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<areaofeffect
+				targetscheme="enemy_units"
+				effecttype="Magic"
+				targetselection="closest"
+				radius="200"
+				maxtotalimpacts="1"
+				maximpactspertarget="1"
+			>
+				<combatevent effecttype="AbilityBasedProjectile">
+					<onimpact>
+						<applystate target="target_entity" name="State_Buford_Drain" duration="3500" />
+						<recordheroaggression  />
+						<aggression />
+						<delete target="this_entity" />
+					</onimpact>
+				</combatevent>
+			</areaofeffect>
+				<compare a="result" b="0" op="eq">
+					<playeffect effect="effects/miss.effect" source="target_position" position="0 0 100" target="" occlude="true" />
+				</compare>
+		</compare>		
+			
+	</onimpact>
+	
+</projectile>

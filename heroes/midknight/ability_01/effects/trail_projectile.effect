@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<modifier
+			expirelife="1000"
+			name="modifier0"
+			startalpha="0"
+			endalpha="0"
+		/>
+	
+		<particlesystem name="system0" space="world">
+
+			<model
+			delay="50"
+				expirelife="0"
+				model="weapon/model.mdf"
+				anim="idle"
+				color="1 1 1"
+				scale="1.75"
+				roll="180"
+			>
+			</model>
+			
+<!--
+			<light
+				life="250"
+				startcolor="5 2.5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+				position="0 0 25"
+			/>
+			
+			
+
+			<template name="">
+				
+				<simpleemitter
+				delay="150"
+					bone="_bone_fx_01"
+					life="1000"
+					spawnrate="8000"
+					count="25"
+					minparticlelife="250"
+					maxparticlelife="500"			
+					gravity="25"
+					minspeed="{zmin}"
+					maxspeed="{zmax}"
+					drag=".01"
+					material="/shared/effects/materials/whitedot.material"
+					offsetsphere="50 50 0"
+					minangle="0"
+					maxangle="20"
+					direction="{zdirection}"
+					depthbias="-50"
+					directionalspace="local"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						startcolor="1 1 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minstartsize="25"
+						maxstartsize="35"
+						endsize="10"
+					/>
+				</simpleemitter>
+			
+
+			</template>
+			
+			
+			<instance name="" zdirection="0 0 1" zpos="-500 0 0" zmin="2500" zmax="3500"/> 
+-->
+			
+
+		</particlesystem>
+
+	</definitions>
+	
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+	
+</effect>

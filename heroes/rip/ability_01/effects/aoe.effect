@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.7">
+
+			<sound
+        life="6000"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume=".75"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<light
+				expirelife="500"
+				startcolor="1.5 0 5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="300"
+				endfalloffend="300"
+				position="0 0 100"
+			/>
+			
+
+			
+			<template name="">
+
+				<simpleemitter
+					position="0 0 20"
+					spawnrate="10"
+					particlelife="2000"
+					timenudge="0"
+				>
+					<particle
+					>
+						<simpleemitter
+							count="18"
+							position="0 0 0"
+							spawnrate="10000"
+							minparticlelife="1000"
+							maxparticlelife="1500"
+							minspeed="200"
+							maxspeed="600"
+							drag=".0325"
+							material="{zmaterial}"			
+							minangle="80"
+							maxangle="100"
+							direction="0 0 1"
+							offsetsphere="25"
+							directionalspace="world"
+							gravity="10"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								startscale="25"
+								minendscale="25"
+								maxendscale="50"
+								startcolor="1 0 1"
+								midcolor="1 0 1"
+								endcolor="1 0 1"
+								startalpha="0"
+								midalpha=".075"
+								endalpha="0"
+								midalphapos=".25"
+								turn="true"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					count="150"
+					position="0 0 15"
+					spawnrate="10000"
+					minparticlelife="550"
+					maxparticlelife="850"
+					minspeed="500"
+					maxspeed="1500"
+					drag=".035"
+					material="{zmaterial}"			
+					minangle="80"
+					maxangle="100"
+					direction="0 0 1"
+					offsetsphere="25"
+					directionalspace="world"
+					gravity="10"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startscale="25"
+						minendscale="25"
+						maxendscale="50"
+						startcolor="1 0 1"
+						midcolor="1 0 1"
+						endcolor="1 0 1"
+						startalpha="0"
+						midalpha=".1"
+						endalpha="0"
+						midalphapos=".25"
+						turn="true"
+					/>
+				</simpleemitter>
+				
+			</template>
+			
+			<instance name="" zmaterial="/shared/effects/smaterials/cartoon_dust_white.material"/> 
+			<instance name="" zmaterial="/shared/effects/smaterials/rocket_smoke_blend.material"/> 
+			
+			
+			
+			
+			<!--outer-->
+			<simpleemitter
+				position="0 0 0"
+				spawnrate="200"
+				minparticlelife="1000"
+				maxparticlelife="1500"
+				minspeed="0"
+				maxspeed="100"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"			
+				minangle="0"
+				maxangle="45"
+				direction="0 0 1"
+				offsetradial="150 0 0"
+				offsetsphere="30"
+				directionalspace="world"
+				depthbias="-75"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale="10"
+					maxstartscale="25"
+					minendscale="25"
+					maxendscale="50"
+					startcolor="1 0 1"
+					midcolor="1 0 1"
+					endcolor="1 0 1"
+					startalpha="0"
+					midalpha=".05"
+					endalpha="0"
+					midalphapos=".35"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 0 .5"
+				endcolor="0 0 0"
+				life="500"
+				position="0 0 35"
+				size="500"
+				depthbias="-150"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

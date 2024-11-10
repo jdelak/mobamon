@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false" useentityeffectscale="1">
+
+	<definitions>
+<!--
+		<modifier
+			expirelife="250"
+			startcolor=".65"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1.2">
+
+			<sound
+				life="3000"
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_return_%.wav"
+			/>
+
+			<template name="">
+
+				<simpleemitter
+					spawnrate="2000"
+					count="1"
+					particlelife="5500"
+					offsetsphere="0 25 0"
+					minangle="0"
+					maxangle="0"
+					direction="0 1 0"
+					speed="300"
+				>
+					<particle
+					turn="true"
+					>
+						<model
+							delay="{zdelay}"
+							position="{zpos}"
+							life="200"
+							model="../../model.mdf"
+							anim="{zanim}"
+							color=".25"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".75"
+							scale="1.65"
+						>
+						
+							<billboard
+								bone="_bone_centerofchest"
+								life="150"
+								startcolor=".3 0 .6"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								material="/shared/effects/smaterials/whitedot.material"
+								scale="6"
+								depthbias="-100"
+							/>
+						
+						</model>
+						
+					</particle>
+				</simpleemitter>
+		
+			</template>
+			
+			
+			<instance name="" zdelay="0" zpos="0 0 0" zanim="attack_2_faster"/>
+			<instance name="" zdelay="50" zpos="0 150 0" zanim="walk_1"/>
+			<instance name="" zdelay="100" zpos="0 250 0" zanim="attack_4_faster"/>
+			<instance name="" zdelay="150" zpos="0 400 0" zanim="attack_1_faster"/>
+<!--
+			<instance name="" zdelay="200" zpos="0 450 0" zanim="attack_2_faster"/>
+
+			<instance name="" zdelay="250" zpos="0 500 0" zanim="attack_2_faster"/>
+-->
+		
+			<light
+				position="0 0 50"
+				expirelife="600"
+				startcolor="2 0 6"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="250"
+			/>
+
+			<template name="">
+
+				<trailemitter
+				position="{zpos}"
+					life="500"
+					spawnrate="50"
+					particlelife="850"
+					texpostime="850"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					midparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor=".4 0 .8"
+						midcolor=".4 0 .8"
+						endcolor="0 0 0"
+						startsize="85"
+						midsize="65"
+						endsize="65"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+			
+			</template>
+
+			<instance name="" zpos="0 15 50"/>
+			<instance name="" zpos="0 15 50"/>
+
+			<instance name="" zpos="25 0 50"/>
+
+			<instance name="" zpos="-40 -18 50"/>
+			<instance name="" zpos="-40 -18 50"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				delay="0"
+				bone="_bone_centerofchest"
+				spawnrate="52"
+				particlelife="300"
+				gravity="0"         	
+				drag=".1"
+				acceleration="0.0"
+				position="0 0 30"
+				offsetsphere="40 40 40"
+				material="/shared/effects/smaterials/slashes_red.material"
+			>
+				<particle 
+				>
+					<billboard
+						position="0 0 100"
+						material="/shared/effects/smaterials/slashes_red.material"
+						life="300"
+						size="60"
+						color=".7 .35 1"
+						depthbias="-100"
+						framespeed="3"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						roll="180"
+					/>
+					
+					<billboard
+						position="0 0 100"
+						material="/shared/effects/smaterials/slashes_blue.material"
+						life="300"
+						size="60"
+						startcolor=".25 .5 1"
+						midcolor=".25 .5 1"
+						endcolor="0 0 0"
+						depthbias="-100"
+						framespeed="3"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						roll="180"
+					/>
+				
+					<billboard
+						position="0 18 100"
+						material="/shared/effects/smaterials/slashes_blue.material"
+						life="300"
+						size="60"
+						startcolor=".25 .5 1"
+						midcolor=".25 .5 1"
+						endcolor="0 0 0"
+						depthbias="-100"
+						framespeed="3"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						roll="180"
+						yaw="180"
+					/>
+				
+				</particle>
+
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/> 
+		<waitfordeath instance="instance1"/> 
+		
+	</thread>
+
+</effect>

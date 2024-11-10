@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<include file="/ui/main/postgame/scoreboard/scoreboard_templates_temp.package"/>
+
+	<template name="postgame_scoreboard_template">
+		<panel name="postgame_scoreboard" grow="true" x="-70s" y="-18s" width="858s" align="right" valign="center" float="bottom" padding="0.4h" noclick="1" visible="false">
+			
+			<instance name="postgame_scoreboard_header" prefix="postgame" team="temp_gamelobby_team1" />			
+			
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="0" icon="assassin" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="1" icon="bastion" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="2" icon="chipper" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="3" icon="embermage" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="4" icon="engineer" showkarma="0" height="45s" />
+			
+			<panel height="1.8h" noclick="1" />
+			
+			<instance name="postgame_scoreboard_header" prefix="postgame" team="temp_gamelobby_team2" />			
+			
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="5" icon="assassin" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="6" icon="bastion" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="7" icon="chipper" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="8" icon="embermage" showkarma="0" height="45s" />
+			<instance name="postgame_scoreboard_row" prefix="postgame" index="9" icon="engineer" showkarma="0" height="45s" />
+	
+			<panel name="postgame_summary_detailed_self_stats_show" height="23s" width="308s" align="center" visible="0"
+				onclicklua="
+					self:GetWidget('postgame_summary_detailed_self_stats'):FadeIn(125)
+					self:SetVisible('0')
+				" 
+			>
+				<panel y="1s" grow="1" height="100%" align="center" noclick="1">
+					<label fitx="true" style="labelClickable" font="maindyn_22" content="scoreboard_detailed_stats_header" noclick="1" />
+					<panel height="1" valign="bottom" color="#42D0F4" noclick="1" />
+					<panel height="1" y="1" valign="bottom" color="0 0 0 .5" noclick="1" />
+				</panel>
+			</panel>
+	
+		</panel>
+		
+		<!-- Awards Populate Here -->
+		<panel name="postgame_summary_insert_match_awards" x="60s" y="100s" align="left" width="250s" noclick="1" visible="0">
+			<label name="postgame_summary_insert_match_awards_insert_label" fity="1" style="h3" textalign="center" font="maindyn_40" content="game_end_stats_awards" />
+			<panel name="postgame_summary_insert_match_awards_insert" noclick="1" float="bottom" padding="0s" y="36s" visible="0" >
+			
+			</panel>
+		</panel>
+		
+		<!-- Detailed Self Stats -->
+		<panel name="postgame_summary_detailed_self_stats" x="-65s" y="-30s" width="869s" align="right" valign="center" height="540s" visible="0" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="10s" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".3 .3 .3 1" color="invisible" borderthickness="10s" noclick="1"/>
+			
+			<label x="14s" y="12s" style="h3" font="maindyn_40" content="game_end_stats_detailed" noclick="1" />
+			
+			<listbox name="postgame_summary_detailed_self_stats_listbox" style="simpleListbox"
+				y="-13s" height="-74s" width="-26s" align="center" valign="bottom"
+				color="invisible"
+				itemheight="24s"
+				itemwidth="-22s"
+				scrollbaroffset="0"
+				select="false"
+				exteriorscrollbars="0"
+				scrollbarplaceholder="false"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				scrollbarsize="32s"
+				handlewidth="32s"
+				handleheight="64s"
+				hscrollbar="0"
+				horizontal="false"
+				highlight="under"
+				hoverselect="false"
+				hoverhighlight="true"
+				highlightcolor="#46adff42"
+				highlightbordercolor="#46adff22"
+				selectedcolor="#46adff42"
+				selectedbordercolor="invisible"						
+			/>
+			
+			<instance name="closeXButton" buttonName="postgame_summary_detailed_self_stats_closex" width="32s" height="32s" align="right" y="15s" x="-14s"
+				onclicklua="
+					self:GetWidget('postgame_summary_detailed_self_stats'):SetVisible(0)
+					self:GetWidget('postgame_summary_detailed_self_stats_show'):SetVisible(1)
+				"
+			/>	
+			
+		</panel>		
+		
+	</template>
+
+	<panel name="endMatchMainScriptWidget" noclick="true" color="invisible"/>
+
+</package>

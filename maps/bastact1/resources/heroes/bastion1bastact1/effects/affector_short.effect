@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="2.85">
+		
+			<sound
+				forcestereo="true"
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="1500"
+				volume="1"
+				sample="../sounds/slash_1.wav"
+			/>
+			
+			<model
+				position="0 0 10"
+				life="240"
+				color="50 .5 .5"
+				model="blade.mdf"
+				anim="cleave_near"
+				startalpha="0"
+				midalpha="2"
+				endalpha="0"
+			>
+				<controller bone="Salomon" life="1000" position="0 0 20">
+					<simpleemitter
+						life="240"
+						position="0 0 -20"
+						spawnrate="300"
+						minparticlelife="300"
+						maxparticlelife="400"
+						gravity="-1"
+						offsetsphere="5"
+						minspeed="125"
+						maxspeed="150"
+						direction="0 -1 0"
+						angle="90"
+						material="/shared/effects/materials/pyroclast_04.material"
+						depthbias="-10"
+						inheritvelocity="-.1"
+					>
+						<template name="glow_particle">
+							<particle
+								maxangle="360"
+								minstartscale="10"
+								maxstartscale="20"
+								minendscale="25"
+								maxendscale="30"
+								color="{color}"
+								startalpha="0"
+								midalpha=".8"
+								endalpha="0"
+								midalphapos=".75"
+							/>
+						</template>
+						<instance name="glow_particle" color="1 0 .1"/>
+						<instance name="glow_particle" color=".7 0 .35"/>
+					</simpleemitter>
+					
+					<!-- inner red/orange sparks -->
+					<simpleemitter
+						life="240"
+						position="0 0 -20"
+						spawnrate="600"
+						minparticlelife="200"
+						maxparticlelife="350"
+						gravity="-1"
+						offsetsphere="10"
+						minspeed="125"
+						maxspeed="250"
+						drag="0.01"
+						direction="0 -1 0"
+						minangle="30"
+						maxangle="90"
+						material="/shared/effects/materials/flame.material"
+						depthbias="-10"
+						inheritvelocity="-.2"
+						limitinheritvelocity="1000"
+					>
+						<template name="glow_particle">
+							<particle
+								turn="1"
+								height="12"
+								minwidth="4"
+								maxwidth="6"
+								minstartscale="3"
+								maxstartscale="5"
+								minmidscale="6"
+								maxmidscale="12"
+								minendscale="5"
+								maxendscale="8"
+								startcolor="0"
+								midcolor="{color}"
+								endcolor="0"
+							/>
+						</template>
+						<instance name="glow_particle" color="1 0 0"/>
+						<instance name="glow_particle" color=".75 .35 0"/>
+					</simpleemitter>
+					
+					
+					<!-- outer purple sparks -->
+					<template name="purple_sparks" >
+						<simpleemitter
+							life="200"
+							position="-40 0 0"
+							spawnrate="200"
+							minparticlelife="350"
+							maxparticlelife="550"
+							gravity="-1"
+							offsetsphere="5"
+							minspeed="225"
+							maxspeed="350"
+							drag="0.015"
+							direction="{dir}"
+							minangle="0"
+							maxangle="10"
+							material="/shared/effects/materials/flare_01.material"
+							depthbias="-10"
+							inheritvelocity="-.5"
+							limitinheritvelocity="500"
+						>
+							<template name="glow_particle">
+								<particle
+									turn="1"
+									height="10"
+									minstartscale="1"
+									maxstartscale="10"
+									minmidscale="12"
+									maxmidscale="25"
+									minendscale="5"
+									maxendscale="8"
+									startcolor="0"
+									midcolor="{color}"
+									endcolor="0"
+								/>
+							</template>
+							<instance name="glow_particle" color=".6 0 .6"/>
+							<instance name="glow_particle" color=".7 0 .5"/>
+						</simpleemitter>
+					</template>
+					
+					<instance name="purple_sparks" dir="-1 0 -1" />
+					<instance name="purple_sparks" dir="0 0 1" />
+					
+					
+					<light
+						life="240"
+						falloffend="300"
+						startcolor="0"
+						midcolor="5 0 1.5"
+						endcolor="0"
+					/>
+				</controller>
+			</model>
+		
+			<!--
+			<controller
+				life="1000"
+				yaw="90"
+				yawspeed="-900"
+			>
+				<simpleemitter
+					life="200"
+					position="0 100 0"
+					spawnrate="2500"
+					minparticlelife="200"
+					maxparticlelife="600"
+					offsetsphere="0 100 0"
+					material="/shared/effects/materials/flame.material"
+					maxspeed="50"
+					direction="0 0 1"
+					angle="20"
+					gravity="-2"
+				>
+					<particle
+						startcolor="0"
+						midcolor=".5 .3 .2"
+						endcolor="0"
+						midcolorpos=".1"
+						minsize="30"
+						maxsize="50"
+						startscale="1"
+						endscale="1.5"
+					/>
+				</simpleemitter>
+				
+				<model
+					scale="7"
+					model="/shared/effects/models/circle_of_bones/model.mdf"
+					anim="idle"
+					yaw="10"
+				>
+					<twopointtrailemitter
+						bone_b="_bone_fx_09"
+						life="200"
+						material="/shared/effects/materials/swoosh_add.material"
+						spawnrate="300"
+						particlelife="500"
+						texposscale="0"
+						texstretchscale="1"
+					>
+						<particle
+							startcolor="1 .1 0"
+							endcolor="0"
+						/>
+					</twopointtrailemitter>
+				</model>
+			</controller>
+			-->
+			
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

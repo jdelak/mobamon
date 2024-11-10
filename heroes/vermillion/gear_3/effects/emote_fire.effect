@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<simpleemitter
+				bone="_bone_miniGun_01"
+				count="10"
+				spawnrate="11340"
+				minparticlelife="30"
+				maxparticlelife="100"
+				gravity="0"
+				minspeed="2500"
+				maxspeed="5000"
+				position="0 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="1 0 0"
+				offsetsphere="0 0 0"
+				particledirectionalspace="local"
+			>
+				<particle>
+					<trailemitter
+						bone="_bone_miniGun_01"
+						life="700"
+						spawnrate="10"
+						particlelife="700"
+						texpostime="700"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/arrow_trail.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor=".4 .25 0"
+							midcolor=".25 .05 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="5"
+							midsize="5"
+							endsize="0"
+							midsizepos="0.25"
+						/>
+					</trailemitter>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_miniGun_01"
+				count="1"
+				spawnrate="11340"
+				minparticlelife="30"
+				maxparticlelife="150"
+				gravity="0"
+				speed="4000"
+				position="0 0 0"
+				minangle="0"
+				maxangle="3"
+				direction="1 0 0"
+				offsetsphere="0 0 0"
+				particledirectionalspace="local"
+			>
+				<particle
+					turn="1"
+				>
+					<model
+						bone="_bone_miniGun_01"
+						life="200"
+						model="/heroes/vermillion/ability_02/effects/bullet/bullet.mdf"
+						material="/shared/effects/smaterials/shell_sludge.material"
+						anim="idle"
+						color="5 2.5 1"
+						scale=".2"
+						directionalspace="local"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_miniGun_01"
+				count="75"
+				spawnrate="11340"
+				particlelife="530"
+				gravity="12.0"
+				minspeed="50"
+				maxspeed="300"
+				drag="0.03"
+				acceleration="0.0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="15"
+				direction="1 0 0"
+				particledirectionalspace="local"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					startsize="4"
+					endsize="2"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

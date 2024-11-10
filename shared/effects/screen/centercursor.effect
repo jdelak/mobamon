@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="rain" useentityeffectscale="true">
+
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+	<!--
+			<precipemitter
+				count="1000"
+				minspeed="100"
+				maxspeed="100"
+				direction="0 0 1"
+				angle="0"
+				material="/shared/effects/materials/rain_overlay.material"
+				minparticlelife="500"
+				maxparticlelife="500"
+		  	 >
+				<particle
+					angle="0"
+					turn="1"
+					width="0.5"
+					height="5"
+					lockup="true"
+					color="0 1.00 1.00"
+				/>
+			</precipemitter> 
+	-->
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

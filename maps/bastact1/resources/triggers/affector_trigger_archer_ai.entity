@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_TriggerArcherAI"
+
+	radius="400"
+	targetselection="all"
+	targetscheme="bastact1_archer"
+	maximpactspertarget="1"
+	lifetime="-1"
+	impactinterval="1000"
+>
+
+	<onimpact>	
+		<condition test="not_hasstate State_Bastact1_Ranged_Enemy" target="target_entity" >
+			<applystate name="State_Bastact1_Ranged_Enemy" target="target_entity" source="source_entity" proxy="target_entity" stack="false" duration="-1"/>
+		</condition>
+		<else>
+			<print text="State not applied"/>
+		</else>
+
+	</onimpact>
+</affector>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="fur_sampler_2d" novs="true">
+	<parameter name="diffuse0" type="sampler2D" />
+	<parameter name="diffuse1" type="sampler2D" />
+	<dependency name="Texcoord" type="float3" source="TexCoords" />
+	<dependency name="rootColorTex" type="sampler2D" source="diffuse0" />
+	<dependency name="tipColorTex" type="sampler2D" source="diffuse1" />
+	<output name="Out" type="float4" />
+	<?hlsl	
+		float3 rootColor = rootColorTex_texture.SampleLevel(rootColorTex_sampler, float2(Texcoord.x, 1.0f - Texcoord.y), 0).rgb;  
+		float3 tipColor = tipColorTex_texture.SampleLevel(tipColorTex_sampler, float2(Texcoord.x, 1.0f - Texcoord.y), 0).rgb;  
+
+		Out = float4(lerp(rootColor, tipColor, Texcoord.z).rgb, 1.0f);
+	?>
+</node>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_BossFall"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+
+>
+
+	<oninflict>
+		<playconductorevent name="Guardian" entity="source_entity" />
+		<setpos0 position="this_owner_entity" offsetspace="this_owner_entity" offset="0 0 2000" />
+		<spawnprojectile name="Projectile_Tutorial_BossLanding" source="pos0" level="1" target="this_owner_entity" bind="this_owner_entity"  />
+		<setactivemodifierkey entity="this_owner_entity" name="active" />
+	</oninflict>
+
+	<onexpired>
+		<playconductorevent name="Temp1" entity="source_entity" />
+	</onexpired>
+	
+	
+</state>

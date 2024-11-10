@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="true">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+
+			
+			<light
+				expirelife="10"
+				startcolor="1 0 .2"
+				endcolor="0 0 0"
+				falloffstart="100"
+				falloffend="400"
+				position="0 0 55"
+			
+			/>
+			
+			<sound
+				volume="0.2" 
+				falloffstart="250"
+				falloffend="1250"
+				sample="../sounds/sfx_projectile.wav"
+			/>
+
+			<simpleemitter
+				bone="rocket"
+				minangle="-90"
+				maxangle="-90"
+				spawnrate="40"
+				minparticlelife="250"
+				maxparticlelife="1000"
+				speed="1000"
+				drag="0.1"
+				gravity="-1"
+				offsetsphere="5"
+				material="/shared/effects/materials/smoke_particle.material"
+			>
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					turn="1"
+					startcolor="1 .4 .4"
+					endcolor=".3 .3 .3"
+					startsize="40"
+					minendscale="6"
+					maxendscale="10"
+					startalpha=".3"
+					midalpha=".3"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			
+
+			<simpleemitter
+			bone="rocket"
+				spawnrate="100"
+				drag="0"
+				particlelife="750"
+				gravity="-1"
+				minspeed="20"
+				maxspeed="120"								
+				direction="0 0 1"
+				offsetsphere="15 15 0"
+				minangle="-40"
+				maxangle="40"
+				material="/shared/effects/materials/spark_10.material"
+				inheritvelocity=".15"				
+			>			
+				<particle
+					startcolor="1 .0 .3"
+					endcolor="0"
+					width="10"
+					height="15"
+					lockup="false"
+					lockright="false"
+					minangle="-360"
+					maxangle="1"
+					minanglespeed="110"
+					maxanglespeed="-110"
+				/>
+			</simpleemitter>
+
+		
+			
+			<billboard
+				expirelife="500"				
+				material="/shared/effects/materials/whitedot.material"
+				size="150"
+				depthbias="-30"
+				startcolor=".2 .05 .1"
+				endcolor="0"
+			/>
+			
+			
+			<simpleemitter
+				
+				bone="rocket"
+				spawnrate="130"
+					
+				gravity="16"
+				speed="410"	
+			
+				drag=".02"
+				
+				minparticlelife="400"
+				maxparticlelife="400"
+				material="/shared/effects/smaterials/firework_trail.material"
+				offsetsphere="10"			
+			>
+				<particle 	
+					turn="1"
+					heightdistor="0.2"
+					width="3"
+					startcolor="4 .06.3 "
+					midcolor="4 .04 .1 "
+					endcolor="1 .0 .3"
+					startsize="10"
+					midsize="7"
+					endsize="0"
+				/>
+			</simpleemitter>	
+			
+			
+			
+			<simpleemitter
+				
+				bone="rocket"
+				spawnrate="130"
+					
+				
+				speed="10"	
+			
+				drag=".00"
+				
+				minparticlelife="100"
+				maxparticlelife="400"
+				material="/shared/effects/smaterials/firesprite_01.material"
+				offsetsphere="5"			
+			>
+				<particle 	
+					turn="1"
+					heightdistor="0.0"
+					
+					startcolor="1 1 1"
+					
+					endcolor="0 0 0"
+					startsize="22"
+					
+					endsize="0"
+				/>
+			</simpleemitter>	
+
+
+			<billboard
+				bone="rocket"
+				expirelife="200"				
+				material="/shared/effects/materials/whitedot.material"
+				size="150"
+				depthbias="-30"
+				startcolor=".4 .2 .1"
+				endcolor="0"
+			/>			
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<wait duration="20000"/>
+	</thread>
+
+</effect>

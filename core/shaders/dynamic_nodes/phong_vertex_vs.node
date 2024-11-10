@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="phong_vertex_vs">
+	<dependency name="GroundAmbient" type="bool" source="MaterialGroundAmbient" />
+
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="WorldSunPosition" type="float3" source="vSunPositionWorld" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="PointLightPositionOffset" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightPositionOffset" />
+	<dependency name="PointLightColor" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightColor" />
+	<dependency name="PointLightFalloff" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightFalloff" />
+
+	<output name="PhongVertexLightColor" type="float3" solution="PhongVertexLightColor" />
+	<output name="PhongVertexShadowColor" type="float3" solution="PhongVertexShadowColor" />
+	<?hlsl
+	
+	float3 f3Normal = WorldNormal;
+	float3 f3Light = WorldSunPosition;
+	
+	float fLit = saturate(dot(f3Normal, f3Light));
+	
+	float3 f3Diffuse = WorldAmbient;
+	
+	if (GROUND_AMBIENT && GroundAmbient)
+		f3Diffuse *= (dot(f3Normal, float3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f);
+		
+	#if (NUM_POINT_LIGHTS > 0)
+	// Point Lights
+	[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+	{
+		float3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+		float fDistance = length(f3DeltaPosition);
+	
+		float3 f3Light = normalize(f3DeltaPosition);
+
+		float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+		
+		float fLit = saturate(dot(f3Normal, f3Light)) * fAttenuation;
+		
+		f3Diffuse += PointLightColor[i] * fLit;
+	}
+	#endif
+		
+	PhongVertexLightColor = f3Diffuse + SunColor * fLit;
+	PhongVertexShadowColor = f3Diffuse;
+	
+	?>
+	<?glsl
+	
+	vec3 f3Normal = WorldNormal;
+	vec3 f3Light = WorldSunPosition;
+	
+	float fLit = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+	
+	vec3 f3Diffuse = WorldAmbient;
+	
+	if (GROUND_AMBIENT != 0 && GroundAmbient)
+		f3Diffuse *= (dot(f3Normal, vec3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f);
+		
+	#if (NUM_POINT_LIGHTS > 0)
+	// Point Lights
+	for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+	{
+		vec3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+		float fDistance = length(f3DeltaPosition);
+	
+		vec3 f3Light = normalize(f3DeltaPosition);
+
+		float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+		
+		float fLit = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f) * fAttenuation;
+		
+		f3Diffuse += PointLightColor[i] * fLit;
+	}
+	#endif
+		
+	PhongVertexLightColor = f3Diffuse + SunColor * fLit;
+	PhongVertexShadowColor = f3Diffuse;
+	
+	?>
+</node>

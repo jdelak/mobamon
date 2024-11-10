@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<include file="khanquest_templates.package"/>
+
+	<template name="khanquest_body">
+		<label group="profile_animation_khanquest_widgets" y="-20s" style="h1" textalign="center" font="maindyn_40" noclick="1" content="player_profile_khanquest_manager" />			
+		<label group="profile_animation_khanquest_widgets" y="26s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="player_profile_khanquest_info" />
+		
+		<!-- Menu -->
+		<panel name="playerProfile_khanquestMenu" group="profile_animation_khanquest_widgets" x="-23s" noclick="1" width="240s" height="400s" y="125s" align="left">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" style="doubleFrameBg"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>
+			<panel y="16s" float="bottom" padding="10s" noclick="1">
+				<label fity="1" fitypadding="8s" textalign="center" style="labelBase" font="maindyn_26" wrap="1" lineheight="24s" content="player_profile_khanquest_breakdown" noclick="1" />
+				<instance name="khanquest_menu_category_item_template" categoryname="general_general" icon="/ui/shared/textures/stats.tga" valueLabel="general_stats" />
+				<instance name="khanquest_menu_category_item_template" categoryname="general_active" icon="/ui/shared/textures/icon_loading.tga" hflip="1" />
+				<instance name="khanquest_menu_category_item_template" categoryname="general_complete" icon="/ui/main/shared/textures/rewards_chest.tga" />
+			</panel>
+			<!-- search -->
+			<panel name="playerProfile_khanquestSearch" noclick="true" height="68s" x="-7s" align="center" valign="bottom" width="232s">
+				<panel height="32s" width="-20s" align="right" valign="center" noclick="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="true"/>
+					<textbox 
+						name="playerProfile_khanquestSearchTextbox"
+						style="textBox1Input"  
+						font="maindyn_20"
+						textcolor="0 0 0 1" y="2s"
+						onesc=""
+						onenter=""
+						onmousewheeldownlua=""
+						onmousewheeluplua=""
+					/>
+					<label name="playerProfile_khanquestSearchCoverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_20" content="player_profile_khanquest_search"/>				
+					<instance name="iconButton" id="playerProfile_khanquestSearchGo"
+						icon="/ui/main/shared/textures/search.tga" iconsize="80"
+						width="100@" height="100%" align="right" valign="center" borderthickness="4s"
+					/>						
+					<instance name="iconButton" id="playerProfile_khanquestSearchClose"
+						icon="/ui/main/shared/textures/close.tga" iconsize="70"
+						visible="0"
+						width="100@" height="100%" align="right" valign="center" borderthickness="4s" colorized="1"
+					/>
+				</panel>
+			</panel>
+		</panel>
+		
+		<!-- Stats -->
+		<panel name="playerProfile_khanquestStats" group="profile_animation_khanquest_widgets" x="230s" noclick="1" height="-130s" width="-230s" y="110s" visible="1">
+			<panel name="playerProfile_khanquestStatsBody">
+				<panel y="-5s" align="center" height="210s" width="480s" noclick="1">
+					<panel width="45%" align="left" noclick="0"
+						onmouseoverlua="
+							simpleTipGrowYUpdate(true, '/ui/main/khanquest/textures/champs1.tga', Translate('player_profile_khanquest_champs'), Translate('player_profile_khanquest_champs_desc'), 300)
+						"
+						onmouseoutlua="
+							simpleTipGrowYUpdate(false) 
+						"					
+					>
+						<image texture="/ui/main/khanquest/textures/champs1.tga" y="-5s" width="100@" height="100%" align="center" noclick="1" />
+						<instance
+							name="NumberValue"
+							y="-24s" height="45s" valign="bottom" align="center"
+							label="0"
+							labelId="playerProfile_khanquestStatsWins5Count"
+							font="maindyn_40"
+						/>
+						<label textalign="center" textvalign="bottom" style="labelBase" font="maindyn_22" color=".7 .7 .7 1" content="player_profile_khanquest_champs" noclick="1"/>
+					</panel>
+					<panel width="45%" align="right" noclick="0"
+						onmouseoverlua="
+							simpleTipGrowYUpdate(true, '/ui/main/khanquest/textures/champs2.tga', Translate('player_profile_khanquest_grandchamps'), Translate('player_profile_khanquest_grandchamps_desc'), 300)
+						"
+						onmouseoutlua="
+							simpleTipGrowYUpdate(false) 
+						"					
+					>
+						<image texture="/ui/main/khanquest/textures/champs2.tga" y="-5s" width="100@" height="100%" align="center" noclick="1" />
+						<instance
+							name="NumberValue"
+							y="-24s" height="45s" valign="bottom" align="center"
+							label="0"
+							labelId="playerProfile_khanquestStatsWins7Count"
+							font="maindyn_40"
+						/>
+						<label textalign="center" textvalign="bottom" wrap="1" lineheight="26s" style="labelBase" font="maindyn_22" color=".7 .7 .7 1" content="player_profile_khanquest_grandchamps" noclick="1"/>
+					</panel>
+				</panel>			
+				<panel valign="bottom" align="center" width="490s" height="240s" noclick="1" >
+					<panel y="15s" width="-40s" height="186s" align="center" valign="center" noclick="1">
+						<instance name="dialogWrapper1" />
+						<label y="-35s" textalign="center" style="h1" font="maindyn_40" content="player_profile_khanquest_mode_stats" noclick="1"/>
+						<panel y="28s" noclick="1">
+							<label y="0" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_khanquests" noclick="1"/>
+							<label name="playerProfile_khanquestStatsTotalCompete" y="25s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>						
+							<panel width="50%" align="left" noclick="1">
+								<label y="85s" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_total_games" noclick="1"/>
+								<label name="playerProfile_khanquestStatsGamesPlayed" y="110s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>											
+							</panel>
+							<panel width="50%" align="right" noclick="1">
+								<label y="85s" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_win_percentage" noclick="1"/>
+								<label name="playerProfile_khanquestStatsWinPercent" y="110s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>
+							</panel>									
+						</panel>
+					</panel>
+				</panel>			
+			</panel>
+		</panel>
+		
+		<!-- Active Teams -->
+		<panel name="playerProfile_khanquestActive" group="profile_animation_khanquest_widgets" x="240s" noclick="1" float="right" padding="15s" height="540s" width="830s" y="70s" visible="1">
+			<panel name="playerProfile_khanquestActiveBody">
+				<listbox
+					name="playerProfile_khanquestActiveList"
+					color="invisible" 
+					wrap="row"
+					itemwidth="264s" itemheight="268s"
+
+					width="-36s"
+					
+					scrollbarplaceholder="0"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					handleheight="64s"
+					scrollbarsize="32s"
+					exteriorscrollbars="1"
+					vscrollbar="1"
+					hscrollbar="0"
+					horizontal="false"
+					scrollbaroffset="0"
+					hoverselect="false"
+					select="false"
+				/>
+				<!--
+				<instance name="khanquest_entry" />
+				<instance name="khanquest_entry" />
+				<instance name="khanquest_entry" />
+				-->
+			</panel>
+		</panel>
+		
+		<!-- Tournament History -->
+		<panel name="playerProfile_khanquestHistory" group="profile_animation_khanquest_widgets" x="240s" noclick="1" float="right" padding="15s" height="540s" width="830s" y="70s" visible="1">			
+			<panel name="playerProfile_khanquestHistoryBody">
+				<listbox
+					name="playerProfile_khanquestHistoryList"
+					color="invisible" 
+					wrap="row"
+					itemwidth="264s" itemheight="268s"
+
+					width="-36s"
+					
+					scrollbarplaceholder="0"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					handleheight="64s"
+					scrollbarsize="32s"
+					exteriorscrollbars="1"
+					vscrollbar="1"
+					hscrollbar="0"
+					horizontal="false"
+					scrollbaroffset="0"
+					hoverselect="false"
+					select="false"
+				/>
+			
+				<!--
+				<instance name="khanquest_entry" />
+				<instance name="khanquest_entry" />
+				<instance name="khanquest_entry" />
+				-->
+
+			</panel>
+		</panel>
+	
+	</template>
+	
+</package>

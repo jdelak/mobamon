@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="attack_projectile" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.0">
+<!--
+			<simpleemitter
+				bone="CTL_worm5"
+				particlelife="3000"
+				spawnrate="20"
+				speed="0"
+				gravity="0"
+				direction="0 0 0"
+				offsetsphere="10 0 0"
+				position="0 0 0"
+			>
+				<particle> 
+					<groundsprite
+						bone="CTL_worm5"
+						minlife="200"
+						maxlife="300"
+						material="/shared/effects/smaterials/slime_ground.material"
+						minyaw="-360"
+						maxyaw="360"
+						color="1 1 1"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".2"
+						minscale=".4"
+						maxscale=".5"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+
+
+			<model
+				expirelife="100"
+				delay="290"
+				model="worm/projectile.mdf"
+				anim="idle"
+				startalpha="1"
+				endalpha="0"
+			>
+
+				<simpleemitter
+					position="0 0 25"
+					spawnrate="50"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="200"
+					maxspeed="400"
+					drag=".008"
+					material="/shared/effects/smaterials/poison_05.material"
+					offsetsphere="15 15 0"
+					minangle="-10"
+					maxangle="40"
+					direction="0 1 0"
+					directionalspace="local"
+					depthbias="0"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						startcolor=".15 .5 0"
+						midcolor=".15 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".85"
+						minstartsize="15"
+						maxstartsize="30"
+						midsize="15"
+						endsize="10"
+						startalpha="0"
+						midalpha="0"
+						endalpha="0"
+						midalphapos=".5"
+						turn="true"
+						scale="1"
+					/>
+				</simpleemitter>
+
+				<billboard
+					bone="CTL_worm3"
+					material="/shared/effects/smaterials/venom_sack_02.material"
+					color=".3"
+					alpha="0.2"
+					size="64"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+					yaw="0"
+					position="0 0 0"
+					directionalspace="local"
+					depthbias="0"
+				/>
+				
+				<billboard
+					bone="CTL_worm3"
+					material="/shared/effects/smaterials/venom_sack_02.material"
+					color=".3"
+					alpha="0.2"
+					size="64"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+					yaw="-90"
+					position="0 0 0"
+					directionalspace="local"
+					depthbias="0"
+				/>
+
+				<simpleemitter
+					bone="CTL_worm6"
+					spawnrate="100"
+					particlelife="550"
+					gravity="5"
+					speed="100"
+					acceleration="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/poison_05.material"
+					offsetsphere="1 1 1"
+					minangle="0"
+					maxangle="180"
+					direction="0 0 1"
+					offsetdirection="0 0 0"
+					offsetradial="0 0 0"
+					inheritvelocity="0.25"
+				>
+					<particle
+						minangle="0"
+						maxangle="0"
+						minanglespeed="0"
+						maxanglespeed="0"
+						startcolor=".4 .6 .3"
+						midcolor=".2 .3 .15"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startframe="0"
+						endframe="1"
+						startsize="25"
+						midsize="25"
+						endsize="25"
+						midsizepos=".8"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".3"
+						turn="true"
+					/>
+				</simpleemitter>
+			
+			</model>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+	<!-- <die /> -->
+</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

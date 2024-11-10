@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2400"
+				sample="/npcs/Krytos/sounds/sfx_rock_impact_%.wav"
+			/>
+		
+			<!-- <simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2500"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+			>
+				<particle
+					turn="1"
+				>
+					<model
+						position="0 50 -15"
+						minlife="1300"
+						maxlife="1600"
+						model="/npcs/cindara/effects/rocks/model.mdf"
+						anim="idle"
+						color="1.5 1.35 1.1"
+						expirelife="500"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						minscale=".5"
+						maxscale=".7"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					>
+					</model>
+					
+					<model
+						position="0 -50 -15"
+						minlife="1600"
+						maxlife="2000"
+						model="/npcs/cindara/effects/rocks/model.mdf"
+						anim="idle"
+						color="1.5 1.35 1.1"
+						expirelife="500"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						minscale=".5"
+						maxscale=".7"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					>
+					</model>
+				</particle>
+			</simpleemitter> -->
+		
+		
+
+			<model
+				startscale=".34"
+				endscale=".30"
+				life="700"
+				model="crumble/model.mdf"
+				material="crumble/material.material"
+				anim="idle"
+				color=".9 .85 .85"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".5"
+			/>
+
+			<simpleemitter
+				
+				position="0 0 0"
+				spawnrate="500"
+				life="150"
+				particlelife="400"
+				gravity="0"
+				drag="0.05"
+				minspeed="1500"
+				maxspeed="3000"
+				acceleration="0"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"
+				offsetsphere="50"
+				minangle="90"
+				maxangle="90"
+				direction="0 0 1"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .5"
+					minscale=".5"
+					maxscale=".9"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="50"
+					startalpha="0"
+					midalpha=".35"
+					endalpha="0"
+					midalphapos=".2"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				
+				position="0 0 0"
+				spawnrate="500"
+				life="150"
+				particlelife="400"
+				gravity="0"
+				drag="0.05"
+				minspeed="3000"
+				maxspeed="6000"
+				acceleration="0"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"
+				offsetsphere="50"
+				minangle="90"
+				maxangle="90"
+				direction="0 0 1"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .5"
+					minscale=".8"
+					maxscale="1.2"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="75"
+					startalpha="0"
+					midalpha=".35"
+					endalpha="0"
+					midalphapos=".2"
+					turn="true"
+				/>
+			</simpleemitter>
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<camerashake2 scale="10" radius="2000" duration="300" frequency="50" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+</effect>

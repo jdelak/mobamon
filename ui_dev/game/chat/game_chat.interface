@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_chat">
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+
+	<trigger name="GameChatBoxEnter"/>
+	<trigger name="GameChatBoxEnterEndgame"/>
+	<trigger name="GameChatBoxEsc"/>
+	<trigger name="GameChatBoxEscEndgame"/>
+
+	<!-- Show input/set type -->
+	<textbox name="game_chat_team_input" font="maindyn_12" visible="true" color="invisible" textcolor="invisible" noclick="true"/>
+	<textbox name="game_chat_all_input" font="maindyn_12" visible="true" color="invisible" textcolor="invisible" noclick="true"/>
+	<textbox name="game_chat_mentor_input" font="maindyn_12" visible="true" color="invisible" textcolor="invisible" noclick="true"/>
+
+	<textbox name="game_spectator_chat_team_input" font="maindyn_12" visible="true" color="invisible" textcolor="invisible" noclick="true"/>
+	<textbox name="game_spectator_chat_all_input" font="maindyn_12" visible="true" color="invisible" textcolor="invisible" noclick="true"/>
+	<textbox name="game_spectator_chat_mentor_input" font="maindyn_12" visible="true" color="invisible" textcolor="invisible" noclick="true"/>
+	
+	<template name="hr">
+		<panel height="2" width="{width=100%}" valign="{valign=top}" align="{align}" noclick="1">
+			<panel hmargin="0.4h" height="1" valign="bottom" color="1 1 1 .1" noclick="1" />
+			<panel hmargin="0.4h" height="1" valign="top" color="0 0 0 .5" noclick="1" />
+		</panel>
+	</template>
+
+	<template name="standardButtonState_gameChat">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<frame texture="{texture=/ui/shared/frames/green_btn_up.tga}" borderthickness="{borderthickness}" color="{color=1 1 1 1}" rendermode="{rendermode}"/>
+			<label x="{labelX=0}" group="{id}_label_group" y="{labelY=-0.2h}" textalign="center" textvalign="center" style="labelBase" font="{font=maindyn_16}" color="{labelcolor=white}" content="{label=temp_button}"/>
+		</widgetstate>
+	</template>	
+	<template name="standardButton_gameChat">
+		<button name="{id}" width="{width=100%}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" onloadlua="{onloadlua}" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onclicklua="{onclicklua}"	>
+			<instance name="standardButtonState_gameChat" id="{id}" font="{font=maindyn_16}" labelX="{labelX=0}" label="{label=temp_button}" rendermode="{rendermode=normal}" borderthickness="{borderthickness=0.6h}" statename="up"/>
+			<instance name="standardButtonState_gameChat" id="{id}" font="{font=maindyn_16}" labelX="{labelX=0}" label="{label=temp_button}" rendermode="{rendermode=normal}" borderthickness="{borderthickness=0.6h}" texture="/ui/shared/frames/green_btn_over.tga" statename="over"/>
+			<instance name="standardButtonState_gameChat" id="{id}" font="{font=maindyn_16}" labelX="{labelX=0}" label="{label=temp_button}" rendermode="{rendermode=normal}" borderthickness="{borderthickness=0.6h}" statename="down" x="1" y="1"/>
+			<instance name="standardButtonState_gameChat" id="{id}" font="{font=maindyn_16}" labelX="{labelX=0}" label="{label=temp_button}" rendermode="grayscale" borderthickness="{borderthickness=0.6h}" color=".8 .8 .8 1" labelcolor="#777777" statename="disabled"/>
+		</button>
+	</template>	
+	
+	<template name="gameChatEntryIcon">
+		<panel name="gameChatEntry{id}_icon" group="gameChatEntry{id}" style="gameChatEntry"  noclick="1">
+			<panel style="gameChatEntryMinHeight" noclick="1"/>
+			<panel style="gameChatEntryIconSpace" clip="true" noclick="1">
+				<image name="gameChatEntry{id}Icon" texture="/heroes/legionnaire/icon.tga" width="100%" height="100@" valign="center" noclick="1"/>
+			</panel>
+			<panel style="gameChatEntryMuteSpace" name="gameChatEntry{id}MuteBtn" clip="true" noclick="1">
+				<image name="gameChatEntry{id}Mute" texture="/ui/_textures/icons/chat_muted.tga" width="80%" height="80@" align="center" valign="center" noclick="0" visible="0"/>
+			</panel>
+			<panel align="right" width="-21.3h" grow="true" regrow="true" noclick="1">
+				<label group="gameChatEntry{id}Message" style="gameChatEntryMessage" visible="false" color="invisible" outlinecolor="invisible" noclick="1"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameChatEntryOverlays">
+		<panel group="gameChatEntry{id}" style="gameChatEntry"  noclick="1">
+			<panel style="gameChatEntryMinHeight" noclick="1"/>
+			<frame borderthickness="0.5h" texture="/ui/elements:rounded_corner_white" color="#0B0B0B" style="gameChatEntryIconSpace" noclick="1"/>
+			<frame borderthickness="0.5h" texture="/ui/elements:roundframe" color="black" style="gameChatEntryIconSpace" noclick="1"/>
+			<panel align="right" width="-21.3h" grow="true" regrow="true" noclick="1">
+				<label group="gameChatEntry{id}Message" style="gameChatEntryMessage" visible="false" color="invisible" outlinecolor="invisible" noclick="1"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameChatEntryLabels">
+		<panel group="gameChatEntry{id}" style="gameChatEntry" noclick="1">
+			<label name="gameChatEntry{id}PlayerName" outline="1" y="0.55h" x="4.5h" width="14h" textalign="right" textvalign="top" font="maindyn_15" color="white" content="temp_game_playername" noclick="1"/>
+
+			<!--<label name="gameChatEntry{id}TypeLabel" style="gameChatEntryTypeSpace" font="maindyn_12" shadow="true" color="white" textalign="center" textvalign="center" content="game_chat_team"/>-->
+			<panel style="gameChatEntryMinHeight" noclick="1"/>
+			<panel align="right" width="-21.3h" grow="true" regrow="true" noclick="1">
+				<label name="gameChatEntry{id}Message" group="gameChatEntry{id}Message" style="gameChatEntryMessage" noclick="1"/>
+			</panel>
+		</panel>
+	</template>
+
+	<!-- Backers -->
+	<panel group="gameChatContainers" style="gameChatContainer" name="gameChatContainer" noclick="1">
+		<panel hover="false" processonlyscroll="true" name="gameChatScrollPanel" visible="false"/>
+		<scrollbar name="gameChatScrollBar" style="gameChatScrollBar"/>
+
+		<panel group="gameChatInputContainers" style="gameChatInputSpace" noclick="1">
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.5h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.5h" color="#191919"/>
+			<panel align="right" width="-0.5h" x="-0.25h" y="0.25h" height="2.5h" noclick="true">
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.35h" noclick="true" color="#0B0B0B"/>
+			</panel>
+		</panel>
+	</panel>
+
+	<!-- Icons -->
+	<panel group="gameChatContainers" style="gameChatContainer">
+		<panel group="gameChatViewArea" style="gameChatViewArea">
+			<panel group="gameChatBody" style="gameChatBody">
+				<instance name="gameChatEntryIcon" id="30"/>
+				<instance name="gameChatEntryIcon" id="29"/>
+				<instance name="gameChatEntryIcon" id="28"/>
+				<instance name="gameChatEntryIcon" id="27"/>
+				<instance name="gameChatEntryIcon" id="26"/>
+				<instance name="gameChatEntryIcon" id="25"/>
+				<instance name="gameChatEntryIcon" id="24"/>
+				<instance name="gameChatEntryIcon" id="23"/>
+				<instance name="gameChatEntryIcon" id="22"/>
+				<instance name="gameChatEntryIcon" id="21"/>
+				<instance name="gameChatEntryIcon" id="20"/>
+				<instance name="gameChatEntryIcon" id="19"/>
+				<instance name="gameChatEntryIcon" id="18"/>
+				<instance name="gameChatEntryIcon" id="17"/>
+				<instance name="gameChatEntryIcon" id="16"/>
+				<instance name="gameChatEntryIcon" id="15"/>
+				<instance name="gameChatEntryIcon" id="14"/>
+				<instance name="gameChatEntryIcon" id="13"/>
+				<instance name="gameChatEntryIcon" id="12"/>
+				<instance name="gameChatEntryIcon" id="11"/>
+				<instance name="gameChatEntryIcon" id="10"/>
+				<instance name="gameChatEntryIcon" id="9"/>
+				<instance name="gameChatEntryIcon" id="8"/>
+				<instance name="gameChatEntryIcon" id="7"/>
+				<instance name="gameChatEntryIcon" id="6"/>
+				<instance name="gameChatEntryIcon" id="5"/>
+				<instance name="gameChatEntryIcon" id="4"/>
+				<instance name="gameChatEntryIcon" id="3"/>
+				<instance name="gameChatEntryIcon" id="2"/>
+				<instance name="gameChatEntryIcon" id="1"/>
+			</panel>
+		</panel>
+	</panel>
+
+	<!-- Overlays (round/border icon)  -->
+	<panel group="gameChatContainers" style="gameChatContainer">
+		<panel group="gameChatViewArea" style="gameChatViewArea">
+			<panel group="gameChatBody" style="gameChatBody">
+				<instance name="gameChatEntryOverlays" id="30"/>
+				<instance name="gameChatEntryOverlays" id="29"/>
+				<instance name="gameChatEntryOverlays" id="28"/>
+				<instance name="gameChatEntryOverlays" id="27"/>
+				<instance name="gameChatEntryOverlays" id="26"/>
+				<instance name="gameChatEntryOverlays" id="25"/>
+				<instance name="gameChatEntryOverlays" id="24"/>
+				<instance name="gameChatEntryOverlays" id="23"/>
+				<instance name="gameChatEntryOverlays" id="22"/>
+				<instance name="gameChatEntryOverlays" id="21"/>
+				<instance name="gameChatEntryOverlays" id="20"/>
+				<instance name="gameChatEntryOverlays" id="19"/>
+				<instance name="gameChatEntryOverlays" id="18"/>
+				<instance name="gameChatEntryOverlays" id="17"/>
+				<instance name="gameChatEntryOverlays" id="16"/>
+				<instance name="gameChatEntryOverlays" id="15"/>
+				<instance name="gameChatEntryOverlays" id="14"/>
+				<instance name="gameChatEntryOverlays" id="13"/>
+				<instance name="gameChatEntryOverlays" id="12"/>
+				<instance name="gameChatEntryOverlays" id="11"/>
+				<instance name="gameChatEntryOverlays" id="10"/>
+				<instance name="gameChatEntryOverlays" id="9"/>
+				<instance name="gameChatEntryOverlays" id="8"/>
+				<instance name="gameChatEntryOverlays" id="7"/>
+				<instance name="gameChatEntryOverlays" id="6"/>
+				<instance name="gameChatEntryOverlays" id="5"/>
+				<instance name="gameChatEntryOverlays" id="4"/>
+				<instance name="gameChatEntryOverlays" id="3"/>
+				<instance name="gameChatEntryOverlays" id="2"/>
+				<instance name="gameChatEntryOverlays" id="1"/>
+			</panel>
+		</panel>
+	</panel>
+	
+	 
+	<!-- Labels -->
+	<panel group="gameChatContainers" style="gameChatContainer">
+		<panel group="gameChatViewArea" style="gameChatViewArea">
+			<panel group="gameChatBody" style="gameChatBody">
+				<instance name="gameChatEntryLabels" id="30"/>
+				<instance name="gameChatEntryLabels" id="29"/>
+				<instance name="gameChatEntryLabels" id="28"/>
+				<instance name="gameChatEntryLabels" id="27"/>
+				<instance name="gameChatEntryLabels" id="26"/>
+				<instance name="gameChatEntryLabels" id="25"/>
+				<instance name="gameChatEntryLabels" id="24"/>
+				<instance name="gameChatEntryLabels" id="23"/>
+				<instance name="gameChatEntryLabels" id="22"/>
+				<instance name="gameChatEntryLabels" id="21"/>
+				<instance name="gameChatEntryLabels" id="20"/>
+				<instance name="gameChatEntryLabels" id="19"/>
+				<instance name="gameChatEntryLabels" id="18"/>
+				<instance name="gameChatEntryLabels" id="17"/>
+				<instance name="gameChatEntryLabels" id="16"/>
+				<instance name="gameChatEntryLabels" id="15"/>
+				<instance name="gameChatEntryLabels" id="14"/>
+				<instance name="gameChatEntryLabels" id="13"/>
+				<instance name="gameChatEntryLabels" id="12"/>
+				<instance name="gameChatEntryLabels" id="11"/>
+				<instance name="gameChatEntryLabels" id="10"/>
+				<instance name="gameChatEntryLabels" id="9"/>
+				<instance name="gameChatEntryLabels" id="8"/>
+				<instance name="gameChatEntryLabels" id="7"/>
+				<instance name="gameChatEntryLabels" id="6"/>
+				<instance name="gameChatEntryLabels" id="5"/>
+				<instance name="gameChatEntryLabels" id="4"/>
+				<instance name="gameChatEntryLabels" id="3"/>
+				<instance name="gameChatEntryLabels" id="2"/>
+				<instance name="gameChatEntryLabels" id="1"/>
+			</panel>
+		</panel>
+
+		<panel group="gameChatInputContainers" style="gameChatInputSpace">
+			<!--<label name="gameChatTypeLabel" style="gameChatTypeSize" x="0.25h" height="2.5h" font="maindyn_12" shadow="true" color="white" textalign="center" noclick="true" content="game_chat_team"/>-->
+			<panel name="gameChatInputChannelContainer">
+				<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.5h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.5h" color="#191919"/>
+				<panel align="right" width="-0.5h" x="-0.25h" y="0.25h" height="2.5h" noclick="true">
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.35h" noclick="true" color="#0B0B0B"/>
+				</panel>
+			
+				<button name="gameChatTypeToggleMidgame" interactive="false" style="gameChatTypeSize" noclick="false" x="0.25h" height="2.5h" color="1 1 1 0.1">
+					<label name="gameChatTypeLabelMidgame" font="maindyn_12" shadow="true" color="white" textalign="center" noclick="true" content="game_chat_team"/>
+				</button>
+			</panel>
+			<textbox name="gameChatInputBox" style="gameChatInputBox" align="right" width="-7h" onenter="Trigger('GameChatBoxEnter')" onesc="Trigger('GameChatBoxEsc')"/>
+		</panel>
+
+		<panel group="gameChatInputContainersEndgame" style="gameChatInputSpace">
+		
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.5h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.5h" color="#191919"/>
+			<panel align="right" width="-0.5h" x="-0.25h" y="0.25h" height="2.5h" noclick="true">
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.35h" noclick="true" color="#0B0B0B"/>
+			</panel>
+		
+			<button name="gameChatTypeToggleEndgame" interactive="false" style="gameChatTypeSize" noclick="false" x="0.25h" height="2.5h" color="1 1 1 0.1">
+				<label name="gameChatTypeLabelEndgame" font="maindyn_12" shadow="true" color="white" textalign="center" noclick="true" content="game_chat_all"/>
+			</button>
+			
+			<textbox name="gameChatInputBoxEndgame" style="gameChatInputBox" align="right" width="-7h" onenter="Trigger('GameChatBoxEnterEndgame')" onesc="Trigger('GameChatBoxEscEndgame')"/>
+
+		</panel>	
+		
+		<panel group="gameChatInputContainersEndgameLimited" align="right" x="22.0h" y="0.5h" height="100%" width="19h" float="bottom" padding="0.8h" visible="0" >			
+			<panel height="2.0h" noclick="1">
+				<label textalign="center" style="labelBase" color="1 1 1 .5" outlinecolor="0 0 0 .4" font="subdyn_10" content="end_game_message_header" noclick="1" />
+				<instance name="hr" valign="bottom" />
+			</panel>			
+			<instance id="gameChatInputBtn1" height="3.8h" width="19h" group="endgame_emote_buttons"
+				name="standardButton_gameChat"
+				label="end_game_message_string_1"
+				font="maindyn_20"
+				rendermode="normal"
+				onclick="AllChat('end_game_message_string_1')"
+				onclicklua="self:SetEnabled(0) self:SetRenderMode('grayscale'); GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED or 0; GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED + 1; if (GAME_CHAT_EMOTES_USED > 1) then local groupTable = self:GetGroup('endgame_emote_buttons') for _, widget in ipairs(groupTable) do widget:SetEnabled(0) end  end"
+			/>		
+			<instance id="gameChatInputBtn2" height="3.8h" width="19h" group="endgame_emote_buttons"
+				name="standardButton_gameChat"
+				label="end_game_message_string_2"
+				font="maindyn_20"
+				rendermode="normal"
+				onclick="AllChat('end_game_message_string_2')"
+				onclicklua="self:SetEnabled(0) self:SetRenderMode('grayscale'); GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED or 0; GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED + 1; if (GAME_CHAT_EMOTES_USED > 1) then local groupTable = self:GetGroup('endgame_emote_buttons') for _, widget in ipairs(groupTable) do widget:SetEnabled(0) end  end"
+			/>		
+			<instance id="gameChatInputBtn3" height="3.8h" width="19h" group="endgame_emote_buttons"
+				name="standardButton_gameChat"
+				label="end_game_message_string_3"
+				font="maindyn_20"
+				rendermode="normal"
+				onclick="AllChat('end_game_message_string_3')"
+				onclicklua="self:SetEnabled(0) self:SetRenderMode('grayscale'); GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED or 0; GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED + 1; if (GAME_CHAT_EMOTES_USED > 1) then local groupTable = self:GetGroup('endgame_emote_buttons') for _, widget in ipairs(groupTable) do widget:SetEnabled(0) end  end"
+			/>
+			<instance id="gameChatInputBtn4" height="3.8h" width="19h" group="endgame_emote_buttons"
+				name="standardButton_gameChat"
+				label="end_game_message_string_4"
+				font="maindyn_20"
+				rendermode="normal"
+				onclick="AllChat('end_game_message_string_4')"
+				onclicklua="self:SetEnabled(0) self:SetRenderMode('grayscale'); GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED or 0; GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED + 1; if (GAME_CHAT_EMOTES_USED > 1) then local groupTable = self:GetGroup('endgame_emote_buttons') for _, widget in ipairs(groupTable) do widget:SetEnabled(0) end  end"
+			/>
+			<instance id="gameChatInputBtn5" height="3.8h" width="19h" group="endgame_emote_buttons"
+				name="standardButton_gameChat"
+				label="end_game_message_string_5"
+				font="maindyn_20"
+				rendermode="normal"
+				onclick="AllChat('end_game_message_string_5')"
+				onclicklua="self:SetEnabled(0) self:SetRenderMode('grayscale'); GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED or 0; GAME_CHAT_EMOTES_USED = GAME_CHAT_EMOTES_USED + 1; if (GAME_CHAT_EMOTES_USED > 1) then local groupTable = self:GetGroup('endgame_emote_buttons') for _, widget in ipairs(groupTable) do widget:SetEnabled(0) end  end"
+			/>			
+
+		</panel>
+		
+	</panel>
+	
+	<lua file="/ui/shared/slash/slash.lua"/>
+	<lua file="game_chat.lua"/>
+
+</interface>

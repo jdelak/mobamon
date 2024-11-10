@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="art_circle" novs="true">
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<parameter name="Thickness" type="float" default="0.005" />
+	<parameter name="BlurThickness" type="float" default="0.005" />
+	<parameter name="Alpha" type="float" default="1.0" />
+	<parameter name="Offset" type="float" default="1.0" />
+	
+	
+	<dependency name="Offset" type="float" source="Offset" />
+	<dependency name="Alpha" type="float" source="Alpha" />
+	<dependency name="BlurThickness" type="float" source="BlurThickness" />
+	<dependency name="Thickness" type="float" source="Thickness" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	
+	<output name="Out" type="float4" />
+	<?hlsl
+		float fThickness = Thickness;
+		float fOffset = Offset * 0.5f;
+		
+		float2 vXY = float2(abs(Texcoord.x - 0.5f), abs(Texcoord.y - 0.5f));
+		float fDistance = (vXY.x * vXY.x) + (vXY.y * vXY.y);
+		
+		float fBlurThickness = BlurThickness;
+		float fHalfThinkness = fThickness * 0.5f;
+		
+		Out = float4(1.0f, 1.0f, 1.0f, smoothstep(fHalfThinkness + fBlurThickness, fHalfThinkness, abs((fOffset - (fHalfThinkness + fBlurThickness)) - sqrt(fDistance))) * Alpha);
+		Out = saturate(Out);
+	?>
+	<?glsl
+		float fThickness = Thickness;
+		float fOffset = Offset * 0.5f;
+		
+		vec2 vXY = vec2(abs(Texcoord.x - 0.5f), abs(Texcoord.y - 0.5f));
+		float fDistance = (vXY.x * vXY.x) + (vXY.y * vXY.y);
+		
+		float fBlurThickness = BlurThickness;
+		float fHalfThinkness = fThickness * 0.5f;
+		
+		Out = vec4(1.0f, 1.0f, 1.0f, smoothstep(fHalfThinkness + fBlurThickness, fHalfThinkness, abs((fOffset - (fHalfThinkness + fBlurThickness)) - sqrt(fDistance))) * Alpha);
+		Out = clamp(Out, 0.0f, 1.0f);
+	?>
+</node>

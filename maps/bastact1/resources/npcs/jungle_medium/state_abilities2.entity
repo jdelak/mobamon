@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Rat_Enemy"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="3000"
+	ishidden="true"
+	wanderrange="90"
+>
+	<onimpact>
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			maxtotalimpacts="1"
+		>
+			<compare a="accumulator" b="0" op="eq" >
+				<chance threshold=".33" >
+					<useability source="source_entity" target="target_entity" slot="0"/>
+				</chance>
+				<else>
+					<chance threshold="0.5" >
+						<order command="wander" target="source_entity" forceduration="1500" force="true" />
+						<order command="attack" target="target_entity" forceduration="5000" force="true" queue="back"   />
+					</chance>
+				</else>	
+				<changeaccumulator b="0" op="add" />
+			</compare>   
+		</areaofeffect>
+	</onimpact>
+	
+</state>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_Flak_Ability3_ShieldLogic"
+
+	icon="icon.tga"
+	passiveeffect="effects/state_1.effect"
+	effecttype="StatusBuff"
+	
+	displaylevel="true"
+>
+	
+	<onframe>	
+		<getconstant name="shield_percent" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="100" op="div"/>
+		<setvar0 a="var0" b="source_maxhealth" op="mult"/>
+		
+		<setaccumulator value="var0" valueb="3" valueop="div" />		
+		<setvalue source="this_entity" name="source_max_shield" a="var0" />
+	
+		<compare source="this_owner_entity" a="source_shield" b="source_max_shield" op="lt">
+			<setvar0 a="frametime" b="accumulator" op="mult" />
+			<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+		</compare>
+		
+	</onframe>
+	
+	<onattackeddamageevent>
+		<compare a="source_shield" b="damage_attempted" op="le">
+<!--
+			<playeffect effect="effects/state_expire.effect" source="source_entity" />
+-->
+			<applystate name="State_Flak3_Empty" duration="7000" target="source_entity" />
+		</compare>
+		<applystate name="State_Flak_Ability3_ShieldNoRegen" duration="7000" target="source_entity" />
+	</onattackeddamageevent>
+	
+	<onattackedpostimpact>
+		<targettype type="enemy">
+			<playeffect effect="effects/impact.effect" source="source_entity"/>
+		</targettype>
+	</onattackedpostimpact>
+	
+	<modifier key="flakshield_noregen" modpriority="100"
+	>
+		<onframe/>
+	</modifier>
+	
+	<modifier key="flakshield_disabled" modpriority="101"
+		passiveeffect=""
+	>
+		<onframe/>
+		
+		<onattackeddamageevent/>
+
+		<onattackedpostimpact/>
+		
+	</modifier>
+	
+	
+	
+</statenetaccum>

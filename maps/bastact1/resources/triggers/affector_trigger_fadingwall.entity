@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_TriggerFadingWall"
+
+	radius="400"
+	targetselection="all"
+	targetscheme="player_controlled_units"
+	maximpactspertarget="-1"
+	lifetime="-1"
+>
+<!-- 	<onspawn>
+		<printdebuginfo/>
+		<bind entity="this_entity" target="this_owner_entity" />
+	</onspawn> -->
+
+	<onimpact>
+		<entitytype type="Hero_Bastion1Bastact1">
+			<areaofeffect
+				targetscheme="fading_wall"
+				ignoreinvulnerable="true"
+				targetselection="all"
+				radius="5000"
+				maximpactspertarget="1"
+			>
+				<applystate name="State_FadeEnv" target="target_entity" />
+			</areaofeffect>
+		</entitytype>
+	</onimpact>
+</affector>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="1.6">
+		
+			<sound
+				delay="400"
+				life="4000"
+				falloffstart="500"
+				falloffend="1800"
+				volume="0.95"
+				sample="../sounds/sfx_trail.wav"
+			/>
+
+			<template name="multiples">
+				<model
+					life="1000"
+					bone="_bone_origin"
+					model="orbit/orbit.mdf"
+					anim="idle"
+					scale="1"
+					roll="45"
+					yaw="80"
+					yawspeed="{zyawspeed}"
+					position="{zpos}"
+				>
+					<model
+						life="1000"
+						bone="_bone_fx"
+						model="rocket/model.mdf"
+						anim="idle"
+						position="0 0 0"
+						scale=".4"
+						color="21"
+						pitch="-90"
+						turn="true"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					>
+						<trailemitter
+							life="550"
+							bone="_bone_flare"
+							position="0 0 40"
+							spawnrate="32"
+							particlelife="550"
+							texpostime="550"
+							texposscale="-.15"
+							texstretchscale="1"
+							material="/shared/effects/smaterials/rocket_trail_blend.material"
+							subframepos="true"
+		
+						>
+							<particle
+								color="1 1 1"
+								midsizepos="0.03"
+								startalpha="1"
+								endalpha="0"
+								startsize="0"
+								midsize="100"
+								endsize="0"
+							/>
+						</trailemitter>
+						
+						<billboard
+							life="1000"
+							bone="_bone_flare"
+							startscale="2"
+							endscale="2"
+							color="1 .6 .6"
+							material="/shared/effects/smaterials/streak_flare_orange.material"
+						/>
+					</model>
+				</model>
+			</template>
+
+			<instance name="multiples" zpos="0 0 75" zyawspeed="240"/>
+			<instance name="multiples" zpos="0 25 25" zyawspeed="-720"/>
+			<instance name="multiples" zpos="25 0 50" zyawspeed="420"/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

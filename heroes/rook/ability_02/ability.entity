@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Rook2"
+
+	icon="icon.tga"
+	passiveeffect=""
+	casteffect="effects/cast.effect"
+	
+	anim="ability_2_down"
+	casttime="500"
+	castactiontime="0"
+	
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_self"
+	ischanneling="true"
+	channeltime="1500"
+	manacost="75"
+	cooldowntime="22000,18000,15000,12000" 
+	casteffecttype="Magic"
+	hoverareacastrange="625"
+
+>
+	<constant name="damage" value="50,80,110,140" adjustment="ability" />
+	
+	<onimpact />
+	<onlearn>
+		<setcharges a="0" />
+	</onlearn>
+
+	<onchannelstart>
+		<disjoint target="source_entity" />
+		<applystate name="State_Rook_Ability2" proxy="this_entity" duration="1000" ischannel="true" />
+		<popup name="invulnerable" source="source_entity" target="source_entity" />
+	</onchannelstart>
+	
+
+</ability>

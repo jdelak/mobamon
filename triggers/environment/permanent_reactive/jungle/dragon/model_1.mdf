@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="high.max" file="high.model" type="K2" >
+
+	<anim name="idle" clip="clips/idle.clip" startframe="0" numframes="1" loop="true" />
+	
+	<!--<anim name="hit" clip="clips/hit.clip" loop="true" loopbackframe="-1"/>-->
+	
+	<anim name="flamehit" clip="clips/flamehit.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear /shared/sounds/reactive/sfx_crumble_%.wav 500 2000 0.5"/>
+		<frameevent frame="1" cmd="StartEffect effects/dust.effect"/>
+		
+		<frameevent frame="1" cmd="StartEffect effects/apex_dust.effect"/>
+
+		<physicalshape 
+			material="rock"
+			bone="_bone_skeleton05"
+			type="box"
+			bounds="7 7 25"
+			offset="0 0 0"
+			endkinematictime="2500"
+			density=".2"
+			expiretime="10000"
+			expiretype="freeze"
+			restitution=".1"
+			dynamic="20"
+		/>
+
+		<physicalshape 
+			material="rock"
+			bone="_bone_skeleton06"
+			type="box"
+			bounds="7 7 25"
+			offset="0 0 0"
+			endkinematictime="2500"
+			density=".2"
+			expiretime="10000"
+			expiretype="freeze"
+			restitution=".1"
+			dynamic="20"
+		/>
+
+		<physicalshape 
+			material="rock"
+			bone="_bone_skeleton07"
+			type="box"
+			bounds="21 21 21"
+			offset="0 0 0"
+			endkinematictime="750"
+			density=".2"
+			expiretime="10000"
+			expiretype="freeze"
+			restitution=".1"
+			dynamic="20"
+		/>
+
+	
+	</anim>
+	
+</model>

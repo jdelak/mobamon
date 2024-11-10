@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			life="400"
+			startcolor="9"
+			midcolor="0 2.5 10"
+			endcolor="1"
+			midcolorpos=".8"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				sample="../sounds/impact_%.wav"
+				volume="0.75"
+				linearfalloff="true"
+				falloffstart="1000"
+				falloffend="2000"
+			/>
+
+			<light
+				life="300"
+				startcolor="1.5 2 2.5"
+				midcolor="0 1 8"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="0"
+				falloffend="250"
+				position="0 0 50"
+			/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				position="0 0 15"
+				material="/shared/effects/smaterials/whitedot.material"
+				life="125"
+				startcolor="0 0 .5"
+				endcolor="0 0 0"
+				scale="10"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				depthbias="-25"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="20"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="250"
+				maxspeed="750"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort="0.1"
+					endheightdistort="0"
+					startsize="8"
+					endsize="4"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="flashes">
+			
+			
+				<groundsprite
+				life="100"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor=".2 .2 0"
+					endcolor="0 0 0"
+					size="150"
+				/>
+			
+			
+			
+			
+
+				
+				
+				
+				<simpleemitter
+				delay="{zdelay}"
+					bone="{zbone}"
+					count="10"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="10"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="0"
+				>
+					<particle
+						startcolor="0 0 1"
+						midcolor="0 0 1"
+						endcolor="0 0 0"
+						startscale="60"
+						endscale="100"
+						turn="true"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="flashes" zbone="_bone_centerofchest" zpos="50 0 12" zdelay="0"/>
+			<instance name="flashes" zbone="_bone_centerofchest" zpos="0 50 12" zdelay="50"/>
+			<instance name="flashes" zbone="_bone_centerofchest" zpos="-50 0 12" zdelay="100"/>
+
+			
+			
+			
+			
+
+		</particlesystem>
+
+   	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

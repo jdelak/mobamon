@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Luster_TriggeredPassive_1"
+	icon="icon.tga"
+	maxlevel="3"
+	
+	actiontype="passive"
+	manacost="0"
+	cooldowntime="15000"
+	
+>
+	<constant name="cooldown" value="15" adjustment="none" />
+	
+	<onframe>
+		<setactivemodifierkey entity="this_entity" name="petspawned" />
+	</onframe>
+
+	
+	<modifier key="petspawned" modpriority="100">
+		<aura state="State_Greed_Ability" radius="1000" targetscheme="enemy_lane_neutral_creeps" stack="true" />
+		<onframe />
+		<!--		
+		<onattackimpact>
+				<targettype type="enemy_lane_neutral_creeps" >
+					<applystate target="target_entity" name="State_Luster_TriggerPassive" duration="60000" />
+				</targettype>				
+		</onattackimpact >
+			<ondamage>
+				<targettype type="enemy_lane_neutral_creeps" />
+					<applystate target="target_entity" name="State_Luster_TriggerPassive" duration="60000" />
+			</ondamage >
+		-->
+	</modifier>
+</ability>

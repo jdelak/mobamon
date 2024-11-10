@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="abilitytip">
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+
+	
+	<style name="thinSeparatorDark" color="0 0 0 0.4"/>
+	<style name="thinSeparatorLight" color="1 1 1 0.08"/>	
+	
+	<template name="horizRule1">
+		<panel width="{width=100%}" height="{height=0.75h}" align="{align}" valign="{valign}" noclick="true" passivechildren="true" name="{ruleName}" sticky="{sticky}" stickytoinvis="{stickytoinvis}" visible="{visible}" >
+			<panel style="thinSeparatorDark" valign="center" align="center" height="1" width="{lineWidth=-0.75h}"/>
+			<panel style="thinSeparatorLight" valign="center" align="center" height="1" width="{lineWidth=-0.75h}" y="1"/>
+		</panel>
+	</template>	
+
+	<template name="abilityTipPropertyRow">
+		<panel name="abilityTipPropertyRow{id}" sticky="true" stickytoinvis="false" height="2.5h" visible="{visible=true}">
+			<panel float="right" padding="0.5h">
+				<label width="-17.5h" x="0.5h" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" content="general_empty" name="abilityTipProperty{id}Name"/>
+				<label width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="1111" name="abilityTipProperty{id}Value1"/>
+				<label width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="2222" name="abilityTipProperty{id}Value2"/>
+				<label width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="3333" name="abilityTipProperty{id}Value3"/>
+				<label width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="4444" name="abilityTipProperty{id}Value4"/>
+			</panel>
+		</panel>
+		<instance name="horizRule1" sticky="true" stickytoinvis="false" visible="{visible=true}" ruleName="abilityTipHorzRule{id}"/>
+	</template>
+	
+	<panel noclick="true" name="abilityTipChannelOffset" valign="bottom">
+		<panel name="abilityLevelUpTip" align="center" valign="bottom" width="40h" grow="true" regrow="true" noclick="true" passivechildren="true" y="-17h" visible="false">
+			<panel>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" color="0 0 0 0.5" x="0.35h" y="0.35h"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" color="#151515"/>
+				<frame texture="/ui/elements:roundframe" borderthickness="0.75h" color="#292929"/>
+			</panel>
+			<panel grow="true" regrow="true" growinvis="false" width="-1h" align="center" float="bottom" padding="0.5h">
+				<panel height="0" sticky="true" stickytoinvis="false"/>
+				<panel height="3h" sticky="true" stickytoinvis="false" >
+					<panel width="100@" height="100%">
+						<image name="abilityTipIcon" texture="/heroes/legionnaire/icon.tga"/>
+						<frame texture="/ui/elements:rounded_corner_white" borderthickness="0.75h"  color="#151515"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="0.75h" color="black"/>
+					</panel>
+					<label name="abilityTipName" x="115@" textvalign="center" color="#FFCC00" font="maindyn_16" shadow="true" content="abilitytip_name" shadowoffset="2"/>
+					<panel align="right" height="100%" x="-125@" grow="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#0B0B0B"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+						<panel>
+							<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="#1A1A1A" width="+2" height="+2" align="center" valign="center"/>
+						</panel>
+						<panel grow="true" regrow="true" float="right" height="100%">
+							<label name="abilityTipManaCost" textvalign="center" fitx="true" fitxpadding="1h" textalign="center" font="maindyn_14" shadow="true" style="whiteTextColor" content="115"/>
+							<panel width="100@" height="100%">
+								<image texture="/ui/shared/textures/itemtype_mana.tga" color="0 0 0 0.75" hmargin="7.5@" vmargin="7.5%" x="0.25h" y="0.25h"/>
+								<image texture="/ui/shared/textures/itemtype_mana.tga" color="#00CCFF" hmargin="7.5@" vmargin="7.5%"/>
+							</panel>
+						</panel>
+					</panel>
+					<panel align="right" height="100%" grow="true" regrow="true" y="-0.15h">
+						<panel>
+							<frame texture="/ui/elements:key" borderthickness="33%" color="white" y="0.15h"/>
+						</panel>
+						<label name="abilityTipBinding" textalign="center" textvalign="center" font="maindyn_12" color="black" outline="true" outlinecolor="#CCCCBB" content="W" fitx="true" fitxpadding="1.55h"/>
+					</panel>
+				</panel>
+				<panel width="100%" grow="true" regrow="true" sticky="true" stickytoinvis="false" >
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#0B0B0B"/>
+					<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+					<panel>
+						<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="#1A1A1A" width="+2" height="+2" align="center" valign="center"/>
+					</panel>
+					<label name="abilityTipDescription" align="center" width="-1h" textvalign="center" fity="true" fitypadding="1h" wrap="true" font="subdyn_10" style="whiteTextColor" shadow="true" content="temp_abilitytip_desc"/>
+				</panel>
+				<panel height="0" sticky="true" stickytoinvis="false"/>
+				<panel name="abilityTipCooldownContainer" height="2.5h" sticky="true" stickytoinvis="false">
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.5" x="0.35h" y="0.35h"/>
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#333333"/>
+					<panel hmargin="0.5h">
+						<label shadow="true" style="whiteTextColor" font="subdyn_10" textvalign="center" content="abilitytip_cooldown"/>
+						<label name="abilityTipCooldown" textalign="right" shadow="true" textvalign="center" style="whiteTextColor" font="subdyn_10"/>
+					</panel>
+				</panel>
+				<panel name="abilityTipProperties" sticky="true" stickytoinvis="false" grow="true" regrow="true" width="100%" growinvis="false" visible="false" passivechildren="false">
+					<panel valign="bottom" height="-3h">
+						<panel width="3.75h" name="abilityTipLevelHighlightCurrent"><!-- Current level frame -->
+							<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#333333"/>
+							<frame texture="/ui/elements:thick" borderthickness="0.5h" color="#444444"/>
+						</panel>
+						<panel width="3.75h" name="abilityTipLevelHighlightNext"><!-- Next Level Frame -->
+							<frame texture="/ui/elements:thick" borderthickness="0.5h" color="#333333"/>
+						</panel>
+					</panel>
+					<panel float="bottom" padding="0.5h" width="100%" grow="true" regrow="true" growinvis="false" >
+						<panel height="2.5h" sticky="true" stickytoinvis="false" >
+							<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.5" x="0.15h" y="0.15h"/>
+							<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#222222"/>
+							<panel float="right" padding="0.5h">
+								<label width="-17.5h" x="0.5h" textvalign="center" color="#FFDD33" font="subdyn_12" shadow="true" shadowoffset="2" content="abilitytip_levelbreakdown"/>
+								<label name="abilityTipHeaderLevel1" width="3.75h" textalign="center" textvalign="center" style="greenTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="1"/>
+								<label name="abilityTipHeaderLevel2" width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="2"/>
+								<label name="abilityTipHeaderLevel3" width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="3"/>
+								<label name="abilityTipHeaderLevel4" width="3.75h" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_10" shadow="true" shadowoffset="2" content="4"/>
+							</panel>
+						</panel>
+						<instance name="abilityTipPropertyRow" id="1" visible="true" />
+						<instance name="abilityTipPropertyRow" id="2" visible="false" />
+						<instance name="abilityTipPropertyRow" id="3" visible="false" />
+						<instance name="abilityTipPropertyRow" id="4" visible="false" />
+						<instance name="abilityTipPropertyRow" id="5" visible="false" />
+						<instance name="abilityTipPropertyRow" id="6" visible="false" />
+						<instance name="abilityTipPropertyRow" id="7" visible="false" />
+						<instance name="abilityTipPropertyRow" id="8" visible="false" />
+						<instance name="abilityTipPropertyRow" id="9" visible="false" />
+						<instance name="abilityTipPropertyRow" id="10" visible="false" />
+					</panel>
+				</panel>
+				<panel height="0"/>
+			</panel>
+		</panel>
+	</panel>
+	
+	<lua file="abilitytip.lua"/>
+</interface>

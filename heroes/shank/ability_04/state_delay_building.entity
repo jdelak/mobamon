@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Shank_Ability4_Delay_Building"
+
+	icon="icon.tga"
+
+
+	impactinterval="400"
+	
+	effecttype="StatusDebuff StatusDisable CrowdControl"
+>
+
+	<oninflict>
+		<setaccumulator value="0" />
+		<bind entity="this_owner_entity" target="this_proxy_entity" turnwithobject="false" />
+		<playanim name="clamp_closed" target="this_proxy_entity" />
+	</oninflict>
+
+	<onimpact>
+		<printdebuginfo/>
+		<compare a="accumulator" b="0" op="eq" >
+			<spawnprojectile name="Projectile_Shank_Ability4_Return" source="this_proxy_entity" target="source_entity" bindstate="State_Shank_Ability4" proxy="this_proxy_entity" pushentity="true" bindpriority="2"  />
+			<bind entity="stack_entity" target="this_proxy_entity"  />
+			<setaccumulator value="1" />
+			
+			<playanim name="ability_4_pullback" target="source_entity" source="source_entity"/>
+			<expire />
+		</compare>
+	</onimpact>
+
+	<onexpired>
+		<compare a="accumulator" b="0" op="eq" >
+			<spawnprojectile name="Projectile_Shank_Ability4_Return" source="this_proxy_entity" target="source_entity" proxy="this_proxy_entity" pushentity="true" bindpriority="2"  />
+			<bind entity="stack_entity" target="this_proxy_entity"  />
+			<setaccumulator value="1" />
+			
+			<playanim name="ability_4_pullback" target="source_entity" source="source_entity"/>
+		</compare>
+	</onexpired>	
+
+</state>

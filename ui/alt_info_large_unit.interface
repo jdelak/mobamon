@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="alt_info_large_unit" luatable="true">
+
+	<childinterface file="/ui/game/shared/game_shared_templates.interface"/>
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<panel width="1" height="1"><!-- Center Point -->
+		<panel width="14h" height="1.25h" align="center" valign="bottom">
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="-1.1h" name="AltInfoLargeUnitLevelShadow"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="0.15h"/>
+			<panel color="invisible" name="AltInfoLargeUnitLevelGlowContainer" width="+0.4h" height="+0.4h" y="-1.25h" align="center" valign="center">
+				<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" rendermode="additive" name="AltInfoLargeUnitLevelGlow"/>
+			</panel>
+			
+			<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" width="+0.4h" height="+0.4h" align="center" valign="center" rendermode="additive" name="AltInfoLargeUnitHealthGlow"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h" y="-1.25h" name="AltInfoLargeUnitLevelBacker"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="-1.25h" name="AltInfoLargeUnitLevelInset"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" style="healthBackerColor" name="AltInfoLargeUnitHealthBarBacker"/>
+			<panel name="AltInfoLargeUnitLevelBar" x="0.25h" y="-1h" width="-0.5h" height="-0.5h" color="#FFCC00" texture="/ui/elements:rounded_bg_white_vert"/>
+			<frame name="AltInfoLargeUnitLevelCorners" texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="-1.25h"/>
+			<panel name="AltInfoLargeUnitHealthBar" x="0.25h" y="0.25h" width="-0.5h" height="-0.5h" color="#22EE33" texture="/ui/elements:rounded_bg_white_vert"/>
+			<panel name="AltInfoLargeUnitHealthPips" x="0.25h" y="0.25h" width="-0.5h" height="-0.5h" texture="$invis" uscale="64p" utile="true"/>
+			<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="0.25h"/>
+			
+			<frame name="AltInfoLargeUnitShieldShadow" texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="1.35h"/>
+			<panel color="invisible" name="AltInfoLargeUnitShieldGlowContainer" width="+0.4h" height="+0.4h" y="1.25h" align="center" valign="center">
+				<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" rendermode="additive" name="AltInfoLargeUnitShieldGlow"/>
+			</panel>
+			<frame name="AltInfoLargeUnitShieldBacker" texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h" y="1.25h"/>
+			<frame name="AltInfoLargeUnitShieldInset" texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="1.25h"/>
+			<panel name="AltInfoLargeUnitShieldBar" x="0.25h" y="1.5h" width="-0.5h" height="-0.5h" color="#f5f2e2" texture="/ui/elements:rounded_bg_white_vert"/>
+			<panel name="AltInfoLargeUnitShieldPipContainer" x="0.25h" y="1h" width="-0.5h" height="-0.5h" texture="$invis" uscale="64p" utile="true" valign="bottom"/>
+			<frame name="AltInfoLargeUnitShieldCorners" texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="1.25h"/>
+			
+		</panel>
+
+		<panel name="AltInfoSelfAmorXPRating" noclick="1" align="center" valign="center" height="4.2h" width="4.2h" x="-8.2h" y="-0.2h">
+
+			<!-- XP Ring
+				Min = 60%
+				Max = 106%
+			-->
+			<!--<panel name="AltInfoSelfXPWheelParent" visible="0" width="106@" height="106%" valign="center" align="center">
+				<piegraph color="#2b0950"/>
+				<piegraph color="#862de8" start="-90" end="270" >
+					<?lua
+						object:RegisterWatchLua('AltInfoLargeUnit', function(widget, trigger) widget:SetValue(trigger.xpPercent) end, true, nil, 'xpPercent')
+					?>
+				</piegraph>
+				<image texture="/ui/game/alt_info/textures/np_xp_ring.tga" />
+			</panel>-->
+
+			<panel name="AltInfoSelfArmorIcon_Parent" noclick="1" align="center" valign="center" height="96%" width="96%" x="0" y="0.2h" >
+				<image name="AltInfoSelfArmorIcon_1" texture="/ui/game/alt_info/textures/np_def_1.tga" visible="1" noclick="1" align="center" valign="center" height="100%" width="100%" color="1 1 1 1" />
+			</panel>
+
+			<label visible="1" font="subdyn_11" content="?" color="1 1 1 1" textalign="center" textvalign="center" outline="1" outlinecolor="0 0 0 0.9" >
+				<?lua
+					object:RegisterWatchLua('AltInfoLargeUnit', function(widget, trigger) widget:SetText(trigger.level)
+						widget:SetText(trigger.level)
+					end, true, nil, 'level')
+				?>
+			</label>
+		</panel>
+	</panel>
+	
+	
+	
+	<!--<lua file="/ui/shared/styles.lua"/>-->
+	<lua file="/ui/game/alt_info/alt_info_large_unit.lua"/>
+</interface>

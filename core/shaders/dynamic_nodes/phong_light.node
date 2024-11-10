@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="phong_light">
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Specular" type="float3" source="MaterialSpecular" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<dependency name="WorldBump" type="float3" source="WorldBump" />
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="SpecParams" type="float3" source="vSpec" />
+	<dependency name="PointLightPositionOffset" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightPositionOffset" />
+	<dependency name="PointLightColor" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightColor" />
+	<dependency name="PointLightFalloff" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightFalloff" />
+
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+	
+		float3 f3Normal = WorldBump;
+		
+		float fSpecular = SpecParams.x;
+		
+		float3 f3CamDirection = -normalize(WorldPositionOffset);
+		
+		float3 f3DynamicSpecularColor = float3(0.1f, 0.1f, 0.1f);
+		float fDynamicSpecPower = 8.0f;
+
+		float3 f3Diffuse = float3(0.0f, 0.0f, 0.0f);
+		float3 f3Specular = float3(0.0f, 0.0f, 0.0f);
+		float3 f3DynamicSpecular = float3(0.0f, 0.0f, 0.0f);
+		
+		#if (NUM_POINT_LIGHTS > 0)
+		// Point Lights
+		[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+		{
+			float3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+			float fDistance = length(f3DeltaPosition);
+		
+			float3 f3Light = normalize(f3DeltaPosition);
+			float3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+			float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+			
+			float2 f2Lit; // x = diffuse, y = specular
+			f2Lit.x = saturate(dot(f3Normal, f3Light));
+			f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+			f2Lit *= fAttenuation;
+			
+			f3Diffuse += PointLightColor[i] * f2Lit.x;
+			f3DynamicSpecular += PointLightColor[i] * f2Lit.y;
+		}
+		#endif
+		
+		float4 f4DiffuseColor = float4(Diffuse, Opacity) * Color;
+		
+		float3 f3FinalColor = f4DiffuseColor.rgb * f3Diffuse + Specular * f3Specular + f3DynamicSpecularColor * f3DynamicSpecular;
+		
+		f3FinalColor *= Fogofwar;
+		
+		Out.rgb = lerp(f3FinalColor, float3(0.0f, 0.0f, 0.0f), Fog);
+		Out.a = f4DiffuseColor.a;
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+	
+		vec3 f3Normal = WorldBump;
+		
+		float fSpecular = SpecParams.x;
+		
+		vec3 f3CamDirection = -normalize(WorldPositionOffset);
+		
+		vec3 f3DynamicSpecularColor = vec3(0.1f, 0.1f, 0.1f);
+		float fDynamicSpecPower = 8.0f;
+
+		vec3 f3Diffuse = vec3(0.0f, 0.0f, 0.0f);
+		vec3 f3Specular = vec3(0.0f, 0.0f, 0.0f);
+		vec3 f3DynamicSpecular = vec3(0.0f, 0.0f, 0.0f);
+		
+		#if (NUM_POINT_LIGHTS > 0)
+		// Point Lights
+		for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+		{
+			vec3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+			float fDistance = length(f3DeltaPosition);
+		
+			vec3 f3Light = normalize(f3DeltaPosition);
+			vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+			float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+			
+			vec2 f2Lit; // x = diffuse, y = specular
+			f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+			f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+			f2Lit *= fAttenuation;
+			
+			f3Diffuse += PointLightColor[i] * f2Lit.x;
+			f3DynamicSpecular += PointLightColor[i] * f2Lit.y;
+		}
+		#endif
+		
+		vec4 f4DiffuseColor = vec4(Diffuse, Opacity) * Color;
+		
+		vec3 f3FinalColor = f4DiffuseColor.rgb * f3Diffuse + Specular * f3Specular + f3DynamicSpecularColor * f3DynamicSpecular;
+		
+		f3FinalColor *= Fogofwar;
+		
+		Out.rgb = mix(f3FinalColor, vec3(0.0f, 0.0f, 0.0f), Fog);
+		Out.a = f4DiffuseColor.a;
+	?>
+</node>

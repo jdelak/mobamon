@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="outline">
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="OutlineColor" type="float4" source="OutlineColor" />
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+	
+		Out = OutlineColor;
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+	
+		Out = OutlineColor;
+	?>
+</node>

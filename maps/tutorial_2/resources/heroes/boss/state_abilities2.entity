@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial2_Abilities2"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="3250"
+	ishidden="true"
+
+>
+	<oninflict>
+		<setent1 name="BossPos2" />
+		<order command="move" source="source_entity" target="ent1" />
+		<order command="hold" source="source_entity" force="true" queue="back" />
+	</oninflict>
+
+	<onimpact>
+		<areaofeffect
+			radius="1600"
+			targetselection="closest"
+			targetscheme="enemy_heroes"
+			maxtotalimpacts="1"
+		>
+			<compare a="accumulator" b="0" op="eq" >
+				<chance threshold="0.33" >
+					<useability source="source_entity" target="target_position" slot="0"/>
+				</chance>
+				<else>
+					<chance threshold="0.5" >
+						<useability source="source_entity" target="target_entity" slot="1"/>
+					</chance>
+					<else>
+						<useability source="source_entity" target="target_position" slot="2"/>
+					</else>
+				</else>
+				<changeaccumulator b="1" op="add" />
+			</compare>
+			<else>
+				<areaofeffect
+					targetscheme="Tutorial2_Boss_Gadgets"
+					effecttype=""
+					ignoreinvulnerable="true"
+					targetselection="closest"
+					center="source_entity"
+					radius="2500"
+					maximpactspertarget="1"
+				>
+					<compare a="accumulator" b="3" op="eq" >
+						<order command="move" source="source_entity" target="target_entity" />
+						<order command="hold" source="source_entity" force="true" queue="back" />	
+						<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />	
+						<changeaccumulator b="3" op="sub" />
+					</compare>
+					<compare a="accumulator" b="2" op="eq" >
+						<chance threshold="0.5" >
+							<order command="move" source="source_entity" target="target_entity" />
+							<order command="hold" source="source_entity" force="true" queue="back" />
+							<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />	
+							<changeaccumulator b="2" op="sub" />
+						</chance>
+						<else>
+							<changeaccumulator b="1" op="add" />
+						</else>
+					</compare>
+					<compare a="accumulator" b="1" op="eq" >
+						<changeaccumulator b="1" op="add" />
+					</compare>
+				</areaofeffect>
+			</else>
+		</areaofeffect>
+	</onimpact>
+
+	
+	
+</state>

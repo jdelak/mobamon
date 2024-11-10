@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="cliff_terrain_texcoord0">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="mWorld" type="float4x4" source="mWorld" />
+	<dependency name="WorldTextureProjection" type="float" source="fWorldTextureProjection" />
+	<output name="Out" type="float2" solution="TerrainTexcoord0" />
+	<?hlsl
+		Out = mul(float4(ObjectPosition, 1.0f), mWorld).xy * WorldTextureProjection;
+	?>
+	<?glsl
+		Out = (mWorld * vec4(ObjectPosition, 1.0f)).xy * WorldTextureProjection;
+	?>
+</node>

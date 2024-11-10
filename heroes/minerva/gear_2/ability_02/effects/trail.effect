@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+<!--
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			alpha="0"
+
+		/>
+-->
+		<particlesystem name="system0" space="entity">
+		
+			<model
+				life="150"
+				parentskeleton="true"
+				parentmodel="true"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				startcolor="0 1 2"
+				endcolor="0 0 0"
+			/>
+
+			<light
+				life="200"
+				startcolor="0 3 6"
+				endcolor="0 0 0"
+				falloffstart="00"
+				falloffend="100"
+				position="0 0 50"
+			/>
+		</particlesystem>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1">
+
+			<template name="trail">
+				<trailemitter
+					spawnrate="35"
+					particlelife="400"
+					texpostime="400"
+					texposscale="0"
+					texstretchscale=".5"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whiterectangle.material"
+					depthbias="-50"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="0 .2 .2"
+						midcolor=".2 0 .2"
+						endcolor="0 0 0"
+						size="4"
+					/>
+				</trailemitter>
+			</template>	
+			
+			<instance name="trail" zpos="5 0 0"/>
+			<instance name="trail" zpos="-5 0 0"/>
+
+			<template name="trail">
+				<trailemitter
+					spawnrate="35"
+					particlelife="400"
+					texpostime="400"
+					texposscale="0"
+					texstretchscale=".5"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whiterectangle.material"
+					depthbias="-50"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="0 .25 .5"
+						midcolor=".5 0 .5"
+						endcolor="0 0 0"
+						midcolorpos=".8"
+						size="12"
+					/>
+				</trailemitter>
+			</template>	
+			
+			<instance name="trail" zpos="5 0 0"/>
+			<instance name="trail" zpos="-5 0 0"/>
+
+			<template name="speed">
+				<simpleemitter
+					count="25"
+					particlelife="2000"
+					spawnrate="25"
+					offsetsphere="0 0 0"
+					position="{zpos}"
+					minangle="0"
+					maxangle="0"
+					direction="0 1 0"
+					minspeed="0"
+					maxspeed="200"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitesquare.material"
+							minlife="250"
+							maxlife="500"
+							size="15"
+							startcolor=".6 0 .6"
+							midcolor="0 .25 .5"
+							endcolor="0 0 0"
+							midcolorpos=".1"
+							minstartscale=".5"
+							maxstartscale="2"
+							endscale="0"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							depthbias="-25"
+						/>
+					</particle>
+				</simpleemitter>
+			
+			</template>	
+			
+			<instance name="speed" zpos="0 15 0"/>
+			<instance name="speed" zpos="5 -30 0"/>
+			<instance name="speed" zpos="-5 -15 0"/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/> 
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+

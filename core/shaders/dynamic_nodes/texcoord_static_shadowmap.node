@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="texcoord_static_shadowmap">
+	<dependency name="WorldPosition" type="float3" source="WorldPosition" />
+	<dependency name="mStaticShadowmapTex" type="float4x4" source="mStaticShadowmapTex" />
+	<output name="Out" type="float2" solution="TexcoordStaticShadowmap" />
+	<?hlsl
+		Out = mul(float4(WorldPosition, 1.0f), mStaticShadowmapTex).xy;
+	?>
+	<?glsl
+		Out = (mStaticShadowmapTex * vec4(WorldPosition, 1.0f)).xy;
+	?>
+</node>

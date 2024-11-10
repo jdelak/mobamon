@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+<!--
+		<modifier
+			expirelife="500"
+			startcolor="0 2 10"
+			endcolor="0 0 0"
+			startalpha=".5"
+			endalpha="0"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+			   life="5000"
+			   forecestereo="true"
+				volume="1"
+				sample="../sounds/night_cast.wav"
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2500"
+			/>
+
+			<template name="sparks">
+
+				<simpleemitter
+				life="250"
+					bone="{zbone}"
+					spawnrate="500"
+					minparticlelife="1000"
+					maxparticlelife="2000"			
+					gravity="5"
+					drag="0.03"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="15"
+					minspeed="2"
+					maxspeed="25"
+					offsetsphere="10 10 10"					
+					material="/shared/effects/materials/flare1.material"
+					inheritvelocity=".2"					
+				>
+					<particle
+						turn="1"
+						minanglespeed="-50"
+						maxanglespeed="250"
+						startcolor="1 .2 0"
+						endcolor="0 0 0"
+						size="0.35"
+						minscale="1"
+						maxscale="3"
+						startheightdistort=".004"
+						midheightdistortpos=".1"
+						endheightdistort="0"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				life="250"
+					bone="{zbone}"
+					spawnrate="500"
+					minparticlelife="250"
+					maxparticlelife="1000"			
+					gravity="10"
+					drag="0.02"
+					direction="0 0 1"
+					minangle="-5"
+					maxangle="5"
+					minspeed="6"
+					maxspeed="21"
+					offsetsphere="8"
+					material="/shared/effects/materials/whitewater_02.material"	
+					inheritvelocity=".2"
+				>
+					<particle
+						minagle="-360" 
+						maxangle="360"
+						minanglespeed="-50"
+						maxanglespeed="20"
+						startcolor="0 0 0"
+						midcolor="1 .2 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="0"
+						endsize="4.35"
+						minscale="1"
+						maxscale="3"						
+					/>
+				</simpleemitter>
+
+				<billboard
+					bone="{zbone}"
+					life="1000"
+					startcolor="1 .2 0"
+					midcolorpos=".8"
+					endcolor="0"
+					startsize="25"
+					endsize="25"
+					position="{position}"
+					material="/shared/effects/materials/whitedot.material"
+				/>
+
+		
+			</template>
+			
+
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_02"/>
+
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

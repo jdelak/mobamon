@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_GuardDeaggro"
+
+	radius="450"
+	targetselection="all"
+	targetscheme="enemy_units"
+	lifetime="-1"
+	maximpactspertarget="-1"
+	impactinterval="250"
+
+>
+
+	<onimpact>
+		<condition test="hasstate Affector_Guard_Abilities2" target="target_entity" >
+			<deactivatemodifierkey name="Guard_Alert" entity="target_entity" />
+			<order command="stop" source="target_entity" target="target_entity" force="true" forceduration="500" />
+			<expirestate name="Affector_Guard_Abilities2" source="source_entity" target="target_entity" />	
+ 		</condition>
+	</onimpact>
+</affector>

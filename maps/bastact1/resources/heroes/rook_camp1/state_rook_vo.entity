@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Rook_vo"
+
+	passiveeffect=""  
+	icon="icon.tga"
+	ishidden="true"
+	duration="5000"
+	impactinterval="1000"
+>
+
+	<oninflict>
+		<!-- ===== Play Random VO Sound ===== -->
+		<chance threshold="0.25">
+			<playeffect effect="effects/sound_1.effect" source="target_entity" target="target_entity" />
+		</chance>
+		<else>
+			<chance threshold="0.33">
+				<playeffect effect="effects/sound_2.effect" source="target_entity" target="target_entity" />
+			</chance>
+			<else>
+				<chance threshold="0.5">
+					<playeffect effect="effects/sound_3.effect" source="target_entity" target="target_entity" />
+				</chance>
+				<else>
+					<playeffect effect="effects/sound_4.effect" source="target_entity" target="target_entity" />
+				</else>
+			</else>
+		</else>		
+		<!-- =================================== -->
+	</oninflict>	
+
+
+</state>

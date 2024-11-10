@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial3_HeroAggro"
+
+	icon=""
+	passiveeffect=""
+	deathpersist="true"
+	effecttype=""
+
+	ishidden="true"
+>
+
+
+	<oninflict>
+		<areaofeffect
+			radius="9999999"
+			targetselection="all"
+			targetscheme="enemy_towers"
+			source="this_owner_entity"
+			ignoreinvulnerable="true"
+		>
+			<applystate name="State_Tutorial3_TowerAlone" proxy="this_owner_entity" duration="-1" />
+		</areaofeffect>
+	</oninflict>
+
+	<onattackimpact>
+
+		<targettype type="hero">
+			<areaofeffect
+				radius="750"
+				targetselection="all"
+				targetscheme="enemy_towers"
+				maxtotalimpacts="1"
+				center="this_owner_entity"
+				source="this_owner_entity"
+			>
+				<setscriptvalue name="tower_attack_hero" value="1" />
+			</areaofeffect>
+
+		</targettype>
+	</onattackimpact>
+	
+
+</state>

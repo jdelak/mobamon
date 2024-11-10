@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Krytos_Anim"
+
+	icon="icon.tga"
+	
+	effecttype=""
+	stunned="true"
+
+	ishidden="true"
+	impactinterval="200" 
+>
+	<onimpact>
+		<compare a="accumulator" b="1" op="eq" >
+			<playanim name="bash_1" target="target_entity"/>
+			<playanim name="bash_1" target="this_proxy_entity"/>
+		</compare>
+		<compare a="accumulator" b="10" op="eq" >
+			<damage amount="150" target="target_entity" />
+		</compare>
+		<compare a="accumulator" b="17" op="eq" >
+			<damage amount="150" target="target_entity" />
+		</compare>
+		<compare a="accumulator" b="26" op="eq" >
+			<damage amount="150" target="target_entity" />
+		</compare>
+		<compare a="accumulator" b="35" op="eq" >
+			<damage amount="150" target="target_entity" />
+		</compare>
+
+		<compare a="accumulator" b="36" op="eq" >
+			<setscriptvalue name="gate_killed" value="1" />
+			<areaofeffect
+				radius="1000"
+				targetselection="all"
+				targetscheme="wall"
+				ignoreinvulnerable="true"
+				source="this_proxy_entity"
+				center="this_proxy_entity"
+			>
+				<delete target="target_entity" />
+			</areaofeffect>
+			<applystate name="State_Tutorial_Invulnerability" target="this_proxy_entity" duration="-1" />
+			<expire/>
+		</compare>
+		<changeaccumulator b="1" op="add" />
+		
+	</onimpact>
+	
+</state>

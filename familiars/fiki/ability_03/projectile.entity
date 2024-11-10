@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Fiki_Ult"
+
+	gravity="0"
+	lifetime="300"
+	useexactlifetime="true"
+
+	modelscale="1.0"
+	model=""
+	deatheffect=""
+	traileffect=""
+	flying="true"
+	flyheight="0"
+	canturn="true"
+	
+	impactdistance="100"
+	
+>
+	<onimpact>
+		<hasmodifier entity="proxy_entity" name="baby">
+			<spawnunit name="Pet_Jungle_Baby" count="1" target="target_position" pushentity="true" proxy="this_proxy_entity" />
+			<setproxy target="stack_entity" />
+			<applystate target="proxy_entity" name="State_Jungle_Invis" duration="15000" />
+
+		</hasmodifier>
+			<else>
+				<hasmodifier entity="proxy_entity" name="adult">
+					<spawnunit name="Pet_Jungle_Adult" count="1" target="target_position" pushentity="true"  proxy="this_proxy_entity" />
+					<setproxy target="stack_entity" />
+					<applystate target="proxy_entity" name="State_Jungle_Invis" duration="15000" />
+				</hasmodifier>
+					<else>	
+						<spawnunit name="Pet_Jungle" count="1" target="target_position" pushentity="true"  proxy="this_proxy_entity" />
+						<setproxy target="stack_entity" />
+						<applystate target="proxy_entity" name="State_Jungle_Invis" duration="15000" />
+					</else>
+			</else>
+	</onimpact>
+	
+	<onattack>
+		<distance source="proxy_entity" target="target_entity" />
+		<compare a="result" b="700" op="le" >
+			<order command="attack" source="proxy_entity" target="target_entity" />
+			<setproxy entity="proxy_entity" target="target_entity" />
+		</compare>
+	</onattack>
+	
+
+</projectile>

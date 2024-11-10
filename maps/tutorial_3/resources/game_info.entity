@@ -1,0 +1,1590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="tutorial3_game_rules"
+
+	startinggold="1000"
+	repickcost="0"
+	randombonus="0"
+	
+	goldpertick="1"
+	incomeinterval="900"
+	experiencepertick="0"
+	goldincomeinterval="675"
+	experienceincomeinterval="1000"
+	
+	experiencemultiplier="1.0"
+	towerdenygoldmultiplier="0.5"
+	
+	norepick="true"
+	noswap="true"
+	forcerandom="false"
+	
+	allowallheroes="false" 
+
+	
+	spawnpowerups="true"
+	alternatepicks="false"
+	
+	respawntimeperlevel="4000"
+	repickonrespawn="false"
+	
+	nolobby="true"
+	noheroselect="true"
+	nodev="true"
+
+	bots="Tutorial3Bot"
+>
+	
+	<onaddplayer>
+		<setteamsize team="0" size="1" />
+		<changeteam entity="target_entity" team="1" />
+	</onaddplayer>
+
+	<onprematchstart>
+		<targetisbot>
+		</targetisbot>
+		<else>
+			<spawnthread name="tutorial3_start" />
+			
+			<!-- Spawn heroes manually if demo -->
+			
+			<spawnthread name="tutorial3_spawndemoheroes1" />
+			<spawnthread name="tutorial3_spawndemoheroes2" />
+			<spawnthread name="tutorial3_spawndemoheroes3" />
+			<spawnthread name="tutorial3_spawndemoheroes4" />
+			<spawnthread name="tutorial3_spawndemoheroes5" />
+			
+
+			
+
+		</else>
+	</onprematchstart>
+
+	<scriptthread name="tutorial3_start">
+		<foreachplayer excludebots="true">
+
+			<!-- Initalize the script values -->	
+			<setscriptvalue name="script_busy" value="0" />
+			<setscriptvalue name="ui_shopOpen" value="0" />
+			<setscriptvalue name="ui_shopClose" value="0" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			<setscriptvalue name="starting_items" value="0" />
+			<setscriptvalue name="creeps_killed" value="0" />
+			<setscriptvalue name="neutrals_killed" value="0" />
+			<setscriptvalue name="tower_killed" value="0" />
+			<setscriptvalue name="tower_in_range" value="0" />
+			<setscriptvalue name="tower_low" value="0" />
+			<setscriptvalue name="baldir_attacked" value="0" />
+			<setscriptvalue name="baldir_tip" value="0" />
+			<setscriptvalue name="baldir_tip_complete" value="0" />
+			<setscriptvalue name="cindara_attacked" value="0" />
+			<setscriptvalue name="cindara_tip" value="0" />
+			<setscriptvalue name="cindara_tip_complete" value="0" />
+			<setscriptvalue name="inner_tower_damaged" value="0" />
+			<setscriptvalue name="tower_attack_hero" value="0" />
+			<setscriptvalue name="tower_alone" value="0" />
+			<setscriptvalue name="observatory_activated" value="0" />
+			<setscriptvalue name="gold_accumulated" value="0" />
+			<setscriptvalue name="cindara_killed" value="0" />
+			<setscriptvalue name="krytos_towerrange" value="0" />
+			<setscriptvalue name="bot_cindara" value="0" />
+			<setscriptvalue name="shop_tip_ready" value="0" />
+			<setscriptvalue name="shop_tip_done" value="0" />
+			<setscriptvalue name="objective_2_waypoint" value="0" />
+			<setscriptvalue name="paused" value="0" />
+			
+			<setscriptvalue name="tutorial3_hint1MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint2MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint3MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint5MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint6MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint8MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint9MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint10MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint11MoreInfoClosed" value="0" />
+			<setscriptvalue name="tutorial3_hint12MoreInfoClosed" value="0" />
+			
+			<setscriptvalue name="tutorial3_objective1ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective2ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective3ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective4ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective5ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective6ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective7ScriptValue" value="0" />
+			<setscriptvalue name="tutorial3_objective8ScriptValue" value="0" />
+			
+			<setscriptvalue name="tutorial3_hint1Alternate" value="0" />
+			<setscriptvalue name="tutorial3_hint2Alternate" value="0" />
+			<setscriptvalue name="tutorial3_hint4Alternate" value="0" />
+			<setscriptvalue name="tutorial3_hint7Alternate" value="0" />
+
+			<setscriptvalue name="tutorial_seenTowerDamageWarningFalse" value="0" />
+			<setscriptvalue name="tutorial_seenTowerDamageWarningTrue" value="0" />
+			<setscriptvalue name="tutorial_seenAttackHeroWarningTrue" value="0" />
+			<setscriptvalue name="tutorial_seenAttackHeroWarningFalse" value="0" />
+			
+			<setscriptvalue name="tutorial3preselect" value="10" />
+			
+			<setoverlayinterface entity="target_entity" name="game_tutorial3" blocking="1"/>
+			
+
+			<wait duration="1000" />
+			
+			<clientuitrigger name="tutorial_getTutorialHeroPet" />
+			<waituntilmessage name="tutorial3preselect" value="0" />
+
+			<pushhero />
+			<applystate name="State_Tutorial3_GoldBonus" target="stack_entity" duration="-1" />
+			<applystate name="State_Tutorial3_HeroAggro" target="stack_entity" duration="-1" />
+			
+			<setent0 name="difficulty" />
+			<setproxy entity="ent0" target="stack_entity" />
+
+			<createcamera name="pcam1" />
+			
+			
+			<!--Spawn Heroes
+			<setbotdifficulty difficulty="tutorial3" />
+			<addbot botname="Tutorial3Bot" unitname="Tutorial3_LexiKhan" team="1" startinactive="false" />
+			<addbot botname="LadyTinderBot" unitname="Hero_Ladytinder" team="1" startinactive="false" />
+			<addbot botname="MaladyBot" unitname="Hero_Malady" team="1" startinactive="false" />
+			<addbot botname="VermillionBot" unitname="Hero_Vermillion" team="1" startinactive="false" />
+
+			<addbot botname="AceBot" unitname="Hero_Ace" team="2" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Moxie" team="2" startinactive="false" />
+			<addbot botname="RayBot" unitname="Hero_Ray" team="2" startinactive="false" />
+			<addbot botname="BoBot" unitname="Hero_Bo" team="2" startinactive="false" />
+			<addbot botname="RookBot" unitname="Hero_Rook" team="2" startinactive="false" />-->
+			
+			
+			<!--Hint Event Initialization-->
+			<spawnthread name="tutorial3_shopClose" />
+			<spawnthread name="tutorial3_towerattackhero" />
+			<spawnthread name="tutorial3_toweraloneaggro" />
+			<spawnthread name="tutorial3_observatoryactivated" />
+			<spawnthread name="tutorial3_goldaccumulated" />
+			
+			<!--Quest Ping Initialization-->
+			<spawnthread name="tutorial3_objective1ScriptValue" />
+			<spawnthread name="tutorial3_objective2ScriptValue" />
+			<spawnthread name="tutorial3_objective3ScriptValue" />
+			<spawnthread name="tutorial3_objective4ScriptValue" />
+			<spawnthread name="tutorial3_objective5ScriptValue" />
+			<spawnthread name="tutorial3_objective6ScriptValue" />
+			<spawnthread name="tutorial3_objective7ScriptValue" />
+			<spawnthread name="tutorial3_objective8ScriptValue" />
+			
+
+
+			
+			<pushhero />
+
+			<lockcontrol entity="stack_entity" />
+			<setent0 name="pcam1" />
+			<setcamera entity="target_entity" source="stack_entity" camera="ent0" /> 
+			<movecamera entity="ent0" positionname="cam_start" duration="50"  block="true" /> 
+			
+			<wait duration="1000" />
+			<clientuitrigger name="tutorial_fadeBlackOutSlow" />
+			<wait duration="500" />
+
+			<clientuitrigger name="tutorial3_begin" />
+
+			
+			<!--Begin-->
+			<spawnthread name="tutorial3_mapintro" />
+
+			<clientuitrigger name="tutorial_objectivePanelShow" />
+			<!--<clientuitrigger name="tutorial_objectivePanelHide" />-->
+			
+			<clientuitrigger name="mapWidgetVis_minimap_show" />
+			<!--
+				<clientuitrigger name="mapWidgetVis_minimap_hide" />
+				<clientuitrigger name="mapWidgetVis_abilityBarPet_show" />
+				<clientuitrigger name="mapWidgetVis_pushBar_show" />
+				<clientuitrigger name="mapWidgetVis_heroInfos_show" />
+				<clientuitrigger name="mapWidgetVis_shopItemList_show" />
+				<clientuitrigger name="mapWidgetVis_courierButton_show" />
+				<clientuitrigger name="mapWidgetVis_portHomeButton_show" />
+				<clientuitrigger name="mapWidgetVis_shopQuickSlots_show" />
+			-->
+			
+		</foreachplayer >
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_shopOpen" >
+		<waituntilmessage name="ui_shopOpen" value="1" />
+		<setscriptvalue name="ui_shopClose" value="0" />
+		<spawnthread name="tutorial3_shopClose" />
+	</scriptthread>
+
+	<scriptthread name="tutorial3_shopClose" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="ui_shopClose" value="1" />
+			<setscriptvalue name="ui_shopOpen" value="0" />
+			
+			<compare a="target_gold" b="550" op="le" >
+				<setscriptvalue name="starting_items" value="1" />
+
+			</compare>
+			<else>
+				<scriptcondition name="shop_tip_ready" value="1" >
+					<scriptcondition name="shop_tip_done" value="0" >
+						<clientuitrigger name="tutorial3_tip8" />
+						<setscriptvalue name="shop_tip_done" value="1" />
+					</scriptcondition>
+				</scriptcondition>
+				
+				<spawnthread name="tutorial3_shopOpen" />
+			</else>
+
+		</foreachplayer >
+	</scriptthread>
+	
+	<!-- Pax Demo Hero Spawning Threads-->
+	
+	<scriptthread name="tutorial3_spawndemoheroes1" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="tutorial3preselect" value="1" />
+			
+			<pushhero />
+			<delete target="stack_entity" />
+			<spawn name="tutorial_hero_rook" />
+			<setent1 name="tutorial_hero_rook" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			
+			<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+		
+			<addbot botname="Tutorial3Bot" unitname="Tutorial3_LexiKhan" team="1" startinactive="false" />
+			<addbot botname="LadyTinderBot" unitname="Hero_Ladytinder" team="1" startinactive="false" />
+			<addbot botname="MaladyBot" unitname="Hero_Malady" team="1" startinactive="false" />
+			<addbot botname="VermillionBot" unitname="Hero_Vermillion" team="1" startinactive="false" />
+
+			<addbot botname="AceBot" unitname="Hero_Ace" team="2" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Moxie" team="2" startinactive="false" />
+			<addbot botname="RayBot" unitname="Hero_Ray" team="2" startinactive="false" />
+			<addbot botname="BoBot" unitname="Hero_Bo" team="2" startinactive="false" />
+			<addbot botname="RookBot" unitname="Hero_Rook" team="2" startinactive="false" />
+			
+			
+		</foreachplayer >
+		
+		<foreachplayer>
+			<setent1 name="tutorial_hero_rook" />
+			<pushhero />
+			
+			<compare a="stack_entity" b="ent1" op="ne">
+				<chance threshold="0.25">
+					<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+				</chance>
+				<else>
+					<chance threshold="0.5">
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Luster" />
+					</chance>
+					<else>
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Mystik" />
+					</else>
+				</else>
+			</compare>
+			
+			<setscriptvalue name="tutorial3preselect" value="0" />
+		</foreachplayer >
+		
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_spawndemoheroes2" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="tutorial3preselect" value="2" />
+		
+			<pushhero />
+			<delete target="stack_entity" />
+			<spawn name="tutorial_hero_moxie" />
+			<setent1 name="tutorial_hero_moxie" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			
+			<givepet player="target_entity" petlevel="1" petname="Familiar_Mystik" />
+		
+			<addbot botname="Tutorial3Bot" unitname="Tutorial3_LexiKhan" team="1" startinactive="false" />
+			<addbot botname="LadyTinderBot" unitname="Hero_Ladytinder" team="1" startinactive="false" />
+			<addbot botname="MaladyBot" unitname="Hero_Malady" team="1" startinactive="false" />
+			<addbot botname="VermillionBot" unitname="Hero_Vermillion" team="1" startinactive="false" />
+
+			<addbot botname="AceBot" unitname="Hero_Ace" team="2" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Moxie" team="2" startinactive="false" />
+			<addbot botname="RayBot" unitname="Hero_Ray" team="2" startinactive="false" />
+			<addbot botname="BoBot" unitname="Hero_Bo" team="2" startinactive="false" />
+			<addbot botname="RookBot" unitname="Hero_Rook" team="2" startinactive="false" />
+			
+		</foreachplayer >
+		
+		<foreachplayer>
+			<setent1 name="tutorial_hero_moxie" />
+			<pushhero />
+			
+			<compare a="stack_entity" b="ent1" op="ne">
+				<chance threshold="0.25">
+					<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+				</chance>
+				<else>
+					<chance threshold="0.5">
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Luster" />
+					</chance>
+					<else>
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Mystik" />
+					</else>
+				</else>
+			</compare>
+
+			<setscriptvalue name="tutorial3preselect" value="0" />
+		</foreachplayer >
+		
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_spawndemoheroes3" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="tutorial3preselect" value="3" />
+		
+			<pushhero />
+			<delete target="stack_entity" />
+			<spawn name="tutorial_hero_hale" />
+			<setent1 name="tutorial_hero_hale" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			
+			<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+		
+			<addbot botname="Tutorial3Bot" unitname="Tutorial3_LexiKhan" team="1" startinactive="false" />
+			<addbot botname="LadyTinderBot" unitname="Hero_Ladytinder" team="1" startinactive="false" />
+			<addbot botname="MaladyBot" unitname="Hero_Malady" team="1" startinactive="false" />
+			<addbot botname="VermillionBot" unitname="Hero_Vermillion" team="1" startinactive="false" />
+
+			<addbot botname="AceBot" unitname="Hero_Ace" team="2" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Moxie" team="2" startinactive="false" />
+			<addbot botname="RayBot" unitname="Hero_Ray" team="2" startinactive="false" />
+			<addbot botname="BoBot" unitname="Hero_Bo" team="2" startinactive="false" />
+			<addbot botname="RookBot" unitname="Hero_Rook" team="2" startinactive="false" />
+			
+		</foreachplayer >
+		
+		<foreachplayer>
+			<setent1 name="tutorial_hero_hale" />
+			<pushhero />
+			
+			<compare a="stack_entity" b="ent1" op="ne">
+				<chance threshold="0.25">
+					<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+				</chance>
+				<else>
+					<chance threshold="0.5">
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Luster" />
+					</chance>
+					<else>
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Mystik" />
+					</else>
+				</else>
+			</compare>
+
+			<setscriptvalue name="tutorial3preselect" value="0" />
+		</foreachplayer >
+		
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_spawndemoheroes4" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="tutorial3preselect" value="4" />
+		
+			<pushhero />
+			<delete target="stack_entity" />
+			<spawn name="tutorial_hero_vermillion" />
+			<setent1 name="tutorial_hero_vermillion" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			
+			<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+		
+			<addbot botname="Tutorial3Bot" unitname="Tutorial3_LexiKhan" team="1" startinactive="false" />
+			<addbot botname="LadyTinderBot" unitname="Hero_Ladytinder" team="1" startinactive="false" />
+			<addbot botname="MaladyBot" unitname="Hero_Malady" team="1" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Vermillion" team="1" startinactive="false" />
+
+			<addbot botname="AceBot" unitname="Hero_Ace" team="2" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Moxie" team="2" startinactive="false" />
+			<addbot botname="RayBot" unitname="Hero_Ray" team="2" startinactive="false" />
+			<addbot botname="BoBot" unitname="Hero_Bo" team="2" startinactive="false" />
+			<addbot botname="RookBot" unitname="Hero_Rook" team="2" startinactive="false" />
+			
+		</foreachplayer >
+		
+		<foreachplayer>
+			<setent1 name="tutorial_hero_vermillion" />
+			<pushhero />
+			
+			<compare a="stack_entity" b="ent1" op="ne">
+				<chance threshold="0.25">
+					<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+				</chance>
+				<else>
+					<chance threshold="0.5">
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Luster" />
+					</chance>
+					<else>
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Mystik" />
+					</else>
+				</else>
+			</compare>
+
+			<setscriptvalue name="tutorial3preselect" value="0" />
+		</foreachplayer >
+		
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_spawndemoheroes5" >
+		<foreachplayer excludebots="true">
+			<waituntilmessage name="tutorial3preselect" value="5" />
+		
+			<pushhero />
+			<delete target="stack_entity" />
+			<spawn name="tutorial_hero_minerva" />
+			<setent1 name="tutorial_hero_minerva" />
+			<setowner entity="ent1" player="target_entity" />
+			<sethero entity="target_entity" hero="ent1" />
+			
+			<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+		
+			<addbot botname="Tutorial3Bot" unitname="Tutorial3_LexiKhan" team="1" startinactive="false" />
+			<addbot botname="LadyTinderBot" unitname="Hero_Ladytinder" team="1" startinactive="false" />
+			<addbot botname="MaladyBot" unitname="Hero_Malady" team="1" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Vermillion" team="1" startinactive="false" />
+
+			<addbot botname="AceBot" unitname="Hero_Ace" team="2" startinactive="false" />
+			<addbot botname="MoxieBot" unitname="Hero_Moxie" team="2" startinactive="false" />
+			<addbot botname="RayBot" unitname="Hero_Ray" team="2" startinactive="false" />
+			<addbot botname="BoBot" unitname="Hero_Bo" team="2" startinactive="false" />
+			<addbot botname="RookBot" unitname="Hero_Rook" team="2" startinactive="false" />
+			
+		</foreachplayer >
+		
+		<foreachplayer>
+			<setent1 name="tutorial_hero_minerva" />
+			<pushhero />
+			
+			<compare a="stack_entity" b="ent1" op="ne">
+			
+				<chance threshold="0.25">
+					<givepet player="target_entity" petlevel="1" petname="Familiar_Tortus" />
+				</chance>
+				<else>
+					<chance threshold="0.5">
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Luster" />
+					</chance>
+					<else>
+						<givepet player="target_entity" petlevel="1" petname="Familiar_Mystik" />
+					</else>
+				</else>
+				
+				
+			</compare>
+
+			<setscriptvalue name="tutorial3preselect" value="0" />
+		</foreachplayer >
+	</scriptthread>
+	
+	<!-- Map Intro-->
+	
+	<scriptthread name="tutorial3_mapintro" >
+		<foreachplayer excludebots="true">
+			<setent0 name="pcam1" />
+			
+			<pushhero />
+			<wait duration="1000" />
+			<clientuitrigger name="tutorial_fadeBlackOutSlow" />
+			
+			<spawnthread name="map_intro_dialogue" />
+			<movecamera entity="ent0" positionname="cam_enemycrux" duration="5000" block="true" />
+			<translatestring name="tutorial3_tip1_length"/>
+			<setvar0 a="result" />
+			<translatestring name="tutorial3_tip2_length"/>
+			<setvar0 a="var0" b="result" op="add" />
+			<setvar0 a="var0" b="2000" op="sub" />
+			
+			<wait duration="var0" />
+
+			<translatestring name="tutorial3_tip3_length"/>
+			<setvar0 a="result" b="1500" op="add" />
+			<movecamera entity="ent0" positionname="cam_midtower" duration="var0" block="true" />
+			<wait duration="1500" />
+			
+			<pushhero />
+			<setent1 entity="stack_entity" />
+			<setpos0 position="ent1" />
+			<movecamera entity="ent0" positionentity="pos0" duration="3000" block="true" />
+			
+			<setent1 name="bad_base" />
+			<expirestate name="State_Tutorial3_GeneratorHighlight" target="ent1" />
+			<setent1 name="lane2_badtower1" />
+			<expirestate name="State_Tutorial3_TowerHighlight" target="ent1" />
+			
+			<setent1 name="top_lane_gadget" />
+			<delete target="ent1" />
+			<setent1 name="top_lane_gadget2" />
+			<delete target="ent1" />
+			<setent1 name="mid_lane_gadget" />
+			<delete target="ent1" />
+			<setent1 name="mid_lane_gadget2" />
+			<delete target="ent1" />
+			<setent1 name="bot_lane_gadget" />
+			<delete target="ent1" />
+			<setent1 name="bot_lane_gadget2" />
+			<delete target="ent1" />
+
+			<spawnthread name="tutorial3_starting_items" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="map_intro_dialogue" >
+		<foreachplayer excludebots="true">
+			<setent0 name="pcam1" />
+			<setent3 name="bad_base" />
+			
+			<wait duration="3000" />
+			<translatestring name="tutorial3_tip1_length"/>
+			<clientuitrigger name="tutorial3_tip1" value="result"/>
+			<setvar0 a="result" b="1500" op="sub" />
+			<wait duration="1500" />
+			<applystate name="State_Tutorial3_GeneratorHighlight" target="ent3" duration="-1" />
+			<wait duration="var0" />
+			<translatestring name="tutorial3_tip2_length"/>
+			<clientuitrigger name="tutorial3_tip2" value="result"/>
+			<translatestring name="tutorial3_tip2_length1"/>
+			<wait duration="result" />
+			
+			<setent1 name="top_lane_gadget" />
+			<setent2 name="top_lane_gadget2" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent2" duration="-1" />
+			<clientuitrigger name="tutorial3_sound_2_1" />
+			<translatestring name="tutorial3_tip2_length2"/>
+			<wait duration="result" />
+			
+			<setent1 name="mid_lane_gadget" />
+			<setent2 name="mid_lane_gadget2" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent2" duration="-1" />
+			<clientuitrigger name="tutorial3_sound_2_2" />
+			<translatestring name="tutorial3_tip2_length3"/>
+			<wait duration="result" />
+			
+			<setent1 name="bot_lane_gadget" />
+			<setent2 name="bot_lane_gadget2" />
+			<applystate name="State_Tutorial_Direction" target="ent1" proxy="ent2" duration="-1" />
+			<clientuitrigger name="tutorial3_sound_2_3" />
+			
+			<translatestring name="tutorial3_tip2_length4"/>
+			<wait duration="result" />
+
+			<translatestring name="tutorial3_tip3_length"/>
+			<clientuitrigger name="tutorial3_tip3" value="result"/>
+
+			<translatestring name="tutorial3_tip3_length1"/>
+			<setvar0 a="result" b="0.5" op="mult" />
+			<wait duration="var0" />
+			<expirestate name="State_Tutorial3_GeneratorHighlight" target="ent3"  />
+
+			<wait duration="var0" />
+
+			<setent3 name="bad_melee2" />
+			<applystate name="State_Tutorial3_GeneratorHighlight" target="ent3" duration="-1" />
+			
+			<translatestring name="tutorial3_tip3_length2"/>
+			<wait duration="result" />
+			<expirestate name="State_Tutorial3_GeneratorHighlight" target="ent3"  />
+			<setent3 name="lane2_badtower2" />
+			<applystate name="State_Tutorial3_TowerHighlight" target="ent3" duration="-1" />
+			<clientuitrigger name="tutorial3_sound_3_1" />
+			
+			<translatestring name="tutorial3_tip3_length3"/>
+			<wait duration="result" />
+			<wait duration="200" />
+			<clientuitrigger name="tutorial3_sound_3_2" />
+			<expirestate name="State_Tutorial3_TowerHighlight" target="ent3"  />
+			<setent3 name="lane2_badtower1" />
+			<applystate name="State_Tutorial3_TowerHighlight" target="ent3" duration="-1" />
+
+		</foreachplayer>
+	</scriptthread>
+	
+	<!-- Objective Threads (Sequential) -->
+	
+	<scriptthread name="tutorial3_starting_items" >
+		<foreachplayer excludebots="true">
+			<setent0 name="pcam1" />
+			
+			<setent3 name="global_vision1" />
+			<delete target="ent3" />
+			<setent3 name="global_vision2" />
+			<delete target="ent3" />
+			<setent3 name="global_vision3" />
+			<delete target="ent3" />
+			<setent3 name="global_vision4" />
+			<delete target="ent3" />
+			
+			<pushhero />
+			<setcamera entity="target_entity" camera="" />
+			
+			<translatestring name="tutorial3_tip4_length"/>
+			<clientuitrigger name="tutorial3_tip4" value="result"/>
+			<wait duration="result" />
+			<clientuitrigger name="tutorial3_hint1" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			<spawnthread name="tutorial3_hint1alternate" />
+			<wait duration="1000" />
+			<clientuitrigger name="tutorial3_tip5" />
+			
+			<waituntilmessage name="tutorial3_hint1MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint1MoreInfoClosed" value="0" />
+			
+			
+			<clientuitrigger name="tutorial3_tip5Hide" />
+			<translatestring name="tutorial3_tip6_length"/>
+			<clientuitrigger name="tutorial3_tip6" value="result"/>
+			<wait duration="result" />
+			<clientuitrigger name="tutorial3_objective1" />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			<wait duration="1500" />
+			<clientuitrigger name="tutorial3_tip7" />
+			<applystate name="State_Tutorial3_SpendGold" target="stack_entity" duration="-1" />
+			
+			<spawnthread name="tutorial3_shoptipwait" />
+			
+			<waituntilmessage name="starting_items" value="1" />
+			
+			<wait duration="500" />
+			<clientuitrigger name="tutorial3_tip7Hide" />
+			<wait duration="100" />
+			<translatestring name="tutorial3_tip9_length"/>
+			<clientuitrigger name="tutorial3_tip9" value="result"/>
+			
+			<setgamephase name="pre_match" duration="5000" />
+			<unlockcontrol entity="stack_entity" />
+			<clientuitrigger name="tutorial3_hint1Close" />
+			<clientuitrigger name="tutorial3_objective1Complete" />
+			
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+			<spawnthread name="tutorial3_enter_lane" />
+			
+		</foreachplayer>
+	</scriptthread>	
+	
+	<scriptthread name="tutorial3_shoptipwait" >
+		<foreachplayer excludebots="true">
+			<wait duration="5000" />
+			<setscriptvalue name="shop_tip_ready" value="1" />
+		</foreachplayer >
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_enter_lane" >
+		<foreachplayer excludebots="true">
+		
+			<wait duration="2000" />
+			<spawnthread name="tutorial3_baldirwait" />
+			<spawnthread name="tutorial3_cindarawait" />
+			
+			<pushhero />
+			<clientuitrigger name="tutorial3_objective2" />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			
+			<spawn name="move_lane" owner="stack_entity" />	
+			<setent3 name="move_lane" />
+			<setproxy entity="ent3" target="stack_entity" />
+			<applystate name="State_Tutorial_Direction" target="stack_entity" proxy="ent3" duration="-1" />
+			
+			<wait duration="2000" />
+			<setgamephase name="pre_match" duration="999999" />
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			
+			<setscriptvalue name="objective_2_waypoint" value="1" />
+
+			<clientuitrigger name="tutorial3_chatMessage1" />
+			<clientuitrigger name="tutorial3_sound_lex_1" />
+			<setgamephase name="pre_match" duration="100" />
+			
+			
+			<spawn name="move_lane2" owner="stack_entity" />	
+			<setent3 name="move_lane2" />
+			<setproxy entity="ent3" target="stack_entity" />
+			<applystate name="State_Tutorial_Direction" target="stack_entity" proxy="ent3" duration="-1" />
+			
+			<spawn name="move_lane2a" owner="stack_entity" />	
+			<setent3 name="move_lane2a" />
+			<setproxy entity="ent3" target="stack_entity" />
+			
+			<spawn name="move_lane2b" owner="stack_entity" />	
+			<setent3 name="move_lane2b" />
+			<setproxy entity="ent3" target="stack_entity" />
+			
+			<setent0 name="lane1_badtower1" />
+			<applystate name="State_Tutorial3_TowerLow" target="ent0" duration="-1" />
+			<spawnthread name="tutorial3_towerlow" />
+			
+			<wait duration="3000" />
+			<clientuitrigger name="tutorial3_hint2" />
+			<spawnthread name="tutorial3_hint2alternate" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+
+			<waituntilmessage name="waypoint_hit" value="1" />
+			<setscriptvalue name="waypoint_hit" value="0" />
+			
+			<setent3 name="move_lane2a" />
+			<delete target="ent3" />
+			<setent3 name="move_lane2b" />
+			<delete target="ent3" />
+			<setent3 name="move_lane2" />
+			<delete target="ent3" />
+			
+			<clientuitrigger name="tutorial3_objective2Complete" />
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+			<spawnthread name="tutorial3_brawlerkills" />
+			
+		</foreachplayer>
+	</scriptthread>	
+	
+	<scriptthread name="tutorial3_brawlerkills" >
+		<foreachplayer excludebots="true">
+			
+			<pushhero />
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_chatMessage2" />
+			<clientuitrigger name="tutorial3_sound_lex_2" />
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_objective3" />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			<applystate name="State_Tutorial3_BrawlerCount" target="stack_entity" duration="-1" />
+			
+			<wait duration="4000" />
+			<clientuitrigger name="tutorial3_hint3" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			<spawnthread name="tutorial3_hint3wait" />
+			
+			<waituntilmessage name="creeps_killed" value="1" />
+			
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+
+			<scriptcondition name="tower_low" value="0" >
+				<spawnthread name="tutorial3_towerkill" />
+			</scriptcondition>
+
+		</foreachplayer>
+	</scriptthread>
+	
+	
+	<scriptthread name="tutorial3_towerkill" >
+		<foreachplayer excludebots="true">
+			
+			<wait duration="1000" />
+			<clientuitrigger name="tutorial3_objective4" />
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_chatMessage4" />
+			<clientuitrigger name="tutorial3_sound_lex_4" />
+			
+			<pushhero />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			
+			<setent0 name="lane1_badtower1" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			
+			<waituntilmessage name="tower_killed" value="1" />
+			<setscriptvalue name="tower_killed" value="0" />
+			
+			<clientuitrigger name="tutorial3_objective4Complete" />
+			<clientuitrigger name="tutorial3_objective2Complete" />
+			
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+			
+			<spawnthread name="tutorial3_innertowerkill" />
+			<spawnthread name="tutorial3_neutralkill" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_towerlow" >
+		<foreachplayer excludebots="true">
+		
+			<waituntilmessage name="tower_low" value="1" />
+			
+			<clientuitrigger name="tutorial3_objective2Complete" />
+			
+			<scriptcondition name="creeps_killed" value="0" >
+				<spawnthread name="tutorial3_towerkill" />
+			</scriptcondition>
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_boothint" >
+		<foreachplayer excludebots="true">
+			
+			<wait duration="6000" />
+			<clientuitrigger name="tutorial3_hint12" />
+			<spawnthread name="tutorial3_hint12wait" />
+
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_neutralkill" >
+		<foreachplayer excludebots="true">
+			
+			<wait duration="15000" />
+			<clientuitrigger name="tutorial3_objective8" />
+			<pushhero />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			
+			<wait duration="3000" />
+			<clientuitrigger name="tutorial3_hint5" />
+			<spawnthread name="tutorial3_hint5wait" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			
+			<setscriptvalue name="neutrals_killed" value="0" />
+			<waituntilmessage name="neutrals_killed" value="1" />
+			
+			<clientuitrigger name="tutorial3_objective8Complete" />
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_innertowerkill" >
+		<foreachplayer excludebots="true">
+			
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_chatMessage6" />
+			<clientuitrigger name="tutorial3_sound_lex_6" />
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_objective5" />
+			<pushhero />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			
+			<spawnthread name="tutorial3_innertowergank" />
+			
+			<setent0 name="lane1_badtower2" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			<setent0 name="lane2_badtower2" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			<setent0 name="lane3_badtower2" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			
+			<setscriptvalue name="tower_killed" value="0" />
+			<waituntilmessage name="tower_killed" value="1" />
+			<setscriptvalue name="tower_killed" value="0" />
+			
+			<clientuitrigger name="tutorial3_objective5Complete" />
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+			<spawnthread name="tutorial3_generatorkill" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	
+	<scriptthread name="tutorial3_generatorkill" >
+		<foreachplayer excludebots="true">
+		
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_objective6" />
+			<pushhero />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_hint8" />
+			<spawnthread name="tutorial3_hint8wait" />
+			
+			<setent0 name="lane1_badtower2" />
+			<expirestate name="State_Tutorial3_TowerKill" target="ent0" />
+			<setent0 name="lane2_badtower2" />
+			<expirestate name="State_Tutorial3_TowerKill" target="ent0" />
+			<setent0 name="lane3_badtower2" />
+			<expirestate name="State_Tutorial3_TowerKill" target="ent0" />
+			
+			<setent0 name="bad_melee1" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			<setent0 name="bad_melee2" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			<setent0 name="bad_melee3" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			
+			<waituntilmessage name="tower_killed" value="1" />
+			<setscriptvalue name="tower_killed" value="0" />
+			
+			<clientuitrigger name="tutorial3_objective6Complete" />
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+			<spawnthread name="tutorial3_cruxkill" />
+			
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_chatMessage11" />
+			<clientuitrigger name="tutorial3_sound_lex_11" />
+
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_cruxkill" >
+		<foreachplayer excludebots="true">
+		
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_objective7" />
+			<pushhero />
+			<popup name="quest" source="stack_entity" target="stack_entity" />
+			<wait duration="2000" />
+			<clientuitrigger name="tutorial3_hint10" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			<spawnthread name="tutorial3_hint10wait" />
+			
+			<setent0 name="bad_base" />
+			<applystate name="State_Tutorial3_TowerKill" target="ent0" duration="-1" />
+			
+			<waituntilmessage name="tower_killed" value="1" />
+			<setscriptvalue name="tower_killed" value="0" />
+			
+			<popup name="quest_complete" source="stack_entity" target="stack_entity" />
+			<wait duration="500" />
+			<givegold amount="150" target="stack_entity" position="stack_entity" />
+			
+			<clientuitrigger name="tutorial3_objective7Complete" />
+			<clientuitrigger name="tutorial_finishMap3" />
+			
+
+		</foreachplayer>
+	</scriptthread>
+	
+	
+	
+	<!-- Hint Close Wait Threads -->
+	
+	<scriptthread name="tutorial3_hint1alternate" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint1Alternate" value="1" />
+			<setscriptvalue name="tutorial3_hint1Alternate" value="0" />
+
+			<clientuitrigger name="tutorial3_tip5Hide" />
+			<clientuitrigger name="tutorial3_hint1MoreInfo" />
+			<spawnthread name="tutorial3_hint1alternate2" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint1alternate2" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint1Alternate" value="1" />
+			<setscriptvalue name="tutorial3_hint1Alternate" value="0" />
+
+			<clientuitrigger name="tutorial3_hint1MoreInfo" />
+			<spawnthread name="tutorial3_hint1alternate2" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint2alternate" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint2Alternate" value="1" />
+			<setscriptvalue name="tutorial3_hint2Alternate" value="0" />
+			
+			<clientuitrigger name="tutorial3_hint2MoreInfo" />
+			<clientuitrigger name="tutorial_PointAtPetAbility"/>
+			
+			<waituntilmessage name="tutorial3_hint2MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint2MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint2Close" />
+			<clientuitrigger name="tutorial_pointWidgetHide"/>
+			
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	
+	<scriptthread name="tutorial3_hint3wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint3MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint3MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint3Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+
+	<scriptthread name="tutorial3_hint6wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint6MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint6MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint6Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint5wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint5MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint5MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint5Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint8wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint8MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint8MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint8Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint9wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint9MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint9MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint9Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint10wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint10MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint10MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint10Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint11wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint11MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint11MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint11Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_hint12wait" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint12MoreInfoClosed" value="1" />
+			<setscriptvalue name="tutorial3_hint12MoreInfoClosed" value="0" />
+			<clientuitrigger name="tutorial3_hint12Close" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<!-- Objective Ping Wait Threads -->
+	
+	<scriptthread name="tutorial3_objective1ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective1ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective1ScriptValue" value="0" />
+
+			<pushhero />
+			<setpos0 position="stack_entity" />
+			<ping name="alert2" position="pos0" />
+			<spawnthread name="tutorial3_objective1ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective2ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective2ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective2ScriptValue" value="0" />
+			
+			<scriptcondition name="objective_2_waypoint" value="0" >
+				<setent0 name="move_lane" />
+				<ping name="alert2" position="ent0" />
+			</scriptcondition>
+			<else>
+				<setent0 name="move_lane2" />
+				<ping name="alert2" position="ent0" />
+			</else>
+
+			<spawnthread name="tutorial3_objective2ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective3ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective3ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective3ScriptValue" value="0" />
+			
+			<setent0 name="bad_wypt_1_3a" />
+			<ping name="alert2" position="ent0" />
+			<spawnthread name="tutorial3_objective3ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective4ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective4ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective4ScriptValue" value="0" />
+			
+			<setent0 name="lane1_badtower1" />
+			<ping name="alert2" position="ent0" />
+			
+			<pushhero />
+			<playeffect effect="/maps/tutorial_3/resources/triggers/effects/direction_timed5.effect" source="stack_entity" target="ent0" />
+			
+			<spawnthread name="tutorial3_objective4ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective5ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective5ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective5ScriptValue" value="0" />
+
+			<setent0 name="lane1_badtower2" />
+			<ping name="alert2" position="ent0" />
+			<setent0 name="lane2_badtower2" />
+			<ping name="alert2" position="ent0" />
+			<setent0 name="lane3_badtower2" />
+			<ping name="alert2" position="ent0" />
+			
+			<pushhero />
+			<areaofeffect
+				radius="9999999"
+				targetselection="closest"
+				targetscheme="Tut3_Objective"
+				source="stack_entity"
+				center="stack_entity"
+				maxtotalimpacts="1"
+				ignoreinvulnerable="true"
+			>
+				<pushhero />
+				<playeffect effect="/maps/tutorial_3/resources/triggers/effects/direction_timed5.effect" source="stack_entity" target="target_entity" />
+			</areaofeffect>
+			
+			<spawnthread name="tutorial3_objective5ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective6ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective6ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective6ScriptValue" value="0" />
+
+			<setent0 name="bad_melee1" />
+			<ping name="alert2" position="ent0" />
+			<setent0 name="bad_melee2" />
+			<ping name="alert2" position="ent0" />
+			<setent0 name="bad_melee3" />
+			<ping name="alert2" position="ent0" />
+			
+			<pushhero />
+			<areaofeffect
+				radius="9999999"
+				targetselection="closest"
+				targetscheme="Tut3_Objective"
+				source="stack_entity"
+				center="stack_entity"
+				maxtotalimpacts="1"
+				ignoreinvulnerable="true"
+			>
+				<pushhero />
+				<playeffect effect="/maps/tutorial_3/resources/triggers/effects/direction_timed5.effect" source="stack_entity" target="target_entity" />
+			</areaofeffect>
+			
+			<spawnthread name="tutorial3_objective6ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective7ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective7ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective7ScriptValue" value="0" />
+
+			<setent0 name="bad_base" />
+			<ping name="alert2" position="ent0" />
+			
+			<pushhero />
+			<playeffect effect="/maps/tutorial_3/resources/triggers/effects/direction_timed5.effect" source="stack_entity" target="ent0" />
+			
+			<spawnthread name="tutorial3_objective7ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_objective8ScriptValue" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_objective8ScriptValue" value="1" />
+			<setscriptvalue name="tutorial3_objective8ScriptValue" value="0" />
+			
+			<print text="looking.." />
+			<pushhero />
+			<areaofeffect
+				radius="9999999"
+				targetselection="closest"
+				targetscheme="neutral_nonboss_units"
+				maxtotalimpacts="1"
+				source="stack_entity"
+				center="stack_entity"
+			>
+				<printdebuginfo />
+				<ping name="alert2" position="target_entity" />
+				<pushhero />
+				<playeffect effect="/maps/tutorial_3/resources/triggers/effects/direction_timed3.effect" source="stack_entity" target="target_position" />
+			</areaofeffect>
+			
+			<spawnthread name="tutorial3_objective8ScriptValue" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+	
+	<!-- Baldir Event Threads -->
+	
+	<scriptthread name="tutorial3_baldirwait" >
+		<foreachplayer excludebots="true">
+			<spawnthread name="tutorial3_baldirwait_attacked" />
+			
+			<pushhero />
+			<spawn name="baldir_range" owner="stack_entity" />	
+			<setent0 name="baldir_range" />
+			<setproxy entity="ent0" target="stack_entity" />
+
+			<waituntilmessage name="baldir_tip" value="1" />
+			<waituntilmessage name="baldir_tip_complete" value="0" />
+			
+			<wait duration="200" />
+			<clientuitrigger name="tutorial3_hint4" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			<spawnthread name="tutorial3_hint4alternate" />
+
+
+		</foreachplayer>
+	</scriptthread>
+	
+	
+	<scriptthread name="tutorial3_baldirwait_attacked" >
+		<foreachplayer excludebots="true">
+		
+			<waituntilmessage name="baldir_attacked" value="1" />
+			<waituntilmessage name="paused" value="0" />
+			
+			<clientuitrigger name="tutorial3_chatMessage5" />
+			<clientuitrigger name="tutorial3_sound_lex_5" />
+			
+			<waituntilmessage name="baldir_tip_complete" value="0" />
+			
+			<wait duration="3000" />
+				
+			<setscriptvalue name="tutorial3_hint4Alternate" value="1" />
+			<spawnthread name="tutorial3_hint4alternate" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+
+	<scriptthread name="tutorial3_hint4alternate" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint4Alternate" value="1" />
+			<setscriptvalue name="tutorial3_hint4Alternate" value="0" />
+			
+			<setscriptvalue name="baldir_tip_complete" value="1" />
+			<clientuitrigger name="tutorial3_hint4Close" />
+			
+			<pushhero />
+			<spawnunit name="Gadget_Tutorial3_GameFreeze" count="1" target="stack_entity" source="stack_entity" pushentity="true" />
+			<setent3 entity="stack_entity" />
+			<setent0 name="pcam1" />
+			
+			<pushhero />
+			<lockcontrol entity="stack_entity" />
+			<wait duration="800" />
+						
+			<setcamera entity="target_entity" source="stack_entity" camera="ent0" /> 
+			
+			<spawn name="baldir_vision" owner="stack_entity" />	
+			<setent2 name="baldir_vision" />
+			
+			<movecamera entity="ent0" positionname="cam_baldir" duration="2500" block="true" /> 
+			<translatestring name="tutorial3_tip10_length"/>
+			<clientuitrigger name="tutorial3_tip10" value="result"/>
+			<wait duration="result" />
+			<setent1 entity="stack_entity" />
+			<setpos0 position="ent1" />
+			<movecamera entity="ent0" positionentity="pos0" duration="2500" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="stack_entity" />
+			
+			<printdebuginfo />
+			<delete target="ent3" />
+			<delete target="ent2" />
+			
+			<wait duration="10000" />
+			<spawnthread name="tutorial3_boothint" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<!-- Cindara Event Threads -->
+	
+	<scriptthread name="tutorial3_cindarawait" >
+		<foreachplayer excludebots="true">
+			<spawnthread name="tutorial3_cindarawait_attacked" />
+			<spawnthread name="tutorial3_cindarakilled" />
+			
+			<pushhero />
+			<spawn name="cindara_range" owner="stack_entity" />	
+			<setent0 name="cindara_range" />
+			<setproxy entity="ent0" target="stack_entity" />
+
+			<waituntilmessage name="cindara_tip" value="1" />
+			<waituntilmessage name="cindara_tip_complete" value="0" />
+			
+			<wait duration="200" />
+			<clientuitrigger name="tutorial3_hint7" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			<spawnthread name="tutorial3_hint7alternate" />
+
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_cindarawait_attacked" >
+		<foreachplayer excludebots="true">
+		
+			<waituntilmessage name="cindara_attacked" value="1" />
+			<waituntilmessage name="paused" value="0" />
+			<clientuitrigger name="tutorial3_chatMessage7" />
+			<clientuitrigger name="tutorial3_sound_lex_7" />
+			
+			<waituntilmessage name="cindara_tip_complete" value="0" />
+
+			<wait duration="2300" />
+				
+			<setscriptvalue name="tutorial3_hint7Alternate" value="1" />
+			<spawnthread name="tutorial3_hint7alternate" />
+			
+		</foreachplayer>
+	</scriptthread>
+
+
+	<scriptthread name="tutorial3_hint7alternate" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="tutorial3_hint7Alternate" value="1" />
+			<setscriptvalue name="tutorial3_hint7Alternate" value="0" />
+			
+			<clientuitrigger name="tutorial3_hint7Close" />
+			<setscriptvalue name="cindara_tip_complete" value="1" />
+			
+			<pushhero />
+			<spawnunit name="Gadget_Tutorial3_GameFreeze" count="1" target="stack_entity" source="stack_entity" pushentity="true" />
+			<setent3 entity="stack_entity" />
+
+			<setent0 name="pcam1" />
+			
+			<pushhero />
+			<lockcontrol entity="stack_entity" />
+			<wait duration="800" />
+		
+			<spawn name="cindara_vision" owner="stack_entity" />	
+			<setent2 name="cindara_vision" />
+			
+			<setcamera entity="target_entity" source="stack_entity" camera="ent0" /> 
+			<movecamera entity="ent0" positionname="cam_cindara" duration="2400" block="true" /> 
+			<translatestring name="tutorial3_tip11_length"/>
+			<clientuitrigger name="tutorial3_tip11" value="result"/>
+			<wait duration="result" />
+			<setent1 entity="stack_entity" />
+			<setpos0 position="ent1" />
+			<movecamera entity="ent0" positionentity="pos0" duration="3000" block="true" />
+			<setcamera entity="target_entity" camera="" />
+			<unlockcontrol entity="stack_entity" />
+			<delete target="ent2" />
+			<delete target="ent3" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_cindarakilled" >
+		<foreachplayer excludebots="true">
+
+			<waituntilmessage name="cindara_killed" value="1" />
+			<setscriptvalue name="cindara_killed" value="0" />
+
+			<wait duration="6000" />
+			<clientuitrigger name="tutorial3_chatMessage8" />
+			<clientuitrigger name="tutorial3_sound_lex_8" />
+			<wait duration="3000" />
+			<clientuitrigger name="tutorial3_hint11" />
+			<spawnthread name="tutorial3_hint11wait" />
+			<pushhero />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			
+			<wait duration="25000" />
+			<clientuitrigger name="tutorial3_chatMessage9" />
+			<clientuitrigger name="tutorial3_sound_lex_9" />
+			
+			<waituntilmessage name="krytos_towerrange" value="1" />
+			<setscriptvalue name="krytos_towerrange" value="0" />
+			<clientuitrigger name="tutorial3_chatMessage10" />
+			<clientuitrigger name="tutorial3_sound_lex_10" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	
+	<!-- Hint Event Threads -->
+
+	
+	<scriptthread name="tutorial3_innertowergank" >
+		<foreachplayer excludebots="true">
+		
+			<pushhero />
+			
+			<setent0 name="lane1_badtower2" />
+			<applystate name="State_Tutorial3_InnerTowerDamage" target="ent0" duration="-1" proxy="stack_entity" />
+			<setent0 name="lane2_badtower2" />
+			<applystate name="State_Tutorial3_InnerTowerDamage" target="ent0" duration="-1" proxy="stack_entity" />
+			<setent0 name="lane3_badtower2" />
+			<applystate name="State_Tutorial3_InnerTowerDamage" target="ent0" duration="-1" proxy="stack_entity" />
+			
+			<waituntilmessage name="inner_tower_damaged" value="1" />
+			<setscriptvalue name="inner_tower_damaged" value="0" />
+			
+			
+			<spawnthread name="tutorial3_hint4alternate" />
+			
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_towerattackhero" >
+		<foreachplayer excludebots="true">
+
+			<pushhero/>
+			<waituntilmessage name="tower_attack_hero" value="1" />
+			<clientuitrigger name="tutorial_getSeenAttackHeroWarning" />
+			<wait duration="50" />
+			<waituntilmessage name="tutorial_seenAttackHeroWarningFalse" value="1" />
+			<setscriptvalue name="tower_attack_hero" value="0" />
+			<setscriptvalue name="tower_in_range" value="1" />
+			<wait duration="500" />
+			<clientuitrigger name="tutorial_spawnCreepsOff" />
+			<setscriptvalue name="paused" value="1" />
+			<applystate name="State_Tutorial3_PauseMap" duration="-1" source="stack_entity" target="stack_entity" />
+			<translatestring name="tutorial_tip_toweraggro_length"/>
+			<clientuitrigger name="tutorial3_tip_toweraggro" value="result"/>
+			<wait duration="50" />
+			<waituntilmessage name="tower_in_range" value="0" />
+			<clientuitrigger name="tutorial_spawnCreepsOn" />
+			<setscriptvalue name="paused" value="0" />
+			<expirestate name="State_Tutorial3_PauseMap" target="stack_entity" />
+			<clientuitrigger name="tutorial_setSeenAttackHeroWarningTrue" />
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_toweraloneaggro" >
+		<foreachplayer excludebots="true">
+		
+			<pushhero/>
+			<waituntilmessage name="tower_alone" value="1" />
+			<clientuitrigger name="tutorial_getSeenTowerDamageWarning" />
+			<wait duration="50" />
+			<waituntilmessage name="tutorial_seenTowerDamageWarningFalse" value="1" />
+			<setscriptvalue name="tower_alone" value="0" />
+			<setscriptvalue name="tower_in_range" value="1" />
+			<wait duration="500" />
+			<clientuitrigger name="tutorial_spawnCreepsOff" />
+			<setscriptvalue name="paused" value="1" />
+			<applystate name="State_Tutorial3_PauseMap" duration="-1" source="stack_entity" target="stack_entity" />
+			<translatestring name="tutorial_tip_attackhero_length"/>
+			<clientuitrigger name="tutorial3_tip_attackhero" value="result"/>
+			<wait duration="50" />
+			<waituntilmessage name="tower_in_range" value="0" />
+			<clientuitrigger name="tutorial_spawnCreepsOn" />
+			<setscriptvalue name="paused" value="0" />
+			<expirestate name="State_Tutorial3_PauseMap" target="stack_entity" />
+			<clientuitrigger name="tutorial_setSeenTowerDamageWarningTrue" />
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_observatoryactivated" >
+		<foreachplayer excludebots="true">
+		
+			<pushhero />
+			<spawn name="move_observatory1" owner="stack_entity"/>
+			<setent3 name="move_observatory1" />
+			<setproxy entity="ent3" target="stack_entity" />
+
+			<spawn name="move_observatory2" owner="stack_entity"/>
+			<setent3 name="move_observatory2" />
+			<setproxy entity="ent3" target="stack_entity" />
+
+			<spawn name="move_observatory3" owner="stack_entity"/>
+			<setent3 name="move_observatory3" />
+			<setproxy entity="ent3" target="stack_entity" />
+
+			<spawn name="move_observatory4" owner="stack_entity"/>
+			<setent3 name="move_observatory4" />
+			<setproxy entity="ent3" target="stack_entity" />
+
+			<waituntilmessage name="observatory_activated" value="1" />
+			<setscriptvalue name="observatory_activated" value="0" />
+			<spawnthread name="tutorial3_hint6wait" />
+			<clientuitrigger name="tutorial3_hint6" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+		
+		</foreachplayer>
+	</scriptthread>
+	
+	<scriptthread name="tutorial3_goldaccumulated" >
+		<foreachplayer excludebots="true">
+		
+			<setscriptvalue name="gold_accumulator" value="0" />
+			<waituntilmessage name="gold_accumulator" value="1" />
+
+			<spawnthread name="tutorial3_hint9wait" />
+			<clientuitrigger name="tutorial3_hint9" />
+			<popup name="hint" source="stack_entity" target="stack_entity" />
+			
+			<wait duration="60000" />
+			<spawnthread name="tutorial3_goldaccumulated" />
+		</foreachplayer>
+	</scriptthread>
+	
+
+
+</game>

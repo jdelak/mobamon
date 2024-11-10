@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Charge -->
+<ability
+	name="Ability_Executioner3_Enemy2"
+	
+	icon="icon.tga"	
+	
+	anim="charge_windup"
+	casttime="1000"
+	castactiontime="1200"
+	casteffect=""
+	impacteffect="effects/impact.effect"
+
+	actiontype="target_position"
+	activatescheme="movement"
+	
+	targetradius="170"
+	targetscheme="enemy_units_and_buildings"
+	casteffecttype="Magic"
+	
+	cooldowntime="6000"
+	queue="none"
+	
+	range="900"
+	forcerange="900"
+	
+	allowoutofboundscast="true"
+	allowoutofrangecast="true"
+	showlinecast="true"
+	linecastwidth="200"
+	linecastrange="985"
+>
+	<constant name="damage" value="180" adjustment="ability" />
+	<constant name="damage_impact" value="0.75" adjustment="none" noshowintooltip="true"/>
+	<onimpact>
+		<playeffect effect="effects/charge.effect" target="source_entity" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4" source="source_entity" target="target_position" pushentity="true" bind="source_entity" bindturn="true" bindstate="State_Executioner_Ability4" unbindondeath="true" offset="0 75 0" bindpriority="1" />
+		<setpos0 position="target_position" offsetspace="source_entity" offset="100 0 0" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4" source="source_entity" target="pos0" pushentity="true" proxy="stack_entity" offset="100 0 0"/>
+		<setpos0 position="target_position" offsetspace="source_entity" offset="-100 0 0" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4" source="source_entity" target="pos0" pushentity="true" proxy="stack_entity" offset="-100 0 0"/>
+		<setproxy target="stack_entity" />
+		<playeffect effect="effects/sound.effect" />
+		<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="1200" />
+		<distance source="source_entity" target="pos0" usepathing="true" />
+		<!--TEMP DISABLE ANTI-CLIPPING
+			<compare a="result" b="1250" op="gt" >-->
+			<spawnprojectile name="Projectile_Executioner_Ability4_Cliff" source="source_entity" target="pos0" proxy="stack_entity" offset="0 75 0"/>
+		<!--</compare>-->
+
+		<order command="attackmove" source="source_entity" target="target_position" queue="back" />
+	</onimpact>
+
+	<onframe>
+		<compare a="accumulator" b="1" op="eq" >
+			<setaccumulator value="0" />
+			<kill target="this_proxy_entity" />
+		</compare>
+	</onframe>
+</ability>
+

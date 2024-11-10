@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" >
+
+	<anim name="idle" clip="clips/default_1.clip" fps="35" loop="true"  minstartframe="0" maxstartframe="-1"/>
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="34" loop="false">
+		<frameevent frame="12" cmd="PlaySoundLinear sounds/swing_sword_%.wav 0 800 .2"/>
+	</anim>
+
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="34" loop="false">
+		<frameevent frame="14" cmd="PlaySoundLinear sounds/swing_sword_%.wav 0 800 .2"/>
+	</anim>
+	
+	<anim name="walk_1" clip="clips/walk_2.clip" fps="30" loop="true" minstartframe="0" maxstartframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2400 .15"/>
+		<frameevent frame="3" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_left_%.wav 0 1200 0.1"/>
+		<frameevent frame="14" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 0 1200 0.1"/>
+		<frameevent frame="16" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2400 .15"/>
+		<frameevent frame="32" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 0 1200 0.1"/>
+		<frameevent frame="34" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2400 .15"/>
+		<frameevent frame="48" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 0 1200 0.1"/>
+		<frameevent frame="50" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2400 .15"/>
+	</anim>
+	
+	<anim name="death_1" clip="clips/death_1.clip" fps="24" loop="true" loopbackframe="-1">
+		<frameevent frame="7" cmd="PlaySoundLinear sounds/sfx_death_%.wav 400 2200 .35"/>
+	</anim>		
+
+	<anim name="frozen" clip="clips/default_1.clip" fps="0" loop="true" loopbackframe="-1">
+	</anim>	
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" fps="30" loop="true">
+	</anim>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="30" loop="false">
+		<frameevent frame="1" cmd="StartEffect ../../ability_02/effects/start_bola_projectile.effect"/>
+	</anim>
+	
+	<anim name="bored_1" clip="clips/bored_1.clip" fps="30" loop="false">
+		<!-- <frameevent frame="1" cmd="StartEffect effects/bored_sound.effect"/> -->
+		<frameevent frame="1" cmd="PlaySoundLinear ../../../../sounds/voice/vo_guard_6_1.wav 400 2200 .35"/>
+	</anim>
+	
+</model>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect >
+	<definitions deferred="true">
+
+		<particlesystem name="system0" space="world" scale="1.5">
+
+
+			<model
+				position="0 0 0"
+				color="1 1 1"
+				scale="1.25"
+				model="chains/model.mdf"
+				anim="idle"
+				expirelife="0"
+				yawspeed="360"
+				rollspeed="720"
+			/>
+
+			<model
+				position="0 0 0"
+				color="1 .5 0"
+				scale="1.25"
+				model="chains/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+				expirelife="0"
+				yawspeed="360"
+				rollspeed="720"
+			/>
+<!--
+			<model
+				position="0 0 15"
+				color=".6 .3 0"
+				scale="1.55"
+				model="missile/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				anim="idle"
+				expirelife="0"
+				yaw="0"
+			/>	
+-->
+			<trailemitter
+				position="0 0 0"
+				life="1000"
+				spawnrate="100"
+				particlelife="1000"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				material="/shared/effects/smaterials/chainlinkconnect_gray.material"
+				startparticlealpha="1"
+				endparticlealpha="0"
+				depthbias="-50"
+			>
+				<particle
+					startalpha=".85"
+					endalpha="0"
+					startsize="20"
+					midsize="20"
+					endsize="0"
+					midsizepos=".25"
+				/>
+			</trailemitter>
+			
+			<trailemitter
+				position="0 0 0"
+				life="1000"
+				spawnrate="100"
+				particlelife="1000"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				material="/shared/effects/smaterials/chainlinkconnect_gray_add.material"
+				startparticlealpha="1"
+				endparticlealpha="0"
+				depthbias="-50"
+			>
+				<particle
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					startalpha=".85"
+					endalpha="0"
+					startsize="20"
+					midsize="20"
+					endsize="0"
+					midsizepos=".25"
+				/>
+			</trailemitter>
+			
+			<trailemitter
+				position="0 0 0"
+				life="1000"
+				spawnrate="100"
+				particlelife="1000"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				material="/shared/effects/smaterials/chainlinkconnect_gray_add.material"
+				startparticlealpha="1"
+				endparticlealpha="0"
+				depthbias="-50"
+			>
+				<particle
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					startalpha=".85"
+					endalpha="0"
+					startsize="20"
+					midsize="20"
+					endsize="0"
+					midsizepos=".25"
+				/>
+			</trailemitter>
+			
+			
+			
+			
+			
+			<billboard
+				minlife="300"
+				maxlife="300"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				scale="4"
+				depthbias="-75"
+			/>
+			
+			<billboard
+				minlife="300"
+				maxlife="300"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				scale="1.5"
+				depthbias="-75"
+			/>
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="phong_low">
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Light" type="float3" source="MaterialLight" />
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<dependency name="Shadowed" type="float" source="MaterialShadowed" />
+	<dependency name="GroundAmbient" type="bool" source="MaterialGroundAmbient" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="WorldSunPosition" type="float3" source="vSunPositionWorld" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	<dependency name="PointLightPositionOffset" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightPositionOffset" />
+	<dependency name="PointLightColor" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightColor" />
+	<dependency name="PointLightFalloff" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightFalloff" />
+
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+	
+		float3 f3Normal = WorldNormal;
+		
+		float fShadow = Shadowed;
+		
+		float3 f3Light = WorldSunPosition;
+		
+		float fLit = saturate(dot(f3Normal, f3Light));
+		fLit *= fShadow;
+		
+		float3 f3Diffuse = WorldAmbient;
+
+		if (GROUND_AMBIENT && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, float3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f);
+			
+		f3Diffuse += Light;
+
+		f3Diffuse += SunColor * fLit;
+		
+		#if (NUM_POINT_LIGHTS > 0)
+		// Point Lights
+		[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+		{
+			float3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+			float fDistance = length(f3DeltaPosition);
+		
+			float3 f3Light = normalize(f3DeltaPosition);
+
+			float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+			
+			float fLit = saturate(dot(f3Normal, f3Light));
+			fLit *= fAttenuation;
+			
+			f3Diffuse += PointLightColor[i] * fLit;
+		}
+		#endif
+		
+		float4 f4DiffuseColor = float4(Diffuse, Opacity) * Color;
+		
+		float3 f3FinalColor = Emissive + f4DiffuseColor.rgb * f3Diffuse;
+		
+		f3FinalColor *= Fogofwar;
+		
+		Out.rgb = lerp(f3FinalColor, FogColor, Fog);
+		Out.a = f4DiffuseColor.a;
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+	
+		vec3 f3Normal = WorldNormal;
+		
+		float fShadow = Shadowed;
+		
+		vec3 f3Light = WorldSunPosition;
+		
+		float fLit = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+		fLit *= fShadow;
+		
+		vec3 f3Diffuse = WorldAmbient;
+
+		if (GROUND_AMBIENT != 0 && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, vec3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f);
+			
+		f3Diffuse += Light;
+
+		f3Diffuse += SunColor * fLit;
+		
+		#if (NUM_POINT_LIGHTS > 0)
+		// Point Lights
+		for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+		{
+			vec3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+			float fDistance = length(f3DeltaPosition);
+		
+			vec3 f3Light = normalize(f3DeltaPosition);
+
+			float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+			
+			float fLit = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+			fLit *= fAttenuation;
+			
+			f3Diffuse += PointLightColor[i] * fLit;
+		}
+		#endif
+		
+		vec4 f4DiffuseColor = vec4(Diffuse, Opacity) * Color;
+		
+		vec3 f3FinalColor = Emissive + f4DiffuseColor.rgb * f3Diffuse;
+		
+		f3FinalColor *= Fogofwar;
+		
+		Out.rgb = mix(f3FinalColor, FogColor, Fog);
+		Out.a = f4DiffuseColor.a;
+	?>
+</node>

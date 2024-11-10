@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="ability_02" deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+		
+			<model
+
+				expirelife="3000"
+				anim="idle"
+				position="0 0 0"
+				model="death.mdf"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				scale="1"
+			>
+			</model>
+
+			<model
+				expirelife="3000"
+				anim="idle"
+				position="0 0 0"
+				model="death_base.mdf"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				scale="1"
+			>
+			</model>			
+			
+			
+		</particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+	  <spawnmodifier instance="instance1" modifier="modifier0"/> 
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

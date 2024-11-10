@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="demoNav_playScreenOption">
+		<panel name="demoNav_playScreenOption{id}Parent" group="playScreenOptionParents" width="300s" height="100%" sticky="{sticky=true}" stickytoinvis="false" visible="{visible=1}">					
+			<frame texture="/ui/elements:squareglow" color="0 0 0 .4" borderthickness="20s" width="+28s" height="+28s" align="center" valign="center" />
+			<frame name="demoNav_playScreenOption{id}BackGlow" texture="/ui/elements:squareglow" color=".3 .91 .98 .2" borderthickness="16s" rendermode="additive" width="+24s" height="+24s" align="center" valign="center" visible="0" noclick="1">
+				<modelpanel x="-5s" height="+140s" width="+480s" align="center" valign="center" visible="1"
+					noclick="true"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/play/effects/mode.effect"
+					onshowlua="self:SetEffect('/ui/main/play/effects/mode.effect')"
+					onhidelua="self:SetEffect('')"
+					camerapos="0 0 0"
+					cameraangles="0 90 0"
+					camerafov="86"
+					depthclear="true"
+					depthcompress="true"
+				/>
+			</frame>			
+			<image texture="/ui/shared/textures/stone_backer/tall_base_top.tga" color="{basecolor=#82e5fa}" height="12.5@" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/tall_base_bottom.tga" color="{basecolor=#82e5fa}" height="12.5@" valign="bottom" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/tall_base_center.tga" color="{basecolor=#82e5fa}" vmargin="12.5@" noclick="1"/>
+			
+			<image texture="/ui/shared/textures/stone_backer/crack_type02.tga" hflip="true" width="14%" height="14@" align="right" valign="bottom" x="-8@" y="-0.4%" rotation="90" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/crack_type03.tga" hflip="true" width="8%" height="8@" align="right" valign="bottom" x="-3.4@" y="-0.2%" rotation="90" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/crack_type05.tga" hflip="true" width="10%" height="10@" align="left" valign="top" x="3@" y="0.5%" rotation="-90" noclick="1"/>
+			<image texture="/ui/shared/textures/stone_backer/crack_type04.tga" hflip="true" width="11%" height="11@" align="left" valign="bottom" x="4@" y="-0.6%" vflip="1" noclick="1"/>
+			
+			<panel name="demoNav_playScreenOption{id}Highlight" visible="1" noclick="1">
+				<image color="{glowcolor=#0d7daa}" rendermode="additive" texture="/ui/shared/textures/stone_backer/tall_glow_top.tga" height="12.5@" noclick="1"/>
+				<image color="{glowcolor=#0d7daa}" rendermode="additive" texture="/ui/shared/textures/stone_backer/tall_glow_bottom.tga" height="12.5@" valign="bottom" noclick="1"/>
+				<image color="{glowcolor=#0d7daa}" rendermode="additive" texture="/ui/shared/textures/stone_backer/tall_glow_center.tga" vmargin="12.5@" noclick="1"/>
+			</panel>
+					
+			<panel name="demoNav_playScreenOption{id}Clipper" y="-40s" height="104%" width="-20s" align="center" clip="0" noclick="1">
+				<image name="demoNav_playScreenOption{id}Art" texture="" onshowlua="self:SetTexture('/ui/main/background/textures/{artTexture}')" y="{artY}" x="{artX}" width="512s" height="512s" align="center" valign="bottom" color="1 1 1 1" nocompress="true" noclick="1" />
+			</panel>
+
+			<panel name="demoNav_playScreenOption{id}TitleContainer" width="-30s" height="-16s" valign="center" align="center" noclick="1" visible="1">
+				<label font="{title_font=maindyn_36}" style="labelBase" color="{title_color}" y="2s" textalign="center" content="{title}" hmargin="{title_hmargin}" wrap="1" lineheight="32s" noclick="1" />				
+				<label font="subdyn_13" style="labelBase" color="#b9f9ff" textalign="center" y="79s" wrap="1" lineheight="18s" content="{details}" hmargin="{details_hmargin}" noclick="1" />
+			</panel>
+			
+			<panel y="70s" align="center" valign="bottom" grow="1" growinvis="0" height="56s">
+			
+				<instance name="standardButton"
+					id="demoNav_playScreenOption{id}Button" 
+					width="{btn_width=270s}" valign="bottom" borderthickness="10s"
+					label="{btn_label}" font="maindyn_30"
+				/>
+				
+				<instance name="standardButton"
+					id="demoNav_playScreenOption{id2}Button" 
+					visible="{hasbuttonSet2=0}"
+					x="156s"
+					width="{btn2_width=140s}" valign="bottom" borderthickness="10s"
+					label="{btn2_label}" font="maindyn_30"
+				/>
+			
+			</panel>
+			
+		</panel>
+	</template>
+
+	<panel name="demo_navigation_screen_parent" noclick="1" visible="0">
+		
+		<panel noclick="1" name="demo_navigation_button_1" group="demo_navigation_animation_widgets" >
+			<panel name="demoNav_select_mode" grow="1" growinvis="false" height="378s" align="center" valign="center" float="right" padding="90s" y="70s" reverse="1" visible="1" >
+				<instance name="demoNav_playScreenOption" id="1" id2="2" artTexture="pax_play_1.tga" artY="0" 	artX="12s" 	title="main_demo_button_1_title"	title_font="maindyn_40"	title_hmargin="10s" 	title_color="#acd29c"	btn_label="Part 1"  btn2_label="Part 2" 	details="main_demo_button_2_btn_desc"	details_hmargin="40s" 	buttonSet="playScreenOptionsSinglePlayer" hasbuttonSet2="1"	buttonSet2="playScreenOptionsMatchmaking" btn_width="140s" btn2_width="140s" 	visible="1" sticky="0" />
+				<!--<instance name="demoNav_playScreenOption" id="2" artTexture="pax_play_1.tga" artY="0" 	artX="12s" 	title="main_demo_button_2_title"	title_hmargin="20s"		title_color="#d65135"	btn_label="main_demo_button_2_btn_title" 		details="main_demo_button_2_btn_desc"	details_hmargin="30s" 	buttonSet="playScreenOptionsMatchmaking"  	visible="1" /> -->
+				<instance name="demoNav_playScreenOption" id="3" artTexture="pax_play_3.tga" artY="0" 	artX="12s" 	title="main_demo_button_3_title"	title_hmargin="10s"		title_color="#f4a837"	btn_label="main_demo_button_3_btn_title" 		details="main_demo_button_3_btn_desc"	details_hmargin="0" 	buttonSet="playScreenOptionsCustomMatches" 	visible="1" />
+				<instance name="demoNav_playScreenOption" id="4" artTexture="pax_play_4.tga" artY="70s" 	artX="4s" 	title="main_demo_button_4_title"	title_font="maindyn_40"	title_hmargin="10s"		title_color="#9e41b6"	btn_label="main_demo_button_4_btn_title" 		details="main_demo_button_4_btn_desc"	details_hmargin="30s" 	buttonSet="playScreenOptionsCustomMatches" 	visible="1" />
+			</panel>		
+		</panel>
+		
+		<panel name="main_demo_ui_signup_parent" group="demo_navigation_animation_widgets" x="55s" y="90s" width="470s" height="128s" align="left" valign="top" noclick="0" visible="1">
+			<instance name="dialogWrapper1" />
+			<panel grow="1" y="0" width="-20s" align="center" valign="center" float="bottom" padding="12s" noclick="1">
+				<label fity="1" textalign="center" style="labelBase" font="maindyn_20" lineheight="22s" wrap="1" color=".7 .7 .7 1" content="" onloadlua="self:SetText(FormatStringNewline(Translate('main_demo_signup_desc')))" noclick="1"/>								
+				<panel height="40s" noclick="1">									
+					<panel width="-130s">
+						<frame texture="/ui/shared/frames/text_input.tga" borderthickness="10s" noclick="1"/>										
+						<textbox name="main_demo_ui_signup_input" textcolor="0 0 0 .9" textshadow="1" textshadowcolor="black" shadow="1" shadowcolor="black" font="maindyn_20" color="invisible" y="8s" width="-16s" align="center"
+							onenter="Call('main_demo_ui_signup_parent', 'DoEvent()')"
+						/>										
+						<panel name="main_demo_ui_signup_response" noclick="1" visible="0">							
+							<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".2 .2 .2 1"/>
+							<frame texture="/ui/elements:thick" borderthickness="8s" color=".6 .6 .6 1"/>
+							<label name="main_demo_ui_signup_response_label" y="-1s" style="labelBase" textalign="center" textvalign="center" font="maindyn_22" content="main_simple_email_response_1"/>				
+						</panel>									
+					</panel>									
+					<instance
+						id="main_demo_ui_signup_submit" 
+						width="120s" align="right" borderthickness="8s"	
+						name="standardButton"
+						label="general_submit"
+						font="maindyn_20"
+						enabled="false"
+					/>									
+				</panel>
+			</panel>
+			<label y="-35s" x="-124s" textalign="right" style="labelBase" color=".7 .7 .7 1" font="maindyn_40" content="main_demo_signup_title" noclick="1"/>						
+			<image texture="/ui/main/background/textures/pax_logo.tga" x="90s" y="-48s" align="right" width="206s" height="103s" noclick="1" />
+		</panel>
+		
+		
+
+		<panel name="preview_splash2" x="45s" y="-660s" width="260s" height="130s" valign="top" noclick="1" passivechildren="true" color="invisible" visible="0" group="demo_navigation_animation_widgets" >
+
+		</panel>			
+		
+	</panel>
+	
+	<lua file="demo_nav.lua"/>	
+	
+</package>

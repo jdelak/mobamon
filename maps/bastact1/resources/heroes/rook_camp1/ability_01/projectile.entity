@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rook_Ability1_Bastact1"
+
+
+	speed="1975"
+	gravity="6000"
+
+	impactdistance="80"
+
+	modelscale="4.1"
+	model="/shared/models/invis.mdf"
+	canturn="0"
+	flying="false"
+	flyheight="0"
+	
+	touchprojectileblockers="true"
+	touchradius="1"
+	touchpropradius="75"
+	touchpropanim="hit"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Rook_Bastact1_Q"
+	toucheffecttype=""
+	
+	maxtouchespertarget="1"
+
+>
+	<ontouch>
+		<cantarget targetscheme="enemy_units">
+   			<combatevent effecttype="Counterable">
+			<onimpact>
+				<targettype type="hero" >
+					<playeffect target="source_entity" effect="effects/impact.effect" />
+				</targettype>
+				
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+			</onimpact>
+		</combatevent>
+  		</cantarget>
+  		<else>
+  			<applystate name="State_Blank" target="source_entity" duration="-1"/>
+  			<kill target="this_entity" source="" />
+  			<setpos0 position="this_proxy_position" offsetspace="this_proxy_entity" offset="0 200 0" />
+  			<playeffect effect="effects/deflect.effect" source="pos0" target="pos0" />
+  			<starttimer entity="tool_entity" duration="0" />
+  			
+  		</else>
+	</ontouch>
+	
+	<onimpact>
+		<kill target="this_entity" source="" />
+	</onimpact>
+
+	<ondeath>
+		<condition test="hasstate State_Blank" target="source_entity" >
+			<starttimer entity="tool_entity" duration="0" />	
+			<playanim name="stop" target="this_proxy_entity" />
+			<playeffect effect="effects/sound.effect" />
+			<setactivemodifierkey entity="this_proxy_entity" name="stop_passive_effect" />
+			<reducecooldown entity="source_entity" duration="2000"/>
+			<expirestate name="State_Blank" target="source_entity"/>
+			<setaccumulator entity="tool_entity" value="0" />
+		</condition>	
+
+		<else>
+			<playanim name="stop" target="this_proxy_entity" />
+			<playeffect effect="effects/sound.effect" />
+			<setactivemodifierkey entity="this_proxy_entity" name="stop_passive_effect" />
+			<setactivemodifierkey entity="tool_entity" name="rookhook" />
+			<starttimer entity="tool_entity" duration="3200" />
+		</else>	
+	</ondeath>
+
+	<modifier key="great_hall_ability"
+		touchprojectileblockers="false"
+		touchradius="0"
+		>
+
+		<ontouch>
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<targettype type="hero" >
+						<playeffect target="source_entity" effect="effects/impact.effect" />
+					</targettype>
+					
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+				</onimpact>
+			</combatevent>
+			<recordheroaggression  />
+			<aggression />
+		</ontouch>
+		
+		<onimpact>
+			<playanim name="stop" target="this_proxy_entity" />
+			<playeffect effect="effects/sound.effect" />
+			<setactivemodifierkey entity="this_proxy_entity" name="stop_passive_effect" />
+			<setactivemodifierkey entity="tool_entity" name="rookhook" />
+			<starttimer entity="tool_entity" duration="3200" />
+		</onimpact>
+
+		<ondeath>
+		</ondeath>
+
+	</modifier>
+
+</projectile>

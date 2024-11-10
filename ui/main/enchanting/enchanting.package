@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel name="mainEnchant" noclick="true" visible="false">	
+		<panel width="730s" x="488s" y="274s" height="300s" float="right" padding="29" >
+			<instance name="mainEnchantBonus" id="Analog" align="left" showLock="false" lableStyle="labelCommon"/>
+			<instance name="mainEnchantBonus" id="Rare" align="center" lableStyle="labelRare" hasActionBar="true"/>
+			<instance name="mainEnchantBonus" id="Legendary" align="right" lableStyle="labelLegendary"/>
+		</panel>
+		
+		<panel height="40s" y="170s" width="730s" x="510s" group="enchanting_animation_widgets" >
+			<label name="enchantItemQualityItemName" font="maindyn_40" style="labelCommon" textvalign="center" textalign="center" content="Item Name" />
+		</panel>
+
+		<!-- Temper -->
+		<panel name="enchantStationDuration" visible="0" valign="bottom" y="-80s" height="40s" width="790s" align="right" x="-40s"> <!-- group="enchanting_animation_widgets" -->
+			<image texture="/ui/main/shared/textures/progress_bar_center.tga" width="-100@" align="center" />
+			<image texture="/ui/main/shared/textures/progress_bar_left.tga" width="50@" height="100%" align="left" />
+			<image texture="/ui/main/shared/textures/progress_bar_right.tga" width="50@" height="100%" align="right" />
+			
+			<panel width="-8s" height="-8s" valign="center" noclick="1">
+				<instance name="progress_bar" id="mainEnchantDurationBar" barstyle="barTemper" />
+			</panel>
+			<label name="mainEnchantDurationLabel" textalign="center" textvalign="center" font="maindyn_26" y="-0.25h" style="labelBase" color="1 1 1 1" content=""/>
+
+			<panel name="enchantStationTemperButtonContainer" width="170s" height="50s" y="4s" valign="bottom" x="-165s" visible="0" >
+				<instance name="standardButton" id="enchantStationTemper" labelWidth="-75@" labelAlign="right" borderthickness="8s" font="maindyn_30" label="crafting_temper" rendermode="grayscale" />
+				<image texture="/ui/main/enchanting/textures/temper_icon.tga" x="8s" width="80@" height="80%" valign="center" noclick="1" />
+			</panel>			
+			
+		</panel>
+
+		<!-- Main Bar -->
+		<panel name="enchantingItemQuality" valign="bottom" y="-94s" height="58s" align="right" width="774s" x="-40s" group="enchanting_animation_widgets" >			
+			<image texture="/ui/main/shared/textures/progress_bar_center.tga" width="-100@" align="center" />
+			<image texture="/ui/main/shared/textures/progress_bar_left.tga" width="50@" height="100%" align="left" />
+			<image texture="/ui/main/shared/textures/progress_bar_right.tga" width="50@" height="100%" align="right" />			
+			<panel width="-8s" align="center" height="-8s" valign="center" noclick="1">
+				<!--
+				<instance name="progress_bar" id="enchantItemBonusBar" barstyle="barCommon" />
+				<label name="enchantItemBonusBarLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" visible="false" content="-"/>
+				-->
+				<panel width="33.33%" noclick="true">
+					<instance name="mainEnchantBarPips" id="enchantItemQualityCommonBarPipsContainer" isvisible="1" />
+					<instance name="progress_bar" id="enchantItemQualityCommonBar" barstyle="barCommon" />
+					<label name="enchantItemQualityCommonBarLabel" textalign="center" textvalign="center" font="maindyn_20" style="labelBase" color=".7 .7 .7 1" content=""/>
+					<label name="enchantItemQualityCommonUnlockLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" visible="false" content="crafting_unlock_common"/>
+				</panel>
+				<panel align="center" width="33.33%" noclick="true">
+					<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .6" />
+					<instance name="mainEnchantBarPips" id="enchantItemQualityRareBarPipsContainer" isvisible="0" />
+					<instance name="progress_bar" id="enchantItemQualityRareBar" barstyle="barRare" />
+					<label name="enchantItemQualityRareBarLabel" textalign="center" textvalign="center" font="maindyn_20" style="labelBase" color=".7 .7 .7 1" visible="false" content=""/>
+					<label name="enchantItemQualityRareUnlockLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" content="crafting_unlock_rare"/>
+				</panel>
+				<panel align="right" width="33.33%" noclick="true">
+					<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .6" />
+					<instance name="mainEnchantBarPips" id="enchantItemQualityLegendaryBarPipsContainer" isvisible="0" />
+					<instance name="progress_bar" id="enchantItemQualityLegendaryBar" barstyle="barLegendary" />
+					<label name="enchantItemQualityLegendaryBarLabel" textalign="center" textvalign="center" font="maindyn_20" style="labelBase" color=".7 .7 .7 1" visible="false" content=""/>
+					<label name="enchantItemQualityLegendaryUnlockLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" content="crafting_unlock_legendary"/>
+				</panel>
+				<panel name="enchantItemQualityMarker" width="1" height="100%" noclick="true" visible="false">
+					<panel name="enchantItemQualityMarkerBody" texture="/ui/main/crafting/textures/quality_marker.tga" width="50@" height="100%" align="center" />
+				</panel>
+			</panel>
+			<panel width="220s" height="82s" y="14s" valign="bottom" x="-212s" noclick="true"><!-- Enchant button in its entirety -->
+				<instance name="standardButton" id="enchantItemPullBar" font="maindyn_36" labelY="-17s" borderthickness="10s" label="general_enchant" />			
+				<panel name="enchantItemCostInfo" valign="bottom" y="-4s" noclick="true" height="38s" grow="true" regrow="true" align="center" float="right" padding="1s" passivechildren="true">
+					<label name="enchantItemCostEssence" fitx="true" textvalign="center" color="#CCCCCC" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_30" content="--"/>
+					<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" heihgt="100%" noclick="1" />
+				</panel>
+				<panel name="enchantItemCostSelectItem" valign="bottom" y="-4s" noclick="true" height="38s" grow="true" regrow="true" align="center" float="right" padding="1s" passivechildren="true">
+					<label fitx="true" textvalign="center" color="#CCCCCC" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_30" content="enchanting_select_item"/>
+				</panel>
+			</panel>			
+		</panel>		
+
+
+		<!-- Big Item -->
+		<button name="craftingEnchantStationSwapButton2" color="invisible" width="188s" height="188s" x="280s" y="295s" group="enchanting_animation_widgets">
+			<frame noclick="true" texture="/ui/elements:squareglow" color="0 0 0 .7" width="+20s" height="+20s" align="center" valign="center" borderthickness="20s" />
+			<image name="craftingEnchantStationItemIcon" width="70@" height="70%" align="center" valign="center" texture="/ui/shared/textures/pack2.tga"/>
+			<!-- <image texture="/ui/main/shared/textures/iconframe_interactive.tga" align="center" valign="center" noclick="1" /> -->
+			<image name="craftingEnchantStationSwapButton2_frame" texture="/ui/main/inventory/textures/iconframe_common.tga" visible="1" align="center" noclick="1" />
+			<image name="craftingEnchantStationSwapButton2_hover_frame" texture="/ui/main/inventory/textures/iconframe_common_hover.tga" visible="0" noclick="1" />			
+		</button>
+		<instance name="standardButton" id="craftingEnchantStationSwapButton" height="34s" borderthickness="8s" width="140s" x="305s" y="472s" font="maindyn_22" label="crafting_swap_item" rendermode="normal" group="enchanting_animation_widgets" visible="0" />		
+		
+		<instance name="standardButton" id="enchanting_open_inventory_btn" height="72s" borderthickness="8s" width="156s" x="305s" y="515s" font="maindyn_24" wrap="1" labelX="-15s" labelWidth="-70s" labelAlign="right" label="crafting_swap_item" rendermode="grayscale" group="enchanting_animation_widgets"/>		
+		<image width="102s" height="102s" x="264s" y="148s" valign="center" texture="/ui/main/inventory/textures/inventory.tga" noclick="1" group="enchanting_animation_widgets" />
+		
+		<panel name="mainEnchantSalvageTarget" noclick="true" visible="0" align="right" valign="bottom">
+			<image texture="/ui/main/shared/textures/corner_grad.tga" width="640s" height="620s" align="right" valign="bottom" color="0 0 0 1" noclick="1"/>
+			<panel width="300s" height="110s" noclick="1" x="-20s" y="-40s" align="right" valign="bottom" passivechildren="true">
+				<image texture="/ui/main/shared/textures/salvage.tga" width="100@" height="100%" color="1 1 1 .9" />
+				<label x="110@" width="-110@" height="100%" wrap="1" textvalign="center" style="labelBase" color=".8 .8 .8 1" font="maindyn_36" content="crafting_drag_out_to_salvage" noclick="1" />
+			</panel>			
+			<panel name="mainEnchantSalvageTargetBody" width="330s" height="160s" align="right" valign="bottom">
+				<panel name="mainEnchantSalvageTargetBodyColor" visible="false" noclick="true"/>
+			</panel>
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 0" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>			
+		</panel>
+		
+	</panel>
+
+	<panel name="mainEnchantReroll" noclick="true" visible="0" onshowlua="self:GetWidget('mainEnchantReroll_dimmer'):SetVisible(0) self:GetWidget('mainEnchantReroll_dimmer'):FadeIn(500)" >
+		<panel name="mainEnchantReroll_dimmer" noclick="1" color="0 0 0 0.7" />
+		<panel name="mainEnchantReroll_info" align="center" valign="center" width="300s" grow="true" regrow="true"  growinvis="0" >
+		
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			
+			<panel grow="1" regrow="1" growinvis="0" width="100%" float="bottom" padding="20s">
+			
+				<panel height="28s" noclick="1">
+					<label hmargin="2%" textvalign="center" style="h1" content="enchanting_reroll_rare"/>
+					<instance name="iconButton"
+						id="mainEnchantReroll_close_btn_1"
+						icon="/ui/main/shared/textures/close.tga"
+						width="100@" height="100%" align="right" valign="top" borderthickness="4s"
+					/>
+				</panel>
+				
+				<label hmargin="2%" fity="1" wrap="true" font="maindyn_20" style="labelBase" content="enchanting_reroll_rare_desc" textalign="center" />
+				
+				<panel height="44s" grow="1" regrow="1" growinvis="0" float="right" padding="4%" align="center">
+
+					<panel width="265s" align="left" sticky="1" stickytoinvis="0"
+						onloadlua="
+							self:RegisterWatchLua('CraftingAccountInfo', function(widget, trigger)
+								widget:SetVisible(trigger.rerollRareEssenceCost > 0)
+							end)
+						"					
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".5 .5 .5 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel float="right" padding="4s" grow="1" regrow="1" height="70%" align="center" valign="center" noclick="1">						
+							<label fitx="1" height="100%" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content="corral_you_own" noclick="1" />
+							<panel grow="1" height="100%" float="right" padding="6s">
+								<label fitx="true" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content=""
+									onloadlua="
+										self:RegisterWatchLua('CraftingCommodityInfo', function(widget, trigger)
+											widget:SetText(trigger.essenceCount)
+										end)
+									"
+								/>
+								<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%"/>
+							</panel>						
+						</panel>						
+					</panel>				
+				
+					<panel width="265s" align="left" sticky="1" stickytoinvis="0"
+						onloadlua="
+							self:RegisterWatchLua('CraftingAccountInfo', function(widget, trigger)
+								widget:SetVisible(trigger.rerollRareGemCost > 0)
+							end)
+						"					
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".5 .5 .5 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel float="right" padding="4s" grow="1" regrow="1" height="70%" align="center" valign="center" noclick="1">						
+							<label fitx="1" height="100%" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content="corral_you_own" noclick="1" />
+							<panel grow="1" height="100%" float="right" padding="6s">
+								<label fitx="true" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content=""
+									onloadlua="
+										self:RegisterWatchLua('GemOffer', function(widget, trigger)
+											widget:SetText(trigger.gems)
+										end)
+									"
+								/>
+								<image texture="/ui/main/shared/textures/gem.tga" width="100@" height="100%"/>
+							</panel>						
+						</panel>						
+					</panel>
+					
+				</panel>				
+				
+				<panel height="130s" grow="1" regrow="1" growinvis="0" float="right" padding="4%" align="center">
+					
+					<panel width="265s" align="left" sticky="1" stickytoinvis="0"
+						onloadlua="
+							self:RegisterWatchLua('CraftingAccountInfo', function(widget, trigger)
+								widget:SetVisible(trigger.rerollRareEssenceCost > 0)
+							end)
+						"						
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel y="10s" grow="1" height="60s" align="center" float="right" padding="5s">
+							<label fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---"
+								onloadlua="
+									self:RegisterWatchLua('CraftingAccountInfo', function(widget, trigger)
+										widget:SetText(trigger.rerollRareEssenceCost)
+									end)
+								"								
+							/>
+							<panel width="100@" height="100%">
+								<image texture="/ui/main/shared/textures/commodity_essence.tga" width="80@" height="80%" align="center" valign="center" />
+							</panel>
+						</panel>
+						<panel y="-10s" height="40s" valign="bottom">
+							<instance id="mainEnchantReroll_purchase_btn_1" name="standardButton" width="90%" align="center" label="crafting_prompt_temper_useessences" font="maindyn_22"/>
+						</panel>
+					</panel>					
+					
+					<panel width="265s" align="left" sticky="1" stickytoinvis="0"
+						onloadlua="
+							self:RegisterWatchLua('CraftingAccountInfo', function(widget, trigger)
+								widget:SetVisible(trigger.rerollRareGemCost > 0)
+							end)
+						"						
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel y="10s" grow="1" height="60s" align="center" float="right" padding="5s">
+							<label fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---"
+								onloadlua="
+									self:RegisterWatchLua('CraftingAccountInfo', function(widget, trigger)
+										widget:SetText(trigger.rerollRareGemCost)
+									end)
+								"								
+							/>
+							<panel width="100@" height="100%">
+								<image texture="/ui/main/shared/textures/gem.tga" width="80@" height="80%" align="center" valign="center" />
+							</panel>
+						</panel>
+						<panel y="-10s" height="40s" valign="bottom">
+							<instance id="mainEnchantReroll_purchase_btn_2" name="standardButton" width="90%" align="center" label="corral_unlockpet_usegems" font="maindyn_22"/>
+						</panel>
+					</panel>
+				</panel>
+			
+			</panel>
+		</panel>	
+		
+	</panel>	
+	
+</package>

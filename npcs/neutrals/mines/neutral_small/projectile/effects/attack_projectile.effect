@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="attack_projectile" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.0">
+	
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				bone="_bone_fx_06"
+				color=".5 .15 0"
+				size="50"
+				depthbias="-25"
+			/>
+			
+		<simpleemitter
+			delay="50"
+			
+			spawnrate="400"
+			bone="_bone_fx_06"
+			particlelife="600"			
+			gravity="5"
+			minspeed="1"
+			maxspeed="100"
+			drag=".04"
+			life="2000"
+			
+			pitchspeed="79"
+			material="/shared/effects/smaterials/whitedot.material"
+			
+			
+			inheritvelocity="0.35"
+			
+			direction="0 0 1"
+			
+		>
+
+
+			<particle 
+				
+				startcolor="1 1 .2"
+				
+				midcolor="1 .3 0"
+				endcolor="0 0 0"
+				startheightdistort=".1"
+			
+				endframe="15"
+				
+				startsize="1"
+				midsize="2"
+				endsize="2"
+				
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos="0"
+				startstickiness="0"
+				endstickiness="0"
+				turn="1"
+
+			/>
+		</simpleemitter>			
+			
+			<light
+				position="0 0 0"
+				life="2000"
+				startcolor="1.5"
+				midcolor="1.2 0.70	0.3"
+				midcolorpos=".1"
+				endcolor="0"
+				falloffstart="010"
+				falloffend="400"
+			/>			
+		
+			<simpleemitter
+				spawnrate="100"
+				bone="_bone_fx_06"
+				particlelife="300"			
+				gravity="2"
+				speed="144"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="1 1 1"
+
+				inheritvelocity="0.25"
+			>
+				<particle 
+					
+					startcolor="1 .7 .1"
+					midcolor="1 .2 .1"
+					endcolor="0 0 0"
+					midcolorpos=".3"
+					
+					
+					startsize="4"
+					endsize="0"
+
+					
+					
+
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".3"
+
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					yaw="0"
+				/>
+
+				
+
+			</simpleemitter>
+			
+	
+			
+			<simpleemitter
+				bone="_bone_fx_06"
+				
+				spawnrate="600"
+				
+		
+				particlelife="200"			
+				gravity="-25"
+				minspeed="10"
+				maxspeed="40"
+				drag=".005"
+				material="/shared/effects/materials/spark_10.material"
+				offsetsphere="2"
+				inheritvelocity="0.2"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1"
+					midcolor="1 .4 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					minstartsize="18"
+					maxstartsize="26"
+					midsize="12"
+					endsize="6"
+					startalpha="0"
+					midalpha=".7"
+					endalpha="0"
+					midalphapos=".5"
+				/>
+			</simpleemitter>
+			</particlesystem>
+		</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

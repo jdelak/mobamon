@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_events">
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+
+	<template name="game_events_log_template" > <!-- This needs to be split for atlasing, see old package for how -->
+		<panel name="game_events_log_{id}" group="game_events_log_{id}" width="29.1h" height="4.5h" valign="bottom" align="right" noclick="1" visible="0">
+			<frame name="game_events_log_{id}_glow" texture="/ui/elements:squareglow" borderthickness="1.0h" width="+0.8h" height="+0.8h" align="center" valign="center" rendermode="additive" color="0 1 0 .6" />
+			<image name="game_events_log_{id}_bg" texture="/ui/game/arcade_text/textures/kill_bg.tga" align="center" height="100%" width="800@" noclick="1" />		
+
+			<image name="game_events_log_{id}_center_bg_texture" align="center" height="100%" width="800@" texture="/ui/game/arcade_text/textures/kill_full_bar.tga" color="#ff0000" noclick="1" />
+			
+			<image name="game_events_log_{id}_right_bg_texture" align="center" height="100%" width="800@" texture="/ui/game/arcade_text/textures/kill_rightbar.tga" color="#ff0000" noclick="1" />
+			<image name="game_events_log_{id}_right_portrait" texture="/ui/game/arcade_text/textures/carter.tga" hflip="1" x="-2@" y="-3.5@" align="right" valign="bottom" height="90%" width="90@" noclick="1" />
+			<image name="game_events_log_{id}_right_portrait_grayscale" texture="/ui/game/arcade_text/textures/carter.tga" hflip="1" x="-2@" y="-3.5@" align="right" valign="bottom" height="90%" width="90@" rendermode="grayscale" color="1 1 1 .7" visible="0" noclick="1" />
+			<image name="game_events_log_{id}_right_icon" x="9@" y="3%" width="54@" height="54%" align="right" valign="bottom" texture="/ui/game/unit_frames/textures/dead.tga" visible="0" noclick="1" /> 
+			<panel name="game_events_log_{id}_slider_parent" x="15@" clip="1" noclick="1">		
+				<label name="game_events_log_{id}_slider_label_2" x="-115@" y="-0.5@" textalign="right" textvalign="center" style="labelBase" font="maindyn_12" content="Deader" color="#ffbaa5" />		
+				<image name="game_events_log_{id}_slider" x="-190@" align="left" height="100%" width="800@" texture="/ui/game/arcade_text/textures/kill_slidebar.tga" color="#54ff00" noclick="1" />
+				<label name="game_events_log_{id}_slider_label_1" x="85@" y="-0.3@" textalign="left" textvalign="center" style="labelBase" font="maindyn_12" content="Killer" color="#cfff00" />				
+			</panel>
+			<image name="game_events_log_{id}_slider_cap" texture="/ui/game/arcade_text/textures/kill_slidebar_lcap.tga" x="6@" align="left" height="100%" width="100@" color="#54ff00" noclick="1" />		
+			<image name="game_events_log_{id}_left_portrait" texture="/ui/game/arcade_text/textures/bastion.tga" x="2@" y="-3.5@" align="left" valign="bottom" height="90%" width="90@" noclick="1" />	
+			<panel name="game_events_log_{id}_multiplier_parent" x="20@" grow="true" regrow="true" height="68%" align="center" valign="center" noclick="true" passivechildren="true" visible="0">
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" color="0 0 0 .5"/>
+				<frame texture="/ui/elements:roundframe" borderthickness="0.6h" color=".7 .7 .7 .6"/>
+				<label name="game_events_log_{id}_multiplier_label" x="0.5h" fitx="true" fitxpadding="0.5h" height="100%" font="maindyn_20" color="1 1 1 1" style="labelBase" content="x3" />
+			</panel>
+			<panel name="game_events_log_{id}simple_event" noclick="1" visible="0">
+				<image name="game_events_log_{id}_simple_event_bg_texture" align="center" height="100%" width="800@" texture="/ui/game/event_log/textures/event_team_color.tga" color="#54ff00" noclick="1" />
+				<image name="game_events_log_{id}_simple_event_icon" texture="/ui/game/event_log/textures/icon_tower1.tga" x="9.8@" y="-3.6@" align="left" valign="bottom" height="94%" width="94@" noclick="1" /><!-- icon_baldir, icon_krytos, icon_cindara, icon_generator, icon_tower1, icon_tower2 -->
+				<label name="game_events_log_{id}_simple_event_label" x="-8@" y="-2%" width="-105@" align="right" textalign="center" textvalign="center" style="labelBase" font="maindyn_14" content="Defense Tower Destroyed!" color="#cfff00" />		
+			</panel>
+		</panel>	
+	</template>		
+	
+	<panel name="gameEventsContainer" style="gameEventsContainer">
+		<panel name="gameEventsViewArea" height="-0.5h" noclick="true"><!-- Bring things up a tad so glows don't get clipped unnecessarily -->
+			<panel group="gameEventsBody" style="gameEventsBody">
+				<instance name="game_events_log_template" id="30"/>
+				<instance name="game_events_log_template" id="29"/>
+				<instance name="game_events_log_template" id="28"/>
+				<instance name="game_events_log_template" id="27"/>
+				<instance name="game_events_log_template" id="26"/>
+				<instance name="game_events_log_template" id="25"/>
+				<instance name="game_events_log_template" id="24"/>
+				<instance name="game_events_log_template" id="23"/>
+				<instance name="game_events_log_template" id="22"/>
+				<instance name="game_events_log_template" id="21"/>
+				<instance name="game_events_log_template" id="20"/>
+				<instance name="game_events_log_template" id="19"/>
+				<instance name="game_events_log_template" id="18"/>
+				<instance name="game_events_log_template" id="17"/>
+				<instance name="game_events_log_template" id="16"/>
+				<instance name="game_events_log_template" id="15"/>
+				<instance name="game_events_log_template" id="14"/>
+				<instance name="game_events_log_template" id="13"/>
+				<instance name="game_events_log_template" id="12"/>
+				<instance name="game_events_log_template" id="11"/>
+				<instance name="game_events_log_template" id="10"/>
+				<instance name="game_events_log_template" id="9"/>
+				<instance name="game_events_log_template" id="8"/>
+				<instance name="game_events_log_template" id="7"/>
+				<instance name="game_events_log_template" id="6"/>
+				<instance name="game_events_log_template" id="5"/>
+				<instance name="game_events_log_template" id="4"/>
+				<instance name="game_events_log_template" id="3"/>
+				<instance name="game_events_log_template" id="2"/>
+				<instance name="game_events_log_template" id="1"/>
+			</panel>
+
+			<panel hover="false" processonlyscroll="true" name="gameEventScrollPanel" visible="false"/>
+			<scrollbar
+				name="gameEventScrollBar"
+				texture="/ui/_textures/elements/combobox.tga" handlewidth="2h" handleheight="2h" vertical="true" slotwidth="0.6h" slotheight="1"
+				width="2h" align="right" x="2.5h" valign="center" height="+0.35h"
+				step="1"
+				visible="false"
+				hscrollbar="0"
+				horizontal="false"				
+			/>			
+			
+		</panel>
+	</panel>
+
+	<panel name="gameEventsGold_parent" noclick="1" passivechildren="1" y="-30.2h" x="-2h" valign="bottom" align="right" height="8.0h" width="23.2h" visible="0">
+		<image name="gameEventsGold_glow" x="-1.8h" y="-0.5h" width="142@" height="142%" valign="center" texture="/ui/game/event_log/textures/goldchest/glow_goldchest.tga" color=".96 .76 .15 .7" rendermode="additive" />
+		<image name="gameEventsGold_staticchest" visible="0"
+			width="100@" height="100%" noclick="1"
+			texture="/ui/game/event_log/textures/goldchest/goldchest0000.tga"
+		/>		
+		<animatedimage name="gameEventsGold_anichest" 
+			width="100@" height="100%" noclick="1"
+			fps="4" loop="0" numframes="5"
+			texture="/ui/game/event_log/textures/goldchest/goldchest.tga"
+		/>
+		<label name="gameEventsGold_label" x="110@" y="-1.8h" valign="bottom" fity="1" style="h1" font="maindyn_30" color="#FFDD33" noclick="1" content=""/>
+	</panel>	
+
+	<!-- This is the tooltip style alerts at the bottom of the screen just above ablilities -->
+	<instance id="self_bottom_announcements_0_wrapper" name="dialogWrapper1" inneralpha="0 0 0 .9" outerpadding="+2h" innerpadding="+1h" noclick="1" visible="0" parent_height="5.5h" parent_width="45h" align="center" valign="bottom" y="-18.2h" />
+	<panel name="self_bottom_announcements_0" noclick="1" visible="0" color="invisible" height="5.5h" width="45h" align="center" valign="bottom" y="-18.2h" >		
+		<panel name="self_bottom_announcements_item_0" noclick="1" height="100%" width="100%" y="0" visible="1" onclicklua="" onrightclicklua="" >
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="1"/>
+			<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="1"/>
+			<label name="self_bottom_announcements_label_0" textalign="center" textvalign="center" valign="center" fity="1" y="0.0h" shadow="true" shadowoffset="2" font="maindyn_15" color="white" outlinecolor="black" outline="1" content="" noclick="1" wrap="1" />
+		</panel>
+	</panel>	
+	
+	<lua file="events_2.lua"/>
+
+</interface>

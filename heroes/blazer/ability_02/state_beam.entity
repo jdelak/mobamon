@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Blazer_Ability2_Beam"
+
+	
+	ishidden="true"
+	passiveeffect="effects/beam.effect"
+	effecttype="StatusDebuff CrowdControl"
+	impactinterval="100"
+	
+>
+
+	<onimpact>
+		<compare a="accumulator" b="0" op="eq" >
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<damage source="source_owner_entity" effecttype="Magic" amount="1" b="result" op="mult"/>
+			<recordheroaggression  />
+			<aggression />
+			<setaccumulator value="1" />
+		</compare>
+	</onimpact>
+
+</state>

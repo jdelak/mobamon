@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Aemon_Ability4_Damage"
+
+	speed="1800"
+	traileffect=""
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	pitch="90"
+
+	effectscale="1.0"
+	
+	impacteffect=""
+	
+	canturn="true"
+	flying="true"
+	flyheight="80"
+	
+	
+>
+	<onspawn>
+		<playeffect effect="effects/shoot_start.effect" target="this_position" source="this_position" occlude="true" />
+		<playeffect effect="effects/impact_back_attack.effect" source="target_entity" target="source_entity" occlude="true" />
+	</onspawn>
+
+	<onimpact>
+		<kill target="this_proxy_entity" source="" />
+
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="back_attack" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" amount="1" b="result" op="mult" />
+				
+			</onimpact>
+		</combatevent>
+	</onimpact>
+
+</projectile>

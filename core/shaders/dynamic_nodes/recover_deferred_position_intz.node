@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="recover_deferred_position_intz">
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+	<dependency name="depth" type="sampler2D" source="depth" />
+	<dependency name="VPos" type="float2" source="VPos" />
+	<dependency name="ScreenToViewX" type="float3" source="vScreenToViewX" />
+	<dependency name="ScreenToViewY" type="float3" source="vScreenToViewY" />
+	<dependency name="ScreenToViewZ" type="float3" source="vScreenToViewZ" />
+	<dependency name="VPosToScreen" type="float4" source="vVPosToScreen" />
+	<dependency name="ProjRatio" type="float2" source="vProjRatio" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" solution="DeferredPosition" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<dependency name="VPos" type="float2" source="VPos" />
+		<?hlsl
+			float fDepth = tex2Dproj(depth, ScreenPosition).r;
+			float2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<dependency name="VPos" type="float4" source="VPos" />
+		<?hlsl
+			float2 f2ScreenPositionTexcoord = float2(ScreenPosition.xy / ScreenPosition.w);
+		
+			float fDepth = depth_texture.Sample(depth_sampler, f2ScreenPositionTexcoord).r;
+			float2 f2ScreenPosition = VPos.xy * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<dependency name="VPos" type="float2" source="VPos" />
+		<?glsl
+			float fDepth = 2.0 * texture2DProj(depth, ScreenPosition).r - 1.0;
+			vec2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX - f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<dependency name="VPos" type="float2" source="VPos" />
+		<?glsl
+			float fDepth = 2.0 * textureProj(depth, ScreenPosition).r - 1.0;
+			vec2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX - f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+</node>

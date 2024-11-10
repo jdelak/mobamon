@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+
+		<particlesystem name="system0" space="world" scale=".6">
+
+			<template name="blast">
+<!--
+				<simpleemitter
+					position="{zpos}"
+					count="15"
+					spawnrate="1000"			
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					material="/shared/effects/smaterials/snowy_smoke.material"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="20"
+					minspeed="0"				
+					maxspeed="500"				
+				>
+					<particle
+						startsize="100"								
+						minendsize="400"
+						maxendsize="400"
+						startcolor=".5 .5 .5"
+						midcolor=".5 .5 .5"
+						endcolor=".2 .2 .2"
+						startalpha="0"
+						midalpha=".18"
+						endalpha="0"
+						lockup="true"
+						lockright="true"
+						pitch="-90"
+					/>
+				</simpleemitter>
+-->
+				<simpleemitter
+					position="{zpos}"
+					count="35"
+					spawnrate="1000"			
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="90"
+					minspeed="500"				
+					maxspeed="500"				
+				>
+					<particle
+						turn="true"
+						minsize="175"								
+						maxsize="350"								
+						startcolor=".8 .1 0"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						lockup="true"
+						lockright="true"
+						pitch="-90"
+						minwidth="3"
+						maxwidth="6"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					midspawnratepos=".99"
+					minparticlelife="150"
+					maxparticlelife="400"
+					mincount="50"
+					maxcount="65"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor=".8 .15 0"
+						midcolor=".8 .15 0"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						minwidth=".5"
+						maxwidth="1"
+						minheight="2"
+						maxheight="5"
+						turn="1"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				count="100"
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor="1 .3 0"
+						midcolor="1 .6 0"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						turn="1"
+					/>
+				</simpleemitter>
+
+				<billboard
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"
+					minlife="500"
+					maxlife="750"
+					midsizepos=".05"
+					size="450"
+					minyaw="0"
+					maxyaw="360"
+					startcolor="1 .6 0"
+					endcolor="0 0 0"
+					startalpha=".65"
+					endalpha="0"
+					midalphapos=".35"
+					minscale=".25"
+					maxscale=".35"
+					directionalspace="local"
+				/>
+
+			</template>
+
+			<instance name="blast" zpos="0 0 50"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale=".75">
+		
+			<sound
+				volume="0.55"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_cast_3.wav"
+			/>	
+
+			
+			
+			
+			
+			
+			<!--shield stuff-->
+			<model
+				bone="_bone_fx_11"
+				position="0 -45 0"
+				expirelife="250"
+				startcolor=".4 .4 .5"
+				endcolor="0 0 0"
+				scale="2.1"
+				model="pulse_shield/model.mdf"
+				material="pulse_shield/material.material"
+				anim="idle"
+				pitch="90"
+				directionalspace="local"
+				rollspeed="0"
+			/>
+
+			<model
+				bone="_bone_fx_11"
+				position="0 -45 0"
+				expirelife="250"
+				startcolor=".8 .8 1"
+				endcolor="0 0 0"
+				scale="2.1"
+				model="pulse_shield/model.mdf"
+				material="pulse_shield/material.material"
+				anim="idle"
+				pitch="90"
+				directionalspace="local"
+				rollspeed="0"
+			>
+				<template name="">
+
+					<billboard
+						position="{zpos}"
+						expirelife="250"
+						bone="_bone_fx_01"
+						material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+						startcolor="0 .075 .075"
+						endcolor="0 0 0"
+						size="220"
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						rollspeed="360"
+						pitch="90"
+					/>
+				
+				</template>
+				
+				<instance name="" zpos="0 0 -15"/>
+				<instance name="" zpos="0 0 -10"/>
+				<instance name="" zpos="0 0 -5"/>
+				<instance name="" zpos="0 0 0"/>
+				<instance name="" zpos="0 0 5"/>
+				<instance name="" zpos="0 0 10"/>
+				<instance name="" zpos="0 0 15"/>
+
+			</model>
+
+			<model
+				bone="_bone_fx_11"
+				position="0 -35 0"
+				expirelife="250"
+				startcolor="0 .2 .4"
+				endcolor="0 0 0"
+				scale="2.1"
+				model="pulse_shield/model.mdf"
+				material="pulse_shield/shell.material"
+				anim="idle"
+				pitch="90"
+				directionalspace="local"
+				rollspeed="0"
+			/>
+<!--
+			<model
+				position="0 0 0"
+				expirelife="250"
+				startcolor="0 5 10"
+				endcolor="0 0 0"
+				scale="1"
+				model="gun_parts/model.mdf"
+				material="pulse_shield/material.material"
+				parentskeleton="true"
+			/>
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--speedy bullets-->
+			<template name="">
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="6"
+					minparticlelife="1500"
+					maxparticlelife="1500"
+					gravity="0"
+					acceleration="0"
+					timenudge="2000"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .25 .25"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startscale="0"
+						minendscale=".5"
+						maxendscale=".5"
+						width="300"
+						height="300"
+					/>
+				</simpleemitter>
+
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					position="0 0 0"
+					startcolor="0 .15 .25"
+					endcolor="0"
+					size="400"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+				/>
+
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					position="0 0 0"
+					startcolor="0 .35 .5"
+					endcolor="0"
+					size="60"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+				/>
+			</template>
+			
+			<instance name="" zbone="_bone_fx_13"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--radar stuff-->
+			<model
+				position="0 0 0"
+				expirelife="250"
+				startcolor="0 5 10"
+				endcolor="0 0 0"
+				scale="1"
+				model="screen_parts/model.mdf"
+				material="pulse_shield/material.material"
+				parentskeleton="true"
+			>
+			</model>
+
+			<template name="">
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="6"
+					minparticlelife="1500"
+					maxparticlelife="1500"
+					gravity="0"
+					acceleration="0"
+					timenudge="2000"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .25 .35"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startscale="0"
+						minendscale=".5"
+						maxendscale=".5"
+						width="550"
+						height="550"
+					/>
+				</simpleemitter>
+				
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					position="0 0 0"
+					startcolor="0 .3 .6"
+					endcolor="0"
+					size="150"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+				/>
+			</template>
+			
+			<instance name="" zbone="_bone_fx_02"/>
+			
+			
+			
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

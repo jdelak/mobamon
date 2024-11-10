@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="true" deferred="1" useentityeffectscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2.2">
+			
+
+			<simpleemitter
+				count="1"
+				spawnrate="25"
+				offsetsphere="24"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+				
+			>
+				<particle
+					turn="true"
+				>
+					<groundsprite
+					delay="250"
+						position="0 300 0"
+						material="/shared/effects/smaterials/whitedot_ground.material"						
+						startcolor="0 0 0"
+						midcolor="0 .35 .75"
+						endcolor="0 0 0"
+						life="500"
+						startscale="1"
+						endscale="1"	
+						height="350"
+						width="100"
+						directionalspace="local"						
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				count="5"
+				spawnrate="2000"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="-12"
+				maxangle="12"
+				
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+					delay="250"
+						position="0 200 50"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor="0 .25 .5"
+						endcolor="0 0 0"
+						life="500"
+						startscale="1"
+						endscale="1"
+						minheight="400"
+						maxheight="600"
+						width="25"
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 0"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				acceleration="0.0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				offsetsphere="0 0 0"
+				directionalspace="local"
+				
+			>
+				<particle
+					turn="1"
+				>
+					<model
+						position="-10 0 25"
+						life="1000"
+						name="emitter0" 
+						anim="idle"
+						model="spirit/model.mdf"
+						startscale="2.25"
+						endscale="2.75"
+						startcolor="0 0 0"
+						midcolor="0 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startalpha="0"
+						midalpha="0"
+						endalpha="0"
+						midalphapos=".4"
+						minyaw="-5"
+						maxyaw="5"
+					>
+<!--
+						<template name="trails">
+							<twopointtrailemitter
+								life="1000"
+								position="0 0 0"
+								bone_a="{bone01}"
+								bone_b="{bone02}"
+								spawnrate="120"
+								particlelife="1000"
+								subframepose="1"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								material="/shared/effects/smaterials/firesprite_swirl_purple.material"
+								startalphacolor="1"
+								endalphacolor="0"
+							>
+								<particle
+									color="1 0 1"
+									startalpha=".35"
+									midalpha="0"
+									endalpha="0"
+								/>
+							</twopointtrailemitter>
+						</template>
+
+						<instance name="trails" bone01="Bip01 L Forearm"  bone02="Bip01 Head"/>
+						<instance name="trails" bone01="Bip01 R Forearm"  bone02="Bip01 Head"/>
+						<instance name="trails" bone01="Bip01 L UpperArm"  bone02="Bip01 R UpperArm"/>
+						<instance name="trails" bone01="Bip01 Head"  bone02="Bip01 R Hand"/>
+						<instance name="trails" bone01="Bip01 Head"  bone02="Bip01 L Hand"/>
+-->
+					
+						<template name="trails">
+							<twopointtrailemitter
+								life="850"
+								position="0 0 0"
+								bone_a="{bone01}"
+								bone_b="{bone02}"
+								spawnrate="120"
+								particlelife="1000"
+								subframepose="1"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+							>
+								<particle
+									startcolor=".5 0 .5"
+									midcolor="1 0 1"
+									endcolor="0 0 0"
+								/>
+							</twopointtrailemitter>
+						</template>
+
+						<instance name="trails" bone01="Bip01 L Forearm"  bone02="Bip01 L UpperArm"/>
+						<instance name="trails" bone01="Bip01 R Forearm"  bone02="Bip01 R UpperArm"/>
+						<instance name="trails" bone01="Bip01 Head"  bone02="Bip01 R Hand"/>
+						<instance name="trails" bone01="Bip01 Head"  bone02="Bip01 L Hand"/>
+<!--
+						<light
+							position="0 0 0"
+							bone="Bip01 Spine2"
+							life="500"
+							startcolor="3 0 4"
+							endcolor="0 0 0"
+							midcolorpos=".5"
+							falloffstart="0"
+							falloffend="100"
+						/>
+-->
+					</model>
+
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+
+
+
+			<simpleemitter
+				life="500"
+				spawnrate="60"
+				offsetsphere="24"
+				position="0 0 20"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/materials/corona_06.material"						
+						startsize="20"
+						endsize="40"
+						startcolor="0 .035 .07"
+						midcolor="0 .035 .07"
+						endcolor="0 0 0"
+						minlife="250"
+						maxlife="500"
+						minscale="5"
+						maxscale="5"	
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				life="500"
+				spawnrate="60"
+				offsetsphere="24"
+				position="0 0 20"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/materials/corona_06.material"						
+						startsize="20"
+						endsize="40"
+						startcolor=".07 0 .07"
+						midcolor=".07 0 .07"
+						endcolor="0 0 0"
+						minlife="250"
+						maxlife="500"
+						minscale="5"
+						maxscale="5"	
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				life="500"
+				spawnrate="60"
+				offsetsphere="24"
+				position="0 0 20"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/sound_wave_add.material"					
+						startsize="20"
+						endsize="40"
+						startcolor=".2 0 .5"
+						midcolor=".2 0 .5"
+						endcolor="0 0 0"
+						minlife="250"
+						maxlife="500"
+						minscale="5"
+						maxscale="5"	
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				life="300"
+				count="10"
+				startspawnrate="20"
+				endspawnrate="20"
+				offsetsphere="24"
+				position="0 0 20"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<template name="orbs">
+
+						<model
+							minlife="1000"
+							maxlife="1000"
+							bone="_bone_center"
+							model="/heroes/moxie/ability_01/effects/orbit/orbit.mdf"
+							anim="idle"
+							minscale=".4"
+							maxscale="1.4"
+							roll="{zroll}"
+							yaw="{zyaw}"
+							pitch="{zpitch}"
+							position="0 0 25"
+							minyawspeed="360"
+							maxyawspeed="720"
+							minyaw="0"
+							maxyaw="360"
+						>
+						
+<!--
+							<trailemitter
+								bone="_bone_fx"
+								minlife="750"
+								maxlife="750"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 20 0"
+								material="/shared/effects/smaterials/rocket_smoke_blend.material"
+								startparticlealpha="1"
+								endparticlealpha="0"
+							>
+								<particle
+									startcolor="1 0 1"
+									endcolor="1 0 1"
+									startalpha=".15"
+									midalpha=".15"
+									endalpha="0"
+									midalphapos=".8"
+									minstartsize="5"
+									maxstartsize="10"
+									endsize="0"
+								/>
+							</trailemitter>
+-->
+							<trailemitter
+								bone="_bone_fx"
+								minlife="750"
+								maxlife="750"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 20 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+							>
+								<particle
+									startcolor="0 .5 1"
+									endcolor="0 0 0"
+									minstartsize="10"
+									maxstartsize="15"
+									endsize="0"
+								/>
+							</trailemitter>
+
+						</model>
+					
+					</template>
+
+					<instance name="orbs" zroll="0" zyaw="360" zpitch="0" zscale="1.85"/>
+
+				</particle>
+			</simpleemitter>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

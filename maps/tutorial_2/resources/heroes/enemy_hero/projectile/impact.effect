@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true">
+
+	<definitions>
+	
+		<modifier
+			expirelife="250"
+			startcolor=".75"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+			
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="2500"
+				volume=".8"
+				sample="/shared/sounds/impacts/flesh_%.wav"
+			/>
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="2500"
+				volume=".3"
+				sample="../../sounds/impact_%.wav"
+			/>	
+			
+			<light
+				position="0 0 50"
+				life="200"
+				startcolor="0 2 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="200"	
+			/>
+			
+<!--
+			<template name="smoke">
+				<terrainemitter
+					bone="{zbone}"
+					spawnrate="200"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-25"
+					minspeed="200"
+					maxspeed="400"
+					drag="0.025"
+					acceleration="0.0"
+					position="{zpos}"
+					direction="0 0 0"
+					offsetsphere="12 12 0"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					depthbias="0"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor="1 .75 .5"
+						midcolor=".35 .25 .125"
+						endcolor=".35 .25 .125"
+						midcolorpos=".75"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+				</terrainemitter>
+			</template>
+
+			<instance name="smoke" zbone="_bone_leftfoot" zpos="20 0 0"/>
+			<instance name="smoke" zbone="_bone_rightfoot" zpos="-20 0 0"/>
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+
+
+
+			
+
+			
+			
+			
+			
+			
+			
+			
+
+
+			<simpleemitter
+				delay="0"
+				count="25"
+				position="25 100 25"
+				spawnrate="16"
+				particlelife="750"
+				speed="0"
+				offsetsphere="20 0 20"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 50"
+						life="250"
+						material="/shared/effects/smaterials/animated_cloud_swirls.material"
+						startsize="100"
+						minendsize="150"
+						maxendsize="200"
+						startcolor="1 1 0"
+						midcolor="1 0 0"
+						endcolor="0"
+						midcolorpos=".75"
+						directionalspace="local"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						minroll="190"
+						maxroll="250"
+						yaw="180"
+						startframe="0"
+						endframe="1"
+						framespeed="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="0"
+				count="25"
+				position="-25 100 25"
+				spawnrate="13"
+				particlelife="750"
+				speed="0"
+				offsetsphere="20 0 20"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 50"
+						life="250"
+						material="/shared/effects/smaterials/animated_cloud_swirls.material"
+						startsize="100"
+						minendsize="150"
+						maxendsize="200"
+						startcolor="1 1 0"
+						midcolor="1 0 0"
+						endcolor="0"
+						midcolorpos=".75"
+						directionalspace="local"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						minroll="-100"
+						maxroll="-140"
+						startframe="0"
+						endframe="1"
+						framespeed="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+
+
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="250"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 0 .25"
+				scale="4"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+
+			<light
+				position="0 0 50"
+				life="250"
+				startcolor="0 2 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="150"	
+			/>
+
+			<template name="flashes">
+
+				<simpleemitter
+				delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .1 .5"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="50"
+						endscale="125"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .05 .5"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="25"
+						endscale="50"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .05 .5"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="50"
+						endscale="125"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .15 .5"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="25"
+						endscale="50"
+						turn="true"
+					/>
+				</simpleemitter>
+			
+			</template>
+
+			<instance name="flashes" zpos="20 0 0" zdelay="0"/>
+			
+<!--
+			<instance name="flashes" zpos="0 20 0" zdelay="75"/>
+			<instance name="flashes" zpos="-20 0 0" zdelay="150"/>
+			<instance name="flashes" zpos="20 0 0" zdelay="225"/>
+			<instance name="flashes" zpos="0 20 0" zdelay="300"/>
+-->
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/> 
+	</thread>
+
+</effect>

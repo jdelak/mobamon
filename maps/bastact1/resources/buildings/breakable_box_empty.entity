@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_BreakableBox_Empty"
+
+	model="crates/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	isselectable="false"
+	iscontrollable="false"
+	preglobalscale="1.15"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="false"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="0"
+	nothreat="true"
+	hidealtinfo="true"
+	maxhealth="1"
+	canrotate="false"
+	ismobile="false"
+	infoheight="100"
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	drawonmap="false"
+	unittype="breakable"
+	alwaysvisible="true"
+	unitwalking="false"
+	flying="true"
+	flyheight="0"
+	diewithowner="false"
+
+>
+	<onkilled>
+		<playeffect effect="effects/crate_death.effect" source="this_entity" target="this_position" />
+	</onkilled>
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>
+
+	<modifier key="unit_walking" modpriority="100"
+		unitwalking="true"
+		isselectable="true"
+	>
+	</modifier>	
+
+	<modifier key="stacked" modpriority="99"
+		flyheight="150"
+		diewithowner="true"
+	>
+	</modifier>
+	
+</pet>

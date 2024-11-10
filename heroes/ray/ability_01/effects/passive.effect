@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world"  scale="1.0">
+
+			<!--dummie-->
+			<groundsprite			
+				expirelife="250"
+				material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+				size="75"
+				color="1 1 1"						
+				startalpha="0"
+				endalpha="0"
+			/>
+
+			<simpleemitter
+				count="1"
+				position="0 0 0"
+				spawnrate="5000"
+				expirelife="100"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<groundsprite			
+						expirelife="250"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						size="75"
+						color="1 1 1"						
+						startalpha="1"
+						endalpha="0"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+			delay="300"
+				count="1"
+				position="0 0 0"
+				spawnrate="5000"
+				expirelife="100"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<groundsprite			
+						expirelife="250"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						size="27"
+						color="1 1 1"						
+						startalpha=".65"
+						endalpha="0"
+					/>
+				</particle>
+			</simpleemitter>
+			
+		</particlesystem>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="entity"  scale=".15">
+		
+				<light
+					bone="_bone_bombfx"
+					position="0 0 0"
+					expirelife="500"
+					startcolor="5 0 0"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					falloffstart="0"
+					falloffend="250"
+
+				/>
+
+				<groundsprite
+					bone="_bone_bombfx"
+					position="0 0 0"
+					life="500"
+					material="/shared/effects/materials/whitedot_ground.material"
+					startcolor="1 0 0"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					loop="true"
+					size="175"
+
+				/>
+				
+				<billboard
+					bone="_bone_bombfx"
+					position="0 0 0"
+					life="500"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="1 0 0"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					depthbias="-40"
+					lockup="1"
+					pitch="90"
+					size="300"
+					loop="true"
+				/>
+	
+				<billboard
+					bone="_bone_bombfx"
+					position="0 0 0"
+					expirelife="250"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor=".25 0 0"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					depthbias="-40"
+					lockup="1"
+					pitch="90"
+					size="300"
+				/>
+	
+<!--
+				<simpleemitter
+					bone="_bone_bombfx"
+					position="0 0 0"
+					spawnrate=".5"
+					particlelife="10000"
+					offsetsphere="0 0 0"
+				>
+					<particle
+					>
+
+						<template name="waves">	
+
+							<billboard
+								bone="_bone_bombfx"
+								delay="{delay1}"			
+								startsize="30"
+								endsize="{endsize1}"
+								position="0 0 0"
+								life="300"					
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 0 0"
+								endcolor="1 0 0"
+								startalpha="1"				
+								endalpha="0"
+								depthbias="-40"	
+								lockup="1"
+								pitch="90"	
+							/>		
+							
+							<billboard
+								bone="_bone_bombfx"
+								delay="{delay2}"			
+								startsize="30"
+								endsize="{endsize2}"
+								position="0 0 0"
+								life="300"					
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 0 0"
+								endcolor="1 0 0"
+								startalpha="1"				
+								endalpha="0"	
+								depthbias="-40"	
+								lockup="1"
+								pitch="90"
+							/>
+
+							<billboard
+								bone="_bone_bombfx"
+								delay="{delay3}"			
+								startsize="30"
+								endsize="{endsize3}"
+								position="0 0 0"
+								life="300"
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 0 0"
+								endcolor="1 0 0"
+								startalpha="1"				
+								endalpha="0"
+								depthbias="-40"	
+								lockup="1"
+								pitch="90"	
+							/>
+
+						</template>
+						
+						<instance delay1="0" delay2="150" delay3="300" name="waves" endsize1="50" endsize2="100" endsize3="200"/>
+						<instance delay1="1000" delay2="1150" delay3="1300" name="waves" endsize1="50" endsize2="75" endsize3="300"/>
+						<instance delay1="2000" delay2="2150" delay3="2300" name="waves" endsize1="100" endsize2="125" endsize3="400"/>
+						<instance delay1="3000" delay2="3150" delay3="3300" name="waves" endsize1="150" endsize2="175" endsize3="500"/>
+						<instance delay1="4000" delay2="4150" delay3="4300" name="waves" endsize1="200" endsize2="225" endsize3="600"/>
+						<instance delay1="5000" delay2="5150" delay3="5300" name="waves" endsize1="250" endsize2="275" endsize3="700"/>
+						<instance delay1="6000" delay2="6150" delay3="6300" name="waves" endsize1="300" endsize2="325" endsize3="800"/>
+						<instance delay1="7000" delay2="7150" delay3="7300" name="waves" endsize1="350" endsize2="375" endsize3="900"/>
+						<instance delay1="8000" delay2="8150" delay3="8300" name="waves" endsize1="400" endsize2="425" endsize3="1000"/>
+
+					</particle>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+						<template name="waves">	
+
+							<billboard
+								bone="_bone_bombfx"
+								delay="{delay1}"			
+								startsize="30"
+								endsize="{endsize1}"
+								position="0 0 0"
+								life="300"					
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 0 0"
+								endcolor="1 0 0"
+								startalpha="1"				
+								endalpha="0"
+								depthbias="-40"	
+								lockup="1"
+								pitch="90"	
+							/>		
+							
+							<billboard
+								bone="_bone_bombfx"
+								delay="{delay2}"			
+								startsize="30"
+								endsize="{endsize2}"
+								position="0 0 0"
+								life="300"					
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 0 0"
+								endcolor="1 0 0"
+								startalpha="1"				
+								endalpha="0"	
+								depthbias="-40"	
+								lockup="1"
+								pitch="90"
+							/>
+
+							<billboard
+								bone="_bone_bombfx"
+								delay="{delay3}"			
+								startsize="30"
+								endsize="{endsize3}"
+								position="0 0 0"
+								life="300"
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 0 0"
+								endcolor="1 0 0"
+								startalpha="1"				
+								endalpha="0"
+								depthbias="-40"	
+								lockup="1"
+								pitch="90"	
+							/>
+
+						</template>
+						
+						<instance delay1="0" delay2="150" delay3="300" name="waves" endsize1="50" endsize2="100" endsize3="200"/>
+						<instance delay1="1000" delay2="1150" delay3="1300" name="waves" endsize1="50" endsize2="75" endsize3="300"/>
+						<instance delay1="2000" delay2="2150" delay3="2300" name="waves" endsize1="100" endsize2="125" endsize3="400"/>
+						<instance delay1="3000" delay2="3150" delay3="3300" name="waves" endsize1="150" endsize2="175" endsize3="500"/>
+						<instance delay1="4000" delay2="4150" delay3="4300" name="waves" endsize1="200" endsize2="225" endsize3="600"/>
+						<instance delay1="5000" delay2="5150" delay3="5300" name="waves" endsize1="250" endsize2="275" endsize3="700"/>
+						<instance delay1="6000" delay2="6150" delay3="6300" name="waves" endsize1="300" endsize2="325" endsize3="800"/>
+						<instance delay1="7000" delay2="7150" delay3="7300" name="waves" endsize1="350" endsize2="375" endsize3="900"/>
+						<instance delay1="8000" delay2="8150" delay3="8300" name="waves" endsize1="400" endsize2="425" endsize3="1000"/>
+-->
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+	
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

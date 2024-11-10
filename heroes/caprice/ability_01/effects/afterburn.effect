@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".27">
+				
+			<sound
+				delay="0"
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2000"
+				volume="0.45" 
+				sample="../sounds/sfx_trail.wav"
+			/>
+
+			<simpleemitter
+				particlelife="2000"
+				spawnrate="40"
+				offsetsphere="35 35 0"
+				position="0 0 0"
+				depthbias="0"
+			>
+				<particle
+				>
+
+
+					<terrainemitter
+						life="500"
+						delay="0"
+						spawnrate="100"
+						particlelife="500"
+						range="50"
+						count="1"
+					>
+						<particle>
+
+							<simpleemitter
+								life="500"
+								spawnrate="3300"
+								count="10"
+								minparticlelife="250"
+								maxparticlelife="1250"
+								gravity="25"
+								minspeed="300"
+								maxspeed="1500"
+								drag=".01"
+								material="/shared/effects/materials/spark_10.material"
+								offsetsphere="25"
+								minangle="0"
+								maxangle="35"
+								direction="0 0 1"
+							>
+								<particle
+									minangle="0"
+									maxangle="360"
+									startcolor="1 .5 0"
+									midcolor="1 .5 0"
+									endcolor="0 0 0"									
+									midcolorpos=".75"
+									
+									startsize="5"									
+									midsize="10"									
+									endsize="2"
+									
+									
+									startalpha="0"
+									midalpha=".7"
+									endalpha="0"
+									midalphapos=".5"
+								/>
+							</simpleemitter>
+						</particle>
+					</terrainemitter>
+
+				</particle>
+			</simpleemitter>
+
+				
+<!--			<simpleemitter
+				spawnrate="100"
+				minparticlelife="250"
+				maxparticlelife="1000"
+				position="0 0 0"
+				offsetsphere="25 25 25"
+				material="/shared/effects/materials/soul_projectile2.material"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="0 0 0"
+					midcolor=".15 .1 .05"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					minstartsize="400"
+					maxstartsize="400"
+					endsize="0"
+				/>
+			</simpleemitter>
+			
+	
+-->
+		</particlesystem>
+	</definitions>
+	
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>

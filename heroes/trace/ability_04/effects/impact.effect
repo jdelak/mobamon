@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.65">
+
+			<model
+				life="300"
+				position="0 0 -15"
+				model="cyclones/model.mdf"
+				anim="idle"
+				startscale=".5"
+				midscale=".75"
+				endscale=".5"
+			>
+
+				<template name="wind">
+
+					<billboard	
+						life="300"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center_add.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						startcolor="0 .1 .2"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".75"
+						endalpha="0"
+					/>
+
+					<billboard	
+						life="300"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center_add.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						startcolor="0 .1 .2"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".4"
+						endalpha="0"
+					/>
+
+					<billboard	
+						life="300"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center_add.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						startcolor="0 .1 .2"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".4"
+						endalpha="0"
+					/>
+
+				</template>	
+
+				<instance name="wind" pos1="4" size2="130" speed="500" orbit="-11" origin="12" bone=""/>
+				<instance name="wind" pos1="8" size2="160" speed="500" orbit="-10" origin="25" bone="_bone_cyclone02"/>
+				<instance name="wind" pos1="12" size2="190" speed="500" orbit="-9" origin="35" bone="_bone_cyclone03"/>
+				<instance name="wind" pos1="15" size2="220" speed="500" orbit="-6" origin="50" bone="_bone_cyclone04"/>
+				<instance name="wind" pos1="20" size2="250" speed="500" orbit="-5" origin="60" bone="_bone_cyclone05"/>
+				<instance name="wind" pos1="25"  size2="280" speed="500" orbit="-3" origin="70" bone="_bone_cyclone06"/>
+
+			</model>
+
+			<billboard	
+				bone="_bone_centerofchest"			
+				life="300"
+				material="/shared/effects/materials/whitedot.material"
+				position="0 0 10"
+				depthbias="-100"
+				startcolor="0 .1 .25"
+				endcolor="0 0 0"
+				size="250"
+				startalpha="1"
+				endalpha="0"				
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

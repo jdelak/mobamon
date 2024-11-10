@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				life="3300"
+				falloffstart="500"
+				falloffend="3000"
+				volume="0.85"
+				sample="../../sounds/sfx_destroy.wav"
+			/>
+			
+			<model
+				life="5000"
+				model="../destroyed/model.mdf"
+				anim="death_1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".75"
+				color="1 1 1"
+				material="../destroyed/material.material"
+				position="0 0 0"
+			>
+
+				<template name="sparks">
+
+					<simpleemitter
+						life="750"
+						bone="{zbone}"
+						spawnrate="250"
+						minparticlelife="750"
+						maxparticlelife="1500"			
+						gravity="0.5"
+						drag="0.03"
+						direction="0 0 1"
+						minangle="0"
+						maxangle="15"
+						minspeed="2"
+						maxspeed="25"
+						offsetsphere="25 25 25"						
+						material="/shared/effects/materials/flare1.material"				
+					>
+						<particle
+							turn="1"
+							minanglespeed="-50"
+							maxanglespeed="250"
+							startcolor="0 .5 1"
+							endcolor="0 0 0"
+							size="0.35"
+							minscale="10"
+							maxscale="15"
+							startheightdistort=".004"
+							midheightdistortpos=".1"
+							endheightdistort="0"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						life="750"
+						bone="{zbone}"
+						spawnrate="250"
+						minparticlelife="750"
+						maxparticlelife="1250"			
+						gravity="0.3"
+						drag="0.02"
+						direction="0 0 1"
+						minangle="-5"
+						maxangle="5"
+						minspeed="6"
+						maxspeed="21"
+						depthbias="-120"
+						offsetsphere="25 25 25"
+						material="/shared/effects/materials/whitewater_02.material"				
+					>
+						<particle
+							minagle="-360" 
+							maxangle="360"
+							minanglespeed="-50"
+							maxanglespeed="20"
+							startcolor="0 0 0"
+							midcolor="0 .075 .15"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							minsize="20"						
+							maxsize="50"						
+						/>
+					</simpleemitter>
+
+					<billboard
+						bone="{zbone}"
+						life="750"
+						startcolor="0 .2 .4"
+						midcolorpos=".8"
+						endcolor="0"
+						startsize="50"
+						endsize="50"
+						depthbias="-80"
+						position="{position}"
+						material="/shared/effects/materials/whitedot.material"
+					/>
+
+			
+				</template>
+				
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar12"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar10"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar15"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar18"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar01"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar02"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar03"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar04"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar05"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar06"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar08"/>
+				<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_LeftPillar19"/>
+
+			</model>
+			
+			<model
+				life="-1"
+				model="../destroyed/stairs/model.mdf"
+				anim="death_1"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".9"
+				color="1 1 1"
+				material="../destroyed/stairs/material_b.material"
+				position="0 0 0"
+			>
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<template name="light_dark">
+
+				<light
+					delay="{zdelay}"
+					bone="{zbone}"
+					position="{zpos}"
+					life="1650"
+					startcolor="0 5 10"
+					midcolor="0 5 10"
+					endcolor="0"
+					falloffstart="0"
+					falloffend="300"
+				/>
+
+				<simpleemitter
+					count="1"
+					bone="{zbone}"
+					spawnrate="1000"
+					particlelife="5000"
+					offsetphere="50 50 0"
+				>			
+					<particle
+					>
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							count="100"
+							spawnrate="2000"
+							minparticlelife="300"
+							maxparticlelife="750"
+							drag=".01"
+							offsetphere="140 140 20"
+							gravity="-3"
+							minspeed="2000"
+							maxspeed="10000"								
+							direction="0 0 1"
+							depthbias="-30"
+							minangle="0"
+							maxangle="25"
+							material="/shared/effects/smaterials/whitedot.material"
+						>			
+							<particle
+								startcolor=".5 .75 1"
+								midcolor="0 .5 1"
+								endcolor="0"
+								midcolorpos=".15"
+								startsize="3"
+								endsize="0"
+								minscale="2"
+								maxscale="10"
+								endstickiness=".4"
+								startheightdistort=".01"
+								endheightdistort="0"
+								turn="1"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							life="400"				
+							spawnrate="2000"
+							count="4"
+							minparticlelife="200"			
+							maxparticlelife="350"				
+							material="/shared/effects/smaterials/toon_explosion.material"			
+							depthbias="-50"
+							offsetsphere="5"
+						>
+							<particle 
+								startcolor="0 .125 .25"
+								endcolor="0 0 0"
+								startsize="0"
+								endsize="1000"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+							/>
+						</simpleemitter>
+
+						<billboard
+						delay="{zdelay}"
+							bone="{zbone}"
+							life="500"			
+							startcolor="0 .125 .5"
+							endcolor="0"
+							startalpha="1"
+							endalpha="0"
+							size="550"
+							depthbias="-100"
+							material="/shared/effects/smaterials/scorch_ground.material"
+						/>
+
+						<billboard
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							life="850"			
+							startcolor="0 .5 1"
+							endcolor="0"
+							size="500"
+							depthbias="-100"
+							material="/shared/effects/smaterials/whitedot.material"
+						/>
+
+						<billboard
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							life="850"			
+							startcolor=".2"
+							endcolor="0"
+							size="250"
+							depthbias="-100"
+							material="/shared/effects/smaterials/whitedot.material"
+						/>
+
+						<simpleemitter	
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							spawnrate="11500"
+							life="1200"				
+							count="20"			
+							minparticlelife="500"			
+							maxparticlelife="1000"	
+							depthbias="10"			
+							material="/shared/effects/smaterials/cartoon_dust.material"			
+							offsetsphere="75 75 50"
+							minspeed="0"
+							maxspeed="350"
+							minangle="0"
+							maxangle="12"
+							direction="0 0 1"
+							gravity="12"
+							drag=".005"
+						>
+							<particle 
+								minangle="-25"
+								maxangle="25"
+								minanglespeed="-100"
+								maxanglespeed="100"
+								startcolor=".2 .6 1"
+								midcolor=".2 .6 1"
+								endcolor=".45 .45 .6"
+								startsize="60"
+								endsize="125"
+								startalpha="0"
+								midalpha=".65"
+								endalpha="0"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							count="5"
+							spawnrate="1055"
+							particlelife="200"
+							gravity="0"
+							minspeed="22.0"
+							maxspeed="22"
+							acceleration="0.0"
+							timenudge="0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+							depthbias="-20"
+						>
+							<particle
+								color="0 .125 .5"
+								startalpha=".5"
+								midalpha=".5"
+								endalpha="0"
+								startscale="100"
+								endscale="250"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							count="5"
+							spawnrate="1055"
+							particlelife="200"
+							gravity="0"
+							minspeed="22.0"
+							maxspeed="22"
+							acceleration="0.0"
+							timenudge="0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+							depthbias="-20"
+						>
+							<particle
+								color="0 .25 .5"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								startscale="50"
+								endscale="100"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							count="5"
+							spawnrate="1055"
+							particlelife="200"
+							gravity="0"
+							minspeed="22.0"
+							maxspeed="22"
+							acceleration="0.0"
+							timenudge="0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+							depthbias="-20"
+						>
+							<particle
+								color="0 .125 .5"
+								startalpha=".5"
+								midalpha=".5"
+								endalpha="0"
+								startscale="100"
+								endscale="250"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							count="5"
+							spawnrate="1055"
+							particlelife="200"
+							gravity="0"
+							minspeed="22.0"
+							maxspeed="22"
+							acceleration="0.0"
+							timenudge="0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+							depthbias="-20"
+						>
+							<particle
+								color="0 .25 .5"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								startscale="50"
+								endscale="100"
+								turn="true"
+							/>
+						</simpleemitter>
+
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					count="25"
+					position="0 0 0"
+					spawnrate="1000"
+					particlelife="1500"
+					offsetsphere="30 30 0"
+				>
+					<particle>
+
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							life="1000"
+							spawnrate="3300"
+							count="50"
+							minparticlelife="500"
+							maxparticlelife="1000"			
+							gravity="25"
+							minspeed="1000"
+							maxspeed="2000"
+							drag=".01"
+							material="/shared/effects/materials/whitedot.material"
+							offsetsphere="25 25 25"
+							minangle="0"
+							maxangle="30"
+							direction="0 0 1"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								startcolor="1 1 1"
+								midcolor="0 .5 1"
+								endcolor="0 0 0"
+								midcolorpos=".75"
+								minstartsize="2"
+								maxstartsize="12"
+								endsize="6"
+							/>
+						</simpleemitter>
+						
+						
+						<simpleemitter
+						delay="{zdelay}"
+							position="{zpos}"
+							bone="{zbone}"
+							life="1000"
+							spawnrate="3300"
+							count="5"
+							minparticlelife="500"
+							maxparticlelife="1000"			
+							gravity="25"
+							minspeed="2250"
+							maxspeed="4000"
+							drag=".01"
+							material="/shared/effects/materials/whitedot.material"
+							offsetsphere="25 25 25"
+							minangle="0"
+							maxangle="30"
+							direction="0 0 1"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								startcolor="0 .05 .075"
+								midcolor="0 .03 .06"
+								endcolor="0 0 0"
+								minstartscale="75"
+								maxstartscale="150"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+
+
+			</template>
+
+			<instance name="light_dark" zbone="_bone_fx_02" zdelay="200" zpos="50 0 0" zyawspeed="-90" zpitchspeed="-90" zrollspeed="120" />
+			<instance name="light_dark" zbone="_bone_fx_02" zdelay="0" zpos="0 0 -100" zyawspeed="-90" zpitchspeed="-90" zrollspeed="120" />
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

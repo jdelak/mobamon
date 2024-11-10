@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.65"
+				sample="../sounds/sfx_cast.wav"
+			/>	
+			
+			<billboard
+				delay="200"
+				bone="_bone_raygun3"
+				life="400"
+				startscale="8"
+				endscale="2"
+				color="1 .7 .6"
+				material="/shared/effects/smaterials/streak_flare_orange.material"
+			/>
+			
+			
+			<simpleemitter				
+				count="1"
+				spawnrate="280"
+				
+				delay="300"
+				speed="0"
+				position="0 110 100"
+						
+				minangle="1"
+				maxangle="2"
+				direction="0 1 0"
+				
+				offsetsphere="0 0 0"
+				directionalspace="local"
+			>
+				<particle					
+				> 
+					<simpleemitter
+						spawnrate="44"
+						count="180"
+						life="100"
+						particlelife="550"
+						gravity="0"
+						speed="0"
+						acceleration="0"
+						position="0 0 0"
+						material="/shared/effects/smaterials/streak_flare_orange.material"				
+						minangle="0"
+						maxangle="30"
+						direction="0 0 1"
+						offsetdirection="0 0 0"
+						offsetsphere="50"
+						inheritvelocity="0.05"
+						
+					>
+						<particle 
+							minangle="0"
+							maxangle="0"
+							minanglespeed="0"
+							maxanglespeed="0"
+							startcolor="1 1 1"
+							midcolor="1 .8 .7"
+							endcolor="1 1 1"
+							startframe="0"
+							endframe="1"
+							startsize="163"
+							endsize="0"
+							startalpha="1"
+							endalpha="0"
+							turn="true"
+						/>
+					</simpleemitter>
+				
+				
+				
+				</particle>
+				
+				
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+	<thread>
+		 
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	<!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

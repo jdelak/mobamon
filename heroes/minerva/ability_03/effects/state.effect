@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1.2">
+		
+			<model
+				position="0 0 25"
+				bone="_bone_center"
+				expirelife="250"
+				model="shield_sphere/model.mdf"
+				anim="idle"
+				startcolor="0 .075 .15"
+				endcolor="0 0 0"
+				startscale="1.5"
+				endscale="0"
+				yawspeed="10"
+				pitchspeed="10"
+				rollspeed="-10"
+			/>
+
+			<template name="speed">
+				<simpleemitter
+					bone="_bone_center"
+					particlelife="2000"
+					spawnrate="12"
+					offsetsphere="0 0 0"
+					position="{zpos}"
+					minangle="0"
+					maxangle="0"
+					direction="0 1 0"
+					minspeed="0"
+					maxspeed="200"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitesquare.material"
+							minlife="250"
+							maxlife="500"
+							size="15"
+							startcolor="0 .1 .2"
+							midcolor="0 .1 .2"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							minstartscale="1.5"
+							maxstartscale="3"
+							endscale="0"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+						/>
+					</particle>
+				</simpleemitter>
+			</template>	
+			
+			<instance name="speed" zpos="0 15 0"/>
+			<instance name="speed" zpos="24 -30 0"/>
+			<instance name="speed" zpos="-24 -15 0"/>
+
+			<simpleemitter
+				bone="_bone_center"
+				particlelife="2000"
+				spawnrate="15"
+				offsetsphere="45 45 0"
+				position="0 0 50"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				minspeed="150"
+				maxspeed="300"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitesquare.material"
+						minlife="150"
+						maxlife="300"
+						size="15"
+						startcolor="0 .1 .2"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="1.5"
+						maxstartscale="3"
+						endscale="0"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				bone="_bone_center"
+				particlelife="2000"
+				spawnrate="15"
+				offsetsphere="45 45 0"
+				position="0 0 50"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				minspeed="150"
+				maxspeed="300"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/refract_square.material"
+						minlife="150"
+						maxlife="300"
+						size="15"
+						color="1 1 1"
+						param="5"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".8"
+						minstartscale="3"
+						maxstartscale="6"
+						midscale="1.5"
+						endscale="0"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_center"
+				particlelife="2000"
+				spawnrate="20"
+				offsetsphere="45 45 0"
+				position="0 0 50"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				minspeed="0"
+				maxspeed="0"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitesquare.material"
+						minlife="400"
+						maxlife="850"
+						size="15"
+						startcolor="0 .1 .2"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="1.5"
+						maxstartscale="3"
+						endscale="0"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1.2">
+
+			<template name="speed">
+				<simpleemitter
+					bone="_bone_center"
+					particlelife="2000"
+					spawnrate="4"
+					offsetsphere="15 15 0"
+					position="{zpos}"
+					minangle="0"
+					maxangle="0"
+					direction="0 1 0"
+					minspeed="0"
+					maxspeed="200"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							position="0 0 0"
+							material="/shared/effects/smaterials/refract_squares.material"
+							minlife="200"
+							maxlife="300"
+							size="15"
+							color="1 1 1"
+							param=".5"
+							startalpha="0"
+							midalpha=".5"
+							endalpha="0"
+							startalphapos=".5"
+							minstartscale="8"
+							maxstartscale="12"
+							midscale="6"
+							endscale="0"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+						/>
+					</particle>
+				</simpleemitter>
+			</template>	
+			
+			<instance name="speed" zpos="0 15 0"/>
+			<instance name="speed" zpos="24 -30 0"/>
+			<instance name="speed" zpos="-24 -15 0"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

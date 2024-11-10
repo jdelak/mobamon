@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				volume="0.2"
+				soundloop="true"
+				falloffstart="500"
+				falloffend="2200"
+				fadeout="1000"
+				sample="../sounds/sfx_groundspark_loop.wav"
+			/>
+<!--
+			<light
+				expirelife="250"
+				startcolor="3 6 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="70"
+				position="0 0 50"
+			/>
+-->
+			<model
+				expirelife="0"
+				color="1 1 1"
+				model="bomb/model.mdf"
+				startalpha="1"
+				endalpha="0"
+				yaw="90"
+				rollspeed="720"
+				
+				
+				
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="1000"
+				position="0 0 25"
+			>
+				<particle
+				> 
+					<light
+						life="1000"
+						startcolor="5 10 0"
+						midcolor="5 10 0"
+						endcolor="0"
+						falloffstart="00"
+						falloffend="50"
+						position="0 0 0"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			<simpleemitter
+				spawnrate="200"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0"
+				direction="0 0 0"
+				speed="100"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="300"
+						maxlife="600"
+						startcolor=".5 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".25"
+						maxstartscale=".65"
+						endscale=".1"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+
+			<simpleemitter
+			count="10"
+				spawnrate="1000"
+				particlelife="1000"
+				position="0 0 -20"
+				offsetsphere="10 10 65"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="250"
+						maxlife="1000"
+						startcolor=".75 1 .5"
+						midcolor=".75 1 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".2"
+						maxscale=".4"
+					/>
+					
+					<billboard
+						minlife="250"
+						maxlife="1000"
+						startcolor=".05 .125 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".5"
+						maxscale="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			<simpleemitter
+				spawnrate="100"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="12 12 0"
+			>
+				<particle
+				> 
+					<billboard
+						minlife="250"
+						maxlife="750"
+						startcolor="0 0 0"
+						midcolor=".25 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".1"
+						maxscale=".3"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				directionalspace="local"
+				pitch="90"
+				startcolor=".5 .5 0"
+				endcolor="0 0 0"
+				size="65"
+				depthbias="-100"
+			/>
+
+			
+			
+			
+			
+			
+			
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

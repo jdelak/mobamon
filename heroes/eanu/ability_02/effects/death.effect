@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.2">
+<!--
+			 <sound
+				linearfalloff="true"
+				falloffstart="400"
+				falloffend="1800"
+				volume=".96"
+				sample="../sounds/cast.wav"
+			/>
+
+			<light
+				expirelife="1000"
+				startcolor=".5 2 0"
+				midcolor=".5 2 0"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				falloffend="300"
+				position="0 0 100"
+			/>
+-->
+
+<!--
+			<billboard
+				life="300"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor="0 .5 1"
+				endcolor="0 0 0"
+				scale="7"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-90"
+			/>
+-->
+			<simpleemitter
+				count="1"
+				spawnrate="20"
+				particlelife="1000"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+			>
+				<particle
+				>
+				
+					<template name="">
+					
+						<billboard
+							life="300"
+							startcolor=".5 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							endscale="{zendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="180"
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="4.2" zendscale="6.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="4.2" zendscale="6.2" zcolor="0 .5 1"/>
+
+
+					<template name="">
+					
+						<billboard
+						position="-100 0 0"
+							life="300"
+							startcolor=".5 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							endscale="{zendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="110"
+
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="3.2" zendscale="5.2" zcolor="0 .5 1"/>
+
+
+					
+					<template name="">
+					
+						<billboard
+						position="-50 -50 0"
+							life="200"
+							startcolor=".5 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							endscale="{zendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="45"
+
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="1.2" zendscale="3.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

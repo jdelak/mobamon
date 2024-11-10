@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			life="10000"
+			color="1 1 1"
+			startalpha="1"
+			midalpha="1"
+			endalpha="1"
+			model="model/model.mdf"
+		/>
+
+		<particlesystem name="system0" space="entity" scale="1">
+		
+		
+		
+
+			<groundsprite
+			delay="800"
+			position="-225 -140 0"
+				life="4000"							
+				material="/shared/effects/smaterials/scorch_ground.material"
+				color="0 0 0"				
+				size="160"				
+				startalpha=".75"
+				midalpha=".75"
+				endalpha="0"
+				midalphapos=".8"
+			/>
+
+			<groundsprite
+			delay="800"
+			position="-225 -140 0"
+				life="4000"
+				material="/shared/effects/materials/ground_crater.material"
+				size="50"
+				startalpha=".5"
+				midalpha=".5"
+				endalpha="0"
+				maxyaw="360"
+			/>
+		
+		
+		
+		
+		
+		
+		
+		
+<!--
+			<model
+				parentskeleton="true"
+				position="0 0 0"
+				life="5000"
+				color="1 1 1"
+				model="model/model.mdf"
+				anim="death_1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+			/>
+-->
+
+		</particlesystem>
+		
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

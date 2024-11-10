@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1">	
+
+	
+			
+			<simpleemitter
+				life="3500"
+				particlelife="1000"
+				count="300"
+				spawnrate="20"
+				position="0 200 100"
+				offsetsphere="200 0 600"
+			>
+				<particle
+					pitch="0"
+				>
+			
+					<!-- <simpleemitter
+						life="1000"
+						count="50"
+						spawnrate="11340"
+						minparticlelife="250"
+						maxparticlelife="500"
+						gravity="12.0"
+						minspeed="750"
+						maxspeed="1500"
+						drag="0.005"
+						acceleration="0.0"
+						offsetsphere="25"
+						material="/shared/effects/smaterials/whitedot.material"
+						particledirectionalspace="local"
+						minangle="0"
+						maxangle="90"
+					>
+						<particle
+							startheightdistort="0.25"
+							endheightdistort="0"
+							startsize="8"
+							endsize="4"
+							color=".2"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							turn="1"
+						>
+						</particle>
+					</simpleemitter> -->
+
+					<billboard
+						delay="0"
+						life="600"
+						position="0 0 100"		
+						startcolor=".05"
+						endcolor=".05"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						startsize="0"
+						endsize="500"
+						depthbias="10"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						material="/shared/effects/smaterials/circle_centeralpha_add.material"
+					/>
+									
+					<simpleemitter
+						
+						life="800"
+						count="100"
+						spawnrate="500"
+						minparticlelife="500"
+						maxparticlelife="1000"
+						gravity="0.0"
+						minspeed="1200"
+						maxspeed="2400"
+						drag="0.02"
+						acceleration="0.0"
+						position="0"
+						minangle="0"
+						maxangle="60"
+						direction="0 0 1"
+						offsetsphere="8 8 8"
+						material="/shared/effects/smaterials/cartoon_dust_orange_splosion.material"	
+						particledirectionalspace="local"
+						depthbias="100"
+					>
+						<particle
+							minangle="-180"
+							maxangle="180"
+							minanglespeed="-150"
+							maxanglespeed="150"
+							color="1 .5 0"
+							startsize="100"
+							endsize="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						
+						life="800"
+						count="100"
+						spawnrate="500"
+						minparticlelife="500"
+						maxparticlelife="1000"
+						gravity="0.0"
+						minspeed="1200"
+						maxspeed="2400"
+						drag="0.02"
+						acceleration="0.0"
+						position="0"
+						minangle="0"
+						maxangle="60"
+						direction="0 0 1"
+						offsetsphere="8 8 8"
+						material="/shared/effects/smaterials/cartoon_dust_orange_splosion_add.material"	
+						particledirectionalspace="local"
+						depthbias="100"
+					>
+						<particle
+							minangle="-180"
+							maxangle="180"
+							minanglespeed="-150"
+							maxanglespeed="150"
+							color="1"
+							startsize="100"
+							endsize="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+						/>
+					</simpleemitter>
+					
+					<debris
+						color="1 1.3 1.3"
+						position="0 0 0"
+						minscale="0.4"
+						maxscale=".6"
+						minlife="2000"
+						maxlife="3500"
+						model="/npcs/cindara/effects/rocks/model.mdf"
+						material="/npcs/cindara/effects/rocks/material.material"
+						minspeed="1000"
+						maxspeed="1000"
+						minrotationspeed="100.0"
+						maxrotationspeed="300.0"
+						gravity="70.0"
+						minangle="0"
+						maxangle="90"
+						direction="0 0 1"
+						collide="true"
+						startalpha="1.0"
+						midalpha="1.0"
+						endalpha="0"
+						midalphapos="0.5"
+						bounce="1"
+						animpose="true"
+					/>
+
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+
+		<!-- <modifier
+			name="modifier0"
+			life="10000"
+			startcolor="1"
+			midcolor="0"
+			endcolor="1"
+		/> -->
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+
+	</thread>
+</effect>

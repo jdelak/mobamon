@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_DemonEdge_Empower_1"
+	legendaryoverride="true"
+
+	cost="1100"
+
+
+
+>
+	<!-- Tooltip only -->
+	<constant name="damage_power_enchant" value="4" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+
+	<onframe>
+		<compare a="source_power" b="200" op="ge" >
+			<setactivemodifierkey entity="this_entity" name="demonedge_legendary" />
+		</compare>
+		<else>
+			<setactivemodifierkey entity="this_entity" name="" />
+		</else>
+	</onframe>
+
+
+</crafteditem>

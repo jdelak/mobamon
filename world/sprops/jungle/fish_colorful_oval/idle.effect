@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+		
+			<model
+			position="0 0 0"
+				expirelife="250"
+				model="more_fish/model.mdf"
+				anim="idle"
+				material="more_fish/material.material"
+				startcolor="2 1 0"
+				endcolor="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				scale=".8"
+				yaw="20"
+			/>
+			
+			
+			<model
+			position="0 0 -5"
+				expirelife="250"
+				model="more_fish/model.mdf"
+				anim="idle_flipped"
+				material="more_fish/material.material"
+				startcolor="1 .25 1.5"
+				endcolor="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				scale=".7"
+			/>
+<!--
+			<billboard
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				size="1000"
+
+			/>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

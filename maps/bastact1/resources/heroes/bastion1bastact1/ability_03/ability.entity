@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Originally Bastion's E, should now be his R -->
+<ability
+	name="Ability_Bastion1Bastact1_3"
+
+	icon="icon.tga"
+	
+	anim=""
+	casttime="0"
+	castactiontime="0"
+
+	maxlevel="3"
+	requiredlevel="4,5,6,7"
+
+	actiontype="target_entity"
+	targetradius="70"
+	casteffecttype="Magic"
+	targetscheme="enemy_units"
+	casteffect="effects/cast.effect"
+	
+	manacost="0"
+	cooldowntime="15000"
+	queue="front"
+	inheritmovement="true"
+	noturntotarget="false"
+
+	range="750"
+	forcerange="750"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	hoverareacastrange="750"
+  
+	alwaysshowtimer="true"
+	
+	doubleactivate="false"
+	doubleactivatenoninterrupting="true"
+	
+>
+
+<constant name="damage" value="65,65,65" adjustment="ability" noshowintooltip="true"/>
+
+<onimpact>
+	<cantarget targetscheme="switches">
+		<!-- Start a timer that applies the state after it is done -->
+		<spawnprojectile name="Projectile_Bastion1Bastact1_Ability3_Stun" source="source_entity" target="target_entity" offset="0 0 120" />
+		<applystate name="State_Bastact1_Barrel" target="target_entity" duration="5000" />
+	</cantarget>
+	<else>
+		<!-- <cantarget targetscheme="ally_units">
+			<applystate name="State_Birdnest_Invis" target="target_entity" proxy="target_entity" duration="10000" />
+		</cantarget> -->
+		<cantarget targetscheme="enemy_units">
+			<spawnprojectile name="Projectile_Bastion1Bastact1_Ability3_Stun" source="source_entity" target="target_entity" offset="0 0 120" />
+			<applystate name="State_Bastion1Bastact1_Ability3_Delay" target="target_entity" duration="500" proxy="target_entity" />
+		</cantarget>
+	</else>
+</onimpact>
+	
+	<modifier key="with_nohitch" modpriority="100"
+		disabled="true"
+	>
+	</modifier>
+
+	<modifier key="with_nohitch_withsword" modpriority="98"
+		disabled="true"
+	>
+	</modifier>
+
+	
+
+</ability>

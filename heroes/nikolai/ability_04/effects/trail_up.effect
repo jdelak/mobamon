@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55"
+				sample="../sounds/sfx_leap.wav"
+			/>
+
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="400"
+				direction="0 0 1"
+				minspeed="3000"
+				maxspeed="3000"
+				minangle="0"
+				maxangle="0" 
+				position="0 0 0"
+			>
+				<particle>
+					<model
+						life="450"
+						model="../../model.mdf"
+						anim="ability_4_swing_loopback"
+						material="../../material.material"
+						startscale="1"
+						midscale="2"
+						endscale="2"
+						color="1 1 1"
+						alpha="1"
+						position="0 0 0"
+						minyawspeed="0"
+						maxyawspeed="0"
+						minrollspeed="0"
+						maxrollspeed="0"
+						minpitchspeed="0"
+						maxpitchspeed="0"
+					>
+					</model>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<sound
+				life="3000"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume=".65"
+				sample="../../ability_01/sounds/sfx_trail_%.wav"
+			/>
+
+			<trailemitter
+				life="1"
+				spawnrate="150"
+				startminparticlelife="500"
+				startmaxparticlelife="500"
+				endminparticlelife="1"
+				endmaxparticlelife="1" 
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1 1 1"
+				midparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle
+					startcolor="1 .35 0"
+					endcolor=".0 0 0"
+					startsize="22"
+					endsize="22"
+					midcolorpos=".1"
+					midsizepos=".1"
+				/>
+			</trailemitter>
+
+			<template name="beam">
+				<trailemitter
+					life="1000"
+					spawnrate="150"
+					startminparticlelife="500"
+					startmaxparticlelife="500"
+					offsetsphere="15 15 15"
+					endminparticlelife="1"
+					endmaxparticlelife="1" 
+					texpostime="1000"
+					texposscale="0"
+					texstretchscale="1"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					midparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="1 .35 0"
+						endcolor=".0 0 0"
+						startsize="7"
+						endsize="7"
+						midcolorpos=".1"
+						midsizepos=".1"
+					/>
+				</trailemitter>
+				
+				<trailemitter
+					life="1000"
+					spawnrate="150"
+					startminparticlelife="500"
+					startmaxparticlelife="500"
+					offsetsphere="25 25 25"
+					endminparticlelife="1"
+					endmaxparticlelife="1" 
+					texpostime="1000"
+					texposscale="0"
+					texstretchscale="1"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					midparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="1 .35 0"
+						endcolor=".0 0 0"
+						startsize="1"
+						endsize="12"
+						midcolorpos=".1"
+						midsizepos=".1"
+					/>
+				</trailemitter>
+			</template>
+			
+			<instance name="beam" bone="_bone_main"/>
+			<instance name="beam" bone="_bone_2"/>
+
+			<billboard
+				size="150"
+				life="300"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+
+
+
+			<billboard
+				expirelife="100"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".75 .35  0"
+				endcolor="0 0 0"
+				scale="2"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+			
+			<billboard
+				expirelife="100"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				scale="1"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+			
+			<billboard
+				expirelife="100"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				scale="1"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+			
+			<billboard
+				expirelife="100"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 .15 0"
+				endcolor="0 0 0"
+				scale="6"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				depthbias="-50"
+			/>
+
+			<billboard
+				expirelife="100"
+				position="0 0 0"
+				material="/shared/effects/smaterials/flare.material"
+				life="100"
+				startcolor=".75 .35 0"
+				endcolor="0 0 0"
+				scale="2"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				height="75"
+				width="10"
+				depthbias="-50"
+			/>
+
+			<billboard
+				expirelife="100"
+				position="0 0 0"
+				material="/shared/effects/smaterials/ring_half.material"
+				startcolor=".75 .35 0"
+				endcolor="0 0 0"
+				startscale="2"
+				endscale="1"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				height="50"
+				width="10"
+				depthbias="-50"
+			/>
+
+			<simpleemitter
+			count="50"
+				spawnrate="100"
+				particlelife="3000"
+				minspeed="1000"
+				maxspeed="1500"
+				inheritvelocity=".3"
+			>
+				<particle
+				>
+					<trailemitter
+						life="200"
+						spawnrate="150"
+						particlelife="300"
+						offsetsphere="15 15 15"
+						texpostime="300"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor="1 .5 0"
+							midcolor="1 .5 0"
+							endcolor="0 0 0"
+
+							startsize="7"
+							midsize="7"
+							endsize="0"
+						/>
+					</trailemitter>
+				</particle>
+			</simpleemitter>
+
+			<trailemitter
+				life="300"
+				spawnrate="100"
+				startminparticlelife="300"
+				startmaxparticlelife="300"
+				endminparticlelife="1"
+				endmaxparticlelife="1" 
+				texpostime="400"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 0"
+				material="/shared/effects/smaterials/lightning_new.material"
+				startparticlecolor="1 1 1"
+				midparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					startsize="0"
+					midsize="150"
+					endsize="75"
+					midcolorpos=".1"
+					midsizepos=".1"
+					framespeed="4"
+				/>
+			</trailemitter>
+
+			<groundsprite
+				size="250"
+				life="300"
+				startcolor=".35 .1 0"
+				endcolor="0 0 0"
+				material="/shared/effects/materials/whitedot_ground.material"
+			/>
+
+			<simpleemitter
+				count="1"
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="5000"
+				offsetsphere="0"
+			>
+				<particle
+					turn="1"
+				>
+					<simpleemitter
+						count="5"
+						position="0 0 0"
+						particlelife="1000"
+						spawnrate="250"
+						offsetsphere="0"
+					>
+						<particle
+							turn="1"
+						>
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								life="100"
+								color=".2 .075 0"
+								scale="8"
+								depthbias="-50"
+							/>
+						
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								life="100"
+								color=".75 .35 0"
+								scale="2"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								depthbias="-50"
+							/>
+							
+							<billboard
+								life="100"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								color=".5"
+								scale="1"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								depthbias="-50"
+							/>
+
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/flare.material"
+								life="100"
+								color=".75 .35 0"
+								scale="2"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								height="75"
+								width="10"
+								depthbias="-50"
+							/>
+
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="100"
+								color=".75 .35 0"
+								startscale="2"
+								endscale="1"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								height="50"
+								width="10"
+								depthbias="-50"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+
+			<trailemitter
+				life="300"
+				spawnrate="100"
+				particlelife="1000"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1 1 1"
+				midparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle
+					startcolor="1"
+					midcolor=".15 .125 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="75"
+					endsize="0"
+					framespeed="4"
+				/>
+			</trailemitter>
+
+			<simpleemitter
+				spawnrate="250"
+				minparticlelife="300"
+				maxparticlelife="300"
+				material="/shared/effects/materials/whitedot.material"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					startcolor=".35 .15 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					size="100"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			<simpleemitter
+				count="10"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="850"
+				maxspeed="1500"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort="0.175"
+					endheightdistort="0"
+					startsize="8"
+					endsize="4"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

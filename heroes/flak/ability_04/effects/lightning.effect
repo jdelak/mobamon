@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".85">
+
+
+
+
+
+			
+			
+			
+			
+
+			<template name="lightning">
+
+				<beam
+					delay="{zdelay}"
+					life="100"
+					owner_b="target"
+					bone_b="_bone_centerofchest"
+					size="200"
+					startcolor="0 .75 1"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startframe="0"
+					endframe="1"
+					framespeed=".05"
+				/>
+
+
+				<beam
+					delay="{zdelay}"
+					life="100"
+					owner_b="target"
+					bone_b="_bone_centerofchest"
+					size="100"
+					startcolor=".5 .5 .5"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/animated_lightning_bridge.material"
+					startframe="0"
+					endframe="1"
+					framespeed=".05"
+				/>
+
+				<beam
+					delay="{zdelay}"
+					life="165"
+					owner_b="target"
+					bone_b="_bone_centerofchest"
+					position_b="0 0 0"
+					size="150"
+					startcolor="0 .35 .7"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/animated_lightning_bridge.material"
+					startframe="0"
+					endframe="1"
+					framespeed=".07"
+				/>
+
+			</template>
+
+			<instance name="lightning" zdelay="0"/>
+			<instance name="lightning" zdelay="100"/>
+
+
+<!--
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				position="35 120 18"
+				bone="_bone_origin"
+				count="1"
+				particlelife="1000"
+				spawnrate="5000"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="0 -1 0"
+				speed="0"
+			>
+				<particle
+					turn="true"
+				>
+					<groundsprite
+						position="0 100 0"
+						life="1000"
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						size="100"
+						color="1 1 1"
+						startalpha="0"
+						midalpha=".45"
+						endalpha="0"
+						midalphapos=".1"
+						height="500"
+						directionalspace="local"
+					/>
+
+					<billboard
+						bone="_bone_origin"
+						position="0 0 50"
+						material="/shared/effects/smaterials/whitedot.material"
+						life="100"
+						startcolor="0 .4 1"
+						endcolor="0 0 0"
+						scale="2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="-90"
+						rollspeed="0"
+
+					/>
+
+					<template name="flashes">
+
+						<billboard
+							delay="{zdelay}"
+							bone="_bone_origin"
+							position="0 0 50"
+							material="/shared/effects/smaterials/ring_half.material"
+							life="50"
+							color="{zcolor}"
+							scale="{zscale}"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+
+						/>
+
+					</template>
+
+					<instance name="flashes" zdelay="0" zcolor=".35 .7 1" zscale=".75"/>
+					<instance name="flashes" zdelay="25" zcolor=".35 .7 1" zscale="1"/>
+					<instance name="flashes" zdelay="50" zcolor=".175 .35 .5" zscale="1.25"/>
+					<instance name="flashes" zdelay="75" zcolor=".175 .35 .5" zscale="1.5"/>
+
+					<template name="flashes01">
+
+						<billboard
+							delay="{zdelay}"
+							bone="_bone_origin"
+							position="4 0 50"
+							material="/shared/effects/smaterials/ring_half.material"
+							life="50"
+							color="{zcolor}"
+							scale="{zscale}"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+
+						/>
+						
+						<billboard
+							delay="{zdelay}"
+							bone="_bone_origin"
+							position="-4 0 50"
+							material="/shared/effects/smaterials/ring_half.material"
+							life="50"
+							color="{zcolor}"
+							scale="{zscale}"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+
+						/>
+
+					</template>
+
+					<instance name="flashes01" zdelay="0" zcolor="0 .125 1" zscale=".75"/>
+					<instance name="flashes01" zdelay="25" zcolor="0 .125 1" zscale="1"/>
+					<instance name="flashes01" zdelay="50" zcolor="0 .065 .5" zscale="1.25"/>
+					<instance name="flashes01" zdelay="75" zcolor="0 .065 .5" zscale="1.5"/>
+					
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="cast">
+
+
+
+				<simpleemitter
+					position="35 133 18"
+					bone="_bone_origin"
+					count="1"
+					particlelife="1000"
+					spawnrate="5000"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="1"
+					direction="0 -1 0"
+					speed="0"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="_bone_origin"
+							position="0 0 50"
+							material="/shared/effects/smaterials/whitedot.material"
+							life="100"
+							startcolor="0 .4 1"
+							endcolor="0 0 0"
+							scale="2"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+
+						/>
+
+						<template name="flashes">
+
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="0 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+
+						</template>
+
+						<instance name="flashes" zdelay="0" zcolor=".15 .7 1" zscale=".75"/>
+						<instance name="flashes" zdelay="25" zcolor=".15 .7 1" zscale="1"/>
+						<instance name="flashes" zdelay="50" zcolor=".08 .35 .5" zscale="1.25"/>
+						<instance name="flashes" zdelay="75" zcolor=".08 .35 .5" zscale="1.5"/>
+
+						<template name="flashes01">
+
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+							
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="-4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+
+						</template>
+
+						<instance name="flashes01" zdelay="0" zcolor="0 .125 1" zscale=".75"/>
+						<instance name="flashes01" zdelay="25" zcolor="0 .125 1" zscale="1"/>
+						<instance name="flashes01" zdelay="50" zcolor="0 .065 .5" zscale="1.25"/>
+						<instance name="flashes01" zdelay="75" zcolor="0 .065 .5" zscale="1.5"/>
+						
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="30"
+					position="35 143 18"
+					bone="_bone_origin"
+					count="1"
+					particlelife="1000"
+					spawnrate="5000"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="1"
+					direction="0 -1 0"
+					speed="0"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="_bone_origin"
+							position="0 0 50"
+							material="/shared/effects/smaterials/whitedot.material"
+							life="100"
+							startcolor="0 .4 1"
+							endcolor="0 0 0"
+							scale="2"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+
+						/>
+					
+						<template name="flashes">
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="0 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+						</template>
+
+						<instance name="flashes" zdelay="0" zcolor=".15 .7 1" zscale=".5"/>
+						<instance name="flashes" zdelay="25" zcolor=".15 .7 1" zscale=".75"/>
+						<instance name="flashes" zdelay="50" zcolor=".08 .35 .5" zscale="1"/>
+						<instance name="flashes" zdelay="75" zcolor=".08 .35 .5" zscale="1.25"/>
+
+						<template name="flashes01">
+
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+							
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="-4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+						</template>
+
+						<instance name="flashes01" zdelay="0" zcolor="0 .125 1" zscale=".5"/>
+						<instance name="flashes01" zdelay="25" zcolor="0 .125 1" zscale=".75"/>
+						<instance name="flashes01" zdelay="50" zcolor="0 .065 .5" zscale="1"/>
+						<instance name="flashes01" zdelay="75" zcolor="0 .065 .5" zscale="1.25"/>
+						
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="40"
+					position="35 158 18"
+					bone="_bone_origin"
+					count="1"
+					particlelife="1000"
+					spawnrate="5000"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="1"
+					direction="0 -1 0"
+					speed="0"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="_bone_origin"
+							position="0 0 50"
+							material="/shared/effects/smaterials/whitedot.material"
+							life="100"
+							startcolor="0 .4 1"
+							endcolor="0 0 0"
+							scale="1"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+						/>
+
+						<template name="flashes">
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="0 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+							/>
+						</template>
+
+						<instance name="flashes" zdelay="0" zcolor=".15 .7 1" zscale=".14"/>
+						<instance name="flashes" zdelay="25" zcolor=".15 .7 1" zscale=".4"/>
+						<instance name="flashes" zdelay="50" zcolor=".08 .35 .5" zscale=".65"/>
+						<instance name="flashes" zdelay="75" zcolor=".08 .35 .5" zscale=".9"/>
+
+						<template name="flashes01">
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+							
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="-4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+						</template>
+
+						<instance name="flashes01" zdelay="0" zcolor="0 .125 1" zscale=".15"/>
+						<instance name="flashes01" zdelay="25" zcolor="0 .125 1" zscale=".4"/>
+						<instance name="flashes01" zdelay="50" zcolor="0 .065 .5" zscale=".65"/>
+						<instance name="flashes01" zdelay="75" zcolor="0 .065 .5" zscale=".9"/>
+						
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="50"
+					position="35 170 18"
+					bone="_bone_origin"
+					count="1"
+					particlelife="1000"
+					spawnrate="5000"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="1"
+					direction="0 -1 0"
+					speed="0"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="_bone_origin"
+							position="0 0 50"
+							material="/shared/effects/smaterials/whitedot.material"
+							life="100"
+							startcolor="0 .4 1"
+							endcolor="0 0 0"
+							scale="1"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							rollspeed="0"
+						/>
+						
+						<template name="flashes">
+							<billboard
+								delay="{zdelay}"
+								bone="_bone_origin"
+								position="0 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+						</template>
+
+						<instance name="flashes" zdelay="0" zcolor=".15 .7 1" zscale=".1"/>
+						<instance name="flashes" zdelay="25" zcolor=".15 .7 1" zscale=".35"/>
+						<instance name="flashes" zdelay="50" zcolor=".08 .35 .5" zscale=".5"/>
+						<instance name="flashes" zdelay="75" zcolor=".08 .35 .5" zscale=".65"/>
+
+						<template name="flashes01">
+							<billboard
+								delay="{zdelay}"
+								position="4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+							
+							<billboard
+								delay="{zdelay}"
+								position="-4 0 50"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="{zcolor}"
+								scale="{zscale}"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="-90"
+								rollspeed="0"
+
+							/>
+						</template>
+
+						<instance name="flashes01" zdelay="0" zcolor="0 .125 1" zscale=".1"/>
+						<instance name="flashes01" zdelay="25" zcolor="0 .125 1" zscale=".35"/>
+						<instance name="flashes01" zdelay="50" zcolor="0 .065 .5" zscale=".5"/>
+						<instance name="flashes01" zdelay="75" zcolor="0 .065 .5" zscale=".65"/>
+						
+					</particle>
+				</simpleemitter>
+
+
+
+			</template>
+
+			<instance name="cast"/>				
+			<instance name="cast"/>		
+			<instance name="cast"/>	
+			
+			
+			
+			
+			
+			
+				<billboard
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					life="300"
+					startcolor="1 1 1"
+					midcolor="0 .5 1"
+					endcolor="0"
+					startscale="2"
+					endscale="2"
+					lockright="1"
+					lockup="1"
+					pitch="90"
+				/>
+				
+				<billboard
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					life="300"
+					startcolor="1 1 1"
+					midcolor="0 .5 1"
+					endcolor="0"
+					startscale="2"
+					endscale="2"
+					lockright="1"
+					lockup="1"
+					pitch="90"
+				/>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

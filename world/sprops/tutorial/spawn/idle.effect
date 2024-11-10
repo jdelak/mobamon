@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="entity">
+		
+
+
+			<template name="light">
+			
+			<light
+				bone="{bone}"
+				life="2000"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .5 .5"
+				midcolor="0 .5 .5"
+				endcolor="0 .5 .5"
+				loop="true"
+				scale=".5"
+				depthbias="0"
+			/>
+			
+			
+			
+			</template>
+
+			<instance name="light" bone="_bone_fx_01" />
+			<instance name="light" bone="_bone_fx_02" />
+			<instance name="light" bone="_bone_fx_03" />
+			<instance name="light" bone="_bone_fx_04" />
+
+
+		</particlesystem>
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+
+
+	

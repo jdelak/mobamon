@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			
+			<sound
+				falloffstart="500"
+				falloffend="2000"
+				volume="0.35"
+				sample="../sounds/generator_fire.wav"
+			/>
+
+			<trackeremitter
+				count="4"
+				life="250"
+				bone="_bone_fx_01"
+				targetbone="_bone_fx_05"
+				targetposition="0 0 0"
+				tracktype="linear"
+				trackspeed="3"
+				spawnrate="2000"
+				particlelife="2000"
+				speed="1000"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="15 15 15"
+			>
+				<particle>
+					<trailemitter
+						life="1000"
+						spawnrate="100"
+						particlelife="100"
+						offsetsphere="15 15 15"
+						texpostime="100"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+					>
+						<particle
+							startcolor="1 1 0"
+							midcolor="1 1 0"
+							endcolor="0 0 0"
+							startsize="2"
+							midsize="13"
+							endsize="2"
+							midsizepos=".1"
+							
+						/>
+					</trailemitter>
+				</particle>
+			</trackeremitter>
+
+			<template name="sparks">
+
+				<simpleemitter
+				bone="{bone}"
+					count="35"
+					spawnrate="8000"
+					minparticlelife="200"
+					maxparticlelife="400"
+					offsetsphere="0"
+					minspeed="100"
+					maxspeed="200"
+					direction="0 0 1"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						maxangle="359"
+						maxanglespeed="30"
+						minanglespeed="-30"
+						scale="3"
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".85"
+					/>
+					
+					<particle
+						maxangle="359"
+						maxanglespeed="30"
+						minanglespeed="-30"
+						scale=".05"
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".85"
+						width="25"
+						height="75"
+					/>
+				</simpleemitter>
+			
+			</template>
+
+			<instance name="sparks" bone="_bone_fx_02" />
+			<instance name="sparks" bone="_bone_fx_03" />
+			<instance name="sparks" bone="_bone_fx_04" />
+
+		
+		
+
+			<model
+				parentskeleton="true"
+				model="eel/model.mdf"
+				color="0"
+				material="../eel.material"
+				life="35" 
+				alpha="1"
+			/>
+
+			
+			<model
+				model="water/model.mdf"
+				anim="idle"
+				color="2 2 0"
+				material="water/material.material"
+				life="35" 
+				alpha=".35"
+			/>
+
+<!--
+			<model
+				parentskeleton="true"
+				model="eel/model.mdf"
+				color="2"
+				material="eel_skeleton.material"
+				life="35" 
+				alpha=".75"
+			/>
+-->
+			
+
+			<template name="flash">
+			
+				<simpleemitter
+					count="1"
+					position="0 0 0"
+					bone="{bone}"
+					spawnrate="1000"
+					particlelife="35"
+					gravity="0"
+					minspeed="0"
+					maxspeed="50"
+					drag=".01"
+					material="/shared/effects/smaterials/cartoon_wack.material"
+					offsetsphere="10 10 10"
+					depthbias="50"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						color="1 1 0"
+						alpha=".7"
+						scale="37"
+					/>
+				</simpleemitter>
+			
+			</template>
+
+			<instance name="flash" bone="CTRL_01" />
+			<instance name="flash" bone="CTRL_02" />
+			<instance name="flash" bone="CTRL_03" />
+			<instance name="flash" bone="CTRL_04" />
+			<instance name="flash" bone="CTRL_05" />
+			<instance name="flash" bone="CTRL_06" />
+			<instance name="flash" bone="CTRL_07" />
+			<instance name="flash" bone="CTRL_08" />
+			<instance name="flash" bone="CTRL_09" />
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1">
+		
+			<trackeremitter
+			delay="100"
+				count="4"
+				life="250"
+				bone="_bone_fx_01"
+				targetbone="_bone_fx_05"
+				targetposition="0 0 0"
+				tracktype="linear"
+				trackspeed="3"
+				spawnrate="2000"
+				particlelife="2000"
+				speed="1000"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="15 15 15"
+			>
+				<particle>
+					<trailemitter
+						life="1000"
+						spawnrate="100"
+						particlelife="150"
+						offsetsphere="15 15 15"
+						texpostime="150"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+					>
+						<particle
+							startcolor="1 1 0"
+							midcolor="1 1 0"
+							endcolor="0 0 0"
+							startsize="2"
+							midsize="13"
+							endsize="2"
+							midsizepos=".1"
+							
+						/>
+					</trailemitter>
+				</particle>
+			</trackeremitter>
+		
+			<model
+			delay="100"
+				parentskeleton="true"
+				model="eel/model.mdf"
+				color="0"
+				material="../eel.material"
+				life="35" 
+				alpha="1"
+			/>
+			
+			<model
+			delay="100"
+				model="water/model.mdf"
+				anim="idle"
+				color="2 2 0"
+				material="water/material.material"
+				life="50" 
+				alpha=".35"
+			/>
+<!--
+			<model
+			delay="100"
+				parentskeleton="true"
+				model="eel/model.mdf"
+				color="2"
+				material="eel_skeleton.material"
+				life="50" 
+				alpha=".75"
+			/>
+-->
+			
+			<template name="flash">
+			
+				<simpleemitter
+			delay="100"
+					count="1"
+					position="0 0 0"
+					bone="{bone}"
+					spawnrate="1000"
+					particlelife="50"
+					gravity="0"
+					minspeed="0"
+					maxspeed="50"
+					drag=".01"
+					material="/shared/effects/smaterials/cartoon_wack.material"
+					offsetsphere="10 10 10"
+					depthbias="50"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						color="1 1 0"
+						alpha=".7"
+						scale="37"
+					/>
+				</simpleemitter>
+			
+			</template>
+
+			<instance name="flash" bone="CTRL_01" />
+			<instance name="flash" bone="CTRL_02" />
+			<instance name="flash" bone="CTRL_03" />
+			<instance name="flash" bone="CTRL_04" />
+			<instance name="flash" bone="CTRL_05" />
+			<instance name="flash" bone="CTRL_06" />
+			<instance name="flash" bone="CTRL_07" />
+			<instance name="flash" bone="CTRL_08" />
+			<instance name="flash" bone="CTRL_09" />
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system2" space="entity" scale=".35">
+
+			<sound
+				sample="../sounds/sfx_impact.wav"
+				volume="0.85"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2000"
+			/>
+			
+			<template name="flash">
+			
+			
+			<light
+			bone="{zbone}"
+				position="0 0 25"
+				life="1000"
+				startcolor="0 2 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="500"	
+			/>
+			
+
+			
+
+			<simpleemitter
+			bone="{zbone}"
+				count="7"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="0"
+			>
+				<particle
+					color=".1 .35 1"
+					startscale="100"
+					endscale="250"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			bone="{zbone}"
+				count="7"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="0"
+			>
+				<particle
+					color=".45 .65 1"
+					startscale="50"
+					endscale="100"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			
+
+<!--
+				<billboard
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/animated_arc.material"
+					size="300"
+					color="0 .65 1"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="1"
+					depthbias="-50"
+				/>
+				
+				<billboard
+				delay="200"
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/animated_arc.material"
+					size="350"
+					color="0 .65 1"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="1"
+					roll="45"
+					depthbias="-50"
+				/>
+-->
+				
+				
+				<billboard
+					delay="200"
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="350"
+					startcolor=".25 .75 1"
+					midcolor=".25 .75 1"
+					endcolor="0 0 0"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					directionalspace="1"
+					depthbias="-100"
+				/>
+				
+				<billboard
+					delay="200"
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="150"
+					startcolor="1 1 1"
+					endcolor="0 0 0"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					directionalspace="1"
+					depthbias="-100"
+				/>
+				
+				<billboard
+				bone="{zbone}"
+				color="0 .5 1"
+					life="250"
+					startscale="25"
+					endscale="0"
+					material="/shared/effects/smaterials/streak_flare.material"
+					depthbias="-100"
+					width="85"
+					height="35"
+				/>
+			
+			</template>
+
+
+			
+
+			<instance name="flash" zbone="_bone_fx_05" />
+
+      </particlesystem>
+		
+		
+		
+		
+
+			
+   	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnparticlesystem instance="instance2" particlesystem="system1" />
+		<spawnparticlesystem instance="instance3" particlesystem="system2" />
+		<waitfordeath  instance="instance1"/>
+		<waitfordeath  instance="instance2"/>
+		<waitfordeath  instance="instance3"/>
+	</thread>
+</effect>

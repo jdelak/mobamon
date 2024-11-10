@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			life="750"
+			startcolor="1 2.5 3.5"
+			endcolor="1 1 1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale="1.75">
+		
+		
+			<!--dummy billboard to keep state from repeating.-->
+			<billboard
+				expirelife="250"
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="10"
+				position="0 0 0"
+				spawnrate="1000"			
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				material="/shared/effects/smaterials/snowy_smoke.material"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				minspeed="0"				
+				maxspeed="175"				
+			>
+				<particle
+					startsize="100"								
+					minendsize="400"
+					maxendsize="400"
+					startcolor="1 1 1"
+					midcolor=".25 .75 1"
+					endcolor=".25 .75 1"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_blue.material"
+				depthbias="100"
+			>
+				<particle
+					color=".1 .35 1"
+					startalpha=".25"
+					midalpha=".25"
+					endalpha="0"
+					startscale="70"
+					endscale="160"
+					turn="true"
+				/>
+				
+				<particle
+					color=".35 .7 1"
+					startalpha=".25"
+					midalpha=".25"
+					endalpha="0"
+					startscale="70"
+					endscale="160"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_blue.material"
+				depthbias="100"
+			>
+				<particle
+					color="1 1 1"
+					startalpha=".25"
+					midalpha=".25"
+					endalpha="0"
+					startscale="50"
+					endscale="100"
+					turn="true"
+				/>
+			</simpleemitter>
+		
+		
+		
+		
+		
+		
+		
+		
+			<billboard
+				bone="_bone_centerofchest"
+				life="250"
+				startcolor="0 .5 1"
+				midcolor="0 0 .5"
+				endcolor="0"
+				midcolorpos=".65"
+				size="250"
+				depthbias="-50"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+			
+			
+			
+
+			<template name="flashes">
+
+				<simpleemitter
+					delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .5 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="50"
+						endscale="100"
+						turn="true"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flashes" zpos="0 0 0" zdelay="0"/>
+
+			
+
+		</particlesystem>
+		
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0"/>
+	<waitfordeath instance="instance1"/>
+</thread>
+
+</effect>

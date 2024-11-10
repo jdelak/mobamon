@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<modifier
+		expirelife="500"
+			name="modifier0"
+			color="1.5 1 3"
+			startalpha="0"
+			midalpha="0"
+			endalpha="0"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1.1">
+
+			<simpleemitter
+				bone="_bone_center"
+				position="0 0 0"
+				count="50"
+				spawnrate="5000"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="200"
+				maxspeed="600"
+				gravity="0"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						bone="_bone_center"
+						minlife="250"
+						maxlife="500"
+						color="0 0 0"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="2.5"
+						endscale=".25"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+		
+			<light
+				life="500"
+				startcolor="3 0 10"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				startfalloffend="150"
+				midfalloffend="400"
+				endfalloffend="400"
+				position="0 0 100"
+			/>
+
+			<simpleemitter
+				position="0 0 0"
+				spawnrate="200"
+				particlelife="2000"
+				offsetsphere="50 50 0"
+			>
+				<particle
+				>
+					<billboard
+						minlife="700"
+						maxlife="800"
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						startscale="1"
+						minendscale="1.5"
+						maxendscale="2.5"
+						color="0 0 0"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+						minroll="0"
+						maxroll="360"
+					/>
+
+					<billboard
+						minlife="700"
+						maxlife="800"
+						material="/shared/effects/smaterials/goop_blend_ground.material"
+						minscale="2"
+						maxscale="3"
+						color="0 0 0"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+						minroll="0"
+						maxroll="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			<simpleemitter
+				spawnrate="10"
+				count="4"
+				particlelife="5500"
+				offsetsphere="0 25 0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				speed="100"
+				timenudge="200"
+			>
+				<particle
+				turn="true"
+				>
+					<model
+						position="0 0 0"
+						life="150"
+						model="../model.mdf"
+						anim="ability_1_freeze"
+						color=".5"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".9"
+						scale="1.4"
+					>
+					</model>
+					
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

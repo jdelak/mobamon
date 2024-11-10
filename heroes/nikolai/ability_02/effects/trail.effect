@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="0.7">
+		
+			<simpleemitter
+
+				spawnrate="160"
+				count="70"
+				particlelife="900"
+				gravity="5"
+				speed="50"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/materials/dust_rock.material"
+				offsetsphere="1 1 1"
+				minangle="0"
+				maxangle="50"
+				direction="0 0 1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				inheritvelocity="0.15"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="50"
+					maxanglespeed="50"
+					minscale=".2"
+					maxscale="1.5"
+					color=".35 .25 .15"
+					startframe="0"
+					endframe="1"
+					startsize="10"
+					midsize="10"
+					endsize="0"
+					midsizepos=".8"
+					startalpha="1"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".3"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+
+				spawnrate="33"
+				count="70"
+				particlelife="400"
+				gravity="-4"
+				speed="40"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				offsetsphere="1 1 1"
+				minangle="0"
+				maxangle="180"
+				direction="0 0 1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				inheritvelocity="0.0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="50"
+					minanglespeed="0"
+					maxanglespeed="0"
+					color=".5 .4 .2"
+					startframe="0"
+					endframe="1"
+					startsize="0"
+					midsize="50"
+					endsize="60"
+					midsizepos=".4"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".3"
+					turn="0"
+				/>
+			</simpleemitter>
+		
+			<simpleemitter
+				spawnrate="33"
+				count="70"
+				particlelife="250"
+				gravity="0"
+				speed="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_pop1.material"
+				offsetsphere="1 1 1"
+				minangle="0"
+				maxangle="180"
+				direction="0 0 1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				inheritvelocity="0.0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="50"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor="1 0 0"
+					startframe="0"
+					endframe="1"
+					startsize="30"
+					midsize="200"
+					endsize="0"
+					midsizepos=".8"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".3"
+					turn="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			delay="200"
+				spawnrate="6"
+				count="6"
+				particlelife="1250"
+				minangle="0"
+				maxangle="5"
+				offsetsphere="1 1 1"
+				direction="0 1 0"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				inheritvelocity="0.0"
+				directionalspace="local"
+			>
+				<particle
+					turn="1"
+					minangle="0"
+					maxangle="0"
+					
+				>
+					<groundsprite
+						directionalspace="local"
+						delay="0"
+						life="2000"
+						material="/shared/effects/smaterials/ground_trail.material"
+						size="100"
+						startwidth="70"
+						midwidth="70"
+						endwdidth="70"
+						midwidthpos=".3"
+						height="90"
+						color="1.0 1.0 1.0"
+						startalpha="1"
+						endalpha="0"
+						lockup="true"
+					/>	
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

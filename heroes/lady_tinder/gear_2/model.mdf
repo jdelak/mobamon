@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="default_1.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+
+	<skin name="blue">
+		<reference mesh="10k_tinder"			material="material_blue.material" />
+		<reference mesh="10k_staff"				material="material_blue.material" />
+		<reference mesh="3k_body"				material="material_blue.material" />
+		<reference mesh="3k_staff"				material="material_blue.material" />
+		<reference mesh="1k_body"				material="material_blue.material" />
+		<reference mesh="1k_staff"				material="material_blue.material" />
+	</skin>	
+	
+	<skin name="black">
+		<reference mesh="10k_tinder"			material="material_black.material" />
+		<reference mesh="10k_staff"				material="material_black.material" />
+		<reference mesh="3k_body"				material="material_black.material" />
+		<reference mesh="3k_staff"				material="material_black.material" />
+		<reference mesh="1k_body"				material="material_black.material" />
+		<reference mesh="1k_staff"				material="material_black.material" />
+	</skin>	
+	
+		<skin name="magenta">
+		<reference mesh="10k_tinder"			material="material_magenta.material" />
+		<reference mesh="10k_staff"				material="material_magenta.material" />
+		<reference mesh="3k_tinder"				material="material_magenta.material" />
+		<reference mesh="3k_staff"				material="material_magenta.material" />
+		<reference mesh="1k_tinder"				material="material_magenta.material" />
+		<reference mesh="1k_staff"				material="material_magenta.material" />
+	</skin>	
+	
+	<skin name="orange">
+		<reference mesh="10k_tinder"			material="material_orange.material" />
+		<reference mesh="10k_staff"				material="material_orange.material" />
+		<reference mesh="3k_body"				material="material_orange.material" />
+		<reference mesh="3k_staff"				material="material_orange.material" />
+		<reference mesh="1k_body"				material="material_orange.material" />
+		<reference mesh="1k_staff"				material="material_orange.material" />
+	</skin>	
+	
+	<skin name="pink">
+		<reference mesh="10k_tinder"			material="material_pink.material" />
+		<reference mesh="10k_staff"				material="material_pink.material" />
+		<reference mesh="3k_body"				material="material_pink.material" />
+		<reference mesh="3k_staff"				material="material_pink.material" />
+		<reference mesh="1k_body"				material="material_pink.material" />
+		<reference mesh="1k_staff"				material="material_pink.material" />
+	</skin>
+	
+	<skin name="yellow">
+		<reference mesh="10k_tinder"			material="material_yellow.material" />
+		<reference mesh="10k_staff"				material="material_yellow.material" />
+		<reference mesh="3k_body"				material="material_yellow.material" />
+		<reference mesh="3k_staff"				material="material_yellow.material" />
+		<reference mesh="1k_body"				material="material_yellow.material" />
+		<reference mesh="1k_staff"				material="material_yellow.material" />
+	</skin>
+	
+	<skin name="phosphorus">
+		<reference mesh="10k_tinder"			material="material_phos.material" />
+		<reference mesh="10k_staff"				material="material_phos.material" />
+		<reference mesh="3k_body"				material="material_phos.material" />
+		<reference mesh="3k_staff"				material="material_phos.material" />
+		<reference mesh="1k_body"				material="material_phos.material" />
+		<reference mesh="1k_staff"				material="material_phos.material" />
+	</skin>	
+	
+	<anim name="idle" clip="clips/default_1.clip" loop="true"/>
+	
+	<anim name="portrait" clip="clips/portrait.clip" loop="true"/>
+	
+	<anim name="bored_1" clip="clips/bored_1.clip"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip"/>
+	
+	<anim name="port_in" clip="clips/port_in.clip"/>
+	
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="30" loop="false">
+		<frameevent frame="1" cmd="PlayStreamLinear ../sounds/voice/vo_emote_3.wav 1000 2500 .65"/>
+		<frameevent frame="1" cmd="StartEffect effects/emote.effect 0"/>		
+	</anim>
+
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+	
+	<anim name="item_1" clip="clips/item_1.clip" />
+	
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+	
+	<anim name="item_channel_1" clip="clips/item_channel_1.clip" loop="true" loopbackframe="40"/>
+	
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1" />
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="30" />
+	
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="30" />
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="30" /> 
+	
+	<anim name="ability_2" clip="clips/ability_2.clip" fps="15"/>
+	
+	<anim name="ability_3" clip="clips/ability_3.clip"/>
+
+	<anim name="ability_4" clip="clips/ability_4.clip" />    
+	
+	<anim name="walk_1" clip="clips/walk_1.clip" numframes="52" loop="true" fps="38">
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 .15"/>
+		<frameevent frame="5" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="14" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 .15"/>
+		<frameevent frame="18" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+	</anim>
+
+	<anim name="knock_1" clip="clips/knock_1.clip" loop="true" loopbackframe="-1"/>
+		
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>	
+	
+</model>

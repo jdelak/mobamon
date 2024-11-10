@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="main" scenewidth="100%" sceneheight="100%" luatable="true" onkeydown="Echo('enter 1');" oneventlua="ChatClient.ForceInterfaceUpdate()" onreload="SleepWidget(1500, 'DoEvent()')" onmouseover="groupfcall('main_tooltips', function(_, widget) widget:SetVisible(0) end)" onloadlua="LoadState()" >
+
+	<panel noclick="1" name="main_animator" />
+	<trigger name="EnterPressedTrigger" />
+	<trigger name="EscPressedTrigger" />
+
+	<include file="/ui/precache.package"/>
+
+	<lua file="/ui/main/dev_tools/json.lua"/>
+	<lua file="/ui/main/web/web_requests.lua"/>
+	<lua file="/ui/main/dev_tools/ben_dev.lua"/>
+	<lua file="/ui/main/dev_tools/debugging.lua"/>
+	<lua file="/ui/shared/regions.lua"/>
+
+	<lua file="/ui/shared/database.lua"/>
+	<lua file="/ui/shared/lib_thread.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/><!-- Needs to exist before custom triggers as of 6/13/2013 -->
+	<lua file="/ui/shared/lib_analytics.lua"/>
+	<lua file="/ui/shared/lib_language.lua"/>
+	<lua file="/ui/shared/lib_feature_packs.lua"/>
+	<lua file="/ui/shared/lib_boost.lua"/>
+	<lua file="/ui/shared/lib_hero_cosmetic_purchase.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/main/shared/cursors.lua"/>
+	<lua file="/ui/main/shared/custom_triggers2.lua"/><!-- Needs to exist pretty much immediately -->
+	<lua file="/ui/main/feature_maintenance/feature_maintenance.lua"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/main/shared/styles2.lua"/>
+	<lua file="/ui/shared/global_drag2.lua"/>
+	<lua file="/ui/shared/lib_postframe.lua"/>
+	<lua file="/ui/shared/lib_button2.lua"/>
+	<lua file="/ui/shared/lib_scroll.lua"/>
+	<lua file="/ui/shared/lib_moveit.lua"/>
+	<lua file="/ui/shared/lib_accounticons.lua"/>
+	<lua file="/ui/_scripts/webTesting.lua"/>
+	<lua file="/ui/_scripts/_temp_data_storage.lua"/> <!-- RMM contains dummy data and script to remove later -->
+
+	<lua file="/ui/main/links/links.lua"/>
+	<lua file="/ui/main/progression/data.lua"/>
+	<lua file="/ui/main/shared/lib_compete.lua"/><!-- Competitive play data mangement stuff -->
+
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+
+	<!-- ========================== -->
+
+	<!-- Needed for new player experience -->
+
+	<trigger name="tutorial_finishMap1"/>
+	<trigger name="tutorial_finishMap2"/>
+	<trigger name="tutorial_finishMap3"/>
+
+	<!-- ========================== -->
+
+	<trigger name="UIUpdateRegion"/>
+	<trigger name="abilityTipShow"/>
+	<trigger name="abilityTipHide"/>
+	<trigger name="petTipShow"/>
+	<trigger name="petTipHide"/>
+	<trigger name="gameToggleScoreboard"/>
+	
+	<include file="/ui/shared/shared_draggables.package"/>
+
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	<include file="/ui/main/shared/main_templates_temp.package"/>
+	<childinterface file="/ui/shared/scoreboard_templates.interface"/>
+
+	<include file="/ui/main/shared/social_entry.package"/>
+
+	<panel name="mainMusicController" noclick="true"/>
+
+	<!-- ======================================================================================================== -->
+
+	<lua file="/ui/main/main_pre_init.lua"/>
+
+	<include file="/ui/main/background/main_background2.package"/>
+
+	<include file="/ui/main/scrim_finder/scrim_finder2.package"/>	
+	
+	<include file="/ui/main/create_game/creategame.package"/>
+	<include file="/ui/main/game_list/game_list.package"/>
+
+	<include file="/ui/main/login/main_login_insert.package"/>
+
+	<include file="/ui/main/quests/quests_templates.package"/>
+	<include file="/ui/main/khanquest/khanquest.package"/>
+	<include file="/ui/main/ladder/ladder.package"/>
+	<include file="/ui/main/hero_progress/hero_progress.package"/>
+
+	<include file="/ui/main/clans/clans_ladder.package"/>
+	<include file="/ui/main/player_profile/main_player_profile2.package"/>
+	<include file="/ui/main/progression/progression.package"/>
+
+	<include file="/ui/main/pets/pets_templates.package"/>
+	<include file="/ui/main/pets/pets.package"/>
+	
+	<include file="/ui/main/watch/watch2.package"/>
+
+	<include file="/ui/main/postgame/khanquest/khanquest_post.package"/>
+	<include file="/ui/main/postgame/quest_progress/quest_progress.package"/>
+	<include file="/ui/main/postgame/splash/postgame_splash.package"/>
+	<include file="/ui/main/postgame/rewards/rewards.package"/>
+	<include file="/ui/main/postgame/scoreboard/scoreboard.package"/>
+	<!--<include file="/ui/main/postgame/khanquest/khanquest.package"/>-->
+
+	<include file="/ui/main/play/pre_matchmaking_selection_templates.package"/>	
+	<include file="/ui/main/lobby/lobby.package"/>
+	<include file="/ui/main/play/select_mode2.package"/>
+	<include file="/ui/main/captains_mode/captains_mode.package"/>
+	<include file="/ui/main/enchanting/enchanting_templates.package"/>
+	<include file="/ui/main/enchanting/enchanting.package"/>
+	<include file="/ui/main/enchanting/enchanting_boost.package"/>
+
+	<include file="/ui/main/crafting/crafting3_templates.package"/>
+	<include file="/ui/main/crafting/crafting3.package"/>
+
+	<include file="/ui/main/enchanting/enchanting_prompts.package"/>
+
+	<include file="/ui/main/inventory/inventory_templates.package"/>
+	<include file="/ui/main/inventory/inventory.package"/>
+
+	<include file="/ui/main/crafting/crafting_prompts.package"/>
+	<include file="/ui/main/crafting/crafting_boost.package"/>
+
+	<!-- Header -->
+	<include file="/ui/main/header/main_header_insert.package"/>
+	<include file="/ui/main/news/news.package"/>
+	<include file="/ui/main/pregame/pregame.package"/>
+	<include file="/ui/main/play/build_editor2.package"/>
+	<childinterface file="/ui/shared/shop/shop.interface"/>
+	
+	<!-- Navigation should always be above the page elements -->
+	<include file="/ui/main/navigation/navigation2.package"/>
+	<include file="/ui/main/background/main_background_logo.package"/>
+	<include file="/ui/main/player_card/main_player_card_insert2.package"/>
+	
+	<!-- Clans -->
+	<include file="/ui/main/clans/clans_templates.package"/>	
+	<include file="/ui/main/clans/clans_management.package"/>	
+	<include file="/ui/main/clans/clans_create.package"/>		
+	<include file="/ui/main/clans/clans_finder.package"/>	
+	<include file="/ui/main/clans/clans_clubhouse.package"/>	
+	<include file="/ui/main/clans/clans_launcher.package"/>
+	<include file="/ui/main/clans/clans.package"/>	
+	<lua file="/ui/main/clans/clans.lua"/>		
+	<lua file="/ui/main/clans/clans_create.lua"/>		
+	<lua file="/ui/main/clans/clans_chat.lua"/>		
+	<lua file="/ui/main/clans/clans_ladder.lua"/>		
+	<lua file="/ui/main/clans/clans_members.lua"/>		
+	<lua file="/ui/main/clans/clans_management.lua"/>		
+	<lua file="/ui/main/clans/clans_finder.lua"/>	
+	
+	<include file="/ui/main/postgame/postgame.package"/>
+	<include file="/ui/main/demo/demo_nav.package"/>
+	<include file="/ui/main/wheel/wheel.package"/>
+	<include file="/ui/main/origins/origins.package"/>
+	<include file="/ui/main/keepers/keepers.package"/>
+	<include file="/ui/main/footer/main_footer_insert2.package"/>
+
+	<!-- Main Content Popups -->
+	<include file="/ui/main/gems/buygems.package"/>
+	<include file="/ui/main/login_queue/login_queue.package"/>
+
+	<include file="/ui/main/new_player_experience/new_player_experience.package"/>
+	
+	
+	<childinterface file="/ui/shared/widget_highlight.interface"/>
+	<include file="/ui/main/new_player_experience/new_player_experience_popups.package"/>
+	
+	<!-- Overlay Level -->
+	<include file="/ui_dev/chat/main_chat.package"/>		
+	<!-- New Friends always on -->
+	<include file="/ui_dev/friends/friends_templates.package"/>		
+	<include file="/ui_dev/friends/friends_launcher.package"/>
+	<include file="/ui_dev/friends/friends.package"/>	
+	<include file="/ui_dev/party/party.package"/>	
+	<lua file="/ui_dev/friends/friends.lua"/>	
+	
+	<lua file="/ui/main/captains_mode/captains_mode.lua"/>
+	<lua file="/ui/main/play/build_editor2.lua"/>
+	
+	<childinterface file="/ui/shared/twitch/twitch_edit.interface"/>	
+	
+	<include file="/ui/main/demo/demo_signup.package"/>
+	<include file="/ui/main/minigames/game_of_strife.package"/>
+
+	<include file="/ui/main/create_account/create_account.package"/>
+
+	<include file="/ui/main/login/login_identity.package"/>
+
+	<!-- Popups, Dialogs, Context Menus -->
+	<include file="/ui/main/quests/quests.package"/>
+	<childinterface file="/ui/shared/slash/slash.interface"/>
+	<include file="/ui/main/notification/notification.package"/>
+	<include file="/ui/main/region_select/region_select.package"/>
+	<include file="/ui/main/buildBrowser/buildBrowser.package"/>
+	
+	<include file="/ui/shared/adaptive_training/adaptive_training.package"/>
+
+	<instance name="general_context_menu_player" menu_name="general_context_menu_player" />
+	<childinterface file="/ui/shared/options/options.interface"/>
+	<include file="/ui/main/control_presets/control_presets.package"/>
+	<include file="/ui/main/context_menu/main_lobbyrightclickmenu.package"/>
+	<include file="/ui/main/dialog/dialog.package"/>
+	<childinterface file="/ui/game/button_binder/button_binder.interface"/>
+	<include file="/ui/main/dev_tools/dev_tools.package"/>
+
+	<!-- Tooltips -->
+	<childinterface file="/ui/main/play/abilitytip_main.interface"/>
+	<include file="/ui/shared/shop/shop_itemtip.package"/>
+	<include file="/ui/main/player_profile_preview/profile_preview.package"/>
+	<include file="/ui/main/crafting/crafteditemtip.package"/>
+	<include file="/ui/main/crafting/crafteditemtip2.package"/>
+	<childinterface file="/ui/shared/simpletip_growy.interface"/>
+	<childinterface file="/ui/shared/simpletip_nofloat.interface"/>
+
+	<panel name="mainDragLayer" noclick="true" color="invisible"/>
+	
+	<!-- Window Frame -->
+	<include file="/ui/main/windowframe/windowframe2.package"/>
+
+	<include file="/ui/shared/browser/browser.package"/>	
+	
+	<!-- Scripts (late load but before main) -->
+
+	<lua file="/ui/main/quests/quests.lua"/>
+	<lua file="/ui/main/create_game/creategame.lua"/>
+	<!-- main script -->
+	<lua file="/ui/shared/shop/shop2.lua"/>
+	<lua file="/ui/main/main3.lua"/>
+	<lua file="/ui/main/background/background2.lua"/>
+	
+	<!-- Scripts (load after main script) -->
+	<lua file="/ui/shared/slash/slash.lua"/>
+
+	<lua file="/ui_dev/chat/main_chat.lua"/>			
+	<lua file="/ui_dev/party/party.lua"/>
+	<lua file="/ui_dev/context/context.lua"/>	
+	<lua file="/ui_dev/tooltip/tooltip.lua"/>	
+	
+	<lua file="/ui/main/lobby/lobby.lua"/>
+
+	<lua file="/ui/main/gems/buygems.lua"/>
+	<lua file="/ui/main/pets/pets.lua"/>
+	<lua file="/ui/main/crafting/crafting3.lua"/>
+	<lua file="/ui/main/context_menu/gamelobbyrightclick_temp.lua"/>
+	<lua file="/ui/main/crafting/crafteditemtip.lua"/>
+
+	<lua file="/ui/main/reconnect/reconnect_dialog.lua"/>
+	<lua file="/ui/main/gems/spendgems.lua"/>
+
+	<lua file="/ui/main/player_card/player_card2.lua"/>
+
+	<lua file="/ui/main/login_queue/login_queue.lua"/>
+	<lua file="/ui/main/minigames/game_of_strife.lua"/>
+	<lua file="/ui/main/player_profile/khanquest/player_profile_khanquest.lua"/>
+	<lua file="/ui/main/player_profile/player_profile.lua"/>
+	<lua file="/ui/main/login/data.lua"/>
+	<lua file="/ui/main/login/login.lua"/>
+	<lua file="/ui/main/new_player_experience/new_player_experience_lib.lua"/>
+	<lua file="/ui/main/new_player_experience/new_player_experience.lua"/>
+	<lua file="/ui/main/demo/demo_signup.lua"/>
+	<lua file="/ui/main/create_account/create_account.lua"/>
+	<lua file="/ui/main/context_menu/context_menu.lua"/>
+
+	<lua file="/ui/main/main_init.lua"/>
+
+	<include file="/ui/main/dev_tools/npe_popup_tester.package"/><!-- showwidget NPEPopupTester -->
+	
+
+</interface>

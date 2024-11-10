@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_CircletOfTheSage_Empower_3"
+
+	cost="310"
+	cooldowntime="15000"
+	
+>
+	<!-- Tooltip only -->
+	<constant name="gold_enchant" value="5" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add"/>
+	
+	<ondamage>
+		<isready>
+			<damageeffecttype effecttype="Indirect" />
+			<else>
+				<damageeffecttype effecttype="Magic" >
+					<givegold amount="5" target="source_entity" position="source_entity" />
+					<startcooldown />
+				</damageeffecttype>
+			</else>
+		</isready>
+	</ondamage>
+</qualityitem>

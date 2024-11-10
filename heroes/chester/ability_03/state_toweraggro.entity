@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Chester_Ability3_Aggro"  
+	icon="icon.tga"
+	effecttype=""
+	ishidden="true"
+
+>
+	<onattackstart>
+
+		<pushentity entity="this_inflictor_entity" />
+		<compare a="target_entity" b="stack_entity" op="eq">
+			<distance source="this_owner_entity" target="this_proxy_entity"/>
+			<compare a="result" b="700" op="le" >
+				<order command="attack" source="this_owner_entity" target="this_proxy_entity" />
+				<expire/>
+			</compare>
+		</compare>	
+	</onattackstart>
+
+</state>

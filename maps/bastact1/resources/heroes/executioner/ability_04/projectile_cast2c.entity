@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Bastact1_Projectile_Executioner_Ability4_Cast2c"
+
+	lifetime="500"
+	useexactlifetime="true"
+	gravity="500"
+	
+	canturn="false"
+	flying="false"
+	flyheight="5"
+
+	effectscale="2.0"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact_enemy.effect"
+	touchcliffs="true"
+	
+	touchradius="25"
+	touchradiusdiradjust="true"
+	touchtargetscheme="all_buildings"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+	touchignoreinvulnerable="true"
+>	
+	<ontouch>
+		<playanim source="proxy_entity" target="proxy_entity" name="idle" /> 
+		<kill target="this_entity" source="" />
+	</ontouch>
+
+	<onimpact>
+		<!-- make bomb play idle animation. should include in onkill too -->
+		<playanim source="proxy_entity" target="proxy_entity" name="idle" /> 
+	</onimpact>
+
+</projectile>

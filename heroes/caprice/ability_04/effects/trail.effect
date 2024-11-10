@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.6">
+
+			
+			<simpleemitter				
+				spawnrate="5000"
+				count="1"
+				particlelife="5000"
+				minangle="0"
+				maxangle="0"				
+				direction="0 0 0"
+				inheritvelocity="0.1"
+				
+			>
+				<particle
+					turn="true"
+					lockup="true"
+					lockright="true"
+				>
+
+					<model						
+						life="100"
+						position="5 0 0"
+						startscale="0.165"
+						midscale="0.865"
+						endscale="1.565"
+						model="model/bang.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						pitch="90"
+						roll="180"
+					>
+					</model>
+					<model
+						life="300"
+						position="5 0 0"
+						startscale="0.165"
+						midscale="0.865"
+						endscale="1.265"
+						model="model/bang.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						pitch="90"
+						roll="180"
+					>
+					</model>					
+					<model						
+						life="400"
+						position="0 0 0"
+						startscale="0.165"
+						midscale="0.865"
+						endscale="1.565"
+						model="puff/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".8"
+						midalpha=".8"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						yaw="180"
+					>
+					</model>
+					<model						
+						life="400"
+						position="0 0 0"
+						startscale="0.165"
+						midscale="0.865"
+						endscale="1.565"
+						model="puff/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".8"
+						midalpha=".8"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						yaw="180"
+					>
+					</model>					
+				</particle>
+			</simpleemitter>	
+						
+		
+		
+	
+
+
+	
+			<billboard
+				life="60"				
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 .25 0"
+				midcolor="1 .8 .1"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startsize="50"
+				endsize="150"
+				depthbias="-50"
+			/>
+
+			
+			
+			
+			
+			
+			<simpleemitter
+				position="0 0 0"
+				count="1"
+				spawnrate="2000"
+				particlelife="1600"
+				gravity="1"
+				speed="10"
+				drag="0"
+				acceleration="0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				particledirectionalspace="local"
+				inheritvelocity="0"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<billboard
+						life="150"
+						material="/shared/effects/smaterials/muzzle_flash.material"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						param=".012"
+						size="200"
+						directionalspace="local"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<trailemitter
+				position="0 0 0"
+				spawnrate="150"
+				particlelife="250"
+				texpostime="250"
+				texposscale="0.0"
+				texstretchscale=".4"
+				material="/shared/effects/smaterials/arrow_trail.material"
+			>
+				<particle
+					startcolor=".7 .6 .5"
+					midcolor=".7 .45 .3"
+					endcolor="0 0 0"
+					startsize="5"
+					midsize="5"
+					endsize="0"
+					midsizepos="0.2"
+			/>
+			</trailemitter>
+			
+			<trailemitter
+				position="5 0 0"
+				spawnrate="150"
+				particlelife="350"
+				texpostime="350"
+				texposscale="0.0"
+				texstretchscale=".4"
+				material="/shared/effects/smaterials/arrow_trail.material"
+			>
+				<particle
+					startcolor=".5 .4 .3"
+					midcolor=".5 .25 .1"
+					endcolor="0 0 0"
+					startsize="5"
+					midsize="5"
+					endsize="0"
+					midsizepos="0.2"
+				/>
+			</trailemitter>
+			
+			<trailemitter
+				position="-5 0 0"
+				spawnrate="150"
+				particlelife="350"
+				texpostime="350"
+				texposscale="0.0"
+				texstretchscale=".4"
+				material="/shared/effects/smaterials/arrow_trail.material"
+			>
+				<particle
+					startcolor=".5 .4 .3"
+					midcolor=".5 .25 .1"
+					endcolor="0 0 0"
+					startsize="5"
+					midsize="5"
+					endsize="0"
+					midsizepos="0.2"
+				/>
+			</trailemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+
+
+		<particlesystem name="system0" space="world" scale="1.4">
+
+			<beam
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_laser_5"
+				bone_b="Scene Root"
+				size="13"				
+				loop="true"
+				life="150"
+				color=".7 .7 .7"
+				midcolorpos=".8"
+				material="/shared/effects/smaterials/laser_1.material"
+				framespeed="5"
+				depthbias="-30"
+				anchor="1"
+			/>
+
+			<simpleemitter
+				bone="_bone_laser_5"
+				
+				spawnrate="800"
+				gravity="-40"
+				particlelife="200"			
+		
+				minspeed="111"
+				maxspeed="111"
+				drag=".01"
+				material="/shared/effects/materials/spark_10.material"
+				offsetsphere="2"
+				inheritvelocity="0.0"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 1 "
+					midcolor="0 .3 1"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					size="20"
+					endsize="0"
+
+				/>
+			</simpleemitter>	
+			
+			<billboard
+				bone="_bone_laser_5"
+				life="1000"
+				material="/shared/effects/materials/whitedot.material"
+				color=".15 .7 1"
+				size="320"
+				directionalspace="local"
+				depthbias="-225"
+				lockup="1"
+				lockright="1"
+				loop="1"
+				pitch="90"
+			/>			
+			<light
+				bone="_bone_laser_5"
+				expirelife="400"			
+				startcolor="2 4 5"			
+				endcolor="0 0 0"
+				
+				falloffstart="000"
+				falloffend="300"
+				position="0 0 50"	
+			/>
+			
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

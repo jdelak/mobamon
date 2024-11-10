@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="chat_window_channel"  luatable="true" >
+
+	<lua file="/ui/shared/lib_thread.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/main/shared/cursors.lua"/>
+	<lua file="/ui/main/shared/custom_triggers.lua"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/main/shared/styles2.lua"/>
+	<lua file="/ui/shared/global_drag2.lua"/>
+	<lua file="/ui/shared/lib_button2.lua"/>
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+	<include file="/ui/shared/shared_draggables.package"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	<include file="/ui/main/shared/main_templates_temp.package"/>
+	<include file="/ui_dev/friends/friends_templates.package"/>
+	<childinterface file="/ui/shared/scoreboard_templates.interface"/>	
+	
+	<include file="/ui_dev/chat/chat_templates.package"/>
+	
+	<!-- Resize, might make this a lil guy bot right -->
+	<sizingframe borderthickness="8" window="true" noclickcenter="true" />
+	
+	<panel noclick="1" name="chat_window_channel" height="700s" width="700s" oninstantiatelua="self:Sleep(1, function() Chat['chat_window_channel'].RegisterChatChannelWindow() end)" >
+		
+		<panel noclick="1" > <!-- Background -->
+			<frame texture="/ui/elements:rounded_bg_solid" color="0 0.03 0.03 0.95" bordercolor="0.02 0.03 0.04 0.95" borderthickness="3s" noclick="1"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="invisible" bordercolor="#15171e" borderthickness="1s" noclick="1"/>
+			<frame texture="/ui/elements:squareglow" color="invisible" bordercolor="0 0 0 0.6" width="+5s" height="+5s" align="center" valign="center" borderthickness="5s" noclick="1"/>			
+		</panel>
+		
+		<panel noclick="1" > <!-- Inner Frame -->
+		
+			
+			<panel noclick="1" height="36s" color="0 0.1 0.1 1"> <!-- Tab Header Space -->
+				<panel noclick="1" > <!-- Tab Headers -->
+					<panel name="chat_window_channel_tab_header_insertion_point" noclick="1" >
+
+					</panel>				
+				</panel>
+				<panel noclick="1" > <!-- Open New Chat + -->	
+				
+				</panel>
+				<panel noclick="1" > <!-- Options-->		
+				
+				</panel>  	
+			</panel>
+			<panel noclick="1" y="36s" height="-36s" > <!-- Chat Frame - There is one of these per channel, only one is visible at a time -->
+				<panel name="chat_window_channel_channel_insertion_point" noclick="1" >
+
+				</panel>
+			</panel>
+		</panel>
+		
+	</panel>
+	
+	<!-- Drag the whole thing around
+	<panel visible="1" height="24s" color="0.2 0.2 0.4 1"
+		onloadlua="
+			self:SetCallback('onclick',
+			function(widget, x, y)
+				self:GetWindow():StartDrag(x, y)
+			end)		
+		" 	
+	>		
+	</panel>	
+	-->
+
+</interface>

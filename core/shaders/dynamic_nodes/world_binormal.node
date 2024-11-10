@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="world_binormal">
+	<dependency name="Normal" type="float3" source="WorldNormal" />
+	<dependency name="Tangent" type="float3" source="WorldTangent" />
+	<dependency name="TangentSign" type="float" source="ObjectTangentSign" />
+	<output name="Out" type="float3" solution="WorldBinormal" />
+	<?hlsl
+		Out = cross(Tangent, Normal) * TangentSign;
+	?>
+	<?glsl
+		Out = cross(Tangent, Normal) * TangentSign;
+	?>
+</node>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.1">
+
+
+
+			<groundsprite
+				position="0 -10 0"
+				life="2000"
+				material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+				startsize="100"
+				midsize="100"
+				endsize="100"
+				midsizepos=".3"
+				color=".7 .6 .4"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".9"
+			/>
+
+			<groundsprite
+				position="0 -10 0"
+				life="1000"
+				material="/shared/effects/smaterials/big_hole_reveal.material"
+				size="75"
+				color="1 1 1"
+				startframe="1"
+				endframe=".01"
+				alpha=".8"
+			/>
+			
+			<groundsprite
+				delay="1000"
+				position="0 -10 0"
+				life="1000"
+				material="/shared/effects/smaterials/big_hole_reveal.material"
+				size="75"
+				color="1 1 1"
+				startalpha=".8"
+				endalpha="0"
+			/>
+		
+
+
+			<simpleemitter
+				delay="50"
+				count="15"
+				position="0 0 50"
+				spawnrate="150"			
+				minparticlelife="350"
+				maxparticlelife="460"
+				gravity="-10"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				offsetsphere="0 0 20"
+				direction="0 0 1"
+				minangle="50"
+				maxangle="90"
+				drag="0.01"
+				minspeed="200"
+				maxspeed="400"		
+			>
+				<particle
+					startsize="80"
+					endsize="40"
+					startcolor="1.3 .85 0"
+					midcolor=".95 .65 .3"
+					endcolor="0 0 0"
+					startalpha=".1"
+					midalpha=".3"
+					endalpha="0"
+
+
+				/>
+			</simpleemitter>
+			
+			
+
+
+
+
+
+			<simpleemitter
+				position="0 0 0"
+				life="800"
+				startspawnrate="700"
+				midspawnrate="300"
+				endspawnrate="0"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="200"
+				minspeed="700"
+				maxspeed="1200"
+				offsetsphere="25 25 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="5"
+				direction="0 0 1"
+				depthbias="-25"
+			>
+				<particle
+					startcolor=".55 .35 .15"
+					endcolor=".45 .25 .1"
+					midcolorpos=".25"
+					startsize="2"
+					midsize="6"
+					endsize="6"
+					startalpha=".8"
+					endalpha=".2"
+					
+				/>
+			</simpleemitter>
+<!--
+-->			
+			
+
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>		
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+
+	</thread>
+
+</effect>

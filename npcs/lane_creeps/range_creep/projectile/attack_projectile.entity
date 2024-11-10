@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_RangedCreepAttack"
+
+	speed="900"
+	gravity="2000"
+
+	modelscale="1.5"
+	model="effects/model.mdf"
+
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact.effect"
+>
+
+	
+	<modifier key="promote_brawler" modpriority="110" traileffect=""
+	>
+	
+		<onimpact>
+			<playeffect effect="effects/promote_impact.effect" target="target_entity" source="target_entity" />
+		</onimpact>
+		
+		<onspawn>
+			<playeffect effect="effects/promote_trail.effect" target="target_entity" source="target_entity" />
+		</onspawn>
+		
+	</modifier>
+
+
+</projectile>

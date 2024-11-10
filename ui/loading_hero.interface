@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="loading_hero" luatable="true">
+	
+	<style name="loading_hero_slice" noclick="1" width="9.1w" height="100%" clip="1" />	
+	<style name="loading_hero_slice_image" noclick="1" width="100w" height="100h" color="1 1 1 1" rendermode="normal" />	
+	
+	<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center" visible="1" />
+	
+	<template name="loading_team_item_template" >
+		<panel name="loading_team_{playerid}" style="loading_hero_slice" >
+			<splashimage name="loading_team_{playerid}_image" noclick="1" visible="1" imagemaxheight="100%" imagemaxwidth="100%" imagekeepaspect="false" x="-44.55w" bgcolor="black" style="loading_hero_slice_image" image="" 
+				onhidelua="self:SetImage('') self:SetVisible(0)" hflip="{hflip}"
+			/>				
+		</panel>	
+	</template>
+	
+	<!-- hero slices -->
+	<panel name="loading_team_1" noclick="1" width="46.5w" float="right" padding="0.5h" >
+				
+		<instance name="loading_team_item_template" teamid="1" playerid="0" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="1" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="2" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="3" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="4" hflip="true" />
+			
+	</panel>
+	
+	<panel name="loading_team_2" noclick="1" width="46.5w" float="right" padding="0.5h" align="right" >
+	
+		<instance name="loading_team_item_template" teamid="2" playerid="5" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="6" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="7" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="8" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="9" hflip="false" />	
+	
+	</panel>	
+	
+	<!-- team logos -->
+	<panel align="left" valign="bottom" x="1h" y="-2h" noclick="true" texture="/ui/shared/textures/team_logo_glory.tga" width="12h" height="12h"/>
+	<label align="left" valign="bottom" x="13h" y="-2h" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_glory" font="maindyn_72" />
+	<label align="left" valign="bottom" x="13h" y="-8h" fity="1" color=".8 .8 .8 1" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+	
+	<panel align="right" valign="bottom" x="-1h" y="-1.8h" noclick="true" texture="/ui/shared/textures/team_logo_valor.tga" width="13.6h" height="13.6h"/>
+	<label align="right" valign="bottom" x="-13h" y="-2h" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_valor" font="maindyn_72" />
+	<label align="right" valign="bottom" x="-13h" y="-8h" fity="1" color=".8 .8 .8 1" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+		 
+	<!-- Progress Pie -->
+	<panel width="16h" height="16h" align="center" valign="center" y="0" noclick="1" >
+		<image noclick="1" texture="/ui/game/loading/textures/loading_disc.tga"/>
+		<piegraph name="loadingProgressBar" start="-90" end="270" square="0" color="0 0 0 0.7" noclick="true" value=".45" align="center" valign="center" height="87.2%" width="87.2%" />
+		<label fity="1" color="white" outline="1" outlinecolor="0 0 0 .5" align="center" valign="center" textvalign="center" textalign="center" fitx="1" noclick="1" content="general_vs" font="maindyn_48" />
+	</panel>	
+	
+	<!-- Tip -->
+	<panel grow="1" align="center" valign="bottom" y="-3h" noclick="1" clip="true">
+		<frame bordercolor=".3 .3 .3 .7" color="0 0 0 .7" texture="/ui/elements:rounded_bg_white" borderthickness="0.25h" noclick="true"/>
+		<label fity="1" color="white" outline="1" outlinecolor="black" fitypadding="2.0h" fitxpadding="4.0h" textvalign="center" textalign="center" fitx="1" fitxmax="55h" noclick="1" content="main_simple_load_tip" font="maindyn_22" wrap="1" />
+	</panel>	
+
+	<?lua
+		for playerid = 0,4,1 do -- Team 1
+			object:GetWidget('loading_team_' .. (playerid) .. '_image'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if (trigger.entityName) and (not Empty(trigger.entityName)) and (widget:IsVisible()) then
+					local conceptArtPath = '/ui/game/loading/textures/'
+					if (trigger.entityName == trigger.gearSetName) or (Empty(trigger.gearSetName)) then
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_default.jpg'
+					else
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_' .. string.lower(trigger.gearSetName) .. '.jpg'
+					end		
+					widget:SetImage(conceptArtPath)
+				else
+					widget:SetImage('')
+				end
+			end, false, nil, 'entityName', 'gearSetName')
+			LuaTrigger.GetTrigger('LoadingPlayerInfo' .. (playerid)):Trigger(true)
+		end	
+		
+		for playerid = 5,9,1 do -- Team 2
+			object:GetWidget('loading_team_' .. (playerid) .. '_image'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if (trigger.entityName) and (not Empty(trigger.entityName)) and (widget:IsVisible()) then
+					local conceptArtPath = '/ui/game/loading/textures/'
+					if (trigger.entityName == trigger.gearSetName) or (Empty(trigger.gearSetName)) then
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_default.jpg'
+					else
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_' .. string.lower(trigger.gearSetName) .. '.jpg'
+					end		
+					widget:SetImage(conceptArtPath)
+				else
+					widget:SetImage('')
+				end
+			end, false, nil, 'entityName', 'gearSetName')
+			LuaTrigger.GetTrigger('LoadingPlayerInfo' .. (playerid)):Trigger(true)
+		end		
+		
+	?>
+
+</interface>

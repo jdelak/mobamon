@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<!--
+	===========================	
+	Styles
+	===========================
+	-->	
+	
+	<!-- Overall Styles -->
+	<style name="itemTipParent" 																								   noclick="1" style="floatMouseOffset" grow="1" regrow="1" growinvis="0" />
+	
+	<style name="divide_base" 					 width="100%" 	  																   noclick="1" color="#021e23" sticky="1" stickytoinvis="0"/>
+		
+	<style name="dialogbg_base" 			  									align="center"  valign="center" 				   noclick="1" color="$#001013" />
+	<style name="dialogbgshadow_base" 		  									align="center"  valign="center" 				   noclick="1" color="0 0 0 0.2" />
+	<style name="dialogbgBorder_base" 		  									align="center"  valign="center" 				   noclick="1" bordercolor="0 0 0 0.2" color="invisible" />
+	
+	<style name="itemTipLabel" 		  		 	 width="-190@" 																				   textvalign="center" font="maindyn_20" wrap="1" />
+	
+	<style name="itemTipName" 																									   			   fity="1" font="maindyn_11" />
+	
+	<style name="itemTipBonus" 																												   fity="1" font="maindyn_11" textalign="right" />
+	
+	<style name="itemEffectLabelPower" 																										   font="subdyn_15" color="#ffc600"  />
+	<style name="itemEffectLabelHealth" 																						  			   font="subdyn_15" color="#ffff00" />
+	<style name="itemEffectLabelHealthRegen" 																								   font="subdyn_15" color="#ffff00" />
+	<style name="itemEffectLabelMana" 																										   font="subdyn_15" color="#009afc" />
+	<style name="itemEffectLabelManaRegen" 																									   font="subdyn_15" color="#009afc" />
+	<style name="itemEffectLabelArmor" 																										   font="subdyn_15" color="#da4733" />
+	<style name="itemEffectLabelMagicArmor" 																								   font="subdyn_15" color="#2f6ed7" />
+	<style name="itemEffectLabelDPS" 																										   font="subdyn_15" color="#fc0000" />
+	<style name="itemEffectLabelMvSpeed" 																									   font="subdyn_15" color="#00fced" />
+	
+	<style name="labelShopTip"																											  	   font="subdyn_10" outline="1" outlinecolor="0 0 0 .7" />
+	<style name="labelRareShopTip" 																											   color="#089cd9" style="labelShopTip" />
+	<style name="labelCommonShopTip" 																										   color="#3fd149" style="labelShopTip" />
+	<style name="labelLegendaryShopTip" 																									   color="#b712d6" style="labelShopTip" />	
+	
+	<style name="itemTipContent_base" 																							   noclick="1" grow="1" regrow="1" growinvis="0" float="bottom" />
+	<style name="itemTipHeader_base" 		 	  width="100%"    													  y="0"		   noclick="1" sticky="1" stickytoinvis="0"/>
+	<style name="itemTipComponentRow_base" 						  			 													   noclick="1" float="right" sticky="1" stickytoinvis="0"/>
+	<style name="itemTipComponentContainer_base" 																							   bordercolor="#021e23" color="#021e23" />
+	
+	<style name="itemTipRecipe" 			      width="100%" 																	   noclick="1" grow="1" regrow="1" sticky="1" stickytoinvis="0"/>
+	<style name="itemTipRecipeHD1_base" 																		     			   			   font="subdyn_10" color=".5 .5 .5 1" textalign="right" style="labelBase" />
+	<style name="itemTipRecipeHD2_base" 			  							align="right" 				      				   noclick="1" texture="/ui/main/crafting/textures/recipe_blank.tga" />
+	
+	<style name="itemTipRecipeContent_base" 	  width="96%" 					align="center" 						  y="1@"	   noclick="1" grow="1" regrow="1" growinvis="0" float="bottom" />
+	<style name="itemTipRecipeDescriptionLabel_base" 																						   fity="1" wrap="1" font="maindyn_11" color="#00c8ed" />
+	
+	<style name="itemTip"						  width="100%" 																	   noclick="1" grow="1" regrow="1" float="bottom" />
+	<style name="itemTip_Label_base"			 								align="right"									   noclick="1" grow="1" regrow="1" float="bottom" />
+	<style name="itemTip_Desc_base" 																										   fity="1" font="maindyn_11" wrap="1" color="white" />
+	
+	<style name="itemTipRecipeBonusContainer_base" width="100%" 																   noclick="1" grow="1" regrow="1" growinvis="0" float="bottom" sticky="1" stickytoinvis="0" />
+	
+	<style name="itemTipStats_base" 			  width="100%" 																 	   noclick="1" float="bottom" grow="1" regrow="1" growinvis="0" sticky="1" stickytoinvis="0"/>	
+
+	<!-- Will need to test this later -->
+	<if condition="host_islauncher">
+		<style name="divide" 					 				  height="1s" 													   			   style="divide_base" />
+		
+		<style name="dialogbg" 					  width="+30s" 	  height="+30s" 															   borderthickness="10s" style="dialogbg_base" />
+		<style name="dialogbgshadow" 			  width="+30s"    height="+30s"  							   x="7s" y="7s"  	   	           borderthickness="10s" style="dialogbgshadow_base" />
+		<style name="dialogbgBorder" 			  width="+30s" 	  height="+30s" 															   borderthickness="10s" style="dialogbgBorder_base" />
+		
+		<style name="itemTipLabelCommon" 		 				 														y="-2s"			 	   color="white"   lineheight="21s" style="itemTipLabel" />
+		<style name="itemTipLabelRare" 			  				 														y="-2s" 			   color="#089cd9" lineheight="21s" style="itemTipLabel" />
+		<style name="itemTipLabelLegendary"  	  				 														y="-2s" 			   color="#b712d6" lineheight="21s" style="itemTipLabel" />	
+		
+		<style name="itemTipNameCommon" 																									   fitypadding="8s" color="white"   style="itemTipName" />
+		<style name="itemTipNameRare" 																										   fitypadding="8s" color="#089cd9" style="itemTipName" />
+		<style name="itemTipNameLegendary" 																									   fitypadding="8s" color="#b712d6" style="itemTipName" />
+		
+		<style name="itemTipBonusTypeRare" 																				y="1s" 				   color="#089cd9" style="itemTipBonus" />
+		<style name="itemTipBonusTypeLegendary" 																		y="1s" 				   color="#b712d6" style="itemTipBonus" />			
+		
+		<style name="itemTipContent" 			  width="390s" 																				   padding="10s" style="itemTipContent_base" />
+		<style name="itemTipHeader" 			  				  height="50s" 																   style="itemTipHeader_base" />
+		<style name="itemTipComponentRow" 						  height="44s" 													   			   padding="6s" style="itemTipComponentRow_base" />
+		<style name="itemTipComponentContainer" 																							   borderthickness="4s" style="itemTipComponentContainer_base" />
+		
+		<style name="itemTipRecipeHD1" 																		   x="-25s" y="-6s"  			   style="itemTipRecipeHD1_base" />
+		<style name="itemTipRecipeHD2" 			  width="26s" 	  height="26s"  							   x="4s"   y="-11s"   			   style="itemTipRecipeHD2_base" />
+		
+		<style name="itemTipRecipeContent" 		  																			 				   style="itemTipRecipeContent_base" />
+		<style name="itemTipRecipeIcon" 		  width="40s" 	  height="40s"   			    valign="center" />
+		<style name="itemTipRecipeDescription" 	  width="-45s"    />
+		<style name="itemTipRecipeDescriptionLabel"																							   lineheight="20s" style="itemTipRecipeDescriptionLabel_base" />	
+		
+		<style name="itemTip_Icon"				  width="36s"     height="36s" 											y="5s" 	   noclick="1" />
+		<style name="itemTip_Label"				  width="-47s" 															y="5s" 				   style="itemTip_Label_base"/>
+		<style name="itemTip_Label2"			  																		y="5s"     noclick="1" style="itemTipBonusTypeRare" />
+		<style name="itemTip_Desc" 																						y="-2s" 			   style="itemTip_Desc_base" />
+		
+		<style name="itemTipRecipeBonusContainer" 																							   padding="8s" style="itemTipRecipeBonusContainer_base" />		
+			
+		<style name="itemTipStats" 				  																							   padding="3s" style="itemTipStats_base" />
+		<style name="itemTipSpace" 				  width="100%" 	  height="5s" 													   noclick="1" />
+	</if>
+	
+	<!-- In-Game Styles -->
+	<if condition="!host_islauncher" >
+		<style name="divide" 					 				  height="0.1h" 												   			   style="divide_base" />
+		
+		<style name="dialogbg" 					  width="+3h" 	  height="+3h" 																   borderthickness="1h" style="dialogbg_base" />
+		<style name="dialogbgshadow" 			  width="+3h"     height="+3h"  							   x="0.7h" y="0.7h"  			   borderthickness="1h" style="dialogbgshadow_base" />
+		<style name="dialogbgBorder" 			  width="+3h" 	  height="+3h" 																   borderthickness="1h" style="dialogbgBorder_base" />
+		
+		<style name="itemTipLabelCommon" 		 				 														y="-0.5h"			   color="white"   lineheight="1.9h" style="itemTipLabel" />
+		<style name="itemTipLabelRare" 			  				 														y="-0.5h" 			   color="#089cd9" lineheight="1.9h" style="itemTipLabel" />
+		<style name="itemTipLabelLegendary"  	  				 														y="-0.5h" 			   color="#b712d6" lineheight="1.9h" style="itemTipLabel" />	
+		
+		<style name="itemTipNameCommon" 																									   fitypadding="0.8h" color="white"   style="itemTipName" />
+		<style name="itemTipNameRare" 																										   fitypadding="0.8h" color="#089cd9" style="itemTipName" />
+		<style name="itemTipNameLegendary" 																									   fitypadding="0.8h" color="#b712d6" style="itemTipName" />
+		
+		<style name="itemTipBonusTypeRare" 																				y="0.1h" 			   color="#089cd9" style="itemTipBonus" />
+		<style name="itemTipBonusTypeLegendary" 																		y="0.1h" 			   color="#b712d6" style="itemTipBonus" />
+	
+		<style name="itemTipContent" 			  width="41h" 																				   padding="0.6h" style="itemTipContent_base" />
+		<style name="itemTipHeader" 			  				  height="5h" 																   style="itemTipHeader_base" />
+		<style name="itemTipComponentRow" 						  height="4.4h" 													   		   padding="0.6h" style="itemTipComponentRow_base" />
+		<style name="itemTipComponentContainer" 																							   borderthickness="0.4h" style="itemTipComponentContainer_base" />
+		
+		<style name="itemTipRecipeHD1" 																		   x="-2.5h" y="-0.6h"  		   style="itemTipRecipeHD1_base" />
+		<style name="itemTipRecipeHD2" 			  width="2.6h" 	  height="2.6h"  							   x="0.4h"  y="-1.1h"   		   style="itemTipRecipeHD2_base" />
+		
+		<style name="itemTipRecipeContent" 		   				   																			   style="itemTipRecipeContent_base" />
+		<style name="itemTipRecipeIcon" 		  width="4h" 	  height="4h"   			    valign="center" />
+		<style name="itemTipRecipeDescription" 	  width="-3.8h"  											   x="0.8h" />
+		<style name="itemTipRecipeDescriptionLabel"																							   lineheight="1.9h" style="itemTipRecipeDescriptionLabel_base" />		
+		
+		<style name="itemTip_Icon"				  width="3.6h"    height="3.6h" 										y="0.5h"   noclick="1" />
+		<style name="itemTip_Label"				  width="-4.7h" 														y="0.5h" 			   style="itemTip_Label_base"/>
+		<style name="itemTip_Label2"			  																		y="0.5h"   noclick="1" style="itemTipBonusTypeRare" />
+		<style name="itemTip_Desc" 																						y="-0.2h" 			   style="itemTip_Desc_base" />
+		
+		<style name="itemTipRecipeBonusContainer" 																							   padding="0.8h" style="itemTipRecipeBonusContainer_base" />	
+				
+		<style name="itemTipStats" 				  																							   padding="0.3h" style="itemTipStats_base" />
+		<style name="itemTipSpace" 				  width="100%" 	  height="0.5h" 												   noclick="1" />
+	</if>
+
+	<!--
+	===========================	
+	Templates
+	===========================
+	-->	
+	
+	<template name="itemTipComponent">
+		<panel name="shopItemTipComponent{id}" width="32.4%" height="100%" noclick="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="itemTipComponentContainer" color="0.01 0.12 0.14 0.3" bordercolor="0.01 0.12 0.14 0.3" />
+			
+			<panel name="shopItemTipComponent{id}Frame" noclick="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="itemTipComponentContainer" />
+				
+				<panel height="72%" width="-10s" valign="center" align="center" noclick="1">
+					<panel height="100%" width="100@">
+						<frame texture="/ui/elements:rounded_bg_white" width="+0.5h" height="+0.5h" align="center" valign="center" color="#00181c" borderthickness="0.2h" visible="1"/>
+						<image name="shopItemTipComponent{id}Icon" texture="/items/basic/power_1/icon.tga" noclick="1" />
+						<frame texture="/ui/elements:rounded_bg_white" width="+0.5h" height="+0.5h" align="center" valign="center" color="invisible" bordercolor="#011619" borderthickness="0.2h" visible="1"/>
+					</panel>
+					<panel x="108@" width="-110@" noclick="1">
+						<label name="shopItemTipComponent{id}StatName" align="center" y="1@" fitx="1" textvalign="top" font="maindyn_11" color="white" content="---" noclick="1" />
+						<label name="shopItemTipComponent{id}StatValue" align="center" y="2%" fitx="1" textvalign="bottom" font="maindyn_11" color="#00c8ed" content="---" noclick="1" />
+					</panel>
+				</panel>
+				
+				<label name="shopItemTipComponent{id}OwnedLabel" font="subdyn_9" color=".5 .5 .5 1" x="-40@" y="-12%" textalign="right" content="general_required_cap" noclick="1" />
+				<image name="shopItemTipComponent{id}TypeIcon" texture="/ui/shared/shop/filters/components_1.tga" rendermode="grayscale" y="-17%" x="12@" align="right" width="48@" height="48%" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="itemTipRecipe">
+		<panel name="shopItemTip_{id}{type}" style="itemTip">
+			<panel style="divide" />
+			
+			<panel grow="1" regrow="1" width="100%" noclick="1">
+				<panel style="itemTip_Icon">
+					<image name="shopItemTip_{id}{type}_icon" texture="/items/rarecomponents/brutality/icon.tga" noclick="1" />
+				</panel>
+				<panel style="itemTip_Label">
+					<label name="shopItemTip_{id}{type}_label_1" style="itemTip_Desc" content="crafted_item_bonus_rare" noclick="1" />
+					<label name="shopItemTip_{id}{type}_label_3"  wrap="1" style="{nameStyle=itemTipNameRare}" content="Name: Desc" noclick="1" />
+				</panel>
+				<label name="shopItemTip_{id}{type}_label_2" style="itemTip_Label2" content="crafted_item_bonus_rare" visible="0"/>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="shopItemTipStat">
+		<panel name="shopItemTipStat_{type}"  width="100%" float="right" grow="1" regrow="1" growinvis="0" sticky="1" stickytoinvis="0">
+			<label name="shopItemTipStat_{type}_name"    fity="1" width="50%"    font="maindyn_11" color="#00c8ed" 				   	  content="shop_item_stat_name_{type}" noclick="1"/>
+			<label name="shopItemTipStat_{type}_current" fity="1" width="16.67%" font="maindyn_11" color="white"   textalign="center" content="105" 					   noclick="1"/> <!-- Player's current stat value -->
+			<label name="shopItemTipStat_{type}_item"    fity="1" width="16.67%" font="maindyn_11" color="#00c8ed" textalign="center" content="121"    					   noclick="1"/> <!-- Player's stat value with this item -->
+			<label name="shopItemTipStat_{type}_change"  fity="1" width="16.67%" font="maindyn_11" color="#00ff12" textalign="center" content="+16%{isNoted}" 			   noclick="1"/> <!-- The change in stat values. Always numerical. Ability and attack damage are *'d -->
+		</panel>
+	</template>
+	
+	<!--
+	===========================	
+	Core Interface
+	===========================
+	-->	
+	<floater name="shopItemTip" style="itemTipParent" visible="0">		
+		<panel style="itemTipContent">			
+			<panel width="100%" height="100%" noclick="1" sticky="1">
+				<frame texture="/ui/elements:squareglow" width="+4h" height="+4h" align="center" valign="center" noclick="1" color="invisible" borderthickness="1h" bordercolor="0 0 0 0.7" />
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="dialogbgshadow" />
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="dialogbg" />
+			</panel>
+			
+			<!-- Title/Cost -->
+			<panel style="itemTipHeader">
+				<panel width="100@" height="100%">
+					<image name="shopItemTipIcon" texture="/items/basic/power_1/icon.tga"/>
+					<frame name="shopItemTipBorder" texture="/ui/elements:rounded_bg_white" width="+0.5h" height="+0.5h" align="center" valign="center" color="invisible" bordercolor="#0b5664" borderthickness="0.3h" visible="1"/>
+				</panel>
+				<panel width="-118@" align="right" noclick="1">
+					<label name="shopItemTipName" style="itemTipLabelCommon" content="Item Name"/>
+					<label name="shopItemTipCost" align="right" x="-40@" textalign="right" textvalign="center" font="maindyn_20" color="#ffa800" content="---"/>
+					<image y="2%" width="30@" height="30%" align="right" valign="center" texture="/ui/elements:gold_coins"/>
+				</panel>
+			</panel>
+			
+			<panel style="divide" />
+			
+			<label fity="1" font="maindyn_9" color="#0b5664" content="item_tip_components" noclick="1" sticky="1" stickytoinvis="0"/>
+			
+			<!-- Components -->
+			<panel name="shopItemTipComponents" style="itemTipComponentRow" visible="1">				
+				<instance name="itemTipComponent" id="0"/>
+				<instance name="itemTipComponent" id="1"/>
+				<instance name="itemTipComponent" id="2"/>
+			</panel>
+			
+			<!-- Recipe -->
+			<panel style="itemTipRecipe">				
+				<panel style="itemTipRecipeContent">				
+					<!-- Recipe Info -->
+					<panel grow="1" regrow="1" width="98%" noclick="1" sticky="1">
+						<panel name="shopItemTipRecipeIconContainer" style="itemTipRecipeIcon">
+							<image name="shopItemTipIconScroll" texture="/items/recipes/defensive/iron_shield/icon.tga" y="3%" width="68%" height="68%" valign="center" align="center" noclick="1" />
+							<image texture="/ui/elements:scroll_overlay" noclick="true"/>
+						</panel>
+						<panel name="shopItemTipRecipeDescriptionContainer" style="itemTipRecipeDescription" grow="1" regrow="1" align="right" noclick="1" float="bottom">
+							<label fity="1" font="maindyn_11" color="white" content="item_tip_recipe" noclick="1"/>
+							<label name="shopItemTipDescription" style="itemTipRecipeDescriptionLabel" content="Recipe Description" lineheight="1.4h" fity="1" noclick="1" />
+							<panel height="0.5h" noclick="1" />
+						</panel>
+					</panel>
+					
+					<!-- Enchant Bonus -->
+					<panel name="itemTipRecipeBonusContainer" style="itemTipRecipeBonusContainer">
+						<panel height="0.5h" noclick="1" />
+						<instance name="itemTipRecipe" id="analog" 		type="Bonus" 		nameStyle="itemTipNameCommon" 		bonusName="game_itemtip_bonus_Analog"/>
+						<instance name="itemTipRecipe" id="rare" 		type="Bonus"		nameStyle="itemTipNameRare"/>
+						<instance name="itemTipRecipe" id="legendary" 	type="Bonus"		nameStyle="itemTipNameLegendary"/>
+					</panel>
+					
+					<!-- Imbuements -->
+					<panel name="itemTipRecipeImbuementContainer" style="itemTipRecipeBonusContainer" >
+						<instance name="itemTipRecipe" id="0" 			type="Imbuement" 	nameStyle="itemTipNameLegendary" />
+					</panel>					
+				</panel>				
+			</panel>		
+			
+			<panel float="bottom" grow="1" regrow="1" growinvis="0" width="100%" noclick="1" sticky="1" stickytoinvis="0">				
+				<!-- Lifetime -->
+				<panel name="shopItemTip_lifetime" float="bottom" height="30s" visible="1" sticky="1" stickytoinvis="0">
+					<panel style="divide" />
+					
+					<panel height="24s" float="right" padding="6s">
+						<image width="95@" height="95%" valign="center" texture="/ui/shared/textures/stats.tga" />
+						<label name="shopItemTip_lifetime_label" fitx="1" textvalign="center" font="maindyn_11" content="" color="white" noclick="1" />
+					</panel>
+				</panel>
+				
+				<!-- Activatable -->
+				<panel name="shopItemTip_activatable" float="bottom" height="24s" visible="1" sticky="1" stickytoinvis="0">
+					<panel style="divide" />
+					
+					<panel height="24s">
+						<panel float="right" padding="6s">
+							<image y="0.1h" width="100@" height="100%" valign="center" texture="/ui/shared/shop/textures/activatable.tga" />
+							<label fitx="1" textvalign="center" font="maindyn_11" content="shop_item_activatable" color="white" noclick="1" />
+						</panel>
+						
+						<!-- Cooldown -->
+						<panel name="shopItemTipCooldownContainer" grow="1" regrow="1" x="-5s" height="100%" float="right" padding="6s" align="right" visible="1" >
+							<image y="0.1h" width="98@" height="98%" valign="center" texture="/ui/elements:icon_loading" />
+							<label name="shopItemTipCooldown" fitx="1" textvalign="center" font="maindyn_11" content="00s" color="#00c8ed" noclick="1" />
+						</panel>
+					</panel>
+				</panel>	
+			</panel>
+
+			<panel style="divide" />
+			
+			<!-- Stats -->
+			<panel style="itemTipStats">
+				<panel width="100%" float="right" grow="1" regrow="1" growinvis="0" sticky="1" stickytoinvis="0">
+					<label fity="1" width="50%"    font="maindyn_9" color="#0b5664" 				   content="item_tip_stat"    noclick="1"/>
+					<label fity="1" width="16.67%" font="maindyn_9" color="#0b5664" textalign="center" content="item_tip_current" noclick="1"/>
+					<label fity="1" width="16.67%" font="maindyn_9" color="#0b5664" textalign="center" content="item_tip_item"    noclick="1"/>
+					<label fity="1" width="16.67%" font="maindyn_9" color="#0b5664" textalign="center" content="item_tip_change"  noclick="1"/>
+				</panel>
+				
+				<instance name="shopItemTipStat" type="power"							/>
+				<instance name="shopItemTipStat" type="baseAttackDamage"	isNoted="*" />
+				<instance name="shopItemTipStat" type="baseAbilityDamage"	isNoted="*" />
+				<instance name="shopItemTipStat" type="baseAttackSpeed"					/>
+				<instance name="shopItemTipStat" type="armor"							/>
+				<instance name="shopItemTipStat" type="mitigation"						/>
+				<instance name="shopItemTipStat" type="magicArmor"						/>
+				<instance name="shopItemTipStat" type="resistance"						/>
+				<instance name="shopItemTipStat" type="maxHealth"						/>
+				<instance name="shopItemTipStat" type="baseHealthRegen"					/>
+				<instance name="shopItemTipStat" type="maxMana"							/>
+				<instance name="shopItemTipStat" type="baseManaRegen"					/>
+				
+				<panel style="itemTipSpace" />
+				<label fity="1" width="100%" textalign="right" font="maindyn_9" color="#0b5664" content="item_tip_noted" noclick="1" sticky="1" stickytoinvis="0"/>
+			</panel>
+		</panel>		
+	</floater>
+
+</package>

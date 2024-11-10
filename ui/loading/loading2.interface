@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="loading2" luatable="true">
+
+	<template name="loading_info">
+		<panel x="{x}" y="{y}" height="9.6h" width="45h" align="center" valign="center">
+			<image texture="/ui/game/loading/textures/{icon}" width="{iconsize=100}@" height="{iconsize=100}%" y="{icony}" x="{iconx}" />
+			<panel width="-110@" align="right">
+				<label font="maindyn_26" color="#ffab13" outline="1" outlinecolor="0 0 0 .8" content="{title}" />
+				<label y="4.0h" font="subdyn_15" color="1 1 1 1" outline="1" outlinecolor="0 0 0 .8" wrap="1" lineheight="2.4h" content="{description}" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="2loading_team_item_template">
+		<panel width="80@">
+			<image name="2loading_team_{playerid}" texture="$invis" visible="0" align="center" width="100@" height="100%" hflip="{hflip}" />
+		</panel>
+	</template>
+	
+	<splashimage
+		width="178.777778@" height="100%" align="center"
+		bgcolor="red"
+		image=""
+		onhidelua=""
+		onshowlua=""
+		onloadlua="self:SetImage('/ui/game/loading/textures/nt_background1.jpg'); self:RegisterWatchLua('RemoveLoadingAssets', function (widget, trigger) self:SetImage('') end)"
+		view="clip"		
+	/>
+	
+	<!-- Hero Icons -->		
+	<image texture="/ui/game/loading/textures/nt_player_bar.tga" y="5.6h" width="112h" height="2" align="center" valign="center"/>
+	<panel noclick="1" x="-26h" y="0.5h" height="10.0h" width="41h" valign="center" align="center" float="right" reverse="1">
+		<instance name="2loading_team_item_template" teamid="1" playerid="0" hflip="0" />
+		<instance name="2loading_team_item_template" teamid="1" playerid="1" hflip="0" />
+		<instance name="2loading_team_item_template" teamid="1" playerid="2" hflip="0" />
+		<instance name="2loading_team_item_template" teamid="1" playerid="3" hflip="0" />
+		<instance name="2loading_team_item_template" teamid="1" playerid="4" hflip="0" />			
+	</panel>	
+	<panel noclick="1" x="26h" y="0.5h" height="10.0h" width="41h" valign="center" align="center" float="right" reverse="0" >	
+		<instance name="2loading_team_item_template" teamid="2" playerid="5" hflip="1" />
+		<instance name="2loading_team_item_template" teamid="2" playerid="6" hflip="1" />
+		<instance name="2loading_team_item_template" teamid="2" playerid="7" hflip="1" />
+		<instance name="2loading_team_item_template" teamid="2" playerid="8" hflip="1" />
+		<instance name="2loading_team_item_template" teamid="2" playerid="9" hflip="1" />	
+	</panel>
+
+	<image name="2loading_team_1_myteam_indicator" visible="0" texture="/ui/game/loading/textures/team_kablamo_green.tga" width="36h" height="20h" valign="top" align="left" hflip="0" vflip="1" noclick="1" />
+	<panel name="2loading_team_1_myteam_indicator_logo" align="left" valign="top" x="1h" y="0.5h" noclick="true" texture="/ui/game/loading/textures/team_logo_glory_red.tga" width="14h" height="14h"/>
+	<label align="left" valign="top" x="15h" y="3h" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_glory" font="maindyn_72" />
+	<label name="2loading_team_1_myteam_indicator_label" align="left" valign="top" x="15h" y="1.5h" fity="1" color=".8 .8 .8 1" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+	
+	<image name="2loading_team_2_myteam_indicator" visible="0" texture="/ui/game/loading/textures/team_kablamo_green.tga" width="36h" height="20h" valign="top" align="right" hflip="1" vflip="1" noclick="1" />
+	<panel name="2loading_team_2_myteam_indicator_logo" align="right" valign="top" x="-0h" y="1.0" noclick="true" texture="/ui/game/loading/textures/team_logo_valor_red.tga" width="16h" height="16h"/>
+	<label align="right" valign="top" x="-14h" y="3h" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_valor" font="maindyn_72" />
+	<label name="2loading_team_2_myteam_indicator_label" align="right" valign="top" x="-14h" y="1.5h" fity="1" color=".8 .8 .8 1" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+	 
+	<!-- Progress Pie -->
+	<panel width="14h" height="14h" align="center" valign="center" y="0.5h" noclick="1" >
+		<image noclick="1" texture="/ui/game/loading/textures/loading_disc.tga"/>
+		<piegraph name="2loadingProgressBar" end="-90" start="270" square="0" color="0 0 0 0.7" noclick="true" value="1.0" align="center" valign="center" height="87.2%" width="87.2%" />
+		<label fity="1" color="white" outline="1" outlinecolor="0 0 0 .5" align="center" valign="center" textvalign="center" textalign="center" fitx="1" noclick="1" content="general_vs" font="maindyn_40" />
+	</panel>
+	
+	<!-- Info Thingies -->
+	<instance name="loading_info" icon="nt_feature_1.tga" y="20h" x="-26h" title="load_feature_title_1" description="load_feature_label_1" />
+	<instance name="loading_info" icon="nt_feature_2.tga" y="36h" x="-26h" title="load_feature_title_2" description="load_feature_label_2" />
+	
+	<instance name="loading_info" icon="nt_feature_4.tga" iconsize="120" icony="-1.0h" iconx="-1.4h" y="20h" x="26h" title="load_feature_title_4" description="load_feature_label_4" />
+	<instance name="loading_info" icon="nt_feature_3.tga" y="36h" x="26h" title="load_feature_title_3" description="load_feature_label_3" />
+
+	<?lua
+	
+		for playerid = 0,9,1 do
+			object:GetWidget('2loading_team_' .. (playerid)):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				
+				if trigger.entityName and (not Empty(trigger.entityName)) then	
+					widget:SetTexture(GetEntityCutOutIconPath(trigger.entityName))
+					widget:SetVisible(true)
+					if IsMe(trigger.identID) or (trigger.isTeammate) then
+						if (playerid < 5) then
+							widget:GetWidget('2loading_team_1_myteam_indicator'):SetVisible(1)
+							widget:GetWidget('2loading_team_1_myteam_indicator_logo'):SetTexture('/ui/game/loading/textures/team_logo_glory_green.tga')
+							widget:GetWidget('2loading_team_1_myteam_indicator_label'):SetText(Translate('general_your_team'))
+						else
+							widget:GetWidget('2loading_team_2_myteam_indicator'):SetVisible(1)
+							widget:GetWidget('2loading_team_2_myteam_indicator_logo'):SetTexture('/ui/game/loading/textures/team_logo_valor_green.tga')
+							widget:GetWidget('2loading_team_2_myteam_indicator_label'):SetText(Translate('general_your_team'))
+						end
+					end
+				else
+					widget:SetTexture('')
+					widget:SetVisible(false)
+				end
+			end)
+
+			object:GetWidget('2loading_team_' .. (playerid)):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetTexture('')
+			end, true, nil)
+		end	
+		
+		object:GetWidget('2loading_team_1_myteam_indicator'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetVisible(0)
+		end, true, nil)
+		
+		object:GetWidget('2loading_team_2_myteam_indicator'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetVisible(0)
+		end, true, nil)		
+		
+		object:GetWidget('2loading_team_1_myteam_indicator_logo'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetTexture('/ui/game/loading/textures/team_logo_glory_red.tga')
+		end, true, nil)
+		
+		object:GetWidget('2loading_team_2_myteam_indicator_logo'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetTexture('/ui/game/loading/textures/team_logo_valor_red.tga')
+		end, true, nil)			
+	
+		object:GetWidget('2loading_team_1_myteam_indicator_label'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetText(Translate('general_team'))
+		end, true, nil)
+	
+		object:GetWidget('2loading_team_2_myteam_indicator_label'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetText(Translate('general_team'))
+		end, true, nil)			
+		
+		object:GetWidget('2loadingProgressBar'):RegisterWatchLua('LoadingProgress', function(widget, trigger)
+			widget:SetValue(1.0 - trigger.loadPercent)
+		end, true, nil, 'loadPercent')
+	?>
+
+</interface>

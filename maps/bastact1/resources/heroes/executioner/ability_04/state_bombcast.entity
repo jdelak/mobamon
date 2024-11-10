@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="Bastact1_State_Bombcast"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	
+	movespeed="400"
+	impactinterval="2000"
+	aggrorange="0"
+	ismobile="true"
+	canrotate="true"
+	canattack="false"
+	stunned="true"
+>	
+	<onspawn>
+		<!-- <playanim source="source_entity" target="source_entity" name="laugh_1" /> -->	
+		<areaofeffect
+					radius="3000"
+					targetselection="all"
+					targetscheme="Bastact1_BombAbility_Start"
+					center="source_entity"
+					maxtotalimpacts="1"
+					ignoreinvulnerable="true"
+		>
+			<setproxy entity="this_entity" target="target_entity" />	 <!-- Used for offset stuff -->			
+		</areaofeffect>	
+
+		<chance threshold="0.5">
+			<!-- time till animation =impactinterval-1000 -->
+			<applystate name="Bastact1_State_Executioner_PlayBombCast2" duration="1000" target="source_entity" /> 
+			<setaccumulator value="1" />
+			<setvar0 a="accumulator" b="0" op="max" />
+			<print text="Chose multi-bombs" />
+		</chance>
+		<else>
+			<!-- time till animation =impactinterval-600 -->
+			<applystate name="Bastact1_State_Executioner_PlayBombCast1" duration="500" target="source_entity" />
+			<setaccumulator value="2" />
+			<setvar0 a="accumulator" b="0" op="max" />
+			<printvalue value="var0" />
+			<print text="Chose big bomb" />
+		</else>
+	</onspawn>
+
+	<onimpact>	
+	<condition test="not_hasstate State_Stunned" target="source_entity" >	
+	<!-- <playanim source="source_entity" target="source_entity" name="laugh_1" />	 -->
+		<setvar0 a="accumulator" b="0" op="max" />
+		<!-- <printdebuginfo /> -->
+		<compare a="var0" b="1" op="eq">
+			<setaccumulator value="0" />
+			<!-- INNER RING, 8 equidistant bombs -->
+
+			<applystate name="Bastact1_State_Executioner_RingBomb_Sound" source="source_entity" target="source_entity" duration="2000"/>
+			<setpos0 position="source_position" offset="400 0 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000"/>
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity" />
+			
+			<setpos0 position="source_position" offset="-400 0 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity" />
+			
+			<setpos0 position="source_position" offset="0 400 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity"  />	
+
+			<setpos0 position="source_position" offset="0 -400 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity" />
+
+			<setpos0 position="source_position" offset="282 282 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity" />
+
+			<setpos0 position="source_position" offset="282 -282 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity"  />
+
+			<setpos0 position="source_position" offset="-282 282 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity"  />
+
+			<setpos0 position="source_position" offset="-282 -282 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="3000" />
+			<playeffect effect="effects/ringx.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Inner" target="pos0" bind="stack_entity" proxy="stack_entity" />
+		
+
+
+			<!-- MIDDLE RING, 10 equidistant bombs -->
+
+			
+			<setpos0 position="source_position" offset="700 0 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="566 411 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="216 665 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity" />
+
+			<setpos0 position="source_position" offset="-216 665 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity" />
+
+			<setpos0 position="source_position" offset="-566 411 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity" />
+
+			<setpos0 position="source_position" offset="-700 0 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="-566 -411 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity" />
+
+			<setpos0 position="source_position" offset="-216 -665 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="216 -665 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="566 -411 100" offsetspace="proxy_entity" />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="4000" />
+			<playeffect effect="effects/ringx2.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Middle" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+
+			<!-- OUTER RING, 12 equidistant bombs -->
+
+	
+			<setpos0 position="source_position" offset="1000 0 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="-1000 0 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="0 1000 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="0 -1000 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" proxy="stack_entity"/>
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+
+			<setpos0 position="source_position" offset="866 500 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="-866 500 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="866 -500 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="-866 -500 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="-500 -866 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="-500 866 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="500 866 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+
+			<setpos0 position="source_position" offset="500 -866 100" offsetspace="proxy_entity"  />
+			<spawnunit name="Bastact1_Bomb2" count="1" target="source_entity" team="1" pushentity="true" lifetime="5000" />
+			<playeffect effect="effects/ringx3.effect" source="pos0" target="pos0" />
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Outer" target="pos0" bind="stack_entity" proxy="stack_entity"/>
+		</compare>
+		<else>
+			<compare a="accumulator" b="2" op="eq">
+				<setaccumulator value="0" />
+
+				<areaofeffect
+					radius="1500"
+					targetselection="all"
+					targetscheme="visible_enemy_heroes"
+					center="source_entity"
+					maxtotalimpacts="-1"
+				>
+					
+					<spawnunit name="Bastact1_Bomb2_Big" count="1" target="source_entity" team="1" pushentity="true" lifetime="2000" />
+					<playanim name="bombthrow_1" target="source_entity" />
+					<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="900" />
+					<!-- <playeffect effect="effects/ring_bigbomb.effect" source="pos0"  visibility="all"/> -->
+					<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_BigBomb" target="pos0" bind="stack_entity" offset="0 50 100" bindturn="true" />		
+					<order command="attack" source="source_entity" target="target_entity" queue="front" />	
+				</areaofeffect>	
+			</compare>
+		</else>
+	</condition >
+		<else>
+				<expirestate target="source_entity" name="Bastact1_State_Bombcast"/>
+		</else>	
+	</onimpact>
+
+</state>

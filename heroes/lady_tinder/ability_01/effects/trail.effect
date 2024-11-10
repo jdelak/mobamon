@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<terrainemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="2500"
+			>
+				<particle
+				>
+					<model
+						life="1500"
+						color="1 1 1"
+						position="0 0 0"
+						model="ground_plants/model.mdf"
+						material="ground_plants/material_red.material"
+						anim="idle"
+						scale=".385"
+						minyaw="0"
+						maxyaw="360"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+					>
+					</model>
+				</particle>
+			</terrainemitter>
+
+			<terrainemitter
+				spawnrate="10"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<model
+						life="1000"
+						color="1 1 1"
+						position="0 0 0"
+						model="ground_plants/model.mdf"
+						material="ground_plants/material.material"
+						anim="idle"
+						minscale=".2"
+						maxscale=".35"
+						minyaw="0"
+						maxyaw="360"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					>
+						<simpleemitter
+							count="6"
+							minparticlelife="250"
+							maxparticlelife="500"
+							spawnrate="1000"
+							minspeed="750"
+							maxspeed="1000"
+							gravity="-10"
+							position="0 0 0"
+							drag=".025"
+							material="/shared/effects/smaterials/leaf.material"
+							offsetsphere="15 15 0"
+							direction="0 0 1"
+							minangle="0"
+							maxangle="120"
+							depthbias="-75"
+						>
+							<particle
+								turn="true"
+								color="1 1 1"
+								minsize="30"
+								maxsize="50"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-180"
+								maxanglespeed="180"
+							>
+							</particle>
+						</simpleemitter>
+
+						<billboard
+							position="0 0 35"
+							life="1000"
+							material="/shared/effects/materials/whitedot.material"
+							startcolor="0 0 0"
+							midcolor=".25 .25 0"
+							endcolor="0 0 0"
+							size="320"
+							depthbias="-75"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</model>
+				</particle>
+
+				<particle
+				>
+					<model
+						life="1000"
+						color="1 1 1"
+						position="0 0 0"
+						model="ground_plants/model.mdf"
+						material="ground_plants/material_red.material"
+						anim="idle"
+						minscale=".2"
+						maxscale=".35"
+						minyaw="0"
+						maxyaw="360"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					>
+						<simpleemitter
+							count="6"
+							minparticlelife="250"
+							maxparticlelife="500"
+							spawnrate="1000"
+							minspeed="750"
+							maxspeed="1000"
+							gravity="-10"
+							position="0 0 0"
+							drag=".025"
+							material="/shared/effects/smaterials/leaf.material"
+							offsetsphere="15 15 0"
+							direction="0 0 1"
+							minangle="0"
+							maxangle="120"
+							depthbias="-75"
+						>
+							<particle
+								turn="true"
+								color="1 1 1"
+								minsize="30"
+								maxsize="50"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-180"
+								maxanglespeed="180"
+							>
+							</particle>
+						</simpleemitter>
+
+						<billboard
+							position="0 0 35"
+							life="1000"
+							material="/shared/effects/materials/whitedot.material"
+							startcolor="0 0 0"
+							midcolor=".25 .25 0"
+							endcolor="0 0 0"
+							size="320"
+							depthbias="-75"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</model>
+				</particle>
+			</terrainemitter>
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<light
+						life="250"
+						startcolor="1.5 2 0"
+						midcolor="1.5 2 0"
+						endcolor="0 0 0"
+						falloffstart="0"
+						falloffend="175"
+						position="0 0 0"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<model
+				delay="100"
+				position="3 0 -25"
+				expirelife="0"
+				name="emitter0" 
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				scale=".75"
+				startcolor="0 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".4"
+				rollspeed="750"
+			>
+				<template name="trails">
+					<trailemitter
+						bone="{bone01}"
+						spawnrate="50"
+						particlelife="1500"
+						texpostime="1500"
+						texposscale="1"
+						texstretchscale=".5"
+						position="0 0 0"
+						material="/shared/effects/smaterials/vines.material"
+						
+					>
+						<particle
+							color="1 1 1"
+							startsize="0"
+							midsize="50"
+							endsize="0"
+							midsizepos=".5"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".25"
+					 />
+					</trailemitter>	
+				</template>
+				
+				<instance name="trails" bone01="_bone_fx_01"/>
+				<instance name="trails" bone01="_bone_fx_03"/>
+				<instance name="trails" bone01="_bone_fx_05"/>
+			</model>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+      	<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

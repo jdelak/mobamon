@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="decal_normal">
+	<dependency name="Normal" type="float3" source="Normal" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="OutObject" type="float3" solution="ObjectNormal" />
+	<output name="OutWorld" type="float3" solution="WorldNormal" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float3 vInNormal = (Normal / 255.0f) * 2.0f - 1.0f;
+			OutObject = vInNormal;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float3 vInNormal = Normal;
+			OutObject = vInNormal;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec3 vInNormal = (Normal / 255.0f) * 2.0f - 1.0f;
+			OutObject = vInNormal;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec3 vInNormal = (Normal / 255.0f) * 2.0f - 1.0f;
+			OutObject = vInNormal;
+			OutWorld = OutObject;
+		?>
+	</case>
+</node>

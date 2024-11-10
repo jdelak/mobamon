@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Bastact1_Gauntlet_GuardKillCounter"
+
+	icon=""
+	portrait=""
+	model="/shared/models/invis.mdf"
+	passiveeffect=""
+	deatheffect=""
+	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	canattack="false"
+
+	sightrangeday="0"
+	sightrangenight="0"
+
+	deathtime="0"
+	corpsetime="0"
+		
+	invulnerable="false"
+	hidealtinfo="true"
+	drawonmap="false"
+>
+	<onspawn> <print text="spawned killcounter" /> </onspawn>
+
+	<onframe>
+		<compare a="accumulator" b="4" op="eq">
+			<setscriptvalue name="AllGuardsDead" value="1" />
+			<kill source="" target="this_entity" />
+		</compare>
+	</onframe>
+</gadget>

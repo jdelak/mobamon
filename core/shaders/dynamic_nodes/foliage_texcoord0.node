@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="foliage_texcoord0">
+	<dependency name="Data" type="float4" source="Data" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float2" solution="Texcoord0" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float4 f4Data = Data / 255.0f;
+	
+			Out = f4Data.xy;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float4 f4Data = Data;
+	
+			Out = f4Data.xy;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec4 f4Data = Data / 255.0f;
+	
+			Out = f4Data.xy;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec4 f4Data = Data / 255.0f;
+	
+			Out = f4Data.xy;
+		?>
+	</case>
+</node>

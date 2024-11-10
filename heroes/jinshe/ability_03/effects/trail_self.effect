@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+	
+<!--
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor=".75"
+			endcolor="1"
+		/>
+-->
+	
+		<particlesystem name="system0" space="world" scale="2.5">
+
+			<sound
+				life="3000"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../sounds/sfx_cast_end.wav"
+			/>
+<!--
+
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="400"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/firesprite_swirl.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="50"
+				directionalspace="world"
+				offsetsphere="8"
+				inheritvelocity="0"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1.5"
+					endscale="1"
+					startcolor="1 .5 0"
+					endcolor="1 .25 0"
+					midcolorpos=".125"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".35"
+					startframe="0"
+					endframe="1"
+					minstartsize="80"
+					maxstartsize="100"
+					endsize="0"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+			
+			
+			
+
+
+
+
+
+
+
+<!--
+ 			<template name="">
+
+				<trailemitter
+
+
+					bone="{zbone}"
+					position="0 0 0"
+					spawnrate="200"
+					particlelife="250"
+					texpostime="250"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/trail_blend.material"
+					subframepos="true"
+					startparticlealpha="1"
+					endparticlealpha="0"
+				>
+					<particle
+						color="1 .2 0"
+						startsize="70"
+						endsize="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>
+				</trailemitter>
+				
+				
+				<trailemitter
+
+
+					bone="{zbone}"
+					spawnrate="75"
+					particlelife="250"
+					texpostime="250"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="0 0 0"
+						startsize="50"
+						midsize="50"
+						endsize="0"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+
+			</template>
+			
+			<instance name="" zbone="_bone_center"/> 
+
+-->
+
+
+			
+			
+			
+			<!-- sparks -->
+			<simpleemitter
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				spawnrate="200"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="1"
+				speed="10"
+				depthbias="-25"
+				drag=".01"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="30 30 0"
+				direction="0 0 0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 0"
+					midcolor="1 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".5"
+					minstartsize="7"
+					maxstartsize="10"
+					endsize="0"
+				/>
+			</simpleemitter>
+			
+
+
+
+
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>

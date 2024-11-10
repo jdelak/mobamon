@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial3_TowerAlone"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+
+	ishidden="true"
+>
+
+
+
+	<ondamage>
+
+		<compare a="target_entity" b="this_proxy_entity" op="eq">
+			<setaccumulator value="1" />
+		</compare>
+		
+		<compare a="1" b="accumulator" op="eq" >
+			<areaofeffect
+				radius="750"
+				targetselection="all"
+				targetscheme="enemy_creeps"
+				center="this_owner_entity"
+				source="this_owner_entity"
+			/>
+
+			<compare a="result" b="0" op="eq">
+				<targettype type="alive" target="this_owner_entity" >
+					<setscriptvalue name="tower_alone" value="1" />
+				</targettype>
+			</compare>
+		</compare>
+		
+		<setaccumulator value="0" />
+	</ondamage>
+	
+</state>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_opacity.shader" vDiffuseColor=".125 .125 .5" fSpecularLevel=".5" fGlossiness="100" fOpacity="1.0" fReflect="1.0" />
+	<phase name="shadow" cull="back" blend="translucent" />
+	<phase name="color" cull="back" blend="none">
+		<sampler name="diffuse" texture="$white" repeat_u="true" repeat_v="translucent" />
+	</phase>
+	<phase name="fade" cull="back" colorwrite="false" alphawrite="false" depthwrite="true" blend="translucent">
+		<multipass cull="back" blend="translucent">
+			<sampler name="diffuse" texture="$white" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+</material>

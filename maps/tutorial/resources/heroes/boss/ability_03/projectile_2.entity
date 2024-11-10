@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Tutorial_Boss_Ability3_Damage"
+
+	lifetime="800"
+	useexactlifetime="true"
+
+	model="/shared/models/invis.mdf"
+	canturn="false"
+	flying="false"
+	flyheight="0"
+	
+	touchprojectileblockers="true"
+	touchradius="120"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_heroes"
+	toucheffecttype="Magic"
+	maxtouchespertarget="1"
+>
+
+	<ontouch>
+		<targettype type="alive" target="source_entity" >
+			<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+			<damage amount="180" effecttype="Magic" />
+			<setscriptvalue name="damaged_by_baldir" value="1" />
+		</targettype>
+	</ontouch>
+
+	<onimpact>
+		<playanim name="ability_3_end" target="source_entity"/>
+	</onimpact>
+
+	<ondeath>
+		<playanim name="ability_3_end" target="source_entity"/>
+		<kill target="this_proxy_entity" />
+	</ondeath>
+
+  
+</projectile>

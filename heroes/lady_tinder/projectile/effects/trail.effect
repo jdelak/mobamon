@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="1500"
+				volume=".1"
+				sample="../../sounds/sfx_projectile.wav"
+			/>
+			
+			<model
+				position="0 0 0"
+				expirelife="0"
+				name="emitter0" 
+				anim="idle"
+				model="seed/model.mdf"
+				scale="1.25"
+				color="1 2 1"
+				startalpha="1"
+				endalpha="0"
+				midalphapos=".4"
+				yawspeed="1440"
+			>
+			</model>
+
+			<simpleemitter
+				position="0 0 50"
+				spawnrate="100"
+				minparticlelife="250"
+				maxparticlelife="500"
+				minspeed="250"
+				maxspeed="750"
+				gravity="-10"
+				drag=".025"
+				material="/shared/effects/smaterials/leaf.material"
+				offsetsphere="15 15 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="120"
+				depthbias="-75"
+			>
+				<particle
+					turn="true"
+					color="1 1 1"
+					minsize="10"
+					maxsize="20"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-180"
+					maxanglespeed="180"
+				>
+				</particle>
+			</simpleemitter>
+
+			<groundsprite
+				life="250"
+				startcolor=".2 .4 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				size="75"
+			/>
+
+			<billboard
+			position="0 0 50"
+				expirelife="250"
+				startcolor=".15 .15 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="150"
+				depthbias="-75"
+			/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

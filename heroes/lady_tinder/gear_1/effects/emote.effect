@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="5.5">
+		
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="500"
+				volume=".2" 
+				soundloop="true"
+				sample="sounds/amb_lamp.wav"
+			/>
+
+		<!--
+		<light
+			
+			bone="_bone_light"
+			falloffstart="50"
+			falloffend="100"
+			color="2 2 1"
+			
+		/>
+-->
+			
+			<billboard
+				bone="_bone_righthand"
+				size="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				color=".15 .1 .0"
+				depthbias="-230"
+			/>
+		
+			
+			
+
+			<orbiteremitter
+				bone="_bone_righthand"
+				timenudge="2000"
+				spawnrate="3"
+				particlelife="5000"
+				gravity="0.0"
+				minspeed=".8"
+				maxspeed="1.5"
+				acceleration="0" 
+				drag="0.0"
+				minangle="-90" 
+				maxangle="90" 
+				position="0.0 0.0 20" 
+				origin="1.0 1 30" 
+				orbit="1.0 0.0 1.0" 
+				direction="0.0 0.0 1.0" 
+				offset="3.14 0 20"
+				cylindrical="false" 
+				material="/shared/effects/smaterials/lightbug.material"
+				
+			>
+				<particle
+					startcolor=".9 .6 .4"
+					midcolor=".9 .6 .4"
+					endcolor="0 0 0"
+					midcolorpos="0.5"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					minanglespeed="63"
+					maxanglespeed="-63"
+					frame="0"
+					framespeed="4"		
+					minscale="1.25"
+					maxscale="1.75"								
+					turn="true"
+				/>
+			</orbiteremitter>
+
+			<orbiteremitter
+				bone="_bone_righthand"
+				timenudge="2000"
+				spawnrate="2"
+				particlelife="5000"
+				gravity="0.0"
+				minspeed=".8"
+				maxspeed="1.5"
+				acceleration="0" 
+				drag="0.0"
+				minangle="-90" 
+				maxangle="90" 
+				position="0.0 0.0 0" 
+				origin="1.0 1 20" 
+				orbit="1.0 0.0 1.0" 
+				direction="0.0 0.0 -1.0" 
+				offset="3.14 0 20"
+				cylindrical="false" 
+				material="/shared/effects/smaterials/lightbug.material"
+			>
+				<particle
+					startcolor=".9 .6 .4"
+					midcolor=".9 .6 .4"
+					endcolor="0 0 0"
+					midcolorpos="0.5"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"	
+					minanglespeed="90"
+					maxanglespeed="-90"	
+					frame="0"
+					framespeed="4"					
+					minscale="1.25"
+					maxscale="1.75"
+					turn="1"
+				/>
+			</orbiteremitter>
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

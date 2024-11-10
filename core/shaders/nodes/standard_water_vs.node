@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="standard_water_vs" nops="true">
+	<dependency name="Color" type="float4" source="vColor" />
+	<output name="OutColor" type="float4" solution="WaterColor0" />
+	<?hlsl
+		OutColor = Color;
+		OutColor.a *= OutColor.a;
+	?>
+	<?glsl
+		OutColor = Color;
+		OutColor.a *= OutColor.a;
+	?>
+</node>

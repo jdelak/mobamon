@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="3.0">
+		
+		
+		
+		
+
+			<billboard
+				life="350"
+				material="/shared/effects/smaterials/icon_omw_ground.material"
+				startscale="0"
+				midscale="1.35"
+				endscale="1"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				roll="180"
+				color=".15 .3 0"
+			/>
+			
+			<billboard
+				delay="350"
+				life="4750"
+				material="/shared/effects/smaterials/icon_omw_ground.material"
+				scale="1"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				roll="180"
+				startcolor=".15 .3 0"
+				midcolor=".15 .3 0"
+				endcolor="0 0 0"
+				midcolorpos=".95"
+			/>
+
+
+			<simpleemitter
+				delay="350"
+				life="4650"
+				spawnrate="15"
+				particlelife="2000"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+				minspeed="0"
+				maxspeed="20"
+			>
+				<particle
+				>
+				
+					<billboard
+						minlife="300"
+						maxlife="500"
+						material="/shared/effects/smaterials/icon_omw_outline_ground.material"
+						scale="1"
+						depthbias="-50"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						roll="90"
+						startcolor="0 0 0"
+						midcolor=".05 .2 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+					/>
+				
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+
+			
+			<!-- beams -->
+			<simpleemitter
+				count="4"
+				position="0 0 500"
+				spawnrate="500"
+				particlelife="275"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="10 10 0"
+				direction="0 0 1"
+				depthbias="-125"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .25 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="750"
+					maxstartheight="1500"
+					endheight="100"
+					width="25"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				count="4"
+				position="0 0 500"
+				spawnrate="500"
+				particlelife="275"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="10 10 0"
+				direction="0 0 1"
+				depthbias="-125"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".05 .1 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="750"
+					maxstartheight="1500"
+					endheight="100"
+					width="8"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			<model
+				life="6000"
+				model="/shared/effects/models/fx_square/model.mdf"
+				anim="idle"
+				scale=".49"
+				directionalspace="world"
+				yaw="45"
+			>
+				<template name="">
+
+					<simpleemitter
+						delay="{zdelay}"
+						life="1000"
+						bone="{zbone}"
+						spawnrate="20"
+						particlelife="1000"
+						mingravity="0"
+						maxgravity="-10"
+						minangle="0"
+						maxangle="0"
+						offsetsphere="0 0 0"
+						direction="0 0 1"
+						directionalspace="world"
+					>
+						<particle
+							turn="1"
+						>
+							<billboard
+								bone="{zbone}"
+								directionalspace="world"
+								minlife="300"
+								maxlife="600"
+								material="/shared/effects/smaterials/whitedot.material"
+								startcolor="0 0 0"
+								midcolor="0 .05 0"
+								endcolor="0 0 0"
+								midcolorpos=".2"
+								startalpha="0"
+								midalpha="1"
+								endalpha=".25"
+								midalphapos=".5"
+								startscale=".5"
+								endscale=".5"
+								lockup="1"
+								lockright="1"
+								depthbias="0"
+								minheight="150"
+								maxheight="700"
+								minwidth="25"
+								maxwidth="75"
+							/>
+							
+							<billboard
+								bone="{zbone}"
+								directionalspace="world"
+								minlife="300"
+								maxlife="600"
+								material="/shared/effects/smaterials/whitedot.material"
+								startcolor="0 0 0"
+								midcolor=".035 .035 0"
+								endcolor="0 0 0"
+								midcolorpos=".2"
+								startalpha="0"
+								midalpha="1"
+								endalpha=".25"
+								midalphapos=".5"
+								startscale=".5"
+								endscale=".5"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								depthbias="0"
+								minheight="50"
+								maxheight="100"
+								width="50"
+							/>
+							
+						</particle>
+					</simpleemitter>
+
+				</template>
+
+				<instance name="" zbone="_bone_fx_01" zdelay="0"/> 
+				<instance name="" zbone="_bone_fx_02" zdelay="50"/> 
+				<instance name="" zbone="_bone_fx_03" zdelay="100"/> 
+				<instance name="" zbone="_bone_fx_04" zdelay="150"/> 
+				<instance name="" zbone="_bone_fx_05" zdelay="200"/> 
+				<instance name="" zbone="_bone_fx_06" zdelay="250"/> 
+				<instance name="" zbone="_bone_fx_07" zdelay="300"/> 
+				<instance name="" zbone="_bone_fx_08" zdelay="350"/> 
+				<instance name="" zbone="_bone_fx_09" zdelay="400"/> 
+				<instance name="" zbone="_bone_fx_10" zdelay="450"/> 
+				<instance name="" zbone="_bone_fx_11" zdelay="500"/> 
+				<instance name="" zbone="_bone_fx_12" zdelay="550"/> 
+				<instance name="" zbone="_bone_fx_13" zdelay="600"/> 
+				<instance name="" zbone="_bone_fx_14" zdelay="650"/> 
+				<instance name="" zbone="_bone_fx_15" zdelay="700"/> 
+				<instance name="" zbone="_bone_fx_16" zdelay="750"/> 
+				<instance name="" zbone="_bone_fx_17" zdelay="800"/> 
+				<instance name="" zbone="_bone_fx_18" zdelay="850"/> 
+				<instance name="" zbone="_bone_fx_19" zdelay="900"/> 
+				<instance name="" zbone="_bone_fx_20" zdelay="950"/> 
+				<instance name="" zbone="_bone_fx_21" zdelay="1000"/> 
+				<instance name="" zbone="_bone_fx_22" zdelay="1050"/> 
+				<instance name="" zbone="_bone_fx_23" zdelay="1100"/> 
+				<instance name="" zbone="_bone_fx_24" zdelay="1150"/> 
+				<instance name="" zbone="_bone_fx_25" zdelay="1200"/> 
+				<instance name="" zbone="_bone_fx_26" zdelay="1250"/> 
+				<instance name="" zbone="_bone_fx_27" zdelay="1300"/> 
+				<instance name="" zbone="_bone_fx_28" zdelay="1350"/> 
+				<instance name="" zbone="_bone_fx_29" zdelay="1400"/> 
+				<instance name="" zbone="_bone_fx_30" zdelay="1450"/> 
+				<instance name="" zbone="_bone_fx_31" zdelay="1500"/> 
+				<instance name="" zbone="_bone_fx_32" zdelay="1550"/> 
+				
+				
+				<instance name="" zbone="_bone_fx_01" zdelay="1600"/> 
+				<instance name="" zbone="_bone_fx_02" zdelay="1650"/> 
+				<instance name="" zbone="_bone_fx_03" zdelay="1700"/> 
+				<instance name="" zbone="_bone_fx_04" zdelay="1750"/> 
+				<instance name="" zbone="_bone_fx_05" zdelay="1800"/> 
+				<instance name="" zbone="_bone_fx_06" zdelay="1850"/> 
+				<instance name="" zbone="_bone_fx_07" zdelay="1900"/> 
+				<instance name="" zbone="_bone_fx_08" zdelay="1950"/> 
+				<instance name="" zbone="_bone_fx_09" zdelay="2000"/> 
+				<instance name="" zbone="_bone_fx_10" zdelay="2050"/> 
+				<instance name="" zbone="_bone_fx_11" zdelay="2100"/> 
+				<instance name="" zbone="_bone_fx_12" zdelay="2150"/> 
+				<instance name="" zbone="_bone_fx_13" zdelay="2200"/> 
+				<instance name="" zbone="_bone_fx_14" zdelay="2250"/> 
+				<instance name="" zbone="_bone_fx_15" zdelay="2300"/> 
+				<instance name="" zbone="_bone_fx_16" zdelay="2350"/> 
+				<instance name="" zbone="_bone_fx_17" zdelay="2400"/> 
+				<instance name="" zbone="_bone_fx_18" zdelay="2450"/> 
+				<instance name="" zbone="_bone_fx_19" zdelay="2500"/> 
+				<instance name="" zbone="_bone_fx_20" zdelay="2550"/> 
+				<instance name="" zbone="_bone_fx_21" zdelay="2600"/> 
+				<instance name="" zbone="_bone_fx_22" zdelay="2650"/> 
+				<instance name="" zbone="_bone_fx_23" zdelay="2700"/> 
+				<instance name="" zbone="_bone_fx_24" zdelay="2750"/> 
+				<instance name="" zbone="_bone_fx_25" zdelay="2800"/> 
+				<instance name="" zbone="_bone_fx_26" zdelay="2850"/> 
+				<instance name="" zbone="_bone_fx_27" zdelay="2900"/> 
+				<instance name="" zbone="_bone_fx_28" zdelay="2950"/> 
+				<instance name="" zbone="_bone_fx_29" zdelay="3000"/> 
+				<instance name="" zbone="_bone_fx_30" zdelay="3050"/> 
+				<instance name="" zbone="_bone_fx_31" zdelay="3100"/> 
+				<instance name="" zbone="_bone_fx_32" zdelay="3150"/> 
+
+				
+				<instance name="" zbone="_bone_fx_01" zdelay="3200"/> 
+				<instance name="" zbone="_bone_fx_02" zdelay="3250"/> 
+				<instance name="" zbone="_bone_fx_03" zdelay="3300"/> 
+				<instance name="" zbone="_bone_fx_04" zdelay="3350"/> 
+				<instance name="" zbone="_bone_fx_05" zdelay="3400"/> 
+				<instance name="" zbone="_bone_fx_06" zdelay="3450"/> 
+				<instance name="" zbone="_bone_fx_07" zdelay="3500"/> 
+				<instance name="" zbone="_bone_fx_08" zdelay="3550"/> 
+				<instance name="" zbone="_bone_fx_09" zdelay="3600"/> 
+				<instance name="" zbone="_bone_fx_10" zdelay="3650"/> 
+				<instance name="" zbone="_bone_fx_11" zdelay="3700"/> 
+				<instance name="" zbone="_bone_fx_12" zdelay="3750"/> 
+				<instance name="" zbone="_bone_fx_13" zdelay="3800"/> 
+				<instance name="" zbone="_bone_fx_14" zdelay="3850"/> 
+				<instance name="" zbone="_bone_fx_15" zdelay="3900"/> 
+				<instance name="" zbone="_bone_fx_16" zdelay="3950"/> 
+				<instance name="" zbone="_bone_fx_17" zdelay="4000"/> 
+				<instance name="" zbone="_bone_fx_18" zdelay="4050"/> 
+				<instance name="" zbone="_bone_fx_19" zdelay="4100"/> 
+				<instance name="" zbone="_bone_fx_20" zdelay="4150"/> 
+				<instance name="" zbone="_bone_fx_21" zdelay="4200"/>
+
+			</model>
+
+
+
+
+
+			
+			
+			<billboard
+			delay="350"
+				life="4850"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="3.25"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				roll="180"
+				startcolor="0 .2 0"
+				midcolor="0 .2 0"
+				endcolor="0 0 0"
+				midcolorpos=".975"
+			/>
+
+			
+			
+			
+			
+			<billboard
+			delay="350"
+				life="4850"
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .05 0"
+				midcolor="0 .05 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				startsize="250"
+				endsize="250"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+			delay="350"
+				life="4850"
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .05 0"
+				midcolor="0 .05 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				startsize="225"
+				endsize="225"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			
+			
+			
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+
+
+
+
+
+
+

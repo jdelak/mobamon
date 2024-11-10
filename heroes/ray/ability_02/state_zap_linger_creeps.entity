@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Ray_Ability2_Zap_Linger_Creeps"
+
+	icon="icon.tga"
+	passiveeffect=""
+	ishidden="true"
+	
+	effecttype=""
+>
+	<oninflict>
+		<playeffect effect="effects/state_creeps.effect" target="target_entity" />
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+		<cantarget effecttype="CrowdControl" >
+			<applystate name="State_Stunned" target="target_entity" duration="750,1000,1250,1500" />
+		</cantarget>
+	</oninflict>
+
+</state>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Flak_Ability4"
+
+
+	speed="300"
+	acceleration="400"
+
+	touchradius="60"
+	touchpropradius="60"
+	touchpropanim="hit"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+	
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	effectscale="1.0"
+
+	flyheight="90"
+	flying="true"
+	
+	hazardradius="440"
+	hazardoffset="380"
+
+	
+	
+>
+	
+	<ontouch>
+		<playeffect effect="effects/lightning.effect" source="this_position" target="target_entity" occlude="true" /> 		
+		<applystate name="State_Flak_Ability4_Slow" duration="-1" proxy="this_entity" />
+		<applystate name="State_Flak_Ability4_Armor" duration="-1" proxy="this_entity" />
+		<kill target="this_entity" />
+		<setactivemodifierkey entity="tool_entity" name="" />
+	</ontouch>
+	
+	<onimpact>
+		<setactivemodifierkey entity="tool_entity" name="" />
+	</onimpact>
+	
+	<ondeath>
+		<playeffect effect="effects/explosion.effect" source="this_position" target="this_position" /> 
+		<areaofeffect radius="550" targetselection="all" targetscheme="enemy_units" effecttype="Magic Splash">
+			<playeffect effect="effects/lightning.effect" source="this_position" target="target_entity" occlude="true" /> 
+			<applystate name="State_Flak_Ability4_Slow" duration="-1" proxy="this_entity" />
+			<applystate name="State_Flak_Ability4_Armor" duration="-1" proxy="this_entity" />
+		</areaofeffect>
+	</ondeath>
+	
+
+</projectile>

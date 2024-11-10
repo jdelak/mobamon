@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/decal.shader" vDiffuseColor="1.0 1.0 1.0" />
+	<phase name="color" cull="back" depthwrite="false" depthbias="true" depthslopebias="1" alphawrite="false" shadows="false" lighting="false" fog="false" blend="additive">
+		<sampler name="diffuse" texture="flux_ring.tga" repeat_u="false" repeat_v="false" />
+		<sampler name="normalmap" texture="$flat_matte" repeat_u="false" repeat_v="false" />
+	</phase>
+	<phase name="defer" cull="back" depthwrite="false" depthbias="true" depthslopebias="1" alphawrite="false" shadows="false" lighting="false" fog="false" blend="additive">
+		<sampler name="diffuse" texture="flux_ring.tga" repeat_u="false" repeat_v="false" />
+		<sampler name="normalmap" texture="$flat_matte" repeat_u="false" repeat_v="false" />
+	</phase>
+</material>

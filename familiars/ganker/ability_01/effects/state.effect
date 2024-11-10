@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+<!--
+		<modifier
+			expirelife="250"
+			startcolor=".65"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				sample="../sounds/sfx_cast.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.25"
+			/>
+
+
+			<template name="">
+
+				<simpleemitter
+				bone="{zbone}"
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="650"
+					maxparticlelife="650"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="15"
+					offsetsphere="15 15 15"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="{zcolor}"
+						midcolor="{zcolor}"
+						endcolor="0 0 0"
+						startsize="60"
+						midsize="60"
+						endsize="40"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zpos="0 0 0" zbone="_bone_leftfoot" zcolor=".025 0 .05"/>
+			<instance name="" zpos="0 0 15" zbone="_bone_leftfoot" zcolor=".025 0 .05"/>
+			<instance name="" zpos="0 0 30" zbone="_bone_leftfoot" zcolor=".025 0 .05"/>
+
+			<instance name="" zpos="0 0 0" zbone="_bone_rightfoot" zcolor=".025 0 .05"/>
+			<instance name="" zpos="0 0 15" zbone="_bone_rightfoot" zcolor=".025 0 .05"/>
+			<instance name="" zpos="0 0 30" zbone="_bone_rightfoot" zcolor=".025 0 .05"/>
+			
+			<instance name="" zpos="0 0 0" zbone="_bone_center" zcolor=".025 0 .05"/>
+			<instance name="" zpos="0 0 15" zbone="_bone_center" zcolor=".025 0 .05"/>
+			<instance name="" zpos="0 0 30" zbone="_bone_center" zcolor=".025 0 .05"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="">
+			
+				<simpleemitter
+					timenudge="2000"
+					position="0 0 50"
+					spawnrate="10"
+					particlelife="500"
+					gravity="0"
+					speed="00"
+					drag=".08"
+					acceleration="0"
+					offsetsphere="25 25 50"
+					minangle="90"
+					maxangle="-90"
+					depthbias="-50"
+				>
+				
+					<particle
+					>
+					
+						<billboard
+							life="500"
+							startcolor=".25 0 1"
+							endcolor="0 0 0"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							startscale="4"
+							endscale="4"
+							material="/shared/effects/smaterials/animated_runeboots.material"
+							framespeed="1.5"
+							minroll="0"
+							maxroll="360"
+						/>
+						
+						<billboard
+							life="250"
+							startcolor="0 0 0"
+							midcolor=".125 0 .5"
+							endcolor="0 0 0"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							startscale="4"
+							endscale="4"
+							material="/shared/effects/smaterials/whitedot.material"
+							framespeed="1.5"
+							minroll="0"
+							maxroll="360"
+						/>
+						
+					</particle>
+
+				</simpleemitter>
+
+			</template>
+			
+			<instance name=""/>    
+
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/> 
+		<waitfordeath instance="instance1"/> 
+		
+	</thread>
+
+</effect>

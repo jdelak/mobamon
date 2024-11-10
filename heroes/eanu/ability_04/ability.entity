@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Eanu4"
+
+	icon="icon.tga"
+	
+	anim="ability_4"
+	casttime="400"
+	castactiontime="400"
+
+	maxlevel="3"
+	requiredlevel="6,11,15"
+
+	actiontype="target_position"
+	targetradius="400"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	casteffecttype="Magic"
+	targetscheme=""
+	casteffect=""
+	
+	
+	manacost="150,175,200"
+	cooldowntime="60000,50000,40000"
+	
+	queue="dropmovement"
+	
+	range="1000"
+	forcerange="1000"
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+>
+	<constant name="damage" value="300,350,400" adjustment="ability" />
+	<constant name="stun_duration" value="1" adjustment="none" noshowintooltip="true" />
+
+
+	<onimpact>
+		<!-- Distance check to prevent long-range casts on the same frame -->
+		<setpos0 position="target_position" />
+		<distance target="pos0" />
+		<compare a="result" b="1500" op="lt">
+			<spawnunit name="Gadget_Eanu_Ability4_Marker" count="1" target="source_position" pushentity="true" facing="target_position" />
+			<setproxy entity="this_entity" target="stack_entity" />
+			<spawnunit name="Gadget_Eanu_Ability4_Sight" count="1" target="this_proxy_entity" offset="0 -350 0" offsetspace="this_proxy_entity" pushentity="true" />
+			<spawnprojectile name="Projectile_Eanu_Ability4" source="this_proxy_entity" target="target_position" offsetspace="this_proxy_entity" offset="0 -350 0" bind="stack_entity" proxy="stack_entity" />
+			<spawnunit name="Gadget_Eanu_Ability4" count="1" target="this_proxy_entity" offset="0 -350 0" offsetspace="this_proxy_entity" pushentity="true" />	
+			<spawnprojectile name="Projectile_Eanu_Ability4_Wave" source="source_entity" target="target_position"  pushentity="true" bind="source_entity" bindturn="true" bindstate="State_Eanu_Ability4_Waveride" noresponse="true" bindpriority="1"/>
+		</compare>
+		<applystate name="State_Eanu_Ability4_Waveride" target="source_entity" duration="1500"/>
+		<applystate name="State_Eanu_Ability4" target="source_entity" duration="-1" />
+    <playeffect effect="effects/sound.effect" source="source_entity" target="" occlude="true" />
+  </onimpact>
+
+</ability>

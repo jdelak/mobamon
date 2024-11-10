@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="tip_mark" >
+		<panel color="invisible" x="{x}" y="{y}" width="{width}" height="{height}" valign="{valign}" align="{align}" noclick="true" name="{tip_name}" onevent0="{onevent0}" watch="{watch}" ontrigger="{ontrigger}" tip_visible="{tip_visible}" onevent1="{onevent1}">
+			<button
+				name="{button_name}"
+				color="invisible"
+				visible="{visible=true}"
+				onmouseover="If(!StringEmpty('{tip_id}'), Cmd('UICall {tip_id} SetVisible(1)')); PlaySound('/shared/sounds/ui/button_over_01.wav'); {onmouseover=}"
+				onmouseout=" If(!StringEmpty('{tip_id}'), Cmd('UICall {tip_id} SetVisible(0)')); {onmouseout=}"
+				oninstantiatelua="{oninstantiatelua}"
+				onmousewheeluplua="{onmousewheeluplua}"
+				onmousewheeldownlua="{onmousewheeldownlua}"
+				onmouseoverlua="{onmouseoverlua}"
+				onmouseoutlua="{onmouseoutlua}"
+			>			
+				<widgetstate statename="up">
+					<image width="100%" height="100%" valign="center" align="center" texture="/ui/shared/textures/tip_mark.tga" color="1 1 1 .8" />
+				</widgetstate>
+				<widgetstate statename="over">
+					<image width="100%" height="100%" valign="center" align="center" texture="/ui/shared/textures/tip_mark.tga" color="#66c2ff" />
+				</widgetstate>
+			</button>
+		</panel>		
+	</template>
+
+	<template name="options_menu_cat">
+		<panel name="options_cat{id}_parent" height="6.0h" sticky="true" stickytoinvis="false" watch="{watch}" ontrigger="{ontrigger}">
+			<panel
+				name="options_cat{id}"
+				color="invisible"
+				enabled="{enabled=true}"
+				onclick="##showOnly('options_submenu{id}'); showOnly('currentarrow{id}');##"
+				onclicklua="
+					Strife_Options:SelectSubCategory({id}, 0)
+					-- mainOptionsSelectCategory
+					-- PlaySound('/path_to/filename.wav')
+				"
+				onshow="BringToFront();"
+				onmouseldown="Call('options_cat{id}_stuff', 'SetX(1); SetY(1):');"
+				onmouselup="Call('options_cat{id}_stuff', 'SetX(0); SetY(0):');"
+				visible="{visible=1}"
+				watch="{watch}"
+				ontrigger="{ontrigger}"
+				ontriggerlua="{ontriggerlua}"
+				onshowlua="{onshowlua}"
+				onmouseoverlua="Strife_Options:HoverCategory(true, {id}, 0)"
+				onmouseoutlua="Strife_Options:HoverCategory(false, {id}, 0)"
+			>
+				<panel name="options_cat{id}_stuff" float="right" padding="0.8h" noclick="1">
+					<image name="options_cat{id}_img" height="100%" width="100@" texture="/ui/shared/options/textures/{icon}" color="#66C2FF" noclick="1"/>
+					<label name="options_cat{id}_lbl" fitx="true" height="100%" textvalign="center" style="labelBase" color=".7 .7 .7 1" font="{font=maindyn_30}" content="{label}" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>		
+	</template>
+	
+	<template name="options_sub_menu">
+		<panel height="2.8h" sticky="true" stickytoinvis="false" noclick="1">
+			<panel
+				name="options_sub{cat}{id}"
+				color="invisible"
+				enabled="{enabled=true}"
+				onclicklua="
+					Strife_Options:SelectSubCategory({cat}, {id})
+					-- mainOptionsSelectSubcategory
+					-- PlaySound('/path_to/filename.wav')
+				"
+				visible="false"
+				onmouseldownlua="
+					local label = self:GetWidget('options_sub{cat}{id}_lbl')
+					label:SetX(1)
+					label:SetY(1)
+					self:SetExclusive()
+				"
+				onmouseluplua="
+					local label = self:GetWidget('options_sub{cat}{id}_lbl')
+					label:SetX(0)
+					label:SetY(0)
+					self:BreakExclusive()
+				"
+				onmouseoverlua="Strife_Options:HoverCategory(true, {cat}, {id})"
+				onmouseoutlua="Strife_Options:HoverCategory(false, {cat}, {id})"
+			>
+				<label name="options_sub{cat}{id}_lbl" textvalign="center" style="labelBase" font="maindyn_20" color="#37b2d9" content="{label}" noclick="1"/>
+			</panel>
+		</panel>		
+	</template>
+
+	<template name="options_subcategory_header">		
+		<panel name="options_main_sub{cat}{id}" height="2.4h" noclick="true" visible="{visible=true}" sticky="true" stickytoinvis="false">
+			<label style="labelBase" font="maindyn_20" color=".8 .8 .8 1" content="{label}" noclick="1"/>
+		</panel>
+	</template>
+
+	<template name="optionH1">
+		<label fity="true" fitypadding="1.0h" style="h1" color=".8 .8 .8 1" content="{label}" noclick="1"/>
+	</template>
+	
+	<template name="optionH2">
+		<panel height="3.0h" noclick="true" color="1 1 1 .2">
+			<panel y="1.8h" color=".2 .2 .2 1" height="1" noclick="true" />
+			<panel grow="true" height="100%" color="0 0 0 1" noclick="1">
+				<label x="0.5h" fitx="true" fitxpadding="0.5h" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" content="{label}" noclick="!" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="option_checkbox_lua">
+		<panel
+			name="{table}{field}_cbpanel"
+			grow="true"
+			width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			group="{group=options_options}"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="
+				if AtoB('{registeroption=true}') then
+					self:Sleep(1, function() 
+						Strife_Options:RegisterCheckboxLua(self, '{table}', '{field}', '{default}')
+					end)
+				end
+				{oninstantiatelua}
+			"
+			onloadlua="{oninstantiatelua}"			
+			onmouseoverlua="Strife_Options:HoverScroller()"
+		>
+	 		<button
+				name="{table}{field}_cbname" noclick="0" color="invisible"
+				group="{group=options_options}"
+				onbutton=""
+				visible="1"
+				numstates="2"
+				onmouseoverdisabledlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}_disabled'), 300)"
+				onmouseoutdisabledlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}_disabled'), 300)"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			/>
+			
+			<frame name="options_checkbox_frame_{table}{field}" texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="1"/>
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true">
+				
+				<panel height="2.5h" noclick="true" sticky="true" stickytoinvis="false">				
+					<panel width="-2.5h" noclick="true">
+						<panel width="100@" height="100%" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+							<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+							<panel name="options_checkbox_check_{table}{field}" x="0.1h" y="-0.2h" valign="bottom" align="center" width="125@" height="125%" nolclick="true" visible="false" noclick="1">
+								<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+								<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+							</panel>
+						</panel>
+						<label name="options_checkbox_titlelabel_{table}{field}" y="-0.1h" height="100%" textvalign="center" width="-130@" align="right" style="h2" font="maindyn_20" content="{title}" noclick="true"  />
+					</panel>
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="0.4h" noclick="true" />				
+				
+				<!-- Txt 1 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text1=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".7 .9 .8 1" noclick="true" />
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".7 .9 .8 1"  content="{sub_text1}" noclick="true" />
+					</panel>
+				</panel>				
+				<!-- Txt 2 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text2=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" content="{sub_text2}" noclick="true" />
+					</panel>
+				</panel>
+				<!-- Txt 3 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text3=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .4 .3 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .4 .3 1" content="{sub_text3}" noclick="true" />
+					</panel>
+				</panel>	
+				<panel height="0.8h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="option_checkbox_v3">
+		<panel
+			name="{cvar}{nameid}_cbpanel"
+			grow="true"
+			width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			group="{group=options_options}"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="
+				if AtoB('{registeroption=true}') then
+					Strife_Options.RegisterOption('option_checkbox_v3', '{category}', '{subcategory}', '{cvar}', '{title}', '{sub_text1}', '{sub_text2}', '{sub_text3}', '{tip_image}', '{tip_name}', '{tip_text1}', '{tip_text2}', '{tip_text3}', '{gradmark1_pos}', '{gradmark2_pos}', '{gradmark3_pos}', '{gradmark4_pos}', '{gradmark5_pos}', '{gradmark1_name}', '{gradmark2_name}', '{gradmark3_name}', '{gradmark4_name}', '{gradmark5_name}', '{slidefunction}', '{maxvalue=1}', '{data}', [=[{onchange}]=], [=[{onchangelua}]=], [=[{onselect}]=], [=[{populate}]=], '{maxlistheight}', '{pair=false}', '{inverted=false}', '{enforce}', '{enforce2}', '{enforce3}', '{enforce4}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}', '{title_font=dyn_12}', [=[{command}]=], '{table}', '{action}', '{param=}', '{impulse=false}', [=[{onclick}]=], [=[{oneventlua}]=], [=[{oninstantiatelua}]=])
+					self:Sleep(1, function() 
+						Strife_Options:RegisterCheckbox(self, '{cvar}', '{nameid}', '{group}', '{offValue}', '{onValue}', {enableconditionfunction=true})
+					end)
+				end
+				{oninstantiatelua}
+			"
+			onloadlua="{oninstantiatelua}"			
+			onmouseoverlua="Strife_Options:HoverScroller()"
+		>
+	 		<button
+				name="{cvar}{nameid}_cbname" noclick="0" color="invisible"
+				group="{group=options_options}"
+				onbutton=""
+				visible="1"
+				numstates="2"
+				onmouseoverdisabledlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}_disabled'), 300)"
+				onmouseoutdisabledlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}_disabled'), 300)"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			/>
+			
+			<frame name="options_checkbox_frame_{cvar}{nameid}" texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="1"/>
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true">
+				
+				<panel height="2.5h" noclick="true" sticky="true" stickytoinvis="false">				
+					<panel width="-2.5h" noclick="true">
+						<panel width="100@" height="100%" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+							<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+							<panel name="options_checkbox_check_{cvar}{nameid}" x="0.1h" y="-0.2h" valign="bottom" align="center" width="125@" height="125%" nolclick="true" visible="false" noclick="1">
+								<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+								<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+							</panel>
+						</panel>
+						<label name="options_checkbox_titlelabel_{cvar}{nameid}" y="-0.1h" height="100%" textvalign="center" width="-130@" align="right" style="h2" font="maindyn_20" content="{title}" noclick="true"  />
+					</panel>
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="0.4h" noclick="true" />				
+				
+				<!-- Txt 1 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text1=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".7 .9 .8 1" noclick="true" />
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".7 .9 .8 1"  content="{sub_text1}" noclick="true" />
+					</panel>
+				</panel>				
+				<!-- Txt 2 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text2=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" content="{sub_text2}" noclick="true" />
+					</panel>
+				</panel>
+				<!-- Txt 3 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text3=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .4 .3 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .4 .3 1" content="{sub_text3}" noclick="true" />
+					</panel>
+				</panel>	
+				<panel height="0.8h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="option_colorPicker">
+		<panel
+			name="{cvar}{nameid}_cppanel"
+			grow="true"
+			height="7.8h"
+			width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			group="{group=options_options}"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="
+				self:Sleep(1, function() 
+					Strife_Options:RegisterColorPicker(self, '{cvar}', '{default}', '{nameid}', '{group}', '{default}') 
+				end)
+				Strife_Options.RegisterOption('option_colorPicker', '{category}', '{subcategory}', '{cvar}', '{title}', '{sub_text1}', '{sub_text2}', '{sub_text3}', '{tip_image}', '{tip_name}', '{tip_text1}', '{tip_text2}', '{tip_text3}', '{gradmark1_pos}', '{gradmark2_pos}', '{gradmark3_pos}', '{gradmark4_pos}', '{gradmark5_pos}', '{gradmark1_name}', '{gradmark2_name}', '{gradmark3_name}', '{gradmark4_name}', '{gradmark5_name}', '{slidefunction}', '{maxvalue=1}', '{data}', [=[{onchange}]=], [=[{onchangelua}]=], [=[{onselect}]=], [=[{populate}]=], '{maxlistheight}', '{pair=false}', '{inverted=false}', '{enforce}', '{enforce2}', '{enforce3}', '{enforce4}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}', '{title_font=dyn_12}', [=[{command}]=], '{table}', '{action}', '{param=}', '{impulse=false}', [=[{onclick}]=], [=[{oneventlua}]=], [=[{oninstantiatelua}]=])
+			"
+			onmouseoverlua="Strife_Options:HoverScroller()"
+		>
+			<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="true" rendermode="{rendermode}" color="#4ab4ff" />
+			
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true">				
+				<panel height="1.8h" noclick="true" sticky="true" stickytoinvis="false">
+					<label height="100%" textvalign="center" width="0" align="left" style="h2" font="maindyn_20" content="{title}" noclick="true" />
+					
+					<instance name="standardButton" id="{cvar}{nameid}_cppanel_reset_button" x="-16h" y="0.5h" width="9h" align="right" font="maindyn_18" label="options_reset_color" height="3.2h" borderthickness=".8h" onmouseover="PlaySound('/shared/sounds/ui/button_over_01.wav');" />
+					<frame name="{cvar}{nameid}_cppanel_preview" texture="/ui/elements:rounded_bg_white" align="right" x="-3.0h" width="10h" height="4h" color="red" borderthickness="0.6h" visible="true"/>
+					<panel name="{cvar}{nameid}_cppanel_button" align="right" x="-3.0h" width="10h" height="4h" color="invisible" visible="true" noclick="0"/>
+					
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 200, 32)"
+						onmouseoutlua="simpleTipGrowYUpdate(false)"
+					/>
+				</panel>
+				<panel height="0.2h" noclick="true" />				
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text=}')))"
+				>				
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="true" />
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .8 .8 1"  content="{sub_text}" noclick="true" />
+					</panel>
+				</panel>
+				<panel height="0.4h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="option_slider_integer_v3">
+		<panel name="{cvar}{nameid}_parent"  sticky="0" stickytoinvis="0"
+			grow="true"
+			width="{width=100%}" group="{group=options_options}"
+			noclick="1"
+			oninstantiatelua="
+				Strife_Options.RegisterOption('option_slider_integer_v3', '{category}', '{subcategory}', '{cvar}', '{title}', '{sub_text1}', '{sub_text2}', '{sub_text3}', '{tip_image}', '{tip_name}', '{tip_text1}', '{tip_text2}', '{tip_text3}', '{gradmark1_pos}', '{gradmark2_pos}', '{gradmark3_pos}', '{gradmark4_pos}', '{gradmark5_pos}', '{gradmark1_name}', '{gradmark2_name}', '{gradmark3_name}', '{gradmark4_name}', '{gradmark5_name}', '{slidefunction}', '{maxvalue=1}', '{data}', [=[{onchange}]=], [=[{onchangelua}]=], [=[{onselect}]=], [=[{populate}]=], '{maxlistheight}', '{pair=false}', '{inverted=false}', '{enforce}', '{enforce2}', '{enforce3}', '{enforce4}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}', '{title_font=dyn_12}', [=[{command}]=], '{table}', '{action}', '{param=}', '{impulse=false}', [=[{onclick}]=], [=[{oneventlua}]=], [=[{oninstantiatelua}]=])
+				self:Sleep(1, function() 
+					Strife_Options:RegisterSlider(self, '{cvar}', '{nameid}', '{group}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}')
+				end)
+			"
+			onmouseoverlua="Strife_Options:HoverScroller()"			
+		>
+			<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="true" rendermode="{rendermode}" color="#4ab4ff" />
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true">
+			
+				<panel height="1.8h" noclick="true" sticky="true" stickytoinvis="false">
+					<label width="-2.5h" height="100%" textvalign="center" font="maindyn_20" color="#ffaa00" shadow="true" content="{title}" noclick="true" />
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="0.3h" noclick="true" />
+				
+				<panel height="2.6h" noclick="true">
+					<panel width="{intWidth=6h}" noclick="true">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+						<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="true" />
+						<label name="{cvar}{nameid}_value_label" textvalign="center" textalign="center" font="maindyn_18" color="1 1 1 1" shadow="true" noclick="1" />
+					</panel>
+				
+					<slider
+						name="{cvar}{nameid}_slider"
+						width="{sliderWidth=-6.2h}"
+						align="right"
+						slotwidth="-1%" slotheight="0.1h"
+						slotcolor="#51647b"
+						handlewidth="90@" handleheight="90%"
+						handlecolor="1 1 1 1"
+						minvalue="{minvalue=0}" maxvalue="{maxvalue=1}"
+						step="{step}"
+						texture="/ui/shared/textures/slider.tga"
+						onselect="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+						onmouseoverlua="Strife_Options:HoverScroller()"
+					/>
+				</panel>
+				<panel height="0" noclick="true" />
+				
+				<!-- Txt 1 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text1=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".7 .9 .8 1" noclick="true" />
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".7 .9 .8 1"  content="{sub_text1}" noclick="true" />
+					</panel>
+				</panel>				
+				<!-- Txt 2 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text2=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" content="{sub_text2}" noclick="true" />
+					</panel>
+				</panel>
+				<!-- Txt 3 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text3=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .4 .3 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .4 .3 1" content="{sub_text3}" noclick="true" />
+					</panel>
+				</panel>	
+			
+				<panel height="0.4h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>			
+		</panel>
+	</template>
+	
+	<template name="option_slider_graduated_marker">
+		<panel x="{x}" grow="true" height="100%" visible="0" oninstantiatelua="self:SetVisible(not Empty(('{value=}')))" noclick="true">
+			<image width="0.7h" height="0.7h" texture="/ui/elements/arrow_up.tga" align="center" noclick="true" />
+			<label fitx="true" textvalign="bottom" textalign="center" align="center" font="maindyn_9" color="1 1 1 1" shadow="true" content="{value}" noclick="true" />
+		</panel>
+	</template>
+	
+	<template name="option_dropdown_v3">
+		<panel name="{cvar}{nameid}_parent" sticky="0" stickytoinvis="0"
+			grow="true"
+			width="{width=100%}"
+			noclick="1"
+			group="{group=options_options}"
+			oninstantiatelua="
+				Strife_Options.RegisterOption('option_dropdown_v3', '{category}', '{subcategory}', '{cvar}', '{title}', '{sub_text1}', '{sub_text2}', '{sub_text3}', '{tip_image}', '{tip_name}', '{tip_text1}', '{tip_text2}', '{tip_text3}', '{gradmark1_pos}', '{gradmark2_pos}', '{gradmark3_pos}', '{gradmark4_pos}', '{gradmark5_pos}', '{gradmark1_name}', '{gradmark2_name}', '{gradmark3_name}', '{gradmark4_name}', '{gradmark5_name}', '{slidefunction}', '{maxvalue=1}', '{data}', [=[{onchange}]=], [=[{onchangelua}]=], [=[{onselect}]=], [=[{populate}]=], '{maxlistheight}', '{pair=false}', '{inverted=false}', '{enforce}', '{enforce2}', '{enforce3}', '{enforce4}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}', '{title_font=dyn_12}', [=[{command}]=], '{table}', '{action}', '{param=}', '{impulse=false}', [=[{onclick}]=], [=[{oneventlua}]=], [=[{oninstantiatelua}]=])
+				self:Sleep(1, function() 
+					Strife_Options:RegisterDropdown(self, '{cvar}{nameid}_combobox', '{cvar}', '{nameid}', '{group}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}')
+				end)
+			"		
+		>
+			<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="true" rendermode="{rendermode}" color="#4ab4ff" />
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true" reverse="true">
+				
+				<panel height="1.8h" noclick="true" sticky="true" stickytoinvis="false">
+					<label y="-0.1h" height="100%" textvalign="center" width="-2.6h" style="h2" font="maindyn_20" content="{title}" noclick="true" />
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="0.7h" noclick="true" />
+				
+				<panel height="3.8h" noclick="true">
+					<combobox
+						name="{cvar}{nameid}_combobox"
+						align="right"
+						valign="center"
+						color="invisible"
+						itemwidth="100%"
+						itemheight="3.8h"
+						maxlistheight="{maxlistheight}"
+						exteriorscrollbars="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						handleheight="6.0h" handlewidth="3.0h"
+						scrollbarsize="3.0h"
+						scrollbaroffset="-0.1h"
+						highlight="under"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						vscrollbar="1"
+						hscrollbar="0"
+						onrefreshlua="{onrefreshlua}"
+						oneventlua="{oneventlua}"
+						oninstantiatelua="{oninstantiatelua}"
+						onloadlua="{oninstantiatelua}"
+						oninstantiate="{oninstantiate}; {populate=}; {data=}('{itemtemplate=simpleDropdownItem}','{font=dyn_9}'); {onload=}"
+						onload="{populate=}; {data=}('{itemtemplate=simpleDropdownItem}','{font=dyn_9}'); {onload=}"						
+						onselect="If(IsVisible(), PlaySound('/shared/sounds/ui/button_click_05.wav')); {onselect}"
+						onselectlua="{onselectlua}"
+						onevent="{onevent=}"
+						onchange="{onchange=}"
+						onchangelua="{onchangelua=}"
+						onmouseoverlua="Strife_Options:HoverScroller()"
+						group="{grouptarget}"
+					>
+						<widgetstate statename="up">
+							<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color=".8 .8 .8 1" />
+							<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color=".8 .8 .8 1" />
+							<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color=".8 .8 .8 1" />
+						</widgetstate>
+						<widgetstate statename="over">
+							<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color="1 1 1 1" />
+							<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color="1 1 1 1" />
+							<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color="1 1 1 1" />
+						</widgetstate>
+						<widgetstate statename="disabled">
+							<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color=".4 .4 .4 1" />
+							<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color=".4 .4 .4 1" />
+							<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color=".4 .4 .4 1" />
+						</widgetstate>						
+						<widgetstate statename="listbg">
+							<frame texture="/ui/elements:rounded_bg_white" height="+1.0h" valign="center" color=".05 .05 .05 .95" borderthickness="0.5h" />
+							<frame texture="/ui/elements:roundframe" height="+1.0h" valign="center"  borderthickness="0.5h" color=".2 .2 .2 1"/>
+						</widgetstate>
+						<widgetstate statename="itembg">
+
+						</widgetstate>
+						<widgetstate statename="itemhighlight">
+							<frame texture="/ui/elements:rounded_bg_white" x="0.2h" width="-3.4h" valign="center" color="1 1 1 .1" borderthickness="0.4h" />
+						</widgetstate>
+					</combobox>
+				</panel>
+				
+				
+				<!-- Txt 1 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text1=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".7 .9 .8 1" noclick="true" />
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".7 .9 .8 1"  content="{sub_text1}" noclick="true" />
+					</panel>
+				</panel>				
+				<!-- Txt 2 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text2=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" content="{sub_text2}" noclick="true" />
+					</panel>
+				</panel>
+				<!-- Txt 3 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text3=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .4 .3 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .4 .3 1" content="{sub_text3}" noclick="true" />
+					</panel>
+				</panel>		
+				<panel height="0.9h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="options_basic_red">
+		<panel name="{id}" height="5.2h" noclick="true" >
+			<combobox
+				name="{id}_combobox"
+				align="right"
+				valign="center"
+				color="invisible"
+				itemwidth="100%"
+				itemheight="5.2h"
+				maxlistheight="300h"
+				exteriorscrollbars="false"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				handleheight="6.0h" handlewidth="3.0h"
+				scrollbarsize="3.0h"
+				scrollbaroffset="-0.1h"
+				highlight="under"
+				highlightcolor="invisible"
+				highlightbordercolor="invisible"
+				vscrollbar="1"
+				hscrollbar="0"
+				onrefreshlua="{onrefreshlua}"
+				oneventlua="{oneventlua}"
+				oninstantiatelua="{oninstantiatelua}"
+				onloadlua="{onloadlua}"
+				oninstantiate="{oninstantiate}; {populate=}; {data=}('{itemtemplate=simpleDropdownItemRed}','{font=dyn_9}'); {onload=}"
+				onload="{populate=}; {data=}('{itemtemplate=simpleDropdownItemRed}','{font=dyn_9}'); {onload=}"
+				onselect="If(IsVisible(), PlaySound('/shared/sounds/ui/button_click_05.wav')); {onselect}"
+				onselectlua="{onselectlua}"
+				onevent="{onevent=}"
+				onchange="{onchange=}"
+				onchangelua="{onchangelua=}"
+				onmouseoverlua=""
+				group="{grouptarget}"
+			>
+				<widgetstate statename="up">
+					<image width="16@" texture="/ui/shared/textures/combobox_red_background_l.tga" color=".85 .85 .85 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_red_background_c.tga" color=".85 .85 .85 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_red_background_r.tga" color=".85 .85 .85 1" />
+				</widgetstate>
+				<widgetstate statename="over">
+					<image width="16@" texture="/ui/shared/textures/combobox_red_background_l.tga" color="1 1 1 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_red_background_c.tga" color="1 1 1 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_red_background_r.tga" color="1 1 1 1" />
+				</widgetstate>
+				<widgetstate statename="disabled">
+					<image width="16@" texture="/ui/shared/textures/combobox_red_background_l.tga" color=".4 .4 .4 1" />
+					<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_red_background_c.tga" color=".4 .4 .4 1" />
+					<image width="100@" align="right" texture="/ui/shared/textures/combobox_red_background_r.tga" color=".4 .4 .4 1" />
+				</widgetstate>
+				<widgetstate statename="listbg">
+					<frame texture="/ui/elements:rounded_bg_white" height="+1.0h" valign="center" color=".05 .05 .05 .95" borderthickness="0.5h" />
+					<frame texture="/ui/elements:roundframe" height="+1.0h" valign="center"  borderthickness="0.5h" color=".2 .2 .2 1"/>
+				</widgetstate>
+				<widgetstate statename="itembg">
+
+				</widgetstate>
+				<widgetstate statename="itemhighlight">
+					<frame texture="/ui/elements:rounded_bg_white" x="0.2h" width="-3.4h" valign="center" color="1 1 1 .1" borderthickness="0.4h" />
+				</widgetstate>
+			</combobox>
+		</panel>
+	</template>
+	
+	<template name="simpleDropdownItemRed">
+		<image y="1.8h" x="1.9h" width="1.4h" height="1.4h" texture="/ui/shared/textures/ul.tga" color="0 0 0 0.6" noclick="0" />
+		<image y="1.9h" x="2h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color="1 1 1 1" noclick="0" />
+		<label y="-0.1h" x="4h" width="-0.5h" height="5.2h" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textvalign="center" content="{label}" />
+	</template>
+
+	<template name="options_faq_entry">
+		<panel grow="true" regrow="true" growinvis="false" width="100%" float="bottom" padding="0.6h"
+		onclicklua="Strife_Options:ExpandCollapseFAQ({id})"
+		onmouseoverlua="Strife_Options:HoverScroller()"
+		onmouseover="Call('faq_q{id}_question', 'SetColor(\'#9ED6E8\');');"
+		onmouseout="Call('faq_q{id}_question', 'SetColor(\'#37b2d9\');');"
+		>
+			<label name="faq_q{id}_question" fity="true" wrap="true" font="maindyn_16" color="#37b2d9" content="{question}" noclick="true" />
+			<panel name="faq_q{id}" grow="true" regrow="1" growinvis="0" width="100%" noclick="true" float="bottom" padding="0.5h" visible="false">
+				<panel grow="true" regrow="1" growinvis="0" visible="0" width="100%" noclick="true" oninstantiatelua="self:SetVisible(not Empty(('{answer=}')))">
+					<image y="0.6h" width="1.4h" height="1.4h" texture="/ui/shared/textures/ul.tga" noclick="true" />
+					<label fity="true" wrap="true" width="-2.0h" align="right" font="maindyn_14" color=".8 .8 .8 1" content="{answer}" noclick="true" 
+						onshow="SetText(Translate('{answer}', 'value', Evaluate('{passvalue1}')));"
+					/>
+				</panel>
+				<panel grow="true" regrow="1" growinvis="0" visible="0" width="100%" noclick="true" oninstantiatelua="self:SetVisible(not Empty(('{answer2=}')))">
+					<image y="0.3h" width="1.4h" height="1.4h" texture="/ui/shared/textures/ul.tga" noclick="true" />
+					<label fity="true" wrap="true" width="-2.0h" align="right" font="maindyn_14" color=".8 .8 .8 1" content="{answer2}" noclick="true" 
+						onshow="SetText(Translate('{answer2}', 'value', Evaluate('{passvalue2}')));"
+					/>
+				</panel>
+				<panel grow="true" regrow="1" growinvis="0" visible="0" width="100%" noclick="true" oninstantiatelua="self:SetVisible(not Empty(('{answer3=}')))">
+					<image y="0.6h" width="1.4h" height="1.4h" texture="/ui/shared/textures/ul.tga" noclick="true" />
+					<label fity="true" wrap="true" width="-2.0h" align="right" font="maindyn_14" color=".8 .8 .8 1" content="{answer3}" noclick="true" 
+						onshow="SetText(Translate('{answer3}', 'value', Evaluate('{passvalue3}')));"
+					/>
+				</panel>
+				<panel grow="true" regrow="1" growinvis="0" visible="0" width="100%" noclick="true" oninstantiatelua="self:SetVisible(not Empty(('{answer4=}')))">
+					<image y="0.6h" width="1.4h" height="1.4h" texture="/ui/shared/textures/ul.tga" noclick="true" />
+					<label fity="true" wrap="true" width="-2.0h" align="right" font="maindyn_14" color=".8 .8 .8 1" content="{answer4}" noclick="true" 
+						onshow="SetText(Translate('{answer4}', 'value', Evaluate('{passvalue4}')));"
+					/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+  <template name="options_faq_answer_entry">
+    <panel width="95%" align="center" grow="1" regrow="1" noclick="1">
+      <panel height="1.0h"></panel>
+      <image y="0.6h" x="-0.2h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="0" />
+      <label x="1.8h" style="labelBase" font="maindyn_16" color="0.8 0.8 0.8 1" content="{answer}" wrap="1" width="100%" fity="1" noclick="1" />
+    </panel>
+  </template>
+	
+	<template name="options_v3_button_binder">		
+		<panel name="options_v3_button_binder" visible="0">		
+			<buttoncatcher
+				name="keybind_v3button_catcher"
+				align="center" valign="top"
+				height="101%"
+				color="#000000c0"
+				onbutton="
+					HideWidget('options_v3_button_binder');
+					if(!StringEquals(_keybind_old_button, 'None'), Cmd('Unbind ' # _keybind_table # ' ' # _keybind_old_button));
+					Cmd('BindButton ' # _keybind_table # ' ' # param # ' ' # _keybind_action # ' &quot;' # _keybind_param # '&quot;');
+					PlaySound('/shared/sounds/ui/tutorial/popup_show_1.mp3');
+					Refresh();"
+			/>		
+			
+			<panel visible="1" blockinput="true" noclick="1">
+				<instance
+					name="alert_box"
+					width="35.0h"
+					height="11.0h"
+					align="center"
+					label="options_bind_header"
+					show_close="0"
+					body="options_v3_button_instructions"
+				/>
+			</panel>
+			
+		</panel>
+	</template>
+
+	<template name="options_v3_button_binder_impulse">		
+		<panel name="options_v3_button_binder_impulse" visible="0">		
+			<buttoncatcher
+				name="keybind_v3button_catcher_impulse"
+				align="center" valign="top"
+				height="101%"
+				color="#000000c0"
+				impulse="1"
+				onbutton="
+					HideWidget('options_v3_button_binder_impulse');
+					if(!StringEquals(_keybind_old_button, 'None'), Cmd('Unbind ' # _keybind_table # ' ' # _keybind_old_button));
+					Cmd('BindImpulse ' # _keybind_table # ' ' # param # ' ' # _keybind_action # ' &quot;' # _keybind_param # '&quot;');
+					PlaySound('/shared/sounds/ui/tutorial/popup_show_1.mp3');
+					Refresh();"
+			/>		
+			
+			<panel visible="1" blockinput="true" noclick="1">
+				<instance
+					name="alert_box"
+					width="35.0h"
+					height="11.0h"
+					align="center"
+					label="options_bind_header"
+					show_close="0"
+					body="options_v3_button_instructions"
+				/>
+			</panel>
+			
+		</panel>
+	</template>
+
+	<template name="options_v3_button_instructions">
+		<label y="0.0h" width="-1.0h" height="3.0h" textvalign="center" textalign="center" font="maindyn_10" color="white" shadow="1" wrap="true" noclick="true">options_bind_instructions_button</label>
+		<instance
+			name="button2"
+			y="3.4h"
+			x="1.0h"
+			height="2.4h"
+			width="10.0h"
+			align="left"
+			label="options_bind_button_default"
+			onclick="
+				HideWidget('options_v3_button_binder');
+				HideWidget('options_v3_button_binder_impulse');
+				Cmd('Unbind ' # _keybind_table # ' ' # _keybind_old_button);
+				Cmd('DefaultGameBind ' # ' ' # _keybind_num # ' ' # _keybind_table # ' ' # _keybind_action # ' ' # _keybind_param);
+				PlaySound('/shared/sounds/ui/tutorial/popup_show_1.mp3');
+				Refresh();"
+		/>
+
+		<instance
+			name="button2"
+			y="3.4h"
+			height="2.4h"
+			width="10.0h"
+			align="center"
+			label="options_bind_button_clear"
+			onclick="
+				HideWidget('options_v3_button_binder');
+				HideWidget('options_v3_button_binder_impulse');
+				Cmd('Unbind ' # _keybind_table # ' ' # _keybind_old_button);
+				Cmd('BindButton ' # ' ' # _keybind_table # ' INVALID ' # _keybind_action # ' ' # _keybind_param);
+				PlaySound('/shared/sounds/ui/tutorial/popup_show_1.mp3');
+				Refresh();"
+		/>
+
+		<instance
+			name="button2"
+			y="3.4h"
+			x="-1.0h"
+			height="2.4h"
+			width="10.0h"
+			align="right"
+			label="general_cancel"
+			onclick="HideWidget('options_v3_button_binder'); HideWidget('options_v3_button_binder_impulse');"
+		/>
+	</template>
+
+	<template name="options_v3_keybind_button">
+		<button x="{x=0}" y="-0.1h" width="10.0h" height="1.8h" valign="center" align="right" color="invisible"
+			onmouseover="PlaySound('/shared/sounds/ui/button_over_01.wav');"
+			onclick="
+				PlaySound('/shared/sounds/ui/button_click_01.wav');
+				_keybind_command = '{command}';
+				_keybind_table = '{table}';
+				_keybind_action = '{action}';
+				_keybind_param = '{param}';
+				_keybind_num = '{num}';
+				_keybind_old_button = GetKeybindButton('{table}', '{action}', '{param}', {num});
+				_keybind_impulse = {impulse=false};
+				If({impulse=false},
+					showWidget('options_v3_button_binder_impulse'),
+					showWidget('options_v3_button_binder')
+				);
+				"
+			onmouseoverlua="Strife_Options:HoverScroller()"
+		>
+			<instance name="keybind_button_state" state="up" frame="false" color="white" shadowcolor="black" table="{table}" action="{action}" param="{param}" num="{num}"/>
+			<instance name="keybind_button_state" state="over" table="{table}" action="{action}" param="{param}" num="{num}"/>
+			<instance name="keybind_button_state" state="down" x="1" y="1" table="{table}" action="{action}" param="{param}" num="{num}"/>
+		</button>
+	</template>
+
+	<template name="option_keybind_v3">
+		<panel
+			grow="true"  sticky="0" stickytoinvis="0"
+			width="{width=100%}"
+			noclick="1"
+			oninstantiate="{oninstantiate}" group="{group=options_options}"
+			oninstantiatelua="{oninstantiatelua}"
+			onevent8lua="if ({register=true}) then Strife_Options.RegisterOption('option_keybind_v3', '{category}', '{subcategory}', '{table}'..'{action}'..'{param}', '{title}', '{sub_text1}', '{sub_text2}', '{sub_text3}', '{tip_image}', '{tip_name}', '{tip_text1}', '{tip_text2}', '{tip_text3}', '{gradmark1_pos}', '{gradmark2_pos}', '{gradmark3_pos}', '{gradmark4_pos}', '{gradmark5_pos}', '{gradmark1_name}', '{gradmark2_name}', '{gradmark3_name}', '{gradmark4_name}', '{gradmark5_name}', '{slidefunction}', '{maxvalue=1}', '{data}', [=[{onchange}]=], [=[{onchangelua}]=], [=[{onselect}]=], [=[{populate}]=], '{maxlistheight}', '{pair=false}', '{inverted=false}', '{enforce}', '{enforce2}', '{enforce3}', '{enforce4}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}', '{title_font=dyn_12}', [=[{command}]=], '{table}', '{action}', '{param=}', '{impulse=false}', [=[{onclick}]=], [=[{oneventlua}]=], [=[{oninstantiatelua}]=]) end"
+		>
+			<frame height="3.4h" texture="/ui/frames/togglebox.tga" borderthickness="1.3h" noclick="1" color="#4ab4ff">
+				<panel height="2.4h" width="-1.8h" align="center" valign="center" float="right" padding="0" noclick="true">
+					<label width="-24h" textvalign="center" font="main{title_font=dyn_12}" color="1 1 1 1" shadow="true" content="{title}" noclick="true"/>
+					<panel width="21h" noclick="true">
+						<panel height="2.4h" width="100%" align="left" color="invisible">
+							<frame texture="/ui/info/backdrop.tga" borderthickness="1.0h" color="1 1 1 .5" noclick="1" />
+							<frame color="invisible" bordercolor="#455166" borderthickness="1" noclick="1" />			
+							<instance name="options_v3_keybind_button" x="-10.5h" num="0" command="{command}" table="{table}" action="{action}" param="{param=}" impulse="{impulse=false}"/>
+							<instance name="options_v3_keybind_button" x="-0.4h" num="1" command="{command}" table="{table}" action="{action}" param="{param=}" impulse="{impulse=false}"/>	
+						</panel>
+					</panel>
+					<panel width="0.8h"/> <!-- padding -->
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+			</frame>
+		</panel>
+	</template>
+	
+	<template name="keybindButtonState">
+		<widgetstate statename="{stateName}" x="{x}" y="{y}">
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.25" borderthickness="0.5h" x="0.25h" y="0.25h"/>			
+			<frame texture="/ui/elements:rounded_button_bg_white" color="{bgcolor=#333333}" borderthickness="0.5h"/>
+			<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+			<panel hmargin="0.5h" vmargin="0.5h">
+				<label style="labelBase" font="maindyn_16" textalign="center" textvalign="center"
+					oninstantiatelua="
+						self:SetText(self:UICmd('GetKeybindButton(\'{table}\', \'{action}\', \'{param}\', \'{num}\')'));
+					"				
+					onshowlua="
+						self:SetText(self:UICmd('GetKeybindButton(\'{table}\', \'{action}\', \'{param}\', \'{num}\')'));
+					"
+					onrefreshlua="
+						self:SetText(self:UICmd('GetKeybindButton(\'{table}\', \'{action}\', \'{param}\', \'{num}\')'));
+					"
+				/>
+			</panel>
+		</widgetstate>
+	</template>
+
+	<template name="keybindButton">
+		<button x="{x}" y="{y}" width="{width=100%}" height="{height=100%}" align="{align}" valign="{valign}" color="invisible"
+			onclicklua="
+				local bindData = LuaTrigger.GetTrigger('buttonBinderData')
+
+				bindData.show				= true
+				bindData.table				= '{table}'
+				bindData.action				= '{action}'
+				bindData.param				= '{param}'
+				bindData.oldButton			= self:UICmd('GetKeybindButton(\'{table}\', \'{action}\', \'{param}\', \'{num}\')')
+				bindData.keyNum				= '{num}'
+				bindData.impulse			= AtoB('{impulse=false}')
+				bindData.allowMoreInfoKey	= false
+				buttonBinderLastUIWidget	= self
+				bindData:Trigger(false)
+			"
+			oninstantiatelua="
+				self:DoEvent()
+			"
+			onhidelua="self:DoEvent()"
+			onrefresh="DoEvent();"
+			oneventlua="
+				Strife_Options:RegisterKeybind(self, 'keybindButton', 'simpleKeybindEntry', self:UICmd('GetKeybindButton(\'{table}\', \'{action}\', \'{param}\', \'{num}\')'), '{table}', '{action}', '{param}', '{num}', '{impulse}', '{label}')
+			"
+		>
+			<instance name="keybindButtonState" stateName="up" color="white" table="{table}" action="{action}" param="{param}" num="{num}"/>
+			<instance name="keybindButtonState" bgcolor="#555555" stateName="over" table="{table}" action="{action}" param="{param}" num="{num}"/>
+			<instance name="keybindButtonState" bgcolor="#444444" stateName="down" x="1" y="1" table="{table}" action="{action}" param="{param}" num="{num}"/>
+		</button>
+	</template>	
+	
+	<template name="simpleKeybindNoItem">
+		<panel width="{width=100%}" height="{height=3h}">
+			<instance name="simpleKeybindEntry" label="{label}" table="{table}" action="{action}" param="{param}" usetip="{usetip=false}"/>
+		</panel>
+	</template>
+	
+	<template name="simpleKeybindEntry">
+		<panel valign="top" height="2.9h" group="{group=options_options}" 
+			   	onmouseoverlua="
+					if {usetip=false} then 
+						local translate  = Translate('{label}_tooltip')
+						if (translate and type(translate) == 'string' and translate ~= '{label}_tooltip') then
+						simpleTipGrowYUpdate(true, nil, Translate('{label}'), translate, libGeneral.HtoP(32)) end
+					end
+					"
+				onmouseoutlua="
+						simpleTipGrowYUpdate(false) 
+					"
+			   >
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h"/>
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#151515" borderthickness="0.5h"/>
+			<panel float="right" padding="0" noclick="true" >
+				<panel width="-36h" noclick="true" passivechildren="true"><!-- Label portion -->
+					<panel hmargin="0.5h" vmargin="0.5h" >
+						<label style="labelBase" font="maindyn_18" textvalign="center" content="{label}"/>
+					</panel>
+				</panel>
+				<panel width="18.0h" noclick="true">
+					<instance name="keybindButton" table="{table}" label="{label}" action="{action}" param="{param}" num="0" impulse="{impulse=false}"/>
+				</panel>
+				<panel width="18.0h" noclick="true">
+					<instance name="keybindButton" table="{table}" label="{label}" action="{action}" param="{param}" num="1" impulse="{impulse=false}"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	<template name="simpleKeybind">
+		<listitem><!-- Entire keybind space -->
+			<instance name="simpleKeybindEntry" label="{label}" table="{table}" action="{action}" param="{param}" impulse="{impulse=false}" usetip="{usetip=false}"/>
+		</listitem>
+	</template>
+
+	<template name="simpleKeybindHeader">
+		<listitem>
+			<panel valign="center" height="-0.5h" noclick="true" passivechildren="true">
+
+				<panel hmargin="0.5h" vmargin="0.5h">
+					<label style="h2" font="maindyn_18" textvalign="center" content="{label}"/>
+				</panel>
+			</panel>
+		</listitem>
+	</template>
+
+</package>

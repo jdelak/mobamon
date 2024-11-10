@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+
+			<model
+				position="0 0 0"
+				life="10000"
+				model="../death_top.mdf"
+				material="/world/sprops/towers/cannon/material.material"
+				anim="idle"
+				color="1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".95"
+				scale="1"
+			>
+			
+			
+			
+			
+			
+				
+				<template name="">
+
+					<simpleemitter	
+						bone="{zbone}"
+						spawnrate="40"
+						life="1250"							
+						position="0 0 0"
+						minparticlelife="500"			
+						maxparticlelife="2000"	
+						depthbias="10"			
+						material="/shared/effects/smaterials/cartoon_dust.material"			
+						offsetsphere="15 15 15"
+						drag=".005"
+					>
+						<particle 
+							minangle="-25"
+							maxangle="25"
+							minanglespeed="-100"
+							maxanglespeed="100"
+							startcolor="1 .7 .3"
+							midcolor="1 .7 .3"
+							endcolor="0 0 0"
+							startsize="80"
+							endsize="25"
+							startalpha="0"
+							midalpha=".075"
+							endalpha="0"
+							midcolorpos=".25"
+						/>
+					</simpleemitter>
+				
+				</template>
+				
+				<instance name="" zbone="_bone_CTRL_01"/>
+				<instance name="" zbone="_bone_CTRL_15"/>
+				<instance name="" zbone="_bone_CTRL_25"/>
+				<instance name="" zbone="_bone_CTRL_26"/>
+				<instance name="" zbone="_bone_CTRL_24"/>
+				<instance name="" zbone="_bone_CTRL_28"/>
+				<instance name="" zbone="_bone_CTRL_29"/>
+				<instance name="" zbone="_bone_CTRL_26"/>
+				<instance name="" zbone="_bone_CTRL_18"/>
+				<instance name="" zbone="_bone_CTRL_05"/>
+				<instance name="" zbone="_bone_CTRL_03"/>
+				<instance name="" zbone="_bone_CTRL_12"/>
+				<instance name="" zbone="_bone_CTRL_27"/>
+				<instance name="" zbone="_bone_CTRL_16"/>
+				<instance name="" zbone="_bone_CTRL_21"/>
+				<instance name="" zbone="_bone_CTRL_14"/>
+				<instance name="" zbone="_bone_CTRL_22"/>
+				<instance name="" zbone="_bone_CTRL_10"/>
+				<instance name="" zbone="_bone_CTRL_04"/>
+				
+				
+				
+				
+				
+				
+				
+<!--
+				<template name="">
+	  
+					<simpleemitter
+					delay="{zdelay}"
+						bone="{zbone}"
+						count="5"
+						spawnrate="1055"
+						particlelife="150"
+						minspeed="0"
+						maxspeed="250"
+						acceleration="0.0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+						depthbias="0"
+						direction="1 0 0"
+						minangle="0"
+						maxangle="10"
+					>
+						<particle
+							color=".5 .125 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							startscale="50"
+							minendscale="75"
+							maxendscale="75"
+							turn="true"
+							height="6"
+						/>
+					</simpleemitter>
+					
+				</template>
+				
+				<instance name="" zdelay="333" zbone="_bone_fx_01"/> 
+
+				<instance name="" zdelay="500" zbone="_bone_fx_03"/> 
+				<instance name="" zdelay="500" zbone="_bone_fx_04"/> 
+				<instance name="" zdelay="500" zbone="_bone_fx_05"/> 
+				
+			
+				<template name="">
+			
+					<simpleemitter
+					delay="0"
+						bone="{zbone}"
+						count="5"
+						spawnrate="40"
+						particlelife="200"
+						minspeed="0"
+						maxspeed="250"
+						acceleration="0.0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+						depthbias="0"
+						direction="1 0 0"
+						minangle="0"
+						maxangle="10"
+					>
+						<particle
+							color=".5 .125 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							startscale="50"
+							minendscale="75"
+							maxendscale="150"
+							turn="true"
+							height="6"
+						/>
+					</simpleemitter>
+			
+				</template>
+				
+				<instance name="" zbone="_bone_fx_01"/> 
+				<instance name="" zbone="_bone_fx_03"/> 
+				<instance name="" zbone="_bone_fx_04"/> 
+-->
+			</model>
+
+		</particlesystem>
+
+		<modifier
+			color="1 1 1"
+			alpha="0"
+		/>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

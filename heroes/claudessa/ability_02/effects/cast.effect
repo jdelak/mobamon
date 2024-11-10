@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1" useentityscale="true">
+
+			<sound
+				delay="50"
+				falloffstart="500"
+				falloffend="2500"
+				volume=".55"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<sound
+				delay="50"
+				falloffstart="500"
+				falloffend="2500"
+				volume=".65"
+				sample="../../sounds/voice/vo_grunt_1.wav"
+			/>
+		
+<!--
+			<light
+				position="0 65 50"
+				life="350"
+				startcolor="5 3.5 1.75"
+				midcolor="5 3.5 1.75"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="200"
+				endfalloffend="400"
+			/>
+-->
+		</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance2" particlesystem="system2" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance2" />
+</thread>
+
+</effect>

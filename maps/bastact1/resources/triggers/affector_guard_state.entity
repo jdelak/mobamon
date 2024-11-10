@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_RemoveState_Guard"
+
+	radius="450"
+	targetselection="all"
+	targetscheme="patrol_guard"
+	lifetime="-1"
+	maximpactspertarget="-1"
+	impactinterval="1000"
+
+>
+
+	<onimpact>
+	<distance source="target_entity" target="this_proxy_entity"/>
+				<setvar0 a="result"/>	
+				
+	<compare a="var0" b="350" op="lt">	
+		<condition test="hasstate State_Limiter_Guard_Enemy" target="target_entity" >
+			 <expirestate target="target_entity" name="State_IgnoreAffector_Guard_Enemy"/>
+			 <expirestate target="target_entity" name="State_Limiter_Guard_Enemy"/>
+			 <delete target="this_entity"/>
+		</condition>
+	</compare>	
+	</onimpact>
+</affector>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				life="3300"
+				falloffstart="500"
+				falloffend="3000"
+				volume="0.85"
+				sample="../../sounds/sfx_destroy.wav"
+			/>
+			
+			<!-- <model
+				life="12000"
+				model="models/model.mdf"
+				anim="idle"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".75"
+				color="1 1 1"
+				position="0 0 0"
+			/> -->
+			
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".075 .25 0"
+				midcolor=".075 .25 0"
+				endcolor="0 0 0"
+				life="600"
+				size="120"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-50"
+			/>
+			
+			<!-- <billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".075 .25 0"
+				midcolor=".075 .25 0"
+				endcolor="0 0 0"
+				life="300"
+				size="120"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-50"
+			/>
+			
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5"
+				midcolor=".5"
+				endcolor="0 0 0"
+				life="300"
+				size="60"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-50"
+			/>
+ -->
+			<simpleemitter
+				count="50"
+				life="1000"
+				spawnrate="2000"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="10"
+				minspeed="75"
+				maxspeed="150"
+				drag=".015"
+				material="/shared/effects/smaterials/poison_05.material"
+				offsetsphere="2"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				directionalspace="global"
+				depthbias="-25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor=".7 1 .25"
+					midcolor=".7 1 .25"
+					endcolor="0 0 0"
+					midcolorpos=".85"
+					minstartsize="25"
+					maxstartsize="50"
+					midsize="20"
+					endsize="10"
+					startalpha="0"
+					midalpha=".7"
+					endalpha="0"
+					midalphapos=".5"
+					turn="true"
+					scale=".5"
+				/>
+			</simpleemitter>
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

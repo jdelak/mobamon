@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Vex_Ability2_Bolts"
+	icon="icon.tga"
+	
+	effecttype=""
+	passiveeffect="effects/state.effect"
+	
+	impactinterval="600"
+	ishidden="true"
+>
+	
+	<onimpact>
+		<setaccumulator value="0" />
+		<areaofeffect
+			radius="600"
+			targetselection="closest"
+			targetscheme="visible_enemy_units_and_buildings"
+			maxtotalimpacts="3"
+			effecttype="Magic"
+		>
+		
+		</areaofeffect>
+		<setvar0 a="result" />
+
+		<compare a="result" b="1" op="eq">
+			<areaofeffect
+				radius="600"
+				targetselection="closest"
+				targetscheme="visible_enemy_units_and_buildings"
+				maxtotalimpacts="1"
+				effecttype="Magic"
+			>
+
+				<cantarget targetscheme="neutral_units">
+					<cantarget targetscheme="idle_units"/>
+					<else>
+						<spawnprojectile name="Projectile_Vex_Ability2" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+						<spawnprojectile name="Projectile_Vex_Ability2_b" source="source_entity" target="target_entity" offset="0 0 175" param="0.35"/>
+						<spawnprojectile name="Projectile_Vex_Ability2_c" source="source_entity" target="target_entity" offset="0 0 175" param="0.35"/>
+						<playeffect effect="effects/sound.effect" />
+					</else>
+				</cantarget>
+				<cantarget targetscheme="enemy_units_and_buildings">
+					<spawnprojectile name="Projectile_Vex_Ability2" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+					<spawnprojectile name="Projectile_Vex_Ability2_b" source="source_entity" target="target_entity" offset="0 0 175" param="0.35"/>
+					<spawnprojectile name="Projectile_Vex_Ability2_c" source="source_entity" target="target_entity" offset="0 0 175" param="0.35"/>
+					<playeffect effect="effects/sound.effect" />
+				</cantarget>
+			</areaofeffect>
+		</compare>
+		
+		<compare a="var0" b="2" op="eq">
+			<areaofeffect
+				radius="600"
+				targetselection="closest"
+				targetscheme="visible_enemy_units_and_buildings"
+				maxtotalimpacts="2"
+				maximpactspertarget="1"
+				effecttype="Magic"
+			>
+				<cantarget targetscheme="neutral_units">
+					<cantarget targetscheme="idle_units"/>
+					<else>
+						<spawnprojectile name="Projectile_Vex_Ability2" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+						<compare a="accumulator" b="1" op="lt" >
+							<spawnprojectile name="Projectile_Vex_Ability2_b" source="source_entity" target="target_entity" offset="0 0 175" param="0.35"/>
+						</compare>
+						<setaccumulator value="1" />
+						<playeffect effect="effects/sound.effect" />
+					</else>
+				</cantarget>
+				<cantarget targetscheme="enemy_units_and_buildings">
+					<spawnprojectile name="Projectile_Vex_Ability2" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+					<compare a="accumulator" b="1" op="lt" >
+						<spawnprojectile name="Projectile_Vex_Ability2_b" source="source_entity" target="target_entity" offset="0 0 175" param="0.35"/>
+					</compare>
+					<setaccumulator value="1" />
+					<playeffect effect="effects/sound.effect" />
+				</cantarget>
+			</areaofeffect>
+		</compare>
+
+		<compare a="var0" b="3" op="eq">
+			<areaofeffect
+				radius="600"
+				targetselection="closest"
+				targetscheme="visible_enemy_units_and_buildings"
+				maxtotalimpacts="3"
+				maximpactspertarget="1"
+				effecttype="Magic"
+			>
+				<cantarget targetscheme="neutral_units">
+					<cantarget targetscheme="idle_units"/>
+					<else>
+						<chance threshold="0.5">
+							<spawnprojectile name="Projectile_Vex_Ability2" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+						</chance>
+						<else>
+							<spawnprojectile name="Projectile_Vex_Ability2_b" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+						</else>
+						<playeffect effect="effects/sound.effect" />
+					</else>
+				</cantarget>
+				<cantarget targetscheme="enemy_units_and_buildings">
+					<chance threshold="0.5">
+						<spawnprojectile name="Projectile_Vex_Ability2" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+					</chance>
+					<else>
+						<spawnprojectile name="Projectile_Vex_Ability2_b" source="source_entity" target="target_entity" offset="0 0 175" param="1"/>
+					</else>
+					<playeffect effect="effects/sound.effect" />
+				</cantarget>
+			</areaofeffect>
+		</compare>
+
+	</onimpact>
+	
+
+	
+</state>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Eanu1"
+
+	icon="icon.tga"
+	statuseffecttooltip="State_Eanu_Ability1"
+	
+	anim="ability_1"
+	casttime="250"
+	castactiontime="250"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_self"
+	casteffecttype="Magic"
+	
+	casteffect="effects/cast.effect"
+	
+	manacost="40"
+	cooldowntime="500"
+
+	alwaysshowtimer="false"
+	inheritmovement="true"
+	queue="front"
+
+	maxcharges="3"
+>
+	<constant name="damage" value="20,30,40,50" adjustment="ability" />
+	<constant name="duration" value="0.4,0.6,0.8,1.0" adjustment="none" />
+	<constant name="radius" value="1000" adjustment="none" noshowintooltip="true" />
+	<constant name="radius_wet" value="200,300,400" adjustment="none" noshowintooltip="true" />
+	
+	<!-- buff 1 stack -->
+	<onimpact>
+
+		<addcharges />
+		<starttimer duration="5000" />
+		<resetattackcooldown />
+		<compare a="charges" b="1" op="eq" >
+			<applystate name="State_Eanu_Ability1_Charge" target="source_entity" duration="-1" />
+		</compare>
+		<else>
+			<compare a="charges" b="2" op="eq" >
+				<applystate name="State_Eanu_Ability1_Charge2" target="source_entity" duration="-1" />
+			</compare>
+			<else>
+				<compare a="charges" b="3" op="eq" >
+					<applystate name="State_Eanu_Ability1_Charge3" target="source_entity" duration="-1" />
+				</compare>
+			</else>
+		</else>
+	</onimpact>
+	
+	<!-- decay stacks -->
+	<ontimer>
+		<removecharges count="1" />
+			<compare a="charges" b="0" op="gt">
+				<starttimer duration="5000" />
+			</compare>
+					<compare a="charges" b="0" op="eq" >
+					<expirestate name="State_Eanu_Ability1_Charge" target="source_entity" />
+					</compare>
+						<compare a="charges" b="1" op="eq" >
+						<expirestate name="State_Eanu_Ability1_Charge2" target="source_entity" />
+						</compare>
+								<compare a="charges" b="2" op="eq" >
+									<expirestate name="State_Eanu_Ability1_Charge3" target="source_entity" />
+								</compare>
+			
+	</ontimer>
+	
+	<!-- consume a stack on attack-->
+	
+	
+<!--
+	<onattackstart>
+		<playanim name="ability_1_atk" target="source_entity" source="source_entity"/>
+	</onattackstart>
+-->
+	
+	
+	<onattack>
+		<compare a="charges" b="0" op="gt">
+			<condition test="hasstate State_Eanu_Wet" target="target_entity" >
+				<areaofeffect
+					radius="1000"
+					center="target_entity"
+					targetselection="all"
+					targetscheme="enemy_units"
+				>
+					<condition test="hasstate State_Eanu_Wet" target="target_entity" >
+						<getconstant name="damage" adjustmentsource="this_entity" />
+						<setvar0 a="result" b="charges" op="mult" />
+						<damage effecttype="Magic Splash" significant="true" amount="1" b="var0" op="mult"  />
+						<playeffect effect="effects/impact_additional_enemy.effect" source="target_entity" target="target_entity" />
+					</condition>
+				</areaofeffect>
+			
+			</condition>
+			
+			
+			<!-- bonus magic damage -->
+			<getconstant name="damage" entity="tool_entity" />
+			<setvar1 a="result" b="charges" op="mult" />
+			<damage effecttype="Magic" amount="1" b="var1" op="mult" />
+			
+			<!-- slow -->
+			<getconstant name="duration" entity="tool_entity" />
+			<setvar2 a="result" b="1000" op="mult" />
+			<setvar2 a="var2" b="charges" op="mult" />
+			
+			<applystate name="State_Eanu_Ability1_Slow" duration="var2" />
+			<playeffect effect="effects/impact_enemy.effect" source="target_entity" target="target_entity" /> 
+			<!-- refresh timer -->
+			<removecharges count="10"/>
+			<expirestate name="State_Eanu_Ability1_Charge" target="source_entity" />
+			<expirestate name="State_Eanu_Ability1_Charge2" target="source_entity" />
+			<expirestate name="State_Eanu_Ability1_Charge3" target="source_entity" />
+			<resettimer />
+		</compare>
+	</onattack>
+	
+	
+</ability>

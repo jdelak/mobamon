@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="alt_info_self" luatable="true">
+
+	<style name="whiteTextColor" color="#f5f2e2"/>
+	<style name="mitigationColor" color="#da4733"/>
+	<style name="resistanceColor" color="#2f6ed7"/>
+
+	<style name="altInfoSelfCenterGlosPos" width="+8%" height="+8@" align="center" valign="center"/>
+	<style name="altInfoSelfCombatPiegraph" style="altInfoSelfCenterGlosPos" start="-90" end="270" square="true" rendermode="additive" texture="/ui/game/alt_info/textures/altinfo_hero2_center_glow.tga" />
+	<style name="altInfoSelfPlayerName" y="-105%" textalign="center" textvalign="center" font="maindyn_16" color="1 1 0.8 1" shadow="true" outline="1"/>
+
+	<style name="altInfoSelfIconRow" height="80%" y="-90%" align="center" grow="true" regrow="true" growinvis="false" float="right" padding="25@" />
+	<style name="altInfoSelfTalkingIcon" width="100@" height="100%" texture="/ui/shared/textures/megaphone.tga" sticky="true" stickytoinvis="false" visible="false"/>
+	<style name="altInfoSelfTypingIcon" width="100@" height="100%" texture="/ui/shared/textures/edit.tga" sticky="true" stickytoinvis="false" visible="false"/>
+	<style name="altInfoSelfShoppingIcon" width="100@" height="100%" texture="/ui/game/shared/textures/shopping_icon.tga" sticky="true" stickytoinvis="false" visible="false"/>
+
+	<style name="altInfoSelfShieldContainer" width="100%" height="8@" valign="bottom" y="6.25@"/>
+	<style name="altInfoSelfShieldBarSize" hmargin="10@" vmargin="10%"/>
+
+	<style name="altInfoSelfStatContainer" width="50@" height="100%" x="-220@"/>
+	<style name="altInfoSelfDamageContainer" width="100@" height="100%" x="100@" align="right" />
+	<style name="altInfoSelfStatSection" height="47.5%" width="-8%" align="center" />
+	<style name="altInfoSelfStatSectionTop" style="altInfoSelfStatSection" y="0%"/>
+	<style name="altInfoSelfStatSectionBot" style="altInfoSelfStatSection" y="0%" valign="bottom"/>
+	<style name="altInfoSelfLevel" textalign="center" textvalign="center" style="whiteTextColor" outline="true" font="maindyn_11"/>
+	<style name="altInfoSelfMitigationLabel" textalign="center" textvalign="center" outline="true" font="maindyn_11"/>
+	<style name="altInfoSelfResistanceLabel" textalign="center" textvalign="center" outline="true" font="maindyn_11"/>
+	<style name="altInfoSelfMitigation" style="altInfoSelfMitigationLabel,mitigationColor" width="100%" textalign="right" />
+	<style name="altInfoSelfResistance" style="altInfoSelfResistanceLabel,resistanceColor" width="100%" textalign="right" />
+	<style name="altInfoSelfDamageLabel" textalign="center" textvalign="center" outline="true" font="maindyn_11"/>
+	<style name="altInfoSelfPower" style="altInfoSelfDamageLabel" color="#FFDD33" y="5%"/>
+	<style name="altInfoSelfDamage" style="altInfoSelfDamageLabel,whiteTextColor" y="-5%"/>
+
+	<!-- Health / Mana bar -->
+	<panel name="AltInfoSelfContainer" x="-6.0h" y="-5.8h" width="12.0h" height="3.0h">		
+		<!--
+			Tutorial-only stuff
+			For pointing to tab info.
+		-->
+		<panel>
+			<!-- Top-Right -->
+			<panel name="AltInfoSelfTutExplainPower" width="10h" height="3.5h" x="12.5h" y="-5h" visible="false">
+				<image group="AltInfoSelfTutExplainPowerBacker" texture="/ui/game/shared/textures/bubble_tip_center.tga" color="#bbad0f" hmargin="25@"/>
+				<image group="AltInfoSelfTutExplainPowerBacker" texture="/ui/game/shared/textures/bubble_tip_left.tga" color="#bbad0f" width="25@"/>
+				<image group="AltInfoSelfTutExplainPowerBacker" texture="/ui/game/shared/textures/bubble_tip_right.tga" color="#bbad0f" width="25@" align="right"/>
+				<image group="AltInfoSelfTutExplainPowerBacker" texture="/ui/game/shared/textures/bubble_tip_arrow.tga" color="#bbad0f" vflip="true" width="40@" height="40%" y="90%" x="40@"/>
+				<label name="AltInfoSelfTutExplainPowerLabel" textvalign="center" textalign="center" color="white" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_14" content="crafting_item_property_power" y="-10%"/>
+				
+				<panel name="AltInfoSelfTutExplainPowerBorder" width="11h" height="4.4h" x="-0.55h" y="-0.5h" visible="false">
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_left_border.tga" color="#bbad0f" width="25@"/>
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_right_border.tga" color="#bbad0f" width="25@" align="right"/>
+				</panel>
+			</panel>
+
+			<!-- Bottom-Right -->
+			<panel name="AltInfoSelfTutExplainDPS" width="16h" height="3.5h" x="12.5h" y="4.5h" visible="false">
+				<image group="AltInfoSelfTutExplainDPSBacker" texture="/ui/game/shared/textures/bubble_tip_center.tga" color="#c6c6c6" hmargin="25@"/>
+				<image group="AltInfoSelfTutExplainDPSBacker" texture="/ui/game/shared/textures/bubble_tip_left.tga" color="#c6c6c6" width="25@"/>
+				<image group="AltInfoSelfTutExplainDPSBacker" texture="/ui/game/shared/textures/bubble_tip_right.tga" color="#c6c6c6" width="25@" align="right"/>
+				<image group="AltInfoSelfTutExplainDPSBacker" texture="/ui/game/shared/textures/bubble_tip_arrow.tga" color="#c6c6c6" width="40@" height="40%" y="-35%" x="40@"/>
+				<label name="AltInfoSelfTutExplainDPSLabel" textvalign="center" textalign="center" color="white" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_14" content="tooltip_dps_short" y="-10%"/>
+				
+				<panel name="AltInfoSelfTutExplainDPSBorder" width="17h" height="4.5h" x="-0.55h" y="-0.5h" visible="false">
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_left_border.tga" color="#c6c6c6" width="25@"/>
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_right_border.tga" color="#c6c6c6" width="25@" align="right"/>
+				</panel>
+			</panel>		
+
+			<!-- Top-Left -->
+			<panel name="AltInfoSelfTutExplainMitigation" width="10h" height="3.5h" x="-14.5h" y="-5h" visible="false">
+				<image group="AltInfoSelfTutExplainMitigationBacker" texture="/ui/game/shared/textures/bubble_tip_center.tga" color="#d65443" hmargin="25@"/>
+				<image group="AltInfoSelfTutExplainMitigationBacker" texture="/ui/game/shared/textures/bubble_tip_left.tga" color="#d65443" width="25@"/>
+				<image group="AltInfoSelfTutExplainMitigationBacker" texture="/ui/game/shared/textures/bubble_tip_right.tga" color="#d65443" width="25@" align="right"/>
+				<image group="AltInfoSelfTutExplainMitigationBacker" texture="/ui/game/shared/textures/bubble_tip_arrow.tga" color="#d65443" hflip="true" vflip="true" width="40@" height="40%" y="90%" align="right" x="-40@"/>
+				<label name="AltInfoSelfTutExplainMitigationLabel" textvalign="center" textalign="center" color="white" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_14" content="shop_item_stat_name_Mitigation" y="-10%"/>
+				
+				<panel name="AltInfoSelfTutExplainMitigationBorder" width="11h" height="4.4h" x="-0.55h" y="-0.5h" visible="false">
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_left_border.tga" color="#d65443" width="25@"/>
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_right_border.tga" color="#d65443" width="25@" align="right"/>
+				</panel>
+			</panel>
+			
+			<!-- Bottom-Left -->
+			<panel name="AltInfoSelfTutExplainResistance" width="16h" height="3.5h" x="-20.5h" y="4.5h" visible="false">
+				<image group="AltInfoSelfTutExplainResistanceBacker" texture="/ui/game/shared/textures/bubble_tip_center.tga" color="#5395fa" hmargin="25@"/>
+				<image group="AltInfoSelfTutExplainResistanceBacker" texture="/ui/game/shared/textures/bubble_tip_left.tga" color="#5395fa" width="25@"/>
+				<image group="AltInfoSelfTutExplainResistanceBacker" texture="/ui/game/shared/textures/bubble_tip_right.tga" color="#5395fa" width="25@" align="right"/>
+				<image group="AltInfoSelfTutExplainResistanceBacker" texture="/ui/game/shared/textures/bubble_tip_arrow.tga" color="#5395fa" hflip="true" width="40@" height="40%" y="-35%" align="right" x="-40@"/>
+				<label name="AltInfoSelfTutExplainResistanceLabel" textvalign="center" textalign="center" color="white" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_14" content="shop_item_stat_name_Resistance" y="-10%"/>
+				
+				<panel name="AltInfoSelfTutExplainResistanceBorder" width="17h" height="4.5h" x="-0.55h" y="-0.5h" visible="false">
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_left_border.tga" color="#5395fa" width="25@"/>
+					<image group="" texture="/ui/game/shared/textures/bubble_tip_right_border.tga" color="#5395fa" width="25@" align="right"/>
+				</panel>
+			</panel>				
+		</panel>
+
+		<!-- armor -->
+		<panel name="altInfoSelfStatContainer" style="altInfoSelfStatContainer" visible="true">
+			<panel style="altInfoSelfStatSectionTop">
+				<label name="altInfoSelfMitigation" style="altInfoSelfMitigation" content="??" visible="false"/>
+			</panel>
+			<panel style="altInfoSelfStatSectionBot">
+				<label name="altInfoSelfResistance" style="altInfoSelfResistance" content="???" visible="false"/>
+			</panel>
+		</panel>
+
+		<!-- damage -->
+		<panel name="altInfoSelfDamageContainer" style="altInfoSelfDamageContainer" visible="true">
+			<panel style="altInfoSelfStatSectionTop">
+				<label name="altInfoSelfPower" style="altInfoSelfPower" content="?" visible="false"/>
+			</panel>
+			<panel style="altInfoSelfStatSectionBot">
+				<label name="altInfoSelfDamage" style="altInfoSelfDamage" content="?"/>
+			</panel>
+		</panel>
+		
+		<label name="AltInfoSelfPlayerName" style="altInfoSelfPlayerName" visible="0" width="15h" x="-1.5h"/>
+		
+		<!-- cv_counterstrife -->
+		<!-- Stacking LevelUp and Lives	-->
+		<panel y="-112%" width="100%" float="bottom" valign="bottom" grow="1" regrow="1" growinvis="0" noclick="1">
+			<label name="AltInfoSelfLevelUp" textalign="center" textvalign="center" shadow="true" fity="1" font="maindyn_24" color="cyan" glow="1" outline="1" content="general_levelup" width="100%" align="center" visible="0" sticky="1" stickytoinvis="0"/>
+			
+			<panel name="AltInfoSelfLives" height="1.7h" width="100%" float="right" padding="0.2h" noclick="1" sticky="1" stickytoinvis="0" visible="0">
+				<?lua
+					--object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+					--	widget:SetVisible(trigger.totalRespawns > 0)
+					--end, true, nil, 'totalRespawns')
+				?>
+			
+				<image name="AltInfoSelfLife01" texture="/maps/counter-strife/resources/ui/textures/life_count.tga" color="1 1 1 0.7" height="100%" width="100@" noclick="1"/> <!-- There is a life remaining -->
+				<image name="AltInfoSelfLife02" texture="/maps/counter-strife/resources/ui/textures/life_count.tga" color="1 1 1 0.4" rendermode="grayscale" height="100%" width="100@" noclick="1"/> <!-- A life was lost -->
+			</panel>
+		</panel>
+
+		<piegraph name="AltInfoSelfCombatPieRemainder" start="270" end="-90" style="altInfoSelfCombatPiegraph" color="#F2CC00CC" visible="0"/>
+
+		<!-- Misc Icons and Overlays -->
+		<panel name="AltInfoSelfShoppingIconContainer" >
+			<panel style="altInfoSelfIconRow">
+				<image name="AltInfoSelfShoppingIcon" style="altInfoSelfShoppingIcon"/>
+				<image name="AltInfoSelfTalkingIcon" style="altInfoSelfTalkingIcon"/>
+				<image name="AltInfoSelfTypingIcon" style="altInfoSelfTypingIcon"/>
+			</panel>
+		</panel>
+
+		<!-- HP -->
+		<panel name="AltInfoSelfHealth" hmargin="5@" y="7.8%" height="42.6%">
+
+			<!-- BG 1 -->
+			<image width="100%" texture="$white" color="0 0 0 1" visible="0">
+				<?lua
+
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						widget:SetVisible((trigger.isHovering or trigger.showMoreInfo))
+					end, true, nil, 'isHovering', 'showMoreInfo')
+
+				?>
+			</image>
+
+			<!-- BG 2 -->
+			<image name="AltInfoSelfHealthBase" width="100%" texture="$white" visible="1">
+				<?lua
+					object:SetColor(styles_healthBarSelfColorBack .. " 0.54")
+					object:RegisterWatchLua('updateHealthColors', function(widget)
+						widget:SetColor(styles_healthBarSelfColorBack .. " 0.54")
+					end)
+				?>
+			</image>
+
+			<!-- Nameplates lerp in team colours -->
+			<image name="AltInfoSelfHealthShadow" width="0%" texture="$white" noclick="1" color="1 0 0 0.65" visible="0"/>
+
+			<!-- Nameplates 'light up' while taking damage to draw attention -->
+			<image  width="0%" texture="$white" color="0.0000 1.0000 0.0000 1.0000"  visible="0" >
+				<?lua
+					object:SetColor(1, 1, 0, 1)
+
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						widget:SetVisible(trigger.healthLerp > 0)
+						widget:SetWidth(ToPercent(trigger.healthCurrent / (trigger.maxHealth)))
+					end, true, nil, 'healthLerp', 'healthCurrent', 'maxHealth')
+
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						widget:SetVisible((trigger.isHovering or trigger.showMoreInfo))
+					end, true, nil, 'isHovering', 'showMoreInfo')
+				?>
+			</image>
+
+			<!-- Standard nameplate -->
+			<image name="AltInfoSelfHealthBG" width="100%" texture="$white" color="1.0000 1.0000 0.0000 0.7500" visible="1" >
+				<?lua
+					object:SetColor(styles_healthBarSelfColor)
+
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						widget:SetWidth(ToPercent(trigger.healthCurrent / (trigger.maxHealth)))
+					end, true, nil, 'healthCurrent', 'maxHealth')
+
+					object:RegisterWatchLua('updateHealthColors', function(widget)
+						widget:SetColor(styles_healthBarSelfColor)
+					end)
+				?>
+			</image>
+
+			<panel name="AltInfoSelfHealthPips" style="altInfoSelfHealthContainer" texture="$invis" uscale="64p" utile="true">
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						local maxHealth = trigger.maxHealth
+						if maxHealth > 4500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_8.tga')
+						elseif maxHealth >= 3500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_16.tga')
+						elseif maxHealth > 1500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_32.tga')
+						else
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_128.tga')
+						end
+						widget:SetUScale(500 / maxHealth)
+					end, true, nil, 'maxHealth')
+				?>
+			</panel>
+
+		</panel>
+
+		<!-- Mana -->
+		<panel name="AltInfoSelfMana" hmargin="5@" y="57.7%" height="29.8%">
+		
+			<!-- BG 1 -->
+			<image x="-1" width="+2" texture="$white" color="0 0 0 1" visible="0">
+				<?lua
+
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						widget:SetVisible((trigger.isHovering or trigger.showMoreInfo))
+					end, true, nil, 'isHovering', 'showMoreInfo')
+
+				?>
+			</image>
+			<panel width="100%" texture="/ui/game/alt_info/textures/mana_pos.tga" color="1 1 1 0.75" >
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger) widget:SetWidth(ToPercent(trigger.manaPercent)) end, true, nil, 'manaPercent')
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						if ((trigger.isHovering or trigger.showMoreInfo)) then
+							widget:SetColor('1 1 1 1')
+						else
+							widget:SetColor('1 1 1 0.75')
+						end
+					end, true, nil, 'isHovering', 'showMoreInfo')
+				?>
+			</panel>
+			<panel width="50%" x="25%" texture="$white" color="0 1 1 0.75" visible="0" >
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						if (trigger.activeMana > 0) then
+							widget:SetVisible(1)
+							widget:SetX(ToPercent(trigger.manaPercent - (trigger.activeMana / trigger.maxMana)))
+							widget:SetWidth(ToPercent(trigger.activeMana / trigger.maxMana))
+
+							if (trigger.manaCurrent > trigger.activeMana) then
+								widget:SetColor('0 1 1 0.75')
+							else
+								widget:SetColor('1 0.2 0.2 0.75')
+							end
+						else
+							widget:SetVisible(0)
+						end
+					end, true, nil, 'manaPercent', 'activeMana', 'maxMana', 'manaCurrent')
+				?>
+			</panel>
+		</panel>
+
+		<!-- Shield -->
+		<panel name="AltInfoSelfShieldContainer" y="0.5h" height="0.8h" style="altInfoSelfShieldContainer" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+					widget:SetVisible(trigger.maxShield > 0)
+				end, true, nil, 'maxShield')
+			?>
+
+			<panel style="altInfoSelfShieldBarSize" texture="/ui/elements:rounded_bg_white_vert" color="#0B0B0B">
+				<panel name="AltInfoSelfShieldBar" texture="/ui/elements:rounded_bg_white_vert" color="#DDDDDD" width="55%">
+					<?lua
+						object:RegisterWatchLua('AltInfoSelf', function(widget, trigger) widget:SetWidth(ToPercent(trigger.shieldPercent)) end, true, nil, 'shieldPercent')
+
+						object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+							widget:SetVisible(trigger.maxShield > 0)
+						end, true, nil, 'maxShield')
+
+					?>
+				</panel>
+			</panel>
+		</panel>
+
+		<panel style="altInfoSelfShieldContainer" y="0.5h" height="0.8h" visible="0">
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						widget:SetVisible(trigger.maxShield > 0)
+					end, true, nil, 'maxShield')
+				?>
+			<panel name="AltInfoSelfShieldPips" style="altInfoSelfShieldBarSize" uscale="64p" utile="true" >
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						local maxShield = trigger.maxShield
+
+						if maxShield > 4500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_8.tga')
+						elseif maxShield >= 3500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_16.tga')
+						elseif maxShield > 1500 then
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_32.tga')
+						else
+							widget:SetTexture('/ui/game/alt_info/bar_segment_big_128.tga')
+						end
+						if maxShield > 0 then
+							widget:SetUScale(500 / maxShield)
+						else
+							widget:SetUScale(1)
+						end
+					end, true, nil, 'maxShield')
+				?>
+			</panel>
+		</panel>
+
+		<!-- Combat - AltInfoSelfContainer needs to change size to set this properly, or needs it's own y to change -->
+		<panel hmargin="4" y="5" valign="bottom" height="2" >
+			<?lua
+				object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+					if (trigger.shield > 0) and (trigger.isStunned) then
+						widget:SetY('1.7h')
+					elseif (trigger.shield > 0) or (trigger.isStunned) then
+						widget:SetY('0.9h')
+					else
+						widget:SetY('5')
+					end
+				end, true, nil, 'shield', 'isStunned')
+			?>
+
+			<panel width="0" color="1 1 0 0.7" visible="0" >
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+						if trigger.inCombat then
+							local msCur		= trigger.currentTimeUntilOOC
+							local msTotal	= trigger.totalTimeUntilOOC
+							local msMod		= math.min(5000, msTotal)
+							local msRemain	= msTotal - msCur
+
+							if msRemain <= msMod then
+								widget:SetVisible(true)
+								widget:SetWidth(ToPercent(
+									(msMod - math.min(msMod, msRemain)) / msMod
+								))
+							else
+								widget:SetVisible(false)
+							end
+						else
+							widget:SetVisible(false)
+						end
+					end, true, nil, 'inCombat', 'currentTimeUntilOOC', 'totalTimeUntilOOC')
+				?>
+				<panel align="right" color="#78ff00" width="300@" height="100%" />
+				<panel align="right" color="1 1 0 1" width="100@" x="-100@" height="100%" />
+			</panel>
+		</panel>
+
+		<panel hmargin="0" y="1.0h" valign="bottom" height="0.6h" width="-0.6h" x="0" align="center" visible="0">
+			<?lua
+				object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+					if (trigger.shield > 0) then
+						widget:SetY('1.0h')
+					else
+						widget:SetY('0.4h')
+					end
+				end, true, nil, 'shield')
+			?>
+			<panel width="100%" color="1 0.7 0 1" >
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+
+						if (trigger.isStunned) then
+							widget:GetParent():SetVisible(1)
+							widget:SetWidth(ToPercent(trigger.stunnedDurationPercent))
+						else
+							widget:GetParent():SetVisible(0)
+						end
+					end, false, nil, 'isStunned', 'stunnedDurationPercent')
+
+				?>
+			</panel>
+			<panel style="altInfoSelfHealthContainer" texture="$invis" uscale="64p" utile="true">
+				<?lua
+
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+
+						if (trigger.stunnedMaxDuration > 0) then
+							widget:SetUScale(1000 / (trigger.stunnedMaxDuration) )
+						end
+					end, false, nil, 'stunnedMaxDuration')
+
+				?>
+			</panel>
+		</panel>
+
+		<!-- RMM Framing
+			altinfo_self_frame_0.tga = HP/Mana
+			altinfo_self_frame_1.tga = +1 Bar
+			altinfo_self_frame_2.tga = +2 Bar
+		-->
+		<panel name="AltInfoSelfRMM01" width="100%" height="50@" texture="/ui/game/alt_info/textures/altinfo_self_frame_0.tga" color=".5 .5 .5" visible="1"/>
+		<panel name="AltInfoSelfRMM02" width="100%" height="50@" texture="/ui/game/alt_info/textures/altinfo_self_frame_1.tga" color=".5 .5 .5" visible="0" />
+		<panel name="AltInfoSelfRMM03" width="100%" height="50@" texture="/ui/game/alt_info/textures/altinfo_self_frame_2.tga" color=".5 .5 .5" visible="0" />
+		<panel name="AltInfoSelfRMMNoMana" width="100%" height="43@" texture="/ui/game/alt_info/textures/altinfo_self_frame_spe.tga" color=".5 .5 .5" visible="0" />
+		<panel name="AltInfoSelfRMMNoManaStunned" width="100%" height="43@" texture="/ui/game/alt_info/textures/altinfo_hero_frame_0.tga" color=".5 .5 .5" visible="0" />
+
+
+		<!-- Iconised Armor Rating / XP Ring -->
+		<panel name="AltInfoSelfAmorXPRating" noclick="1" align="center" valign="center" height="4.2h" width="4.2h" x="-8.2h" y="-0.2h">
+
+			<!-- XP Ring
+				Min = 60%
+				Max = 106%
+			-->
+			<panel name="AltInfoSelfXPWheelParent" visible="0" width="106@" height="106%" valign="center" align="center">
+				<piegraph color="#2b0950"/>
+				<piegraph color="#862de8" start="-90" end="270" >
+					<?lua
+						object:RegisterWatchLua('AltInfoSelf', function(widget, trigger) widget:SetValue(trigger.xpPercent) end, true, nil, 'xpPercent')
+					?>
+				</piegraph>
+				<image texture="/ui/game/alt_info/textures/np_xp_ring.tga" />
+			</panel>
+
+			<panel name="AltInfoSelfArmorIcon_Parent" noclick="1" align="center" valign="center" height="96%" width="96%" x="0" y="0.2h" >
+				<image name="AltInfoSelfArmorIcon_1" texture="/ui/game/alt_info/textures/np_def_1.tga" visible="1" noclick="1" align="center" valign="center" height="100%" width="100%" color="1 1 1 1" />
+			</panel>
+
+			<label visible="1" font="subdyn_11" content="?" color="1 1 1 1" textalign="center" textvalign="center" outline="1" outlinecolor="0 0 0 0.9" >
+				<?lua
+					object:RegisterWatchLua('AltInfoSelf', function(widget, trigger) widget:SetText(trigger.level)
+						widget:SetText(trigger.level)
+						if (trigger.availablePoints) then
+							if (trigger.availablePoints > 0) then
+								widget:SetColor('0.2 1 1 1')
+								widget:SetFont('subdyn_11')
+								widget:SetX('0')
+							else
+								widget:SetColor('1 1 1 1.0')
+								widget:SetFont('subdyn_11')
+								widget:SetX('0')
+							end
+						end
+					end, true, nil, 'level', 'availablePoints')
+				?>
+			</label>
+		</panel>
+
+		<!-- Iconised Power Rating  -->
+		<panel name="AltInfoSelfPowerIcon_Parent" noclick="1" align="center" valign="center" height="3.6h" width="3.6h" x="7.7h" y="-0.1h"  >
+			<modelpanel name="AltInfoSelfPowerEffect" visible="0" height="200%" width="200%" align="center" valign="center" noclick="true"
+				model="/shared/models/invis.mdf" effect="/ui/game/alt_info/ability.effect"
+				camerapos="10 -1 15" cameraangles="0 0 0" camerafov="55" depthclear="true" depthcompress="true"
+			/>
+			<image name="AltInfoSelfPowerIcon_1" texture="/ui/game/alt_info/textures/np_off_1.tga" visible="0" noclick="1" align="center" valign="center" height="100%" width="100%" color="1 1 1 1"/>
+		</panel>
+
+		<frame name="AltInfoSelfHealthOutline" width="+2" height="+2" y="0" texture="/ui/elements:roundframe" borderthickness="5" valign="center" align="center" color="invisible" bordercolor="1 1 0 0.8" visible="1" >
+			<?lua
+				object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+					if (trigger.shield > 0) and (trigger.isStunned) then
+						widget:SetHeight('+12@')
+						widget:SetY('6@')
+					elseif (trigger.shield > 0) or (trigger.isStunned)  then
+						widget:SetHeight('+8@')
+						widget:SetY('2@')
+					else
+						widget:SetHeight('+2')
+						widget:SetY('0')
+					end
+				end, true, nil, 'shield', 'isStunned')
+
+				object:RegisterWatchLua('updateHealthColors', function(widget)
+					widget:SetBorderColor(styles_healthBarSelfColor .. " 0.8")
+				end)
+				object:SetBorderColor(styles_healthBarSelfColor .. " 0.8")
+			?>
+		</frame>
+		
+		<!-- cv_counterstrife -->
+		<!-- Invulnerability Circle -->
+		<panel name="AltInfoSelfInvul" height="100%" width="100@" valign="center" align="center" noclick="1" visible="0">
+		
+			<?lua
+				--object:RegisterWatchLua('AltInfoSelf', function(widget, trigger)
+				--	widget:SetVisible(trigger.deathProtected)
+				--end, true, nil, 'deathProtected')
+			?>
+			<image texture="/ui/shared/textures/circle_filled.tga" noclick="1" color="0.1 0.1 0.1 0.6"/>
+			<piegraph name="AltInfoSelfInvulBar" end="270" start="-90" square="0" color="1 1 1 1" noclick="true" value="0.4" align="center" valign="center" height="95%" width="95%" />
+			<image texture="/ui/shared/textures/circle_outline.tga" noclick="1" color="0.1 0.1 0.1 1"/>
+			<image height="61%" width="61@" align="center" valign="center" texture="/ui/shared/textures/circle_filled.tga" noclick="1" color="0.1 0.1 0.1 1"/>
+		</panel>
+	</panel>
+
+	<lua file="/ui/game/alt_info/alt_info_self.lua"/>
+
+</interface>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_Sword"
+	effect="waypoint_sword.effect"
+	radius="100"
+	targetselection="all"
+	targetscheme="all"
+	lifetime="-1"
+	maximpactspertarget="1"
+
+>
+
+	<onimpact>
+		<entitytype type="Hero_Bastion1Bastact1">
+			
+			<setscriptvalue name="bast_got_sword" value="1" />
+			<setent0 name="Hero_Bastion1"/>
+			<activatemodifierkey entity="ent0" name="with_sword" />
+
+			<setent1 name="melee_frozen_cinematicSword"/>
+			<delete target="ent1"/>
+
+			<delete target="this_entity" />
+		</entitytype>
+	</onimpact>
+
+</affector>

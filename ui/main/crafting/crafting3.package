@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="crafting_interaction_block_breadcrumbs_parent_arrow">
+		<panel width="12s" noclick="1">
+			<image texture="/ui/shared/textures/arrow_rounded.tga" width="100%" height="100@" color="0 0 0 1" x="-1s" y="1s" valign="center" noclick="1" />
+			<image texture="/ui/shared/textures/arrow_rounded.tga" width="100%" height="100@" color=".6 .6 .6 1" valign="center" noclick="1" />
+		</panel>
+	</template>
+
+	<template name="crafting_interaction_block_breadcrumbs_parent">
+		<panel name="crafting_interaction_block_breadcrumbs_parent_{id}" noclick="0" grow="1" regrow="1" height="34s" float="right" padding="14s" >
+			<panel grow="1" regrow="1" height="100%" noclick="1">
+				<label name="crafting_interaction_block_breadcrumbs_label_{id}" fitx="1" textvalign="bottom" textalign="left" style="labelBase" font="maindyn_30" color=".5 .5 .5 1" content="{label=crafting_breadcrumb_select_recipe}" noclick="1"/>
+				<panel name="crafting_interaction_block_breadcrumbs_ul_{id}" color="#42D0F4" noclick="1" x="0" height="2s" valign="bottom" visible="0"><panel color="0 0 0 1" height="1s" valign="bottom" noclick="1" /></panel>
+			</panel>
+			<instance name="{arrowTemplate=crafting_interaction_block_breadcrumbs_parent_arrow}" id="{id}"/>
+		</panel>
+	</template>
+
+	<template name="crafting_suggestion_hero_template" >
+		<panel height="85s" width="85s" noclick="1" visible="1" sticky="1" stickytoinvis="0" >
+			<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />
+			<image texture="{herotexture=$checker}" align="center" valign="center" noclick="1"/>
+			<image texture="/ui/main/shared/textures/herorole_frame.tga" align="center" valign="center" noclick="1"/>
+		</panel>
+	</template>
+
+	<template name="crafting_suggestion_item_template" >
+		<panel width="100%" float="bottom" padding="10s" noclick="1" height="80s" >			
+			<panel width="100%" height="100%" noclick="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" align="center" valign="center" borderthickness="10s" color=".04 .04 .04 0.98" noclick="1" />
+				<frame texture="/ui/shared/frames/border_double.tga" align="center" valign="center" borderthickness="10s" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1" />
+			</panel>
+			<panel y="0" hmargin="5s" vmargin="5s" noclick="1" >
+				<panel width="100@" height="100%">
+					<image texture="$checker" onshowlua="self:SetTexture(GetEntityIconPath('{entity}'))" />
+					<frame color="invisible" borderthickness="1" bordercolor=".2 .2 .2 1 " noclick="1"/>
+				</panel>
+				<panel width="-118@" align="right" noclick="1">
+					<label style="itemTipLabelCommonColor" textvalign="center" color="#b712d6" font="maindyn_24" y="-12s" content="{itemName}"/>
+					<label x="1s" style="itemTipLabelCommonColor" textvalign="center" color=".7 .7 .7 1" font="maindyn_18" y="15s" content="{itemDesc}"/>
+				</panel>
+			</panel>			
+		</panel>
+	</template>	
+	
+	<panel name="mainCrafting" y="-15s" noclick="true" visible="false">
+
+		<!-- Breadcrumbs -->
+		<panel name="crafting_interaction_block_breadcrumbs" noclick="1" >
+			<panel x="-60s" y="170s" align="right" width="606s" noclick="1" group="crafting_animation_widgets">
+				<panel align="center" grow="1" regrow="1" float="right" padding="6s" >
+					<instance name="crafting_interaction_block_breadcrumbs_parent" id="1" label="crafting_breadcrumb_select_recipe"/>
+					<instance name="crafting_interaction_block_breadcrumbs_parent" id="2" label="crafting_breadcrumb_select_components"/>
+					<instance name="crafting_interaction_block_breadcrumbs_parent" id="3" label="crafting_breadcrumb_select_imbuements"/>
+					<instance name="crafting_interaction_block_breadcrumbs_parent" id="4" label="crafting_breadcrumb_select_craft" arrowTemplate=""/>
+				</panel>
+			</panel>
+		</panel>
+		
+		<panel name="crafting_interaction_block_5" noclick="1" visible="0" >
+			<panel x="-70s" y="230s" grow="1" regrow="1" width="586s" align="right" noclick="1" group="crafting_animation_widgets" >
+				<panel width="100%" height="100%" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" color=".04 .04 .04 0.85" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+				</panel>
+				<panel noclick="1" height="86s" width="100%">
+					<panel width="100@" height="100%" color="invisible" >
+						<image name="craftPanelSelectRecipeNotice" texture="/ui/main/crafting/textures/recipe_blank.tga"/>
+						<instance name="iconFrame" />
+					</panel>
+					<label name="" fity="1" valign="center" x="120@" width="-110@" wrap="1" style="h1" font="maindyn_36" color=".2 .2 .2 1" content="game_shop_select_recipe_to_modify" />
+				</panel>
+				<panel y="192s" grow="1" regrow="1" width="100%" float="bottom" padding="14s" noclick="1">
+					<frame grow="1" regrow="1" width="100%" texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="6s" bordercolor=".9 .9 .9 1" color=".9 .9 .9 1" noclick="1">
+						<panel y="8s" grow="1" regrow="1" width="-16s" align="center" float="bottom" noclick="1" >
+							<panel grow="1" regrow="1" width="100%" noclick="0">
+								<panel width="64s" height="64s" noclick="1">									
+									<image texture="/ui/elements:scroll_overlay" rendermode="grayscale" noclick="true" color=".5 .5 .5 1"/>
+								</panel>
+							</panel>
+							<panel height="10s" noclick="1" />
+							<instance name="hr" />
+							<panel height="10s" noclick="1" />
+							<panel height="80s" width="100%">								
+								<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".75 .75 .75 1" color=".75 .75 .75 1" />
+								<panel y="8s" grow="1" regrow="1" width="-16s" align="center" float="bottom" noclick="1" >
+									<panel grow="1" regrow="1" width="100%" noclick="0">
+										<panel width="64s" height="64s" noclick="1">
+											<image x="-1s" texture="/ui/main/crafting/textures/imbue_icon.tga" color=".5 .5 .5 1"/>
+										</panel>
+									</panel>
+									<panel height="8s" noclick="1" />
+								</panel>
+							</panel>
+							<panel height="10s" noclick="1" />
+						</panel>
+					</frame>
+				</panel>
+				<panel noclick="1" float="right" padding="10s" y="100s" height="78s" width="100%">
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="6s" bordercolor=".9 .9 .9 1" color=".9 .9 .9 1" width="188s" height="100%" valign="center" />
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="6s" bordercolor=".9 .9 .9 1" color=".9 .9 .9 1" width="188s" height="100%" valign="center" />
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="6s" bordercolor=".9 .9 .9 1" color=".9 .9 .9 1" width="188s" height="100%" valign="center" />
+				</panel>				
+				<panel width="100%" height="100%" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" color=".04 .04 .04 0.7" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+				</panel>
+				<panel grow="1" width="86%" align="center" valign="center" float="bottom" padding="1.0h">
+					<label fity="1" style="h3" font="maindyn_40" wrap="1" textalign="center" content="crafting_default_title" />
+					<label fity="1" style="labelBase" font="maindyn_26" color=".6 .6 .6 1" wrap="1" textalign="center" content="crafting_default_info" />
+				</panel>				
+			</panel>
+		</panel>
+
+		<panel name="crafting_interaction_block_0" noclick="1" visible="0">
+
+			<panel x="-70s" y="230s" grow="1" regrow="1" width="586s" align="right" noclick="1" group="crafting_animation_widgets_block_0" >
+				<panel width="100%" height="100%" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" color=".04 .04 .04 0.85" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+				</panel>
+
+				<!-- Title and Icon -->
+				<panel noclick="1" height="86s" width="100%">
+					<button name="craftPanelSelectRecipeButton2" width="100@" height="100%" color="invisible" ><!-- Recipe Selection -->
+						<frame name="craftPanelSelectRecipeButton2_dummyglow_2" visible="0" noclick="true" texture="/ui/shared/frames/frameglow.tga" color=".4 .9 1 .7" bordercolor=".4 .9 1 .7" rendermode="additive" width="+14s" height="+10s" align="center" valign="center" borderthickness="16s" />
+						<frame name="craftPanelSelectRecipeButton2_dummyglow_1" visible="0" noclick="true" color="invisible" bordercolor="invisible" width="+40s" height="+40s" align="center" valign="center">
+							<modelpanel height="+90s" width="+90s" align="center" valign="center" visible="1"
+								noclick="true"
+								model="/shared/models/invis.mdf"
+								effect="/ui/main/crafting/effects/alert.effect"
+								onshowlua="self:SetEffect('/ui/main/crafting/effects/alert.effect')"
+								onhidelua="self:SetEffect('')"
+								camerapos="0 0 0"
+								cameraangles="0 0 0"
+								camerafov="42"
+								depthclear="true"
+								depthcompress="true"
+							/>
+						</frame>
+						<frame noclick="true" texture="/ui/elements:squareglow" color="0 0 0 .7" width="+20s" height="+20s" align="center" valign="center" borderthickness="20s" />
+						<panel color=".09 .09 .09 1" noclick="1" />
+						<image name="craftingNewItemIcon" texture="/ui/main/crafting/textures/recipe_blank.tga"/>
+						<image name="craftPanelSelectRecipeNotice" texture="/ui/main/crafting/textures/recipe_blank.tga"/>
+						<instance name="iconFrame" />
+					</button>
+					<label name="craftingNewItemName" fity="1" valign="center" x="120@" width="-300@" wrap="1" style="h1" font="maindyn_36" content="Item Name" />
+					<!-- In-game Cost -->
+					<panel name="craftPanelCurrentIngameCost_parent" y="-5s" valign="center" grow="1" regrow="1" align="right" noclick="0">
+						<label fity="1" fitx="1" align="center" style="labelBase" font="subdyn_11" content="crafting_ingame_cost" noclick="1" />
+						<panel y="8s" grow="1" regrow="1" float="right" padding="3s" noclick="1" align="center">
+							<label name="craftPanelCurrentIngameCost" fitx="1" fity="1" valign="center" style="labelBase" color="1 1 1 1" font="maindyn_30" content="---" noclick="1" />
+							<image texture="/ui/elements:gold_coins" width="32s" height="32s" noclick="1"/>
+						</panel>
+					</panel>
+					<panel name="craftPanelCurrentIngameCost_popupinsert" align="right" height="32s" width="70s" noclick="true" x="-10s" y="5s" float="right"></panel>
+
+					<panel visible="0">
+						<instance name="standardButton" id="craftPanelSelectRecipeButton" valign="center" height="40s" borderthickness="8s" width="156s" x="312s" y="45s" font="maindyn_22" label="crafting_select_recipe" group="crafting_animation_widgets_block_0" />
+						<instance name="standardButton" id="craftPanelSelectRecipeButton3" visible="1" rendermode="grayscale" valign="center" height="40s" borderthickness="8s" width="156s" x="312s" y="45s" font="maindyn_22" label="crafting_change_recipe" group="crafting_animation_widgets_block_0" />
+					</panel>
+				</panel>
+
+				<panel y="192s" grow="1" regrow="1" width="100%" float="bottom" padding="14s" noclick="1">
+					<!-- Recipe Info -->
+					<frame grow="1" regrow="1" width="100%" texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="6s" bordercolor=".9 .9 .9 1" color=".9 .9 .9 1" noclick="1">
+						<panel y="8s" grow="1" regrow="1" width="-16s" align="center" float="bottom" noclick="1" >
+							<panel grow="1" regrow="1" width="100%" noclick="0">
+								<panel width="64s" height="64s" noclick="1">
+									<image name="craftingNewItemIcon2" y="3%" width="68%" height="68%" valign="center" align="center" texture="$checker" rendermode="grayscale" />
+									<image texture="/ui/elements:scroll_overlay" rendermode="grayscale" noclick="true"/>
+								</panel>
+								<label name="craftingNewItemDesc" x="76s" width="-76s" style="labelBase" font="subdyn_15" wrap="1" fity="1" fitypadding="8s" content="Mauris ac erat ut ipsum pulvinar facilisis. Suspendisse aliquam turpis ac leo interdum egestas. In tempus dui nisl. Praesent nec sodales nisl. Nam nec volutpat lorem. Maecenas mi metus, posuere vel fermentum eu, rhoncus id lorem." noclick="1"/>
+								<panel name="craftPanelSelectRecipeButton2_gold_coverup" visible="0" color="0 0 0 0.9" noclick="1">
+									<panel noclick="1" grow="1" regrow="1" float="bottom" align="center" valign="center">
+										<panel grow="1" regrow="1" height="26s" float="right" padding="4s">
+											<label name="craftPanelSelectRecipeButton2_gold_cost" fitx="true" textvalign="center" style="labelBase" font="maindyn_26" content="+--" noclick="1"/>
+											<image height="28s" width="28s" texture="/ui/elements:gold_coins" noclick="1" />
+										</panel>
+									</panel>
+								</panel>
+							</panel>
+							<panel height="10s" noclick="1" />
+							<instance name="hr" />
+							<panel height="10s" noclick="1" />
+							<!-- Imbuement Slot -->
+							<panel height="80s" width="100%">
+								<button name="craftingImbuement_slot_0" color="invisible" cangrab="false" dragexclusive="false">
+									<frame name="craftingImbuement_slot_0_hoverFrame" texture="/ui/elements:squareglow" borderthickness="8s" width="+10s" height="+10s" align="center" valign="center" bordercolor=".4 .9 1 .4" color=".4 .9 1 .4" rendermode="additive" visible="0"/>
+									<frame name="craftingImbuement_slot_0_dummyglow_2" visible="0" noclick="true" texture="/ui/shared/frames/frameglow.tga" color=".4 .9 1 .7" bordercolor=".4 .9 1 .7" rendermode="additive" width="+16s" height="+14s" align="center" valign="center" borderthickness="18s" />
+									<frame name="craftingImbuement_slot_0_dummyglow_1" visible="0" noclick="true" color="invisible" bordercolor="invisible" width="+60s" height="+5s" align="center" valign="center">
+										<modelpanel name="craftingImbuement_slot_0_dummyglow_3" height="+36s" width="+120s" align="center" valign="center" visible="1"
+											noclick="true"
+											model="/shared/models/invis.mdf"
+											effect="/ui/main/crafting/effects/alert_imbue.effect"
+											onshowlua="self:SetEffect('/ui/main/crafting/effects/alert_imbue.effect')"
+											onhidelua="self:SetEffect('')"
+											camerapos="0 0 0"
+											cameraangles="0 0 0"
+											camerafov="134"
+											depthclear="true"
+											depthcompress="true"
+										/>
+									</frame>
+									<frame name="craftingImbuement_slot_0_hoverGlow" texture="/ui/elements:squareglow" borderthickness="8s" width="+10s" height="+10s" align="center" valign="center" bordercolor=".4 .9 1 .4" color=".4 .9 1 .4" rendermode="additive" visible="0" />
+									<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".75 .75 .75 1" color=".75 .75 .75 1" />
+
+									<panel y="8s" grow="1" regrow="1" width="-16s" align="center" float="bottom" noclick="1" >
+										<panel grow="1" regrow="1" width="100%" noclick="0">
+											<panel width="64s" height="64s" noclick="1">
+												<image x="-1s" name="craftingImbuement_slot_0_Icon" texture="/ui/main/crafting/textures/imbue_icon.tga"/>
+											</panel>
+											<panel grow="1" regrow="1" x="76s" width="-76s" valign="center">
+												<label name="craftingImbuement_slot_0_Desc" style="labelBase" color=".7 .7 .7 1" font="maindyn_24" content="--"/>
+												<label name="craftingImbuement_slot_0_Name" y="28s" width="-70s" wrap="1" fity="1" style="labelBase" color=".7 .7 .7 1" font="subdyn_13" content="--"/>
+											</panel>
+										</panel>
+										<panel height="8s" noclick="1" />
+									</panel>
+
+									<image name="craftingImbuement_slot_0_Frame" texture="/ui/main/crafting/textures/imbue_bg_up.tga" rendermode="grayscale" noclick="1" color="0 0 0 0" />
+									<panel name="craftingImbuement_slot_0_CostParent" grow="1" x="-15s" y="14s" height="22s" align="right" float="right" padding="2s" noclick="1" >
+										<label name="craftingImbuement_slot_0_Cost" fitx="true" textvalign="center" style="labelBase" font="maindyn_24" content="+--" noclick="1" visible="0"/>
+										<image height="100%" width="100@" texture="/ui/elements:gold_coins" noclick="1" visible="0" />
+										</panel>
+
+									</button>
+									<panel name="craftingImbuement_slot_0_gold_coverup" visible="0" noclick="1">
+										<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="5s" bordercolor="0 0 0 .85" color="0 0 0 .85" />
+										<panel noclick="1" grow="1" regrow="1" float="bottom" align="center" valign="center">
+											<panel grow="1" regrow="1" height="26s" float="right" padding="4s">
+												<label name="craftingImbuement_slot_0_gold_cost" fitx="true" outline="1" outlinecolor="black" textvalign="center" style="labelBase" font="maindyn_26" content="" noclick="1"/>
+												<image height="28s" width="28s" texture="/ui/elements:gold_coins" noclick="1" />
+											</panel>
+										</panel>
+									</panel>
+
+								<instance name="iconButton" id="craftingImbuement_slot_0_btn"
+									icon="/ui/main/shared/textures/close.tga"
+									width="26s" height="26s" x="5s" y="-6s" align="right" valign="top" borderthickness="4s" visible="0"
+								/>
+
+								<button name="craftingImbuement_slot_0_SelectButton" color="invisible" visible="0">
+									<instance name="DropLand" visible="1"/>
+								</button>
+								<instance name="DropLand" id="craftingImbuement_slot_0_DropTarget" />
+								<panel name="craftingImbuement_slot_0_ClickDropTarget" visible="false"/>
+							</panel>
+
+							<panel height="10s" noclick="1" />
+						</panel>
+					</frame>
+				</panel>
+
+				<!-- Components -->
+				<panel noclick="1" float="right" padding="10s" y="100s" height="78s" width="100%">
+					<instance name="mainCraftingNewItemComponent" id="1" valign="center" />
+					<instance name="mainCraftingNewItemComponent" id="2" valign="center" />
+					<instance name="mainCraftingNewItemComponent" id="3" valign="center" />
+				</panel>
+
+			</panel>
+
+			<!-- Craft Button -->
+			<panel valign="bottom" width="260s" height="88s" x="980s" y="-51s" noclick="true" group="crafting_animation_widgets_block_0" >
+				<frame name="craftItemButton_dummyglow_2" visible="0" noclick="true" texture="/ui/shared/frames/frameglow.tga" color=".4 .9 1 .7" bordercolor=".4 .9 1 .7" rendermode="additive" width="+16s" height="+14s" align="center" valign="center" borderthickness="18s" />
+				<frame name="craftItemButton_dummyglow_1" visible="0" noclick="true" color="invisible" bordercolor="invisible" width="+48s" height="+20s" align="center" valign="center">
+					<modelpanel height="+80s" width="+120s" align="center" valign="center" visible="1"
+						noclick="true"
+						model="/shared/models/invis.mdf"
+						effect="/ui/main/crafting/effects/alert_wide.effect"
+						onshowlua="self:SetEffect('/ui/main/crafting/effects/alert_wide.effect')"
+						onhidelua="self:SetEffect('')"
+						camerapos="0 0 0"
+						cameraangles="0 0 0"
+						camerafov="86"
+						depthclear="true"
+						depthcompress="true"
+					/>
+				</frame>
+				<instance name="standardButton" id="craftItemButton" font="maindyn_40" labelY="-18s" borderthickness="10s" label="general_craft"/>
+				<panel name="craftItemButton_secondary_parent" visible="0" valign="bottom" y="-4s" noclick="true" height="38s" grow="true" regrow="true" growinvis="0" align="center" float="right" padding="5s" passivechildren="true">
+					<label name="craftItemButton_secondary_label" fitx="true" textvalign="center" color="#CCCCCC" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_24" content=""/>
+					<image name="craftItemButton_secondary_icon" texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%" noclick="1" />
+				</panel>
+			</panel>
+
+			<!-- Jublie Count -->
+			<panel name="craftingRequiredJublieCount" y="-65s" x="-325s" valign="bottom" align="right" grow="1" regrow="1" noclick="0" group="crafting_animation_widgets_block_0"
+				onmouseoverlua="
+					groupfcall('mainCraftingNewItemComponent_jublies', function(_, widget) libAnims.wobbleStart2(widget) end)
+				"
+				onmouseoutlua="
+					groupfcall('mainCraftingNewItemComponent_jublies', function(_, widget) libAnims.wobbleStop2(widget) end)
+				"
+			>
+				<label fity="1" fitx="1" align="center" style="labelBase" font="subdyn_11" content="crafting_component_value" noclick="1" />
+				<panel y="10s" grow="1" regrow="1" float="right" padding="3s" noclick="1" align="center">
+					<label name="mainCraftingJublieCost" fitx="1" fity="1" valign="center" style="labelBase" color="1 1 1 1" font="maindyn_30" content="---" noclick="1" />
+					<image texture="/ui/main/crafting/textures/jublie.tga"  color=".5 .5 .5 1" width="38s" height="38s" noclick="1"/>
+				</panel>
+			</panel>
+			<panel name="mainCraftingJublie_popup_insert" align="right" x="-200s" y="-60s" height="32s" width="70s" passivechildren="true" noclick="1" />
+
+		</panel>
+
+		<panel name="crafting_interaction_block_suggestions" noclick="1" visible="0">
+			<panel align="left" y="150s" width="570s" height="510s" x="24s" noclick="1" padding="12s">
+				<panel width="100%" height="100%" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+20s" height="+10s" align="center" valign="center" borderthickness="10s" color=".04 .04 .04 0.85" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" width="+20s" height="+10s" align="center" valign="center" borderthickness="10s" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+				</panel>
+				<panel noclick="1" float="bottom" padding="5s" >
+					<label fity="1" width="100%" textalign="center" textvalign="center" style="h3" font="maindyn_36" content="Because You Play:" noclick="1" />
+					
+					<panel width="100%" height="100s" noclick="1" >
+						<panel grow="1" regrow="1" growinvis="1" noclick="1" float="right" padding="10s" align="center" valign="center" >
+							<instance name="crafting_suggestion_hero_template" herotexture="/heroes/carter/icon.tga" />
+							<instance name="crafting_suggestion_hero_template" herotexture="/heroes/ace/icon.tga" />
+							<instance name="crafting_suggestion_hero_template" herotexture="/heroes/blazer/icon.tga" />
+						</panel>	
+					</panel>	
+					
+					<label fity="1" width="100%" textalign="center" textvalign="center" style="h3" font="maindyn_36" content="Try These Crafted Items:" noclick="1" />
+					
+					<panel width="100%" height="250s" noclick="1" float="bottom" padding="4s" >
+						<instance name="crafting_suggestion_item_template" entity="Item_FellBlade" itemName="All Power Fellblade" itemDesc="Increase your damage output!" />
+						<instance name="crafting_suggestion_item_template" entity="Item_BarrierToken" itemName="Tanky Barrier Token"  itemDesc="Be even more resistant to enemy fire" />
+						<instance name="crafting_suggestion_item_template" entity="Item_RingOfSorcery" itemName="Super Regen Ring of Sorcery"  itemDesc="Get that mana for extra pew pew"  />
+					</panel>
+
+					<panel width="100%" height="50s" noclick="1" >
+						<instance name="standardButton" id="crafting_continue_to_full_crafting_btn" borderthickness="8s" font="maindyn_24" wrap="1" labelX="-7s" labelWidth="-20s"
+							labelAlign="right" label="Craft A Different Item" rendermode="normal" width="320s" align="center" height="40s" valign="bottom"
+							onclicklua="craftingUpdateStage(7)"
+						/>
+					</panel>						
+					
+				</panel>
+			</panel>
+		</panel>		
+		
+		<!-- Imbuement Selection -->
+		<panel name="crafting_interaction_block_4" noclick="1" visible="0">
+			<panel align="left" y="210s" width="550s" x="24s" noclick="1" grow="true" float="bottom" padding="12s">
+				<panel height="142s" float="right" padding="20s" noclick="1">
+					<instance name="mainCraftingDraggableImbuement" id="-1" />
+					<instance name="mainCraftingDraggableImbuement" id="0" />
+				</panel>
+				<panel height="142s" float="right" padding="20s" noclick="1">
+					<instance name="mainCraftingDraggableImbuement" id="1" />
+					<instance name="mainCraftingDraggableImbuement" id="2" />
+				</panel>
+				<panel height="142s" float="right" padding="20s" noclick="1">
+					<instance name="mainCraftingDraggableImbuement" id="3" />
+					<instance name="mainCraftingDraggableImbuement" id="4" />
+				</panel>
+				<!--
+				<panel height="142s" float="right" padding="20s" noclick="1">
+					<instance name="mainCraftingDraggableImbuement" id="5" />
+					<instance name="mainCraftingDraggableImbuement" id="6" />
+				</panel>
+				<panel height="142s" float="right" padding="20s" noclick="1">
+					<instance name="mainCraftingDraggableImbuement" id="7" />
+					<instance name="mainCraftingDraggableImbuement" id="8" />
+				</panel>
+				-->
+			</panel>
+		</panel>
+
+		<!-- Component Selection -->
+		<panel name="crafting_interaction_block_2" noclick="1" visible="0" >
+			<panel align="left" width="571s" height="-230s" x="30s" y="210s" noclick="1" float="bottom" >
+				<instance name="mainCraftingDraggableComponentRow" type1="power_comp" type2="attack_speed_comp"/>
+				<panel height="15s"/>
+				<instance name="mainCraftingDraggableComponentRow" type1="health_comp" type2="health_regen_comp"/>
+				<panel height="15s"/>
+				<instance name="mainCraftingDraggableComponentRow" type1="mana_comp" type2="mana_regen_comp"/>
+			</panel>
+		</panel>
+
+		<!-- Inventory Button -->
+		<panel valign="bottom" width="180s" height="72s" x="590s" y="-56s" noclick="true" group="crafting_animation_widgets"  >
+			<instance name="standardButton" id="crafting_open_inventory_btn" borderthickness="8s" font="maindyn_22" wrap="1" labelX="-7s" labelWidth="-20s"
+				labelAlign="right" label="crafting_open_vault" rendermode="grayscale" width="120s" align="right"
+			/>
+			<image width="92s" height="92s" valign="center" texture="/ui/main/inventory/textures/inventory.tga" noclick="1" />
+		</panel>
+	</panel>
+
+	<panel name="mainCraftSelectRecipeTarget" passivechildren="true" visible="0">
+		<image texture="/ui/main/shared/textures/corner_grad.tga" width="620s" height="340s" align="right" valign="bottom" color="0 0 0 .95" noclick="1"/>
+		<panel width="300s" height="110s" noclick="1" x="-20s" y="-40s" align="right" valign="bottom">
+			<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%" color="1 1 1 .9" />
+			<label x="110@" width="-110@" height="100%" wrap="1" textvalign="center" style="labelBase" color=".8 .8 .8 1" font="maindyn_36" content="crafting_drag_out_to_select_recipe" noclick="1" />
+		</panel>
+		<panel name="mainCraftSelectRecipeTargetBody"/>
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+		<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+	</panel>
+
+</package>

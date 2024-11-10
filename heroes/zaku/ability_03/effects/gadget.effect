@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".65">
+
+
+			<template name="crystals">
+
+				<light
+					position="0 0 80"
+					expirelife="250"
+					startcolor="2.5 1.5 0"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="150"
+				/>
+				
+				<groundsprite
+					expirelife="250"
+					material="/shared/effects/smaterials/torch_hole_overlay.material"
+					size="55"
+					midsizepos=".08"
+					alpha=".5"
+					yaw="0"
+				/>
+
+				<groundsprite
+					expirelife="250"
+					material="/shared/effects/smaterials/torch_hole_overlay.material"
+					size="65"
+					midsizepos=".08"
+					alpha=".5"
+					yaw="180"
+				/>
+				
+				
+				<template name="">
+				
+					<simpleemitter
+						delay="{zdelay}"
+						count="1"
+						position="0 0 0"
+						spawnrate="25"
+						particlelife="2000"
+						offsetsphere="15 15 0"
+					>
+						<particle
+						>
+							<model
+								position="0 0 0"
+								minlife="8000"
+								maxlife="10000"
+								name="emitter0" 
+								anim="idle"
+								model="/heroes/ray/ability_01/effects/rocks/model.mdf"
+								minscale=".25"
+								maxscale=".35"
+								color="1.25 1.5 1"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".75"
+								minyaw="0"
+								maxyaw="360"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</template>
+				
+				<instance name="" zdelay="0"/>
+				<instance name="" zdelay="0"/>
+				
+
+
+				
+				
+				
+				
+				
+				
+
+				<model
+					life="{duration}"
+					position="0 0 35"
+					model="cocoon/model.mdf"
+					anim="idle_slower"
+					startscale="0"
+					midscale="1"
+					endscale="1"
+					midscalepos=".01"
+					color="1"
+					startalpha=".75"
+					endalpha=".75"
+				>
+				</model>
+				
+				
+				
+				
+				
+				
+				<model
+					delay="{duration}"
+					expirelife="250"
+					position="0 0 30"
+					model="cocoon/model.mdf"
+					anim="idle"
+					startscale="1.1"
+					endscale="1.1"
+					color="1"
+					startalpha=".75"
+					endalpha="0"
+				/>
+				
+				
+				
+				
+				
+				
+				<simpleemitter
+				timenudge="1500"
+				delay="{duration}"
+					spawnrate="1"
+					particlelife="2000"
+					offsetsphere="20 20 20"
+				>
+					<particle
+					>
+
+						<model
+							life="6000"
+							position="0 0 30"
+							model="cocoon/model.mdf"
+							anim="idle"
+							startscale=".75"
+							minendscale="1.25"
+							maxendscale="2"
+							color="1"
+							startalpha="0"
+							midalpha=".75"
+							endalpha="0"
+							midalphapos=".2"
+						/>
+
+					</particle>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				<model
+					life="200"
+					position="-1 -2 35"
+					model="pod_base/model.mdf"
+					anim="idle"
+					startscale="0"
+					endscale=".37"
+					color="1"
+					startalpha="1"
+					endalpha="1"
+				/>
+
+				<model
+					delay="200"
+					expirelife="250"
+					position="-1 -2 35"
+					model="pod_base/model.mdf"
+					anim="idle"
+					startscale=".37"
+					endscale=".37"
+					color="1"
+					startalpha="1"
+					endalpha="1"
+				/>
+
+				
+				
+				
+
+
+				<simpleemitter
+					life="{duration}"
+					spawnrate="100"
+					particlelife="500"
+					minspeed="0"
+					maxspeed="0"
+					gravity="0"
+					drag="0"
+					minangle="0"
+					maxangle="0"
+					acceleration="0"
+					position="0 0 10"
+					direction="0 0 -1"
+					offsetsphere="30"
+					depthbias="-75"
+					material="/shared/effects/smaterials/whitecircleblurred_additive.material"
+				>
+					<particle
+						turn="true"
+						startcolor="0 0 0"
+						midcolor=".01 .01 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minscale="10"
+						maxscale="30"
+					>	
+					</particle>
+				</simpleemitter>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				<simpleemitter
+					delay="{duration}"
+					spawnrate="100"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					minspeed="1"
+					maxspeed="2"
+					gravity="0"
+					drag="0"
+					minangle="0"
+					maxangle="0"
+					acceleration="0"
+					position="0 0 0"
+					direction="0 0 1"
+					offsetsphere="35 35 60"
+					depthbias="-35"
+					material="/shared/effects/smaterials/whitecircleblurred_additive.material"
+				>
+					<particle
+						turn="true"
+						lockup="true"
+						startcolor="0 0 0"
+						midcolor=".005 .01 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						scale="10"
+						minheight="50"
+						maxheight="100"
+						minwidth="1"
+						maxwidth="5"
+					>	
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+				timenudge="1500"
+					delay="{duration}"
+					spawnrate="1"
+					particlelife="5000"
+					direction="0 0 1"
+					speed="10"
+					minangle="0"
+					maxangle="1"
+					position="0 0 40"
+					offsetsphere="0 0 15"
+				>
+					<particle
+					>
+						<model
+							minlife="1500"
+							maxlife="3000"
+							model="/shared/models/ccshield/orbit.mdf"
+							anim="idle"
+							startscale="1.1"
+							midscale="1.1"
+							endscale="0"
+							yaw="{zyaw}"
+							pitch="{zpitch}"
+							position="0 0 0"
+							minroll="-25"
+							maxroll="25"
+						>
+
+							<trailemitter
+								position="0 0 0"
+								expirelife="250"
+								bone="_bone_fx"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0.0"
+								texstretchscale="1.0"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+							>
+								<particle
+									startcolor=".25 .5 0"
+									midcolor="0 .25 0"
+									endcolor="0 0 0"
+									startsize="10"
+									endsize="0"
+								/>
+							</trailemitter>
+
+						</model>
+
+					</particle>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+				
+
+			
+			<simpleemitter
+				position="0 0 0"
+				count="50"
+				spawnrate="1500"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="300"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						position="0 0 10"
+						minlife="300"
+						maxlife="500"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="1.5"
+						midscale=".75"
+						endscale=".35"
+						depthbias="-10"
+					/>
+				</particle>
+			</simpleemitter>	
+				
+				
+				
+				
+				
+
+			</template>
+
+			<instance name="crystals" duration="6000"/>
+	
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

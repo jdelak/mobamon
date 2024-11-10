@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="2">
+			<!--Extend spawnrate to make fx happen faster-->
+			<simpleemitter
+				life="4000"
+				count="1"
+				spawnrate="10000000"
+				particlelife="10000"
+			> 
+				<particle
+				>
+					<billboard
+						delay="100"
+						life="1500"
+						startcolor="0 0 0"
+						midcolor="0 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".33"
+						material="/shared/effects/smaterials/whitedot.material"
+						position="-1 -10 16"
+						size="150"
+						depthbias="200"
+					/>
+
+					<!--still image that transitions to the animating model
+					<template name="">
+						<billboard
+							delay="200"
+							life="350"
+							startcolor="{zcolor}"
+							endcolor="0 0 0"
+							startalpha="1"
+							endalpha="1"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="1.25"
+							midscale="1.25"
+							endscale="1.25"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="175"
+						/>
+					</template>
+
+					<instance name="" zcolor="0 .75 0" zheight="88" zmaterial="/shared/effects/smaterials/baldir_red_add.material" zpos="11 0 4.5"/>
+-->
+					
+					
+					<!--still image that transitions to the animating model
+					<template name="">
+						<billboard
+							life="100"
+							color="{zcolor}"
+							startalpha="0"
+							endalpha="1"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="0"
+							endscale="1.25"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="150"
+						/>
+						
+						<billboard
+							delay="100"
+							life="100"
+							color="{zcolor}"
+							startalpha="1"
+							endalpha="1"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="1.25"
+							midscale="1.6"
+							endscale="1.25"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="150"
+						/>
+						
+						<billboard
+							delay="200"
+							life="200"
+							color="{zcolor}"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="1.25"
+							midscale="1.25"
+							endscale="1.25"
+							startalpha="1"
+							endalpha="1"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="150"
+						/>
+					</template>
+
+					<instance name="" zcolor="1 1 1" zheight="75" zmaterial="/shared/effects/smaterials/baldir_red.material" zpos="10 0 4.5"/>
+-->
+					<simpleemitter
+						delay="200"
+						position="0 0 10"
+						count="1"
+						life="4000"
+						spawnrate="10000"
+						particlelife="2500"
+						speed="0"
+						direction="0 0 0"
+						minangle="0"
+						maxangle="0"
+					>
+						<particle
+						>
+							<!--Baldir Model-->
+							<model
+								scale=".265"
+								position="-2 -20 -22"
+								life="3500"
+								model="Baldir_2_green/model.mdf"
+								anim="baldir_defeated_death"
+								color="1 1 1"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".8"
+								pitch="0"
+								yaw="-20"
+								roll="0"
+							>
+
+								<billboard
+									position="0  0 0"
+									bone="CTL_beltEye"
+									life="800"
+									color=".5 .2 0"
+									size="50"
+									material="/shared/effects/smaterials/whitedot.material"
+									directionalspace="local"
+									depthbias="-10"
+									minroll="-180"
+									maxroll="180"
+									rollspeed="-360"
+								/>
+
+								<simpleemitter
+									life="800"
+									bone="Bip01 Pelvis"
+									position="0  0 10"
+									spawnrate="30"
+									particlelife="400"
+									gravity="-31"
+									material="/shared/effects/smaterials/baldir_puff.material"
+									offsetsphere="10"
+									direction="0 0 1"
+									minangle="-50"
+									maxangle="-90"
+									drag="0.14"
+									depthbias="25"
+									minspeed="15"
+									maxspeed="15"
+									directionalspace="local"
+									inheritvelocity="0.2"
+								>
+									<particle
+										minangle="-360"
+										maxangle="360"
+										minanglespeed="-170"
+										maxanglespeed="170"
+										startsize="22"
+										endsize="60"
+										startcolor=".5 1 1"
+										endcolor=".5 1 1"
+										anchor="1"
+										startalpha="0"
+										midalpha="1"
+										endalpha="0"
+										midalphapos=".15"
+									/>
+								</simpleemitter>
+
+								<simpleemitter
+									life="800"
+									bone="Bip01 Spine2"
+									position="0  0 10"
+									spawnrate="30"
+									particlelife="400"
+									gravity="-31"
+									material="/shared/effects/smaterials/baldir_puff.material"
+									offsetsphere="10"
+									direction="0 0 1"
+									minangle="-50"
+									maxangle="-90"
+									drag="0.14"
+									depthbias="25"
+									minspeed="15"
+									maxspeed="15"
+									directionalspace="local"
+									inheritvelocity="0.2"
+								>
+									<particle
+										minangle="-360"
+										maxangle="360"
+										minanglespeed="-170"
+										maxanglespeed="170"
+										startsize="22"
+										endsize="60"
+										startcolor=".5 1 1"
+										endcolor=".5 1 1"
+										anchor="1"
+										startalpha="0"
+										midalpha="1"
+										endalpha="0"
+										midalphapos=".15"
+									/>
+								</simpleemitter>
+
+								<simpleemitter
+									life="800"
+									bone="Bip01 Neck"
+									position="5 13 0"
+									spawnrate="20"
+									particlelife="1200"
+									gravity="-4"
+									material="/shared/effects/smaterials/baldir_puff.material"
+									offsetsphere="10"
+									direction="0 0 1"
+									minangle="-50"
+									maxangle="-90"
+									drag="0.04"
+									depthbias="0"
+									minspeed="10"
+									maxspeed="20"
+									directionalspace="local"
+									inheritvelocity="0"
+								>
+									<particle
+										anchor="1"
+										minangle="-360"
+										maxangle="360"
+										minanglespeed="-270"
+										maxanglespeed="270"
+										startsize="30"
+										endsize="0"
+										startcolor="1 1 1"
+										endcolor="1 1 1"
+										startalpha="0"
+										midalpha="1"
+										endalpha="0"
+										midalphapos=".25"
+									/>
+								</simpleemitter>
+
+								<billboard
+									life="800"
+									position="0 0 0"
+									bone="Bip01 Neck"
+									startcolor=".1 .35 .35"
+									midcolor=".1 .35 .35"
+									endcolor="0 0 0"
+									size="92"
+									material="/shared/effects/smaterials/whitedot.material"
+									directionalspace="local"
+									depthbias="-50"
+									minroll="-180"
+									maxroll="180"
+									rollspeed="-360"
+								/>
+
+								<template name="hand">
+									<simpleemitter
+										life="800"
+										bone="{bone}"
+										position="0 0 0"
+										spawnrate="10"
+										particlelife="1000"
+										gravity="15"
+										material="/shared/effects/smaterials/baldir_puff.material"
+										offsetsphere="10"
+										direction="0 0 1"
+										minangle="-50"
+										maxangle="-90"
+										drag="0.08"
+										depthbias="-00"
+										minspeed="11"
+										maxspeed="22"
+										directionalspace="local"
+										inheritvelocity="0.0"
+									>
+										<particle
+											startanchor="1"
+											endanchor=""
+											minangle="-360"
+											maxangle="360"
+											minanglespeed="-270"
+											maxanglespeed="270"
+											startsize="30"
+											endsize="3"
+											startcolor=".5 1 1"
+											endcolor="1 .5 .5"
+											startalpha="0"
+											midalpha="1"
+											endalpha="0"
+											midalphapos=".15"
+										/>
+									</simpleemitter>
+									
+									<billboard
+										life="800"
+										position="0 0 2"
+										bone="{bone}"
+										startcolor=".2 .5 .5"
+										midcolor=".2 .5 .5"
+										endcolor="0 0 0"
+										size="55"
+										material="/shared/effects/smaterials/whitedot.material"
+										directionalspace="local"
+										depthbias="0"
+										minroll="-180"
+										maxroll="180"
+										rollspeed="-360"
+									/>
+									
+									
+								</template>
+
+							<instance name="hand" bone="_bone_righthand" />
+							<instance name="hand" bone="_bone_lefthand" />
+
+								<twopointemitter
+								life="800"
+									bone_a="_bone_fx_R_upperArm"
+									bone_b="Bip01 R Clavicle"
+									spawnrate="50"
+									minparticlelife="750"
+									maxparticlelife="1500"
+									gravity="0"
+									minspeed="10"
+									maxspeed="30"
+									material="/shared/effects/smaterials/baldir_puff.material"
+									offsetsphere="10"
+									anchor="1"
+								>
+										<particle
+											startanchor="1"
+											endanchor="1"
+											minangle="-360"
+											maxangle="360"
+											minanglespeed="-270"
+											maxanglespeed="270"
+											startsize="30"
+											endsize="3"
+											anchor="1"
+											startcolor=".5 1 1"
+											endcolor="1 .5 .5"
+											startalpha="0"
+											midalpha="1"
+											endalpha="0"
+											midalphapos=".15"
+										/>
+								</twopointemitter>
+									
+								<twopointemitter
+								life="800"
+									bone_a="_bone_fx_L_upperArm"
+									bone_b="Bip01 L Clavicle"
+									spawnrate="50"
+									minparticlelife="750"
+									maxparticlelife="1500"
+									gravity="0"
+									minspeed="10"
+									maxspeed="30"
+									material="/shared/effects/smaterials/baldir_puff.material"
+									offsetsphere="10"
+									anchor="1"
+								>
+										<particle
+											startanchor="1"
+											endanchor="1"
+											minangle="-360"
+											maxangle="360"
+											minanglespeed="-270"
+											maxanglespeed="270"
+											startsize="30"
+											endsize="3"
+											anchor="1"
+											startcolor=".5 1 1"
+											endcolor="1 .5 .5"
+											startalpha="0"
+											midalpha="1"
+											endalpha="0"
+											midalphapos=".15"
+										/>
+								</twopointemitter>
+
+								
+								
+							</model>
+						</particle>
+					</simpleemitter>
+
+					
+					
+					
+					
+					
+					<!--Green Flash-->
+					<billboard
+						delay="3550"
+						life="300"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .5 0"
+						midcolor="0 .5 0"
+						endcolor="0 0 0"
+						position="10 0 4"
+						startheight="14"
+						midheight="14"
+						endheight="0"
+						width="100"
+						roll="0"
+						depthbias="-50"
+					/>
+					
+					<!--Second Flash-->					
+					<billboard
+						delay="3650"
+						life="200"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .5 0"
+						midcolor="0 .5 0"
+						endcolor="0 0 0"
+						position="2 0 -2"
+						startheight="18"
+						midheight="18"
+						endheight="0"
+						width="80"
+						roll="0"
+						depthbias="-40"
+					/>
+
+					
+					
+					<!--Gold
+					<simpleemitter
+						delay="350"
+						position="-15 10 -5"
+						life="3000"
+						minspeed="25"
+						maxspeed="50"
+						count="7"
+						spawnrate="10"
+						gravity="50"
+						direction="0 0 0"
+						offsetsphere="0 0 0"
+						particlelife="2000"
+						collide="true"
+					>
+						<particle
+						>
+							<model
+								model="/npcs/neutrals/rare/projectile/effects/coin/model.mdf"
+								color="1 1 1"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="150"
+								maxlife="300"
+								minpitch="-360"
+								maxpitch="360"
+								minanglespeed="-130"
+								maxanglespeed="130"
+								scale="1.5"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+							/>
+						</particle>
+					</simpleemitter>
+					
+					<billboard
+						delay="350"
+						position="-15 10 -5"
+						life="150"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						startheight="6"
+						midheight="6"
+						endheight="0"
+						width="40"
+						roll="0"
+						depthbias="-40"
+					/>
+					
+					<billboard
+						delay="350"
+						position="-15 10 -5"
+						life="300"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						
+						size="15"
+						depthbias="-40"
+					/>
+					
+					<billboard
+						delay="350"
+						position="-15 10 -5"
+						life="1450"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 .25 0"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						
+						size="15"
+						depthbias="-40"
+					/>-->
+					
+					
+					
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

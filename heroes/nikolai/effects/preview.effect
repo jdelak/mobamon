@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="0.7">
+
+		<!-- Effects -->
+		<template name="lightninghammer" parentmodel="true" parentskeleton="true" directionalspace="local">
+			<sound delay="{zdelay}" volume="0.35" linearfalloff="true" falloffstart="500" falloffend="2400" sample="sounds/herobolt_1.wav" channel="90044"/>
+			<billboard delay="{zdelay}" bone="_bone_mace_center" life="1000" startcolor="0 .5 1" endcolor="0 0 0" startsize="0" endsize="2000" material="/shared/effects/smaterials/whitedot.material" depthbias="-10"/>
+			<billboard delay="{zdelay}" bone="_bone_mace_center" life="250" startcolor="0 .5 1" endcolor="0 0 0" startsize="250" endsize="1500" material="/shared/effects/smaterials/whitedot.material" depthbias="-10"/>
+			<light bone="_bone_mace_center" delay="{zdelay}" position="0 0 0" life="250" startcolor="0 5 10" endcolor="0 0 0" midcolorpos=".85" falloffstart="0" startfalloffend="700" endfalloffend="1000"/>
+			<billboard bone="_bone_mace_center" position="0 0 0"  delay="{zdelay1}" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 1.125 1.25" endcolor="0 0 0" life="450" startsize="100" endsize="500" depthbias="-10" yawspeed="20"/>
+			<billboard bone="_bone_mace_center" position="0 0 0"  delay="{zdelay2}" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 1.125 1.25" endcolor="0 0 0" life="450" startsize="125" endsize="500" depthbias="-10" yawspeed="20"/>
+			<billboard bone="_bone_mace_center" position="0 0 0"  delay="{zdelay3}" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 1.125 1.25" endcolor="0 0 0" life="450" startsize="150" endsize="500" depthbias="-10" yawspeed="20"/>
+			<billboard bone="_bone_mace_center" position="0 0 0"  delay="{zdelay4}" material="/shared/effects/smaterials/bulb_add.material" startcolor="0 0 0" midcolor="1 1.05 1.1" endcolor="0 0 0" life="600" startsize="175" endsize="600" depthbias="-10" yawspeed="20"/>
+			<billboard bone="_bone_mace_center" delay="{zdelay}" material="/shared/effects/materials/refract_ring.material" life="700" color="1 1 1" startalpha="1" endalpha="1" midalphapos=".75" startparam=".75" endparam="0" startsize="170" endsize="800" depthbias="-10" position="0 0 0" yawspeed="20"/>
+			<template name="3" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<simpleemitter delay="{zzdelay}" position="{zpos}" count="100" life="550" bone="_bone_mace_center" spawnrate="110" minparticlelife="100" maxparticlelife="300" material="/shared/effects/smaterials/muzzle_flash_white.material" offsetsphere="0" depthbias="0" direction="0 0 0" speed="{zspeed}">
+					<particle startcolor="1 1 1" midcolor=".25 .75 1" endcolor="0 0 0" midcolorpos=".25" minstartscale="40" maxstartscale="40" endsize="0"/>
+				</simpleemitter>
+			</template>
+			<instance name="3" zzdelay="{zdelay2}" zpos="0 0 0" zspeed="200"/>
+			<instance name="3" zzdelay="{zdelay3}" zpos="0 0 0" zspeed="300"/>
+			<instance name="3" zzdelay="{zdelay4}" zpos="0 0 0" zspeed="400"/>
+		</template>
+
+		<instance name="lightninghammer" zdelay="2700" zdelay1="2800" zdelay2="2900" zdelay3="3000" zdelay4="3100" />
+		<sound delay="600" volume="0.47" linearfalloff="true" falloffstart="500" falloffend="2400" sample="sounds/v_%.wav" channel="90044"/>
+		
+</particlesystem>
+			
+
+<!-- 1 -->
+<particlesystem name="system1" space="entity" scale="3">
+		<template name="catastrophe_3" parentmodel="true" parentskeleton="true" directionalspace="local">
+			<light life="150" startcolor="2.5 2.5 2.5" midcolor="0 2 8" endcolor="0 0 0" midcolorpos=".75" falloffstart="0" falloffend="250" position="0 0 0"/>
+			<light delay="150" life="150" startcolor="2.5 2.5 2.5" midcolor="0 2 8" endcolor="0 0 0" midcolorpos=".75" falloffstart="0" falloffend="250" position="0 0 0"/>
+			<template name="lightning" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<billboard bone="{zbone}" depthbias="{zdepthbias}" delay="{zdelay}" life="350" position="0 -2 500" height="1000" width="75" color="0 .3 .7" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" yaw="180"/>
+				<billboard bone="{zbone}"  depthbias="{zdepthbias}" delay="{zdelay}" life="350" position="0 2 500" height="1000" width="75" color="0 .3 1" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" yaw="180"/>
+				<billboard bone="{zbone}"  depthbias="{zdepthbias}" delay="{zdelay}" life="350" position="0 0 500" height="1000" width="75" color=".65" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" yaw="180"/>
+				<billboard bone="{zbone}" depthbias="{zdepthbias}" delay="{zdelay}" life="300" position="20 0 200" height="85" width="40" startcolor="1 1 1" midcolor="0 .3 1" endcolor="0 .3 1" midcolorpos=".8" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" roll="65"/>
+				<billboard bone="{zbone}"  depthbias="{zdepthbias}" delay="{zdelay}" life="300" position="45 0 360" height="100" width="50" startcolor="1 1 1" midcolor="0 .3 1" endcolor="0 .3 1" midcolorpos=".8" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" roll="45"/>
+			</template>
+			<instance name="lightning" zdelay="0" zdepthbias="-50" zbone="_bone_mace_center"/>
+			<instance name="lightning" zdelay="200" zdepthbias="-50" zbone="_bone_mace_center"/>
+			<billboard bone="{zzbone}" depthbias="-50" delay="75" life="300" position="-65 0 100" height="175" width="85" startcolor="1 1 1" midcolor="0 .3 1" endcolor="0 .3 1" midcolorpos=".8" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" roll="135"/>
+			<billboard bone="{zzbone}" depthbias="-50" delay="275" life="300" position="-65 0 100" height="175" width="85" startcolor="1 1 1" midcolor="0 .3 1" endcolor="0 .3 1" midcolorpos=".8" material="/shared/effects/smaterials/animated_lightning.material" startframe="0" endframe="1" framespeed=".25" lockup="true" lockright="true" roll="135"/>
+			<billboard bone="{zzbone}" depthbias="-50" delay="200" life="200" position="0 0 50" startcolor="0 .15 .6" endcolor="0 0 0" material="/shared/effects/smaterials/whitedot.material" size="250"/>
+			<billboard bone="{zzbone}" depthbias="-50" delay="100" life="200" position="0 0 300" startcolor=".25" midcolor="0 .1 .2" endcolor="0 0 0" material="/shared/effects/smaterials/whitedot.material" width="200" height="500"/>
+			<billboard bone="{zzbone}" depthbias="-50" delay="100" life="200" position="0 10 320" startcolor="0 .2 .6" endcolor="0 0 0" material="/shared/effects/smaterials/whitedot.material" size="250"/>
+		</template>		
+		<instance name="catastrophe_3" zzbone="_bone_mace_center"/>		
+</particlesystem>
+
+
+<!-- 2 -->			
+<particlesystem name="system2" space="entity" scale="0.7">
+		<template name="cast" parentmodel="true" parentskeleton="true" directionalspace="local">
+			<simpleemitter count="50" bone="{zbone}" spawnrate="500" minparticlelife="250" maxparticlelife="500" gravity="0" minspeed="22" maxspeed="42" acceleration="0" position="0 0 0"  drag="0.01" inheritvelocity="0.2" material="/shared/effects/smaterials/bulb_add.material" offsetsphere="20" depthbias="0" parentskeleton="true" directionalspace="local">
+				<particle  startanchor="1" endanchor="0"  startcolor="0 0 0" midcolor="0 .3 1" endcolor="0 0 0" startscale=".4" minendscale="1" maxendscale="2" minwidth="200" maxwidth="200" height="200"/>
+			</simpleemitter>
+				<billboard bone="{zbone}" delay="0" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 1.125 1.25" endcolor="0 0 0" life="450" startsize="100" endsize="300" depthbias="-10" yawspeed="20"/>
+				<billboard bone="{zbone}" delay="100" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 1.125 1.25" endcolor="0 0 0" life="450" startsize="125" endsize="300" depthbias="-10" yawspeed="20"/>
+				<billboard bone="{zbone}" delay="200" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 1.125 1.25" endcolor="0 0 0" life="450" startsize="150" endsize="300" depthbias="-10" yawspeed="20"/>
+				<billboard bone="{zbone}" delay="300" material="/shared/effects/smaterials/bulb_add.material" startcolor="0 0 0" midcolor="1 1.05 1.1" endcolor="0 0 0" life="600" startsize="175" endsize="400" depthbias="-10" yawspeed="20"/>
+				<billboard bone="{zbone}" delay="400" material="/shared/effects/materials/refract_ring.material" life="700" color="1 1 1" startalpha="1" endalpha="1" midalphapos=".75" startparam=".75" endparam="0" startsize="170" endsize="500" depthbias="-10" position="0 0 0" yawspeed="20"/>
+		</template>
+		<instance name="cast" zbone="_bone_mace_center"/>
+</particlesystem>		
+
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<wait duration="2600"/>
+<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+<spawnparticlesystem instance="instance2" particlesystem="system2"/>
+<waitfordeath instance="instance0"/>
+<waitfordeath instance="instance1"/>
+<waitfordeath instance="instance2"/>
+</thread>
+</effect>

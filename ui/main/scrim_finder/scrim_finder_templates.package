@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="scrim_finder_filter_checkbox">
+		<panel
+			name="{id}_parent"
+			grow="true"
+			width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			group="{group}"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="self:Sleep(1, function() ScrimFinder.RegisterRegionCheckbox('{id}', '{regionName}') end)"
+			onmouseoverlua=""
+		>
+	 		<button
+				name="{id}_button" noclick="0" color="invisible"
+				group="{group}"
+				onbutton=""
+				visible="1"
+				numstates="2"
+			/>
+			<frame name="{id}_check_box" texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="1"/>
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true">
+				<panel height="2.5h" noclick="true" sticky="true" stickytoinvis="false">
+					<panel width="-2.5h" noclick="true">
+						<panel width="100@" height="100%" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+							<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+							<panel name="{id}_check_frame" x="0.1h" y="-0.2h" valign="bottom" align="center" width="125@" height="125%" nolclick="true" visible="false" noclick="1">
+								<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+								<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+							</panel>
+						</panel>
+						<label y="-0.1h" height="100%" textvalign="center" width="-130@" align="right" style="h2" font="maindyn_20" content="{label}" noclick="true" />
+					</panel>
+				</panel>
+				<panel height="0.8h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="scrim_finder_scrim_listitem_playerslot">
+		<panel width="100@" height="100%" color=".15 .15 .15 .95" noclick="1">
+			<image texture="/ui/main/scrim_finder/textures/slot_occupied.tga" color="1 1 1 .2" />			
+			<image texture="{icon=/ui/main/scrim_finder/textures/slot_occupied.tga}" noclick="1" 
+				oninstantiatelua="
+					local function UpdateIcon(widget, trigger)
+						if (trigger.memberIdentIDs) and (trigger.memberIdentIDs[tonumber({slot})]) then
+							local clientInfo = LuaTrigger.GetTrigger('ChatClientInfo' .. trigger.memberIdentIDs[tonumber({slot})])
+							if (clientInfo) and (clientInfo.accountIconPath) then
+								widget:SetTexture(clientInfo.accountIconPath)
+								widget:SetColor('1 1 1')
+							else
+								widget:SetTexture('/ui/main/scrim_finder/textures/slot_occupied.tga')
+								widget:SetColor('0 1 0')
+							end
+						else
+							widget:SetTexture('$invis')
+						end					
+					end
+
+					self:RegisterWatchLua('ChatPartySummary{index}', function(widget, trigger)
+						UpdateIcon(widget, trigger)
+					end, false, nil, 'memberIdentIDs')
+					UpdateIcon(self, LuaTrigger.GetTrigger('ChatPartySummary{index}'))
+				"			
+			/>			
+			<instance name="iconFrame" />
+		</panel>
+	</template>
+
+	<template name="scrim_finder_scrim_listitem_template">
+		<panel name="scrim_finder_{index}_parent" width="100%" height="74s" noclick="1" >
+			<frame name="scrim_finder_{index}_frame1" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="{frame1color=#1f1f1f}" noclick="1"/>
+			<frame name="scrim_finder_{index}_frame2" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="{frame2color=#444444}" borderthickness="8s" color="invisible" noclick="1"/>			
+			<panel hmargin="10s" vmargin="8s" noclick="1">				
+				<image 
+					y="-1s" texture="{icon=/ui/main/scrim_finder/textures/slot_occupied.tga}" noclick="1" height="84%" width="84@"
+					oninstantiatelua="
+						local function UpdateIcon(widget, _)
+							
+							local trigger = LuaTrigger.GetTrigger('ChatPartySummary{index}')
+							
+							if (trigger.rating) and (trigger.rating == -4) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_neg4.tga')
+							elseif (trigger.rating) and (trigger.rating == -3) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_neg3.tga')
+							elseif (trigger.rating) and (trigger.rating == -2) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_neg2.tga')
+							elseif (trigger.rating) and (trigger.rating == -1) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_neg1.tga')
+							elseif (trigger.rating) and (trigger.rating == 0) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_even.tga')
+							elseif (trigger.rating) and (trigger.rating == 1) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_pos1.tga')
+							elseif (trigger.rating) and (trigger.rating == 2) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_pos2.tga')
+							elseif (trigger.rating) and (trigger.rating == 3) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_pos3.tga')
+							elseif (trigger.rating) and (trigger.rating == 4) then
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_pos4.tga')
+							else
+								widget:SetTexture('/ui/main/scrim_finder/textures/team_comp_even.tga')
+							end
+							
+							local numPlayersInParty = LuaTrigger.GetTrigger('PartyStatus').numPlayersInParty
+							
+							local memberCount = 0
+							if (trigger.memberIdentIDs) then
+								for i,v in pairs(trigger.memberIdentIDs) do
+									if (v) and (not Empty(v)) then
+										memberCount = memberCount + 1
+									end
+								end
+							end
+							
+							if (memberCount == 5) and (numPlayersInParty == 5) then
+								widget:SetColor('1 1 1 1')
+							else
+								widget:SetColor('.3 .3 .3 1')
+							end
+							
+						end
+						self:RegisterWatchLua('ChatPartySummary{index}', function(widget, trigger)
+							UpdateIcon(widget, trigger)
+						end, false, nil, 'rating', 'memberIdentIDs')
+						self:RegisterWatchLua('PartyStatus', function(widget, trigger)
+							UpdateIcon(widget, trigger)
+						end, false, nil, 'numPlayersInParty')						
+						UpdateIcon(self, LuaTrigger.GetTrigger('ChatPartySummary{index}'))
+					"			
+				/>
+				<label y="2s" width="84@" textalign="center" textvalign="bottom" font="subdyn_11" style="labelBase" noclick="1"
+					oninstantiatelua="
+						local function UpdateLabel(widget, _)
+							local trigger = LuaTrigger.GetTrigger('ChatPartySummary{index}')
+							
+							widget:SetText(Translate('scrim_finder_relative_rating_' .. trigger.rating))
+
+							local numPlayersInParty = LuaTrigger.GetTrigger('PartyStatus').numPlayersInParty
+							
+							local memberCount = 0
+							if (trigger.memberIdentIDs) then
+								for i,v in pairs(trigger.memberIdentIDs) do
+									if (v) and (not Empty(v)) then
+										memberCount = memberCount + 1
+									end
+								end
+							end							
+							
+							if (memberCount ~= 5) or (numPlayersInParty ~= 5) then
+								widget:SetText(Translate('scrim_finder_relative_rating_unknown'))
+								widget:SetColor('#777777')
+							elseif (trigger.rating) and (trigger.rating == -4) then
+								widget:SetColor('#1eb400')
+							elseif (trigger.rating) and (trigger.rating == -3) then
+								widget:SetColor('#1eb400')
+							elseif (trigger.rating) and (trigger.rating == -2) then
+								widget:SetColor('#1eb400')
+							elseif (trigger.rating) and (trigger.rating == -1) then
+								widget:SetColor('#1eb400')
+							elseif (trigger.rating) and (trigger.rating == 0) then
+								widget:SetColor('#cccccc')
+							elseif (trigger.rating) and (trigger.rating == 1) then
+								widget:SetColor('#e92525')
+							elseif (trigger.rating) and (trigger.rating == 2) then
+								widget:SetColor('#e92525')
+							elseif (trigger.rating) and (trigger.rating == 3) then
+								widget:SetColor('#e92525')
+							elseif (trigger.rating) and (trigger.rating == 4) then
+								widget:SetColor('#e92525')
+							else
+								widget:SetText('???')
+								widget:SetColor('#777777')
+							end
+
+						end
+						self:RegisterWatchLua('ChatPartySummary{index}', function(widget, trigger)
+							UpdateLabel(widget, trigger)
+						end, false, nil, 'rating', 'memberIdentIDs')
+						self:RegisterWatchLua('PartyStatus', function(widget, trigger)
+							UpdateLabel(widget, trigger)
+						end, false, nil, 'numPlayersInParty')
+						UpdateLabel(self, LuaTrigger.GetTrigger('ChatPartySummary{index}'))
+					"	
+				/>				
+				<panel  y="-1s" noclick="0" height="102%" width="84@"
+					onmouseoverlua="
+						simpleTipGrowYUpdate(true, nil, Translate('scrim_finder_match_difficulty_header'), Translate('scrim_finder_match_difficulty_desc'), 250, -250)
+					"
+					onmouseoutlua="
+						simpleTipGrowYUpdate(false)
+					"
+				/>
+				<label name="scrim_finder_{index}_scrimName" y="2s" x="100@" style="labelBase" font="maindyn_22" content="{scrimName}" noclick="1" color="{nameColor}"
+					oninstantiatelua="
+					
+						local summaryTrigger = LuaTrigger.GetTrigger('ChatPartySummary{index}')
+						local leaderIdentID = string.gsub(summaryTrigger.leaderIdentID, '.', '')
+						local leaderTrigger = LuaTrigger.GetTrigger('ChatClientInfo' .. leaderIdentID)
+						
+						local function Update(widget)
+
+							local leaderIdentID = string.gsub(summaryTrigger.leaderIdentID, '%.', '')
+							local leaderTrigger = LuaTrigger.GetTrigger('ChatClientInfo' .. leaderIdentID)
+
+							if (summaryTrigger.name) and (not Empty(summaryTrigger.name)) then
+								widget:SetText(summaryTrigger.name)
+							elseif (leaderIdentID) and (not Empty(leaderIdentID)) and (leaderTrigger) and (leaderTrigger.name) and (not Empty(leaderTrigger.name)) then
+								widget:SetText(leaderTrigger.name)
+							else
+								widget:SetText('?????')
+							end
+							
+							widget:UnregisterAllWatchLuaByKey('chatClientInfo')
+							if (leaderIdentID) and (not Empty(leaderIdentID)) then
+								widget:RegisterWatchLua('ChatClientInfo' .. leaderIdentID, function(widget, leaderTrigger)
+									if (summaryTrigger.name) and (not Empty(summaryTrigger.name)) then
+										widget:SetText(summaryTrigger.name)
+									elseif (leaderTrigger) and (leaderTrigger.name) and (not Empty(leaderTrigger.name)) then
+										widget:SetText(leaderTrigger.name)
+									else
+										widget:SetText('?????')
+									end
+								end, false, 'chatClientInfo', 'name')
+							end						
+						end
+						
+						self:RegisterWatchLua('ChatPartySummary{index}', function(widget, summaryTrigger)
+							Update(widget)
+						end, false, nil, 'name', 'leaderIdentID')
+ 
+						Update(self)
+
+					"
+				/>
+				
+				<instance name="standardButton" id="scrim_finder_{index}_button_1"
+					width="108s" height="26s"
+					align="right"
+					label="general_challenge"
+					font="maindyn_20"
+					onclicklua="
+						ScrimFinder.ChallengePlayerByPartyID('{index}')
+					"					
+					visible="1"
+					disabledmouseover="true"
+					disabledmouseout="true"
+					onmouseoverdisabledlua="
+						simpleTipGrowYUpdate(true, nil, Translate('party_finder_disabled_host'), Translate('party_finder_disabled_host_desc'), 250, -250)
+					"
+					onmouseoutdisabledlua="
+						simpleTipGrowYUpdate(false)
+					"						
+				/>
+				
+				<instance name="standardButton" id="scrim_finder_{index}_button_2"
+					width="108s" height="26s" valign="bottom"
+					align="right"
+					label="scrim_btn_message"
+					font="maindyn_20"
+					onclicklua=""					
+					visible="1"
+					oninstantiatelua="
+						local function UpdateButton(widget, trigger)
+							widget:SetCallback('onclick', function(widget)
+								ScrimFinder.MessagePlayerByIdentID(trigger.leaderIdentID)
+							end)
+						end
+						self:RegisterWatchLua('ChatPartySummary{index}', function(widget, trigger)
+							UpdateButton(widget, trigger)
+						end, false, nil, 'leaderIdentID')
+						UpdateButton(self, LuaTrigger.GetTrigger('ChatPartySummary{index}'))
+					"
+					disabledmouseover="true"
+					disabledmouseout="true"
+					onmouseoverdisabledlua="
+						simpleTipGrowYUpdate(true, nil, Translate('party_finder_disabled_host'), Translate('party_finder_disabled_host_desc'), 250, -250)
+					"
+					onmouseoutdisabledlua="
+						simpleTipGrowYUpdate(false)
+					"					
+				/>				
+				
+				<panel y="-2s" height="20s" x="100@" valign="bottom" float="right" padding="3s" noclick="1" passivechildren="1"
+					oninstantiatelua="
+						local function UpdateButton(widget, trigger)
+							widget:SetVisible(not trigger.inGame)
+						end
+						self:RegisterWatchLua('ChatPartySummary{index}', function(widget, trigger)
+							UpdateButton(widget, trigger)
+						end, false, nil, 'inGame')
+						UpdateButton(self, LuaTrigger.GetTrigger('ChatPartySummary{index}'))
+					"				
+				>
+					<instance name="scrim_finder_scrim_listitem_playerslot" slot="1" index="{index}" />
+					<instance name="scrim_finder_scrim_listitem_playerslot" slot="2" index="{index}" />
+					<instance name="scrim_finder_scrim_listitem_playerslot" slot="3" index="{index}" />
+					<instance name="scrim_finder_scrim_listitem_playerslot" slot="4" index="{index}" />
+					<instance name="scrim_finder_scrim_listitem_playerslot" slot="5" index="{index}" />
+				</panel>
+				<panel y="-2s" height="20s" x="80@" valign="bottom" float="right" padding="3s" noclick="1" passivechildren="1"
+					oninstantiatelua="
+						local function UpdateButton(widget, trigger)
+							widget:SetVisible(trigger.inGame)
+						end
+						self:RegisterWatchLua('ChatPartySummary{index}', function(widget, trigger)
+							UpdateButton(widget, trigger)
+						end, false, nil, 'inGame')
+						UpdateButton(self, LuaTrigger.GetTrigger('ChatPartySummary{index}'))
+					"					
+				>
+					<label y="-2s" textvalign="center" x="100@" style="labelBase" textalign="left" font="maindyn_22" content="friend_online_status_ingame" noclick="1" color=".5 .5 .5 1" />
+				</panel>				
+
+			</panel>
+		
+			<!-- Challenge Pending Icon - Show if 'incomingChallenge' or 'outgoingChallenge' is true -->
+			<image name="scrim_finder_{index}_challenge_icon" texture="/ui/main/scrim_finder/textures/icon_challenge.tga" x="12s" y="-18s" align="right" width="48s" height="48s" noclick="1" visible="0" />
+		</panel>
+	</template>
+
+	<template name="scrim_finder_chat_template">
+		<panel name="overlay_chat_{type}{channelID}_parent" visible="{visible=1}" noclick="0" hmargin="14s" vmargin="14s"
+			onmouseoutlua="
+				GetWidget('profile_preview_parent'):FadeOut(50)
+			"		
+		>
+			
+			<frame texture="/ui/shared/frames/std_btn_inset.tga" height="84s" borderthickness="8s" bordercolor="#cbf7ffcc" color="#cbf7ffcc" noclick="1">
+				<image texture="/ui/main/scrim_finder/textures/challenge_dialog_char.tga" x="-2s" y="-2s" width="232s" height="232s" align="right" valign="bottom" />
+				<panel vmargin="8s" width="-145s">
+					<label style="h3" font="maindyn_36" textalign="center" content="scrim_finder_chat_header" />
+					<label y="40s" style="labelBase" color=".8 .8 .8 1" font="maindyn_20" textalign="center" content="scrim_finder_chat_info" />
+				</panel>
+			</frame>				
+			<panel noclick="1" name="overlay_chat_{type}{channelID}_parent_left_container" visible="1" y="92s" height="-140s" width="-135s" align="left" >			
+				<!-- Chat Buffer -->
+				<panel name="overlay_chat_{type}{channelID}_buffer" noclick="true">
+					<chatoutputbuffer
+						name="mainChat{type}{channelID}Buffer"
+						group="{group=main_chat_channel_outputbuffers}"
+						valign="top"
+						textcolor="#f8f8f2"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						indent="32"
+						paddingleft="4s"
+						paddingright="4s"
+						paddingbottom="4s"
+						paddingtop="4s"
+						shadow="true"
+						outline="false"
+						shadowoffset="1"
+						oninstantiatelua="
+							self:Sleep(1, function() mainUI.OutputBufferRegister(self, '{channelID}', [=[{channelName}]=], '{type}') end)
+							{oninstantiatelua}
+						"
+						scrollbarsize="32s"				
+						maxhandleheight="64s"
+						handlewidth="32s"
+						minhandlesize="64s"
+						maxhandlesize="64s"
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"			
+						onmouseoutlua="GetWidget('profile_preview_parent'):FadeOut(50)"
+						onupdate=""
+						oldmessagedarkfactor="0.7"
+						onclicklua=""
+						onmouseldownlua=""
+						onmouseluplua=""
+					/>					
+
+					<!-- Drag/Drop Area -->
+					<panel name="overlay_chat_{type}{channelID}_droptarget_1" width="+4s" height="+4s" align="center" valign="center" visible="false"
+						oninstantiatelua="
+							self:RegisterWatchLua('mainPanelStatusDragInfo', function(widget, groupTrigger)
+								local mainPanelStatus = groupTrigger[1]
+								local globalDragInfo  = groupTrigger[2]
+								local clientInfoDrag  = groupTrigger[3]
+
+								widget:SetVisible(globalDragInfo.active and ((globalDragInfo.type == 4) or (globalDragInfo.type == 5) or (globalDragInfo.type == 20) or (globalDragInfo.type == 21)) )
+							end)
+						"	
+						onmouseoverlua="
+							globalDraggerReadTarget(self, function()
+								Links.SpawnLink('{channelID}', '{type=channel}')
+							end)
+						"								
+					>
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+					</panel>
+				</panel>
+				
+			</panel>
+			
+			<panel noclick="1" name="overlay_chat_{type}{channelID}_parent_right_container" visible="1" y="92s" height="-140s" width="130s" align="right" >					
+				<listbox name="overlay_chat_{type}{channelID}_memberlist_listbox" style="simpleListbox" height="100%" width="-25s"
+					color="invisible"
+					itemheight="36s"
+					scrollbaroffset="5s"
+					select="true"
+					highlightcolor="invisible"
+					highlightbordercolor="invisible"
+					exteriorscrollbars="true"
+					scrollbarplaceholder="false"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					scrollbarsize="24s"
+					handleheight="48s"
+					hscrollbar="0"
+					horizontal="false"							
+				/>
+				<!-- Drag/Drop Area -->
+				<panel name="overlay_chat_{type}{channelID}_droptarget_2" width="+10s" height="+10s" align="center" valign="center" visible="false"
+					oninstantiatelua="
+						self:RegisterWatchLua('mainPanelStatusDragInfo', function(widget, groupTrigger)
+							local mainPanelStatus = groupTrigger[1]
+							local globalDragInfo  = groupTrigger[2]
+							local clientInfoDrag  = groupTrigger[3]				
+							widget:SetVisible(globalDragInfo.active and ((globalDragInfo.type == 4) or (globalDragInfo.type == 5) or (globalDragInfo.type == 20) or (globalDragInfo.type == 21)) )
+						end)				
+					"		
+					onmouseoverlua="
+						globalDraggerReadTarget(self, function()
+							Links.SpawnLink('{channelID}', '{type=channel}')
+						end)					
+					"							
+				>
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+				</panel>
+
+			</panel>
+			
+			<!-- Chat Input -->
+			<frame name="overlay_chat_{type}{channelID}_frame" visible="1" y="2s" texture="/ui/shared/frames/text_input.tga" borderthickness="8s" noclick="1" height="40s" valign="bottom">
+				<chatinputbuffer
+					name="overlay_chat_{type}{channelID}_input"
+					x="8s" y="-10s"
+					textcolor="0 0 0 1"
+					color="invisible"
+					font="maindyn_18"
+					scrolltexture="/ui/_textures/elements/combobox.tga"
+					indent="0"
+					width="-85s"
+					grow="true"
+					valign="bottom"
+					oninstantiatelua="
+						mainUI.InputBufferRegister(self, '{channelID=-1}', [=[{channelName}]=], '{type}')
+					"
+					onesclua="self:SetFocus(false)"
+					onmouseldownlua=""
+					onfocuslua=""
+					hscrollbar="0"
+					horizontal="false"		
+					onmouseoutlua="GetWidget('profile_preview_parent'):FadeOut(50)"
+					onsizelua=""
+				/>						
+				<instance noclick="0" x="-5s" y="5s" height="30s" valign="top" width="64s" align="right"
+					name="standardButton" id="overlay_chat_{type}{channelID}_input_btn"
+					label="general_send"
+					font="maindyn_20"
+					onclicklua="
+
+					"
+				/>						
+			</frame>
+						
+		</panel>		
+	</template>	
+	
+	<template name="scrim_finder_template">
+		<panel name="scrim_finder" x="-8s" y="120s" width="950s" height="630s" noclick="true" visible="0" >
+		
+			<panel name="scrim_finder_chat" x="434s" width="512s" height="-60s" valign="center" noclick="1" group="scrim_finder_animation_widgets">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .6"/>
+				<frame texture="/ui/elements:roundframe" borderthickness="8s" bordercolor="#283036" color="invisible"/>	
+			</panel>
+		
+			<panel x="-10s" width="450s" group="scrim_finder_animation_widgets">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+				
+				<panel x="-10s" y="13s" align="right" width="-45s" height="100s" float="bottom" noclick="1">
+					<label fity="1" style="h1" font="maindyn_36" content="scrim_finder_label"/>
+					<label fity="1" fitypadding="12s"  style="labelBase" color=".8 .8 .8 1" font="maindyn_20" content="scrim_finder_info"/>
+					
+					<panel height="36s">
+						<!-- Search -->
+						<panel name="scrim_finder_search_parent" width="310s" height="36s" noclick="1" >						
+							<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="true"/>
+							<textbox
+								name="scrim_finder_input_textbox"
+								color="invisible" hmargin="0.65h" vmargin="0.25h" textcolor="black" textvalign="center" font="maindyn_20"
+								y="4s"
+								onesc="Cmd('Script ScrimFinder.InputOnEsc()')"
+								onenter="Cmd('Script ScrimFinder.InputOnEnter()')"
+								maxlength="20"
+							/>
+							<label name="scrim_finder_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_20" content="scrim_finder_input_cover_msg"/>
+							<panel name="scrim_finder_input_scrollpanel" noclick="0" blockinput="0" processonlyscroll="1" hover="false"
+								onmousewheeldownlua="ScrimFinder.WheelDown()"
+								onmousewheeluplua="ScrimFinder.WheelUp()"
+							/>
+							<instance name="iconButton" id="scrim_finder_input_button"
+								icon="/ui/main/friends/textures/social_findfriend.tga" iconsize="80"
+								width="100@" height="100%" align="right" valign="center" borderthickness="4s"
+							/>
+							<instance name="iconButton" id="scrim_finder_input_close_button"
+								icon="/ui/main/shared/textures/close.tga"
+								visible="0"
+								align="right" valign="center" borderthickness="4s" colorized="1"
+							/>						
+						</panel>
+						
+						<!-- Refresh -->
+						<instance
+							id="scrim_finder_region_refresh_btn"
+							name="iconButton"
+							icon="/ui/main/shared/textures/refresh.tga" iconsize="76"
+							align="right" borderthickness="4s"
+							visible="true"
+							onclicklua="
+								Client.GetPartyList()
+								self:SetEnabled(0)
+								local widget = self
+								libThread.threadFunc(function()
+									wait(5000)
+									if (widget) and (widget:IsValid()) then
+										widget:SetEnabled(1)
+									end
+								end)
+							"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, '/ui/main/shared/textures/refresh.tga', Translate('party_finder_refresh'), Translate('party_finder_refresh_desc'))
+							"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+							"
+							onloadlua="
+								self:RegisterWatchLua('PartyStatus', function(widget, trigger)
+									widget:SetEnabled(trigger.inParty and (trigger.queue == 'scrim'))
+								end, false, nil, 'inParty', 'queue')
+							"
+						/>
+						
+						<!-- Region Picker Btn -->
+						<instance name="iconButton" id="scrim_finder_region_map"
+							icon="/ui/main/play/textures/globe.tga" iconsize="92" iconY="-1s"
+							x="-40s" width="36s" height="36s" align="right" borderthickness="4s" visible="1"
+							onclicklua="
+								ScrimFinder.ToggleRegionSelection()
+							"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('party_region_selection'), Translate('party_region_selection_desc'), 250, -250)
+							"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+							"
+							disabledmouseover="true"
+							disabledmouseout="true"
+							onmouseoverdisabledlua="
+								simpleTipGrowYUpdate(true, nil, Translate('party_finder_disabled_host'), Translate('party_finder_disabled_host_desc'), 250, -250)
+							"
+							onmouseoutdisabledlua="
+								simpleTipGrowYUpdate(false)
+							"
+						/>
+						<!-- Region label - not needed once the list pops -->
+						<label name="scrim_finder_region_label" width="-38s" valign="bottom" textvalign="center" textalign="left" font="maindyn_20" style="labelBase" color="1 1 1 1" content="" noclick="1" visible="0"/>
+
+					</panel>
+					
+				</panel>				
+								
+				<panel name="scrim_finder_results_parent" x="-10s" y="138s" align="right" height="-162s" width="-40s" noclick="1" >
+
+					<listbox
+						name="scrim_finder_results_listbox"
+						color="invisible"
+						font="maindyn_16"
+						itemwidth="375s"
+						itemheight="78s"
+						select="true"
+						clearselection="true"
+						hoverselect="false"
+						hoverhighlight="true"
+						highlight="under"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						selectedbordercolor="invisible"
+						backgroundimage="$invis"
+						backgroundimagecolor="#1d2f3b"
+						colortransition="true"
+						colortransitiontime="250"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbarsize="32s"
+						handleheight="64s"
+						hscrollbar="0"
+						horizontal="false"
+						onselect=""
+						scrollbarplaceholder="false"						
+					>
+					</listbox>
+					
+					<panel name="scrim_finder_no_region_overlay" noclick="1" blockinput="0" visible="0">
+						<frame noclick="1" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .7" width="436s" x="-20s" height="+20s" >
+							<panel noclick="1" float="bottom" padding="15s" hmargin="20s" y="50s" height="-50s" >
+								<label noclick="1" align="center" textalign="center" valign="top" fity="1" wrap="1" font="maindyn_36" content="scrim_no_region_title" color=".7 .7 .7 1" shadow="1" outline="1" />
+								<label noclick="1" align="center" textalign="center" valign="top" fity="1" wrap="1"  font="maindyn_24" content="scrim_no_region_desc" color=".7 .7 .7 1" shadow="1" outline="1" />
+							</panel>
+						</frame>
+					</panel>
+					
+				</panel>
+
+				<!-- Region Selection Area -->
+				<panel name="scrim_finder_regionlist_parent" visible="0">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .97"/>
+					<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>					
+					<panel x="-10s" y="13s" align="right" width="-45s" height="-20s" noclick="1">
+						<panel name="scrim_finder_regionlist" valign="bottom" height="-30s" >
+						
+						</panel>						
+						<label fity="1" style="h1" font="maindyn_36" content="scrim_finder_region_filter"/>
+						<instance name="closeXButton" buttonName="scrim_finder_regionlist_close" onclicklua="ScrimFinder.ToggleRegionSelection()" align="right" width="36s" height="36s"/>
+					</panel>	
+				</panel>
+				
+			</panel>
+			
+			<panel name="scrim_finder_no_connection_overlay" noclick="1" blockinput="0" visible="0" group="scrim_finder_animation_widgets" >
+				<panel noclick="0" blockinput="1" />
+				
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .8" x="434s" width="512s" height="-60s" valign="center" />
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .8" x="-10s" width="450s" />
+				
+				<animatedimage texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+					x="210s" y="-64s" height="128s" width="128s" align="center" valign="center" 
+				/>				
+				<label x="210s" fitx="1" align="center" valign="center" fity="1" font="maindyn_36" content="main_lobby_contacting_server" y="34s" color=".7 .7 .7 1" shadow="1" outline="1" />
+				<label x="210s" fitx="1" align="center" valign="center" fity="1" font="maindyn_24" content="main_lobby_contacting_server_desc" y="68s" color=".7 .7 .7 1" shadow="1" outline="1" />
+			</panel>	
+
+			
+		</panel>
+	</template>
+
+</package>

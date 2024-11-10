@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel name="game_menu_parent" y="-30h" align="right" valign="bottom" width="22.4h" grow="1" regrow="1" growinvis="0" noclick="true" visible="0" 
+		hotkey="ESC" onhotkey="PlaySound('/shared/sounds/ui/button_close_01.wav'); HideWidget('game_menu_parent');"
+	>	
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.2h" height="+2h" x="1.0h" color=".06 .06 .06 1"/>
+		<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="1.2h" height="+2h" x="1.0h" color="invisible"/>		
+		
+		<panel grow="1" regrow="1" growinvis="0" x="2.0h" y="2.0h" width="-2.75h" float="bottom" padding="1.0h" noclick="1">			
+			
+			<panel height="3.2h" width="-1.2h" align="center" >
+				<instance name="standardButton"
+					id="game_menu_unpause"  sticky="1" stickytoinvis="0"
+					label="game_menu_unpause"
+					font="maindyn_20"
+					onclicklua="
+						RequestUnpause()
+						self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+					"
+					visible="false"
+				/>
+				<instance name="standardButton"
+					id="game_menu_pause"  sticky="1" stickytoinvis="0"
+					label="game_menu_pause"
+					font="maindyn_20"
+					onclicklua="
+						RequestPause()
+						self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+					"
+				/>
+			</panel>
+			
+			<instance name="standardButton"
+				id="game_menu_flex" visible="0" sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="flex_ui_unlocked"
+				font="maindyn_20"
+				onclicklua="
+					Flex.Toggle()
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+				"
+			/>				
+			
+			<instance name="standardButton"
+				id="game_menu_options" sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_options_button"
+				font="maindyn_20"
+				onclicklua="
+					Cmd('ShowWidget game_options')
+					PlaySound('/ui/sounds/ui_options_open.wav')
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+				"
+			/>	
+			
+			
+			<instance name="standardButton"
+				id="game_menu_twitch" sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_twitch_button"
+				font="maindyn_20"
+				onclicklua="
+					TwitchEdit.ToggleLoginPanel()
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+				"
+				onloadlua="
+					local npeTrigger = LuaTrigger.GetTrigger('newPlayerExperience')
+					self:SetVisible((GetCvarString('host_videoDriver') == 'vid_d9') and ((not npeTrigger) or (npeTrigger.tutorialProgress >= NPE_PROGRESS_TUTORIALCOMPLETE) or (npeTrigger.tutorialComplete)))
+					self:RegisterWatchLua('featureMaintenanceTrigger', function(widget, trigger)
+						local npeTrigger = LuaTrigger.GetTrigger('newPlayerExperience')
+						if ((mainUI.featureMaintenance) and (mainUI.featureMaintenance['twitch'])) or (npeTrigger and (NPE_PROGRESS_TUTORIALCOMPLETE > npeTrigger.tutorialProgress) and (not npeTrigger.tutorialComplete)) then	
+							widget:SetVisible(0)
+						else
+							widget:SetVisible(self:SetVisible((GetCvarString('host_videoDriver') == 'vid_d9')))
+						end
+					end)
+				"
+			/>
+
+			<instance name="standardButton"
+				id="game_menu_disconnect"  sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_leave_game"
+				font="maindyn_20"
+				onclicklua="
+					local Replay = LuaTrigger.GetTrigger('Replay')
+					local LocalPlayerInfo = LuaTrigger.GetTrigger('LocalPlayerInfo')
+					local LeavingInfo = LuaTrigger.GetTrigger('LeavingInfo')
+					if (LocalPlayerInfo.isActivePlayer) and (not Replay.watchingReplay) and (LeavingInfo) and (not LeavingInfo.safeToLeave) then
+						GenericDialogGame(
+							'main_disconnect_confirm', 'main_disconnect_confirm2', '', 'general_quit', 'general_cancel', 
+								function()
+									FinishMatch()
+								end,
+								function()
+									PlaySound('/ui/sounds/sfx_ui_back.wav')
+								end
+						)
+					else
+						GenericDialogGame(
+							'main_disconnect_confirm', 'main_disconnect_confirm', '', 'general_quit', 'general_cancel', 
+								function()
+									FinishMatch()
+								end,
+								function()
+									PlaySound('/ui/sounds/sfx_ui_back.wav')
+								end
+						)
+					end
+					SaveState()
+					SetSave('cg_cloudSynced', 'false', 'bool')		
+					PlaySound('/ui/sounds/sfx_ui_back.wav')		
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+				"
+			/>	
+			
+			<instance name="standardButton"
+				id="game_menu_quit"  sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_quit_strife"
+				font="maindyn_20"
+				onclicklua="
+					GenericDialogGame(
+						'main_quit_confirm', 'main_quit_confirm2', '', 'general_quit', 'general_cancel', 
+							function()
+								Cmd('Quit')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)
+					SetSave('cg_cloudSynced', 'false', 'bool')
+					SaveDBToWeb()
+					PlaySound('/ui/sounds/sfx_ui_back.wav')		
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )					
+				"
+			/>			
+			
+			<instance name="standardButton"
+				id="game_menu_close"  sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_close_menu"
+				font="maindyn_20"
+				onclicklua="
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+				"
+			/>
+			
+			<panel height="0.5h" noclick="1" />
+		</panel>
+
+	</panel>
+	
+	<lua file="game_menu.lua"/>
+	
+</package>

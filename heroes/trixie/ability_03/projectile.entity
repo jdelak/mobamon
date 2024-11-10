@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+
+	name="Projectile_Trixie_Ability3"
+	
+	speed="5000"
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	canturn="true"
+	
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchradius="100"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+	
+>
+
+	<ontouch>
+		<applystate name="State_Trixie_Ability3_Damage" target="target_entity" duration="100" />
+		
+		<areaofeffect
+			radius="150"
+			targetselection="all"
+			targetscheme="enemy_units"
+			effecttype="Magic Splash"
+			center="target_entity"
+			ignore="target_entity"
+		>
+			<applystate name="State_Trixie_Ability3_SplashDamage" target="target_entity" duration="100" />
+		</areaofeffect>
+	
+		<teleport source="this_proxy_entity" target="target_entity"  />
+		<kill target="this_entity" source="" />
+	</ontouch>
+	
+	<onimpact>
+		<teleport source="this_proxy_entity" target="target_position"  />
+	</onimpact>
+	
+</projectile>

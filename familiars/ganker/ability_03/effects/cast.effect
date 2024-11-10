@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="2">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume=".65"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<light		
+				life="500"
+				startcolor="6 4 1"				
+				endcolor="0"
+				falloffstart="00"
+				falloffend="275"
+				position="0 0 50"			
+			/>
+			
+<!--
+			<model
+				position="0 0 -10"
+				bone="_bone_centerofchest"
+				life="250"
+				startcolor="2.5 1 0"
+				endcolor="1 1 1"
+				startscale="0"
+				endscale="1.75"
+				model="../../model_3/model.mdf"
+				anim="walk_1_fast"
+				yaw="180"
+				pitch="90"
+				directionalspace="local"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".9"
+			>	
+				<simpleemitter
+					delay="150"
+					bone="_bone_Bip01 Back Spikes"
+					count="10"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="50"
+				>
+					<particle
+						color=".25 .1 0"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="0"
+						endscale="100"
+						turn="true"
+					/>
+				</simpleemitter>
+				
+				<billboard
+					bone="_bone_Bip01 Back Spikes"
+					life="250"
+					startcolor="1 .2 0"	
+					midcolor="1 .2 0"
+					endcolor="0 0 0"
+					startsize="20"
+					endsize="110"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-40"
+
+				/>
+			
+			</model>
+-->
+			
+			
+			
+<!--
+			<model
+				position="0 0 -10"
+				bone="_bone_centerofchest"
+				life="350"
+				startcolor="3 1.5 0"
+				endcolor="0 0 0"
+				startscale="0"
+				endscale="1.75"
+				model="../../model_3/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				anim="walk_1"
+				yaw="180"
+				pitch="90"
+				directionalspace="local"
+			/>	
+-->
+			
+			
+			
+			
+			
+<!--
+			<billboard
+				life="600"
+				startcolor=".0 1 .0"	
+				midcolor=".0 1 .5"
+				endcolor="0 0 0"
+				midcolorpos=".6"
+				startsize="20"
+				endsize="110"
+				position="0 0 40"
+				material="/shared/effects/materials/corona_07.material"
+				lockup="true"
+				pitch="90"
+				anchor="1"
+			/>		
+
+			<billboard
+				life="600"
+				startcolor="2 1 .0"	
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				startsize="20"
+				endsize="140"
+				position="0 0 40"
+				material="/shared/effects/materials/starlight.material"
+				anchor="1"
+			/>
+
+			<billboard
+				life="300"
+				startcolor="1 1 .0"	
+				midcolor=".0 1 .5"
+				endcolor="0 0 0"
+				startsize="80"
+				endsize="120"
+				position="0 0 40"
+				material="/shared/effects/materials/dragon.material"
+				anchor="1"
+				depthbias="-30"
+			/>
+
+			<billboard
+				life="300"
+				startcolor="1 1 .0"	
+				midcolor=".0 1 .5"
+				endcolor="0 0 0"
+				startsize="80"
+				endsize="120"
+				position="0 0 40"
+				roll="90"
+				material="/shared/effects/materials/dragon.material"
+				anchor="1"
+				depthbias="-30"
+			/>
+	
+			<simpleemitter
+				spawnrate="60"
+				count="13"
+				bone="Bip01 Spine"
+				particlelife="850"			
+				gravity="-25"
+				position="0 0 10"
+				material="/shared/effects/materials/blink.material"
+				offsetsphere="30 30 10"
+				minangle="-90"
+				maxangle="90"
+				depthbias="-30"
+			>
+				<particle 
+					startcolor="1 1 0"
+					midcolor="0 1 .3"
+					endcolor="0 0 0"
+					midcolorpos=".4"
+					startwidth="10"
+					midwidth="7.5"
+					endwidth="3"
+					midwidthpos=".5"
+					startheight="0"
+					endheight="800"
+					lockup="true"
+					anchor="1"
+				/>
+			</simpleemitter>
+-->
+
+
+
+
+
+
+				<simpleemitter
+					delay="150"
+					bone="_bone_back"
+					count="10"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="50"
+				>
+					<particle
+						color=".25 .1 0"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="0"
+						endscale="100"
+						turn="true"
+					/>
+				</simpleemitter>
+
+
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier 
+			name="modifier0"
+			expirelife="250"
+			startcolor=".65"
+			endcolor="1 1 1"
+			startalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale=".2">
+
+
+			<!-- state on hero -->
+			<template name="fire">
+
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"						
+					bone="{zbone}"	
+					spawnrate="50"		
+					gravity="-150"
+					speed="0"
+					drag="0"
+					particlelife="500"
+					material="/shared/effects/smaterials/firesprite_swirl_blue.material"	
+					offsetsphere="100"	
+					depthbias="15"
+					directionalspace="world"					
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						minsize="{zminsize}"			
+						maxsize="{zmaxsize}"			
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="0 0 1"
+						midcolorpos=".75"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						turn="1"					
+					/>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"						
+					bone="{zbone}"	
+					spawnrate="50"		
+					gravity="-150"
+					speed="0"
+					drag="0"
+					minparticlelife="350"
+					maxparticlelife="500"
+					material="/shared/effects/smaterials/firesprite_blue.material"	
+					offsetsphere="100"	
+					depthbias="15"
+					directionalspace="world"
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						startsize="{zminsize}"			
+						endsize="50"			
+						startcolor="0 .5 1"
+						midcolor="0 0 .5"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						turn="1"					
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="350" zmaxsize="500"/>
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="0" zanchor="0" zpos="0 0 0" zminsize="350" zmaxsize="500"/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				expirelife="250"
+				startcolor="0 .25 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="25"
+				depthbias="25"
+			/>
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- bursts -->
+			<template name="">
+				<simpleemitter
+				bone="_bone_centerofchest"
+					delay="{zdelay}"
+					spawnrate="500"
+					life="200"
+					minparticlelife="200"
+					maxparticlelife="600"
+					gravity="{zgravity}"
+					drag="{zdrag}"
+					minspeed="5000"
+					maxspeed="10000"
+					acceleration="100"
+					position="0 0 0"
+					material="/shared/effects/smaterials/firesprite_swirl_blue.material"	
+					minangle="90"
+					maxangle="90"
+					direction="0 0 1"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="1"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="0 0 1"
+						midcolorpos=".25"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".65"
+						startframe="0"
+						endframe="1"
+						startsize="400"
+						endsize="0"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				bone="_bone_centerofchest"
+					delay="{zdelay}"
+					spawnrate="250"
+					life="200"
+					minparticlelife="250"
+					maxparticlelife="750"
+					gravity="{zgravity}"
+					drag="{zdrag}"
+					minspeed="5000"
+					maxspeed="10000"
+					acceleration="100"
+					position="0 0 0"
+					material="/shared/effects/smaterials/firesprite_blue.material"	
+					minangle="90"
+					maxangle="90"
+					direction="0 0 1"
+					depthbias="-50"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="1"
+						startcolor="1"
+						midcolor="0 0 .15"
+						endcolor="0 0 0"
+						midcolorpos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="200"
+						endsize="300"
+						turn="true"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+
+			</template>
+			
+			<instance zdelay="0" zdrag=".013" zgravity="-250"/>
+			<instance zdelay="0" zdrag=".024" zgravity="-250"/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		<particlesystem name="system1" space="world" scale=".95">
+		
+			<model
+				position="0 0 250"
+				expirelife="250"
+				model="broken_sword/model.mdf"
+				anim="idle"
+				color="1.5"
+				depthbias="-65"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				lockup="1"
+				directionalspace="world"
+				roll="200"
+				pitch="120"
+				scale=".565"
+				pitchspeed="-25"
+			/>
+			
+			<model
+				position="0 0 250"
+				expirelife="250"
+				model="broken_sword/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+				startcolor="3 1.5 0"
+				endcolor="0 0 0"
+				depthbias="-65"
+				startalpha="1"
+				endalpha="0"
+				lockup="1"
+				directionalspace="world"
+				roll="200"
+				pitch="120"
+				scale=".565"
+				pitchspeed="-25"
+			>
+				<template name="flashes">
+				
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="35"
+						minparticlelife="200"
+						maxparticlelife="300"
+						minspeed="0"
+						maxspeed="60"
+						position="0 0 0"
+						offsetsphere="0 0 10"
+						material="/shared/effects/smaterials/cartoon_smack_white.material"
+						depthbias="75"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+					>
+						<particle
+						minangle="0"
+						maxangle="360"
+							anchor="1"
+							color="1 .75 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							startscale="25"
+							minendscale="75"
+							maxendscale="100"
+							lockup="true"
+							lockright="true"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="50"
+						minparticlelife="300"
+						maxparticlelife="500"
+						minspeed="0"
+						maxspeed="60"
+						position="0 0 0"
+						offsetsphere="0 0 10"
+						material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+						depthbias="50"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+					>
+						<particle
+						minangle="0"
+						maxangle="360"
+							anchor="1"
+							startcolor=".5 .25 0"
+							endcolor="0 0 0"
+							startscale="25"
+							minendscale="15"
+							maxendscale="50"
+							lockup="true"
+							lockright="true"
+						/>
+					</simpleemitter>
+				</template>
+
+				<instance name="flashes" zbone="_bone_fx_01"/>
+				<instance name="flashes" zbone="_bone_fx_01"/>
+
+			</model>
+
+			<billboard
+				position="0 0 250"
+				expirelife="300"
+				material="/shared/effects/smaterials/whitedot.material"
+				color=".5 .1 0"
+				depthbias="-75"
+				scale="3"
+				lockup="1"
+				lockright="1"
+				pitch="0"
+			/>
+<!--
+			<simpleemitter
+				position="0 0 250"
+				spawnrate="35"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				minspeed="0"
+				maxspeed="200"
+				offsetsphere="12"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-75"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 -1"
+				directionalspace="world"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					anchor="1"
+					startcolor="1 .75 .5"
+					midcolor="1 .75 .25"
+					endcolor="0 0 0"
+					minscale="2"
+					maxscale="3"
+					lockup="true"
+					lockright="true"
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+
+		
+		
+		
+		
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+		<waitfordeath instance="instance2" /> 
+	</thread>
+
+</effect>

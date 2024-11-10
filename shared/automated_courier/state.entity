@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_AutomatedCourier"
+
+	
+	ishidden="0"
+	impactinterval="500"
+>
+	<oninflict>
+		<setaccumulator value="2" />
+		<setcharges a="0" />
+	</oninflict>
+	
+	<onframe>
+		<compare a="accumulator" b="2" op="eq">
+			<setaccumulator value="0" />
+		</compare>
+		<else>
+			<condition test="hasstate State_Blank" target="target_entity">
+
+			</condition>
+			<else>
+				<compare a="accumulator" b="0" op="eq">
+					<distance source="source_entity" usepathing="true" target="target_entity" />
+					<compare a="result" b="500" op="le" >
+						<spawnprojectile name="Projectile_CourierCatchup" homing="true" source="target_entity" target="source_entity" bind="target_entity" bindturn="true" unbindondeath="true" bindpriority="1" bindstate="State_Blank" />
+					</compare>
+				</compare>
+			</else>
+			
+			<condition test="not_hasorder" target="target_entity" source="target_entity">
+				<compare a="accumulator" b="0" op="eq">
+					<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+					<order command="move" force="true" source="target_entity" target="stack_position" />
+					<transferitemsfromcourier target="source_entity" source="target_entity" targetregion="stash"/>
+					<setactivemodifierkey entity="target_entity" name="return_trip" />
+					<setactivemodifierkey entity="this_proxy_entity" name="automated_courier_disabled" />
+					<setaccumulator value="1" />
+					<playsound name="courierdeliver" source="target_owner_entity" target="target_owner_entity"/>
+					<playsound name="itemdeliver" source="target_owner_entity" target="target_owner_entity"/>
+				</compare>
+				<else>
+					<delete target="target_entity" source="" />
+					<setactivemodifierkey entity="this_proxy_entity" name="" /> 
+				</else>
+			</condition>
+		</else>
+	</onframe>
+	
+	<onimpact>
+		<compare a="charges" b="0" op="eq">
+			<condition test="hasstate State_ShopAccess_Main" target="source_entity">
+				<pushentitysearch global="true" source="target_entity" targetscheme="ally_well" ignoreinvulnerable="true" />
+				<teleport source="target_entity" target="stack_position"/>
+				<setcharges a="1" />
+			</condition>
+		</compare>
+	</onimpact>
+
+	<onexpired>
+		<playsound name="courierready" />
+	</onexpired>
+</state>

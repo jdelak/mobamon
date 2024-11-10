@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="lobby_entry">
+		<panel height="{height=38s}" width="100%" name="lobby_entry{id}">
+			<panel name="lobby_entry{id}UserBody" noclick="true" visible="1">
+				<button name="lobby_entry{id}UserButton" color="invisible" cangrab="true" dragexclusive="false">
+					<frame texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s"/>
+					
+					<panel noclick="true" passivechildren="true">
+						
+						<panel x="3s" width="32s" height="32s" valign="center" noclick="1">
+							<image name="lobby_entry{id}UserIcon" texture="/ui/shared/textures/user_icon.tga"/>
+						</panel>
+										
+						<label name="lobby_entry{id}UserName" x="115@" y="2s" height="50%" textvalign="center" color="1 1 1" outline="1" outlinecolor="0 0 0 .6" font="maindyn_22" content="{userName}"/>
+						<label name="lobby_entry{id}UserGroup" x="115@" y="-1s" height="50%" textvalign="center" color=".8 .8 .8 1" font="maindyn_16" valign="bottom" content="{userGroup}"/><!-- Group / Subtitle -->
+					</panel>			
+					<frame name="lobby_entry{id}UserDarken" color="0 0 0 0.5" texture="/ui/elements:rounded_Bg_white" borderthickness="0.5h" noclick="true" visible="false"/>
+					<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h" noclick="1"/>
+				</button>
+				<instance name="DropLand" id="lobby_entry{id}DropTarget" width="+2s" height="+2s" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="lobby_start_button">
+		<button name="{id}" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onclicklua="{onclicklua}"
+			onloadlua="libButton2.initializeButton(self, '{id}', 'standardButton2', '{rendermode=normal}')"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=20s}" rendermode="{rendermode=normal}" />
+				<label name="{id}Label" textalign="center" textvalign="center" font="{font=maindyn_16}" color="{labelcolor=white}" outline="true" outlinecolor="0 0 0 .5" content="{label=temp_button}"/>
+				<label name="{id}Label2" y="60s" textalign="center" font="maindyn_22" color=".7 .7 .7 1" outline="true" outlinecolor="0 0 0 .5" content="{label2=temp_button}"/>
+			</panel>
+		</button>
+	</template>		
+
+</package>

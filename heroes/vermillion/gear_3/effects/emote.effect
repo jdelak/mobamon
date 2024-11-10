@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<model
+				delay="150"
+				bone="_bone_Ceeegarr"
+				expirelife="0"
+				model="cigar/model.mdf"
+				anim="idle"
+				color="1 1 1"
+				scale=".85"
+				yaw="0"
+				roll="90"
+				startalpha="1"
+				endalpha="0"
+				directinalspace="local"
+			>
+				<billboard
+					bone="_bone_fx_01"
+					delay="850"
+					life="650"
+					startcolor="1 .75 .5"
+					midcolor="1 .4 0"
+					endcolor="0 0 0"
+					size="25"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+				/>
+			</model>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

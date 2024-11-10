@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="desaturate">
+	<parameter name="Amount" type="float" default="1.0" />
+	<parameter name="LuminanceFactors" type="float3" default="0.30 0.59 0.11" />
+	<dependency name="Value" type="float3" />
+	<dependency name="Amount" type="float" source="Amount" />
+	<dependency name="LuminanceFactors" type="float3" source="LuminanceFactors" />
+	<output name="Out" type="float3" />
+	<?hlsl
+		Out = Value * (1.0f - Amount) + dot(Value, LuminanceFactors) * Amount;
+	?>
+	<?glsl
+		Out = Value * (1.0f - Amount) + dot(Value, LuminanceFactors) * Amount;
+	?>
+</node>

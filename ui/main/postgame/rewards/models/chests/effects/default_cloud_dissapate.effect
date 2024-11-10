@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".6">
+
+		
+			<simpleemitter
+			count="1"
+				spawnrate="2000"
+				particlelife="5000"
+			> 
+				<particle
+				>
+
+					<template name="clouds">
+
+						<simpleemitter
+							delay="{zdelay}"
+							life="250"
+							spawnrate="100"
+							particlelife="5000"
+							gravity="0"
+							drag="0.05"
+							minspeed="0"
+							maxspeed="20"
+							acceleration="0"
+							position="0 0 8"
+							direction="0 1 0"
+							offsetradial="{zradial}"
+						> 
+							<particle
+							>
+								<billboard
+									minlife="250"
+									maxlife="500"
+									material="/shared/effects/smaterials/cartoon_dust.material"
+									color=".8 .9 1"
+									position="0 75 0"
+									depthbias="0"
+									startalpha="0"
+									midalpha=".75"
+									endalpha="0"
+									midalphapos=".1"
+									minstartscale=".5"
+									maxstartscale="1"
+									endscale="0"
+									minroll="0"
+									maxroll="360"
+									minrollspeed="-90"
+									maxrollspeed="90"
+								/>
+
+								<billboard
+									minlife="250"
+									maxlife="500"
+									material="/shared/effects/smaterials/whitedot.material"
+									startcolor="0 0 0"
+									midcolor=".1 .2 .3"
+									endcolor="0 0 0"
+									midcolorpos=".25"
+									position="0 100 0"
+									depthbias="-25"
+									minstartscale=".5"
+									maxstartscale="1"
+									endscale="0"
+								/>
+							</particle>
+						</simpleemitter>
+					
+					</template>
+
+					<instance name="clouds" zdelay="0" zradial="10 0 0"/>
+					<instance name="clouds" zdelay="50" zradial="20 0 0"/>
+					<instance name="clouds" zdelay="100" zradial="30 0 0"/>
+					<instance name="clouds" zdelay="150" zradial="40 0 0"/>
+					<instance name="clouds" zdelay="250" zradial="50 0 0"/>
+					<instance name="clouds" zdelay="300" zradial="60 0 0"/>
+					<instance name="clouds" zdelay="350" zradial="70 0 0"/>
+					<instance name="clouds" zdelay="400" zradial="80 0 0"/>
+					<instance name="clouds" zdelay="450" zradial="90 0 0"/>
+
+					<billboard
+						position="0 150 8"
+						life="750"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor=".4 .45 .5"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						depthbias="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".1"
+						scale="2.5"
+						minroll="0"
+						maxroll="360"
+						minrollspeed="-5"
+						maxrollspeed="-15"
+					/>
+
+				</particle>
+			</simpleemitter>
+		
+		
+
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+
+
+	

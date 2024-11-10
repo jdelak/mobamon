@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_ElderStone_Empower_3"
+	
+	cost="760"
+	maxcharges="13"
+
+>
+	<!-- Tooltip only -->
+	<constant name="max_charges_enchant" value="3" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add"/>
+
+	<ontimer>
+		<setcharges a="charges" b="1" op="add" />
+		<compare a="charges" b="13" op="lt">
+			<starttimer duration="60000" />
+		</compare>
+		<else>
+			<setactivemodifierkey entity="this_entity" name="ElderStone_Max" />
+		</else>
+	</ontimer>
+
+</qualityitem>

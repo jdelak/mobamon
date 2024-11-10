@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			expirelife="200"
+			startcolor="0 0 0"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale="0.8s" >
+
+		
+		<!--
+		<light
+			life="200"
+			startcolor="0 0 0"
+			endcolor="4 1 5"
+			falloffstart="00"
+			falloffend="120"
+			position="0 0 70"
+		
+		/>
+		
+		<light
+			delay="200"
+			expirelife="300"
+			endcolor="0 0 0"
+			startcolor="4 1 5"
+			falloffstart="00"
+			falloffend="120"
+			position="0 0 70"
+		
+		/>
+		
+		-->
+		<simpleemitter		
+							
+			spawnrate="30"
+			minparticlelife="800"
+			maxparticlelife="1600"
+			gravity="1"
+			speed="500"
+			offsetsphere="90 90 90"
+			drag="0.1"
+			inheritvelocity=".1"
+			direction="0 0 0"
+			material="/shared/effects/smaterials/blue_feather.material"
+			position="0 0 80"
+		>
+			<particle 
+				
+				color="0 0 0 "
+				startalpha="1"
+				endalpha="0"
+				midcolorpos=".2"				
+				minangle="0"
+				maxangle="360"
+				minanglespeed="-30"
+				maxanglespeed="30"
+				startsize="10"
+				midsize="10"				
+				endsize="10"							
+			/>			
+		</simpleemitter>	
+		
+		
+		
+		
+		
+		<simpleemitter			
+			
+			position="0 0 90"
+			spawnrate="492"
+			count="30"
+			particlelife="400"		
+			
+		>
+			<particle>			
+				<model					
+					position="0 0 -10"
+					expirelife="150"				
+					anim="idle"
+					model="crow_in_1.mdf"
+					startscale="1"
+					midscale="1"
+					endscale="0"
+				
+					midcolorpos=".75"
+					startalpha="1"
+					midalpha="1"
+					endalpha="1"
+					
+					minyaw="-360"
+					maxyaw="360"
+					minpitch="-360"
+					maxpitch="360"
+					minroll="-360"
+					maxroll="360"
+				>
+				
+				</model>			
+			</particle>
+		</simpleemitter>
+		
+
+		<simpleemitter			
+			delay="100"
+			position="0 0 90"
+			spawnrate="44"
+			count="40"
+			expirelife="5000"		
+		>
+			<particle>			
+				<model
+					
+					position="0 0 -10"
+					expirelife="150"				
+					anim="idle"
+					model="crow_circle.mdf"
+					scale="1"
+				
+					midcolorpos=".75"
+					startalpha="1"
+					endalpha="0"
+					
+					minyaw="-360"
+					maxyaw="360"
+					minpitch="-360"
+					maxpitch="360"
+					minroll="-360"
+					maxroll="360"
+				>
+					<trailemitter
+						bone="_bone_wing2"
+						spawnrate="30"
+						particlelife="350"
+						texpostime="350"
+						texposscale="0.0"
+						texstretchscale=".4"
+						material="/shared/effects/smaterials/trail_blend.material"
+						subframepos="true"
+						
+					>
+						<particle
+							color="0 0 0"
+							
+							startsize="22"
+							
+							endsize="0"
+							midsizepos="0.25"
+					/>
+					</trailemitter>
+				
+				
+				</model>			
+			</particle>
+		</simpleemitter>
+		<!--			
+-->
+
+      </particlesystem>
+   </definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	
+	<waitfordeath instance="instance0" />
+	<wait duration="20000"/>
+	<!-- <die /> -->
+</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

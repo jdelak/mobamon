@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="draggable_buddy">
+
+	<template name="socialclient_friend_longmode_template">
+		<panel height="40s" noclick="1" width="264s" sticky="1" stickytoinvis="0">
+			<button name="socialclient_friend_longmode_template{index}" color="invisible" blockinput="0" interactive="1" cangrab="1" height="40s" noclick="0" width="100%" oninstantiatelua="" sticky="1" stickytoinvis="0">
+				<frame name="socialclient_friend_longmode_template{index}_bg" width="264s" texture="/ui/elements:rounded_bg_solid" color="0.02 0.07 0.09 0.98" bordercolor="0.02 0.07 0.09 0.98" borderthickness="3s" noclick="1"/>
+				<frame name="socialclient_friend_longmode_template{index}_hover" width="264s" texture="/ui/elements:rounded_bg_solid" color="#094953" bordercolor="#094953" borderthickness="4s" noclick="1" visible="0"/>
+				<frame name="socialclient_friend_longmode_template{index}_hoverOutline" width="264s" texture="/ui/shared/frames/border_double.tga" color="invisible" bordercolor="#00d9f9" borderthickness="4s" noclick="1" visible="0"/>
+				<panel name="socialclient_friend_longmode_template{index}_profile" x="5s" height="80%" valign="center" float="right" padding="3s" noclick="1" >
+					<panel name="socialclient_friend_longmode_template{index}_profile_id" height="100%" width="100@" noclick="1" color="white" texture="{accountIcon=/ui/shared/textures/account_icons/default.tga}" />
+					<panel width="150s" noclick="1" >
+						<label name="socialclient_friend_longmode_template{index}_profile_name" content="{userName=???}" x="5s" y="-2s" fity="1" fitx="1" font="maindyn_18" align="left" textalign="left" valign="top" noclick="1" color="{userNameColor=white}" />
+						<label name="socialclient_friend_longmode_template{index}_profile_groupname" content="{secondaryLabel=?_?_?}" x="5s" fity="1" font="subdyn_10" align="left" textalign="left" valign="bottom" noclick="1" color=".5 .5 .5 1" />
+					</panel>
+					<panel name="socialclient_friend_longmode_template{index}_profile_status_icon" width="58s" noclick="1" align="left" >
+						<panel name="socialclient_friend_longmode_template{index}_profile_status_icon" y="4s" align="right" height="25%" width="25@" valign="top" texture="/ui/main/shared/textures/user_status_light.tga"  color="{statusColor=#2385ea}" noclick="1"/>
+						<panel name="socialclient_friend_longmode_template{index}_profile_status_icon_glow" y="-1s" x="5s" align="right" height="60%" width="60@" valign="top" rendermode="additive" texture="/ui/main/shared/textures/circular.tga"  color="{statusColor=#2385ea}" noclick="1"/>
+						<label name="socialclient_friend_longmode_template{index}_profile_status" content="{statusText=?_?_?}" fity="1" font="subdyn_9" align="right" textalign="right" valign="bottom" noclick="1" color="{statusColor=#2385ea}" />				
+					</panel>
+				</panel>
+			</button>
+			<panel height="40s" noclick="1" width="100%" sticky="1" stickytoinvis="0">
+				<panel x="5s" height="80%" valign="center" noclick="1" >
+					<panel name="socialclient_friend_longmode_template{index}_profile_id_hover" height="100%" width="100@" noclick="0" color="invisible" >	
+						
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<instance name="socialclient_friend_longmode_template" index="dragbuddy" />
+	
+	<lua file="draggable_buddy.lua" />
+	
+</interface>

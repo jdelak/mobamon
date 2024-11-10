@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale=".4">
+
+			<sound
+				life="7000"
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_state.wav"
+			/>
+		
+<!--
+			<model
+				position="0 0 400"
+				life="2000"
+				startcolor="0 0 0"
+				midcolor="0 .25 .25"
+				endcolor="0 0 0"
+				scale="16"
+				model="radar/model.mdf"
+				material="radar/material.material"
+				anim="idle"
+				pitch="0"
+				loop="true"
+				yawspeed="-180"
+			/>
+-->
+		
+			<template name="">
+			
+				<billboard
+					delay="{zdelay}"
+					life="{zlife}"
+					startcolor="0 0 0"
+					midcolor="{zcolor}"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					size="520"
+					material="{zmaterial}"
+					lockup="1"
+					lockright="1"
+					pitch="-90"
+					depthbias="-50"
+					position="0 0 400"
+				/>
+		
+			</template>
+			
+			<instance zmaterial="/shared/effects/smaterials/radar_quad1.material" zdelay="0" zlife="3000" zcolor="0 .35 .7"/>
+			<instance zmaterial="/shared/effects/smaterials/radar_quad2.material" zdelay="350" zlife="3500" zcolor="0 .35 .7"/>
+			<instance zmaterial="/shared/effects/smaterials/radar_quad3.material" zdelay="1250" zlife="3000" zcolor="0 .35 .7"/>
+			
+			<instance zmaterial="/shared/effects/smaterials/radar_quad4.material" zdelay="2050" zlife="3000" zcolor="0 .35 .7"/>
+			
+			<instance zmaterial="/shared/effects/smaterials/radar_quad1.material" zdelay="2850" zlife="3000" zcolor="0 .25 .5"/>
+			<instance zmaterial="/shared/effects/smaterials/radar_quad2.material" zdelay="3650" zlife="3000" zcolor="0 .125 .25"/>
+			
+
+
+
+		
+
+			<template name="">
+			
+				<billboard
+					expirelife="1250"
+					startcolor=".15 .3 .3"
+					endcolor="0 0 0"
+					size="540"
+					material="/shared/effects/smaterials/radar.material"
+					lockup="1"
+					lockright="1"
+					pitch="-90"
+					depthbias="-50"
+					rollspeed="-90"
+					position="0 0 400"
+				/>
+				
+				<billboard
+					expirelife="1250"
+					startcolor="0 .075 .1"
+					endcolor="0 0 0"
+					size="540"
+					material="/shared/effects/smaterials/radar_target.material"
+					lockup="1"
+					lockright="1"
+					pitch="-90"
+					depthbias="-50"
+
+					position="0 0 400"
+				/>
+<!--
+				<billboard
+					expirelife="1000"
+					startcolor="0 .075 .1"
+					endcolor="0 0 0"
+					size="{zsize}"
+					material="/shared/effects/smaterials/target_ring.material"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					depthbias="-50"
+					rollspeed="90"
+					roll="315"
+					position="0 0 400"
+				/>
+-->
+				
+			</template>
+			
+			<instance />
+
+			<template name="">
+
+				<billboard
+					expirelife="200"
+					startcolor="0 .125 .25"
+					endcolor="0 0 0"
+					startsize="750"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					depthbias="-50"
+					rollspeed="{zrollspeed}"
+					roll="{zroll}"
+					position="0 0 400"
+				/>
+
+			</template>
+			
+			<instance name="" zroll="45" zrollspeed="0"/>
+			
+			
+			
+			
+
+			
+
+		</particlesystem>
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		<particlesystem name="system2" space="entity" scale=".5">
+
+			<simpleemitter
+				position="0 0 400"
+				spawnrate="4"
+				minparticlelife="2000"
+				maxparticlelife="2000"
+				gravity="0"
+				acceleration="0"
+				timenudge="2000"
+				material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+				offsetsphere="0 0 0"
+			>
+				<particle
+					anchor="1"
+					startcolor="0 0 0"
+					midcolor="0 .125 .15"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startscale="0"
+					minendscale=".5"
+					maxendscale=".5"
+					width="1600"
+					height="1600"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 400"
+				spawnrate="1"
+				particlelife="2000"
+				direction="0 0 1"
+				timenudge="2000"
+				minangle="0"
+				maxangle="1"
+				speed="0"
+			>
+				<particle
+				>
+				
+					<template name="">
+						<billboard
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .05 .075"
+							endcolor="0 0 0"
+							life="600"
+							startsize="550"
+							endsize="600"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							roll="{zroll}"
+							depthbias="-65"
+						/>
+						
+						<billboard
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .05 .075"
+							endcolor="0 0 0"
+							life="600"
+							startsize="400"
+							endsize="450"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							roll="{zroll}"
+							depthbias="-65"
+						/>
+						
+						<billboard
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .15 .15"
+							endcolor="0 0 0"
+							life="300"
+							startsize="250"
+							endsize="600"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							roll="{zroll}"
+							depthbias="-65"
+						/>
+					</template>
+					
+					<instance name="" zroll="0"/>
+					<instance name="" zroll="180"/>
+					
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnparticlesystem instance="instance2" particlesystem="system2" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+</effect>

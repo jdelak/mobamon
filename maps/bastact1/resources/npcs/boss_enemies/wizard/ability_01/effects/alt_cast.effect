@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.45"
+				sample="../../sounds/sfx_ball_charge_short.wav"
+			/>
+
+			<simpleemitter
+				life="1000"
+				count="1"
+				spawnrate="1000"
+				particlelife="1000"
+				gravity="0"
+				acceleration="0"
+				position="0 150 100"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="0"
+				speed="0"
+				direction="0 0 1"
+			>
+				<particle
+					turn="1"
+					yawspeed="500"
+				>
+					
+					<model
+						life="1000"
+						model="twirl/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						position="0 0 0"
+						scale="3"
+					>
+					
+
+						<!-- <billboard
+							bone="_bone_centerPivot"
+							life="600"
+							
+							startcolor="0"
+							midcolor="1 0 1"
+							endcolor="1 0 1"
+							startsize="400"
+							endsize="50"
+							depthbias="-100"
+							material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+							direction="0 0 1"
+							directionalspace="local"
+						/> -->
+						
+						<!-- <billboard
+							bone="_bone_centerPivot"
+							life="800"
+							
+							startcolor="0"
+							midcolor=".4 0 .4"
+							endcolor="0"
+							startsize="200"
+							endsize="0"
+							depthbias="-100"
+							material="/shared/effects/smaterials/whitedot.material"
+							direction="0 0 1"
+							directionalspace="local"
+						/>-->
+						
+						<billboard
+							delay="500"
+							bone="_bone_centerPivot"
+							life="800"
+							
+							startcolor="0"
+							midcolor="1 0 1"
+							endcolor="0"
+							startsize="0"
+							endsize="70"
+							depthbias="-100"
+							material="/shared/effects/smaterials/whitedot.material"
+							direction="0 0 1"
+							directionalspace="local"
+						/>
+						
+						<billboard
+							delay="500"
+							bone="_bone_centerPivot"
+							life="800"
+							
+							startcolor="0"
+							midcolor=".5"
+							endcolor="0"
+							startsize="0"
+							endsize="30"
+							depthbias="-100"
+							material="/shared/effects/smaterials/whitedot.material"
+							direction="0 0 1"
+							directionalspace="local"
+						/>
+						
+						<billboard
+							delay="500"
+							bone="_bone_centerPivot"
+							life="400"
+							
+							startcolor="0"
+							midcolor=".4 0 .4"
+							endcolor="0"
+							startsize="0"
+							endsize="100"
+							depthbias="0"
+							material="/shared/effects/materials/blink.material"
+							direction="0 0 1"
+							directionalspace="local"
+						/>
+						
+						<!-- <billboard
+							delay="600"
+							bone="_bone_centerPivot"
+							life="400"
+							
+							startcolor="0"
+							midcolor="1 0 1"
+							endcolor="0"
+							startsize="0"
+							endsize="200"
+							depthbias="50"
+							material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+						/> -->
+						
+						<controller bone="_bone_emissionPoint" scale=".1">
+							<!-- Fireball flames -->
+								<!-- Darker purple -->
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								delay="0"
+								spawnrate="500"
+								minparticlelife="250"
+								maxparticlelife="400"
+								gravity="0"
+								minspeed="50"
+								maxspeed="100"
+								drag="0"
+								acceleration="0"
+								position="0"
+								material="/shared/effects/smaterials/flamewisps.material"
+								direction="0 0 0"
+								offsetsphere="0 0 0"
+								
+							>	<particle 
+									minanglespeed="-200"
+									maxanglespeed="200"
+									startcolor=".8 0 1"
+									endcolor="0 0 0"
+									midcolorpos=".3"
+									minstartsize="40"
+									maxstartsize="60"
+									startsize="0"
+									midsize="100"
+									endsize="0"
+									midsizepos=".2"
+									startalpha="0"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".3"
+									startanchor="1"
+									endanchor="0"
+								/>
+
+							</simpleemitter>
+							
+								<!-- lighter purple -->
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								spawnrate="500"
+								minparticlelife="150"
+								maxparticlelife="400"
+								gravity="0"
+								minspeed="200"
+								maxspeed="400"
+								drag="0"
+								acceleration="0"
+								position="0 0 0"
+								material="/shared/effects/smaterials/flamewisps.material"
+								direction="0 0 0"
+								offsetsphere="10 10 10"
+								
+							>
+
+								<particle 
+									minanglespeed="-200"
+									maxanglespeed="200"
+									startcolor="1 0.9 1"
+									midcolor="0.9 0 0.9"
+									endcolor="0 0 0"
+									midcolorpos=".3"
+									minstartsize="40"
+									maxstartsize="60"
+									startsize="0"
+									midsize="100"
+									endsize="0"
+									midsizepos=".2"
+									startalpha="1"
+									endalpha="0"
+									startanchor="1"
+									endanchor="0"
+								/>	
+							</simpleemitter>		
+							
+								<!--White front-->	
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								spawnrate="200"
+								minparticlelife="100"
+								maxparticlelife="200"
+								gravity="0"
+								minspeed="50"
+								maxspeed="150"
+								drag="0"
+								acceleration="0"
+								position="0 0 0"
+								material="/shared/effects/smaterials/flamewisps.material"
+								direction="0 0 0"
+								offsetsphere="20 20 20"
+								
+							>
+								<particle 
+									minangle="0"
+									maxangle="360"
+									minanglespeed="-200"
+									maxanglespeed="200"
+									color="1 1 1"
+									size="60"
+									midsizepos=".2"
+									startalpha=".5"
+									endalpha="0"
+									startanchor="1"
+									endanchor="0"
+								/>
+							</simpleemitter>
+
+								<!--Ember bits-->	
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								expirelife="100"
+								spawnrate="100"
+								minparticlelife="100"
+								maxparticlelife="500"
+								mingravity="-5"
+								maxgravity="5"
+								minspeed="-100"
+								maxspeed="-200"
+								minangle="0"
+								maxangle="90"
+								drag="0"
+								acceleration="0"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitecircleblurred_add_greenglow.material"
+								direction="0 1 0"
+								offsetsphere="50"
+							>
+								<particle 
+									
+									minanglespeed="-200"
+									maxanglespeed="200"
+									color=".6 0 .6"
+									startsize="5"
+									endsize="0"
+									startalpha="1"
+									midalpha=".5"
+									endalpha="0"
+								/>
+							</simpleemitter>
+						</controller>
+					</model>
+					
+					<model
+						life="5000"
+						model="twirl/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						position="0 0 0"
+						scale="3"
+						yaw="180"
+					>
+						<controller bone="_bone_emissionPoint" scale=".1">
+							<!-- Fireball flames -->
+								<!-- Darker purple -->
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								delay="0"
+								spawnrate="500"
+								minparticlelife="250"
+								maxparticlelife="400"
+								gravity="0"
+								minspeed="50"
+								maxspeed="100"
+								drag="0"
+								acceleration="0"
+								position="0"
+								material="/shared/effects/smaterials/flamewisps.material"
+								direction="0 0 0"
+								offsetsphere="0 0 0"
+								
+							>	<particle 
+									minanglespeed="-200"
+									maxanglespeed="200"
+									startcolor=".8 0 1"
+									endcolor="0 0 0"
+									midcolorpos=".3"
+									minstartsize="40"
+									maxstartsize="60"
+									startsize="0"
+									midsize="100"
+									endsize="0"
+									midsizepos=".2"
+									startalpha="0"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".3"
+									startanchor="1"
+									endanchor="0"
+								/>
+
+							</simpleemitter>
+							
+								<!-- lighter purple -->
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								spawnrate="500"
+								minparticlelife="150"
+								maxparticlelife="400"
+								gravity="0"
+								minspeed="200"
+								maxspeed="400"
+								drag="0"
+								acceleration="0"
+								position="0 0 0"
+								material="/shared/effects/smaterials/flamewisps.material"
+								direction="0 0 0"
+								offsetsphere="10 10 10"
+								
+							>
+
+								<particle 
+									minanglespeed="-200"
+									maxanglespeed="200"
+									startcolor="1 0.9 1"
+									midcolor="0.9 0 0.9"
+									endcolor="0 0 0"
+									midcolorpos=".3"
+									minstartsize="40"
+									maxstartsize="60"
+									startsize="0"
+									midsize="100"
+									endsize="0"
+									midsizepos=".2"
+									startalpha="1"
+									endalpha="0"
+									startanchor="1"
+									endanchor="0"
+								/>	
+							</simpleemitter>		
+							
+								<!--White front-->	
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								spawnrate="200"
+								minparticlelife="100"
+								maxparticlelife="200"
+								gravity="0"
+								minspeed="50"
+								maxspeed="150"
+								drag="0"
+								acceleration="0"
+								position="0 0 0"
+								material="/shared/effects/smaterials/flamewisps.material"
+								direction="0 0 0"
+								offsetsphere="20 20 20"
+								
+							>
+								<particle 
+									minangle="0"
+									maxangle="360"
+									minanglespeed="-200"
+									maxanglespeed="200"
+									color="1 1 1"
+									size="60"
+									midsizepos=".2"
+									startalpha=".5"
+									endalpha="0"
+									startanchor="1"
+									endanchor="0"
+								/>
+							</simpleemitter>
+
+								<!--Ember bits-->	
+							<simpleemitter
+								bone="_bone_emissionPoint"
+								expirelife="100"
+								spawnrate="100"
+								minparticlelife="100"
+								maxparticlelife="500"
+								mingravity="-5"
+								maxgravity="5"
+								minspeed="-100"
+								maxspeed="-200"
+								minangle="0"
+								maxangle="90"
+								drag="0"
+								acceleration="0"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitecircleblurred_add_greenglow.material"
+								direction="0 1 0"
+								offsetsphere="50"
+							>
+								<particle 
+									
+									minanglespeed="-200"
+									maxanglespeed="200"
+									color=".6 0 .6"
+									startsize="5"
+									endsize="0"
+									startalpha="1"
+									midalpha=".5"
+									endalpha="0"
+								/>
+							</simpleemitter>
+						</controller>
+					</model>
+				</particle>
+			</simpleemitter>
+			
+			<light
+				delay="800"
+				life="400"
+				position="0 150 20"
+				startcolor="0"
+				midcolor="5 0 5"
+				endcolor="0"
+				midcolorpos=".25"
+				falloffstart="250"
+				falloffend="500"	
+			/>
+			
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

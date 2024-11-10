@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="water_texcoord1">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="mWorld" type="float4x4" source="mWorld" />
+	<dependency name="ColorSizes" type="float2" source="vColorSizes" />
+	<output name="Out" type="float2" solution="Texcoord1" />
+	<?hlsl
+		Out = mul(float4(ObjectPosition, 1.0f), mWorld).xy * ColorSizes.x + ColorSizes.y;
+	?>
+	<?glsl
+		Out = (mWorld * vec4(ObjectPosition, 1.0f)).xy * ColorSizes.x + ColorSizes.y;
+	?>
+</node>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Blazer_Ability2"
+
+	gravity="15000"
+	lifetime="800"
+	useexactlifetime="true"
+
+	modelscale="3.25"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+
+>
+
+	<onimpact>
+		<spawnunit name="Gadget_Blazer_Ability2" count="1" target="target_position" pushentity="true" />
+		<setproxy target="stack_entity" />
+		<playeffect effect="effects/sound.effect" source="source_entity" target="" occlude="true" />
+		<propareaeffect center="target_position" radius="300" anim="hit" />
+		
+		<areaofeffect
+			radius="325"
+			targetselection="closest"
+			maximpactspertarget="1"
+			targetscheme="enemy_heroes"
+			effecttype="Magic"
+		>
+			<compare a="accumulator" b="1" op="ne">
+				<cantarget effecttype="CrowdControl" >
+					<applystate name="State_Blazer_Ability2" duration="1500,1800,2200,2600" proxy="this_proxy_entity" />
+					<applystate name="State_Blazer_Ability2_SuperSlow" duration="1500,1800,2200,2600" />
+					<applystate name="State_Blazer_Ability2_Target" duration="1500,1800,2200,2600" target="this_proxy_entity" proxy="target_entity"  />
+					<setaccumulator value="1" />
+				</cantarget>
+			</compare>
+			
+
+
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="325"
+				targetselection="closest"
+				maximpactspertarget="1"
+				targetscheme="enemy_nonboss_units"
+				effecttype="Magic"
+			>
+				<compare a="accumulator" b="1" op="ne">
+					<cantarget effecttype="CrowdControl" >
+						<applystate name="State_Blazer_Ability2" duration="1500,1800,2200,2600" proxy="this_proxy_entity" />
+						<applystate name="State_Blazer_Ability2_SuperSlow" duration="1500,1800,2200,2600" />
+						<applystate name="State_Blazer_Ability2_Target" duration="1500,1800,2200,2600" target="this_proxy_entity" proxy="target_entity"  />
+						<setaccumulator value="1" />
+					</cantarget>
+				</compare>
+				
+
+			</areaofeffect>
+		
+		</else>
+		
+
+	</onimpact>
+	
+
+	
+</projectile>

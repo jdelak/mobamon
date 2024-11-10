@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="true" >
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.15"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_impact_%.wav"
+			/>	
+
+
+			<billboard
+				life="400"
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .7 .9"
+				endcolor="0 0 0"
+				size="400"
+				position="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				depthbias="-100"
+			/>
+
+			<simpleemitter
+				count="8"
+				bone="_bone_centerofchest"
+				spawnrate="1000"
+				minparticlelife="150"
+				maxparticlelife="300"
+				gravity="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/animated_lightning_arc.material"
+				offsetsphere="0 0 25"
+				speed="25"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					anchor="1"
+					startcolor="1 1 1"
+					endcolor="0 .5 1"
+					minstartscale=".1"
+					maxstartscale=".25"
+					minendscale=".3"
+					maxendscale=".5"
+					minwidth="500"
+					maxwidth="700"
+					height="200"
+					startframe="1"
+					endframe="0"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="10"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="350"
+				maxspeed="750"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort="0.125"
+					endheightdistort="0"
+					startsize="8"
+					endsize="4"
+					startcolor="1 1 1"
+					midcolor="0 .5 1"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0"  particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+
+	</thread>
+</effect>
+

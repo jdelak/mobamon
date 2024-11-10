@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="post_outline2_ps" novs="true">
+	<parameter name="Sampler" type="sampler2D" default="image" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="Texcoord" type="float2" source="Texcoord0" />
+	<dependency name="TexelSize" type="float2" source="vTexelSize" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+#if 0
+	float4 f4Color = tex2D(Sampler, Texcoord);
+	
+	float3 f3Color1 = tex2D(Sampler, Texcoord + float2(TexelSize.x, TexelSize.y)).rgb;
+	float3 f3Color2 = tex2D(Sampler, Texcoord + float2(0, TexelSize.y)).rgb;
+	float3 f3Color3 = tex2D(Sampler, Texcoord + float2(-TexelSize.x, TexelSize.y)).rgb;
+	
+	float3 f3Color4 = tex2D(Sampler, Texcoord + float2(TexelSize.x, 0.0f)).rgb;
+	float3 f3Color5 = tex2D(Sampler, Texcoord + float2(-TexelSize.x, 0.0f)).rgb;
+	
+	float3 f3Color6 = tex2D(Sampler, Texcoord + float2(TexelSize.x, -TexelSize.y)).rgb;
+	float3 f3Color7 = tex2D(Sampler, Texcoord + float2(0, -TexelSize.y)).rgb;
+	float3 f3Color8 = tex2D(Sampler, Texcoord + float2(-TexelSize.x, -TexelSize.y)).rgb;
+	
+	float4 f4ColorMix = 0.0f;
+	f4ColorMix.rgb += f4Color.rgb;
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb += f3Color5;
+	f4ColorMix.rgb += f3Color6;
+	f4ColorMix.rgb += f3Color7;
+	f4ColorMix.rgb += f3Color8;
+	f4ColorMix.rgb /= 9.0f;
+	f4ColorMix.a = f4Color.a;
+	
+	float fMask = step(128.0f / 255.0f, f4Color.a);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#else
+	float fAlpha = tex2D(Sampler, Texcoord).a;
+	
+	float3 f3Color1 = tex2D(Sampler, Texcoord + float2(TexelSize.x * 0.75, TexelSize.y * 0.75)).rgb;
+	float3 f3Color2 = tex2D(Sampler, Texcoord + float2(TexelSize.x * -0.75, TexelSize.y * 0.75)).rgb;
+	float3 f3Color3 = tex2D(Sampler, Texcoord + float2(TexelSize.x * 0.75, TexelSize.y * -0.75)).rgb;
+	float3 f3Color4 = tex2D(Sampler, Texcoord + float2(TexelSize.x * -0.75, TexelSize.y * -0.75)).rgb;
+	
+	float4 f4ColorMix = 0.0f;
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb /= 4.0f;
+	f4ColorMix.a = fAlpha;
+	
+	float fMask = step(128.0f / 255.0f, fAlpha);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#endif
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+#if 0
+	float4 f4Color = Sampler_texture.Sample(Sampler_sampler, Texcoord);
+	
+	float3 f3Color1 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x, TexelSize.y)).rgb;
+	float3 f3Color2 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(0, TexelSize.y)).rgb;
+	float3 f3Color3 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(-TexelSize.x, TexelSize.y)).rgb;
+	
+	float3 f3Color4 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x, 0.0f)).rgb;
+	float3 f3Color5 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(-TexelSize.x, 0.0f)).rgb;
+	
+	float3 f3Color6 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x, -TexelSize.y)).rgb;
+	float3 f3Color7 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(0, -TexelSize.y)).rgb;
+	float3 f3Color8 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(-TexelSize.x, -TexelSize.y)).rgb;
+	
+	float4 f4ColorMix = 0.0f;
+	f4ColorMix.rgb += f4Color.rgb;
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb += f3Color5;
+	f4ColorMix.rgb += f3Color6;
+	f4ColorMix.rgb += f3Color7;
+	f4ColorMix.rgb += f3Color8;
+	f4ColorMix.rgb /= 9.0f;
+	f4ColorMix.a = f4Color.a;
+	
+	float fMask = step(128.0f / 255.0f, f4Color.a);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#else
+	float fAlpha = Sampler_texture.Sample(Sampler_sampler, Texcoord).a;
+	
+	float3 f3Color1 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x * 0.75, TexelSize.y * 0.75)).rgb;
+	float3 f3Color2 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x * -0.75, TexelSize.y * 0.75)).rgb;
+	float3 f3Color3 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x * 0.75, TexelSize.y * -0.75)).rgb;
+	float3 f3Color4 = Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize.x * -0.75, TexelSize.y * -0.75)).rgb;
+	
+	float4 f4ColorMix = 0.0f;
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb /= 4.0f;
+	f4ColorMix.a = fAlpha;
+	
+	float fMask = step(128.0f / 255.0f, fAlpha);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#endif
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+#if 0
+	vec4 f4Color = texture2D(Sampler, Texcoord);
+	
+	vec3 f3Color1 = texture2D(Sampler, Texcoord + vec2(TexelSize.x, TexelSize.y)).rgb;
+	vec3 f3Color2 = texture2D(Sampler, Texcoord + vec2(0, TexelSize.y)).rgb;
+	vec3 f3Color3 = texture2D(Sampler, Texcoord + vec2(-TexelSize.x, TexelSize.y)).rgb;
+	
+	vec3 f3Color4 = texture2D(Sampler, Texcoord + vec2(TexelSize.x, 0.0f)).rgb;
+	vec3 f3Color5 = texture2D(Sampler, Texcoord + vec2(-TexelSize.x, 0.0f)).rgb;
+	
+	vec3 f3Color6 = texture2D(Sampler, Texcoord + vec2(TexelSize.x, -TexelSize.y)).rgb;
+	vec3 f3Color7 = texture2D(Sampler, Texcoord + vec2(0, -TexelSize.y)).rgb;
+	vec3 f3Color8 = texture2D(Sampler, Texcoord + vec2(-TexelSize.x, -TexelSize.y)).rgb;
+	
+	vec4 f4ColorMix = 0.0f;
+	f4ColorMix.rgb += f4Color.rgb;
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb += f3Color5;
+	f4ColorMix.rgb += f3Color6;
+	f4ColorMix.rgb += f3Color7;
+	f4ColorMix.rgb += f3Color8;
+	f4ColorMix.rgb /= 9.0f;
+	f4ColorMix.a = f4Color.a;
+	
+	float fMask = step(128.0f / 255.0f, f4Color.a);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#else
+	float fAlpha = texture2D(Sampler, Texcoord).a;
+	
+	vec3 f3Color1 = texture2D(Sampler, Texcoord + vec2(TexelSize.x * 0.75, TexelSize.y * 0.75)).rgb;
+	vec3 f3Color2 = texture2D(Sampler, Texcoord + vec2(TexelSize.x * -0.75, TexelSize.y * 0.75)).rgb;
+	vec3 f3Color3 = texture2D(Sampler, Texcoord + vec2(TexelSize.x * 0.75, TexelSize.y * -0.75)).rgb;
+	vec3 f3Color4 = texture2D(Sampler, Texcoord + vec2(TexelSize.x * -0.75, TexelSize.y * -0.75)).rgb;
+	
+	vec4 f4ColorMix = vec4(0.0f);
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb /= 4.0f;
+	f4ColorMix.a = fAlpha;
+	
+	float fMask = step(128.0f / 255.0f, fAlpha);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#endif
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+#if 0
+	vec4 f4Color = texture(Sampler, Texcoord);
+	
+	vec3 f3Color1 = texture(Sampler, Texcoord + vec2(TexelSize.x, TexelSize.y)).rgb;
+	vec3 f3Color2 = texture(Sampler, Texcoord + vec2(0, TexelSize.y)).rgb;
+	vec3 f3Color3 = texture(Sampler, Texcoord + vec2(-TexelSize.x, TexelSize.y)).rgb;
+	
+	vec3 f3Color4 = texture(Sampler, Texcoord + vec2(TexelSize.x, 0.0f)).rgb;
+	vec3 f3Color5 = texture(Sampler, Texcoord + vec2(-TexelSize.x, 0.0f)).rgb;
+	
+	vec3 f3Color6 = texture(Sampler, Texcoord + vec2(TexelSize.x, -TexelSize.y)).rgb;
+	vec3 f3Color7 = texture(Sampler, Texcoord + vec2(0, -TexelSize.y)).rgb;
+	vec3 f3Color8 = texture(Sampler, Texcoord + vec2(-TexelSize.x, -TexelSize.y)).rgb;
+	
+	vec4 f4ColorMix = 0.0f;
+	f4ColorMix.rgb += f4Color.rgb;
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb += f3Color5;
+	f4ColorMix.rgb += f3Color6;
+	f4ColorMix.rgb += f3Color7;
+	f4ColorMix.rgb += f3Color8;
+	f4ColorMix.rgb /= 9.0f;
+	f4ColorMix.a = f4Color.a;
+	
+	float fMask = step(128.0f / 255.0f, f4Color.a);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#else
+	float fAlpha = texture(Sampler, Texcoord).a;
+	
+	vec3 f3Color1 = texture(Sampler, Texcoord + vec2(TexelSize.x * 0.75, TexelSize.y * 0.75)).rgb;
+	vec3 f3Color2 = texture(Sampler, Texcoord + vec2(TexelSize.x * -0.75, TexelSize.y * 0.75)).rgb;
+	vec3 f3Color3 = texture(Sampler, Texcoord + vec2(TexelSize.x * 0.75, TexelSize.y * -0.75)).rgb;
+	vec3 f3Color4 = texture(Sampler, Texcoord + vec2(TexelSize.x * -0.75, TexelSize.y * -0.75)).rgb;
+	
+	vec4 f4ColorMix = vec4(0.0f);
+	f4ColorMix.rgb += f3Color1;
+	f4ColorMix.rgb += f3Color2;
+	f4ColorMix.rgb += f3Color3;
+	f4ColorMix.rgb += f3Color4;
+	f4ColorMix.rgb /= 4.0f;
+	f4ColorMix.a = fAlpha;
+	
+	float fMask = step(128.0f / 255.0f, fAlpha);
+	
+	f4ColorMix *= 1.0f - fMask;
+	
+	Out = f4ColorMix;
+	Out.a = 1.0f - Out.a;
+#endif
+		?>
+	</case>
+</node>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="0.5">
+
+			<!-- Passive -->
+			<template name="passive1" parentmodel="true" parentskeleton="true">
+				<simpleemitter bone="_bone_fx_07" position="0 0 0" spawnrate="20" minparticlelife="700" maxparticlelife="1500" gravity="0" speed="5" direction="0 0 1" material="/shared/effects/smaterials/twirl_blend.material" depthbias="-50" directionalspace="local" particledirectionalspace="local">
+					<particle anchor="1" minangle="0" maxangle="180" color="1 .7 .2" startalpha="0" midalpha=".1" endalpha="0" midalphapos=".2" anglespeed="0" startsize="100" endsize="200" />
+				</simpleemitter>
+				<simpleemitter bone="_bone_fx_07" position="0 0 0" spawnrate="20" minparticlelife="700" maxparticlelife="1500" gravity="0" speed="5" direction="0 0 1" material="/shared/effects/smaterials/sand_spin_no_center.material" depthbias="-50" directionalspace="local" particledirectionalspace="local">
+					<particle anchor="1" minangle="0" maxangle="180" color=".5 .35 .15" startalpha=".5" midalpha=".5" endalpha="0" midalphapos=".2" anglespeed="0" startsize="100" endsize="250"/>
+				</simpleemitter>
+			</template>
+			<instance name="passive1"/>
+
+
+			
+</particlesystem>			
+
+<!-- 1 -->
+<particlesystem name="system1" space="entity" scale="0.5">
+
+			<!-- Sandstorm -->
+			<template name="sandstorm" parentmodel="true" parentskeleton="true" directionalspace="local">
+			<model model="/shared/models/invis.mdf" parentskeleton="true" directionalspace="local" delay="{zdelay}" scale="{zscale}" position="{zpos}" loop="false" life="5000">
+				<sound linearfalloff="true" falloffstart="410" falloffend="2400" volume=".41" sample="sounds/sfx_aoe.wav" channel="90030"/>
+				<simpleemitter timenudge="0" spawnrate="4" minparticlelife="800" maxparticlelife="1000" depthbias="-10" material="/shared/effects/smaterials/sand_groundsprite_large.material" directionalspace="local" particledirectionalspace="local">
+					<particle startsize="600" midsize="400" endsize="100" midsizepos=".6" color=".8" startalpha="0" midalpha=".8" endalpha="0" midalphapos=".5" pitch="-70" maxangle="360"/>
+				</simpleemitter>
+				<template name="1" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<billboard delay="{zdelay}" life="2000" material="/shared/effects/smaterials/ground_sand_spin.material" minstartscale="5" maxstartscale="6" endscale="2" color=".65" startalpha="0" midalpha=".65" endalpha="0" midalphapos=".2" maxroll="360" minrollspeed="240" maxrollspeed="360" lockup="1" lockright="1" pitch="80" depthbias="-10"/>
+				</template>
+				<instance name="1" zdelay="0"/>
+				<instance name="1" zdelay="500"/>
+				<instance name="1" zdelay="1000"/>
+				<instance name="1" zdelay="1500"/>
+				<simpleemitter timenudge="0" spawnrate="20" particlelife="2000" offsetsphere="75 75 0" offsetradial="75 0 0" direction="0 0 1" directionalspace="local" particledirectionalspace="local">
+					<particle>
+						<billboard life="1000" material="/shared/effects/smaterials/sand_poofy_no_center.material" startscale="4" endscale="2" color="1 .9 .5" startalpha="0" midalpha=".5" endalpha="0" midalphapos=".2" maxroll="360" lockup="1" lockright="1" pitch="80" depthbias="-15"/>
+					</particle>
+				</simpleemitter>
+				<light position="0 0 50" expirelife="1250" startcolor="2 1 0" endcolor="0" falloffstart="0" falloffend="250" directionalspace="local"/>
+				<simpleemitter life="400" spawnrate="3600" gravity="10" count="10" minspeed="100" maxspeed="300" drag=".01" minangle="0" maxangle="20" minparticlelife="750" maxparticlelife="1000" direction="0 0 1" offsetsphere="35" material="/shared/effects/smaterials/sand_poofy.material" directionalspace="local" particledirectionalspace="local">
+					<particle minangle="0" maxangle="360" minanglespeed="-80" maxanglespeed="80" startsize="180" endsize="40" color="1 .9 .5" startalpha="0" midalpha=".25" endalpha="0" midalphapos=".25"/>
+				</simpleemitter>
+				<billboard expirelife="1500" material="/shared/effects/materials/whitedot.material" position="0 0 25" depthbias="-75" startcolor=".25 .1 0" endcolor="0 0 0" midcolorpos=".2" startsize="800" endsize="0" startalpha="1" endalpha="0" lockup="1" lockright="1" pitch="80" directionalspace="local"/>
+				<simpleemitter timenudge="0" spawnrate="20" minparticlelife="700" maxparticlelife="1400" position="0 0 10" material="/shared/effects/smaterials/sand_poofy_no_center.material" minangle="0" maxangle="180" direction="0 0 1" depthbias="-25" directionalspace="local" particledirectionalspace="local">
+					<particle startanchor="1" endanchor=".75" minangle="-360" maxangle="360" color=".6 .4 .125" minstartscale="50" maxstartscale="125" minendscale="2" maxendscale="5" startalpha="0" midalpha=".35" endalpha="0" midalphapos=".15" turn="true" lockup="1" lockright="1" pitch="80"/>
+				</simpleemitter>
+				<simpleemitter timenudge="0" spawnrate="7" minparticlelife="700" maxparticlelife="1400" position="0 0 10" material="/shared/effects/smaterials/sand_poofy_no_center.material" minangle="0" maxangle="180" direction="0 0 1" depthbias="-25" directionalspace="local" particledirectionalspace="local">
+					<particle startanchor="1" endanchor=".75" minangle="-360" maxangle="360" color=".8 .65 .4" minstartscale="175" maxstartscale="200" minendscale="10" maxendscale="20" startalpha="0" midalpha=".35" endalpha="0" midalphapos=".15" turn="true" lockup="1" lockright="1" pitch="80"/>
+				</simpleemitter>
+				<simpleemitter spawnrate="5" particlelife="2000" offsetsphere="50 50 0" directionalspace="local" particledirectionalspace="local">
+					<particle>
+						<billboard life="1000" material="/shared/effects/smaterials/sand_groundsprite.material" startscale="4" endscale="2.5" color=".9 .8 .7" startalpha="0" midalpha=".5" endalpha="0" midalphapos=".2" minroll="0" maxroll="360" lockup="1" lockright="1" pitch="80" depthbias="-10"/>
+					</particle>
+				</simpleemitter>
+				<trackeremitter spawnrate="10" position="0 0 50" particlelife="1000" offsetradial="225" offsetsphere="75" targetposition="0 0 20" minspeed="200" maxspeed="600" acceleration="6000" trackspeed="12" distancelife="true" tracktype="angular">
+					<template name="wind_trail" parentmodel="true" parentskeleton="true" directionalspace="local">
+						<particle minscale=".5" maxscale="8">
+							<trailemitter minlife="200" maxlife="300" spawnrate="60" particlelife="500" material="/shared/effects/materials/solid_white.material" startparticlecolor="1" midparticlecolor="1" endparticlecolor="0" texposscale="0" texstretchscale="1">
+								<particle startsize="1" midsize="5" endsize="6" color="{color}"/>
+							</trailemitter>
+						</particle>
+					</template>
+					<instance name="wind_trail" color=".1"/>
+					<instance name="wind_trail" color=".075"/>
+					<instance name="wind_trail" color=".05"/>
+					<instance name="wind_trail" color=".025"/>
+				</trackeremitter>
+
+				<billboard expirelife="250" material="/shared/effects/materials/whitedot.material" position="0 0 10" depthbias="-50" startcolor=".2 .1 0" endcolor="0 0 0" size="400" startalpha="1" endalpha="0" lockup="1" lockright="1" pitch="80"/>
+				</model>
+			</template>
+			<instance name="sandstorm" zscale="1" zdelay="2000" zpos="0 0 30" />			
+			
+
+
+</particlesystem>
+
+<!-- 2 -->
+<particlesystem name="system2" space="entity" scale="1">
+
+			<!-- Sound -->
+			<sound delay="700" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="550" falloffend="2340" volume="0.45" channel="90030"/>
+
+</particlesystem>			
+			
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+<spawnparticlesystem instance="instance2" particlesystem="system2"/>
+<waitfordeath instance="instance0"/>
+<waitfordeath instance="instance1"/>
+<waitfordeath instance="instance2"/>
+</thread>
+</effect>

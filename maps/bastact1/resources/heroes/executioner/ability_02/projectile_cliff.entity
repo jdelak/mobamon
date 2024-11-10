@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Executioner_Ability4_Cliff"
+
+	speed="1100"
+	gravity="0"
+
+	modelscale="1.0"
+	model=""
+	
+	canturn="true"
+	
+	touchprojectileblockers="true"
+	touchcliffs="true"
+	
+	touchradius="1"
+	touchradiusdiradjust="true"
+	touchtargetscheme="all_buildings"
+	touchignoreinvulnerable="true"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+>	
+	<ontouch>
+		<propareaeffect center="source_entity" radius="150" anim="flamehit" />
+		<areaofeffect
+			radius="200"
+			targetselection="all"
+			targetscheme="all"
+			effecttype="Magic Splash"
+			maxtotalimpacts="-1"
+			ignore="source_entity"
+		>
+			<condition test="hasstate State_Executioner_Ability4_Disabled" target="target_entity">
+
+				<getconstant name="damage_impact" />
+				<setvar0 a="result" />
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<setvar0 a="result" b="var0" op="mult" />
+				<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+				
+				<cantarget effecttype="CrowdControl" >
+					<applystate target="target_entity" name="State_Stunned" duration="1000"  />
+				</cantarget>
+				<playeffect effect="effects/impact_wallself.effect" target="target_entity" source="target_entity" />
+			</condition>
+		</areaofeffect>
+		<kill target="this_proxy_entity" source="" />
+		<kill target="this_entity" source="" />
+	</ontouch>
+	
+	<onimpact>
+
+	</onimpact>
+</projectile>

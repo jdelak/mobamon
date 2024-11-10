@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.65">
+		
+		
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="0 0 0"
+				midcolor="0 2 8"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="100"
+				endfalloffend="200"
+				directionalspace="world"
+			/>
+		
+	
+			<template name="">
+				<billboard	
+					bone="{zbone}"			
+					expirelife="250"
+					material="/shared/effects/materials/whitedot.material"
+					position="0 0 0"
+					depthbias="-100"
+					startcolor="0 .1 .25"
+					endcolor="0 0 0"
+					size="100"
+					startalpha="1"
+					endalpha="0"				
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			</template>
+			
+			<instance name="" zbone="_bone_sword_fx_04"/>
+			<instance name="" zbone="_bone_sword_fx_05"/>
+			<instance name="" zbone="_bone_sword_fx_06"/>
+			<instance name="" zbone="_bone_sword_fx_07"/>
+			<instance name="" zbone="_bone_sword_fx_08"/>
+		
+		
+		
+			<model
+				parentskeleton="true"
+				expirelife="500"
+				model="sword/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				scale="1"
+				color="0 .5 1"
+				startalpha="2"
+				endalpha="0"
+			>
+			</model>
+
+			<model
+				expirelife="1000"
+				position="0 0 -15"
+				model="cyclones/model.mdf"
+				anim="idle"
+				startscale=".5"
+				endscale=".5"
+			>
+
+				<template name="wind">
+
+					<billboard	
+						expirelife="250"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center_add.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						color="0 .1 .2"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".75"
+						endalpha="0"
+					/>
+
+					<billboard	
+						expirelife="250"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center_add.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						color="0 .1 .2"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".4"
+						endalpha="0"
+					/>
+
+					<billboard	
+						expirelife="250"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center_add.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						color="0 .1 .2"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".4"
+						endalpha="0"
+					/>
+
+					<orbiteremitter
+						position="0 0 50"
+						bone="{bone}"
+						spawnrate="50"
+						minparticlelife="250"
+						maxparticlelife="500"
+						origin="0 0 -{origin}" 
+						orbit="{orbit} 0 0" 
+						speed="2"
+						direction="0 0 1" 
+						offset="0 0 0"
+						cylindrical="true" 
+						material="/shared/effects/smaterials/whitedot.material"
+						expirelife="500"
+						inheritvelocity="1"
+					>
+						<particle
+							minangle="-360"
+							maxangle="360"
+							minanglespeed="0"
+							maxanglespeed="0"					
+							color="0 .05 .1"
+							startalpha="0"
+							midalpha=".15"
+							endalpha="0"
+							endalphapos=".3"
+							minsize="25"
+							maxsize="75"							
+						/>
+					</orbiteremitter>
+
+				</template>	
+
+				<instance name="wind" pos1="4" size2="130" speed="500" orbit="-11" origin="12" bone=""/>
+				<instance name="wind" pos1="8" size2="160" speed="500" orbit="-10" origin="25" bone="_bone_cyclone02"/>
+				<instance name="wind" pos1="12" size2="190" speed="500" orbit="-9" origin="35" bone="_bone_cyclone03"/>
+				<instance name="wind" pos1="15" size2="220" speed="500" orbit="-6" origin="50" bone="_bone_cyclone04"/>
+				<instance name="wind" pos1="20" size2="250" speed="500" orbit="-5" origin="60" bone="_bone_cyclone05"/>
+				<instance name="wind" pos1="25"  size2="280" speed="500" orbit="-3" origin="70" bone="_bone_cyclone06"/>
+
+			</model>
+
+			<billboard
+				bone="_bone_centerofchest"			
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				position="0 0 10"
+				depthbias="-100"
+				startcolor="0 .1 .25"
+				endcolor="0 0 0"
+				size="250"
+				startalpha="1"
+				endalpha="0"				
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1">
+		
+
+			<template name="">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="60"
+					particlelife="750"
+					speed="0"
+					offsetsphere="16 16 0"
+					minangle="0"
+					maxangle="1"
+					direction="0 1 0"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="{zbone}"
+							life="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							startscale="1.5"
+							endscale="1"
+							startcolor="0 0 0"
+							midcolor="0 .035 .075"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							directionalspace="local"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							minrollspeed="270"
+							maxrollspeed="360"
+							startframe="0"
+							endframe="1"
+							depthbias="-25"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zbone="_bone_rightfoot"/>
+			<instance name="" zbone="_bone_leftfoot"/>
+
+			<billboard
+				expirelife="250"
+				position="0 40 25"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .125 .25"
+				scale="4"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

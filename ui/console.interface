@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="console">
+	
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	
+	<template name="optionsCombobox">
+		<panel height="2.5h" width="{width=100%}">
+			<panel float="right" padding="0.5h" noclick="true">
+				<panel width="{labelWidth=14h}" noclick="true" passivechildren="true"><!-- Label Portion -->
+					<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+					<panel hmargin="0.75h" vmargin="0.75h">
+						<label textvalign="center" shadow="true" style="whiteTextColor" font="maindyn_14" content="{label}" noclick="true"/>
+					</panel>
+				</panel>
+				<combobox
+					width="{boxWidth=-14.5h}"
+					color="invisible"
+					itemheight="2.5h"
+					scrolltexture="/ui/_textures/elements/combobox.tga"
+					handleheight="5h" handlewidth="2.5h"
+					scrollbarsize="2.5h"
+					highlight="over"
+					highlightcolor="invisible"
+					highlightbordercolor="invisible"
+					maxlistheight="6"
+					onloadlua="{onloadlua}"
+					cvar="{cvar}"
+					name="{comboboxName}"
+					hscrollbar="0"
+					horizontal="false"					
+				>
+					<widgetstate statename="up">
+						<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						<panel hmargin="0.5h" vmargin="0.5h">
+							<panel align="right" width="100@" height="100%">
+								<image texture="/ui/elements:arrow_rounded" rotation="90" color="0 0 0 0.5" x="0.2h" y="0.2h"/>
+								<image texture="/ui/elements:arrow_rounded" rotation="90" style="whiteTextColor"/>
+							</panel>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="over">
+						<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_button_bg_white" color="#907c3e" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						<panel hmargin="0.5h" vmargin="0.5h">
+							<panel align="right" width="100@" height="100%">
+								<image texture="/ui/elements:arrow_rounded" rotation="90" color="0 0 0 0.5" x="0.2h" y="0.2h"/>
+								<image texture="/ui/elements:arrow_rounded" rotation="90" style="whiteTextColor"/>
+							</panel>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="disabled">
+						<panel color="gray"/>
+					</widgetstate>
+					<widgetstate statename="itembg">
+						<panel align="center" width="-1.5h" valign="center" height="-0.25h">
+							<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+							<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="listbg">
+						<panel height="+1h" valign="center">
+							<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.25" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+							<frame texture="/ui/elements:rounded_button_bg_white" color="#333333" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+							<panel hmargin="0.25h" vmargin="0.25h" noclick="true">
+								<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.5h"/>
+								<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+							</panel>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="itemhighlight">
+						<panel align="center" width="-1.5h" valign="center" height="-0.25h">
+							<frame texture="/ui/elements:rounded_button_bg_white" color="#514213" borderthickness="0.5h" rendermode="additive"/>
+						</panel>
+					</widgetstate>
+				</combobox>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="optionsCheckboxState">
+		<widgetstate statename="{statename}" x="{x}" y="{y}" height="{height=3h}">
+			<panel width="100%" align="right">
+				<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" color="#0F0F0F" borderthickness="0.5h"/>
+				<panel hmargin="0.75h" vmargin="0.5h">
+					<label align="right" width="{labelWidth}" color="{labelColor=#f5f2e2}" shadow="true" shadowoffset="2" font="{font=maindyn_18}" textvalign="center" content="{label}"/>
+				</panel>
+			</panel>
+			<panel x="2s" width="{boxSize}" height="{boxSize}" valign="center">
+				<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+				<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				<panel hmargin="0.25h" vmargin="0.25h">
+					<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				</panel>
+				<panel align="center" valign="center" width="1.5h" height="1.5h">
+					<image color="0 0 0 0.5" texture="/ui/_textures/elements/closex3.tga" x="0.15h" y="0.15h" visible="{checked=false}" />
+					<image texture="/ui/_textures/elements/closex3.tga" color="#999999" visible="{checked=false}" />
+				</panel>
+			</panel>			
+		</widgetstate>
+	</template>
+
+	<template name="optionsCheckbox">
+		<button width="{width=100%}" color="invisible" height="{height=3h}" align="{align}" numstates="2" valign="{valign}" x="{x}" y="{y}" cvar="{cvar}" passivechildren="true" onloadlua="self:Sleep(100, function() if (not Cvar.GetCvar('{cvar}')) then SetSave('{cvar}', 'false', 'bool') end end) {onloadlua}" oneventlua="{oneventlua}" onclicklua="{onclicklua}" onshow="{onshow}">
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" statename="up"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" statename="over" over="true"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" statename="down" x="1" y="1"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" statename="disabled"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" checked="true" statename="up2"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" checked="true" statename="over2" over="true"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" checked="true" statename="down2" x="1" y="1"/>
+			<instance name="optionsCheckboxState" label="{label}" height="{height=3h}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" checked="true" statename="disabled2"/>
+		</button>
+	</template>	
+	
+	<console name="console_widget" scrolltexture="/ui/elements/combobox3.tga" />
+
+
+	<instance name="iconButton" id="console_menu_toggle_on" width="32s" height="32s" x="-54s" align="right" valign="top" rendermode="grayscale" font="maindyn_15" icon="/ui/game/shared/minimap/textures/mini_map_options.tga" borderthickness=".6h" />	
+	<instance name="closeXButton" buttonName="console_closex" width="32s" height="32s" align="right" x="-18s" valign="top" borderthickness=".6h" onclicklua="Cmd('Action ToggleConsole')" />	
+	
+	
+	<panel name="console_menu" visible="0" noclick="1" width="20%" height="100%" align="right" valign="top" color="0 0 0 1" >
+	
+		<instance name="dialogWrapper1" inneralpha="0 0 0 .9" />			
+		<panel width="-1.5h" align="center" float="bottom" padding="0.75h">
+			
+			<panel height="0"/>
+			<panel height="38s">
+				<frame color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+				<frame color="#333333" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+				<label textvalign="center" x="12s" font="maindyn_22" color="#FFDD33" outline="true" outlinecolor="0 0 0 .7" content="Console Options"/>
+				<panel align="right" grow="true" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h">
+					<panel width="100@">
+						<instance name="closeXButton" buttonName="console_menu_toggle_off" onclicklua="" align="center" valign="center"/>
+					</panel>
+				</panel>
+			</panel>
+			
+			<panel name="console_menu_contents" color="black" visible="1" noclick="1" float="bottom" padding="2s" >
+
+				<instance name="standardButton" dontRegister="1"  id="console_menu_contents_debug_btn" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Debug / Help" height="28s" onclicklua="local wasVisible = self:GetWidget('console_menu_contents_debug'):IsVisibleSelf() for i,v in pairs(self:GetGroup('console_menu_contents_group') or {}) do v:SetVisible(0) end self:GetWidget('console_menu_contents_debug'):SetVisible(not wasVisible)" />				
+				<panel name="console_menu_contents_debug" color="black" group="console_menu_contents_group" visible="0" noclick="1" float="bottom" padding="2s" sticky="1" stickytoinvis="0" width="100%" grow="1" regrow="1">
+					<instance name="optionsCheckbox" cvar="ui_dont_require_chat_server" height="32s" boxSize="23s" font="maindyn_18"  label="Connecting To CServer Fix"/>					
+					<instance name="optionsCheckbox" cvar="php_printdebuginfo" height="32s" boxSize="23s" font="maindyn_18"  label="PHP Debug"/>
+					<instance name="optionsCheckbox" cvar="http_printdebuginfo" height="32s" boxSize="23s" font="maindyn_18" label="HTTP Debug"/>
+					<instance name="optionsCheckbox" cvar="ui_debugHoverWidget" height="32s" boxSize="23s" font="maindyn_18" label="Widget Hover"/>
+					<instance name="optionsCheckbox" cvar="host_dynamicResReload" height="32s" boxSize="23s" font="maindyn_18" label="Dynamic Reload"/>
+					<instance name="optionsCheckbox" cvar="con_notify" height="32s" boxSize="23s" font="maindyn_18" label="Console Notify"/>
+					<instance name="optionsCheckbox" cvar="ui_paxDemo" height="32s" boxSize="23s" font="maindyn_18" label="PAX Demo"/>
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_ex_btn_2" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Clear Console" rendermode="grayscale" height="28s" onclicklua="Cmd('clear')" />					
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_reload_btn" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Reload Interfaces" rendermode="grayscale" height="28s" onclicklua="Cmd('ReloadInterfaces')" />
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_dump_btn_1" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Dump MainUI Info" rendermode="grayscale" height="28s" onclicklua="printr(mainUI)" />
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_dump_btn_2" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Dump Postgame Info" rendermode="grayscale" height="28s" onclicklua="printr(PostGame)" />
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_dump_btn_3" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Dump Quest Info" rendermode="grayscale" height="28s" onclicklua="printr(Quests)" />
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_dump_btn_5" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Dump Party Info" rendermode="grayscale" height="28s" onclicklua="printr(Party) Cmd('LuaTriggerShowParams PartyStatus') Cmd('LuaTriggerShowParams PartyTrigger')" />
+					<instance name="standardButton" dontRegister="1"  id="console_menu_contents_ex_btn_1" outline="1" sticky="1" stickytoinvis="0" outlinecolor="black" label="Flush Logs" rendermode="grayscale" height="28s" onclicklua="Cmd('flushlogs')" />
+				</panel>				
+				
+				<instance name="standardButton" dontRegister="1"  id="console_menu_contents_visibility_btn" sticky="1" stickytoinvis="0" outline="1" outlinecolor="black" label="Visiblity" height="28s" onclicklua="local wasVisible = self:GetWidget('console_menu_contents_visibility'):IsVisibleSelf() for i,v in pairs(self:GetGroup('console_menu_contents_group') or {}) do v:SetVisible(0) end self:GetWidget('console_menu_contents_visibility'):SetVisible(not wasVisible)" />				
+				<panel name="console_menu_contents_visibility" color="black" group="console_menu_contents_group" visible="0" noclick="1" float="bottom" padding="2s" sticky="1" stickytoinvis="0" width="100%"  grow="1" regrow="1">
+					<instance name="optionsCheckbox" cvar="con_showAI" height="32s" boxSize="23s" font="maindyn_18"  label="Show AI"/>
+					<instance name="optionsCheckbox" cvar="con_showChatClientNet" height="32s" boxSize="23s" font="maindyn_18" label="Show Chat Client Net"/>
+					<instance name="optionsCheckbox" cvar="con_showClient" height="32s" boxSize="23s" font="maindyn_18"  label="Show Client"/>
+					<instance name="optionsCheckbox" cvar="con_showClientGame" height="32s" boxSize="23s" font="maindyn_18"  label="Show Client Game"/>
+					<instance name="optionsCheckbox" cvar="con_showDev" height="32s" boxSize="23s" font="maindyn_18"  label="Show Dev"/>
+					<instance name="optionsCheckbox" cvar="con_showErr" height="32s" boxSize="23s" font="maindyn_18"  label="Show Error"/>
+					<!--
+					<instance name="optionsCheckbox" cvar="con_showGV" height="32s" boxSize="23s" font="maindyn_18"  label="Show GV"/>
+					<instance name="optionsCheckbox" cvar="con_showGVDebug" height="32s" boxSize="23s" font="maindyn_18"  label="Show GV Debug"/>
+					-->
+					<instance name="optionsCheckbox" cvar="con_showLuaError" height="32s" boxSize="23s" font="maindyn_18"  label="Show Lua Error"/>
+					<instance name="optionsCheckbox" cvar="con_showLuaPrint" height="32s" boxSize="23s" font="maindyn_18"  label="Show Lua Print"/>
+					<instance name="optionsCheckbox" cvar="con_showMem" height="32s" boxSize="23s" font="maindyn_18"  label="Show Memory"/>
+					<instance name="optionsCheckbox" cvar="con_showNet" height="32s" boxSize="23s" font="maindyn_18"  label="Show Net"/>
+					<instance name="optionsCheckbox" cvar="con_showPerf" height="32s" boxSize="23s" font="maindyn_18"  label="Show Performance"/>
+					<instance name="optionsCheckbox" cvar="con_showRes" height="32s" boxSize="23s" font="maindyn_18"  label="Show Resources"/>
+					<instance name="optionsCheckbox" cvar="con_showScript" height="32s" boxSize="23s" font="maindyn_18"  label="Show Script"/>
+					<instance name="optionsCheckbox" cvar="con_showServer" height="32s" boxSize="23s" font="maindyn_18"  label="Show Server"/>
+					<instance name="optionsCheckbox" cvar="con_showServerGame" height="32s" boxSize="23s" font="maindyn_18"  label="Show Game Server"/>
+					<instance name="optionsCheckbox" cvar="con_showStd" height="32s" boxSize="23s" font="maindyn_18"  label="Show Standard"/>
+					<instance name="optionsCheckbox" cvar="con_showUI" height="32s" boxSize="23s" font="maindyn_18"  label="Show UI"/>
+					<instance name="optionsCheckbox" cvar="con_showVid" height="32s" boxSize="23s" font="maindyn_18"  label="Show Video"/>
+					<instance name="optionsCheckbox" cvar="con_showWarn" height="32s" boxSize="23s" font="maindyn_18"  label="Show Warnings"/>
+				</panel>
+				
+			</panel>
+			
+		</panel>
+
+	</panel>
+	
+	<lua file="/ui/shared/console.lua"/>
+	
+</interface>

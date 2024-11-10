@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Indestructible_Empower_1"
+	
+	cost="1655"
+	healthregenmultiplierpercharge="0.15"
+	maxcharges="1"
+>
+	<!-- Tooltip only -->
+	<constant name="hpregen_mult" value="15" adjustment="none"  />
+	
+	<onframe>
+		<compare a="source_health_percent" b="0.2" op="lt" >
+			<setcharges a="1" />
+		</compare>
+		<else>
+			<setcharges a="0" />
+		</else>
+	</onframe>
+
+</qualityitem>

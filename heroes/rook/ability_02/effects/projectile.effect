@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+
+	
+		<particlesystem name="system0" space="world" scale="1.0" >
+
+		<sound
+			volume="0.75"
+			falloffstart="500"
+			falloffend="2000"
+			sample="../sounds/sfx_attack.wav"
+		/>
+		
+		<!--
+		<light
+			
+			startcolor="2 1 1"
+			expirelife="100"
+			endcolor="0 0 0"
+			falloffstart="00"
+			falloffend="100"
+			position="0 0 20"
+		
+		/>
+		
+		
+		<light
+			delay="200"
+			expirelife="300"
+			endcolor="0 0 0"
+			startcolor="4 1 5"
+			falloffstart="00"
+			falloffend="120"
+			position="0 0 70"
+		
+		/>
+		
+	
+		-->
+		<billboard
+			material="/shared/effects/smaterials/whitedot.material"
+			size="150"
+			expirelife="200"
+			startcolor=".5 .1 .0"
+			endcolor="0 0 0"
+			depthbias="-20"
+		/>
+			
+		
+		<simpleemitter		
+							
+			spawnrate="80"
+			minparticlelife="800"
+			maxparticlelife="1000"
+			gravity="1"
+			speed="300"
+			offsetsphere="10 10 10"
+			drag="0.04"
+			inheritvelocity=".4"
+			direction="0 0 0"
+			material="/shared/effects/smaterials/feather.material"
+			position="0 0 0"
+		>
+			<particle 
+				
+				color="1 0 0 "
+				startalpha="1"
+				endalpha="0"
+				midcolorpos=".2"				
+				minangle="0"
+				maxangle="360"
+				minanglespeed="-30"
+				maxanglespeed="30"
+				size="16"
+										
+			/>			
+		</simpleemitter>	
+		
+		
+		<trailemitter
+			timenudge="300"
+			bone="_bone_wing_r_3"
+			spawnrate="50"
+			particlelife="350"
+			texpostime="350"
+			texposscale="0.0"
+			texstretchscale=".4"
+			material="/shared/effects/smaterials/trail_blend.material"
+			subframepos="true"
+			
+		>
+			<particle
+				color="0 0 0"
+				
+				startsize="22"
+				alpha=".4"
+				endsize="0"
+				midsizepos="0.25"
+		/>
+		</trailemitter>		
+		
+		<trailemitter
+		timenudge="300"
+			bone="_bone_wing_l_3"
+			spawnrate="50"
+			particlelife="350"
+			texpostime="350"
+			texposscale="0.0"
+			texstretchscale=".4"
+			material="/shared/effects/smaterials/trail_blend.material"
+			subframepos="true"
+			
+		>
+			<particle
+				color="1 0 0"
+				alpha=".4"
+				startsize="22"
+				
+				endsize="0"
+				midsizepos="0.25"
+		/>
+		</trailemitter>			
+	
+
+      </particlesystem>
+   </definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	
+	<waitfordeath instance="instance0" />
+	
+	<!-- <die /> -->
+</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

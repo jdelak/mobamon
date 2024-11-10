@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+	
+	
+	<sound delay="330" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="510" falloffend="11400" volume="0.45" channel="90054" />
+
+	<!-- Passive -->
+	<template name="zaku_bottle" parentmodel="true" parentskeleton="true" directionalspace="local">
+		<model bone="_bone_Bottle_prop" loop="true" name="spin" model="flask/model.mdf" anim="idle" color="2 2 2" alpha="1" scale="1.6">
+			<billboard delay="3800" position="0 0 0" life="3500" material="/shared/effects/smaterials/whitedot.material" startcolor="0 0 0" midcolor=".125 .25 0" endcolor="0 0 0" midcolorpos=".2" size="40" depthbias="-30"/>
+		</model>
+		<simpleemitter life="2000" delay="4500" bone="_bone_Buggaboo_LowerLipBone001" position="0 0 0" spawnrate="120" particlelife="1000" offsetsphere="0 0 0" direction="0 0 0" minspeed="50" maxspeed="200" gravity="25" particledirectionalspace="local" directionalspace="local">
+			<particle turn="true">
+				<billboard bone="_bone_center" minlife="300" maxlife="500" startcolor=".5 1 0" midcolor=".5 1 0" endcolor="0 0 0" material="/shared/effects/smaterials/goop_drop_add.material" startalpha="1" midalpha="1" endalpha="0" midalphapos=".15" lockup="true" lockright="true" pitch="80" yaw="45" directionalspace="local" minstartscale=".25" maxstartscale=".5" endscale="0" depthbias="-10"/>
+			</particle>
+		</simpleemitter>
+		<beam delay="4500" life="3000" bone_b="_bone_Buggaboo_LowerLipBone001" bone_a="_bone_Buggaboo_RArm_frontDigit22" size="20" color=".5 1 0" startframe="0" endframe="1" framespeed="4" material="/shared/effects/smaterials/animated_round_energy_additive.material"/>
+		<beam delay="4500" life="3000" bone_b="_bone_Buggaboo_LowerLipBone001" bone_a="_bone_Buggaboo_RArm_frontDigit22" size="10" color=".5 1 0" startframe="0" endframe="1" framespeed="4" material="/shared/effects/smaterials/animated_round_energy_additive.material"/>
+	</template>
+	<instance name="zaku_bottle"/>
+
+	
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

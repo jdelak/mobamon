@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".8">
+		
+			<sound
+				volume="1"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/cast.ogg"
+			/>
+			
+			<sound
+				volume="1"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/cast.ogg"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_fx02"
+				startsize="75"
+				midsize="150"
+				endsize="75"
+				color="1 .6 .2"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_fx02"
+				startsize="75"
+				midsize="150"
+				endsize="75"
+				color="1 .6 .2"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="source"
+				owner_b="target"
+				bone_b="_bone_fx02"
+				startsize="75"
+				midsize="150"
+				endsize="75"
+				color="1 .6 .2"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+			
+			
+			
+			
+
+			
+			
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_fx02"
+				size="25"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_fx02"
+				size="25"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_fx02"
+				size="25"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+			
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_fx02"
+				size="25"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_fx02"
+				size="25"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_fx02"
+				size="25"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+				life="1000"
+				bone="_bone_fx02"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="85"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				depthbias="-50"
+			/>
+
+			<simpleemitter
+				life="50"
+				bone="_bone_fx02"
+				spawnrate="500"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-20"
+			>
+				<particle
+					anchor="1"
+					color=".5 .1 0"
+					startscale="25"
+					endscale="150"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<light
+				bone="_bone_fx02"
+				life="500"
+				startcolor="10 5 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="150"
+			/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

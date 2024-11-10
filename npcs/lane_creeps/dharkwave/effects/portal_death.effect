@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" usentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			startalpha="0" 
+			endalpha="0"
+			life="3000"
+		/>		
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="4000"
+				falloffend="8000"
+				volume="0.35"
+				sample="../sounds/sfx_portal_spawn.wav"
+			/>
+			
+			
+			
+			
+<!--
+			<billboard
+				expirelife="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 0 0"
+			/>	
+-->
+			
+			
+			
+			
+
+			<model
+				position="0 0 5"
+				life="500"
+				model="/world/sprops/warpgate/warpgate_small/warpgate.mdf"
+				anim="idle"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".01"
+				startcolor="0"
+				midcolor="1"
+				endcolor="0"
+				midcolorpos=".01"
+				startscale="1"
+				endscale="0"
+			>
+			</model>
+
+			<groundsprite
+				position="0 0 0"
+				life="750"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				startscale="2.75"
+				endscale="1"
+				color="0 0 0"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+			/>
+
+			<simpleemitter	
+				count="5"
+				position="0 0 10"
+				spawnrate="50"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+			>
+				<particle
+				>
+				
+					<groundsprite
+						position="0 0 0"
+						life="500"
+						material="/shared/effects/smaterials/twirl_blend.material"
+						startscale="2.5"
+						midscale="1"
+						endscale="0"
+						color="0 0 0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".2"
+						yawspeed="-90"
+						minyaw="0"
+						maxyaw="360"
+						roll="0"
+					/>
+					
+				</particle>
+				
+			</simpleemitter>
+
+
+
+			
+			<light
+				life="750"
+				startcolor="1 0 8"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				startfalloffend="300"
+				endfalloffend="150"
+				position="0 0 100"
+			/>
+			
+			
+			
+			
+			
+			
+		
+<!--
+			<meshemitter
+			count="100"
+				mesh="_invis_test"				
+				spawnrate="1000"
+				minparticlelife="125"
+				maxparticlelife="250"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/sand_poofy_no_center.material"
+				framespeed="1"
+				offsetsphere="5 5 0"
+				position="0 0 -10"
+				direction="0 -.5 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="40"
+			>
+				<particle
+					heightdistort="0.00"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					minangle="0"
+					maxangle="100"
+					startcolor="0"
+					midcolor="0"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					startsize="20"
+					endsize="60"
+						
+					depthbias="100"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".5"
+				>
+				</particle>
+			</meshemitter>	
+
+
+			<meshemitter
+			count="120"
+				mesh="_invis_test"				
+				spawnrate="455"
+				minparticlelife="300"
+				maxparticlelife="600"
+				gravity="0"
+				speed="60"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/sand_poofy_no_center.material"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="-40"
+			>
+				<particle
+					heightdistort="0.00"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					minangle="0"
+					maxangle="360"
+					startcolor="0"
+					midcolor="0"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					size="55"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					startsize="22"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".5"
+				>
+				</particle>
+			</meshemitter>	
+-->
+	
+			<meshemitter
+			count="120"
+				mesh="_invis_test"				
+				spawnrate="455"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				speed="32"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/materials/dust_smoke_06.material"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="-40"
+			>
+				<particle
+					heightdistort="0.00"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					minangle="0"
+					maxangle="100"
+					startcolor="1 0 1"
+					midcolor=".4 0 .4"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					size="11"
+					midalphapos="0.9"
+					startsize="22"
+					endsize="0"		
+
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					minalphapos=".2"
+				>
+				</particle>
+			</meshemitter>
+
+			
+			
+
+			<meshemitter
+			count="120"
+				mesh="_invis_test"				
+				spawnrate="400"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				speed="60"
+				drag="0.01"
+				acceleration="0"
+				material="/shared/effects/materials/fire_add.material"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="-40"
+			>
+				<particle
+					heightdistort="0.06"
+					startcolor=".25 .1 .25"
+					turn="1"
+					midcolor=".15 0 .15"
+					endcolor="0 0 0"
+					size="11"
+					midalphapos="0.9"
+					startsize="80"
+					endsize="0"
+					minangle="0"
+					maxangle="100"
+					
+				>
+				</particle>
+			</meshemitter>
+
+
+			
+			
+			
+			
+			<template name="">
+			
+				<billboard
+					life="750"
+					material="/shared/effects/smaterials/sand_spin_no_center.material"
+					color="0 0 0"
+					startsize="{zsize}"
+					endsize="0"
+					midsizepos=".8"	
+					position="0 0 35"
+					rollspeed="{zrollspeed}"
+					lockup="1"
+					pitch="-90"
+					startalpha="{zalpha}"
+					endalpha="0"
+					depthbias="-50"
+					minroll="0"
+					maxroll="360"
+				/>	
+				
+				<billboard
+					life="750"
+					material="/shared/effects/smaterials/sand_spin_no_center.material"
+					color="0 0 0"
+					startsize="{zsize}"
+					endsize="0"
+					midsizepos=".8"					
+					position="0 0 20"
+					rollspeed="{zrollspeed}"
+					lockup="1"
+					pitch="-90"
+					startalpha="{zalpha}"
+					endalpha="0"
+					depthbias="-50"
+					minroll="0"
+					maxroll="360"
+				/>
+				
+			</template>
+			
+
+
+			<instance name="" zsize="225" zpos="0 0 5" zrollspeed="-20" zcolor=".5 .35 .15" zalpha="1"/>
+			<instance name="" zsize="175" zpos="0 0 5" zrollspeed="-45" zcolor=".5 .35 .15" zalpha="1"/>
+			<instance name="" zsize="125" zpos="0 0 5" zrollspeed="-65" zcolor=".25 .15 .075" zalpha="1"/>
+			<instance name="" zsize="100" zpos="0 0 5" zrollspeed="-85" zcolor=".25 .15 .075" zalpha="1"/>
+
+			
+			
+			
+			
+<!--
+			<trackeremitter
+				count="10"
+				position="0 0 200"
+				target_position="0 0 0"
+				tracktype="angular"
+				trackspeed="20"
+				spawnrate="125"
+				particlelife="2000"
+				speed="500"
+				distancelife="1"
+				offsetsphere="0 0 50"
+			>
+				<particle>
+
+					<trailemitter
+						spawnrate="50"
+						particlelife="600"
+						texpostime="600"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/materials/arrow_trail.material"
+					>
+						<particle
+							 startcolor="0 .5 1"
+							 midcolor=".5 0 1"
+							 endcolor="0 0 0"
+							 startsize="10"
+							 midsize="10"
+							 endsize="10"
+							 midsizepos="0.2"
+					 />
+					</trailemitter>
+
+				</particle>
+			</trackeremitter>
+-->
+			
+			
+			
+			
+			
+			
+
+				<simpleemitter
+				count="150"
+					position="0 0 30"
+					spawnrate="500"
+					minparticlelife="200"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetradial="100 0 0"
+					offsetsphere="5"
+					drag="0.01"
+					direction="0 0 1"
+					depthbias="-25"
+					directionalspace="world"
+					minangle="0"
+					maxangle="1"
+					
+				>
+					<particle 
+						turn="true"
+						startstickiness="0"
+						endstickiness="1"
+						startcolor="0 .25 .5"
+						midcolor="0 .25 .5"
+						endcolor="0 0 0"
+						minstartscale="2"
+						maxstartscale="4"
+						endscale="0"	
+					/>
+				</simpleemitter>
+
+
+				<simpleemitter
+				count="150"
+					position="0 0 30"
+					spawnrate="750"
+					minparticlelife="200"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetradial="100 0 0"
+					offsetsphere="6"
+					drag="0.01"
+					direction="0 0 1"
+					depthbias="-25"
+					directionalspace="world"
+					minangle="0"
+					maxangle="1"
+					
+				>
+					<particle 
+						turn="true"
+						startstickiness="0"
+						endstickiness=".25"
+						startcolor=".5 0 .5"
+						midcolor=".125 0 .5"
+						endcolor="0 0 0"
+						minstartscale="2"
+						maxstartscale="4"
+						endscale="0"
+					/>
+				</simpleemitter>
+			
+			
+			
+
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier		 instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

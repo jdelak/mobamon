@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Kongor2"
+	
+	statuseffecttooltip=""
+	
+	icon="icon.tga"
+
+	actiontype="target_self"
+	
+	cooldowntime="6000"
+	
+
+>
+	
+	<onattackstart>
+		<canactivate>
+			<targettype type="hero"/>
+			<else>
+				<targettype type="building"/>
+				<else>
+					<addattackimpactactions>
+						<setvar0 a="0.000125" b="time" op="mult"/>
+						<areaofeffect
+							radius="250"
+							targetselection="all"
+							targetscheme="enemy_creeps"
+							effecttype="Magic"
+							center="source_entity"
+						>
+							<damage effecttype="Magic" amount="125" b="var0" op="add"/>
+						</areaofeffect>
+						<startcooldown />
+					</addattackimpactactions>
+					<playanim name="attack_4" target="source_entity" />
+				</else>
+			</else>
+		</canactivate>
+	</onattackstart>
+	
+</ability>

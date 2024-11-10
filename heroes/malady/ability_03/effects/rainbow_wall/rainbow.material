@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/cloud_wall.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1" fGlossiness="45.0" fOpacity="1" fReflect="1.0" />
+	<phase name="color" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="rainbow_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="rainbow_normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="rainbow_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="rainbow_normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

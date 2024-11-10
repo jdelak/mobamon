@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel name="dev_tools_ui_unit_test" visible="0" color="invisible" noclick="1" >
+		<panel name="dev_tools_ui_unit_test_content" noclick="1" width="65h" height="39h" align="center" valign="center" >
+			
+			<instance y="0" name="dialogWrapper1" inneralpha="0 0 0 .9" />
+			
+			<panel noclick="1" width="-1.5h" align="center" valign="center" >	
+				
+				<panel y="0" align="center" float="bottom" padding="0.75h" width="100%" height="4.75h" >
+					<panel height="0"/>
+					<panel height="4.0h">
+						<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+						<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+						<label textvalign="center" x="0.75h" font="maindyn_22" style="goldColor" outline="true" outlinecolor="0 0 0 .7" content="UI Unit Test"/>
+						<label textalign="right"  align="right" textvalign="center" width="-5h" x="-10h" font="maindyn_20" color="0.8 1 0.8" outline="true" outlinecolor="0 0 0 .7" content=""/>
+						<panel align="right" grow="1" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h">
+							<panel width="100@">
+
+							</panel>	
+							<panel width="100@">
+								<instance name="closeXButton" buttonName="dev_tools_ui_unit_test_closex" onclicklua="UIUnitTest(false)" align="center" valign="center"/>
+							</panel>							
+						</panel>
+					</panel>
+				</panel>				
+				
+
+				<panel y="6.25h" noclick="1" width="100%" height="-17h" align="center" valign="top" >
+					<panel height="15.2h" width="100%" noclick="0" passivechildren="1" clip="1">
+						<image texture="/ui/_textures/elements/prematch_info_abililty_container.tga" noclick="1" />
+						<panel hmargin="1.0h" vmargin="0.8h" noclick="1" >
+							<panel width="100@" height="100%" noclick="1">
+								<image valign="center" align="center" width="94%" height="94%" texture="/ui/_textures/elements/designimages/Familiar_Razer.tga" noclick="1"/>
+							</panel>
+							<panel height="100%" width="-110@" align="right" noclick="1" >
+								<label textvalign="top" y="0.8h" fity="1" font="maindyn_24" color="white" outline="true" content="login_queue_desc_1" noclick="1"/>
+								<label y="4.8h" wrap="1" fity="1" textvalign="center" height="2h" font="maindyn_16" color=".8 .8 .8 1" outline="true" content="This tool attempts to find UI scripting errors" noclick="1"/>
+							</panel>
+						</panel>
+					</panel>				
+				</panel>				
+				
+				<panel noclick="1" width="100%" y="-6.0h" height="10h" align="center" valign="bottom" >
+					<frame color=".3 .3 .3 1" bordercolor=".3 .3 .3 1" texture="/ui/elements:rounded_bg_white" borderthickness="2.75h" noclick="true" />
+					<panel name="dev_tools_ui_unit_test_progress" width="0%" clip="1" >
+						<frame color=".3 .3 .6 1" bordercolor=".3 .3 .6 1" width="63.5h" texture="/ui/elements:rounded_bg_white" borderthickness="2.75h" noclick="true" />
+					</panel>
+					<label name="dev_tools_ui_unit_test_bar_label" align="center" valign="center" fitx="1" fity="1" font="maindyn_26" color="white" outline="true" content="" noclick="1"/>
+				</panel>	
+				
+				<panel noclick="1" height="4.5h" align="center" width="100%" valign="bottom" >
+					<panel noclick="1" align="right" valign="top" width="55%" >
+						<instance id="dev_tools_ui_unit_test_btn_1" x="-0.75h" labelX="0"
+							name="standardButton"
+							label="Do It"
+							font="maindyn_30"
+							onclicklua="UIUnitTest(true)"
+						/>					
+					</panel>		
+					<panel noclick="1" align="left" valign="top" width="38%" >
+						<instance id="dev_tools_ui_unit_test_btn_2" x="0.75h" labelX="0"
+							name="standardButton"
+							rendermode="grayscale"
+							label="Cancel"
+							font="maindyn_24"
+							onclicklua="UIUnitTest(false)" 
+						/>					
+					</panel>		
+				</panel>
+
+			</panel>
+		</panel>
+	</panel>
+	
+	<!-- size and position helper -->
+	<sizingframe name="ui_dev_helper" visible="1" align="left" height="20h" width="20h" x="0" y="0" valign="top" color="1 0 0 0.6" noclick="0" constraintoparent="1"
+		canmove="1" minwidth="1s" maxwidth="100w" minheight="1s" maxheight="100h"
+		onloadlua="self:SetVisible(GetCvarBool('ui_dev_helper'))"
+		onhidelua="self:GetWidget('ui_dev_helper_floater'):SetVisible(0)"
+		onshowlua="
+			self:GetWidget('ui_dev_helper_floater'):SetVisible(1)
+			self:GetWidget('ui_dev_helper_floater_2_x'):SetText(FtoA2(self:GetX(), 1))
+			self:GetWidget('ui_dev_helper_floater_2_y'):SetText(FtoA2(self:GetY(), 1))
+			self:GetWidget('ui_dev_helper_floater_2_width_p'):SetText(FtoA2(self:GetWidth(), 1))
+			self:GetWidget('ui_dev_helper_floater_2_height_p'):SetText(FtoA2(self:GetHeight(), 1))
+		"
+		onenddraglua="
+			self:GetWidget('ui_dev_helper_floater_2_x'):SetText(FtoA2(self:GetX(), 1))
+			self:GetWidget('ui_dev_helper_floater_2_y'):SetText(FtoA2(self:GetY(), 1))
+			self:GetWidget('ui_dev_helper_floater_2_width_p'):SetText(FtoA2(self:GetWidth(), 1))
+			self:GetWidget('ui_dev_helper_floater_2_height_p'):SetText(FtoA2(self:GetHeight(), 1))
+		"
+		
+	>	
+		<image noclick="1" height="1.5h" width="1.5h" x="-4" y="-4" align="right" valign="bottom" texture="/ui/_textures/elements/framecontrol_resize.tga" />	
+	</sizingframe>
+	
+	<floater name="ui_dev_helper_floater" noclick="true" width="20h" height="1h" x="2h" y="-3h" passivechildren="true" visible="0" grow="1" regrow="1" growinvis="0" >
+		<frame texture="/ui/elements:rounded_bg_white" borderthickness="1h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+		<frame color="#050505" texture="/ui/elements:rounded_bg_white" bordercolor="#050505" borderthickness="1h" noclick="true"/>
+
+		<panel width="-1h" height="-1h" align="center" valign="center" noclick="true" float="bottom" padding="0.2h" grow="1" regrow="1" growinvis="0">
+
+			<panel height="3.0h" noclick="true" >
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.25" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#181818"/>
+				<label name="ui_dev_helper_floater_1_x" height="100%" hmargin="5%" textalign="left" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  	content="X" noclick="true"/>
+				<label name="ui_dev_helper_floater_2_x" height="100%" hmargin="5%" textalign="right" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  content="?" noclick="true"/>
+			</panel>
+
+			<panel height="3.0h" noclick="true" >
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.25" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#181818"/>
+				<label name="ui_dev_helper_floater_1_y" height="100%" hmargin="5%" textalign="left" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  	content="Y" noclick="true"/>
+				<label name="ui_dev_helper_floater_2_y" height="100%" hmargin="5%" textalign="right" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  content="?" noclick="true"/>
+			</panel>			
+			
+			<panel height="3.0h" noclick="true" >
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.25" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#181818"/>
+				<label name="ui_dev_helper_floater_1_width_p" height="100%" hmargin="5%" textalign="left" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  	content="Width" noclick="true"/>
+				<label name="ui_dev_helper_floater_2_width_p" height="100%" hmargin="5%" textalign="right" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  content="?" noclick="true"/>
+			</panel>			
+			
+			<panel height="3.0h" noclick="true" >
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.25" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#181818"/>
+				<label name="ui_dev_helper_floater_1_height_p" height="100%" hmargin="5%" textalign="left" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  	content="Height" noclick="true"/>
+				<label name="ui_dev_helper_floater_2_height_p" height="100%" hmargin="5%" textalign="right" textvalign="center" width="100%" x="0" color="1 1 1" outline="true" font="maindyn_22"  content="?" noclick="true"/>
+			</panel>								
+			
+			<panel height="0.7h" noclick="true" />
+
+		</panel>
+	</floater>		
+	
+	<!-- menu -->
+	<panel name="main_dev_menu" visible="0" color="1 0 0.8" y="6h" x="-6h" valign="top" align="right" float="bottom" padding="1.5h" grow="1" regrow="1" >
+		
+		<!--
+		<label font="maindyn_22" fitxpadding="1.5h" x="0.75h" fity="1" fitx="1" content="Launcher Menu" color="white" outline="1" outlinecolor="black" />
+
+		<instance
+			name="standardButton" id="main_dev_menu_btn_1"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Support"
+			font="maindyn_16"
+			onclicklua="
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>			
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_2"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Log Out"
+			font="maindyn_16"
+			onclicklua="
+				Logout()
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>			
+		-->
+		
+		<label font="maindyn_22" fitxpadding="5.5h" x="0.75h" fity="1" fitx="1" content="Dev Menu" color="white" outline="1" outlinecolor="black" />
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_2"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Log Out"
+			font="maindyn_16"
+			onclicklua="
+				Logout()
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>			
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_3"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="UI Unit Test"
+			font="maindyn_16"
+			onclicklua="
+				self:GetWidget('dev_tools_ui_unit_test'):SetVisible(1)
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>			
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_3"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="XML Helper"
+			font="maindyn_16"
+			onclicklua="
+				SetSave('ui_dev_helper', (not GetCvarBool('ui_dev_helper')), 'bool')
+				self:GetWidget('ui_dev_helper'):SetVisible(not GetWidget('ui_dev_helper'):IsVisible())
+				println('XML Helper ' .. tostring(GetCvarBool('ui_dev_helper')))
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_4"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="general_create_game"
+			font="maindyn_16"
+			onclicklua="
+				local triggerPanelStatus		= LuaTrigger.GetTrigger('mainPanelStatus')
+				triggerPanelStatus.mainMoreVisible = false
+				triggerPanelStatus.main = 24
+				triggerPanelStatus.socialUserListVisible	= true
+				triggerPanelStatus:Trigger(false)		
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+
+		<instance
+			name="standardButton" id="main_dev_menu_btn_5"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Game List"
+			font="maindyn_16"
+			onclicklua="
+				local triggerPanelStatus		= LuaTrigger.GetTrigger('mainPanelStatus')
+				triggerPanelStatus.mainMoreVisible = false
+				triggerPanelStatus.main = 24
+				triggerPanelStatus:Trigger(false)	
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_6"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Tutorial 1"
+			font="maindyn_16"
+			onclicklua="
+			
+				local function PromptTutorial()
+					mainUI.botDifficulty = 0
+					
+					GenericDialogAutoSize(
+						'main_simple_play_tutorial', 'main_simple_play_tutorial_desc', '', 'general_play', 'general_cancel', 
+							function()
+								PlaySound('/ui/sounds/sfx_ui_creategame_2.wav')
+								ManagedSetLoadingInterface('loading_npe_1')
+								StartGame('tutorial', Translate('game_name_default_tutorial'), 'map:tutorial nolobby:true')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)			
+					
+				end			
+			
+				PlaySound('ui/sounds/sfx_ui_creategame_1.wav')		
+				PromptTutorial()	
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>
+
+		<instance
+			name="standardButton" id="main_dev_menu_btn_7"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Tutorial 2"
+			font="maindyn_16"
+			onclicklua="
+			
+				local function PromptTutorial()
+					mainUI.botDifficulty = 0
+					
+					GenericDialogAutoSize(
+						'Tutorial 2', 'main_simple_play_tutorial_desc', '', 'general_play', 'general_cancel', 
+							function()
+								PlaySound('/ui/sounds/sfx_ui_creategame_2.wav')
+								ManagedSetLoadingInterface('loading_npe_2')
+								StartGame('tutorial', Translate('game_name_default_tutorial'), 'map:tutorial_2 nolobby:true')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)			
+					
+				end			
+			
+				PlaySound('ui/sounds/sfx_ui_creategame_1.wav')		
+				PromptTutorial()	
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>
+
+		<instance
+			name="standardButton" id="main_dev_menu_btn_8"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Tutorial 3"
+			font="maindyn_16"
+			onclicklua="
+			
+				local function PromptTutorial()
+					mainUI.botDifficulty = 0
+					
+					GenericDialogAutoSize(
+						'Tutorial 3', 'main_simple_play_tutorial_desc', '', 'general_play', 'general_cancel', 
+							function()
+								PlaySound('/ui/sounds/sfx_ui_creategame_2.wav')
+								
+								StartGame('tutorial', Translate('game_name_default_tutorial'), 'map:tutorial_3 nolobby:true')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)			
+					
+				end			
+			
+				PlaySound('ui/sounds/sfx_ui_creategame_1.wav')		
+				PromptTutorial()	
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_9"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="main_simple_botmatch"
+			font="maindyn_16"
+			onclicklua="
+			
+				local function PromptBotMatch(useHard)
+					if (useHard) then
+						mainUI.botDifficulty = 1
+					else
+						mainUI.botDifficulty = 0
+					end
+					
+					GenericDialogAutoSize(
+						'main_simple_play_bots', 'main_simple_play_bots_desc', '', 'general_play', 'general_cancel', 
+							function()
+								PlaySound('/ui/sounds/sfx_ui_creategame_2.wav')
+								StartGame('tutorial', Translate('game_name_default_botmatch'), 'map:strife nolobby:true fillbots:true finalheroesonly:true')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)				
+				end				
+			
+				PlaySound('ui/sounds/sfx_ui_creategame_1.wav')		
+				PromptBotMatch(false)		
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_19"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Practice"
+			font="maindyn_16"
+			onclicklua="
+			
+				local function PromptBotMatch(useHard)
+					if (useHard) then
+						mainUI.botDifficulty = 1
+					else
+						mainUI.botDifficulty = 0
+					end
+					
+					GenericDialogAutoSize(
+						'main_simple_play_bots', 'main_simple_play_bots_desc', '', 'general_play', 'general_cancel', 
+							function()
+								PlaySound('/ui/sounds/sfx_ui_creategame_2.wav')
+								StartGame('tutorial', Translate('game_name_default_botmatch'), 'map:strife nolobby:true fillbots:true finalheroesonly:false')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)				
+				end				
+			
+				PlaySound('ui/sounds/sfx_ui_creategame_1.wav')		
+				PromptBotMatch(false)		
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+		
+			<instance
+			name="standardButton" id="main_dev_menu_btn_10"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Bastion's Story 1"
+			font="maindyn_16"
+			onclicklua="
+			
+				local function PromptTutorial()
+					mainUI.botDifficulty = 0
+					
+					GenericDialogAutoSize(
+						'Tutorial 3', 'main_simple_play_tutorial_desc', '', 'general_play', 'general_cancel', 
+							function()
+								PlaySound('/ui/sounds/sfx_ui_creategame_2.wav')
+								ManagedSetLoadingInterface('loading_bastion_1')
+								StartGame('tutorial', Translate('game_name_default_tutorial'), 'map:bastact1 nolobby:true')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)			
+					
+				end			
+			
+				PlaySound('ui/sounds/sfx_ui_creategame_1.wav')		
+				PromptTutorial()	
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>		
+
+		
+		<instance
+			name="standardButton" id="main_dev_menu_btn_10"
+			width="15h" height="3.5h" align="center" valign="top"
+			label="Create Account"
+			font="maindyn_16"
+			onclicklua="
+			
+				LuaTrigger.GetTrigger('mainPanelStatus').main=50
+				LuaTrigger.GetTrigger('mainPanelStatus'):Trigger(false)
+			
+				self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+			"
+		/>			
+
+		<panel height="64s" width="15h" align="center" valign="top" noclick="1" visible="1" >
+			<label font="maindyn_18" height="32s" content="Account Level" color="white" outline="1" outlinecolor="black" />
+			<panel noclick="1" height="32s" y="32s" >
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.2h" rendermode="grayscale" color="0.6 0.6 0.6 1" noclick="1"/>
+				
+				<frame align="left" width="100%" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.2h" color="0.36 0.4 0.43 1" noclick="1"/>
+				
+				<slider
+					handlecolor="1 1 1 1"
+					handlewidth="16s"
+					handleheight="32s"
+					slotcolor="invisible"
+					slotwidth="100%"
+					slotheight="100%"
+					minvalue="0"
+					maxvalue="70"
+					texture="/ui/shared/textures/tall_slider.tga"
+					onslidelua="
+						SetSave('ui_overrideAccountLevel', math.floor(self:GetValue()), 'int')
+						mainUI.progression.UpdateProgression()
+					"
+				/>
+			</panel>
+		</panel>			
+		
+		<panel noclick="1" height="0" width="0" />
+		
+	</panel>
+	
+	<panel name="ui_dev_bug_report" noclick="0" color="0 0 0 0.5" visible="0"  >
+		<panel noclick="1" width="700s" height="400s" align="right" x="-200s" y="40s" grow="1" regrow="1" growinvis="0" float="bottom" padding="12s" >
+			<instance name="dialogWrapper1" y="0" inneralpha="0 0 0 .9" />
+			
+			<panel y="0" height="24s" valign="top" noclick="true" >								
+				<label height="100%" textvalign="center" style="h2" content="Report A Bug" noclick="true"  />	
+				<instance name="iconButton" id="ui_dev_bug_report_close_button"
+					icon="/ui/main/shared/textures/close.tga"
+					align="right" valign="center" borderthickness="4s" colorized="1"
+					onclicklua="self:GetWidget('ui_dev_bug_report'):FadeOut(250)"
+				/>
+			</panel>			
+			
+			<panel noclick="1" width="700s" height="72s" >
+				<panel y="0" noclick="1" width="45%" height="72s" float="bottom" padding="12s" >
+					<panel height="16s" valign="top" noclick="true" >								
+						<label name="ui_dev_bug_report_label_1a" height="100%" align="left" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="Version:" noclick="true"  />	
+						<label name="ui_dev_bug_report_label_1b" height="100%" align="right" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="?.?.?" noclick="true" color="white"  />	
+					</panel>		
+					
+					<panel height="16s" valign="top" noclick="true" >								
+						<label name="ui_dev_bug_report_label_2a" height="100%" align="left" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="OS:" noclick="true"  />	
+						<label name="ui_dev_bug_report_label_2b" height="100%" align="right" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="Windows" noclick="true" color="white"  />	
+					</panel>		
+					
+					<panel height="16s" valign="top" noclick="true" >								
+						<label name="ui_dev_bug_report_label_3a" height="100%" align="left" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="Branch:" noclick="true"  />	
+						<label name="ui_dev_bug_report_label_3b" height="100%" align="right" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="Production" noclick="true" color="white"  />	
+					</panel>		
+				</panel>
+				<panel y="0" noclick="1" width="45%" align="right" height="72s" float="bottom" padding="12s" >
+					<panel height="16s" valign="top" noclick="true" >								
+						<label name="ui_dev_bug_report_label_4a" height="100%" align="left" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="Date:" noclick="true"  />	
+						<label name="ui_dev_bug_report_label_4b" height="100%" align="right" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="?.?.?" noclick="true" color="white"  />	
+					</panel>		
+					
+					<panel height="16s" valign="top" noclick="true" >								
+						<label name="ui_dev_bug_report_label_5a" height="100%" align="left" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="IdentID:" noclick="true"  />	
+						<label name="ui_dev_bug_report_label_5b" height="100%" align="right" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="4.003" noclick="true" color="white"  />	
+					</panel>		
+					
+					<panel height="16s" valign="top" noclick="true" >								
+						<label name="ui_dev_bug_report_label_6a" height="100%" align="left" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="Mods:" noclick="true"  />	
+						<label name="ui_dev_bug_report_label_6b" height="100%" align="right" fitx="1" textvalign="center" style="h2" font="maindyn_18" content="false" noclick="true" color="white"  />	
+					</panel>		
+				</panel>		
+			</panel>
+			
+			<panel align="center" height="300s" noclick="1" color="1 0 0 0.2">
+				<instance name="dialogWrapper2" noclick="1"/>
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="1"/>
+				<textbox 
+					name="ui_dev_bug_report_input_textbox" wrap="1" noclick="0" height="-12s" valign="center" align="center" width="-6s" editable="1" editible="1" canedit="1" edit="1"
+					style="textBox1Input"  
+					textcolor="0 0 0 1"
+					onesc=""
+					onenter=""
+					onchange=""
+					onfocus="HideWidget('ui_dev_bug_report_input_coverup')"
+					onlosefocus="If(StringEmpty(this), ShowWidget('ui_dev_bug_report_input_coverup'));"
+				/>		
+				<label name="ui_dev_bug_report_input_coverup" x="12s" y="12s" noclick="true" textvalign="top" valign="center" color="0 0 0 0.7" font="maindyn_18" content="Enter bug description"/>
+			</panel>
+			
+			<panel align="center" height="150s" noclick="1" color="1 0 0 0.2">
+				<instance name="dialogWrapper2" noclick="1"/>
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="1"/>
+				<textbuffer 
+					name="ui_dev_bug_report_log_textbox" wrap="1" noclick="0" height="-12s" valign="center" align="center" width="-6s" editable="0"
+					style="textBox1Input"  
+					textcolor="0 0 0 1"
+					onesc=""
+					onenter=""
+					scrolltexture="/ui/shared/textures/slider.tga" scrollbarsize="32s"
+					handleheight="32s"
+					exteriorscrollbars="true" textalign="left" textvalign="top"
+				/>		
+			</panel>		
+
+			<panel noclick="1" height="32s">
+				<instance id="ui_dev_bug_report_btn_1" align="right" width="46%"
+					name="standardButton"
+					label="general_ok"
+					font="maindyn_24"
+				/>					
+				<instance id="ui_dev_bug_report_btn_2" align="left" width="46%"
+					name="standardButton"
+					rendermode="grayscale"
+					label="general_cancel"
+					onclicklua="self:GetWidget('ui_dev_bug_report'):FadeOut(250)"
+					font="maindyn_24"
+				/>					
+			</panel>		
+			
+		</panel>
+	</panel>
+	
+</package>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Claudessa_Ability3_Small"
+
+	radius="500"
+	arc="180"
+	
+	maximpactspertarget="1"
+	targetselection="all"
+	targetscheme="enemy_units"
+	effecttype="Magic"
+	
+	impacteffect=""
+	bridgeeffect=""
+>
+	<onimpact>
+		<compare a="target_entity" b="this_proxy_entity" op="ne">
+			<damage effecttype="AttackDamage Splash Cleave" amount="1" b="param" op="mult"/>
+			
+			<recordheroaggression  />
+			<aggression />
+		</compare>
+		<applystate name="State_Claudessa_Ability3" duration="2500" />
+	</onimpact>
+</affector>

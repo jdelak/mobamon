@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<modifier 
+			name="modifier0"
+			life="200"
+			startcolor="5 5 1"
+			endcolor="1 1 1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale=".5">
+
+<!--
+			<simpleemitter
+			position="0 0 -25"
+				bone="_bone_centerofchest"
+				spawnrate="100"
+				count="1"
+				particlelife="1000"
+				offsetsphere="50 50 0"
+			>
+				<particle
+					turn="1"
+				>
+				
+				
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 0 0"
+						life="300"
+						startcolor=".4 .1 0"
+						midcolor=".4 .1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						depthbias="-50"
+						directionalspace="local"
+						scale="5"
+					/>
+
+					<model
+						position="0 0 0"
+						life="500"
+						model="/shared/effects/models/circle_of_bones/model.mdf"
+						anim="idle"
+						startscale="4"
+						midscale="0"
+						endscale="0"
+						midscalepos=".5"
+						yawspeed="-1800"
+						minroll="0"
+						maxroll="360"
+						minpitch="0"
+						maxpitch="360"
+						minyaw="0"
+						maxyaw="360"
+					>
+
+						<simpleemitter
+							bone="_bone_fx_01"
+							life="400"
+							spawnrate="300"
+							minparticlelife="200"
+							maxparticlelife="400"
+							gravity="0"
+							minspeed="10"
+							maxspeed="60"
+							material="/shared/effects/smaterials/firesprite_swirl.material"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							depthbias="-50"
+							directionalspace="world"
+							offsetsphere="2 2 0"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-360"
+								maxanglespeed="360"
+								minstartscale=".5"
+								maxstartscale="1.5"
+								endscale="1"
+								color="1 .7 .35"
+								startalpha="1"
+								midalpha="1"
+								endalpha=".65"
+								midalphapos=".15"
+								startframe="0"
+								endframe="1"
+								minstartsize="10"
+								maxstartsize="16"
+								minendsize="0"
+								maxendsize="6"
+								turn="true"
+							/>
+							
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-360"
+								maxanglespeed="360"
+								minstartscale=".5"
+								maxstartscale="1.5"
+								endscale="1"
+								color="1 .5 0"
+								startalpha="1"
+								midalpha="1"
+								endalpha=".65"
+								midalphapos=".15"
+								startframe="0"
+								endframe="1"
+								minstartsize="10"
+								maxstartsize="16"
+								minendsize="0"
+								maxendsize="6"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<billboard
+							bone="_bone_fx_01"
+							position="0 0 0"
+							life="482"
+							startcolor="1 .3 0"
+							midcolor="1 .3 0"
+							endcolor="1 .3 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+							directionalspace="local"
+							scale=".4"
+						/>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<simpleemitter
+							bone="_bone_fx_01"
+							life="475"
+							spawnrate="500"
+							minparticlelife="150"
+							maxparticlelife="300"
+							gravity="0"
+							minspeed="0"
+							maxspeed="0"
+							material="/shared/effects/smaterials/whitedot.material"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							depthbias="-50"
+							directionalspace="world"
+							offsetsphere="1"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="0"
+								maxanglespeed="0"
+								minstartscale=".5"
+								maxstartscale="1.5"
+								endscale="1"
+								startcolor="1 .25 0"
+								midcolor="1 0 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".1"
+								startframe="0"
+								endframe="1"
+								minstartsize="8"
+								maxstartsize="14"
+								minendsize="0"
+								maxendsize="4"
+								turn="true"
+							/>
+						</simpleemitter>
+						
+						
+						
+						
+						
+
+					</model>
+					
+				</particle>
+			</simpleemitter>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+	
+
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+		
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_BarrierToken"
+
+	icon="icon.tga"
+	passiveeffect="effects/state.effect"
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	
+	displaylevel="true"
+>
+	<onattackeddamageevent>	
+		<damageeffecttype effecttype="Indirect" />
+		<else>					
+			<damagesupertype supertype="spell" >
+				<getconstant name="reduction" adjustmentsource="tool_entity"/>
+				<setvar0 a="result" b="100" op="div" />
+				<setvar0 a="1" b="var0" op="sub" />
+				<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+			</damagesupertype>
+						
+			<damageeffecttype effecttype="AbilityAttack"> 
+				<getconstant name="reduction" adjustmentsource="tool_entity"/>
+				<setvar0 a="result" b="100" op="div" />
+				<setvar0 a="1" b="var0" op="sub" />
+				<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+			</damageeffecttype>
+		</else>
+	</onattackeddamageevent>
+	
+</state>

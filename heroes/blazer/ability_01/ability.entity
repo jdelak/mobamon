@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Blazer1"
+	
+	icon="icon.tga"
+	anim="ability_1"
+	casttime="0"
+	castactiontime="0"
+	
+	inheritmovement="true"
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+	
+	activateimpacttime="4000"
+	allowoutofrangecast="true"
+	
+	actiontype="target_position"
+	casteffecttype="Magic"
+	targetscheme="enemy_units_and_buildings"
+	casteffect="effects/cast.effect"
+	
+	manacost="95,100,105,110"
+	cooldowntime="13000"
+		
+	noquickcast="true"
+	alwaysshowtimer="true"
+	
+	noninterrupting="true"
+>
+
+	<constant name="damage" value="115,165,215,265" adjustment="ability" />
+
+
+	<onimpact>
+		
+		<spawnunit name="Gadget_Blazer_Ability1" count="1" target="source_position" pushentity="true" />
+		<bind entity="source_entity" target="stack_entity"  />
+		<!--<playeffect effect="effects/ring.effect" target="stack_entity" source="stack_entity" occlude="true" visibility="allies"/>-->
+		<setproxy target="stack_entity" />
+		
+		<applystate name="State_Blazer_Ability1" duration="4000" proxy="this_proxy_entity" target="source_entity" ischannel="false" />
+		<starttimer duration="4000" />
+		<setactivemodifierkey entity="this_entity" name="button2" />
+	</onimpact>
+
+
+
+	<modifier key="button2" modpriority="100"
+		ignorecooldown="true"
+		statuseffecttooltip=""
+		anim="ability_1_fire"
+		icon="icon2.tga"
+		casttime="200"
+		castactiontime="200"
+		manacost="0"
+		cooldowntime="0"
+		
+		activateimpacttime="0"
+
+		range="1065"
+		forcerange="1065"
+		allowoutofboundscast="true" 
+		allowoutofrangecast="true"
+		
+		showlinecast="true"
+		linecastrangestart="635"
+		linecastrangemid="1200"
+		linecastrangeend="1200"
+		linecastrangemidpos="0.3"
+		linecastrangeduration="4000"
+		linecastwidth="135"
+			  
+		showareacast="true"
+		areacastrangestart="635"
+		areacastrangemid="1200"
+		areacastrangeend="1200"
+		areacastrangemidpos="0.3"
+		areacastrangeduration="4000"
+		
+		hoverareacastrange="1120"
+		noturntotarget="false"
+		>		
+		
+		<onactivatestart>
+			<entitytype type="Ability_Blazer1">
+				<applystate name="State_Blazer_Ability1" duration="4000" target="source_entity" ischannel="false" />
+			</entitytype>
+		</onactivatestart>
+		
+		<onimpact>
+			<setactivemodifierkey entity="this_entity" name="" />
+			<setvar0 a="accumulator" b="24" op="div" />
+			<setvar0 a="var0" b="1" op="min" />
+			<setvar1 a="var0" />
+			
+			<setvar0 a="500" b="var0" op="mult" />
+			<setvar0 a="565" b="var0" op="add" />
+
+			
+			<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="var0" />
+			
+			<spawnprojectile name="Projectile_Blazer_Ability1" target="pos0" param="var1" offset="0 100 0"/>
+			<kill target="this_proxy_entity" source="" />
+			
+			<expirestate name="State_Blazer_Ability1" target="source_entity" />
+			<expirestate name="State_Blazer_Ability4" target="source_entity" />
+			
+			<playeffect effect="effects/cast_sound.effect" target="source_entity" source="source_entity" occlude="true" visibility="allies"/>
+			
+			<starttimer duration="0" />
+		</onimpact>
+	
+	</modifier>
+	
+
+</ability>

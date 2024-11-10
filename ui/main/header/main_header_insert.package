@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel noclick="1" 
+		onloadlua="
+			self:RegisterWatchLua('mainPanelStatus', function(widget, trigger)
+				widget:SetVisible(not trigger.hideSecondaryElements)
+			end, false, nil, 'hideSecondaryElements')
+		"	
+	>
+		<panel name="main_header_drag_bar_1" visible="1" height="50s" 
+			onclicklua="
+				System.StartWindowDrag(
+					select(2, ...),
+					select(3, ...),
+					function() mainUI.chatManager.MoveOwnedChatWindowWithLauncherDrag(false) end)
+				mainUI.chatManager.MoveOwnedChatWindowWithLauncherDrag(true, select(2, ...), select(3, ...))"
+			ondoubleclicklua="System.CenterWindow(true)" 
+			onmouseoverlua="UpdateCursor(object, true, { canLeftClick = true, canRightClick = false, canDrag = true })"
+			onmouseoutlua="UpdateCursor(object, false, { canLeftClick = true, canRightClick = false, canDrag = true })"
+			onstartdraglua="--"
+			onenddraglua="--"
+		/>	
+
+		<panel name="main_header_drag_bar_2" visible="1" height="25s" 
+			onclicklua="
+				System.StartWindowDrag(
+					select(2, ...),
+					select(3, ...),
+					function() mainUI.chatManager.MoveOwnedChatWindowWithLauncherDrag(false) end)
+				mainUI.chatManager.MoveOwnedChatWindowWithLauncherDrag(true, select(2, ...), select(3, ...))"
+			ondoubleclicklua="System.CenterWindow(true)" 
+			onstartdraglua="--"
+			onenddraglua="--"
+			onmouseoverlua="UpdateCursor(object, true, { canLeftClick = true, canRightClick = false, canDrag = true })"
+			onmouseoutlua="UpdateCursor(object, false, { canLeftClick = true, canRightClick = false, canDrag = true })"	
+		/>	
+		
+		<button name="mainBackButton" width="56s" height="112s" x="888s" y="-58s" color="invisible" visible="0"><!-- Optionally-visible back button -->
+			<image name="mainBackButtonTab" texture="/ui/main/header/textures/back_ribbon.tga"/>
+		</button>
+	</panel>
+	
+</package>

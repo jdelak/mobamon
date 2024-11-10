@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Owl_NoEnterCombat"
+	
+	icon="icon.tga"
+>
+	<onexpired>
+		<setactivemodifierkey name="" entity="this_proxy_entity" />
+		<playeffect effect="effects/sound_end.effect" target="this_owner_entity" occlude="true" />
+	</onexpired>
+
+	<oninflict>
+		<setactivemodifierkey name="preventingcombat" entity="this_proxy_entity" />
+		<playeffect effect="effects/sound_start.effect" target="this_owner_entity" occlude="true" />
+	</oninflict>
+
+	<onentercombat>
+		<negate />
+		<playeffect effect="effects/noentercombat.effect" target="this_owner_entity" occlude="true" />
+	</onentercombat>
+
+	
+</state>

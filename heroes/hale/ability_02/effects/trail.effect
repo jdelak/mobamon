@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.35">
+
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="6 3 0"
+				midcolor="0 0 2.5"
+				endcolor="0 0 0"
+				midcolorpos=".85"
+				falloffstart="25"
+				falloffend="100"
+			/>
+
+			<model
+				life="300"
+				position="0 0 0"
+				startcolor="5"
+				midcolor=".5 .25 0"
+				endcolor="1 .5 0"
+				scale="1"
+				model="sword/model.mdf"
+				anim="idle"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				roll="90"
+				pitch="-90"
+				yaw="-90"
+				startalpha="1"
+				endalpha="0"
+			>		
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="75"
+					maxparticlelife="300"
+					position="0 0 0"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="1"
+					speed="0"
+				>
+					<particle 
+						turn="true"
+					>
+						<billboard
+							position="15 -65 0"
+							material="/shared/effects/smaterials/arc_impact_front.material"
+							startcolor=".25 0 .25"
+							midcolor=".5 0 .5"
+							endcolor="1 0 1"
+							life="200"
+							startsize="25"
+							endsize="175"
+							startalpha=".5"
+							midalpha=".25"
+							endalpha="0"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							directionalspace="local"
+							roll="0"
+						/>
+						
+						<billboard
+							position="15 -55 0"
+							material="/shared/effects/smaterials/arc_impact_front_add.material"
+							startcolor="0 0 0"
+							midcolor=".15 .06 0"
+							endcolor="0 0 0"
+							midcolorpos=".95"
+							life="200"
+							startsize="25"
+							endsize="175"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							directionalspace="local"
+							roll="0"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<billboard
+					bone="_bone_fx_01"
+					position="15 0 -50"
+					material="/shared/effects/smaterials/flare.material"
+					startcolor="1 .75 0"
+					endcolor="0 0 0"
+					life="100"
+					startsize="250"
+					endsize="250"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+					directionalspace="local"
+					width="400"
+
+				/>
+
+				<billboard
+					bone="_bone_fx_01"
+					position="15 0 -50"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="1 .65 0"
+					endcolor="0 0 0"
+					life="100"
+					startsize="250"
+					endsize="250"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+					directionalspace="local"
+
+				/>
+
+			</model>
+
+		</particlesystem>
+
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

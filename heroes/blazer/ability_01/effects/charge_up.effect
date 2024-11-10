@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false" useentityeffetscale="1">
+
+	<definitions>
+<!--
+		<modifier 
+			name="modifier0"
+			expirelife="100"
+			startalpha="1"
+			endalpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="entity" scale="1.25">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2600"
+				volume="0.65"
+				sample="../sounds/sfx_state.wav"
+			/>
+
+			<model
+				bone="_bone_Bip01 gunBase2"
+				expirelife="1000"
+				startalpha="1"
+				endalpha="0"
+				model="gun/model.mdf"
+				anim="idle"
+				yaw="-180"
+				color="2 1.5 2"
+				pitch="180"
+			>
+
+				<template name="">
+					<billboard
+						delay="{zdelay}"
+						bone="_bone_fx_01"
+						life="500"
+						startcolor="0 0 0"
+						midcolor=".125 .25 0"
+						endcolor=".125 .25 0"
+						midcolorpos=".2"
+						startsize="{zsize}"
+						endsize="0"
+						material="/shared/effects/smaterials/bulb_add.material"
+						rollspeed="90"
+					/>
+				</template>
+				
+				<instance name="" zdelay="0" zsize="25"/>
+				<instance name="" zdelay="1000" zsize="45"/>
+				<instance name="" zdelay="2000" zsize="65"/>
+				<instance name="" zdelay="2750" zsize="85"/>
+				<instance name="" zdelay="3250" zsize="105"/>
+				<instance name="" zdelay="3750" zsize="125"/>
+				
+				<template name="">
+					<billboard
+						delay="{zdelay}"
+						bone="_bone_fx_01"
+						life="500"
+						startcolor="0 0 0"
+						midcolor=".125 .25 0"
+						endcolor=".125 .25 0"
+						midcolorpos=".2"
+						startsize="{zsize}"
+						endsize="0"
+						material="/shared/effects/smaterials/bulb_add.material"
+						rollspeed="90"
+					/>
+				</template>
+				
+				<instance name="" zdelay="250" zsize="25"/>
+				<instance name="" zdelay="1250" zsize="45"/>
+				<instance name="" zdelay="2250" zsize="65"/>
+				<instance name="" zdelay="3000" zsize="85"/>
+				<instance name="" zdelay="3500" zsize="105"/>
+				<instance name="" zdelay="4000" zsize="125"/>
+
+				<template name="">
+					<billboard
+						delay="{zdelay}"
+						bone="_bone_fx_01"
+						expirelife="250"
+						color="1 1 1"
+						size="{zsize}"
+						material="/shared/effects/smaterials/greendot_blend.material"
+						depthbias="10"
+						startalpha="{zalpha}"
+						endalpha="0"
+					/>
+				</template>
+				
+				<instance name="" zdelay="0" zalpha=".2" zsize="50"/>
+				<instance name="" zdelay="1000" zalpha=".25" zsize="100"/>
+				<instance name="" zdelay="2000" zalpha=".25" zsize="150"/>
+				<instance name="" zdelay="3000" zalpha=".25" zsize="200"/>
+				<instance name="" zdelay="4000" zalpha=".25" zsize="250"/>
+			
+				<template name="">
+					<billboard
+					delay="{zdelay}"
+					bone="{zbone}"
+						expirelife="250"
+						startcolor="{zcolor}"
+						endcolor="0 0 0"
+						size="60"
+						material="/shared/effects/smaterials/whitedot.material"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+					
+				</template>
+				
+				<instance name="" zbone="_bone_fx_01" zdelay="0" zcolor=".1 .15 0" zsize="60"/>
+				<instance name="" zbone="_bone_fx_01" zdelay="400" zcolor=".1 .15 0" zsize="60"/>
+				<instance name="" zbone="_bone_fx_01" zdelay="800" zcolor=".1 .15 0" zsize="60"/>
+				<instance name="" zbone="_bone_fx_02" zdelay="1200" zcolor=".1 .15 0" zsize="60"/>
+				<instance name="" zbone="_bone_fx_01" zdelay="1600" zcolor="0 .3 0" zsize="30"/>
+
+				<template name="">
+					<billboard
+						delay="{zdelay}"
+						bone="_bone_fx_01"
+						life="250"
+						startcolor=".4 .8 0"
+						endcolor="0 0 0"
+						startsize="{zstartsize}"
+						endsize="{zsize}"
+						material="/shared/effects/smaterials/whiteellipseblurred_add_greenglow.material"
+						depthbias="10"
+						startalpha="{zalpha}"
+						endalpha="0"
+
+
+
+					/>
+				</template>
+				
+				
+				<instance name="" zdelay="500" zalpha=".25" zstartsize="0" zcolor="1 .75 .5" zsize="100"/>
+				<instance name="" zdelay="500" zalpha=".25" zstartsize="0" zcolor="0 .5 0" zsize="145"/>
+
+				<instance name="" zdelay="1500" zalpha=".25" zstartsize="0" zcolor="1 .75 .5" zsize="115"/>
+				<instance name="" zdelay="1500" zalpha=".25" zstartsize="0" zcolor="0 .5 0" zsize="165"/>
+
+				<instance name="" zdelay="2500" zalpha=".25" zstartsize="0" zcolor="1 .75 .5" zsize="137"/>
+				<instance name="" zdelay="2500" zalpha=".25" zstartsize="0" zcolor="0 .5 0" zsize="195"/>
+
+				<instance name="" zdelay="3500" zalpha=".25" zstartsize="0" zcolor="1 .75 .5" zsize="175"/>
+				<instance name="" zdelay="3500" zalpha=".25" zstartsize="0" zcolor="0 .5 0" zsize="245"/>
+<!--
+				<instance name="" zdelay="4000" zalpha=".25" zstartsize="0" zsize="190"/>
+				<instance name="" zdelay="4000" zalpha=".25" zstartsize="0" zsize="250"/>
+-->
+				
+				
+				
+				
+				<simpleemitter
+				life="5000"
+					bone="_bone_fx_01"
+					startspawnrate="50"
+					endspawnrate="750"
+					particlelife="500"
+					position="0 0 0"
+					acceleration="11"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="60"
+					drag="0.01"
+					direction="1 0 0"
+					
+				>
+					<particle
+						startstickiness="0"
+						endstickiness="1"
+						startcolor="1 1 0"
+						endcolor="0 0 0"
+						startsize="1.75"
+						endsize="0"
+						turn="1"
+						heightdistort="0.02"
+					
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				<template name="green">
+
+					<simpleemitter
+						delay="{zdelay}"
+						life="1000"
+						bone="_bone_fx_01"
+						spawnrate="{zspawnrate}"
+						minparticlelife="150"
+						maxparticlelife="700"
+						material="/shared/effects/smaterials/green_energy.material"
+						depthbias="-50"
+						offsetsphere="0 0 0"
+					>
+						<particle
+							anchor="1"
+							startcolor="0 0 0"
+							midcolor="1 1 1"
+							endcolor="1 1 1"
+							midcolorpos=".75"
+							startscale="{zstartscale}"
+							endscale="0"
+							minangle="0"
+							maxangle="360"
+							turn="true"
+							flare="true"
+						/>
+					</simpleemitter>
+				
+				</template>
+				
+				
+				<instance name="green" zdelay="0" zstartscale="20" zspawnrate="75"/>
+				<instance name="green" zdelay="1000" zstartscale="30" zspawnrate="100"/>
+				<instance name="green" zdelay="2000" zstartscale="40" zspawnrate="100"/>
+				<instance name="green" zdelay="3000" zstartscale="50" zspawnrate="125"/>
+				<instance name="green" zdelay="4000" zstartscale="60" zspawnrate="125"/>
+				
+				
+				
+				
+				
+				
+				
+				
+
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				spawnrate="20"
+				bone="_bone_weapon3"
+				targetbone="_bone_weaponattach"
+				tracktype="angular"
+				trackspeed="20"
+				particlelife="2000"
+				speed="250"
+				distancelife="1"
+				offsetsphere="0 0 0"
+			>
+				<particle>
+					<trailemitter
+						spawnrate="50"
+						particlelife="800"
+						texpostime="800"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/materials/arrow_trail.material"
+					>
+						<particle
+							startcolor="1 1 0"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							size="5"
+						/>
+					</trailemitter>
+				</particle>
+			</trackeremitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

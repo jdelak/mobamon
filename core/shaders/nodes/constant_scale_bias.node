@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="constant_scale_bias">
+	<parameter name="Scale" type="float" />
+	<parameter name="Bias" type="float" />
+	<dependency name="Value" type="*" />
+	<dependency name="Scale" type="float" source="Scale" />
+	<dependency name="Bias" type="float" source="Bias" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="Value" type="float" />
+		<output type="float" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = Value * Scale + Bias;
+	?>
+	<?glsl
+		Out = Value * Scale + Bias;
+	?>
+</node>

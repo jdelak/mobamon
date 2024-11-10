@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_ThunderClaw"
+
+	radius="400"
+	
+	impactdelay="200"
+	maximpactsperinterval="1"
+	maximpactspertarget="1"
+	repeattargetimpacts="false"
+	targetscheme="visible_enemy_units"
+	targetselection="closest"
+	effecttype=""
+	persist="true"
+	
+	impacteffect="effects/impact.effect"
+	bridgeeffect="effects/hero_to_enemy_link.effect"
+	linkeffect="effects/enemy_to_enemy_link.effect"
+>
+	<onimpact>
+
+		<targettype type="hero">
+			<getconstant name="damage" adjustmentsource="this_entity"/>
+			<damage effecttype="Magic" amount="1" b="result" op="mult" />
+		</targettype>
+		<else>
+			<getconstant name="damage" adjustmentsource="this_entity"/>
+			<damage effecttype="Magic" amount="1.5" b="result" op="mult" />
+		</else>
+		
+		<islegendary entity="tool_entity" >
+			<applystate name="State_Thunderclaw_Legendary" duration="3000" />
+		</islegendary>
+		<chain count="7"/>
+	</onimpact>
+</affector>

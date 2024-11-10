@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Tutorial_Thief_Jump"
+	
+	speed="900"
+	gravity="0"
+	lifetime="850"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	
+
+	pathing="true"
+
+	canturn="true"
+	touchradius="120"
+	hazardradius="250"
+	hazardoffset="130"
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+
+>
+
+	<onspawn>
+		<playanim target="source_entity" name="quick_jump" />
+	</onspawn>
+
+	<onimpact>
+		<playeffect effect="effects/poof.effect" source="source_position" target="source_position" />
+		<delete target="source_entity" />
+	</onimpact>
+	
+</projectile>

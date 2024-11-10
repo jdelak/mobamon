@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="high.max" file="high_1.model" type="K2" >
+
+	<anim name="idle" clip="clips/idle.clip" startframe="0" numframes="1" loop="true" />
+	
+	<!--<anim name="hit" clip="clips/hit.clip" loop="true" loopbackframe="-1"/>-->
+	
+	<anim name="flamehit" clip="clips/flamehit.clip" fps="60" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear /shared/sounds/reactive/sfx_crumble_%.wav 500 2000 0.5"/>
+		<physicalshape
+			bone="_bone_rubble01"
+			type="box"
+			bounds="10 10 10"
+			
+			density="1500"
+			expiretime="10000"
+			expiretype="drop"
+		/>
+		<physicalshape
+			bone="_bone_rubble02"
+			type="box"
+			bounds="10 15 10"
+			offset="0 0 50"
+			
+			density="1500"
+			expiretime="10000"
+			expiretype="drop"
+		/>
+		<physicalshape
+			bone="_bone_rubble03"
+			type="box"
+			bounds="20 30 30"
+			endkinematictime="350"
+			density="1500"
+			expiretime="10000"
+			expiretype="drop"
+		/>
+		<physicalshape
+			bone="_bone_rubble04"
+			type="box"
+			bounds="10 10 10"
+			endkinematictime="350"
+			density="1500"
+			expiretime="10000"
+			expiretype="drop"
+		/>
+		<physicalshape
+			bone="_bone_rubble05"
+			type="box"
+			bounds="15 15 15"
+			endkinematictime="350"
+			density="1500"
+			expiretime="10000"
+			expiretype="drop"
+		/>
+		<physicalshape
+			bone="_bone_rubble06"
+			type="1box"
+			bounds="5 5 5"
+			endkinematictime="350"
+			density="500"
+			expiretime="10000"
+			expiretype="drop"
+		/>
+	</anim>
+	
+</model>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="water_vs" nops="true">
+	<dependency name="WorldPosition" type="float3" source="WorldPosition" />
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<dependency name="WorldTangent" type="float3" source="WorldTangent" />
+	<dependency name="ReflectionHeight" type="float" source="fReflectionHeight" />
+	<dependency name="Rotation" type="float2" />
+	<dependency name="TextureParams" type="float3" />
+	<dependency name="Time" type="float" source="fTime" />
+	<output name="OutWaterWorldTangent" type="float3" solution="WaterWorldTangent" />
+	<output name="OutWaterWorldBinormal" type="float3" solution="WaterWorldBinormal" />
+	<output name="OutTexcoord0" type="float4" solution="WaterTexcoord0" />
+	<output name="OutTexcoord1" type="float2" solution="WaterTexcoord1" />
+	<output name="OutReflectionPow" type="float" solution="WaterReflectionPow" />
+	<?hlsl
+		OutReflectionPow = clamp(50.0f - abs(WorldPosition.z - ReflectionHeight), 0.0f, 50.0f) / 50.0f;
+		OutWaterWorldTangent = WorldTangent;
+		
+		#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+			float2x2 mTextureRotM2 = float2x2(Rotation.y, -Rotation.x, Rotation.x, Rotation.y);
+
+			float3x3 mTextureRotM3 = float3x3(
+				Rotation.y, -Rotation.x, 0.0f,
+				Rotation.x, Rotation.y, 0.0f,
+				0.0f, 0.0f, 1.0f); 
+			 
+			OutWaterWorldTangent = mul(mTextureRotM3, OutWaterWorldTangent);
+			OutWaterWorldTangent = normalize(OutWaterWorldTangent);
+		#endif
+		
+		OutWaterWorldBinormal = cross(OutWaterWorldTangent, WorldNormal);
+		
+		#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+			float2 f2Texcoord0 = mul(WorldPosition.xy * TextureParams.x * 0.01f, mTextureRotM2);
+			float2 f2Texcoord1 = mul(WorldPosition.xy * TextureParams.y * 0.01f, mTextureRotM2);	
+		#else
+			float2 f2Texcoord0 = WorldPosition.xy * TextureParams.x * 0.01f;
+			float2 f2Texcoord1 = WorldPosition.xy * TextureParams.y * 0.01f;
+		#endif
+		
+		float fTexFrameMove = Time * TextureParams.z;
+		OutTexcoord0.xy  = f2Texcoord0 + fTexFrameMove;
+		OutTexcoord0.zw  = f2Texcoord1 * -1.5f + fTexFrameMove;
+		
+		OutTexcoord1.xy = WorldPosition.xy;
+	?>
+	<?glsl
+		OutReflectionPow = clamp(50.0f - abs(WorldPosition.z - ReflectionHeight), 0.0f, 50.0f) / 50.0f;
+		OutWaterWorldTangent = WorldTangent;
+		
+		#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+			mat2 mTextureRotM2 = mat2(Rotation.y, -Rotation.x, Rotation.x, Rotation.y);
+
+			mat3 mTextureRotM3 = mat3(
+				Rotation.y, -Rotation.x, 0.0f,
+				Rotation.x, Rotation.y, 0.0f,
+				0.0f, 0.0f, 1.0f); 
+			 
+			OutWaterWorldTangent = OutWaterWorldTangent * mTextureRotM3;
+			OutWaterWorldTangent = normalize(OutWaterWorldTangent);
+		#endif
+		
+		OutWaterWorldBinormal = cross(OutWaterWorldTangent, WorldNormal);
+		
+		#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+			vec2 f2Texcoord0 = mTextureRotM2 * (WorldPosition.xy * TextureParams.x * 0.01f);
+			vec2 f2Texcoord1 = mTextureRotM2 * (WorldPosition.xy * TextureParams.y * 0.01f);	
+		#else
+			vec2 f2Texcoord0 = WorldPosition.xy * TextureParams.x * 0.01f;
+			vec2 f2Texcoord1 = WorldPosition.xy * TextureParams.y * 0.01f;
+		#endif
+		
+		float fTexFrameMove = Time * TextureParams.z;
+		OutTexcoord0.xy  = f2Texcoord0 + fTexFrameMove;
+		OutTexcoord0.zw  = f2Texcoord1 * -1.5f + fTexFrameMove;
+		
+		OutTexcoord1.xy = WorldPosition.xy;
+	?>
+</node>

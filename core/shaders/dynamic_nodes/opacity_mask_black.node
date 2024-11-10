@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="opacity_mask_black">
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+	if (TEXKILL)
+	{
+		clip(Opacity - 91.0f / 255.0f);
+	}
+	Out = float4(0.0f, 0.0f, 0.0f, Opacity);
+	?>
+	<?glsl
+	if (TEXKILL != 0)
+	{
+		if (Opacity < 91.0f / 255.0f)
+			discard;
+	}
+	Out = vec4(0.0f, 0.0f, 0.0f, Opacity);
+	?>
+</node>

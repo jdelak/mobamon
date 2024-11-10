@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastion_Ability2"
+	
+	speed="1400"
+	gravity="0"
+	lifetime="540"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	
+	traileffect="effects/trail.effect"
+
+	pathing="true"
+
+	canturn="true"
+	touchradius="160"
+	hazardradius="250"
+	hazardoffset="130"
+	touchradiusdiradjust="true"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+
+>
+
+	<onspawn>
+		<playanim target="source_entity" name="ability_2_fly" />
+	</onspawn>
+
+	<onimpact>
+		<targettype type="alive" target="source_entity" >
+			<hasbinds>
+				<playanim target="source_entity" name="idle" />
+			</hasbinds>
+		</targettype>
+	</onimpact>
+	
+	<ontouch>
+		<hasbinds>
+			<combatevent effecttype="Magic Counterable">
+				<onimpact>
+					
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult" />
+
+					<cantarget targetscheme="enemy_heroes_and_buildings">
+						<cantarget effecttype="CrowdControl" >
+							<applystate target="target_entity" name="State_Stunned" duration="900,1200,1500,1800"  />
+						</cantarget>
+						<playeffect effect="effects/rings.effect" target="source_entity" source="source_entity" />
+						<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" />
+						<propareaeffect center="this_position" radius="200" anim="flamehit" />
+						
+						<recordheroaggression  />
+						<aggression />
+						<expirestate name="State_Bastion_Ability2" target="source_entity" />
+						<delete target="this_entity" />
+					</cantarget>
+					<else>
+						<cantarget targetscheme="boss" />
+						<else>
+							<push force="1000" duration="140" perpendicular="true" />
+							<playeffect effect="effects/impact_creeps.effect" target="target_entity" source="target_entity" />
+						</else>
+					</else>
+					
+				</onimpact>
+			</combatevent>
+		</hasbinds>
+		<else>
+			<kill target="this_entity" />
+		</else>
+	</ontouch>
+
+	<ondeath>
+		<expirestate name="State_Bastion_Ability2" target="source_entity" />
+		<targettype type="alive" target="source_entity" >
+			<playanim name="idle" target="source_entity"/>
+		</targettype>
+	</ondeath>
+	
+</projectile>

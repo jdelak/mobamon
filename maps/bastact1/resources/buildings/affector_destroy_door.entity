@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Bastact1_Affector_Destroy_DoomDoor"
+	effect=""
+	radius="10"
+	targetselection="all"
+	targetscheme="Rook_Reveal_Gadget"
+	lifetime="1500"
+	maximpactspertarget="-1"
+	impactinterval="100"
+
+>
+
+	<oninterval>
+		<areaofeffect
+			radius="200"
+			targetselection="closest"
+			targetscheme="Rook_Reveal_Gadget"
+			ignoreinvulnerable="true"
+		>
+			<kill source="" target="target_entity"/>
+			<areaofeffect
+				radius="800"
+				targetselection="all"
+				targetscheme="Doom_Door_Defeat"
+				ignoreinvulnerable="true"
+				maximpacts="-1"
+			>
+				
+				<setscriptvalue name="DoomDoor_Defeat" value="1"/>
+				<delete source="" target="this_entity"/>
+			</areaofeffect>
+		</areaofeffect>
+	</oninterval>
+
+</affector>

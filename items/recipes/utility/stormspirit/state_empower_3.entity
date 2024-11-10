@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Item2I_Empower_3"
+	
+	icon="icon.tga"
+	passiveeffect="effects/state_hero.effect"
+	
+	invulnerable="true"
+	stunned="true"
+	frozen="true"
+
+	ishidden="true"
+	
+	effecttype="Invulnerable"
+	
+
+>
+	<onexpired>
+	
+		<playeffect effect="effects/state_end.effect" source="this_proxy_position" target="this_proxy_position"/>
+	
+		<kill source="" target="proxy_entity" />
+		<applystate name="State_Stormspirit_Movespeed" duration="2000" target="source_entity"/>
+	</onexpired>
+</state>

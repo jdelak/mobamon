@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="rangemap">
+	<parameter name="RangeMap" type="float4" />
+	<dependency name="Value" type="*" />
+	<dependency name="RangeMap" type="float4" source="RangeMap"/>
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="Value" type="float" />
+		<output type="float" name="Out" />
+		<?hlsl
+	
+			float f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.z;
+			}
+		
+			Out = f;
+		?>
+		<?glsl
+			float f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.z;
+			}
+		
+			Out = f;
+		?>
+
+	</case>
+	<case>
+		<dependency name="Value" type="float2" />
+		<output type="float2" name="Out" />
+		<?hlsl
+	
+			float2 f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.zz;
+			}
+		
+			Out = f;
+		?>
+		<?glsl
+			vec2 f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.zz;
+			}
+		
+			Out = f;
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<output type="float3" name="Out" />
+		<?hlsl
+	
+			float3 f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.zzz;
+			}
+		
+			Out = f;
+		?>
+		<?glsl
+			vec3 f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.zzz;
+			}
+		
+			Out = f;
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<output type="float4" name="Out" />
+		<?hlsl
+	
+			float4 f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.zzzz;
+			}
+		
+			Out = f;
+		?>
+		<?glsl
+			vec4 f = clamp(Value, RangeMap.x, RangeMap.y);
+		
+			float startRange = RangeMap.y-RangeMap.x;
+			if (startRange != 0.0f)
+			{
+				f = RangeMap.z + (RangeMap.w-RangeMap.z)*((f-RangeMap.x)/(startRange));
+			}
+			else
+			{
+				f = RangeMap.zzzz;
+			}
+		
+			Out = f;
+		?>
+	</case>
+</node>

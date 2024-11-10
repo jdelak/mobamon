@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="1"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<sound
+				volume="0.75"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/vo_grunt.wav"
+			/>	
+<!--
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="0 2.5 5"
+				midcolor="0 2.5 5"
+				endcolor="0"
+				falloffstart="25"
+				falloffend="150"
+			/>
+-->
+			
+			<template name="">
+			
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="450"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="0 .5 1"
+					endcolor="0 0 0"
+					size="150"
+					depthbias="-75"
+				/>
+				
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="450"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".5"
+					endcolor="0 0 0"
+					size="50"
+					depthbias="-75"
+				/>
+				
+			</template>
+
+			<instance name="" zbone="_bone_weapon3"/>
+			<instance name="" zbone="_bone_weapon1"/>
+			
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

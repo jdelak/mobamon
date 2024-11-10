@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bounder_Ult_Cliff"
+
+	speed="2000"
+	gravity="0"
+
+	modelscale="1.0"
+	model=""
+	
+	canturn="false"
+
+	deatheffect=""
+	
+	touchcliffs="true"
+	touchprojectileblockers="true"
+	
+	touchradius="1"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+
+
+>
+	<ontouch>
+		<setpos0 position="source_position" positionend="this_entity" positionmodifier="pointonline" positionvalue="65" />
+		<teleport target="pos0" interpolate="false" />
+		<kill target="proxy_entity" />
+		<kill target="this_entity" />
+	</ontouch>
+
+</projectile>

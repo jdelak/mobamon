@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Rip_Ability1_Self"
+
+	icon="icon.tga"
+
+	passiveeffect="effects/stealth.effect"
+	fadetime="500"
+	stealthtype="item"
+	unitwalking="true"
+	
+	movespeed="75"
+	
+	modifierkey="smoke_cloud"
+>
+
+	<onactivatestart>
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" >
+			<casteffecttype entity="inflictor_entity" effecttype="BreakStealth" >
+				<expire/>
+				<applystate name="State_Rip_Ability1_Cancel" target="this_owner_entity" duration="3500" />
+			</casteffecttype>
+		</casteffecttype>
+		<else>
+			<applystate name="State_Rip_Ability1_Cancel" target="this_owner_entity" duration="3500" />
+			<expire />
+		</else>
+	</onactivatestart>
+
+	<onattackimpact>
+		<applystate name="State_Rip_Ability1_Cancel" target="this_owner_entity" duration="3500" />
+		<expire/>
+	</onattackimpact>
+	
+
+	<modifier key="no_stealth" modpriority="100" 
+		fadetime=""
+		stealthtype=""
+		unitwalking=""
+		passiveeffect=""
+	>
+		<onactivatestart/>
+
+		<onattackimpact/>
+
+		<onexpired/>
+
+	 </modifier>
+
+</state>

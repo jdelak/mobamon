@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2.5">
+
+			<model
+				position="0 0 12"
+				bone="_bone_overhead"
+				expirelife="500"
+				scale=".4"
+				model="shield/model.mdf"
+				color=".25 1 .25"
+				startalpha=".25"
+				endalpha="0"
+				directionalspace="world"
+				pitch="-25"
+				yaw="-45"
+			>
+			
+				<billboard
+					position="-3 8 0"
+					expirelife="500"
+					material="/shared/effects/smaterials/mana_shield.material"
+					startcolor="0 .1 .5"
+					endcolor="0 0 0"
+					depthbias="0"
+					width="85"
+					height="108"
+					lockright="true"
+					lockup="true"
+					directionalspace="local"
+				>
+				</billboard>
+			
+				<billboard
+					position="0 0 0"
+					expirelife="500"
+					material="/shared/effects/smaterials/mana_shield.material"
+					startcolor=".25 1 .25"
+					endcolor="0 0 0"
+					depthbias="0"
+					width="85"
+					height="108"
+					lockright="true"
+					lockup="true"
+					directionalspace="local"
+				>
+				</billboard>
+				
+				
+				<billboard
+					position="0 0 0"
+					life="2000"
+					material="/shared/effects/smaterials/mana_shield.material"
+					startcolor="0"
+					midcolor="0 .35 .75"
+					endcolor="0"
+					depthbias="0"
+					startwidth="85"
+					midwidth="112"
+					endwidth="85"
+					startheight="108"
+					midheight="136"
+					endheight="108"
+					lockright="true"
+					lockup="true"
+					directionalspace="local"
+					loop="true"
+				>
+				</billboard>
+				
+			</model>
+		
+		
+
+
+
+		
+		
+
+			<billboard
+				position="0 0 12"
+				size="60"
+				expirelife="500"
+				bone="_bone_overhead"
+				depthbias="-100"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="0 .3 .7"
+				endcolor="0 0 0"
+			/>
+
+			<billboard
+				position="0 0 12"
+				width="200"
+				height="5"
+				bone="_bone_overhead"
+				life="300"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="0 .15 .5"
+				endcolor="0  0 0"
+				depthbias="-75"
+			/>
+			
+			<billboard
+				position="0 0 12"
+				width="100"
+				height="5"
+				bone="_bone_overhead"
+				life="300"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".125"
+				endcolor="0  0 0"
+				depthbias="-75"
+			/>
+			
+			<billboard
+				position="0 0 12"
+				width="50"
+				height="5"
+				bone="_bone_overhead"
+				life="300"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".25"
+				endcolor="0  0 0"
+				depthbias="-75"
+			/>
+
+			<simpleemitter
+				position="0 0 12"
+				bone="_bone_overhead"
+				count="1"
+				particlelife="300"
+				material="/shared/effects/materials/whitedot.material"
+				depthbias="-75"
+			>
+				<particle
+					startcolor="0 .4 1"
+					endcolor="0 0 0"
+					startsize="100"
+					endsize="0"
+					anchor="1"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

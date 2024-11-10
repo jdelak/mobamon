@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" name="groundsprite" useentityeffectscale="0">
+	<definitions>
+		<particlesystem name="system0" space="world">
+			<groundsprite
+				material="/shared/effects/materials/corpse.material"
+				size="55"				
+				startalpha="1"
+				endalpha="0"
+				color="1 .75 .75"				
+				expirelife="400"
+				minyaw="0"
+				maxyaw="360"
+			/>
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

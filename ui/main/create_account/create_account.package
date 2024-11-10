@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- Page needs wheel rolled to the left. Same poistion as crafting/enchanting/quests et. al. -->
+
+	<!-- OLD -->
+	<panel name="" align="center" valign="center" width="36h" height="17h" visible="0" color="1 1 1 0.1">
+		<label textalign="center" textvalign="center" height="3h" y="1h" outline="true" color="white" font="maindyn_26" content="general_create_account"/>
+		<instance name="standardButton" id="createAccountContainer_old_btn_1" align="center" width="30h" height="4h" valign="bottom" y="-6h" enabled="false" label="general_submit"/>
+		<instance name="standardButton" id="createAccountContainer_old_btn_2" align="center" width="30h" height="4h" valign="bottom" y="-1h" label="new_player_experience_haveaccount"/>
+	</panel>
+	
+	<panel name="createAccountContainer" x="-60s" y="-65s" valign="bottom" noclick="1" visible="0">
+	
+		<!-- Identity -->
+		<panel name="" noclick="1" height="46s" width="310s" y="275s" x="0" align="right">
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label name="createAccountIdent_label" x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="create_acc_identity"/>			
+			<textbox name="createAccountIdent" taborder="3" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+				onenter=""
+			/>
+		</panel>	
+		
+		<!-- Email -->
+		<panel name="" noclick="1" height="46s" width="310s" y="370s" x="0" align="right">
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label name="createAccountEmail_label" x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="create_acc_email"/>			
+			<textbox name="createAccountEmail" taborder="4" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+				onenter=""
+			/>
+		</panel>
+			
+		<!-- UniqueID -->
+		<panel name="" noclick="1" height="46s" width="310s" y="300s" x="0" align="right" visible="false"><!-- Hide for now -->
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="create_acc_id"/>			
+			<textbox name="createAccountUniqueID" taborder="8" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+				onenter=""
+			/>
+		</panel>
+		
+		<!-- Password -->
+		<panel name="" noclick="1" height="46s" width="310s" y="465s" x="-335s" align="right" >
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label name="createAccountPassword_label" x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="main_label_password"/>				
+			<textbox name="createAccountPassword" taborder="5" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center" password="true" passwordchar="*"
+				onenter=""
+			/>
+		</panel>
+		
+		<!-- Password Confirm -->
+		<panel name="" noclick="1" height="46s" width="310s" y="465s" x="0" align="right" >
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label name="createAccountPassword2_label" x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="main_label_password_confirm"/>				
+			<textbox name="createAccountPassword2" taborder="6" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center" password="true" passwordchar="*"
+				onenter=""
+			/>
+		</panel>		
+		
+		<!-- Beta Key -->
+		<panel name="" noclick="1" height="46s" width="645s" y="560s" x="0" align="right">
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label name="createAccountBetaKey_label" x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="create_acc_betakey"/>			
+			<textbox name="createAccountBetaKey" taborder="7" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+				onenter=""
+			/>
+		</panel>	
+		
+		<!-- Create Button -->
+		<panel noclick="0" height="80s" width="308s" y="625s" align="right" >
+			<instance id="createAccountSubmit"
+				name="standardButton"
+				borderthickness="14s"
+				label="main_button_create_account"
+				font="maindyn_36"
+			/>
+		</panel>
+		<panel name="createAccountTOS" noclick="0" width="308s" height="20s" x="0" y="710s" align="right">
+			<panel grow="true" height="100%" align="center" float="right" padding="5s" noclick="1">
+				<instance name="tempSimpleCheckbox" id="createAccountTOSAccept" bg_color="0 0 0 .2" width="100@" height="100%"/>
+				<panel grow="true" height="100%" float="right" padding="4s" noclick="1">
+					<label y="-1s" fitx="1" textvalign="center" textalign="right" style="labelBase" font="maindyn_18" color=".7 .7 .7 1" noclick="1" content="create_acc_agree"/>
+					<button name="createAccountTOSLabelButton" grow="1" height="100%" color="invisible">
+						<label fitx="1" textvalign="center" textalign="right" style="labelClickable" font="maindyn_18" content="create_acc_tos" noclick="1"/>
+						<panel height="1" y="-1s" valign="bottom" color="#42D0F4" noclick="1" />
+						<panel height="1" y="0s" valign="bottom" color="0 0 0 .5" noclick="1" />
+					</button>
+				</panel>
+			</panel>
+		</panel>
+		<panel name="createAccountNewsletter" noclick="0" width="308s" height="20s" x="0s" y="750s" align="right">
+			<panel grow="true" height="100%" align="center" float="right" padding="5s" noclick="1">
+				<instance name="tempSimpleCheckbox" id="createAccountNewsletterAccept" bg_color="0 0 0 .2" width="100@" height="100%"/>
+				<panel grow="true" height="100%" float="right" padding="4s" noclick="1">
+					<label y="-1s" fitx="1" textvalign="center" textalign="right" style="labelBase" font="maindyn_18" color=".7 .7 .7 1" noclick="1" content="create_acc_newsletter_1"/>
+					<button name="createAccountNewsletterLabelButton" grow="1" height="100%" color="invisible">
+						<label fitx="1" textvalign="center" textalign="right" style="labelClickable" font="maindyn_18" content="create_acc_newsletter_2" noclick="1"/>
+						<panel height="1" y="-1s" valign="bottom" color="#42D0F4" noclick="1" />
+						<panel height="1" y="0s" valign="bottom" color="0 0 0 .5" noclick="1" />
+					</button>
+				</panel>
+			</panel>
+		</panel>
+		
+		<!-- Alternate Method Buttons - Moved offscreen for beta -->
+		<panel name="createAccount_socialmedia_parent" noclick="0" height="80s" width="308s" x="-370s" y="860s" align="right" visible="0" >
+			<label name="createAccount_socialmedia_title_label" fitx="true" align="center" style="labelBase" font="maindyn_20" color=".7 .7 .7 1" content="create_acc_change_type" noclick="1" />
+			<panel grow="true" regrow="1" growinvis="0" height="54s" valign="bottom" align="center" float="right" padding="0" noclick="0">
+				<panel name="createAccount_socialmedia_tab_igames" 	visible="0" width="79s" sticky="0" stickytoinvis="0">
+					<image texture="/ui/main/shared/textures/acct_type_igames.tga" 	align="center" width="54s" height="54s" noclick="1" />
+				</panel>	
+				<panel name="createAccount_socialmedia_tab_facebook" 	visible="0" width="79s" sticky="0" stickytoinvis="0">
+					<image texture="/ui/main/shared/textures/acct_type_facebook.tga" 	align="center" width="54s" height="54s" noclick="1" />
+				</panel>	
+				<panel name="createAccount_socialmedia_tab_twitter" 	visible="0" width="79s" sticky="0" stickytoinvis="0">
+					<image texture="/ui/main/shared/textures/acct_type_twitter.tga" 	align="center" width="54s" height="54s" noclick="1"/>
+				</panel>	
+				<panel name="createAccount_socialmedia_tab_google" 	visible="0" width="79s" sticky="0" stickytoinvis="0">
+					<image texture="/ui/main/shared/textures/acct_type_google.tga" 	align="center" width="54s" height="54s" noclick="1" />
+				</panel>					
+			</panel>
+		</panel>		
+		
+		
+		<!-- Goto Login -->
+		<panel name="createAccountHaveAccount" height="23s" width="308s" y="785s" align="right" >
+			<panel grow="1" height="100%" align="center" noclick="1">
+				<label fitx="true" style="labelClickable" font="maindyn_20" content="create_acc_sign_in" noclick="1" />
+				<panel height="1" valign="bottom" color="#42D0F4" noclick="1" />
+				<panel height="1" y="1" valign="bottom" color="0 0 0 .5" noclick="1" />
+			</panel>
+		</panel>
+		
+	</panel>
+	
+	<panel name="createAccountStatusThrob" color="0 0 0 0.5" blockinput="true" visible="false">
+		<panel width="300s" height="60s" align="center" valign="center">
+			<frame texture="/ui/elements:rounded_bg_solid" color="0 0 0 0.75" borderthickness="7s"/>
+			<frame texture="/ui/elements:thick" color="#CCCCCC" borderthicknes="7s"/>
+			<panel hmargin="7s" vmargin="7s">
+				<label x="5s" textvalign="center" color="white" outline="true" font="maindyn_30" content="create_account_please_wait"/>
+				<animatedimage texture="/ui/shared/throb/throb.tga" noclick="true" loop="1" fps="30" onshow="StartAnim(1);" width="100@" height="100%" align="right" />
+			</panel>
+		</panel>
+	</panel>
+
+</package>

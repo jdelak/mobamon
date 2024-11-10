@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_DoorVO"
+	effect=""
+	radius="400"
+	targetselection="all"
+	targetscheme="player_controlled_units"
+	lifetime="-1"
+	maximpactspertarget="-1"
+	impactinterval="1000"
+	maxtotalimpacts="-1"
+	diewithowner="false"
+
+>
+	<onimpact>
+		<entitytype type="Hero_Bastion1Bastact1">
+			<condition test="not_hasstate State_Bastact1_Reminder_Torch" target="target_entity" >
+				<playeffect effect="effects/bastion_1.effect" source="target_entity" target="target_entity" owner="target_entity" />
+				<delete target="this_entity" />
+  	 		</condition>
+		</entitytype>
+	</onimpact>
+
+</affector>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="shadowed" novs="true">
+	<dependency name="TexcoordLight" type="float4" source="TexcoordLight" />
+	<dependency name="ShadowLeak" type="float2" source="vShadowLeak" />
+	<dependency name="ShadowMapSampler" type="sampler2DShadow" source="shadowmap" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output type="float" name="Out" solution="Shadowed" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = saturate(tex2Dproj(ShadowMapSampler, TexcoordLight).r * ShadowLeak.x + ShadowLeak.y);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			TexcoordLight.xyz /= TexcoordLight.w;
+			Out = saturate(ShadowMapSampler_texture.SampleCmpLevelZero(ShadowMapSampler_sampler, TexcoordLight.xy, TexcoordLight.z) * ShadowLeak.x + ShadowLeak.y);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			Out = clamp(shadow2DProj(ShadowMapSampler, TexcoordLight).r * ShadowLeak.x + ShadowLeak.y, 0.0f, 1.0f);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			Out = clamp(textureProj(ShadowMapSampler, TexcoordLight) * ShadowLeak.x + ShadowLeak.y, 0.0f, 1.0f);
+		?>
+	</case>
+</node>

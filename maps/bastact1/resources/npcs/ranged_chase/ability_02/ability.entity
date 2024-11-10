@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability2_Bastact1_Enemy_Ranged_Chase"
+
+	icon="icon.tga"
+	
+	anim="ability_2"
+	casttime="300"
+	castactiontime="300"
+
+	
+	casteffecttype="Magic"
+
+	actiontype="target_position"
+	targetscheme="visible_enemy_heroes"
+	targetradius="500"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	manacost="0"
+	cooldowntime="0"
+
+	ischanneling="true"
+  	channeltime="10"
+	
+	range="5000"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	
+>
+	<onstart>
+		
+		<playanim name="ability_02" target="source_entity"/>
+		<!-- <playeffect effect="effects/cast.effect" source="source_entity" target="target_entity" /> -->
+	</onstart>
+	
+	<constant name="damage" value="125" adjustment="ability" />
+
+	<onchannelstart>
+   		<showchannelbar duration="1000"/>
+    	<order command="forcechannel" force="true" queue="front" />
+    	
+  	</onchannelstart>
+
+  	<onchannelend>
+  		<areaofeffect
+			radius="5000"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			maxtotalimpacts="1"
+			
+		>
+			<setpos0 position="target_position" offsetspace="target_entity" offset="0 375 0" />
+			<spawnprojectile name="Projectile_Bastact1_Enemy_Ranged_Ability2_Chase" source="source_entity" target="pos0" />
+			<playeffect effect="effects/ring.effect" target="pos0" source="pos0" occlude="true" visibility="enemies"/>
+			
+		</areaofeffect>		
+	</onchannelend>
+	
+	<onimpact>
+		<!-- <playeffect effect="effects/arrows_up.effect" source="source_entity" target="target_entity" /> -->
+	</onimpact>
+	
+	<modifier key="attack2" modpriority="100"
+		icon="icon.tga"
+	
+	anim=""
+	casttime="300"
+	castactiontime="300"
+
+	
+	casteffecttype="Magic"
+
+	actiontype="target_position"
+	targetscheme="visible_enemy_heroes"
+	targetradius="500"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	manacost="0"
+	cooldowntime="3000"
+
+	ischanneling="true"
+  	channeltime="2000"
+	
+	range="1000"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	>
+
+			<onstart>
+			<!-- <playeffect effect="effects/cast.effect" source="source_entity" target="target_entity" /> -->
+			</onstart>
+		
+		<constant name="damage" value="125" adjustment="ability" />
+
+		<onchannelstart>
+	   		<showchannelbar duration="1000"/>
+	    	<order command="forcechannel" force="true" queue="front" />
+	    	
+	  	</onchannelstart>
+
+	  	<onchannelend>
+	  		<areaofeffect
+				radius="1000"
+				targetselection="all"
+				targetscheme="player_controlled_units"
+				maxtotalimpacts="1"
+				
+			>
+				<playanim name="ability_02" source="source_entity" target="source_entity" speed=".3"/>
+				<spawnprojectile name="Projectile2_Bastact1_Enemy_Ranged_Ability2_Chase" source="source_entity" target="target_position" />
+				<playeffect effect="effects/ring2.effect" target="target_position" source="target_position" occlude="true" visibility="enemies"/>
+				
+			</areaofeffect>		
+		</onchannelend>
+		
+		<onimpact>
+		<!-- 	<playeffect effect="effects/arrows_up.effect" source="source_entity" target="target_entity" /> -->
+		</onimpact>
+	</modifier>
+
+		<modifier key="attack3" modpriority="100"
+		icon="icon.tga"
+	
+	anim="ability_2"
+	casttime="300"
+	castactiontime="300"
+
+	
+	casteffecttype="Magic"
+
+	actiontype="target_position"
+	targetscheme="visible_enemy_heroes"
+	targetradius="500"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	manacost="0"
+	cooldowntime="5000"
+
+	ischanneling="true"
+  	channeltime="10"
+	
+	range="5000"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	>
+
+			<onstart>
+			
+			<playanim name="ability_02" target="source_entity"/>
+			<playeffect effect="effects/cast.effect" source="source_entity" target="target_entity" />
+			</onstart>
+		
+		<constant name="damage" value="125" adjustment="ability" />
+
+		<onchannelstart>
+	   		<showchannelbar duration="1000"/>
+	    	<order command="forcechannel" force="true" queue="front" />
+	    	
+	  	</onchannelstart>
+
+	  	<onchannelend>
+	  		<areaofeffect
+				radius="5000"
+				targetselection="all"
+				targetscheme="player_controlled_units"
+				maxtotalimpacts="1"
+				
+			>
+				<spawnprojectile name="Projectile2_Bastact1_Enemy_Ranged_Ability2_Chase" source="source_entity" target="target_position" />
+				<playeffect effect="effects/ring2.effect" target="target_position" source="target_position" occlude="true" visibility="enemies"/>
+				
+			</areaofeffect>		
+		</onchannelend>
+		
+		<onimpact>
+			<!-- <playeffect effect="effects/arrows_up.effect" source="source_entity" target="target_entity" /> -->
+		</onimpact>
+	</modifier>
+
+
+	
+</ability>

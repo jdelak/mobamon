@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastact1_Barrel2"
+
+	speed="1000"
+	gravity="0"
+
+	modelscale="4"
+	model="/shared/models/invis.mdf"
+	traileffect=""
+	
+	deatheffect="effects/death.effect"
+	canturn="0"
+	flying="true"
+	flyheight="50"
+	touchradius="105"
+	touchcliffs="false"
+	hazardradius="300"
+	hazardoffset="200"
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="Doom_Door"
+	touchignoreinvulnerable="true"
+>
+  	
+<ontouch>
+	
+	<kill target="proxy_entity" />
+	<kill target="this_entity" />
+	<playeffect effect="effects/fireball_impact2.effect" source="this_position" target="this_position" />
+				<cantarget targetscheme="Rook_Reveal_Gadget" ignoreinvulnerable="true">
+					<kill target="target_entity"/>
+				</cantarget>
+					<else>
+						<cantarget targetscheme="player_controlled_units">
+							<damage amount="1000" effecttype="Magic" />
+						</cantarget>
+							<else>
+								<cantarget targetscheme="enemy_units">
+									<damage amount="20" effecttype="Magic" />
+								</cantarget>
+									<else>
+										<cantarget targetscheme="ally_units">
+											<damage amount="20" effecttype="Magic" />
+										</cantarget>
+
+									</else>
+								</else>
+							</else>
+						
+</ontouch>
+
+<onimpact>
+	<playeffect effect="effects/fireball_impact.effect" source="this_position" target="this_position" />
+</onimpact>	
+
+
+	
+
+</projectile>

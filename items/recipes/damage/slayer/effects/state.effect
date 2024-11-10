@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale=".5">
+		
+			<sound
+			    soundloop="true"
+				fadein="100"
+				fadeout="500"
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="1500"
+				volume=".07"
+				sample=".../sounds/state.wav"
+			/>
+
+			<trackeremitter
+				count="10"
+				position="0 0 250"
+				targetbone="_bone_centerofchest"
+				tracktype="angular"
+				trackspeed="20"
+				spawnrate="2000"
+				particlelife="2000"
+				speed="1000"
+				distancelife="1"
+				offsetsphere="0 0 0"
+			>
+				<particle>
+
+					<simpleemitter
+						spawnrate="250"
+						particlelife="250"
+						position="0 0 0"
+						offsetsphere="35 35 0"
+						material="/shared/effects/materials/whitedot.material"
+						depthbias="50"
+					>
+						<particle
+							startcolor="0 .5 1"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							startsize="10"
+							midsize="10"
+							endsize="10"
+							midsizepos="0.2"
+						/>
+					</simpleemitter>
+
+				</particle>
+			</trackeremitter>
+
+			<!--Persistent FX-->
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="10"
+				particlelife="500"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0"
+				material="/shared/effects/smaterials/dust2.material"
+				depthbias="12"
+				position="0 0 0"
+			>
+				<particle
+					color="0 0.5 1"
+					startalpha="1"
+					endalpha="0"
+					midalphapos="0.7"
+					startscale="40"
+					endscale="100"
+					turn="true"
+				/>
+				<particle
+					color="0 0.5 1"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos="0.7"
+					startscale="200"
+					endscale="50"
+					turn="true"
+					anglespeed="180"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="5"
+				particlelife="500"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="12"
+				position="0 0 0"
+			>
+				<particle
+					startcolor="0"
+					midcolor="0 0.5 1"
+					endcolor="0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos="0.7"
+					startscale="300"
+					endscale="75"
+					turn="true"
+					anglespeed="180"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="10"
+				particlelife="500"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="12"
+				position="0 0 0"
+			>
+				<particle
+					startcolor="0"
+					midcolor="1 1 1"
+					endcolor="0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos="0.7"
+					startscale="50"
+					endscale="10"
+					turn="true"
+					anglespeed="180"
+				/>
+			</simpleemitter>
+ 
+		</particlesystem>
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".5">
+
+			<model
+				life="500"
+				model="models/model.mdf"
+				material="models/material.material"
+				anim="idle"
+				position="0 0 400"
+				scale="1.35"
+				startcolor="1 1.5 2"
+				midcolor="1 1 1"
+				endcolor="0 0 0"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".35"
+				directionalspace="world"
+				yaw="-180"
+				pitch="25"
+			>
+				<billboard
+					life="200"
+					position="0 -10 30"
+					startcolor="0 .5 1"
+					endcolor="0 0 0"
+					size="400"
+					depthbias="-50"
+					material="/shared/effects/smaterials/streak_flare.material"
+				/>
+				
+				<billboard
+					life="400"
+					position="0 -10 30"
+					startcolor="0 .5 1"
+					endcolor="0 0 0"
+					size="600"
+					depthbias="-50"
+					material="/shared/effects/smaterials/whitedot.material"
+				/>
+				
+			</model>
+
+		</particlesystem>
+
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor=".7"
+			endcolor="1"
+		/>
+
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0" />
+		
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->

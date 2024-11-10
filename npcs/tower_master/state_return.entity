@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_TowerMaster_Return"
+
+	ishidden="true"
+	
+	invulnerable="true"
+	impactinterval="3000"
+	unitwalking="true"
+	treewalking="true"
+	cliffwalking="true"
+	buildingwalking="true"
+>
+	<oninflict>
+		<dispel type="StatusDebuff" target="this_owner_entity" />
+		<order command="move" force="true" source="this_owner_entity" target="proxy_position" />
+	</oninflict>
+	<onimpact>
+		<order command="move" force="true" source="this_owner_entity" target="proxy_position" />
+		<dispel type="StatusDebuff" target="this_owner_entity" />
+	</onimpact>
+</state>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1.35">
+
+			<light
+				life="400"
+				startcolor="2 5 0"
+				endcolor="0"
+				falloffstart="00"
+				falloffend="150"
+				position="0 0 50"
+			/>
+
+			<simpleemitter
+				bone="_bone_center"
+				count="10"
+				spawnrate="2000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="25"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="150"
+						maxlife="300"
+						color="1 1 0"
+						material="/shared/effects/smaterials/goop_blend_ground.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="1"
+						minendscale="2.5"
+						maxendscale="3.25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_center"
+				minlife="150"
+				maxlife="300"
+				startcolor="0 0 0"
+				midcolor="0 .75 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				startscale="1"
+				endscale="5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+			/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

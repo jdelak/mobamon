@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_CamZoomIn"
+
+	radius="400"
+	targetselection="all"
+	targetscheme="ally_heroes"
+	maximpactspertarget="-1"
+	lifetime="-1"
+	impactinterval="200"
+>
+
+	<onimpact>
+		<entitytype type="Hero_Bastion1Bastact1">
+			<condition test="hasstate State_Bastact1_CameraZoomedIn" target="target_entity" >
+				<setscriptvalue name="zoom_in" value="1" />
+				<expirestate name="State_Bastact1_CameraZoomedIn" target="target_entity" />
+			</condition>
+			<else>
+				<print text="No state found on Bastion!" />
+			</else>
+		</entitytype>
+	</onimpact>
+</affector>

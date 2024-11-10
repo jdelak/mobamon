@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="0">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1.0">
+
+		
+			<template name="flask">
+
+				<model
+					expirelife="250"
+					bone="_bone_overhead"
+					position="{zpos}"
+					scale="1.6"
+					model="../../ability_01/effects/jug.mdf"
+					anim="idle"
+					color="1 1 1"
+					startalpha="1"
+					endalpha="0"
+					pitchspeed="{zpitchspeed}"
+					roll="{zroll}"
+				>
+				
+					<light
+						bone="_bone_1"
+						expirelife="500"
+						startcolor="5 5 0"
+						endcolor="0 0 0"
+						falloffstart="0"
+						falloffend="75"
+						position="0 0 0"
+					/>
+				
+				
+
+					<billboard
+						position="0 0 0"
+						bone="_bone_1"
+						expirelife="100"
+						startcolor=".35 .25 0"
+						endcolor="0 0 0"
+						size="30"
+						material="/shared/effects/smaterials/whitedot.material"
+					/>
+
+					<billboard
+						position="0 0 0"
+						bone="_bone_1"
+						expirelife="100"
+						startcolor=".35 .25 0"
+						endcolor="0 0 0"
+						size="15"
+						material="/shared/effects/smaterials/whitedot.material"
+					/>
+
+					
+					
+					<simpleemitter
+						bone="_bone_1"
+						spawnrate="50"
+						minparticlelife="150"
+						maxparticlelife="300"
+						material="/shared/effects/smaterials/firesprite_01.material"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="0 0 0"
+							midcolor=".5 .3 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="10"
+							endsize="0"
+							depthbias="-20"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						bone="_bone_1"
+						spawnrate="50"
+						minparticlelife="150"
+						maxparticlelife="300"
+						material="/shared/effects/smaterials/whitedot.material"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="0 0 0"
+							midcolor=".4 .3 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="50"
+							endsize="0"
+							depthbias="-20"
+						/>
+					</simpleemitter>
+					
+					
+					
+					<billboard
+						position="0 0 0"
+						expirelife="100"
+						startcolor=".3 .2 0"
+						endcolor="0 0 0"
+						size="100"
+						material="/shared/effects/smaterials/whitedot.material"
+						depthbias="-50"
+					/>
+					
+
+				</model>
+				
+				
+<!--
+				<model
+					expirelife="250"
+					bone="_bone_overhead"
+					position="{zpos}"
+					scale="1.7"
+					model="../../ability_01/effects/jug.mdf"
+					material="/shared/effects/smaterials/shell_sludge.material"
+					anim="idle"
+					color="1 0 0"
+					pitchspeed="{zpitchspeed}"
+					roll="{zroll}"
+				/>
+-->
+
+
+				
+				
+				
+			</template>
+
+			<instance name="flask" zpitchspeed="-360" zroll="-25" zpos="0 0 25"/>
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Nikolai_Ability4_Leap"
+
+	speed="1400"
+	gravity="0"
+
+	modelscale="1.0"
+	model="/shared/models/invis.mdf"
+	
+	canturn="true"
+	flying="true"
+	flyheight="0"
+	touchradius="130"
+	
+	traileffect="effects/trail_ground.effect"
+
+	maxtouchespertarget="1"
+	hazardradius="200"
+	hazardoffset="100"
+	hazardthreat="extreme"
+	
+	touchprojectileblockers="true"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_heroes"
+	
+
+>
+
+	<ontouch>
+		<targettype type="alive" target="source_entity" >
+			<cantarget effecttype="CrowdControl">
+				<hasbinds>
+					<applystate name="State_Nikolai_Ability1_Grapple" duration="450" target="source_entity" proxy="target_entity"  />
+					<applystate name="State_Nikolai_Ability4_EnemyGrapple" duration="450" target="target_entity"  />
+					
+					<playanim name="ability_4_swing" target="source_entity" />
+					
+					<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity" occlude="true" />
+					
+					
+					<setaccumulator value="1" />
+					
+					<unbind target="target_entity" />
+					<delete target="this_entity" />
+				</hasbinds>
+			</cantarget>
+		</targettype>
+	</ontouch>
+	
+	
+	<onimpact>
+		<compare a="accumulator" b="0" op="eq">
+			<playanim name="default_1" target="source_entity" />
+		</compare>
+	</onimpact>
+	
+
+</projectile>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Harrower_Ability2"
+	
+	speed="800"
+	gravity="0"
+	flyheight="0"
+	flying="true"
+
+	modelscale="3"
+	canturn="true"
+	pathing="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+
+	
+	impactdistance="110"
+	ignoreinvulnerable="true"	
+>
+
+
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+		<compare a="target_entity" b="0" op="ne">
+			<playanim name="attack" target="this_proxy_entity"/>
+			<spawnprojectile name="Projectile_Harrower_Ability2_Jump" offset="0 0 0" source="this_proxy_entity" bind="this_proxy_entity" bindturn="true" target="target_entity" proxy="this_proxy_entity" noresponse="true"/>
+		</compare>
+		<else>
+			<getconstant name="numattacks" adjustmentsource="this_entity" />
+			<setvar0 a="result" />
+			
+			<changeaccumulator entity="this_proxy_entity" b="1" op="add" />
+			<compare a="result" b="var0" op="le">
+				<applystate name="State_Harrower_Ability2_Wait" duration="400" target="this_proxy_entity" proxy="target_entity" />
+			</compare>
+			<else>
+				<kill target="this_proxy_entity" source="" />
+			</else>
+		</else>
+	</onimpact>
+
+
+</projectile>

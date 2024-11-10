@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1.5">
+
+		<sound linearfalloff="true" falloffstart="500" falloffend="2200" volume="0.55" sample="../sounds/item_frostfield_cast.wav"/>
+		<light life="1000" startcolor="0 3 10" midcolor="0 3 10" endcolor="0 0 0" midcolorpos=".75" falloffstart="0" startfalloffend="100" endfalloffend="400" position="0 0 80"/>
+		<simpleemitter count="1" spawnrate="2500" particlelife="1000" offsetsphere="0 0 0">
+			<particle>
+				<groundsprite position="0 0 0" life="800" material="/shared/effects/smaterials/snowy_cracks_reveal.material" size="355" startcolor=".35 .7 .7" endcolor=".5" startframe="1" endframe=".01" startalpha="0.5" midalpha="0.4" endalpha="0" midalphapos="0.5" yaw="90"/>
+				<billboard position="0 0 0" life="1000" material="/shared/effects/smaterials/snowy_groundsprite.material" startsize="625" endsize="800" midsizepos=".2" color="1 1 1" startalpha="0.7" midalpha=".35" endalpha="0" midalphapos="0.5" lockup="1" lockright="1" pitch="90" depthbias="-100" minyroll="0" maxroll="360"/>
+				<billboard life="250" color="0 .025 .05" endcolor="0 0 0" midcolorpos="0.8" startsize="650" endsize="650" lockup="1" pitch="90" lockright="1" maxroll="360" material="/shared/effects/materials/ring_ground.material" loop="false" depthbias="-100"/>
+				<billboard position="0 0 0" life="1000" material="/shared/effects/smaterials/whitedot.material" startsize="150" endsize="300" midsizepos=".2" startcolor=".35" midcolor=".35" endcolor="0 0 0" lockup="1" lockright="1" pitch="90" depthbias="-100"/>
+			</particle>
+		</simpleemitter>
+		<simpleemitter position="0 0 0" count="25" spawnrate="2000" minparticlelife="500" maxparticlelife="1000" gravity="25" minspeed="250" maxspeed="500" drag=".02" material="/shared/effects/smaterials/snowy_smoke.material" offsetsphere="100 100 35" minangle="160" maxangle="160" direction="0 0 -1">
+			<particle startcolor="1" endcolor="1" startalpha=".2" endalpha="0" minangle="0" maxangle="360" startsize="50" minendsize="160" maxendsize="240" minanglespeed="-60" maxanglespeed="60"/>
+		</simpleemitter>
+		<billboard position="0 0 0" material="/shared/effects/materials/bulb_add.material" startcolor=".1 .35 .5" endcolor="0 0 0" life="250" startsize="100" endsize="650" depthbias="-150"/>
+	
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

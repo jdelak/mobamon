@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_MoveSpider"
+
+	radius="250"
+	targetselection="all"
+	targetscheme="trash_mob"
+	lifetime="-1"
+	maximpactspertargetperinterval="1"
+	impactinterval="5000"
+
+>
+
+	
+
+	<onimpact>
+		<condition test="hasstate State_Bastact1_Generic" target="target_entity" >
+		</condition>
+			<else>	
+				<order command="move" source="target_entity" target="this_proxy_entity" queue="none" />
+			</else>
+	</onimpact>
+</affector>

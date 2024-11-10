@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_ShadowCloneStone"
+	
+	statuseffecttooltip=""
+	statuseffectheader=""
+	icon="icon.tga"
+	
+	cost="900"
+	disabled="true"
+	
+	components=""
+	
+	actiontype="target_self"
+	targetscheme="all"
+	queue="front"
+	inheritmovement="true"
+	casttime="0"
+	castactiontime="0"
+	cooldowntime="45000"
+	casteffect="cast.effect"
+	range="500"
+	alwaysshowtimer="true"
+	nobuy="true"
+	nopurchase="true"
+>
+	<onimpact>
+		<orderdisjoint target="this_owner_entity" />
+		<starttimer duration="20000" />
+		<applystate name="State_ShadowCloneStone" duration="100"/>
+		<spawnillusion 
+			target="this_owner_entity" 
+			owner="source_entity"
+			source="source_entity"
+			count="1" 
+			spawncircular="false" 
+			spawncircularradius="100" 
+			spawncircularrotate="false" 
+			lifetime="20000" 
+			receivedamagemultiplier="2.5" 
+			inflictdamagemultiplier="0.4" 
+			spawneffect="multiple_images.effect" 
+			deatheffect="multiple_images_death.effect" 
+			pushentity="true"
+			uncontrollable="true"
+			fixedposition="true"
+			inheritactions="true"
+		/>
+		<applystate name="State_ShadowCloneStone" target="stack_entity" duration="20000"/>
+		<setproxy target="stack_entity" />
+		<clearteamtarget />
+		<setactivemodifierkey name="shadowclone_active" />
+		<order command="follow" source="this_proxy_entity" target="source_entity" queue="back"/>
+	</onimpact>	
+	
+	<modifier key="shadowclone_active" modpriority="100"
+		ignorecooldown="true"
+		anim=""
+		icon="icon_order.tga"
+		manacost="0"
+		actiontype="target_dual"
+		cooldowntime="0"
+		range="9999999"
+		allowoutofrangecast="true"
+		dontshowhovercast="true"
+		noentercombat="true"
+		responsetype="NoResponse"
+		casteffecttype="NoResponse"
+
+		casteffect=""
+	>
+		<onimpact>
+			<compare a="target_entity" b="0" op="ne">
+				<cantarget targetscheme="enemy_units_and_Towers">
+					<order command="attack" force="true" forceduration="20000" source="this_proxy_entity" />
+					<order command="follow" source="this_proxy_entity" target="source_entity" queue="back"/>
+				</cantarget>
+				
+				<cantarget targetscheme="ally_units">
+					<order command="follow" force="true" forceduration="20000" source="this_proxy_entity" />
+				</cantarget>
+			</compare>
+			<else>
+				<order command="move" source="this_proxy_entity" target="target_position" force="true" forceduration="15000" />
+			</else>
+		</onimpact>
+		
+		<onframe>
+			<targettype type="alive" target="this_proxy_entity" />
+			<else>
+				<setactivemodifierkey name="" />
+			</else>
+			
+		</onframe>
+			
+		<onattack>
+			<order command="attack" source="this_proxy_entity" target="target_entity" />
+		</onattack>
+		
+	</modifier>
+	
+</crafteditem>

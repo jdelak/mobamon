@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+	
+	<skin name="black">
+		<reference mesh="10k_shank"			material="material_black.material" />
+		<reference mesh="10k_shankB"		material="material_black_b.material" />
+		<reference mesh="3k_shank"			material="material_black.material" />
+		<reference mesh="3k_shankB"			material="material_black_b.material" />
+		<reference mesh="1.5k_shank"		material="material_black.material" />
+		<reference mesh="1.5k_shankB"		material="material_black_b.material" />
+	</skin>
+	
+	<skin name="red">
+		<reference mesh="10k_shank"			material="material_red.material" />
+		<reference mesh="10k_shankB"		material="material_red_b.material" />
+		<reference mesh="3k_shank"			material="material_red.material" />
+		<reference mesh="3k_shankB"			material="material_red_b.material" />
+		<reference mesh="1.5k_shank"		material="material_red.material" />
+		<reference mesh="1.5k_shankB"		material="material_red_b.material" />
+	</skin>	
+	
+	<skin name="pink">
+		<reference mesh="10k_shank"			material="material_pink.material" />
+		<reference mesh="10k_shankB"		material="material_pink_b.material" />
+		<reference mesh="3k_shank"			material="material_pink.material" />
+		<reference mesh="3k_shankB"			material="material_pink_b.material" />
+		<reference mesh="1.5k_shank"		material="material_pink.material" />
+		<reference mesh="1.5k_shankB"		material="material_pink_b.material" />
+	</skin>
+	
+	
+	<anim name="idle" clip="clips/default_1.clip" loop="true" />
+
+	<anim name="attack_1" clip="clips/attack_1.clip" loop="false" />
+	
+	<anim name="attack_2" clip="clips/attack_2.clip" loop="false" />
+	
+	<anim name="attack_3" clip="clips/attack_3.clip" loop="false" />
+	
+	<anim name="walk_1" clip="clips/walk_1.clip" fps="22" loop="true">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="2" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="17" cmd="PlaySoundLinear sounds/sfx_footstep_1_%.wav 400 2000 .45"/>
+		<frameevent frame="20" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="25" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="37" cmd="PlaySoundLinear sounds/sfx_footstep_1_%.wav 400 2000 .45"/>
+		<frameevent frame="41" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="45" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="57" cmd="PlaySoundLinear sounds/sfx_footstep_1_%.wav 400 2000 .45"/>
+		<frameevent frame="60" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="65" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="77" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="93" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="95" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="102" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="110" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="111" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="118" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="125" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="127" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="134" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="141" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="143" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="150" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="153" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="160" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="171" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+	</anim>
+	
+	
+	<anim name="death_1" clip="clips/death_1.clip" fps="30" loop="true" loopbackframe="-1" >
+	</anim>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="28"/>
+
+	<anim name="ability_2" clip="clips/ability_2.clip"/>
+	
+	<anim name="ability_3_atk1" clip="clips/ability_3_atk1.clip" loop="false" />
+	
+	<anim name="ability_3_atk2" clip="clips/ability_3_atk2.clip" loop="false" />
+	
+	<anim name="ability_3_atk3" clip="clips/ability_3_atk3.clip" loop="false" />
+	
+	<anim name="ability_3_atk4" clip="clips/ability_3_atk4.clip" loop="false" />
+	
+
+	<anim name="ability_4" clip="clips/ability_4.clip" fps="20" blendtime="0"/>
+	
+	<anim name="ability_4_pullback" clip="clips/ability_4_pullback.clip" fps="26"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip" fps="30" />
+	
+	<anim name="port_in" clip="clips/port_in.clip" fps="30" />
+
+	<anim name="bored_1" clip="clips/bored_1.clip" />
+
+	<anim name="item_1" clip="clips/item_1.clip" fps="30" loop="false"/>
+	
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+	
+	<anim name="item_channel_1" clip="clips/item_channel_1.clip" loop="true"/>
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+
+	<anim name="emote_1" clip="clips/emote_1.clip" >
+		<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_1.wav 1000 2500 0.85"/>
+	</anim>
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+</model>

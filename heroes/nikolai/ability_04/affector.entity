@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Nikolai_Ability4"
+
+	radius="300"
+	impactdelay="50"
+	targetselection="all"
+	targetscheme="enemy_units"
+	effecttype="Magic"
+	hazardradius="300"
+	touchpropradius="300"
+	touchpropanim="flamehit"
+>
+
+	
+	<onimpact>
+
+		<getconstant name="damage" adjustmentsource="this_entity"/>
+		<damage effecttype="Magic Splash" amount="1" b="result" op="mult"/>
+		
+		<cantarget effecttype="CrowdControl" >
+			<applystate target="target_entity" name="State_Stunned" duration="500"  />
+		</cantarget>
+		
+		<playeffect effect="effects/additional_impact_enemy.effect" source="target_entity" target="target_entity" occlude="true"/>
+
+		<recordheroaggression  />
+		<aggression />
+	</onimpact>
+	
+</affector>

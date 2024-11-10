@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_BreakableTable_manapot"
+
+	model="fancytable/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	isselectable="false"
+	iscontrollable="false"
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="100"
+	radiusheight="350"
+	boundsradius="100"
+	selectionradius="20"
+	invulnerable="false"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="0"
+	
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="1"
+	canrotate="false"
+	ismobile="false"
+	infoheight="10000"
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	drawonmap="false"
+
+>
+
+	<onkilled>	
+		<setent0 name="Hero_Bastion1"/>
+		<spawnaffector name="Affector_Bastact1_ManaBoost" owner="ent0"  target="source_position" count="1" level="1" />
+		
+		<playeffect effect="effects/barrel_death.effect" source="this_entity" target="this_position" />
+		<print text="Table has been killed" />
+	</onkilled>
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>	
+	
+</pet>

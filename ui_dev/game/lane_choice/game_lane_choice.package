@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- =============================================================== -->
+	
+	<panel name="laneChoiceTimerContainer" align="left" height="1.5h" visible="0" width="18h" x="1.0h" y="28.8h" valign="top" noclick="true" passivechildren="true">
+		<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.25h" x="0.35h" y="0.35h" noclick="true"/>
+		<frame color="#333333" texture="/ui/elements:rounded_bg_white" bordercolor="#333333" borderthickness="0.25h" noclick="true"/>
+		<panel hmargin="0.25h" vmargin="0.25h">
+			<panel texture="/ui/elements:rounded_bg_white_vert" color="#0B0B0B"/>
+			<panel name="laneChoiceTimerBar" texture="/ui/elements:rounded_bg_white_vert" style="timerBarColor"/>
+			<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h"/>
+			<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.15h"/>
+		</panel>
+	</panel>
+	<instance name="standardButton" id="gameSpawnLanePusher" wrap="1" visible="0" label="game_lanechoice_button" align="left" height="6.5h" width="18h" x="1.0h" y="22h" valign="top"/>
+
+	<panel align="center" valign="top" width="60h" height="19.775h" y="15h" noclick="true" name="bossLaneChoice" visible="false">
+		<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.75h" x="0.35h" y="0.35h" noclick="true"/>
+		<frame color="#0B0B0B" texture="/ui/elements:rounded_bg_white" bordercolor="#0B0B0B" borderthickness="0.75h" noclick="true"/>
+		<panel hmargin="0.5h" vmargin="0.5h" noclick="true">
+			<panel height="3.5h" noclick="true" passivechildren="false">
+				<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="true"/>
+				<frame color="#222222" texture="/ui/elements:rounded_bg_white" bordercolor="#222222" borderthickness="0.75h" noclick="true"/>
+				<label textvalign="center" hmargin="1h" font="maindyn_20" color="#FFDD33" shadow="true" shadowoffset="2" content="game_lanechoice_pick" noclick="true"/>
+				<label textvalign="center" textalign="right" width="-8.5h" align="center" font="maindyn_20" color="white" shadow="true" shadowoffset="2" content="1:30" y="-5%" noclick="true" name="bossLaneChoiceTimerLabel"/>
+				<instance name="closeXButton" width="80@" height="80%" align="right" valign="center" x="-0.5h"
+					onclicklua="
+						local mainWindow = self:GetWidget('bossLaneChoice')
+						mainWindow:SetVisible(false)
+					"
+				/>
+			</panel>
+			<panel valign="bottom" height="-4h" noclick="true">
+				<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="true"/>
+				<frame color="#222222" texture="/ui/elements:rounded_bg_white" bordercolor="#222222" borderthickness="0.75h" noclick="true"/>
+				<panel hmargin="0.75h" vmargin="0.75h" float="right" padding="1.5h" noclick="true">
+					<panel width="100@" height="100%" passivechildren="true">
+						<panel align="center" valign="center" width="85@" height="85%" name="bossLaneChoiceIconContainer">
+							<frame texture="/ui/shared/frames/circle.tga" color="0 0 0 0.75" bordercolor="0 0 0 0.75" x="0.25h" y="0.25h" borderthickness="33.33%" width="+6%" height="+6%" align="center" valign="center"/>
+							<frame texture="/ui/shared/frames/circle.tga" color="black" bordercolor="black" borderthickness="33.33%" width="+7%" height="+7%" align="center" valign="center"/>
+							<frame texture="/ui/shared/frames/circle.tga" color="#333333" bordercolor="#333333" borderthickness="33.33%" width="+6%" height="+6%" align="center" valign="center"/>
+
+							<panel hmargin="0.5h" vmargin="0.5h">
+								<frame texture="/ui/shared/frames/circle.tga" color="black" bordercolor="black" borderthickness="33.33%" width="+4%" height="+4%" align="center" valign="center"/>
+								<image texture="/npcs/Kongor/icon_circle.tga" name="bossLaneChoiceIcon"/>
+							</panel>
+						</panel>
+					</panel>
+					<panel width="100@" height="100%">
+						<label height="2h" textalign="center" textvalign="center" font="maindyn_18" color="white" shadow="true" shadowoffset="2" content="game_lanechoice_top" name="bossLaneChoiceTopLabel"/>
+						<button name="bossLaneChoiceTop" valign="bottom" width="80@" height="80%" align="center" color="invisible" interactive="false"
+							onloadlua="libButton2.initializeButton(self, 'bossLaneChoiceTop', 'basicBounce')"
+						>
+							<panel align="center" valign="center" name="bossLaneChoiceTopBody">
+								<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="true"/>
+								<frame color="#444444" texture="/ui/elements:rounded_bg_white" bordercolor="#444444" borderthickness="0.75h" noclick="true"/>
+								<panel hmargin="0.5h" vmargin="0.5h">
+									<image name="bossLaneChoiceTopIcon" texture="/ui/game/shared/textures/lane_top.tga"/>
+									<frame color="#444444" bordercolor="#444444" texture="/ui/elements:rounded_corner_white" borderthickness="0.75h" noclick="true"/>
+									<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.75h" noclick="true"/>
+								</panel>
+							</panel>
+						</button>
+					</panel>
+					<panel width="100@" height="100%">
+						<label height="2h" textalign="center" textvalign="center" font="maindyn_18" color="white" shadow="true" shadowoffset="2" content="game_lanechoice_mid" name="bossLaneChoiceMidLabel"/>
+						<button name="bossLaneChoiceMid" valign="bottom" width="80@" height="80%" align="center" color="invisible"
+							onloadlua="libButton2.initializeButton(self, 'bossLaneChoiceMid', 'basicBounce')" interactive="false"
+						>
+							<panel align="center" valign="center" name="bossLaneChoiceMidBody">
+								<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="true"/>
+								<frame color="#444444" texture="/ui/elements:rounded_bg_white" bordercolor="#444444" borderthickness="0.75h" noclick="true"/>
+								<panel hmargin="0.5h" vmargin="0.5h">
+									<image name="bossLaneChoiceMidIcon" texture="/ui/game/shared/textures/lane_mid.tga"/>
+									<frame color="#444444" bordercolor="#444444" texture="/ui/elements:rounded_corner_white" borderthickness="0.75h" noclick="true"/>
+									<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.75h" noclick="true"/>
+								</panel>
+							</panel>
+						</button>
+					</panel>
+					<panel width="100@" height="100%">
+						<label height="2h" textalign="center" textvalign="center" font="maindyn_18" color="white" shadow="true" shadowoffset="2" content="game_lanechoice_bot" name="bossLaneChoiceBotLabel"/>
+						<button name="bossLaneChoiceBot" valign="bottom" width="80@" height="80%" align="center" color="invisible"
+							onloadlua="libButton2.initializeButton(self, 'bossLaneChoiceBot', 'basicBounce')" interactive="false"
+						>
+							<panel align="center" valign="center" name="bossLaneChoiceBotBody">
+								<frame color="0 0 0 0.35" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="true"/>
+								<frame color="#444444" texture="/ui/elements:rounded_bg_white" bordercolor="#444444" borderthickness="0.75h" noclick="true"/>
+								<panel hmargin="0.5h" vmargin="0.5h">
+									<image name="bossLaneChoiceBotIcon" texture="/ui/game/shared/textures/lane_bot.tga"/>
+									<frame color="#444444" bordercolor="#444444" texture="/ui/elements:rounded_corner_white" borderthickness="0.75h" noclick="true"/>
+									<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.75h" noclick="true"/>
+								</panel>
+							</panel>
+						</button>
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</panel>
+</package>

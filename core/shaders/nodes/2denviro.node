@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="2denviro">
+	<dependency name="Normal" type="float3" source="WorldNormal" />
+	<dependency name="CameraDirection" type="float3" source="WorldCameraDirection" />
+	<output type="float2" name="Out" />
+	<?hlsl
+		float3 f3Reflection = Normal * 2.0f * dot(Normal, CameraDirection) - CameraDirection;
+		Out = float3(f3Reflection * 0.5f + 0.5f).yz;
+	?>
+	<?glsl
+		vec3 f3Reflection = Normal * 2.0f * dot(Normal, CameraDirection) - CameraDirection;
+		Out = vec3(f3Reflection * 0.5f + 0.5f).yz;
+	?>
+</node>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_TowerGuardian_Ability3"
+
+	lifetime="400"
+	useexactlifetime="true"
+	gravity="0"
+
+	modelscale="1"
+	model="/world/sprops/baldir_lair/effects/laser_projectile.mdf"
+	traileffect="effects/trail.effect"
+	canturn="0"
+	deatheffect=""
+	
+	flying="true"
+	flyheight="50"
+	>
+
+	<onimpact>
+		<playeffect effect="effects/impact.effect" target="target_position" source="target_position" occlude="true" />
+		<damage effecttype="AttackDamage" source="source_entity" target="target_entity" amount="1.25" b="source_attackdamage" op="mult" />
+		<delete target="this_proxy_entity" />
+	</onimpact>
+  
+</projectile>

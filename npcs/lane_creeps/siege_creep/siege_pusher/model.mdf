@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" >
+
+	<anim name="idle" clip="../clips/default_1.clip" fps="35" loop="true"/>
+<!--
+	<anim name="portrait" clip="clips/portrait.clip" fps="35" loop="true" numframes="70" minstartframe="0" maxstartframe="-1"/>
+-->
+	<anim name="attack_1" clip="../clips/attack_1.clip" fps="40" loop="false">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2000 .2"/>
+	</anim>
+
+	<anim name="attack_2" clip="../clips/attack_2.clip" fps="40" loop="false">
+	</anim>
+	
+	<anim name="walk_1" clip="../clips/walk_1.clip" fps="40" loop="true" minstartframe="0" maxstartframe="-1">
+		<frameevent frame="10" cmd="PlaySoundLinear /npcs/lane_creeps/range_creep/sounds/creep_move_%.wav 0 1200 .2"/>
+		<frameevent frame="3" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_left_%.wav 0 1200 0.1"/>
+		<frameevent frame="16" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 0 1200 0.1"/>
+		<frameevent frame="24" cmd="PlaySoundLinear /npcs/lane_creeps/range_creep/sounds/creep_move_%.wav 0 1200 .2"/>
+	</anim>
+
+	<anim name="death_1" clip="../clips/death_1.clip" fps="30" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="StartEffect effects/death.effect"/>
+		<frameevent frame="10" cmd="PlaySoundLinear sounds/sfx_death_%.wav 500 2000 .55"/>
+	</anim>	
+
+	<anim name="death_deny_1" clip="../clips/death_1.clip" fps="30" loop="true" blendtime="100" loopbackframe="-1">
+		<frameevent frame="10" cmd="StartEffect effects/deny.effect"/>
+	</anim>	
+	
+	<anim name="death_gib_1" clip="../clips/death_1.clip" fps="24">	
+		<frameevent frame="1" cmd="StartEffect /shared/effects/lasthit/lasthit_seige.effect"/>
+		<frameevent frame="6" cmd="StartEffect /shared/effects/lasthit/lasthit_modifier.effect"/>
+	</anim>	
+	
+	<anim name="death_2" clip="../clips/death_2.clip" fps="30" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="StartEffect effects/death.effect"/>
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/death_%.wav 0 1200 .55"/>
+	</anim>	
+
+	
+<!--
+	<anim name="death_deny_1" clip="clips/death_1.clip" fps="50" loop="true" blendtime="100" loopbackframe="-1">
+		<frameevent frame="10" cmd="StartEffect effects/deny.effect"/>
+	</anim>	
+
+	<anim name="defeat_1" clip="clips/defeat_1.clip" loop="true" loopbackframe="23"/>
+	
+	<anim name="victory_1" clip="clips/victory_1.clip" loop="true"/>
+	
+	<anim name="fly_1" clip="clips/fly_1.clip" loop="true"/>
+
+	<anim name="knock_1" clip="clips/knock_1.clip" loop="true" loopbackframe="-1"/>
+	
+	<anim name="getup_1" clip="clips/getup_1.clip"/>
+-->
+</model>

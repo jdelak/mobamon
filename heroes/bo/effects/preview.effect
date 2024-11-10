@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+
+			<sound delay="200" linearfalloff="true" sample="sounds/sfx_cast.wav" volume="0.25" falloffstart="400" falloffend="2200" channel="90012" />	
+			<sound delay="400" linearfalloff="true" sample="sounds/sfx_trail.wav" volume="0.3" falloffstart="500" falloffend="2700" channel="90012" />	
+			<sound delay="300" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="500" falloffend="2500" volume="0.45"  channel="90012" />	
+			
+			<!-- Passive 1 -->
+			<template name="passive1" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<template name="fire" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<simpleemitter delay="{zdelay}" position="{zpos}" life="500" bone="{zbone}" startspawnrate="0" endspawnrate="100" gravity="-17" speed="0" drag="0" particlelife="500" material="/shared/effects/smaterials/firesprite_blend.material" offsetsphere="38" directionalspace="local" particledirectionalspace="local" >
+						<particle anchor="{zanchor}" minangle="0" maxangle="360" startframe="0" endframe="1" framespeed="2" minsize="{zminsize}" maxsize="{zmaxsize}" startcolor="1 1 1" midcolor="1 0 0" endcolor="1 0 0" midcolorpos=".75" startalpha="1" midalpha="1" endalpha="0" midalphapos=".25" turn="1"/>
+					</simpleemitter>
+					<simpleemitter delay="{zdelay}" position="{zpos}" life="500" bone="{zbone}" startspawnrate="0" endspawnrate="200" gravity="-23" speed="0" drag="0" particlelife="500" material="/shared/effects/smaterials/firesprite_swirl.material" offsetsphere="43" directionalspace="local" particledirectionalspace="local" >
+						<particle anchor="{zanchor}" minangle="0" maxangle="360" startframe="0" endframe="1" framespeed="2" minsize="{zminsize}" maxsize="{zmaxsize}" startcolor="1 1 1" midcolor="1 0 0" endcolor="1 0 0" midcolorpos=".75" startalpha="1" midalpha="1" endalpha="0" midalphapos=".25" turn="1"/>
+					</simpleemitter>
+				</template>
+				<instance name="fire" zbone="_bone_centerofchest" 	zdelay="1000" zanchor="1" zpos="0 0 0" 	zminsize="15" zmaxsize="25"/>
+				<instance name="fire" zbone="_bone_center" 			zdelay="1000" zanchor="1" zpos="0 0 25" zminsize="15" zmaxsize="25"/>
+				<instance name="fire" zbone="_bone_centerofchest" 	zdelay="1000" zanchor="0" zpos="0 0 0" 	zminsize="15" zmaxsize="25"/>
+				<instance name="fire" zbone="_bone_center" 			zdelay="1000" zanchor="0" zpos="0 0 25" zminsize="15" zmaxsize="25"/>
+				<instance name="fire" zbone="_bone_centerofchest" 	zdelay="2000" zanchor="1" zpos="0 0 0" 	zminsize="25" zmaxsize="35"/>
+				<instance name="fire" zbone="_bone_center" 			zdelay="2000" zanchor="1" zpos="0 0 25" zminsize="25" zmaxsize="35"/>
+				<instance name="fire" zbone="_bone_centerofchest" 	zdelay="2000" zanchor="0" zpos="0 0 0" 	zminsize="25" zmaxsize="35"/>
+				<instance name="fire" zbone="_bone_center" 			zdelay="2000" zanchor="0" zpos="0 0 25" zminsize="25" zmaxsize="35"/>
+				<instance name="fire" zbone="_bone_centerofchest" 	zdelay="3000" zanchor="1" zpos="0 0 0" 	zminsize="35" zmaxsize="50"/>
+				<instance name="fire" zbone="_bone_center" 			zdelay="3000" zanchor="1" zpos="0 0 25" zminsize="35" zmaxsize="50"/>
+				<instance name="fire" zbone="_bone_centerofchest" 	zdelay="3000" zanchor="0" zpos="0 0 0" 	zminsize="35" zmaxsize="50"/>
+				<instance name="fire" zbone="_bone_center"			zdelay="3000" zanchor="0" zpos="0 0 25" zminsize="35" zmaxsize="50"/>
+				<template name="model" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<model delay="{zdelay}" life="1000" parentskeleton="1" parentmodel="1" startscale="1" endscale="1" startcolor="1 1 1" midcolor="{zmidcolor}" endcolor="1 1 1" midcolorpos=".15"/>
+				</template>
+				<instance name="model" zdelay="0" zmidcolor="1.5 0 0"/>
+				<instance name="model" zdelay="1000" zmidcolor="1.5 0 0"/>
+				<instance name="model" zdelay="2000" zmidcolor="1.75 0 0"/>
+				<instance name="model" zdelay="3000" zmidcolor="2.25 0 0"/>
+				<template name="model" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<model delay="{zdelay}" life="1000" parentskeleton="1" parentmodel="1" material="/shared/effects/smaterials/shell_falling_water.material" startscale="1" endscale="1" startcolor="0 0 0" midcolor="{zmidcolor}" endcolor="0 0 0" midcolorpos=".15"/>
+				</template>
+				<instance name="model" zdelay="2000" zmidcolor="1 0 0"/>
+				<instance name="model" zdelay="3000" zmidcolor="1 0 0"/>
+				<template name="light" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<billboard bone="_bone_centerofchest" delay="{zdelay}" life="1000" material="/shared/effects/smaterials/whitedot_ground.material" startsize="{zstartsize}" endsize="{zendsize}" startcolor="1 .25 0" midcolor="1 .25 0" endcolor="0 0 0"/>
+				</template>
+				<instance name="light" zdelay="1000" zstartsize="75" zendsize="150"/>
+				<instance name="light" zdelay="2000" zstartsize="75" zendsize="150"/>
+				<instance name="light" zdelay="3000" zstartsize="75" zendsize="150"/>
+				<template name="light" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<billboard bone="_bone_centerofchest" delay="{zdelay}" life="1000" material="/shared/effects/smaterials/whitedot_ground.material" startsize="{zstartsize}" endsize="{zendsize}" startcolor="1 .25 0" midcolor="1 .25 0" endcolor="0 0 0"/>
+				</template>
+				<instance name="light" zdelay="1000" zstartsize="0" zendsize="150"/>
+				<instance name="light" zdelay="2000" zstartsize="0" zendsize="150"/>
+				<instance name="light" zdelay="3000" zstartsize="0" zendsize="150"/>
+				<template name="light" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<simpleemitter count="30" delay="{zdelay}" life="1000" bone="_bone_centerofchest" spawnrate="2000" particlelife="1000" material="/shared/effects/materials/whitedot.material" offsetsphere="0 0 0" position="0 0 0" directionalspace="local" particledirectionalspace="local" >
+						<particle anchor="1" minangle="0" maxangle="360" width="{zwidth}" minheight="{zminheight}" maxheight="{zmaxheight}" startcolor=".5 .25 0" endcolor="0 0 0"/>
+					</simpleemitter>
+				</template>
+				<instance name="light" zdelay="2000" zwidth="25" zminheight="225" zmaxheight="275"/>
+				<instance name="light" zdelay="3000" zwidth="25" zminheight="375" zmaxheight="425"/>
+				<billboard bone="_bone_center" delay="1000" material="/shared/effects/smaterials/bulb_add.material" startcolor=".6 .1 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="200"/>
+				<billboard bone="_bone_center" delay="1100" material="/shared/effects/smaterials/bulb_add.material" startcolor=".6 0 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="200"/>
+				<billboard bone="_bone_center" delay="1200" material="/shared/effects/smaterials/bulb_add.material" startcolor=".3 0 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="200"/>
+				<billboard bone="_bone_center" delay="2000" material="/shared/effects/smaterials/bulb_add.material" startcolor=".6 .1 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="300"/>
+				<billboard bone="_bone_center" delay="2100" material="/shared/effects/smaterials/bulb_add.material" startcolor=".6 0 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="300"/>
+				<billboard bone="_bone_center" delay="2200" material="/shared/effects/smaterials/bulb_add.material" startcolor=".3 0 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="300"/>
+				<billboard bone="_bone_center" delay="3000" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 .15 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="400"/>
+				<billboard bone="_bone_center" delay="3100" material="/shared/effects/smaterials/bulb_add.material" startcolor="1 0 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="400"/>
+				<billboard bone="_bone_center" delay="3200" material="/shared/effects/smaterials/bulb_add.material" startcolor=".5 0 0" endcolor="0 0 0" life="250" position="0 0 25" startsize="150" endsize="400"/>
+			</template>
+			<instance name="passive1"/>
+		
+
+	
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

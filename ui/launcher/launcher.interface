@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="main" scenewidth="100%" sceneheight="100%" luatable="true" onkeydown="" oneventlua=" -- ChatClient.ForceInterfaceUpdate()" onreload="SleepWidget(1500, 'DoEvent()')" onmouseover="" onloadlua="" >
+	
+	<lua file="/ui/main/dev_tools/ben_dev.lua"/>	
+	<lua file="/ui/main/dev_tools/debugging.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/shared/lib_button2.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>	
+	<lua file="/ui/shared/lib_language.lua"/>
+	<lua file="/ui/main/shared/custom_triggers.lua"/>
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	<include file="/ui/main/shared/main_templates_temp.package"/>		
+	
+	<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center"/>
+	
+	<frame color="invisible" height="+30s" valign="center" width="+30s" align="center" borderthickness="17s" bordercolor="black" noclick="1" />
+	<frame color="invisible" borderthickness="2s" bordercolor="#2c3437" noclick="1" />
+	<frame color="invisible" borderthickness="1s" bordercolor="#314354" noclick="1" />	
+	
+	<panel name="mainLogoContainer" align="right" width="200s" height="200s" y="2s" x="-2s" noclick="true">	
+		<panel name="mainLogo" texture="/ui/launcher/textures/iGamesLogo.jpg" noclick="1"/><!-- The image itself -->
+		<image texture="/ui/main/shared/textures/herorole_frame_locked.tga" align="center" valign="center" noclick="1"/>
+	</panel>
+	
+	<include file="/ui/launcher/navigation/navigation.package"/>
+
+	<childinterface file="/ui/shared/simpletip_growy.interface"/>
+	
+	<lua file="/ui/launcher/launcher.lua"/>
+
+</interface>

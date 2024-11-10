@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+<!--
+		<modifier
+			expirelife="250"
+			startcolor=".65"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1">
+
+
+			<template name="">
+
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="650"
+					maxparticlelife="650"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="{zcolor}"
+						midcolor="{zcolor}"
+						endcolor="0 0 0"
+						startsize="60"
+						midsize="60"
+						endsize="40"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zpos="0 0 0" zcolor=".05 0 .1"/>
+			<instance name="" zpos="0 0 25" zcolor="0 .05 .1"/>
+			<instance name="" zpos="0 0 50" zcolor="0 .1 0"/>
+			<instance name="" zpos="0 0 75" zcolor=".1 0 .05"/>
+			<instance name="" zpos="0 0 100" zcolor=".1 .05 0"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/> 
+		<waitfordeath instance="instance1"/> 
+		
+	</thread>
+
+</effect>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+		<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2200"
+				sample="../sounds/sfx_impact.wav"
+			/>
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2500"			
+				particlelife="1000"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<groundsprite
+						position="0 0 0"
+						life="1000"
+						material="/shared/effects/smaterials/snowy_groundsprite.material"
+						startsize="125"
+						endsize="175"
+						midsizepos=".2"
+						color="1 1 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>
+				
+					<groundsprite
+						position="0 0 0"
+						life="1000"
+						material="/shared/effects/smaterials/snowy_cracks_reveal.material"
+						startsize="175"
+						midsize="175"
+						endsize="175"
+						midsizepos=".2"
+						color=".25 .75 1"
+						startframe="1"
+						endframe=".10"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2500"			
+				particlelife="1000"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<groundsprite
+						position="120 0 0"
+						life="1000"
+						material="/shared/effects/smaterials/snowy_groundsprite.material"
+						startsize="75"
+						endsize="125"
+						midsizepos=".2"
+						color="1 1 1"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+					/>
+				
+					<groundsprite
+						position="120 0 0"
+						life="1000"
+						material="/shared/effects/smaterials/snowy_cracks_reveal.material"
+						startsize="125"
+						midsize="125"
+						endsize="125"
+						midsizepos=".2"
+						color=".25 .75 1"
+						startframe="1"
+						endframe=".10"
+						startalpha=".3"
+						midalpha=".3"
+						endalpha="0"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2500"			
+				particlelife="1000"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<groundsprite
+						position="-75 70 0"
+						life="1000"
+						material="/shared/effects/smaterials/snowy_groundsprite.material"
+						startsize="65"
+						endsize="115"
+						midsizepos=".2"
+						color="1 1 1"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+					/>
+				
+					<groundsprite
+						position="-75 70 0"
+						life="1000"
+						material="/shared/effects/smaterials/snowy_cracks_reveal.material"
+						size="115"
+						midsizepos=".2"
+						color=".25 .75 1"
+						startframe="1"
+						endframe=".10"
+						startalpha=".3"
+						midalpha=".3"
+						endalpha="0"
+					/>
+
+					<light
+						life="600"
+						startcolor="6 6 6"
+						midcolor="0 5 10"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						falloffstart="0"
+						falloffend="250"
+						position="0 0 75"
+					/>
+				</particle>
+			</simpleemitter>
+			
+		
+		
+
+
+			<model
+				life="200"
+				parentmodel="true"
+				parentskeleton="true"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2 3"
+				midcolorpos=".2"
+				scale="1.025"
+				startalpha=".5"
+				endalpha="0"
+				material="material.material"
+			/>
+
+			<model
+				life="200"
+				parentmodel="true"
+				parentskeleton="true"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2 3"
+				startscale="1.5"
+				midscale="1"
+				endscale="1"
+				startalpha="1"
+				endalpha="1"
+				material="/heroes/bastion/ability_02/effects/dome/material.material"
+			/>
+
+			<debris
+				bone="_bone_lefthand"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale="0.8"
+				minlife="1000"
+				maxlife="1500"
+				model="../../ability_03/effects/icee_debris/debris.mdf"
+				material="../../ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+			
+			<debris
+				bone="_bone_righthand"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale=".8"
+				minlife="1000"
+				maxlife="1500"
+				model="../../ability_03/effects/icee_debris/debris.mdf"
+				material="../../ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+			
+			<debris
+				bone="_bone_centerofchest"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale="0.75"
+				minlife="1000"
+				maxlife="1500"
+				model="../../ability_03/effects/icee_debris/debris.mdf"
+				material="../../ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="100"
+				position="0 0 0"
+				spawnrate="1000"			
+				minparticlelife="150"
+				maxparticlelife="300"
+				gravity="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="90"
+				minspeed="0"				
+				maxspeed="175"				
+			>
+				<particle
+					turn="true"
+					minsize="175"								
+					maxsize="350"								
+					startcolor="1 1 1"
+					midcolor="0 .75 1"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+					minwidth="3"
+					maxwidth="10"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="20"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="750"
+				maxspeed="1500"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort="0.25"
+					endheightdistort="0"
+					startsize="8"
+					endsize="4"
+					startcolor="1 1 1"
+					midcolor="0 .75 1"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="25" radius="3000" duration="250" frequency="22" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

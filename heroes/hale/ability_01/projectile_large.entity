@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Hale_Ability1_Large"
+
+	speed="1200"
+
+	modelscale="1.0"
+	model=""
+	
+	canturn="false"
+
+	deatheffect=""
+	
+	touchradius="250"
+	touchpropradius="200"
+	touchpropanim="flamehit"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+	maxtouchespertarget="1"
+
+
+>
+
+
+	<ontouch>
+		<hasbinds>
+			<condition test="not_hasstate State_Hale_Ability1_Enemy" target="target_entity" >
+				<getconstant name="damage" />
+				<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+				<recordheroaggression  />
+		    	<aggression />
+				<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+				<playeffect effect="effects/impact_sound.effect" source="target_entity" target="target_entity"/>
+			</condition>
+			<else>
+				<getconstant name="damage" />
+				<damage effecttype="Magic Splash" amount="0.75" b="result" op="mult" />
+				<recordheroaggression  />
+		    	<aggression />
+				<compare a="param" b="1" op="lt" >
+					<playeffect effect="effects/impact_sound_2.effect" source="target_entity" target="target_entity"/>
+				</compare>
+				<playeffect effect="effects/bonus_impact.effect" source="target_entity" target="target_entity"/>
+				<popup name="max" target="target_entity" source="target_entity"/>
+				<setparam a="param" b="1" op="add"/>
+
+			</else>
+		</hasbinds>
+	</ontouch>
+
+	
+	<ondeath>
+
+		<combatevent effecttype="BindingProjectile">
+			<onimpact>
+				
+
+
+				
+			</onimpact>
+		</combatevent>
+	</ondeath>
+
+</projectile>

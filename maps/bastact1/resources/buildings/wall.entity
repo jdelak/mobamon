@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Building_Bastact1_LockedDoor"
+
+	model="/world/sprops/speprops/gate/model.mdf"
+	passiveeffect=""
+
+	mapiconsize="0"
+	drawonmap="false"
+	
+	isselectable="false"
+	noaltclickping="true"
+	
+	deatheffect="effects/magic_barrier/barrier_broken_02.effect"
+	corpsetime="3000"
+	deathtime="3000"
+	
+	preglobalscale="1.0"
+	modelscale="1"
+	effectscale="1.0"
+	boundsheight="300"
+	radiusheight="300"
+	boundsradius="100"
+	selectionradius="50"
+	targetoffset="0 0 0"
+
+	canattack="false"
+
+	aggrorange="0"
+	sightrangeday="0"
+	sightrangenight="0"
+	isshop="false"
+	invulnerable="false"
+	hidealtinfo="true"
+>
+
+<onkilled>
+	<playeffect effect="effects/magic_barrier/barrier_broken_02.effect" source="source_entity" target="source_entity" />
+	<activatemodifierkey name="inactive" entity="this_entity" />
+</onkilled>
+
+<modifier key="unlocked" modpriority="99"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	>
+
+	<onframe>
+		<areaofeffect
+			radius="150"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			source="this_entity"
+			center="this_entity"
+			maxtotalimpacts="1"
+			maximpactspertarget="1"
+		>
+			<playanim name="open_doors" target="this_entity" />
+			<delete target="this_proxy_entity" /> <!-- This should be the key used to open the door -->
+			<activatemodifierkey name="inactive" entity="this_entity" />
+			<deactivatemodiferkey name="unlocked" entity="this_entity" />
+			<setscriptvalue name="door_open" value="1"/>
+		</areaofeffect>
+	</onframe>
+
+</modifier>
+
+<modifier key="inactive" modpriority="100"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	>
+
+	<onframe>
+	</onframe>
+
+</modifier>
+
+<modifier key="active" modpriority="100"
+	boundsheight="300"
+	radiusheight="300"
+	boundsradius="100"
+	>
+
+	<onframe>
+	</onframe>
+
+</modifier>
+
+<modifier key="wizard_blocked" modpriority="100"
+	passiveeffect="effects/magic_barrier/barrier_02.effect"
+	model="/core/null/invis.mdf"
+	boundsheight="300"
+	radiusheight="300"
+	boundsradius="125"
+	>
+
+</modifier>
+
+<modifier key="cellar_door" modpriority="100"
+	model="/world/sprops/speprops/cellar_door/model.mdf"
+	preglobalscale="4.0"
+	>
+
+</modifier>
+
+<modifier key="not_visible" modpriority="100"
+	model="/core/null/invis.mdf"
+	boundsheight="300"
+	radiusheight="300"
+	boundsradius="200"
+	>
+
+</modifier>
+
+</building>

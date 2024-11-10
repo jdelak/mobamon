@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_BarrierToken"
+	
+	icon="icon.tga"
+	
+	cost="900"
+	components="Item_Booster Item_Mender"
+
+	passiveeffect=""
+	
+	
+	actiontype="passive"
+	resistance="20"
+	cooldowntime="25000"
+	alwaysshowonskillbar="false"
+	
+	filters="defense,magic_armor,resistance"
+
+	empoweredeffects="Item_BarrierToken_Empower_1,Item_BarrierToken_Empower_2,Item_BarrierToken_Empower_3"
+	
+	showinpractice="true"
+>
+	<!-- tool tip only -->
+	<constant name="resistance" value="20" adjustment="none" qualityvalue="1.5" qualityadjustment="common" op="add"/>
+
+	<constant name="reduction" value="35" adjustment="none" qualityvalue="5" qualityadjustment="common" op="add"/>
+	<constant name="common_increase" value="0" adjustment="none" qualityvalue="10" qualityadjustment="common" op="add"/>
+	<constant name="legendary" value="7.5" adjustment="none" qualityvalue="7.5" qualityadjustment="legendary" op="add"/>
+	
+	<onframe>
+		<isready>
+			<setactivemodifierkey name="Item_BarrierToken_Ready" />
+		</isready>
+	</onframe>
+	
+	<onattackeddamageevent>	
+		<damageeffecttype effecttype="Indirect" />
+		<else>
+			<isready>
+				<targettype type="player_controlled">
+					<compare a="damage_attempted" b="0" op="gt">
+						<damagesupertype supertype="spell" >
+							<startcooldown />
+							<setactivemodifierkey name="" />
+							<getconstant name="reduction"  />
+							<setvar0 a="result" b="100" op="div" />
+							<setvar0 a="accumulator" b="var0" op="add" />
+							<setvar0 a="1" b="var0" op="sub" />
+							<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+							<applystate name="State_BarrierToken" target="source_entity" duration="2000" />
+						</damagesupertype>
+								
+						<damageeffecttype effecttype="AbilityAttack"> 
+							<startcooldown />
+							<setactivemodifierkey name="" />
+							<islegendary>
+								<getconstant name="legendary" />
+								<setvar0 a="result" b="100" op="div" />
+								<setaccumulator value="var0"  />
+							</islegendary>
+							<setvar0 a="result" b="100" op="div" />
+							<setvar0 a="accumulator" b="var0" op="add" />
+							<setvar0 a="1" b="var0" op="sub" />
+							<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+							<applystate name="State_BarrierToken" target="source_entity" duration="2000" />
+						</damageeffecttype>
+					</compare>
+				</targettype>
+			</isready>
+		</else>
+	</onattackeddamageevent>
+		
+	<modifier key="Item_BarrierToken_Ready" modpriority="100" passiveeffect="effects/state_ready.effect">
+		<onframe>
+			<isready />
+			<else>
+				<setactivemodifierkey name="" />
+			</else>	
+		</onframe>
+	</modifier>
+</crafteditem>

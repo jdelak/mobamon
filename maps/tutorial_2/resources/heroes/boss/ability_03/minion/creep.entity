@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<creep
+	name="Creep_Tutorial2_Boss"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="boss_minion1/model.mdf"
+	skin=""
+	gibanim="death_1"
+	deniedanim="death_1"
+
+	passiveeffect="effects/body.effect"
+	
+	spawneffect="effects/spawn.effect"
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	rewardsoundself="receivedgold"
+	rewardsoundteam="seeteamgold"
+	rewardsoundenemy="seeenemygold"
+	
+	aggrosound="creepaggro"
+  
+	preglobalscale="1.4"
+	modelscale="0.75"
+	effectscale="0.75"
+	boundsheight="64"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+
+	movespeed="150"
+	turnrate="320"
+	turnsmoothing="0.05"
+
+	maxhealth="300"
+	healthregen="0.0"
+	maxmana="0"
+	manaregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+  
+	walknumanims="1"
+	attackduration="1000"
+	attackactiontime="600"
+	attackcooldown="1000"
+	attackdamagemin="14"
+	attackdamagemax="14"
+	deathnumanims="1 "
+	attacknumanims="1"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="100"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep1/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="attack_minus_neutrals"
+	leashaggroscheme="enemy_creeps_and_buildings"
+	attackdamagetype="AttackDamage"
+
+	aggrorange="500"
+	proximityrange="200"
+	sightrangeday="1400"
+	sightrangenight="1400"
+
+	experiencebounty="57"
+	goldbountymin="0"
+	goldbountymax="0"
+	splitgoldbounty="0"
+  
+	maxdivisiblebountyperplayer="30"
+	totaldivisiblebounty="60"
+	
+	corpsetime="0"
+	corpsefadetime="1500"
+	deathtime="500"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+
+	cliffwalking="true"
+
+	unittype="MeleeCreep"
+	
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+>
+
+	<onspawn>
+		<areaofeffect
+			radius="1600"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+		>
+			<order command="attack" source="this_entity" target="target_entity" />
+		</areaofeffect>
+		<compare a="result" b="0" op="eq" >
+			<kill target="this_entity" />
+		</compare>
+
+		<applystate name="State_Tutorial2_Cliffwalking" duration="2000" target="this_entity" />
+
+		<chance threshold="0.5" >
+			<setactivemodifierkey name="model2" />
+		</chance>
+		<applystate name="State_Stunned" target="this_entity" duration="500"/>
+			<playanim name="spawn_1" target="this_entity"/>
+	</onspawn>
+
+	<onframe>
+		<areaofeffect
+			radius="1600"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			ignoreinvulnerable="true"
+		>
+		</areaofeffect>
+		<compare a="result" b="0" op="eq" >
+			<kill target="this_entity" />
+		</compare>
+	</onframe>
+
+	<onattackstart>
+		<kill target="this_entity" source="" />
+	</onattackstart>
+
+	<ondeath>
+		<areaofeffect
+			radius="150"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			effecttype="Magic"
+			center="this_entity"
+		>
+			<damage amount="100" effecttype="Magic"/>
+
+		</areaofeffect>
+	</ondeath>
+
+	<modifier key="model2" model="boss_minion2/model.mdf" modpriority="100"/>
+
+	<modifier key="Cliffwalking_Off" cliffwalking="false" modpriority="100"/>
+
+</creep>

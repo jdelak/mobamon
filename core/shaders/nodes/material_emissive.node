@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_emissive">
+	<parameter name="Emissive" type="float3" default="0.0 0.0 0.0" />
+	<dependency name="Emissive" type="*" source="Emissive" />
+	<output name="MaterialEmissive" type="*" solution="MaterialEmissive" />
+	<case>
+		<dependency name="Emissive" type="float" source="Emissive" />
+		<output name="MaterialEmissive" type="float3" solution="MaterialEmissive" />
+		<?hlsl
+			MaterialEmissive = float3(Emissive, Emissive, Emissive);
+		?>
+		<?glsl
+			MaterialEmissive = vec3(Emissive);
+		?>
+	</case>
+	<case>
+		<dependency name="Emissive" type="float3" source="Emissive" />
+		<output name="MaterialEmissive" type="float3" solution="MaterialEmissive" />
+		<?hlsl
+			MaterialEmissive = Emissive;
+		?>
+		<?glsl
+			MaterialEmissive = Emissive;
+		?>
+	</case>
+	<case>
+		<dependency name="Emissive" type="float4" source="Emissive" />
+		<output name="MaterialEmissive" type="float3" solution="MaterialEmissive" />
+		<?hlsl
+			MaterialEmissive = Emissive.xyz;
+		?>
+		<?glsl
+			MaterialEmissive = Emissive.xyz;
+		?>
+	</case>
+</node>

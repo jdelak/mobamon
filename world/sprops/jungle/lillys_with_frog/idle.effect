@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+		
+			<light
+				position="500 -50 100"
+				expirelife="400"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="2000"
+			/>
+		
+			<light
+				position="-300 -75 100"
+				expirelife="400"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="1000"
+			/>
+			
+			
+			
+
+		
+		
+		
+
+			<simpleemitter
+				spawnrate="10"
+				particlelife="2500"
+				speed="10"
+				drag="0"
+				offsetsphere="220 50 0"
+				acceleration="0"
+				material="/shared/effects/smaterials/refract_ripples.material"
+				depthbias="45"
+			>
+				<particle
+					color="1 1 1"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					midalphapos=".25"
+					startparam=".05"
+					endparam="0"
+					startsize="200"
+					endsize="300"
+					depthbias="0"
+					lockup="true"
+					pitch="90"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

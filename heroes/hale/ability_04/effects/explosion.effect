@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="2.5">
+
+			<light
+				startcolor="5 2 0"
+				midcolor=".5 0 2.5"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="50"
+				falloffend="400"
+				life="1000"
+				position="0 0 50"
+			/>
+
+			<simpleemitter
+				count="1"
+				particlelife="2000"
+				spawnrate="5000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+			>
+				<particle 
+				>
+					<billboard
+						delay="100"
+						life="900"
+						material="/shared/effects/smaterials/big_cracks_reveal.material"
+						startsize="515"
+						endsize="525"
+						color="0"
+						startframe="1"
+						endframe=".01"
+						startalpha=".55"
+						midalpha=".55"
+						endalpha="0"
+						midalphapos=".75"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-35"
+					/>
+<!--
+					<groundsprite
+					position="0 0 0"
+						delay="750"
+						life="350"
+						material="/shared/effects/smaterials/big_cracks_reveal.material"
+						size="225"
+						color=".5"
+						startalpha=".9"
+						midalpha=".9"
+						endalpha="0"
+						midalphapos=".1"
+	
+						depthbias="-25"
+					/>
+-->
+					
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				position="0 0 0"
+				life="600"
+				material="/shared/effects/smaterials/whitedot.material"
+				startsize="200"
+				endsize="800"
+				startcolor=".25"
+				midcolor=".3 0 1"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-25"
+			/>
+
+			<template name="rocks">
+			
+				<terrainemitter
+					delay="{zdelay}"
+					count="{zcount}"
+					life="2000"
+					spawnrate="2000"
+					particlelife="1500"
+					offsetradial="{zoffset}"
+					offsetsphere="12 12 0"
+				>
+					<particle>
+
+						<model
+							minscale="{zminscale}"
+							maxscale="{zmaxscale}"
+							position="0 0 0"
+							startcolor="1.5 0 1.5"
+							midcolor=".2 .2 .2"
+							endcolor="0 0 0"
+							micolorpos=".15"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							life="1000"
+							model="shard/model.mdf"
+							anim="idle"
+							material="shard/material.material"
+							minyaw="0"
+							maxyaw="360"
+							minpitch="-25"
+							maxpitch="25"
+						>
+							<billboard
+								delay="150"
+								life="500"
+								material="/shared/effects/smaterials/torch_hole_overlay.material"
+								scale=".7"
+								startalpha=".65"
+								midalpha=".65"
+								endalpha="0"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								depthbias="-50"
+								directionalspace="local"
+							/>
+<!--
+							<billboard
+								delay="100"
+								life="200"
+								material="/shared/effects/smaterials/whitedot.material"
+								scale="2"
+								startcolor=".05 0 .3"
+								endcolor="0 0 0"
+								endalpha="0"
+								lockup="1"
+								lockright="1"
+								depthbias="-50"
+								directionalspace="local"
+								minheight="225"
+								maxheight="225"
+								width="50"
+							/>
+-->
+							
+							<billboard
+								delay="100"
+								life="400"
+								material="/shared/effects/smaterials/whitedot.material"
+								scale="2"
+								startcolor=".1 0 .2"
+								endcolor="0 0 0"
+								endalpha="0"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								depthbias="-50"
+
+							/>
+
+						</model>
+
+					</particle>
+				</terrainemitter>
+
+			</template>
+
+			<instance name="rocks" zoffset="100 0 0" zdelay="0" zcount="6" zminscale=".3" zmaxscale="1"/>
+			<instance name="rocks" zoffset="150 0 0" zdelay="40" zcount="6" zminscale=".3" zmaxscale="1"/>
+			<instance name="rocks" zoffset="200 0 0" zdelay="80" zcount="6" zminscale=".3" zmaxscale="1"/>
+			<instance name="rocks" zoffset="250 0 0" zdelay="120" zcount="6" zminscale=".4" zmaxscale="1"/>
+			<instance name="rocks" zoffset="300 0 0" zdelay="160" zcount="8" zminscale=".4" zmaxscale="1"/>
+			<instance name="rocks" zoffset="350 0 0" zdelay="200" zcount="8" zminscale=".4" zmaxscale="1"/>
+			<instance name="rocks" zoffset="400 0 0" zdelay="240" zcount="8" zminscale=".5" zmaxscale="1"/>
+			<instance name="rocks" zoffset="450 0 0" zdelay="280" zcount="8" zminscale=".5" zmaxscale="1"/>
+			<instance name="rocks" zoffset="510 0 0" zdelay="320" zcount="20" zminscale=".5" zmaxscale="1"/>
+
+			
+			
+			
+			<template name="splosion">
+		
+				<billboard
+					delay="{zdelay}"
+					position="0 0 50"
+					material="/shared/effects/smaterials/bulb_add.material"				
+					startcolor=".1 0 .5"				
+					endcolor="0 0 0"
+					life="250"	
+					startsize="100"
+					endsize="500"
+					depthbias="-150"			
+				/>
+
+	
+			</template>
+
+			<instance name="splosion" zdelay="0"/>
+			<instance name="splosion" zdelay="75"/>
+			<instance name="splosion" zdelay="150"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+      	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	  	<camerashake2 scale="10" radius="1200" duration="600" frequency="22" />
+      	<waitfordeath instance="instance1" />
+   	</thread>
+
+</effect>

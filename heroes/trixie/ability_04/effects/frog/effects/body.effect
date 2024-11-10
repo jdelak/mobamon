@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			life="350"
+			alpha="0"
+		/>
+		
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				volume="0.2"
+				soundloop="true"
+				falloffstart="500"
+				falloffend="2200"
+				fadeout="1000"
+				sample="../sounds/sfx_groundspark_loop.wav"
+			/>
+
+			<model
+			life="350"
+				parentskeleton="1"
+				parentmodel="1"
+				startscale="1.5"
+				endscale="1"
+				startcolor="3 2 1"
+				endcolor="1.5"
+			/>
+
+			<template name="">
+				<simpleemitter
+					bone="{zbone}"
+					position="0 0 0"
+					spawnrate="50"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="35"
+					minspeed="50"
+					maxspeed="100"
+					material="/shared/effects/smaterials/water_splat_add.material"
+					offsetsphere="0"
+					depthbias="50"
+				>
+					<particle 
+						startcolor=".5 .5 1"
+						midcolor="0 .25 1"
+						endcolor="0 0 0"
+						minangle="0"
+						maxangle="360"
+						startsize="30"
+						endsize="0"
+					/>
+				</simpleemitter>
+			</template>
+			
+			<instance name="" zbone="Bip01 L Foot"/>
+			<instance name="" zbone="Bip01 R Foot"/>
+
+			<simpleemitter
+			bone="Bip01 Spine1"
+				spawnrate="150"
+				position="0 0 0"
+				offsetsphere="18 18 0"
+				direction="0 0 0"
+				minspeed="75"
+				maxspeed="150"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+					bone="Bip01 Spine1"
+						minlife="300"
+						maxlife="600"
+						startcolor="1 1 1"
+						midcolor="0 .25 1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/water_splat_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="0"
+						depthbias="50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			bone="Bip01 Spine1"
+				spawnrate="150"
+				position="0 0 0"
+				offsetsphere="18 18 0"
+				direction="0 0 0"
+				minspeed="75"
+				maxspeed="150"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+					bone="Bip01 Spine1"
+						minlife="300"
+						maxlife="600"
+						startcolor="1 1 1"
+						midcolor="0 .25 1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/water_splat_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="0"
+						depthbias="50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			bone="Bip01 Spine1"
+				spawnrate="125"
+				particlelife="1000"
+				position="0 0 -20"
+				offsetsphere="10 10 65"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+					bone="Bip01 Spine1"
+						minlife="250"
+						maxlife="1000"
+						startcolor="1 1 1"
+						midcolor="0 .25 1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/water_splat_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".2"
+						maxscale=".4"
+						depthbias="50"
+					/>
+
+					<billboard
+					bone="Bip01 Spine1"
+						minlife="250"
+						maxlife="1000"
+						startcolor="0 .05 .125"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".5"
+						maxscale="1"
+						depthbias="50"
+					/>
+					
+				</particle>
+			</simpleemitter>
+			
+			
+			<billboard
+			bone="Bip01 Spine1"
+				expirelife="250"
+				startcolor="0 .25 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="1.75"
+				depthbias="5"
+			/>
+			
+			
+
+			
+			<simpleemitter
+				spawnrate="15"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="20 20 0"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+					<groundsprite
+					delay="350"
+						minlife="500"
+						maxlife="1000"
+						startcolor="0 .6 1"
+						midcolor="0 .25 1"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".15"
+						maxscale=".30"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<terrainemitter
+				position="0 -20 0"
+				delay="0"
+				spawnrate="25"
+				particlelife="1500"
+				range="25"
+			>
+				<particle>
+					<groundsprite
+						minlife="250"
+						maxlife="1000"
+						material="/shared/effects/smaterials/water_overlay.material"
+						minstartsize="25"
+						maxstartsize="50"
+						minendsize="30"
+						maxendsize="90"
+						midsizepos=".25"
+						minyaw="-360"
+						maxyaw="360"
+						startcolor="0 .6 1"
+						endcolor="0 .2 1"
+						startalpha=".2"
+						midalpha=".1"
+						endalpha="0"
+						midalphapos=".5"
+					/>
+
+				</particle>
+			</terrainemitter>
+			
+
+	
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="fogofwar" novs="true">
+	<dependency name="TexcoordFogofwar" type="float2" source="TexcoordFogofwar" />
+	<dependency name="FogofwarSampler" type="sampler2D" source="fogofwar" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output type="float" name="Out" solution="Fogofwar" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = tex2D(FogofwarSampler, TexcoordFogofwar).a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			Out = FogofwarSampler_texture.Sample(FogofwarSampler_sampler, TexcoordFogofwar).a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			Out = texture2D(FogofwarSampler, TexcoordFogofwar).a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			Out = texture(FogofwarSampler, TexcoordFogofwar).a;
+		?>
+	</case>
+</node>

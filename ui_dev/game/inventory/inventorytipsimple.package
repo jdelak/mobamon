@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<!-- Simple Ability Tooltip -->
+	<panel
+		name="abilityTipSimple"
+		visible="false"
+		x="0" y="-19h" align="center" valign="bottom"
+		grow="true" regrow="true"
+		width="44.0h"
+		passivechildren="true"
+		noclick="true"
+		luatable="true"
+	>
+		<panel>
+			<frame color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h" noclick="true"/>
+			<frame color="#151515" texture="/ui/elements:rounded_bg_white" bordercolor="#151515" borderthickness="1h" noclick="true"/>
+		</panel>
+
+		<panel grow="true" regrow="true" growinvis="false" y="0.8h" width="-1.2h" align="center" float="bottom" padding="0.5h">
+
+			<panel width="100%" height="3.6h">
+				<panel float="right" sticky="true" stickytoinvisible="false" padding="0.5h">
+
+					<!-- Icon -->
+					<panel width="100@" height="100%">
+						<image name="abilityTipSimpleIcon"/>
+						<frame color="#151515" bordercolor="#151515" texture="/ui/elements:rounded_corner_white" borderthickness="1h" noclick="true"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="1h"/>
+					</panel>
+
+					<!-- Name / Lvl -->
+					<panel width="-120@" height="100%" float="bottom" padding="0">
+						<label fity="true" font="maindyn_14" color="#ffab01" shadow="true" name="abilityTipSimpleName" />
+						<label fity="true" font="maindyn_12" color=".9 .9 .9 1" shadow="true" name="abilityTipSimpleLevel" />
+					</panel>
+
+				</panel>
+
+				<!-- Mana -->
+				<label y="0.1h" height="100%" textvalign="bottom" textalign="right" font="maindyn_12" color="cyan" shadow="true" name="abilityTipSimpleManaCost" />
+
+				<!-- Value/price (items) -->
+				<label x="-2.5h" textalign="right" textvalign="center" height="2h" y="-0.2h" noclick="true" font="maindyn_11" color="#CCCCCC" name="abilityTipSimpleValueLabel"/>
+				
+				<!-- Shortcut -->
+				<panel x="0" y="-0.2h" grow="true" regrow="true" height="2.0h" align="right" name="abilityTipSimpleHotkeyContainer">
+					<frame texture="/ui/elements:key" borderthickness="33@" color="white"/>
+					<label y="-1" fitx="true" fitxpadding="0.7h" fitxmin="1.5h" font="maindyn_12" textalign="center" textvalign="center" color=".1 .1 .1 1" shadow="true" shadowcolor=".8 .8 .8 1" name="abilityTipSimpleHotkeyLabel"/>
+				</panel>
+			</panel>
+
+			<!-- Simple Description -->
+			<panel grow="true" regrow="true" width="100%">
+				<panel>
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#0B0B0B"/>
+					<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+					<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="#1A1A1A" align="center" valign="center" width="+2" height="+2"/>
+				</panel>
+				<label fity="true" fitypadding="0.75h" width="-1h" align="center" textvalign="center" font="maindyn_12" wrap="true" color="1 1 1 1" shadow="true" name="abilityTipSimpleDescription" />
+			</panel>
+
+			<panel height="2.2h" width="100%" align="center" sticky="true" visible="false" stickytoinvis="false" name="abilityTipSimpleActivateInfoContainer">
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" color="#333333"/>
+				<panel height="1.6h" width="-1.0h" align="center" valign="center">
+					<label height="100%" textvalign="center" font="maindyn_11" color="1 1 1 1" shadow="true" name="abilityTipSimpleDistance"/>
+					<label height="100%" textvalign="center" textalign="right" font="maindyn_11" color="1 1 1 1" shadow="true" name="abilityTipSimpleCooldown"/>
+				</panel>
+			</panel>
+
+			<panel height="2.2h" align="center" name="abilityTipSimpleUpgradeContainer" visible="false" sticky="true" stickytoinvis="false">
+				<label height="100%" textvalign="center" textalign="center" font="maindyn_12" color="1 1 1 1" shadow="true" name="abilityTipSimpleUpgradeLabel"/>
+			</panel>
+			<panel height="0.3h" width="100%" sticky="true" stickytoinvis="false"/>
+		</panel>
+	</panel>
+</package>

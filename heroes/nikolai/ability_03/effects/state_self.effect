@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+		
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<light
+				life="500"
+				position="0 0 50"
+				startcolor="0 6 6"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="150"
+				endfalloffend="250"
+			/>
+			
+			<!-- dummy sprite so effect won't repeat. -->
+			<billboard
+				material="/shared/effects/materials/fresnel.material"
+				expirelife="500"
+				color="0 0 0"
+				position="0 0 0"
+				startsize="10"
+				endsize="10"
+			/>
+			
+<!--
+			<model
+				bone="_bone_shield"
+				model="shield/model.mdf"
+				material="../../material.material"
+				expirelife="250"
+				color="1 1 1"
+				startsize="1"
+				endsize="1"
+				directionalspace="local"
+				yaw="180"
+			> 
+			</model>
+-->
+			
+			<model
+				bone="_bone_shield"
+				life="300"
+				model="shield/model.mdf"
+				material="material.material"
+				anim="idle"
+				startscale="0"
+				endscale=".95"
+				color="0 0 1"
+				alpha=".65"
+				directionalspace="local"
+				yaw="180"
+				pitch="90"
+			/>
+			
+			<model
+			delay="300"
+				bone="_bone_shield"
+				life="500"
+				model="shield/model.mdf"
+				material="material.material"
+				anim="idle"
+				scale=".95"
+				color="0 0 1"
+				startalpha=".65"
+				midalpha="0"
+				endalpha=".65"
+				loop="true"
+				directionalspace="local"
+				yaw="180"
+				pitch="90"
+			/>
+
+			<template name="">
+			
+			
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="5"
+					minparticlelife="300"
+					maxparticlelife="600"
+					gravity="0"
+					minspeed="0"
+					maxspeed="10"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="0"
+					depthbias="25"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .05 .05"
+						endcolor="0 0 0"
+						scale=".75"
+						width="100"
+						height="100"
+					/>
+				</simpleemitter>
+			
+			
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="300"
+					maxparticlelife="600"
+					gravity="0"
+					minspeed="0"
+					maxspeed="10"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="0"
+					depthbias="25"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .05 .05"
+						endcolor="0 0 0"
+						startscale=".4"
+						minendscale="1"
+						maxendscale="1.2"
+						minwidth="50"
+						maxwidth="50"
+						height="50"
+					/>
+				</simpleemitter>
+
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					startcolor="0 .35 .35"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					scale="1"
+					depthbias="-20"
+					directionalspace="local"
+					width="75"
+					height="75"
+				/>
+
+<!--
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="65"
+					mingravity="0"
+					maxgravity="0"
+					minparticlelife="250"
+					maxparticlelife="500"
+					offsetsphere="20 20 0"
+					minspeed="10"
+					maxspeed="25"
+					direction="0 0 1"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="25"
+				>
+					<particle
+					anchor="1"
+						maxangle="359"
+						maxanglespeed="30"
+						minanglespeed="-30"
+						minstartscale="5"
+						maxstartscale="10"
+						minendscale="1"
+						maxendscale="2"
+						startcolor="0 .3 .15"
+						midcolor="0 .3 .15"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+					/>
+				</simpleemitter> 
+-->
+
+			</template>
+
+			<instance name="" zbone="_bone_shield_glow"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

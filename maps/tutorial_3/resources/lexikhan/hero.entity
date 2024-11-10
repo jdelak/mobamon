@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hero
+	name="Tutorial3_LexiKhan"
+	
+	icon="/maps/tutorial_2/resources/heroes/lexikhan/icon.tga"
+	portrait="/maps/tutorial_2/resources/heroes/lexikhan/icon.tga"
+	model="/maps/tutorial_2/resources/heroes/lexikhan/model.mdf"
+	skin=""
+	mapicon="/maps/tutorial_2/resources/heroes/lexikhan/icon_circle.tga"
+	cutouticon="/maps/tutorial_2/resources/heroes/lexikhan/icon_full.tga"
+	
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	itembuild="bot_bastion"
+	
+	preglobalscale="2"
+	modelscale="1"
+	effectscale=".75"
+	boundsheight="64"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+	searchradius="70"
+	minsearchradius="48"
+	searchheight="112"
+
+	movespeed="350"
+	turnrate="900"
+
+	maxhealth="2020,2072,2124,2176,2228,2280,2331,2383,2435,2478,2543,2606,2700,2800,2900"
+	maxhealthperlevel="0"
+	healthregen="3.08,3.3,3.52,3.74,3.96,4.18,4.4,4.62,4.84,5.06,5.28,5.5,5.72,5.94,6.16"
+	healthproportionregen="0.012"
+	
+	maxmana="400"
+	manaregen="4"
+
+	resistance="100"
+
+	cancarryitems="false"
+	inventory0="Ability_General1"
+	inventory1="Ability_LexiKhan1"
+	inventory2="Ability_LexiKhan2"
+	inventory3=""
+	inventory4=""
+	inventory5="Ability_HomecomingStone_Tutorial"
+	inventory6=""
+	inventory7=""
+	inventory8="Ability_HomecomingStone_Home"
+	inventory11="Ability_AutomatedCourier"
+
+	canattack="true"
+	
+	powerperlevel="0"
+	attackduration="400"
+	attackactiontime="350"
+	attackcooldown="1350"
+	attackdamagemin="100"
+	attackdamageminperlevel="0"
+	attackdamagemax="100"
+	attackdamagemaxperlevel="0"
+	attacknumanims="2"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="160"
+	attackstarteffect="/maps/tutorial_2/resources/heroes/lexikhan/effects/attack_start.effect"
+	attackactioneffect=""
+	attackimpacteffect="/maps/tutorial_2/resources/heroes/lexikhan/effects/attack_impact.effect"
+	critimpacteffect="/shared/effects/crit_impact.effect"
+	attacktype="melee"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="600"
+	sightrangeday="600"
+	sightrangenight="600"
+
+	infoheight="200"
+	unitwalking="false"
+	
+	corpsetime="15000"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	levelbuild="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"
+
+>
+
+	<aura state="State_General_Aura" radius="20000" targetscheme="ally_creeps" effecttype="Buff" />
+  
+	<onframe>
+		<compare a="accumulator" b="1" op="ge" >
+			<setaccumulator value="accumulator" valueb="1" valueop="add" />
+			<compare a="accumulator" b="3600" op="ge" >
+				<setactivemodifierkey name="stronk_aura" />
+			</compare>
+		</compare>
+	</onframe>
+
+	<modifier key="stronk_aura" modpriority="100" >
+		<aura state="State_General_Aura_Stronk" radius="20000" targetscheme="ally_creeps" effecttype="Buff" />
+
+		<onframe>
+
+		</onframe>
+	</modifier>
+	
+	<onattackeddamageevent>
+		<compare a="damage_attempted" b="source_health" op="ge">
+			<setvalue name="damage_attempted" a="damage_attempted" b="0" op="mult" />
+		</compare>
+		<compare a="source_health_percent" b="0.25" op="lt" >
+			<setscriptvalue name="Caprice_Low" value="1" />
+		</compare>
+		<else>
+			<setscriptvalue name="Caprice_Low" value="0" />
+		</else>
+	</onattackeddamageevent>
+
+
+
+</hero>

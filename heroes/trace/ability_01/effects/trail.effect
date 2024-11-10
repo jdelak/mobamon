@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions deferred="true">
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="1"
+				sample="/heroes/artillery/ability_04/sounds/trail.wav"
+			/>
+			
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="1"
+				sample="/heroes/artillery/ability_04/sounds/trail.wav"
+			/>
+<!--
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".3 0 .1"
+				endcolor="0 0 0"
+				size="200"
+			/>
+			
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".2 0 .1"
+				endcolor="0 0 0"
+				size="75"
+			/>
+-->
+			<model
+				position="0 0 0"
+				color="1 1 1"
+				scale="1.8"
+				model="boomerang/model.mdf"
+				anim="idle"
+				expirelife="250"
+				yawspeed="-720"
+			>	
+<!--
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="0"
+					material="/shared/effects/smaterials/fire_swoosh_blend.material"
+					color="1 0 .75"
+					startalpha=".35"
+					endalpha="0"
+					size="200"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+
+				/>
+-->
+
+
+<!--
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="0"
+					material="/shared/effects/smaterials/swoosh_ring_red.material"
+					startcolor=".09 0 .045"
+					endcolor="0 0 0"
+					size="95"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					rollspeed="720"
+					roll="180"
+				/>
+				
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="0"
+					material="/shared/effects/smaterials/swoosh_ring_red.material"
+					startcolor=".09 0 .045"
+					endcolor="0"
+					size="95"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					rollspeed="720"
+					roll="180"
+				/>
+				
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".15 0 .05"
+					endcolor="0"
+					size="200"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					rollspeed="720"
+					roll="180"
+				/>
+-->
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".2 0 .2"
+					endcolor="0"
+					size="125"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					rollspeed="720"
+					roll="180"
+				/>
+
+				<light
+					bone="_bone_fx_01"
+					position="0 0 50"
+					life="500"
+					startcolor="3 0 3"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="120"
+					directionalspace="world"
+				/>
+
+			</model>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

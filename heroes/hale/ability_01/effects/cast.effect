@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+
+	<definitions>
+
+		<modifier 
+			name="modifier0"
+			life="700"
+			startcolor="1"
+			midcolor="2.5 1 5"
+			endcolor="1"			
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.75" 
+				sample="../sounds/sfx_cast_1.wav"
+			/>
+
+			<billboard
+				bone="_bone_weapon1"
+				startcolor="1 0 1"
+				midcolor=".5 0 1"
+				endcolor="0 0 0"
+				life="550"
+				startscale="7"
+				endscale="0"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+			
+			<billboard
+				bone="_bone_weapon1"
+				startcolor="1 0 1"
+				midcolor=".5 0 1"
+				endcolor="0 0 0"
+				life="550"
+				startscale="7"
+				endscale="0"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+			
+			<billboard
+				bone="_bone_weapon1"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="0 0 0"
+				life="550"
+				startscale="7"
+				endscale="0"
+				width="75"
+				height="5"
+				material="/shared/effects/smaterials/flare.material"
+			/>
+		
+		
+		
+		
+		
+		
+		
+
+			<terrainemitter
+			delay="250"
+			life="300"
+				spawnrate="30"
+				particlelife="2000"
+				offsetsphere="0 0 0"
+				direction="1 0 0"
+				minangle="-180"
+				maxangle="180"
+				speed="0"
+				directionalspace="global"
+				inheritvelocity="0"
+				depthbias="-20"
+			>
+				<particle
+				>
+					<billboard
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						scale="4"
+						life="600"
+						color="0 0 0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						startalpha="0"
+						midalpha=".1"
+						endalpha="0"
+						midalphapos=".2"
+						depthbias="-75"
+					/>
+				</particle>
+			</terrainemitter>
+
+			
+			
+
+			
+
+<!--
+			<template name="trails">
+				
+				<trailemitter
+				life="1000"
+				bone="{zbone}"
+					spawnrate="50"
+					particlelife="750"
+					texpostime="750"
+					texposscale="1"
+					texstretchscale="0"
+					position="{zpos}"
+					material="/shared/effects/smaterials/black_trail.material"
+					startparticlealpha="1"
+					endparticlealpha="0"
+					
+				>
+					<particle
+						color="0 0 0"
+						startsize="50"
+						endsize="0"
+						midsizepos=".2"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".1"
+				 />
+				</trailemitter>	
+
+			</template>
+			
+			<instance name="trails" zbone="_bone_Bip01 Pelvis" zpos="0 0 0"/>
+			<instance name="trails" zbone="_bone_Bip01 L Clavicle" zpos="0 0 0"/>
+			<instance name="trails" zbone="_bone_Bip01 R Clavicle" zpos="0 0 0"/>
+-->
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".75">
+
+			<template name="smoke">
+				<terrainemitter
+				life="600"
+					bone="{zbone}"
+					spawnrate="200"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-25"
+					minspeed="200"
+					maxspeed="400"
+					drag="0.025"
+					acceleration="0.0"
+					position="{zpos}"
+					direction="0 0 0"
+					offsetsphere="12 12 0"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					depthbias="0"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor=".75 .25 1"
+						midcolor=".35 0 .7"
+						endcolor=".35 0 .7"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+				</terrainemitter>
+			</template>
+
+			<instance name="smoke" zbone="_bone_leftfoot" zpos="20 0 0"/>
+			<instance name="smoke" zbone="_bone_rightfoot" zpos="-20 0 0"/>
+
+			<billboard
+				life="750"
+				position="0 40 25"
+				material="/shared/effects/smaterials/whitedot.material"
+				color=".25 0 .5"
+				scale="4"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+
+			<light
+				position="0 0 25"
+				life="750"
+				startcolor="2.5 0 5"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="150"	
+			/>
+
+			
+<!--
+			<simpleemitter
+			life="550"
+				position="0 40 25"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/lightning.material"
+						life="100"
+						startcolor=".5 .5 .5"
+						midcolor=".25 0 .5"
+						endcolor="0 0 0"
+						minscale=".6"
+						maxscale="1.2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			life="550"
+				position="0 40 25"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/lightning.material"
+						life="100"
+						startcolor=".5 .5 .5"
+						midcolor=".25 0 .5"
+						endcolor="0 0 0"
+						minscale=".6"
+						maxscale="1.2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+
+
+
+			<simpleemitter
+			life="800"
+				position="0 0 0"
+				spawnrate="18"
+				particlelife="2000"
+				offsetsphere="50 0 0"
+				minspeed="50"
+				maxspeed="200"
+			>
+				<particle
+				>
+					<model
+						position="0 0 -35"
+						minlife="450"
+						maxlife="700"
+						name="emitter0" 
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						minscale=".185"
+						maxscale=".25"
+						color="1.75 1.5 1.25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			<simpleemitter
+			delay="200"
+				life="300"
+				position="0 20 0"
+				spawnrate="150"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				offsetsphere="12 12 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+					position="18 0 0"
+						bone="_bone_origin"
+						life="500"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						minsize="25"
+						maxsize="32"
+						color="1 1 1"
+						startalpha=".35"
+						endalpha="0"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+					
+					<groundsprite
+					position="-18 0 0"
+						bone="_bone_origin"
+						life="500"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						minsize="25"
+						maxsize="32"
+						color="1 1 1"
+						startalpha=".35"
+						endalpha="0"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

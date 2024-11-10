@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="watch_spectate_item_template">
+		<panel name="watch_spectate_item_{index}" noclick="0" visible="1" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align=left}" valign="{valign=top}" group="watch_spectate_anim_group"
+			onclicklua=""
+			onmouseoverlua="GetWidget('watch_spectate_item_{index}_mouseover'):SetVisible(1)"
+			onmouseoutlua="GetWidget('watch_spectate_item_{index}_mouseover'):SetVisible(0)"
+		>
+			<panel name="watch_spectate_item_{index}_parent" noclick="1" visible="0" >
+				<!-- VODs/Green: ..13 .36 .61 1 | Streams/Red: .61 .17 .13 1 | Replays/Blue: .13 .36 .61 1 -->
+				<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />				
+				<panel name="watch_spectate_item_{index}_tab" x="-12s" y="-24s" height="33s" width="30%" align="right">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="{color=..13 .36 .61 1}" noclick="1"/>
+					<label y="4s" fitx="1" align="center" color="1 1 1 .7" font="subdyn_13" outline="1" outlinecolor=".07 .47 .17 .8" outlinethickness="4s" content="watch_vidtype_specate" noclick="1" />				
+				</panel>				
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" bordercolor="{outline=..13 .36 .61 1}" noclick="1"/>	
+				<panel noclick="1" hmargin="12s" vmargin="12s" >
+					<panel width="100%" height="100%" valign="center" clip="1" noclick="1">
+						<splashimage name="watch_spectate_item_{index}_banner" width="100%" height="130%" valign="center" 
+							noclick="1"
+							visible="1"
+							bgcolor="black"
+							image=""
+							onshowlua="self:SetImage('/ui/main/shared/concept_art/hero_rook_default.jpg')"
+							onhidelua=""
+							view="pad"
+						/>						
+					</panel>
+					<panel grow="1" width="100%" noclick="1">
+						<image texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" />
+						<label name="watch_spectate_item_{index}_label" x="5s" textvalign="center" width="-20s" fity="1" wrap="1" style="labelBase" outline="1" outlinecolor="0 0 0 .5" outlinethickness="4s" font="{font=maindyn_26}" content="" noclick="1" />				
+					</panel>	
+					<image width="100%" height="36s" texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" hflip="1" align="right" valign="bottom"/>
+					<panel x="-5s" y="-5s" align="right" valign="bottom" width="126s" height="28s" noclick="1">
+						<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="8s" bordercolor="0 0 0 .8" width="+6s" height="+6s" align="center" valign="center" noclick="1" />
+						<instance name="standardButton" id="watch_spectate_item_{index}_btn"
+							width="126s" height="28s"
+							align="right"
+							label="general_view_stream"
+							font="maindyn_20"
+							onclicklua=""
+							onmouseoverlua="GetWidget('watch_spectate_item_{index}_mouseover'):SetVisible(1)"
+							onmouseoutlua="GetWidget('watch_spectate_item_{index}_mouseover'):SetVisible(0)"
+							visible="1"
+							noclick="0"
+						/>
+					</panel>
+				</panel>				
+				<panel name="watch_spectate_item_{index}_mouseover" visible="0" noclick="1">
+					<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="watch_featured_item_template">
+		<panel name="watch_featured_item_{index}" noclick="0" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align=left}" valign="{valign=top}"
+			onclicklua=""
+			onmouseoverlua="GetWidget('watch_featured_item_{index}_mouseover'):SetVisible(1)"
+			onmouseoutlua="GetWidget('watch_featured_item_{index}_mouseover'):SetVisible(0)"
+		>
+			<panel noclick="1" >
+				<!-- VODs/Green: .13 .62 .25 1 | Streams/Red: .61 .17 .13 1 | Replays/Blue: .13 .36 .61 1 -->
+				<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />				
+				<panel name="watch_featured_item_{index}_tab" x="-12s" y="-24s" height="33s" width="30%" align="right">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="{color=.13 .62 .25 1}" noclick="1"/>
+					<label y="4s" fitx="1" align="center" color="1 1 1 .7" font="subdyn_13" outline="1" outlinecolor=".07 .47 .17 .8" outlinethickness="4s" content="watch_vidtype_vod" noclick="1" />				
+				</panel>				
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" bordercolor="{outline=.13 .62 .25 1}" noclick="1"/>	
+				<panel noclick="1" hmargin="12s" vmargin="12s" >
+					<panel width="100%" height="100%" valign="center" clip="1" noclick="1">
+						<splashimage name="watch_featured_item_{index}_banner" width="100%" height="130%" valign="center" 
+							noclick="1"
+							visible="1"
+							bgcolor="black"
+							image=""
+							onshowlua=""
+							onhidelua=""
+							view="pad"
+						/>						
+					</panel>
+					<panel grow="1" width="100%" noclick="1">
+						<image texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" />
+						<label name="watch_featured_item_{index}_label" x="5s" textvalign="center" width="-20s" fity="1" wrap="1" style="labelBase" outline="1" outlinecolor="0 0 0 .5" outlinethickness="4s" font="{font=maindyn_26}" content="" noclick="1" />				
+					</panel>	
+					<image width="100%" height="36s" texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" hflip="1" align="right" valign="bottom"/>
+					<panel x="-5s" y="-5s" align="right" valign="bottom" width="126s" height="28s" noclick="1">
+						<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="8s" bordercolor="0 0 0 .8" width="+6s" height="+6s" align="center" valign="center" noclick="1" />
+						<instance name="standardButton" id="watch_featured_item_{index}_btn"
+							width="126s" height="28s"
+							align="right"
+							label="general_view_stream"
+							font="maindyn_20"
+							onclicklua=""
+							onmouseoverlua="GetWidget('watch_featured_item_{index}_mouseover'):SetVisible(1)"
+							onmouseoutlua="GetWidget('watch_featured_item_{index}_mouseover'):SetVisible(0)"
+							visible="1"
+							noclick="0"
+						/>
+					</panel>
+				</panel>				
+				<panel name="watch_featured_item_{index}_mouseover" visible="0" noclick="1">
+					<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+					<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+				</panel>	
+				<panel texture="/ui/main/watch/textures/watch_video_rankstars.tga" height="46%" width="46@" color="1 1 1 1" noclick="1" x="-20@" y="-23%" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="watch_howto_item_comingsoon_template">
+		<panel noclick="0" hmargin="8s" vmargin="8s" 
+			onclicklua=""
+			onmouseoverlua="{onmouseoverlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(1)"
+			onmouseoutlua="{onmouseoutlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(0)"
+		>
+			<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>	
+			<panel noclick="1"  hmargin="12s" vmargin="12s" >
+				<splashimage width="100%" height="100%" view="clip" bgcolor="black" align="left" valign="bottom" noclick="1" 
+					image="{bannerPath}" 
+				/>
+				<splashimage width="100%" height="100%" view="clip" bgcolor="black" align="left" valign="bottom" noclick="1" 
+					image="{bannerPath}" rendermode="grayscale" color="1 1 1 0.7"
+				/>				
+				<panel grow="1" width="100%" noclick="1">
+					<image texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" />	
+					<label x="10s" y="3s" textvalign="center" width="-20s" fity="1" wrap="1" style="labelBase" outline="1" outlinecolor="0 0 0 .5" outlinethickness="4s" font="maindyn_26" content="{streamName}" noclick="1" />				
+				</panel>
+				<image width="100%" height="34s" texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" hflip="1" align="right" valign="bottom"/>
+			</panel>
+			<panel x="-14s" y="-14s" align="right" valign="bottom" width="206s" height="28s" noclick="1">
+				<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="8s" bordercolor="0 0 0 .8" width="+6s" height="+6s" align="center" valign="center" noclick="1" />
+				<instance name="standardButton"	rendermode="grayscale"			
+					label="general_video_coming_soon"
+					font="maindyn_20"
+					onclicklua=""
+					onmouseoverlua="{onmouseoverlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(1)"
+					onmouseoutlua="{onmouseoutlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(0)"
+					visible="1"
+					noclick="0"
+				/>
+			</panel>
+			<panel name="stream_{streamID}_mouseover" visible="0" noclick="1">
+				<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+			</panel>			
+		</panel>
+	</template>		
+	
+	<template name="watch_howto_item_template">
+		<panel noclick="0" hmargin="8s" vmargin="8s" 
+			onclicklua="
+				libThread.threadFunc(function()
+					wait(1)
+					mainUI.OpenURLInLauncher('{url}' or 'http://www.strife.com')
+					local triggerPanelStatus = LuaTrigger.GetTrigger('mainPanelStatus')
+					triggerPanelStatus.launcherMusicEnabled = false
+					triggerPanelStatus:Trigger(false)
+				end)			
+			"
+			onmouseoverlua="{onmouseoverlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(1)"
+			onmouseoutlua="{onmouseoutlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(0)"
+		>
+			<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>	
+			<panel noclick="1"  hmargin="12s" vmargin="12s" >
+				<splashimage width="100%" height="100%" view="clip" bgcolor="black" align="left" valign="bottom" noclick="1" 
+					image="{bannerPath}"
+				/>
+				<panel grow="1" width="100%" noclick="1">
+					<image texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" />	
+					<label x="10s" y="3s" textvalign="center" width="-20s" fity="1" wrap="1" style="labelBase" outline="1" outlinecolor="0 0 0 .5" outlinethickness="4s" font="maindyn_26" content="{streamName}" noclick="1" />				
+				</panel>
+				<image width="100%" height="34s" texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" hflip="1" align="right" valign="bottom"/>
+			</panel>
+			<panel x="-14s" y="-14s" align="right" valign="bottom" width="126s" height="28s" noclick="1">
+				<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="8s" bordercolor="0 0 0 .8" width="+6s" height="+6s" align="center" valign="center" noclick="1" />
+				<instance name="standardButton"					
+					label="general_view_stream"
+					font="maindyn_20"
+					onclicklua="
+						libThread.threadFunc(function()
+							wait(1)
+							mainUI.OpenURLInLauncher('{url}' or 'http://www.strife.com')
+							local triggerPanelStatus = LuaTrigger.GetTrigger('mainPanelStatus')
+							triggerPanelStatus.launcherMusicEnabled = false
+							triggerPanelStatus:Trigger(false)
+						end)
+					"
+					onmouseoverlua="{onmouseoverlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(1)"
+					onmouseoutlua="{onmouseoutlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(0)"
+					visible="1"
+					noclick="0"
+				/>
+			</panel>
+			<panel name="stream_{streamID}_mouseover" visible="0" noclick="1">
+				<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+			</panel>			
+		</panel>
+	</template>	
+	
+	<template name="watch_stream_item_template">
+		<panel noclick="0" hmargin="8s" vmargin="8s" 
+			onclicklua="
+				mainUI.OpenURL('{url=http://www.strife.com}')
+			"
+			onmouseoverlua="{onmouseoverlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(1)"
+			onmouseoutlua="{onmouseoutlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(0)"
+		>
+			<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>	
+			<panel noclick="1"  hmargin="12s" vmargin="12s" >
+				<image width="100%" height="100%" texture="" align="left" valign="bottom" noclick="1" 
+					onshowlua="self:SetTextureURL('{bannerPath}')"
+				/>
+				<panel grow="1" width="100%" noclick="1">
+					<image texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" />	
+					<label x="10s" y="3s" textvalign="center" width="-20s" fity="1" wrap="1" style="labelBase" outline="1" outlinecolor="0 0 0 .5" outlinethickness="4s" font="maindyn_26" content="{streamName}" noclick="1" />				
+				</panel>
+				<image width="100%" height="34s" texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" hflip="1" align="right" valign="bottom"/>
+			</panel>
+			<panel x="-14s" y="-14s" align="right" valign="bottom" width="126s" height="28s" noclick="1">
+				<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="8s" bordercolor="0 0 0 .8" width="+6s" height="+6s" align="center" valign="center" noclick="1" />
+				<instance name="standardButton"					
+					label="general_view_stream"
+					font="maindyn_20"
+					onclicklua="
+						mainUI.OpenURL('{url}' or 'http://www.strife.com')
+					"
+					onmouseoverlua="{onmouseoverlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(1)"
+					onmouseoutlua="{onmouseoutlua} GetWidget('stream_{streamID}_mouseover'):SetVisible(0)"
+					visible="1"
+					noclick="0"
+				/>
+			</panel>
+			<panel name="stream_{streamID}_mouseover" visible="0" noclick="1">
+				<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+			</panel>			
+		</panel>
+	</template>
+
+	<template name="watch_recent_matches_template">
+		<panel noclick="0"
+			onmouseoverlua="self:GetWidget('watch_recent_matches_{index}_selected'):FadeIn(125)"
+			onmouseoutlua="self:GetWidget('watch_recent_matches_{index}_selected'):FadeOut(125)"
+		>	
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>
+			
+			<panel width="100%" height="100%" float="right" padding="4s" noclick="1">
+				<image width="2.5%" height="70%" texture="/ui/main/watch/textures/watch_replay_dlconfirmed.tga" valign="center" noclick="1"
+					oninstantiatelua=" 
+						if (not {hasReplay=false}) then 
+							self:SetRenderMode('grayscale') 
+							self:SetColor('.6 .6 .6 1') 
+						end
+					"				
+				/> 
+				<panel height="70%" width="70@" color=".23 .23 .23 1" noclick="1">
+					<image width="-4s" height="-4s" valign="center" align="center" texture="{heroIcon=$checker}" noclick="1" 
+						oninstantiatelua=" 
+							self:RegisterWatchLua('WatchStateTrigger', function(widget, trigger)
+								if (trigger.matchIndex == '{index}') and (not Empty(trigger.currentHeroIcon)) then
+									widget:SetTexture(trigger.currentHeroIcon)
+								end
+							end, false, nil, 'matchIndex', 'currentHeroIcon')
+						"						
+					/>
+				</panel>
+				<label width="37%" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textalign="left" textvalign="center" valign="center" content="{label1}" noclick="1"/>
+				<label width="21%" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textalign="center" textvalign="center" valign="center" content="{label3}" noclick="1"/>
+				<label width="21%" style="labelBase" color="{fontColor=1 1 1 1}" font="{font=maindyn_18}" textalign="center" textvalign="center" valign="center" content="{label2}" noclick="1"/>
+				<panel width="69@" height="69%" align="right" texture="/ui/main/shared/textures/scroll.tga" valign="center" visible="1" noclick="0" 
+					oninstantiatelua=" 
+						if ('{matchNote}' ~= '') then 
+							self:SetRenderMode('normal')
+						else
+							self:SetRenderMode('grayscale')
+						end 
+						if ('{match_id}' == '0') then 
+							self:SetVisible(0)
+						end
+					"			
+					onmouseoverlua="
+						if ('{matchNote}' ~= '') then 
+							simpleTipGrowYUpdate(true, '/ui/main/shared/textures/scroll.tga', '{matchName}', '{matchNote=}', self:GetWidthFromString('350s'))
+						else
+							simpleTipGrowYUpdate(true, '/ui/main/shared/textures/scroll.tga', '{matchName}', Translate('watch_match_info_notes_create'), self:GetWidthFromString('350s'))
+						end
+						self:GetWidget('watch_recent_matches_{index}_selected'):FadeIn(125)
+					"
+					onmouseoutlua="
+						simpleTipGrowYUpdate(false)
+						self:GetWidget('watch_recent_matches_{index}_selected'):FadeOut(125)
+					"
+					onclicklua="
+						mainUI.watch.EditMatchInfo('{replayPath}', '{match_id}')
+					"				
+				/>
+			</panel>
+		</panel>
+		<panel name="watch_recent_matches_{index}_current" visible="0" noclick="1"
+			oninstantiatelua="
+				self:RegisterWatchLua('WatchStateTrigger', function(widget, trigger)
+					widget:SetVisible(trigger.matchIndex == '{index}')
+				end, false, nil, 'matchIndex')
+				self:SetVisible(LuaTrigger.GetTrigger('WatchStateTrigger').matchIndex == '{index}')
+			"		
+		>
+			<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .08" borderthickness="8s" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 0.5" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+		</panel>
+		<panel name="watch_recent_matches_{index}_selected" visible="0" noclick="1">
+			<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+		</panel>
+	</template>
+	
+	<style name="watch_loading_hero_slice" noclick="1" width="19%" height="100%" clip="1" />	
+	<style name="watch_loading_hero_slice_image" noclick="1" />	
+
+	<template name="watch_loading_team_item_template" >
+		<panel name="watch_loading_team_{playerid}" style="watch_loading_hero_slice" >
+			<splashimage
+				name="watch_loading_team_{playerid}_image"
+				noclick="true"
+				visible="false"
+				bgcolor="black"
+				style="watch_loading_hero_slice_image"
+				image=""
+				hflip="{hflip}"
+				view="clip"
+				onloadlua="
+					self:RegisterWatchLua('ReplayInfoPlayer{playerid}', function(widget, trigger)
+						if trigger.heroName and (not Empty(trigger.heroName)) then
+							local conceptArtPath = '/ui/game/loading/textures/'
+							conceptArtPath = conceptArtPath .. string.lower(trigger.heroName) .. '_default.jpg'
+							widget:SetImage(conceptArtPath)
+							widget:SetVisible(true) 
+							if (trigger.name == GetAccountName()) then
+								if (tonumber({playerid}) >= 4) then
+									GetWidget('watch_loading_team_1_myteam_indicator'):SetVisible(0)
+									GetWidget('watch_loading_team_2_myteam_indicator'):SetVisible(1)
+								else
+									GetWidget('watch_loading_team_1_myteam_indicator'):SetVisible(1)
+									GetWidget('watch_loading_team_2_myteam_indicator'):SetVisible(0)
+								end
+							end
+						end
+					end)
+					self:RegisterWatchLua('WatchStateTrigger', function(widget, trigger)
+						if (not Empty(trigger.heroIcon{playerid})) then
+							local conceptArtPath = '/ui/game/loading/textures/'
+							conceptArtPath = conceptArtPath .. string.lower(trigger.heroIcon{playerid}) .. '_default.jpg'						
+							widget:SetImage(conceptArtPath)
+							widget:SetVisible(true) 
+						end
+					end, false, nil, 'heroIcon{playerid}')
+				"
+				onhidelua=""				
+			/>
+		</panel>
+	</template>
+
+	<template name="mini_postgame_scoreboard_row">
+		<panel name="{prefix=postgame}_scoreboard_row_{index}" width="390s" height="46s" align="center" float="right" padding="4s" noclick="1">
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<image name="{prefix=postgame}_scoreboard_row_{index}_hero_icon" width="-4s" height="-4s" valign="center" align="center" texture="$invis" />
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<image name="{prefix=postgame}_scoreboard_row_{index}_pet_icon" width="-4s" height="-4s" valign="center" align="center" texture="$invis" />
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="1" icon="/items/recipes/damage/bloodthirster/icon.tga" id="0"/>
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="2" icon="/items/recipes/damage/codex/icon.tga" id="1"/>
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="3" icon="/items/recipes/damage/fell_blade/icon.tga" id="2"/>
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="4" icon="/items/recipes/damage/frostbrand/icon.tga" id="3"/>
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="5" icon="/items/recipes/damage/gauntlet/icon.tga" id="4"/>
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="6" icon="/items/recipes/damage/shieldbreaker/icon.tga" id="5"/>
+			</panel>
+			<panel width="10.3%" height="10@" color=".07 .07 .07 1">
+				<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="7" icon="/items/recipes/damage/hellflower/icon.tga" id="6"/>
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="watchNavItem">
+		<panel name="watch_nav_slot_{id}" width="100@" height="100%" color="black" visible="0">
+			<frame borderthickness="1" color="#191919" bordercolor="#191919" noclick="true"/>
+			<image name="watch_nav_slot_{id}Icon" texture="/ui/main/watch/textures/watch_empty_slot.tga" noclick="true"/>
+		</panel>
+	</template>
+
+	<template name="watchNavItemRow">
+		<panel height="34s">
+			<panel align="center" grow="true" height="100%" float="right" padding="4s">
+				<instance name="watchNavItem" id="{id1}"/>
+				<instance name="watchNavItem" id="{id2}"/>
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="watch_gamelist_filter">
+		<panel name="watch_gamelist_filter{id}" width="100@" height="100%" noclick="true">
+			<image name="watch_gamelist_filter{id}Backer" texture="/ui/_textures/elements/toggle_off.tga" onloadlua="{backeronloadlua}" /><!-- Set to 'toggle_on.tga' when fitler selected -->
+			<button name="watch_gamelist_filter{id}Button" color="invisible" onclicklua="{onclicklua}" onmouseoverlua="{onmouseoverlua}" onmouseoutlua="{onmouseoutlua}" />
+			<image hmargin="6@" vmargin="6@" texture="{icon}" noclick="true"/>
+			<frame name="watch_gamelist_filter{id}Hover" visible="0" texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .08" borderthickness="8s" noclick="1"/>
+		</panel>
+	</template>	
+	
+</package>

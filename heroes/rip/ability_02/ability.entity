@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Rip2"
+ 
+	icon="icon.tga"
+	
+	anim="ability_2_cast"
+	casttime="0"
+	castactiontime="250"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+	targetradius="300"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	targetscheme="enemy_units_and_buildings"
+	casteffecttype=""
+	activatescheme="movement"
+
+	manacost="75,80,85,90"
+
+	cooldowntime="15000"
+
+	novoiceresponse="true"
+
+	queue="dropmovement"
+	
+	range="550"
+
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	hoverareacastrange="550"
+
+	allowoutofrangecast="true"
+>
+	<constant name="damage" value="75,100,125,150" adjustment="ability" />
+
+	<onimpact>
+		<spawnunit name="Gadget_Rip_Ability2" target="target_position" pushentity="true"/>
+		<applystate name="State_Rip_Ability2_Invuln" proxy="stack_entity" target="source_entity" duration="1050"/>
+		<playeffect effect="effects/cast.effect" source="source_position" occlude="true"/>
+	</onimpact>
+
+</ability>

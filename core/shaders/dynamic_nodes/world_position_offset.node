@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="world_position_offset">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="mWorldViewOffset" type="float4x4" source="mWorldViewOffset" />
+	<output name="Out" type="float3" solution="WorldPositionOffset" />
+	<?hlsl
+		Out = mul(float4(ObjectPosition, 1.0f), mWorldViewOffset).xyz;
+	?>
+	<?glsl
+		Out = (mWorldViewOffset * vec4(ObjectPosition, 1.0f)).xyz;
+	?>
+</node>

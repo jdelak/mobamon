@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="main" scenewidth="100%" sceneheight="100%" luatable="true" onloadlua="LoadState()" >
+	
+	<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center"/>
+	
+	<panel align="right" width="400s" height="200s" y="33s" x="-55s" noclick="true">	
+		<button color="invisible" width="100%" height="100%" valign="top" noclick="0">
+			<panel texture="/ui/main/shared/textures/logo.tga" noclick="1"/>
+		</button>
+	</panel>		
+	
+	<include file="/ui/precache.package"/>
+	
+	<lua file="/ui/main/main_pre_init.lua"/>
+	<lua file="/ui/main/dev_tools/json.lua"/>
+	<lua file="/ui/main/web/web_requests.lua"/>
+	<lua file="/ui/main/dev_tools/ben_dev.lua"/>
+	<lua file="/ui/main/dev_tools/debugging.lua"/>
+	<lua file="/ui/shared/regions.lua"/>	
+	<lua file="/ui/shared/database.lua"/>
+	<lua file="/ui/shared/lib_thread.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/><!-- Needs to exist before custom triggers as of 6/13/2013 -->
+	<lua file="/ui/shared/lib_analytics.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/main/shared/cursors.lua"/>
+	<lua file="/ui/main/shared/custom_triggers2.lua"/><!-- Needs to exist pretty much immediately -->
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/main/shared/styles2.lua"/>	
+	<lua file="/ui/shared/global_drag2.lua"/>
+	<lua file="/ui/shared/lib_postframe.lua"/>
+	<lua file="/ui/shared/lib_scroll.lua"/>
+	<lua file="/ui/shared/lib_moveit.lua"/>
+	<lua file="/ui/_scripts/_temp_data_storage.lua"/> <!-- RMM contains dummy data and script to remove later -->
+	<lua file="/ui/shared/lib_button2.lua"/>
+	
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+	
+	<!-- ========================== -->
+	
+	<!-- Needed for new player experience -->
+	
+	<trigger name="tutorial_finishMap1"/>
+	<trigger name="tutorial_finishMap2"/>
+	<trigger name="tutorial_finishMap3"/>
+	
+	<!-- ========================== -->
+	
+	<trigger name="UIUpdateRegion"/>
+	<trigger name="abilityTipShow"/>
+	<trigger name="abilityTipHide"/>
+	<trigger name="petTipShow"/>
+	<trigger name="petTipHide"/>	
+	
+	<include file="/ui/shared/shared_draggables.package"/>
+	
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	<include file="/ui/main/shared/main_templates_temp.package"/>
+	
+	<panel noclick="1" name="main_parted_no_connection_overlay_sleeper" />
+	
+	<panel name="main_parted_no_connection_overlay" noclick="0" blockinput="1" visible="0" >
+		<panel name="main_parted_no_connection_overlay_dimmer" noclick="1" visible="0" color="0 0 0 0.85" />	
+
+		<animatedimage name="main_parted_no_connection_overlay_wheel" visible="0" texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+			y="-64s" height="128s" width="128s" align="center" valign="center" 
+			onloadlua="
+				self:RegisterWatchLua(
+					'ChatConnectionStatus', function(widget, trigger)
+						if (trigger.authenticated) then
+							widget:SetVisible(0)
+						elseif (trigger.connected) then
+							widget:SetVisible(1)
+						else
+							widget:SetVisible(1)
+						end
+					end
+				)
+			"
+		/>		
+		<label name="main_parted_no_connection_overlay_label" visible="0" fitx="1" align="center" valign="center" fity="1" font="maindyn_48" content="" y="34s" color=".7 .7 .7 1" shadow="1" outline="1" 
+			onloadlua="
+				self:RegisterWatch('HostErrorMessage', function(widget, param0, param1, param2)
+					widget:SetText(Translate(param0) .. '\n' .. Translate(param1))
+					widget:SetVisible(1)
+				end)
+			"
+		/>		
+		
+		<instance name="standardButton" id="main_parted_reconnect" visible="0" height="8h" align="center" valign="bottom" y="-14h" width="28h" font="maindyn_24" label="general_reconnect"
+			onclicklua="
+				mainUI.reconnecting = true
+				Cmd('Reconnect')
+			"
+			onloadlua="
+				local trigger = LuaTrigger.GetTrigger('GamePhase')
+				self:SetVisible(7 > trigger.gamePhase )
+				self:RegisterWatchLua('GamePhase', function(widget, trigger)
+					widget:SetVisible(7 > trigger.gamePhase )
+				end, true, nil, 'gamePhase')				
+			"
+		/>		
+		
+		<instance name="standardButton" id="main_parted_leavegame" visible="1" height="8h" align="center" valign="bottom" y="-4h" width="28h" font="maindyn_24" label="game_scoreboard_leave_game"
+			onclicklua="
+				mainUI.reconnecting = false
+				FinishMatch()
+			"
+		/>
+	</panel>	
+	
+	<panel name="main_parted_blocker" noclick="0" blockinput="1" visible="1" color="0 0 0 1" />
+	
+	<panel name="mainMusicController" noclick="true"/>
+
+	<!-- ======================================================================================================== -->
+
+	<childinterface file="/ui/shared/options/options.interface"/>
+	<include file="/ui/main/control_presets/control_presets.package"/>
+	<childinterface file="/ui/game/button_binder/button_binder.interface"/>
+	
+	<!-- Tooltips -->
+	<childinterface file="/ui/shared/simpletip_growy.interface"/>
+	
+	<panel name="mainDragLayer" noclick="true" color="invisible"/>
+	
+	<!-- main script -->
+	<lua file="/ui/game_main/game_main.lua"/> 
+	<!-- Scripts (load after main script) -->
+	
+</interface>

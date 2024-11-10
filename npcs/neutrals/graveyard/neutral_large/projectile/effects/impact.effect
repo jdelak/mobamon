@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				volume="0.25"
+				falloffstart="500"
+				falloffend="1800"
+				sample="../../sounds/sfx_impact.wav"
+			/>
+<!--
+			<simpleemitter
+				count="20"
+				life="500"
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				spawnrate="300"
+				minparticlelife="250"
+				maxparticlelife="750"
+				minspeed="0"
+				maxspeed="1000"
+				drag="0.05"
+				gravity="-1"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/dust2.material"
+			>
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					turn="1"
+					color="0 0 0"
+					size="20"
+					minendscale="6"
+					maxendscale="10"
+					startalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+-->
+			<simpleemitter
+				count="15"
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				spawnrate="2000"
+				minparticlelife="300"
+				maxparticlelife="600"
+				gravity="5"
+				minspeed="200"
+				maxspeed="400"
+				drag="0"
+				acceleration="0.0"
+				material="/shared/effects/smaterials/blue_feather.material"
+				offsetsphere="35 35 35"
+				direction="0 0 0"
+				minangle="-180"
+				maxangle="180"
+				directionalspace="global"
+				collide="true"
+				depthbias="35"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minsize="30"
+					maxsize="40"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					color=".5 .75 1"
+					midcolorpos=".15"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".75"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

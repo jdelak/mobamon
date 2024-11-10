@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_EnvironmentTrigger_Swamp1"
+
+	icon=""
+	portrait=""
+	model="model_1.mdf"	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+	
+	maxhealth="4500"
+	healthregen="4500"
+
+	immunity="CrowdControlImmunity"
+	slowresistance="5"
+	stunnedimmunity="true"
+	silencedimmunity="true"
+	perplexedimmunity="true"
+	disarmedimmunity="true"
+	immobilizedimmunity="true"
+	restrainedimmunity="true"
+	frozenimmunity="true"
+
+
+	sightrangeday="0"
+	sightrangenight="0"
+	revealrange="0"
+	
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	
+	invulnerable="false"
+	hidealtinfo="true"
+	flying="true"
+	flyheight="270"
+	drawonmap="false"
+
+	unittype="destruction_prop"
+	
+>
+	<!-- remove this onspawn when setting up properly. This is a hack to get mystik to work -->
+	<onspawn>
+		<playanim name="idle" />
+	</onspawn>
+
+	<onattackeddamageevent>
+		<setvalue name="damage_attempted" a="damage_attempted" b="0" op="mult" />
+		<playanim name="flamehit" target="this_entity"/>
+		<setactivemodifierkey name="hit" />
+	</onattackeddamageevent>
+
+	<modifier key="hit" modpriority="100">
+		<onattackeddamageevent>
+			<setvalue name="damage_attempted" a="damage_attempted" b="0" op="mult" />
+		</onattackeddamageevent>
+	</modifier>
+	
+</gadget>
+

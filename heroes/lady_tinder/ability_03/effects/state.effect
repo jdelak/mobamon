@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume="1"
+				sample="impact.ogg"
+			/>
+			
+			<!-- dummy sprite-->
+			<billboard
+				expirelife="250"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+				size="5"
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+
+			
+			<light
+				position="0 0 100"
+				expirelife="250"
+				startcolor="1 2 0"
+				midcolor="1 2 0"
+				midcolorpos=".1"
+				endcolor="0"
+				falloffstart="50"
+				falloffend="200"
+			/>
+
+
+			<template name="plantStuff">
+			
+
+
+				<model
+					delay="{zdelay}"
+					position="0 0 85"
+					anim="idle"
+					model="leaf_shield/model.mdf"
+					material="/shared/effects/smaterials/shell_sludge.material"
+					startcolor="0 0 0"
+					midcolor=".5 2 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					scale="1.5"
+					expirelife="250"
+					alpha=".5"
+					yawspeed="450"
+				/>
+
+				
+
+				<model
+					delay="{zdelay}"
+					position="0 0 85"
+					anim="idle"
+					startalpha=".5"
+					endalpha="0"
+					model="leaf_shield/model.mdf"
+					color="1.5 2 1"
+					scale="1.5"
+					yawspeed="450"
+					expirelife="250"
+				>
+				
+				
+				
+					<simpleemitter
+						bone="_bone_fx_01"
+						position="0 0 0"
+						spawnrate="50"
+						minspeed="125"
+						maxspeed="250"
+						drag="0.05"
+						minparticlelife="250"
+						maxparticlelife="500"
+						offsetsphere="25"
+						depthbias="0"
+						gravity="5"
+						material="/shared/effects/smaterials/leaf.material"
+					>
+						<particle 
+							minanglespeed="-180"
+							maxanglespeed="180"
+							minangle="-360"
+							maxangle="360"
+							color="1 1 1"
+							startalpha="1"
+							endalpha="1"
+							minscale="3"
+							maxscale="6"
+							flare="0"
+						/>
+					</simpleemitter>
+				
+					<simpleemitter
+						bone="_bone_fx_02"
+						life="325"
+						position="0 0 0"
+						spawnrate="50"
+						minspeed="125"
+						maxspeed="250"
+						drag="0.05"
+						minparticlelife="250"
+						maxparticlelife="500"
+						offsetsphere="25"
+						depthbias="0"
+						gravity="5"
+						material="/shared/effects/smaterials/leaf.material"
+					>
+						<particle 
+							minanglespeed="-180"
+							maxanglespeed="180"
+							minangle="-360"
+							maxangle="360"
+							color="1 1 1"
+							startalpha="1"
+							endalpha="1"
+							minscale="3"
+							maxscale="6"
+							flare="0"
+						/>
+					</simpleemitter>
+				
+
+				
+					<billboard
+						life="1000"
+						startcolor=".075 .25 0"
+						endcolor="0 0 0"
+						size="175"
+						material="/shared/effects/smaterials/swoosh_ring.material"
+						lockright="true"
+						lockup="true"
+						pitch="90"
+						rollspeed="-1500"
+					/>
+				
+				
+				</model>
+
+			</template>
+
+			<instance name="plantStuff" zdelay="0"/>
+<!--
+			<instance name="plantStuff" zdelay="750"/>
+			<instance name="plantStuff" zdelay="1500"/>
+			<instance name="plantStuff" zdelay="2250"/>
+			<instance name="plantStuff" zdelay="3000"/>
+			<instance name="plantStuff" zdelay="3750"/>
+			<instance name="plantStuff" zdelay="4500"/>
+			<instance name="plantStuff" zdelay="5250"/>
+-->
+			
+			
+		</particlesystem>
+	
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" /> 
+</thread>
+
+</effect>
+

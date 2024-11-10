@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1.0">
+
+			
+			<model			
+				
+				model="../bolt.mdf"
+				anim="idle"
+				yawspeed="0"
+				scale="0.7"
+				startalpha="1"
+				
+				position="0.0 0.0 0.0"
+				directionalspace="local"
+			>
+			
+				<simpleemitter
+					bone="_bone_tip"
+					spawnrate="55"
+					minparticlelife="434"
+					maxparticlelife="500"
+					gravity="-3"
+					minspeed="0"
+					maxspeed="8"
+					drag=".003"
+					position="0 0 0"
+					material="/shared/effects/materials/phantom_smoke_04.material"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="90"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="50"
+						startcolor="1 .8 .3"
+						endcolor="1 .25 .1"
+						maxanglespeed="0"
+						startsize="0"
+						midsize="115"
+						endsize="0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+					/>
+
+				</simpleemitter>	
+				
+				
+				<simpleemitter
+					bone="_bone_tip"
+					spawnrate="35"
+					minparticlelife="444"
+					maxparticlelife="700"
+					gravity="-1"
+					minspeed="0"
+					maxspeed="0"
+					
+					position="0 0 0"
+					material="/shared/effects/materials/whitedot.material"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="0"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="50"
+						startcolor="0 0 0"
+						midcolor=".5 .2 0"
+						endcolor="0 0 0"
+						maxanglespeed="0"
+						startsize="0"
+						midsize="125"
+						endsize="0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+					/>
+
+				</simpleemitter>			
+				
+				<simpleemitter
+					bone="_bone_tip"
+					spawnrate="111"
+					minparticlelife="1"
+					maxparticlelife="2000"
+					gravity="-3"
+					minspeed="0"
+					maxspeed="20"
+					drag=".013"
+					position="0 0 0"
+					material="/shared/effects/materials/spark_10.material"
+					offsetsphere="5 4 0"
+					minangle="0"
+					maxangle="90"
+					direction="0 0 0"
+				>
+					<particle
+						startcolor="1 .2 .2"
+						endcolor="0 0 0"
+						alpha="1.0"
+						size="25"
+						minangle="-360"
+						maxangle="0"
+						minanglespeed="110"
+						maxanglespeed="-110"
+					/>
+					<particle
+						startcolor="1 .75 .2"
+						endcolor="0 0 0"
+						alpha="1.0"
+						size="25"
+						minangle="-360"
+						maxangle="0"
+						minanglespeed="110"
+						maxanglespeed="-110"
+					/>
+				</simpleemitter>				
+				
+			
+			
+			</model>
+				
+			
+
+      </particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

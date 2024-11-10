@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Guards_ApplySearchForPlayer"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="500"
+	ishidden="true"
+	wanderrange="90"
+>
+	<!-- Proxy Entity should be patrol gadget -->
+	<oninflict>
+		<!-- <print text="=========State_Bastact1_Guards_ApplySearchForPlayer Inflicted==========" />
+		<printdebuginfo/>
+		<print text="==================================================================" /> -->
+	</oninflict>
+
+	<onexpired>
+		<applystate name="State_Bastact1_Guards_SearchForPlayer" source="target_entity" target="target_entity" duration="-1" proxy="this_proxy_entity" />
+	</onexpired>
+	
+</state>

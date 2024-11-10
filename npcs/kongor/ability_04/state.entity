@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Krytos_Aggro"
+
+	
+	ishidden="true"
+	icon="icon.tga"
+
+>	
+
+	<onattackdamageevent>
+		<targettype type="hero">
+			<applystate name="State_Krytos_Aggroed" target="this_inflictor_entity" duration="3000"/>
+			<setproxy entity="this_spawner_entity" target="source_entity" />
+		</targettype>
+		<else>
+			<entitytype type="Creep_Kongor" source="target_entity" target="target_entity">
+				<applystate name="State_Krytos_Aggroed" target="this_inflictor_entity" duration="3000"/>
+				<setproxy entity="this_spawner_entity" target="source_entity" />
+			</entitytype>
+		</else>
+	</onattackdamageevent>
+</state>

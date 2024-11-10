@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<modifier
+			expirelife="500"
+			name="modifier0"
+			startalpha="0.5"
+			endalpha="0.5"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+		/>
+		
+		<modifier
+			name="modifier0"
+			startcolor="4 2.5 2"
+			midcolor="4 2.5 2"
+			endcolor="4 2.5 2"
+			midcolorpos=".081"
+			
+			startalpha="1"
+			midalpha="1"
+			endalpha="1"		
+		/>
+
+		<particlesystem name="system0" space="world" scale="1.3">
+
+		
+		
+			<template name="coins">
+			
+				<simpleemitter
+					position="0 0 0"
+					bone="{zbone}"
+					minspeed="0"
+					maxspeed="50"
+					spawnrate="10"
+					gravity="50"
+					direction="0 0 0"
+					offsetsphere="5"
+					particlelife="2000"
+					collide="true"
+				>
+					<particle
+					>
+						<model
+							model="/npcs/neutrals/rare/projectile/effects/coin/model.mdf"
+							color="1 1 1"
+							minyaw="-360"
+							maxyaw="360"
+							minlife="250"
+							maxlife="750"
+							minpitch="-360"
+							maxpitch="360"
+							minanglespeed="-130"
+							maxanglespeed="130"
+							scale="1.25"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+						/>
+						
+						<billboard
+							position="0 0 0"
+							minlife="200"
+							maxlife="400"
+							material="/shared/effects/smaterials/flare.material"
+							startcolor="0 0 0"
+							midcolor="1 .5 0"
+							endcolor="0 0 0"
+							midcolorpos=".1"
+							minscale=".25"
+							maxscale=".75"
+							depthbias="-10"
+							minroll="0"
+							maxroll="360"
+						/>
+						
+						
+					</particle>
+				</simpleemitter>
+		
+			</template>
+
+			<instance name="coins" zbone="_bone_lefthand" />
+			<instance name="coins" zbone="_bone_righthand" />
+		
+		
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+      		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->

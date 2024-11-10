@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Tutorial_GoldFind"
+
+	radius="40000"
+	targetselection="all"
+	targetscheme="enemy_units"
+	impactinterval="250"
+	lifetime="-1"
+
+>
+
+	<oninterval>
+		<areaofeffect
+			radius="1600"
+			targetselection="all"
+			targetscheme="tutorial_gold"
+			ignoreinvulnerable="true"
+		>
+			<applystate name="State_Tutorial_Direction" target="this_proxy_entity" proxy="target_entity" duration="-1" />
+		</areaofeffect>
+		
+		<delete target="this_entity" />
+	</oninterval>
+</affector>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="sprite_transform_position">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="mWorldViewProj" type="float4x4" source="mWorldViewProj" />
+	<output name="Out" type="float4" solution="HomogeneousPosition" />
+	<dependency name="fSpriteDepthBias" type="float" source="fSpriteDepthBias" />
+	<?hlsl
+		Out = mul(float4(ObjectPosition, 1.0f), mWorldViewProj);
+		Out.z += fSpriteDepthBias;
+	?>
+	<?glsl
+		Out = mWorldViewProj * vec4(ObjectPosition, 1.0f);
+		Out.z += fSpriteDepthBias;
+	?>
+</node>

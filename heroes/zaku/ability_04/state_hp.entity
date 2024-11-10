@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Zaku_Ability4_HP"
+	maxhealthpercharge="40"
+	impactinterval="2000"
+
+
+>
+	<oninflict>
+		<setvar0 a="source_maxhealth" b="0.009" op="mult" />
+		<setcharges a="var0" />
+		<setaccumulator value="5" />
+	</oninflict>
+
+
+	<onattackimpact>
+		<setaccumulator value="accumulator" valueb="1" valueop="sub" />
+		<compare a="accumulator" b="0" op="eq">
+			<kill target="source_entity" source="" />
+		</compare>
+	</onattackimpact>
+
+	<onimpact>
+		<setactivemodifierkey name="active" entity="target_entity" />
+	</onimpact>
+</state>

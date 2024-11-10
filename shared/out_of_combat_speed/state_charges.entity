@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_OOC_Charges"
+
+	icon="speed.tga"
+	passiveeffect=""
+	ishidden="0"
+	deathpersist="true"
+	
+	movespeedmultiplierpercharge="0.1"	
+	maxcharges="4"
+	
+	effecttype=""
+>
+	<onframe>
+		<areaofeffect
+			radius="1400"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			ignoreinvulnerable="true"
+			source="target_entity"
+		>
+			<distance target="target_entity" source="this_owner_entity" />
+			<setvar0 a="result" />
+			<compare a="var0" b="950" op="le">
+				<setactivemodifierkey name="ooc_slow_v4" />
+				<expirestate name="State_OOC_Speed_Effect" target="this_owner_entity" />
+				<setcharges a="0" />
+			</compare>
+			<else>
+				<compare a="var0" b="1100" op="le">
+					<setactivemodifierkey name="ooc_slow_v3" />
+					<compare a="charges" b="1" op="lt">
+						<applystate name="State_OOC_Speed" duration="500" target="this_owner_entity" />
+					</compare>
+					<compare a="charges" b="1" op="gt">
+						<setcharges a="1" />
+					</compare>
+					<applystate name="State_OOC_Speed_Effect" continuous="true" target="this_owner_entity" />
+				</compare>
+				<else>
+					<compare a="var0" b="1250" op="le">
+						<setactivemodifierkey name="ooc_slow_v2" />
+						<compare a="charges" b="2" op="lt">
+							<applystate name="State_OOC_Speed" duration="1000" target="this_owner_entity" />
+						</compare>
+						<compare a="charges" b="2" op="gt">
+							<setcharges a="2" />
+						</compare>
+					</compare>
+					<else>
+						<setactivemodifierkey name="ooc_slow_v1" />
+						<compare a="charges" b="3" op="lt">
+							<applystate name="State_OOC_Speed" duration="1500" target="this_owner_entity" />
+						</compare>
+						<compare a="charges" b="3" op="gt">
+							<setcharges a="3" />
+						</compare>
+					</else>
+				</else>
+			</else>
+		</areaofeffect>
+		<compare a="result" b="1" op="ge" />
+		<else>
+			<setactivemodifierkey name="" />
+			<compare a="charges" b="4" op="le">
+				<applystate name="State_OOC_Speed" duration="1500" target="target_entity" />
+				<applystate name="State_OOC_Speed_Effect" continuous="true" target="target_entity" />
+			</compare>
+		</else>
+		<setaccumulator value="1" />
+	</onframe>
+
+	<ondamage>
+		<cantarget targetscheme="enemy_units">
+			<damageeffecttype effecttype="TrapDamage" >
+				<distance target="source_entity" source="target_entity" />
+				<compare a="result" b="1800" op="le">
+					<expirestate name="State_OOC_Speed_Effect" target="source_entity" />
+					<expirestate name="State_OOC_Speed" target="source_entity" />
+					<expirestate name="State_OOC_Charges" target="source_entity" /> 
+				</compare>
+			</damageeffecttype>
+			<else>
+				<expirestate name="State_OOC_Speed_Effect" target="source_entity" />
+				<expirestate name="State_OOC_Speed" target="source_entity" />
+				<expirestate name="State_OOC_Charges" target="source_entity" /> 
+			</else>
+		</cantarget>
+	</ondamage>
+	
+	<ondamaged>
+		<cantarget targetscheme="enemy_units_and_structures" ignoreinvulnerable="true">
+			<expirestate name="State_OOC_Speed_Effect" target="source_entity" />
+			<expirestate name="State_OOC_Speed" target="source_entity" />
+			<expirestate name="State_OOC_Charges" target="source_entity" />
+		</cantarget>
+	</ondamaged>
+		
+	<modifier key="ooc_slow_v4" modpriority="100"
+		maxcharges="0"
+	/>
+	
+	<modifier key="ooc_slow_v3" modpriority="100"
+		maxcharges="1"
+	/>
+	
+	<modifier key="ooc_slow_v2" modpriority="100"
+		maxcharges="2"
+	/>
+	
+	<modifier key="ooc_slow_v1" modpriority="100"
+		maxcharges="3"
+	/>
+</state>

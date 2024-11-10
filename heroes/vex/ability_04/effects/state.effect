@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="portee" deferred="1" useentityeffectscale="1">
+
+<definitions>
+	<particlesystem name="system0" space="entity" scale="2">
+
+		<simpleemitter
+				spawnrate="180"
+				count="180"
+				particlelife="550"
+				gravity="5"
+				speed="100"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"				
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				inheritvelocity="0.05"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor="1 1 1"
+					midcolor="1 .8 .7"
+					endcolor="1 1 1"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="0"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="80"
+				
+				particlelife="150"
+				gravity="5"
+				speed="100"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_add.material"				
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				inheritvelocity="0.05"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=" .4 .4 .4"
+					midcolor=".4 .2 0"
+					endcolor=".2 0 0"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="20"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+
+
+	
+	</particlesystem>
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	
+		<waitfordeath instance="instance0" />
+	<!-- <die /> -->
+</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

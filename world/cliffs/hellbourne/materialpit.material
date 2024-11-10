@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/cliff.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="23.0" fOpacity="1.0" fReflect="1.0" eLightingScheme="terrain" />
+	<phase name="shadow" cull="back" blend="none" />
+	<phase name="outline" cull="back" depthwrite="true" depthread="true" blend="none" />
+	<phase name="color" cull="back" blend="none">
+		<sampler name="diffuse" texture="pitcolor.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="/world/terrain/textures/b1_ground_n.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_diffuse0" texture="!terrain_d0" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_normalmap0" texture="!terrain_n0" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_diffuse1" texture="!terrain_d1" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_normalmap1" texture="!terrain_n1" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_diffuse2" texture="!terrain_d2" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_normalmap2" texture="!terrain_n2" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="$invis" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_diffuse0" texture="!terrain_d0" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_normalmap0" texture="!terrain_n0" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_diffuse1" texture="!terrain_d1" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_normalmap1" texture="!terrain_n1" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_diffuse2" texture="!terrain_d2" repeat_u="true" repeat_v="true" />
+		<sampler name="terrain_normalmap2" texture="!terrain_n2" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

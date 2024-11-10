@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastion1Bastact1_ExecutionerReset"
+
+	icon="icon.tga"
+	passiveeffect=""
+
+	effecttype=""
+	ishidden="true"
+>	
+
+		<oninflict>
+				<condition test="hasstate Bastact1_State_Executioner2_Stage1" target="target_entity" >
+					<setvar0 a="1" b="target_maxhealth" op="mult" />
+					<changehealth source="target_entity" target="target_entity" a="var0" b="target_health" op="sub" />	
+					<expirestate name="State_Bastion1Bastact1_ExecutionerReset" target="target_entity"/>
+					
+					<!-- Boss Healthbar Reset -->
+					<setvar0 a="1" b="1" op="div" />
+					<clientuitrigger name="bossHealthbar_Update" value="var0"/>
+				</condition>	
+					<else>
+						<condition test="hasstate Bastact1_State_Executioner2_Stage2" target="target_entity" >
+							<setvar0 a=".65" b="target_maxhealth" op="mult" />
+							<changehealth source="target_entity" target="target_entity" a="var0" b="target_health" op="sub" />	
+							<expirestate name="State_Bastion1Bastact1_ExecutionerReset" target="target_entity"/>
+							
+							<!-- Boss Healthbar Reset -->
+							<setvar0 a=".65" b="1" op="div" />
+							<clientuitrigger name="bossHealthbar_Update" value="var0"/>
+						</condition>	
+						<else>	
+							<condition test="hasstate Bastact1_State_Executioner2_Stage3" target="target_entity" >
+								<setvar0 a=".25" b="target_maxhealth" op="mult" />
+								<changehealth source="target_entity" target="target_entity" a="var0" b="target_health" op="sub" />	
+								<expirestate name="State_Bastion1Bastact1_ExecutionerReset" target="target_entity"/>
+								
+								<!-- Boss Healthbar Reset -->
+								<setvar0 a=".25" b="1" op="div" />
+								<clientuitrigger name="bossHealthbar_Update" value="var0"/>
+							</condition>
+						</else>
+					</else>	
+		</oninflict>	
+
+
+	
+</state>

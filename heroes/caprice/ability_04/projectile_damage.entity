@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Caprice_Ability4_Damage"
+	
+	speed="2000"
+	gravity="0"	
+	modelscale="0.5"
+
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact.effect"
+	canturn="false"
+>
+
+	<onimpact>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult"/>
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+	</onimpact>
+	
+	<modifier key="Caprice_Ability3_Learned" modpriority="100"
+	>
+		<onimpact> 
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult"/>
+					<applystate target="target_entity" name="State_Caprice_Ability3" duration="5000"  />
+				</onimpact>
+			</combatevent>
+			<recordheroaggression  />
+			<aggression />
+		</onimpact>
+	</modifier>
+	
+	
+</projectile>

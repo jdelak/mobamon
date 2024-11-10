@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Mini_Spider_Enemy"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+	
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	preglobalscale="1"
+	modelscale="2.0"
+	effectscale=".75"
+	boundsheight="64"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+	searchradius="70"
+	minsearchradius="48"
+	searchheight="112"
+
+	movespeed="700"
+	turnrate="320"
+
+	maxhealth="85"
+	healthregen="0"
+	maxmana="0"
+	manaregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+
+
+	canattack="true"
+	ismobile="true"
+	attackduration="250"
+	attackactiontime="250"
+	attackcooldown="1000"
+	attackdamagemin="15"
+	attackdamagemax="15"
+	attacknumanims="2"
+	attackoffset="21 95 90"
+	attackprojectile=""
+	attackrange="50"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="/shared/sounds/impacts/impact_medium.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attackdamagetype="AttackDamage"
+	attacktargetscheme="enemy_units"
+
+	aggrorange="0"
+	sightrangeday="800"
+	sightrangenight="800"
+	clearvision="true"
+	
+	unitwalking="false"
+	pathing="true"
+	
+	deathtime="1000"
+	
+	corpsetime="500"
+	corpsefadetime="500"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	unittype="trash_mob"
+	
+	showaggropopup="false"
+>
+	<onspawn>
+		<applystate name="State_Campaign_AttackPlayerOnImpact" source="this_entity" target="this_entity" duration="-1" proxy="this_entity"/>
+	</onspawn>
+
+	<ondeath>
+		<playeffect effect="effects/splat_death.effect" source="this_entity" target="this_entity" />
+	</ondeath>
+
+	<modifier key="extra_health" modpriority="100"
+		maxhealth="600"
+		>
+	</modifier>
+
+</pet>

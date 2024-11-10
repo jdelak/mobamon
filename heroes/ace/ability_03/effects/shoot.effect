@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1.1" >
+			
+			<sound
+				volume="0.4"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_shoot_%.wav"
+			/>
+			
+			<light
+				expirelife="250"
+				startcolor="1 2.5 5"
+				endcolor="0 0 0"
+				falloffstart="00"
+				falloffend="100"
+				position="0 0 0"
+				loop="true"
+			
+			/>
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				size="150"
+				expirelife="250"
+				startcolor="0 .1 .25"
+				endcolor="0 0 0"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<model
+				expirelife="0"
+				model="shard/model.mdf"
+				anim="idle_rotation"
+				scale="1"
+				color="1 1 1"
+				alpha=".55"
+				pitch="-90"
+			>
+			</model>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

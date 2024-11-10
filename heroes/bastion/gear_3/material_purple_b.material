@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+ 		<parameters shader="/shared/shaders/unit_gold.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="45.0" fOpacity="1.0" fReflect="0.5">
+  			<vec3 name="vReflectColor" value="0.5000 0.5000 0.5000" />
+  			<vec3 name="vReflectFresnel" value="0.4000 0.4000 0.4000" />
+ 		</parameters>
+	<phase name="shadow" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="color_purple_b.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="color" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="color_purple_b.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="normal_b.tga" repeat_u="true" repeat_v="true" />
+		<samplercube name="cube" texture="/world/sky/gold/1.tga" />
+		<sampler name="specular" texture="spec_color_b.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="team" texture="team.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" colorwrite="false" alphawrite="false" depthwrite="true" blend="alphatest">
+		<sampler name="diffuse" texture="color_purple_b.tga" repeat_u="true" repeat_v="true" />
+		<multipass cull="back" blend="translucent">
+			<sampler name="diffuse" texture="color_purple_b.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="normal_b.tga" repeat_u="true" repeat_v="true" />
+			<samplercube name="cube" texture="/world/sky/gold/1.tga" />
+			<sampler name="specular" texture="spec_color_b.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="team" texture="team.tga" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+	
+</material>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<linearaffector
+	name="Affector_Malady_Ability3"
+
+	minlength="0"
+	maxlength="700"
+	subsegmentoffset="50"
+	subsegmentlength="72"
+
+>
+	<onimpact>
+		<setpos0 position="target_position" />
+		<areaofeffect
+			radius="50"
+			targetselection="all"
+			targetscheme="enemy_nonboss_units"
+		>
+			<setpos1 position="pos0" positionend="target_position" positionmodifier="pointpastline" positionvalue="50" snaptoterrain="true"/>
+			<teleport source="target_entity" interpolate="true" target="pos1" />
+		</areaofeffect>
+	
+		<spawnunit name="Gadget_Malady_Ability3" target="target_position" fixedposition="true"/>
+	</onimpact>
+</linearaffector>

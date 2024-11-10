@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		
+		<modifier
+			name="modifier0"
+			life="500"
+			startalpha="0"
+			midalpha=".75"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.4"
+				falloffstart="500"
+				falloffend="2500"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<light
+				life="250"
+				startcolor="0 1.5 3"
+				endcolor="0 0 0"
+				falloffstart="00"
+				falloffend="200"
+				position="0 0 50"
+			/>
+
+			<simpleemitter
+				delay="0"
+				spawnrate="10000"
+				particlelife="1000"
+				count="1"
+				gravity="0"
+				speed="0"
+				acceleration="0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="5"
+				direction="0 1 0"
+			>
+				<particle
+					turn="true"
+				>
+					<model
+						bone="_bone_center"
+						life="300"
+						anim="idle"
+						model="motion_rig/model.mdf"
+						position="0 0 0"
+						startalpha="1"
+						endalpha="0"
+						color="1 1 1"
+						directionalspace="local"
+						yaw="180"
+						scale="1"
+					>
+						<model
+							bone="_bone_fx_01"
+							life="150"
+							anim="ability_1"
+							model="../../model.mdf"
+							startalpha="1"
+							endalpha="0"
+							position="0 0 0"
+							color="1 1 1"
+							directionalspace="local"
+							scale="1.1"
+						/>
+						
+						<model
+							bone="_bone_fx_02"
+							life="150"
+							anim="ability_1"
+							model="../../model.mdf"
+							startalpha="1"
+							endalpha="0"
+							position="0 0 0"
+							color="1 1 1"
+							directionalspace="local"
+							scale="1.1"
+						/>
+						
+						<model
+							bone="_bone_fx_03"
+							life="150"
+							anim="ability_1"
+							model="../../model.mdf"
+							startalpha="1"
+							endalpha="0"
+							position="0 0 0"
+							color="1 1 1"
+							directionalspace="local"
+							scale="1.1"
+						/>
+						
+						<model
+							bone="_bone_fx_04"
+							life="150"
+							anim="ability_1"
+							model="../../model.mdf"
+							startalpha="1"
+							endalpha="0"
+							position="0 0 0"
+							color="1 1 1"
+							directionalspace="local"
+							scale="1.1"
+						/>
+<!--
+						<model
+							delay="150"
+							bone="_bone_fx_05"
+							life="150"
+							anim="ability_1"
+							model="../../model.mdf"
+							startalpha="1"
+							endalpha="0"
+							position="0 0 0"
+							color="1 1 1"
+							directionalspace="local"
+							scale="1.1"
+						/>
+-->
+					</model>
+				</particle>
+
+			</simpleemitter>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>
+
+

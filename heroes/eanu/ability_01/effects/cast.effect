@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectsscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+		
+			<light
+				delay="250"
+				position="0 90 50"
+				life="500"
+				startcolor="0 5 10"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="150"
+			/>
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55"
+				sample="../sounds/sfx_cast_%.wav"
+			/>		
+			
+			
+			<simpleemitter
+				delay="250"
+				position="0 90 115"
+				count="60"
+				minparticlelife="300"				
+				maxparticlelife="500"				
+				spawnrate="2000"
+				minspeed="0"
+				maxspeed="250"
+				gravity="100"
+				direction="0 0 1"
+				minangle="20"
+				maxangle="15"
+				drag="0.01"
+				material="/shared/effects/materials/ice_blob_overlay.material"
+				offsetsphere="15 15 50"
+				directionalspace="local"
+				depthbias="-25"
+			>
+				<particle 
+					maxangle="360"
+					startscale="0"
+					minendscale="10"
+					maxendscale="50"
+					color="0 1 1"
+					startalpha=".25"
+					endalpha="0"
+
+				/>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				delay="250"
+				position="0 90 115"
+				count="10"
+				minparticlelife="300"				
+				maxparticlelife="500"				
+				spawnrate="2000"
+				minspeed="0"
+				maxspeed="250"
+				gravity="55"
+				direction="0 0 1"
+				minangle="20"
+				maxangle="15"
+				drag="0.01"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="15"
+				directionalspace="local"
+				depthbias="-25"
+			>
+				<particle 
+					maxangle="360"
+					startscale="0"
+					minendscale="50"
+					maxendscale="50"
+					startcolor="0 .1 .25"
+					endcolor="0 0 0"
+
+				/>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				delay="250"
+				position="0 90 115"
+				count="75"
+				spawnrate="6000"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="200"
+				maxspeed="400"
+				gravity="75"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="_bone_fx_28"
+						minlife="250"
+						maxlife="500"
+						startcolor="0 1 1"
+						midcolor="0 .5 1"
+						endcolor="0 .5 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".6"
+						maxstartscale=".8"
+						minendscale=".1"
+						maxendscale=".25"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0"  particlesystem="system0"/>	
+		<spawnparticlesystem instance="instance1"  particlesystem="system1"/>	
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

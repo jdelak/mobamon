@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier 
+			name="modifier0"
+			expirelife="250"
+			startcolor=".5"
+			endcolor="1 1 1"
+			startalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1.2">
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				bone="_bone_centerofchest"
+				expirelife="500"
+				startcolor=".05 0 .35"
+				alpha="0"
+				endcolor="0 0 0"
+				position="0 0 0"
+				size="100"
+				height="350"
+				width="100"
+				depthbias="-60"
+			/>
+
+			<light
+				position="0 0 50"
+				expirelife="250"
+				startcolor="2 1 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="200"
+			/>
+			
+	
+				<simpleemitter
+					bone="_bone_centerofchest"
+					spawnrate="100"
+					minparticlelife="400"
+					maxparticlelife="700"
+					minspeed="0"
+					maxspeed="60"
+					offsetsphere="5 5 25"
+					offsetradial="15 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="75"
+				>
+					<particle
+						color="1 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						minstartscale="55"
+						maxstartscale="80"
+						maxendscale="25"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						minangle="0"
+						maxangle="360"
+						
+						
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_centerofchest"
+					spawnrate="200"
+					particlelife="1000"
+					offsetsphere="5 5 40"
+					offsetradial="25 0 0"
+					minspeed="0"
+					maxspeed="0"
+				>
+					<particle
+					>
+						<billboard
+							bone="_bone_centerofchest"
+							minlife="500"
+							maxlife="700"
+							startcolor="1 .7 1.35"
+							midcolor="1 .35 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/animated_shockstick.material"
+							startsize="80"
+							endsize="0"
+							minwidth="25"
+							maxwidth="50"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="75"
+						/>
+					
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_center"
+					spawnrate="200"
+					particlelife="1000"
+					position="0 0 12"
+					offsetsphere="5 5 40"
+					offsetradial="30 0 0"
+					minspeed="0"
+					maxspeed="0"
+				>
+					<particle
+					>
+						<billboard
+							bone="_bone_center"
+							minlife="500"
+							maxlife="700"
+							startcolor="1 .7 1.35"
+							midcolor="1 .35 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/animated_shockstick.material"
+							startsize="80"
+							endsize="0"
+							minwidth="25"
+							maxwidth="50"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="75"
+						/>
+					
+					</particle>
+				</simpleemitter>
+				
+
+				
+				
+				
+				<simpleemitter
+					bone="_bone_centerofchest"
+					spawnrate="100"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="12"
+					minspeed="100"
+					maxspeed="300"
+					drag=".005"
+					acceleration="0"
+					offsetsphere="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					particledirectionalspace="local"
+					depthbias="35"
+				>
+					<particle
+						minstartheightdistort="0"
+						maxstartheightdistort=".05"
+						endheightdistort="0"
+						startsize="4"
+						endsize="4"
+						startcolor="1 .35 1"
+						midcolor="1 .5 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						turn="1"
+					>
+					</particle>
+				</simpleemitter>
+		
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

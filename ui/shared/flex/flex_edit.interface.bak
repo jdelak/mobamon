@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="flex_edit" luatable="true">
+	
+	<include file="/ui/shared/flex/flex_interface_contents.package"/>
+
+	<label name="flex_edit_center_screen_announce" align="center" valign="center" outline="1" outlinecolor="black" shadow="1" shadowcolor="black" fity="1" fitx="1" color="white" font="maindyn_72" content="" visible="0" noclick="true" />
+
+	<!-- Flex slide in menu -->
+	<panel name="Flex_Panel" width="18.5h" x="0" height="6h" align="center" valign="center" visible="1" noclick="1">
+		<instance id="flex_edit_toggle_editor_btn" name="standardButton" label="Edit"
+			onclicklua="
+				self:GetWidget('Flex_Overlays_Holder'):SetVisible(true)
+				FlexEdit.ToggleLoginPanel()
+				PlaySound('/ui/sounds/sfx_button_generic.wav')
+			"
+		/>		
+		
+	</panel>
+
+	<panel noclick="1" name="flex_instantiate_layer" visible="0" />
+	<panel noclick="1" name="flex_helper_layer" visible="0" />
+	
+	<panel noclick="1" name="flex_command_layer" visible="0" >
+		
+		<panel name="Flex_Overlays_Holder" width="56.8h" height="46.2h" align="center" valign="center" noclick="0" cangrab="1" visible="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">			
+				<!-- Buttons -->
+				<panel y="5.4h" height="36.8h" width="41%" float="bottom" noclick="1" >
+					<instance id="Flex_Overlay_Webcam" 	name="Flex_Overlay_Button" color="invisible" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="webcam_icon.tga" 	label="flex_add_webcam" />
+					<instance id="Flex_Overlay_Image" 	name="Flex_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="overlay_icon.tga" 	label="flex_add_image" />
+					<instance id="Flex_Overlay_Panel" 	name="Flex_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="overlay_icon.tga" 	label="flex_add_panel" />
+					<instance id="Flex_Overlay_Text" 		name="Flex_Overlay_Button" color="invisible" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="text_icon.tga" 		label="flex_add_label" />
+					<instance id="Flex_Overlay_Remove" 	name="Flex_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="clear_icon.tga" 	label="flex_remove_all" />					
+					<instance id="Flex_Overlay_Revert" 	name="Flex_Overlay_Button" color="invisible" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="undo_icon.tga" 		label="flex_undo_changes" />
+					<!--<instance id="Flex_Overlay_Save" 		name="Flex_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="save_icon.tga" 		label="flex_save_changes" />-->
+				</panel>					
+				<!-- Overlay List -->
+				<panel y="5.0h" height="-10.4h" width="59%" align="right" float="bottom" noclick="1" >
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="0.8h" color="1 1 1 .8" />					
+					<listbox name="Flex_Overlays_List_Listbox" style="simpleListbox"
+						y="0" height="-1.6h" width="-1.2h" align="center" valign="center"
+						color="invisible"
+						itemheight="4.0h"
+						itemwidth="-0.2h"
+						scrollbaroffset="-0.4h"
+						select="false"
+						exteriorscrollbars="1"
+						scrollbarplaceholder="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbarsize="3.0h"
+						handlewidth="3.0h"
+						handleheight="6.0h"
+						hscrollbar="0"
+						horizontal="false"
+						highlight="under"
+						hoverselect="false"
+						hoverhighlight="true"
+						highlightcolor="#46adff42"
+						highlightbordercolor="#46adff22"
+						selectedcolor="#46adff42"
+						selectedbordercolor="invisible"						
+					/>
+				</panel>
+				
+				<panel name="Flex_Overlays_Header" width="100%" height="3.6h" noclick="1">					
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="flex_overlays_header" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Overlays_Header_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="" />
+				</panel>
+				
+				<instance name="standardButton" id="Flex_Overlay_Cancel" rendermode="grayscale" x="1.2h" width="34%" height="4.4h" align="left" label="general_cancel" font="maindyn_22" valign="bottom" 
+					onclicklua="
+						self:GetWidget('Flex_Overlays_Holder'):SetVisible(false)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>				
+				<instance name="standardButton" id="Flex_Overlay_Save" width="59%" height="4.4h" align="right" label="general_save" font="maindyn_22" valign="bottom" 
+					onclicklua="
+						self:GetWidget('Flex_Overlays_Holder'):SetVisible(false)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+				
+			</panel>			
+		</panel>
+		
+	</panel>	
+	
+	<panel name="Flex_Script_Editor" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.4">
+		<panel height="56h" width="70h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">
+			
+				<panel width="100%" height="3.6h" noclick="1">
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="Script Editor" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Script_Editor_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Flex_Script_Editor'):FadeOut(250)" />
+				</panel>
+
+				<panel y="4.4h" height="-10.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Flex_Script_Editor_Input"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+				</panel>				
+				
+				
+				<instance noclick="0" height="4.4h" valign="bottom" width="18h" align="right"
+					name="standardButton" id="Flex_Script_Editor_confirm_btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						self:GetWidget('Flex_Script_Editor'):FadeOut(250)
+					"
+				/>
+			
+				<instance noclick="0" height="4.4h" valign="bottom" width="24h" align="left"
+					name="standardButton" id="Flex_Script_Editor_data_btn"
+					label="Get Data"
+					font="maindyn_22"
+					onclicklua=""
+				/>			
+			
+			</panel>		
+
+		</panel>
+	</panel>	
+	
+	<panel name="Flex_Data_Finder" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.4">
+		<panel height="76h" width="70h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">
+			
+				<panel width="100%" height="3.6h" noclick="1">
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="Data Finder" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Data_Finder_CloseX" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Flex_Data_Finder'):FadeOut(250)" />
+				</panel>
+
+				<panel y="4.4h" height="4.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Flex_Data_Finder_Input_Trigger"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+					<label name="Flex_Data_Finder_Input_Trigger_Cover" noclick="1" content="Trigger Name" x="2h" style="h3" color=".7 .7 .7 1" font="maindyn_20" height="100%" textalign="center" textvalign="center"/>
+				</panel>
+				
+				<panel y="9.2h" height="4.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Flex_Data_Finder_Input_Field"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+					<label name="Flex_Data_Finder_Input_Field_Cover" noclick="1" content="Field Name" x="2h" style="h3" color=".7 .7 .7 1" font="maindyn_20" height="100%" textalign="center" textvalign="center"/>
+				</panel>				
+				
+				<panel y="14.0h" height="-18.8h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".2 .2 .2 1.0" noclick="1"/>
+					<listbox name="Flex_Data_Finder_Output" style="simpleListbox"
+						height="-1.6h" width="-0.6h" valign="center" align="center"
+						color="invisible"
+						itemheight="2.0h"
+						itemwidth="-0.5h"
+						scrollbaroffset="-1h"
+						select="true"
+						exteriorscrollbars="false"
+						scrollbarplaceholder="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbarsize="3h"
+						handleheight="8h"
+						hscrollbar="0"
+						horizontal="false"		
+
+						highlight="under"
+						hoverselect="false"
+						hoverhighlight="true"
+						highlightcolor="#46adff42"
+						highlightbordercolor="#46adff22"
+						selectedcolor="#46adff42"
+						selectedbordercolor="invisible"						
+					/>					
+					
+				</panel>				
+				
+				
+				<instance noclick="0" height="4.4h" valign="bottom" width="18h" align="right"
+					name="standardButton" id="Flex_Data_Finder_Confirm_Btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						self:GetWidget('Flex_Data_Finder'):FadeOut(250)
+					"
+				/>
+			
+			</panel>		
+
+		</panel>
+	</panel>	
+	
+	<panel name="Flex_Panel_Content" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="56h" width="70h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">
+			
+				<panel width="100%" height="3.6h" noclick="1">
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="flex_create_panel" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Panel_Content_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Flex_Panel_Content'):FadeOut(250)" />
+				</panel>
+
+				<instance noclick="0" height="4.4h" valign="bottom" width="18h" align="right"
+					name="standardButton" id="Flex_Panel_Content_input_btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						self:GetWidget('Flex_Panel_Content'):FadeOut(250)
+					"
+				/>
+			
+			</panel>		
+
+		</panel>
+	</panel>	
+	
+	<panel name="Flex_Image_Content" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="56h" width="70h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">
+			
+				<panel width="100%" height="3.6h" noclick="1">
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tgaa" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="flex_create_choose_an_image" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Image_Content_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Flex_Image_Content'):FadeOut(250)" />
+				</panel>
+				
+				<label y="4.6h" fity="1" wrap="1" style="labelBase" color=".7 .7 .7 1" font="subdyn_13" content="flex_no_image" noclick="true" />			
+
+				<listbox name="Flex_Image_Content_Listbox" style="simpleListbox"
+					y="10.2h" height="-16h" width="100%"
+					color="invisible"
+					itemheight="6.0h"
+					itemwidth="-0.5h"
+					scrollbaroffset="0"
+					select="true"
+					exteriorscrollbars="false"
+					scrollbarplaceholder="false"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					scrollbarsize="3h"
+					handleheight="8h"
+					hscrollbar="0"
+					horizontal="false"		
+
+					highlight="under"
+					hoverselect="false"
+					hoverhighlight="true"
+					highlightcolor="#46adff42"
+					highlightbordercolor="#46adff22"
+					selectedcolor="#46adff42"
+					selectedbordercolor="invisible"						
+				/>
+
+				<instance noclick="0" height="4.4h" valign="bottom" width="18h" align="right"
+					name="standardButton" id="Flex_Image_Content_input_btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						self:GetWidget('Flex_Image_Content'):FadeOut(250)
+					"
+				/>
+			
+			</panel>		
+
+		</panel>
+	</panel>	
+
+	<panel name="Flex_Label_Content" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="21.2h" width="50h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">					
+
+				<panel width="100%" height="3.6h" noclick="1">					
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tgaa" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="flex_create_text_content" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Label_Content_input_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Flex_Label_Content'):FadeOut(250)" />
+				</panel>
+				
+				<panel y="4.4h" height="-10.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Flex_Label_Content_input"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+				</panel>
+				
+				<instance noclick="0" height="4.4h" valign="bottom" width="24h" align="right"
+					name="standardButton" id="Flex_Label_Content_input_btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						println(' input ' .. tostring(self:GetWidget('Flex_Label_Content_input'):GetInputText()))
+						self:GetWidget('Flex_Label_Content'):FadeOut(250)
+					"
+				/>				
+				
+			</panel>
+			
+		</panel>			
+		
+	</panel>
+	
+	<panel name="Flex_Stream_Title" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="21.2h" width="50h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">					
+
+				<panel width="100%" height="3.6h" noclick="1">					
+					<image noclick="1" texture="/ui/main/shared/textures/boosted_crafting.tgaa" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="flex_edit_channel_title" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Flex_Stream_Title_input_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Flex_Stream_Title'):FadeOut(250)" />
+				</panel>
+				
+				<panel y="4.4h" height="-10.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Flex_Stream_Title_input"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+				</panel>
+				
+				<instance noclick="0" height="4.4h" valign="bottom" width="24h" align="right"
+					name="standardButton" id="Flex_Stream_Title_input_btn"
+					label="flex_edit_channel_title_con"
+					font="maindyn_22"
+					onclicklua="
+						println(' input ' .. tostring(self:GetWidget('Flex_Stream_Title_input'):GetInputText()))
+						self:GetWidget('Flex_Stream_Title'):FadeOut(250)
+					"
+				/>				
+				
+			</panel>
+			
+		</panel>			
+		
+	</panel>
+	
+	<lua file="/ui/shared/flex/flex_edit.lua"/>	
+	
+</interface>

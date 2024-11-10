@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Spider1"
+
+	statuseffecttooltip=""
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="2000"
+	castactiontime="650"
+	casteffect="effects/arm_trails.effect"
+
+	
+	
+
+	actiontype="target_position"
+	casteffecttype="Magic"
+	targetscheme="player_controlled_units"
+	
+	showconecast="true"
+	conecastmaterial="/shared/materials/cone_cast_wide3.material"
+	conecastwidth="100"
+	conecastrange="100"
+	allowoutofrangecast="true"
+	
+
+	cooldowntime="3000"
+	
+	range="100"
+	novoiceresponse="true"
+	
+>
+	<constant name="damage" value="500" adjustment="ability" />
+	<!-- tooltip only -->
+
+	<onstart>
+		<playeffect effect="effects/ring.effect" target="" source="target_position" occlude="true" visibility="all"/>
+	</onstart>
+
+	<onimpact>
+		<spawnaffector name="Affector_Spider_Ability1" target="target_position" distance="0" proxy="this_entity" />
+		<spawnaffector name="Affector_Spider_Ability1_Close_1" target="target_position" proxy="this_entity" />
+		<setpos0 position="source_entity" offsetspace="source_entity" offset="0 200 0" />
+		<playeffect effect="effects/initial_impact.effect" source="source_entity" target="source_entity"  />
+		<propareaeffect center="pos0" radius="200" anim="flamehit" />
+		<setaccumulator value="0" />
+	</onimpact>
+
+</ability>

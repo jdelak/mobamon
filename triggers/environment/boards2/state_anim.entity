@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_EnvironmentTrigger_Boards2_Anim"
+
+	
+	
+	ishidden="true"
+>
+	<oninflict>
+		<condition test="hasstate State_EnvironmentTrigger_Boards2_FlownAway" target="source_entity" />
+		<else>
+			<playanim name="fly" target="source_entity"/>
+			<playeffect effect="/world/sprops/caves/boards2/flyaway.effect" target="source_entity"/>
+			<applystate name="State_EnvironmentTrigger_Boards2_FlownAway" target="source_entity" continuous="true" />
+		</else>
+	</oninflict>
+
+</state>

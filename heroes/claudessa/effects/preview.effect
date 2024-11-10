@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+
+
+	<template name="passive" parentmodel="true" parentskeleton="true" directionalspace="local">
+		<model parentskeleton="true" timenudge="1000" expirelife="100" model="weapon/model.mdf" anim="idle" startalpha="1" endalpha="0" color="2 1 3" directionalspace="local" startscale="1" endscale="1"/>
+		<template name="glow" parentmodel="true" parentskeleton="true" directionalspace="local" particledirectionalspace="local">
+			<billboard timenudge="1000" expirelife="250" bone="{zbone}" material="/shared/effects/smaterials/whitedot.material" startcolor=".10 0 .3" endcolor="0 0 0" scale="1" depthbias="20"/>
+		</template>
+		<instance name="glow" zbone="_bone_weapon1"/>
+		<instance name="glow" zbone="_bone_weapon2"/>
+		<instance name="glow" zbone="_bone_weapon3"/>
+		<instance name="glow" zbone="_bone_weapon4"/>
+		<template name="glow" parentmodel="true" parentskeleton="true" directionalspace="local" particledirectionalspace="local">
+			<billboard timenudge="1000" life="250" bone="{zbone}" material="/shared/effects/smaterials/whitedot.material" startcolor=".10 0 .3" endcolor="0 0 0" scale="2" depthbias="10"/>
+		</template>
+		<instance name="glow" zbone="_bone_weapon1"/>
+		<instance name="glow" zbone="_bone_weapon2"/>
+		<instance name="glow" zbone="_bone_weapon3"/>
+		<instance name="glow" zbone="_bone_weapon4"/>
+	</template>
+	
+	<!-- Effects -->
+	<instance name="passive"/>
+	
+	
+	<sound delay="700" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="500" falloffend="2500" volume="0.45" channel="90020" />	
+
+</particlesystem>		
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

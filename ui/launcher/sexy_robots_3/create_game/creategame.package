@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="serverlist_item">
+		<panel width="-1.0h" align="center" float="right" padding="0">
+			<panel width="9%">
+
+			</panel>
+			<panel width="24%">
+				<label
+					x="0.8h"
+					width="100%"
+					height="100%"
+					font="maindyn_10"
+					color="{color}"
+					textalign="left"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{region}"
+				/>
+			</panel>
+			<panel width="19%">
+				<label
+					x="-1.0h"
+					width="100%"
+					height="100%"
+					font="maindyn_10"
+					color="{color}"
+					textalign="right"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{ping}"
+				/>
+			</panel>
+			<panel width="48%">
+				<label
+					x="0.8h"
+					width="100%"
+					height="100%"
+					font="maindyn_10"
+					color="{color}"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{server_name}"
+				/>
+			</panel>
+		</panel>
+	</template>	
+			
+	<template name="create_game_template" >
+		<panel name="create_game" align="center" grow="true" width="400s" x="-350s" y="170s" visible="1" group="creategame_animation_widgets" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 .8"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			
+			<instance name="iconButton"
+				icon="/ui/main/shared/textures/close.tga"
+				y="10s" x="-10s" width="27s" height="27s" align="right" valign="top" borderthickness="4s"
+				onclicklua="
+					local triggerPanelStatus		= LuaTrigger.GetTrigger('mainPanelStatus')
+					triggerPanelStatus.main = 101
+					triggerPanelStatus:Trigger(false)	
+				"
+			/>				
+			
+			<panel grow="true" width="100%" hmargin="20s" vmargin="10s" float="bottom" padding="15s" reverse="true" noclick="1">
+			
+				<label fity="1" fitypadding="5s" style="h1" font="maindyn_30" content="general_create_game" noclick="1" />
+
+				<panel height="36s" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="general_game_name"/>
+					<panel width="55%" align="right">
+						<frame texture="/ui/shared/frames/text_input.tga" borderthickness="6s" noclick="true"/>
+						<textbox name="create_gameNameBox" taborder="15" textcolor="0 0 0 1" font="maindyn_20" color="invisible" y="6s" width="-18s" align="center"
+							onenter="
+								Cmd('Script(\'create_gameNameBoxEnter()\')')
+							"
+						/>
+					</panel>
+				</panel>
+				
+				<panel height="32s" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="mainlobby_label_custom_server_type"/>
+					<panel width="55%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameServerDropdown"/>
+					</panel>
+				</panel>
+
+				<panel height="32s" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="mainlobby_label_custom_region"/>
+					<panel width="55%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameRegionDropdown"/>
+					</panel>
+				</panel>				
+				
+				<panel height="32s" name="create_gameMapDropdown_parent" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="mainlobby_label_custom_map"/>
+					<panel width="55%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameMapDropdown"/>
+					</panel>
+				</panel>
+
+				<panel height="32s" name="create_gameModeDropdown_parent" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="mainlobby_label_custom_mode"/>
+					<panel width="55%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameModeDropdown"/>
+					</panel>
+				</panel>				
+				
+				<panel height="32s" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="mainlobby_header_team_size"/>
+					<panel width="55%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameTeamSizeDropdown"/>
+					</panel>
+				</panel>
+				
+				<!--
+				<panel height="32s">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="game_setup_referees_label"/>
+					<panel width="55%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameRefereeCountDropdown"/>
+					</panel>
+				</panel>
+				-->
+				
+				<panel height="32s" sticky="0" stickytoinvis="0">
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="game_setup_spectators_label"/>
+					<panel width="30%" align="right">
+						<instance name="simple_combobox_textured" id="create_gameSpectatorCountDropdown"/>
+					</panel>
+				</panel>
+				
+				<panel height="32s" name="create_gameprivate_parent" sticky="0" stickytoinvis="0" >
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="main_lobby_private"/>
+					<panel width="100@" align="right">
+						<instance name="tempSimpleCheckbox" id="create_gameprivate"/>
+					</panel>
+				</panel>
+
+				<panel height="32s" name="create_gameallchat_parent" sticky="0" stickytoinvis="0" >
+					<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="main_lobby_allchat"/>
+					<panel width="100@" align="right">
+						<instance name="tempSimpleCheckbox" id="create_gameallchat"/>
+					</panel>
+				</panel>		
+				
+				<panel height="32s" >
+					<panel height="32s" name="create_gameFinalHeroesOnly_parent" sticky="0" stickytoinvis="0" width="45%" align="left" >				
+						<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="general_final_heroes"/>
+						<panel width="100@" align="right">
+							<instance name="tempSimpleCheckbox" id="create_gameFinalHeroesOnly"/>
+						</panel>
+					</panel>			
+					
+					<panel height="32s" name="create_gameTestingHeroesOnly_parent" sticky="0" stickytoinvis="0" width="52%" align="right" >
+						<label textvalign="center" style="labelBase" color="white" font="maindyn_22" content="general_testing_heroes"/>
+						<panel width="100@" align="right">
+							<instance name="tempSimpleCheckbox" id="create_gameTestingHeroesOnly"/>
+						</panel>
+					</panel>			
+				</panel>
+				
+				<panel height="40s" sticky="0" stickytoinvis="0">
+					<instance name="standardButton" id="create_gameStartMatchButton" align="center" width="70%" font="maindyn_26" label="general_create_game"/>
+				</panel>				
+				<panel height="5s" noclick="1" sticky="0" stickytoinvis="0"/>
+			</panel>
+			
+			<!-- Throbber -->
+			<panel name="main_create_game_throbber" visible="0" height="100%" width="100%" color="0 0 0 0.5"  >
+				<animatedimage texture="/ui/shared/throb/throb.tga" width="80s" height="80s" valign="center" align="center" noclick="true" loop="1" fps="30" onshow="StartAnim(1);" />
+			</panel>		
+
+		</panel>
+
+	</template>
+	
+	<template name="server_browser_template" >
+		
+		<panel name="server_browser" blockinput="true" align="center" width="400s" height="504s" x="-350s" y="170s" visible="false" watch="ConnectionStatus" ontrigger="If(param0, SetVisible(false));">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			
+			<panel hmargin="20s" vmargin="10s" noclick="1">
+				<label fity="1" fitypadding="5s" style="h1" font="maindyn_30" content="player_hosted_server_browser"/>				
+				<instance
+					name="iconButton"
+					align="right"
+					y="4s"
+					width="24s" height="24s" borderthickness="4s"
+					icon="/ui/main/shared/textures/close.tga"
+					onclicklua="
+						GetWidget('server_browser'):SetVisible(0)
+					"
+				/>
+
+				<panel y="45s" width="100%" align="center" height="345s" noclick="1">		
+					<frame
+						texture="/ui/elements:rounded_bg_white"
+						borderthickness="20s"
+						color=".05 .05 .05 1"
+						noclick="1"
+					>
+						<listbox
+							align="center"
+							valign="center"
+							width="-2"
+							height="-0.4h"
+							name="server_list"
+							itemheight="2.5h"
+							scrollbarsize="24s"
+							handleheight="48s"
+							hoverselect="false"
+							highlight="under"
+							highlightbordercolor="invisible"
+							color="invisible"
+							scrolltexture="/ui/shared/textures/slider.tga"
+							watch="ServerListAdd"
+							ontrigger="
+								AddTemplateListItemWithSort
+								(
+									'serverlist_item',
+									param0,
+									param1,
+									'server_name', param2,
+									'ping', param3,
+									'official', param5,
+									'private', param4,
+									'region', param6,
+									'color',
+									If(
+										param7,
+										If(
+											false,
+											'gray',
+											'white'
+										),
+										'gray'
+									),
+									'rendermode', If(param7, 'normal', 'grayscale'),
+									'select', param7
+								);
+								SetSelectedItemByValue(_server_list_last_selected);
+								Call('server_list_message', 'ClearText();');
+								CreateString('_server_name_' # param0, param1);
+								"
+							onload="CreateString('_server_list_last_selected', ''); CreateInt('_server_list_sort_column', '1');"
+							watch0="ServerListShow"
+							ontrigger0="ShowItemByValue(param); SetSelectedItemByValue(_server_list_last_selected); If(GetNumItems() == 0, Call('server_list_message', 'SetText(Translate(\'main_lobby_no_servers_found\'));'), Call('server_list_message', 'ClearText();'));"
+							watch1="ServerListHide"
+							ontrigger1="HideItemByValue(param); If(GetNumItems() == 0, Call('server_list_message', 'SetText(Translate(\'main_lobby_no_servers_found\'));'), Call('server_list_message', 'ClearText();'));"
+							watch2="ServerListUpdate"
+							ontrigger2="SortListboxSortIndex(_server_list_sort_column);"
+							watch3="ServerListClear"
+							ontrigger3="Clear(); Call('server_list_message', 'SetText(Translate(\'main_lobby_searching\'));');"
+							onshowlua="self:Clear() Client.GetServerList()"
+							oneventlua="Client.GetServerList()"
+							onloadlua="
+								self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+									if (not trigger.isWorking) and (widget:GetNumListItems() == 0) then
+										widget:GetWidget('server_list_message'):SetText(Translate('main_lobby_no_servers_found'))
+									end
+								end)							
+							"
+							hscrollbar="0"
+							horizontal="false"							
+						>					
+						</listbox>
+						<label name="server_list_message" width="100%" height="100%" textalign="center" textvalign="center" style="labelBase" font="maindyn_26" color="white" contents="main_lobby_searching" noclick="true"
+							onloadlua="
+								self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+									if (trigger.isWorking) then
+										widget:SetText(Translate('main_lobby_searching'))
+									end
+								end)
+							"
+						/>
+					</frame>
+
+
+				</panel>
+				
+				
+				<panel y="-58s" valign="bottom" height="32s" noclick="1" visible="1">
+
+					<panel x="37%" width="100@" height="100%" valign="center"
+						onloadlua="
+							self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+								widget:SetVisible(trigger.isWorking)
+							end)
+						"
+					>
+						<animatedimage texture="/ui/shared/throb/throb.tga" width="100@" height="100%" valign="center" align="center" noclick="true" loop="1" fps="30" onshow="StartAnim(1);" />
+					</panel>
+
+					<panel x="0" width="35%" align="left" 
+						onloadlua="
+							self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+								widget:SetVisible(trigger.isWorking)
+							end)
+						"
+					>
+						<panel x="0.4h" y="0.4h" width="-0.8h" height="-0.8h">
+							<panel width="0" color="green"
+								onloadlua="
+									self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+										widget:SetWidth(trigger.processed / trigger.responses)
+									end)							
+								"
+							>		
+							</panel>
+						</panel>
+
+						<label width="100%" height="100%" textalign="center" textvalign="center" font="maindyn_16" color="white" shadow="true" content="mainlobby_label_custom_retrieving_list"
+							onloadlua="
+								self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+									widget:SetVisible(not trigger.isList)
+									widget:SetText(trigger.processed .. '/' .. trigger.responses)
+								end)
+							"
+						/>				
+						<label width="100%" height="100%" textalign="center" textvalign="center" font="maindyn_16" color="white" shadow="true" 
+							onloadlua="
+								self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+									widget:SetVisible(trigger.isList)
+									widget:SetText(trigger.processed .. '/' .. trigger.responses)
+								end)						
+							"
+						/>
+					</panel>
+					<panel x="0" width="35%" align="left" 
+						onloadlua="
+							self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+								widget:SetVisible(not trigger.isWorking)
+							end)					
+						"
+					>
+				
+						<label width="100%" height="100%" textalign="center" textvalign="center" font="maindyn_16" color="white" shadow="true"
+							onloadlua="
+								self:RegisterWatchLua('GameListStatus', function(widget, trigger)
+									widget:SetText(Translate('main_lobby_response', 'visible', trigger.visible, 'count', trigger.total))
+								end)
+							"						
+						/>
+					</panel>
+				</panel>
+			
+				
+				<panel y="-10s" valign="bottom" height="40s" noclick="1" visible="1" color="invisible">
+					<instance
+						name="standardButton" id="create_game_server_browser_btn_1"
+						align="left"
+						width="41%"
+						font="maindyn_26"
+						label="general_refresh"
+						onclicklua="
+							Client.GetServerList()
+						"
+						onmouseover="PlaySound('/shared/sounds/ui/button_over_01.wav');"
+					/>
+					<instance
+						name="standardButton" id="create_game_select_server_btn"
+						align="right"
+						width="57%"
+						font="maindyn_26"
+						label="general_select_server"
+						onmouseover="PlaySound('/shared/sounds/ui/button_over_01.wav');"
+					/>
+				</panel>
+
+				
+			</panel>			
+			
+
+		</panel>	
+	</template>
+	
+</package>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Ace_Ability1"
+
+	icon="icon.tga"
+	forceanim="ability_1"
+	
+
+	passiveeffect="effects/state_self.effect"
+	
+	ishidden="true"
+
+	disarmed="true"
+	
+	effecttype=""
+	allowtransfer="true"
+
+	impactinterval="300"
+
+	modifierkey="acespin1"
+>
+
+	<oninflict>
+		<setaccumulator value="1" />
+		<propareaeffect center="source_entity" radius="300" anim="flamehit" />
+		<areaofeffect
+			radius="350"
+			targetselection="all"
+			targetscheme="enemy_units_and_buildings"
+			effecttype="Magic Splash"
+		>
+			<recordheroaggression  />
+			<aggression />
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<setvar0 a="result" b="5" op="div" />
+					<damage effecttype="Magic Splash DOT" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+		<compare a="result" b="0" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<compare a="result" b="2" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<compare a="result" b="3" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<playeffect effect="effects/swoosh.effect" source="source_entity" target="" />
+	</oninflict>
+
+	<onimpact>
+		<playanim name="ability_1_spin" target="source_entity"/>
+		<propareaeffect center="source_entity" radius="300" anim="flamehit" />
+		<areaofeffect
+			radius="350"
+			targetselection="all"
+			targetscheme="enemy_units_and_buildings"
+			effecttype="Magic Splash"
+		>
+			<recordheroaggression  />
+			<aggression />
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<setvar0 a="result" b="5" op="div" />
+					<damage effecttype="Magic Splash DOT" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+		<compare a="result" b="0" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<compare a="result" b="2" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<compare a="result" b="3" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<playeffect effect="effects/swoosh.effect" source="source_entity" target="" />
+		<setaccumulator value="1" valueb="accumulator" valueop="add" />
+		<compare a="accumulator" b="5" op="eq">
+			<playanim name="idle" target="source_entity" />
+		</compare>
+	</onimpact>
+</state>

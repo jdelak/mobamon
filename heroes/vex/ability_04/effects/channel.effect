@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="portee" deferred="1" useentityeffectscale="1">
+
+<definitions>
+	<particlesystem name="system0" space="world" scale="1">
+		
+		<billboard
+			delay="300"
+			bone="_bone_fx04"
+			life="300"
+			startscale="18"
+			endscale="0"
+			color="1 .6 .4"
+			angle="120"
+			material="/shared/effects/smaterials/streak_flare_orange.material"
+		/>	
+		
+		<billboard
+			delay="600"
+			bone="_bone_fx02"
+			life="300"
+			startscale="18"
+			endscale="0"
+			color="1 .6 .4"
+			angle="120"
+			material="/shared/effects/smaterials/streak_flare_orange.material"
+		/>			
+
+		<template name="jet">	
+			<light		
+				bone="{bone}"			
+				color="2 1 1"				
+				falloffstart="00"
+				falloffend="320"
+				position="0 0 -60"	
+				life="2000"				
+			/>
+			<billboard
+				bone="{bone}"
+				life="1600"
+				startscale="3"
+				endscale="6"
+				color="1 .6 .4"
+				angle="120"
+				material="/shared/effects/smaterials/streak_flare_orange.material"
+			/>
+		
+
+			<trailemitter
+				bone="{bone}"
+				delay="1800"
+				life="300"
+				position="0 0 0"
+				spawnrate="40"
+				particlelife="150"
+				texpostime="150"
+				texposscale="0.0"
+				texstretchscale=".4"
+				material="/shared/effects/smaterials/trail_add.material"
+				subframepos="true"
+				
+			>
+				<particle
+					startcolor="1 .5 .2"
+					midcolor=".7 .2 0"
+					endcolor="0 0 0"
+					
+					startsize="80"
+					alpha=".4"
+					endsize="0"
+					midsizepos="0.25"
+			/>
+			</trailemitter>				
+		
+			<simpleemitter
+				delay="500"
+				bone="{bone}"
+				spawnrate="180"
+				
+				particlelife="550"
+				gravity="5"
+				speed="1200"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"				
+				minangle="0"
+				maxangle="5"
+				direction="0 0 -1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor="1 1 1"
+					midcolor="1 .8 .7"
+					endcolor="1 1 1"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="0"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				delay="500"
+				bone="{bone}"
+				spawnrate="80"				
+				particlelife="150"
+				gravity="5"
+				speed="1200"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_add.material"				
+				minangle="0"
+				maxangle="5"
+				direction="0 0 -1"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=" .4 .4 .4"
+					midcolor=".4 .2 0"
+					endcolor=".2 0 0"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="20"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+		</template>
+		
+		<instance name="jet" bone="_bone_fx04"/>
+		<instance name="jet" bone="_bone_fx02"/>
+		
+		
+		
+		
+		
+	<!--  ground puff -->
+		<simpleemitter
+			delay="1800"				
+			spawnrate="380"
+			life="110"
+			
+			particlelife="550"
+			gravity="0"
+			drag="0.05"
+			minspeed="900"
+			maxspeed="1200"
+			acceleration="0"
+			position="0 -50 15"
+			material="/shared/effects/smaterials/rocket_smoke_blend.material"				
+			minangle="90"
+			maxangle="90"
+			direction="0 0 1"
+			
+		>
+			<particle 
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-50"
+				maxanglespeed="50"
+				startcolor="1 1 1"
+				midcolor="1 .8 .7"
+				endcolor="1 1 1"
+				miscale=".8"
+				maxscale="1.2"
+				startframe="0"
+				endframe="1"
+				startsize="25"
+				endsize="88"
+				startalpha="1"
+				endalpha="0"
+				turn="true"
+			/>
+		</simpleemitter>			
+		
+		
+		
+		
+		
+		
+		
+		<light		
+			delay="1800"
+			life="300"
+			color="2 1 1"				
+			falloffstart="00"
+			falloffend="320"
+			position="-0 -70 -60"			
+		/>
+		<billboard
+			delay="1800"
+			life="200"
+			startscale="23"
+			endscale="6"
+			color="1 1 .4"
+			angle="120"
+			position="-0 -70 180"
+			material="/shared/effects/smaterials/streak_flare_orange.material"
+		/>			
+		
+	
+		<simpleemitter
+			delay="1700"				
+			spawnrate="180"
+			bone="_bone_overhead"
+			particlelife="550"
+			gravity="1"
+			speed="1200"
+			acceleration="0"
+			position="0 -50 -50"
+			material="/shared/effects/smaterials/rocket_smoke_blend.material"				
+			minangle="0"
+			maxangle="5"
+			direction="0 0 -1"
+			offsetdirection="0 0 0"
+			offsetsphere="44"
+			
+			
+		>
+			<particle 
+				minangle="0"
+				maxangle="0"
+				minanglespeed="0"
+				maxanglespeed="0"
+				startcolor="1 1 1"
+				midcolor="1 .8 .7"
+				endcolor="1 1 1"
+				startframe="0"
+				endframe="1"
+				startsize="25"
+				endsize="88"
+				startalpha="1"
+				endalpha="0"
+				turn="true"
+			/>
+		</simpleemitter>
+		
+		<simpleemitter
+			delay="1700"
+			bone="_bone_overhead"
+			spawnrate="80"				
+			particlelife="150"
+			gravity="1"
+			speed="1200"
+			acceleration="0"
+			position="0 -54 -50"
+			material="/shared/effects/smaterials/rocket_smoke_add.material"				
+			minangle="0"
+			maxangle="5"
+			direction="0 0 -1"
+			offsetdirection="0 0 0"
+			offsetsphere="44"
+			
+			
+		>
+			<particle 
+				minangle="0"
+				maxangle="0"
+				minanglespeed="0"
+				maxanglespeed="0"
+				startcolor=" .4 .4 .4"
+				midcolor=".4 .2 0"
+				endcolor=".2 0 0"
+				startframe="0"
+				endframe="1"
+				startsize="25"
+				endsize="80"
+				startalpha="1"
+				endalpha="0"
+				turn="true"
+			/>
+		</simpleemitter>
+
+
+		
+		
+
+		
+		
+		
+
+	</particlesystem>
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	
+		<waitfordeath instance="instance0" />
+	<!-- <die /> -->
+</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

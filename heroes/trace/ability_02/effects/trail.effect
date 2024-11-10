@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions deferred="true">
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="1"
+				sample="/heroes/artillery/ability_04/sounds/trail.wav"
+			/>
+			
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="1"
+				sample="/heroes/artillery/ability_04/sounds/trail.wav"
+			/>
+			
+			
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				size="150"
+			/>
+			
+
+			<model
+				position="0 0 0"
+				color="1.65"
+				scale="1.8"
+				model="bomb/model.mdf"
+				anim="idle"
+				expirelife="250"
+				pitchspeed="-600"
+			>	
+<!--
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="350"
+					minparticlelife="200"
+					maxparticlelife="500"
+					material="/shared/effects/smaterials/cartoon_dust_white.material"
+					offsetsphere="8"
+					minspeed="0"
+					maxspeed="0"
+					direction="0 0 0"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor=".8"
+						endcolor="0"
+						minstartsize="10"
+						maxstartsize="30"
+						endsize="0"
+						alpha=".75"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="500"
+					minparticlelife="150"
+					maxparticlelife="250"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="8"
+					depthbias="-50"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor=".8 .4 0"
+						midcolor=".4 .1 0"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						minstartsize="15"
+						maxstartsize="25"
+						minendsize="0"
+						maxendsize="10"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="150"
+					minparticlelife="300"
+					maxparticlelife="600"
+					minspeed="75"
+					maxspeed="150"
+					drag="0.005"
+					acceleration="0.0"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					particledirectionalspace="world"
+					depthbias="-50"
+				>
+					<particle
+						minstartheightdistort="0.02"
+						maxstartheightdistort="0.04"
+						endheightdistort="0"
+						startsize="3"
+						endsize="1.5"
+						startcolor="1 .5 0"
+						midcolor=".5 .15 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						turn="1"
+					>
+					</particle>
+				</simpleemitter>
+-->
+
+
+
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="135"
+					minparticlelife="100"
+					maxparticlelife="200"
+					gravity="0"
+					minspeed="0"
+					maxspeed="0"
+					depthbias="-12"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					offsetsphere="0 0 0"
+				>
+					<particle 
+					anchor="1"
+						minangle="0"
+						maxangle="360"
+						startcolor="1 .5 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						turn="1"
+						height="20"
+						width="10"
+						startscale=".5"
+						minendscale="1"
+						maxendscale="1.35"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="150"
+					minparticlelife="200"
+					maxparticlelife="400"
+					minspeed="75"
+					maxspeed="250"
+					drag="0.005"
+					gravity="20"
+					acceleration="0.0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					particledirectionalspace="world"
+					depthbias="-50"
+				>
+					<particle
+						minstartheightdistort="0.01"
+						maxstartheightdistort="0.02"
+						endheightdistort="0"
+						startsize="3"
+						endsize="1.5"
+						startcolor="1 .5 0"
+						midcolor=".5 .15 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						turn="1"
+					>
+					</particle>
+				</simpleemitter>
+
+
+
+			</model>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

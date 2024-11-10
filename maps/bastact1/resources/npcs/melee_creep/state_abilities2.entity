@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="Affector_Guard_Abilities2"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	
+	impactinterval="1200"
+	ishidden="true"
+
+	wanderrange="90"
+>
+	<oninflict>
+		<!-- <print text="=========Affector_Guard_Abilities2 Inflicted==========" />
+		<printdebuginfo/>
+		<print text="======================================================" /> -->
+
+		<condition test="not_hasstate State_Stunned" target="this_owner_entity" >
+			<areaofeffect
+				radius="800"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="1"
+				center="this_owner_entity"
+				source="this_owner_entity"
+			>
+				<order command="stop" source="this_owner_entity" target="target_entity" force="true" />
+				<order command="attack" source="this_owner_entity" target="target_entity" force="true" />
+			</areaofeffect>
+   	 	</condition>	
+		<!-- ===== Play Random Aggro Sound ===== -->
+
+		<condition test="not_hasstate State_Stunned" target="this_owner_entity" >
+			<chance threshold="0.0.2">
+				<playeffect effect="effects/sound_alert3_4.effect" source="this_owner_entity" target="this_owner_entity" />
+			</chance>
+			<else>
+				<chance threshold="0.25">
+					<playeffect effect="effects/sound_alert6_5.effect" source="this_owner_entity" target="this_owner_entity" />
+				</chance>
+				<else>
+					<chance threshold="0.33">
+						<playeffect effect="effects/sound_alert6_4.effect" source="this_owner_entity" target="this_owner_entity" />
+					</chance>
+					<else>
+						<chance threshold="0.5">
+							<playeffect effect="effects/sound_alert6_3.effect" source="this_owner_entity" target="this_owner_entity" />
+						</chance>
+						<else>
+							<playeffect effect="effects/sound_alert6_4.effect" source="this_owner_entity" target="this_owner_entity" />
+						</else>
+					</else>
+				</else>
+			</else>
+
+			<!-- Give source clear vision -->
+			<activatemodifierkey name="Guard_Alert" entity="this_owner_entity" />
+
+   	 	</condition>	
+		<!-- =================================== -->
+
+	</oninflict>	
+
+	<onimpact>
+		<condition test="not_hasstate State_Stunned" target="this_owner_entity" >
+			<areaofeffect
+				radius="800"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="1"
+				center="this_owner_entity"
+				source="this_owner_entity"
+			>
+				<!-- <order command="attack" source="this_owner_entity" target="target_entity" force="true" /> -->
+				<pushability entity="this_owner_entity" slot="1" />
+				<canactivate entity="stack_entity">
+					<useability source="this_owner_entity" target="target_entity" slot="1" force="true" queue="front" />
+					<order command="attack" target="target_entity"    />
+				</canactivate>
+				<else>
+					<order command="attack" target="target_entity" force="true" queue="front"   />
+				</else>
+			</areaofeffect>
+   	 	</condition>
+   	 	<else>
+   	 		<expirestate name="Affector_Guard_Abilities2" source="this_owner_entity" target="this_owner_entity" />
+   	 	</else>
+
+	</onimpact>
+
+	<onexpired>
+		<deactivatemodifierkey name="Guard_Alert" entity="target_entity" />
+		<forgetattacks source="target_entity" target="target_entity" />
+		<expirestate name="State_Bastact1_Guards_ReturnToPatrolGadget" source="target_entity" target="target_entity" />
+		<applystate name="State_Bastact1_Guards_ApplySearchForPlayer" source="target_entity" target="target_entity" duration="2000" proxy="this_proxy_entity" />
+	</onexpired>
+
+		
+		
+
+	<modifier key="Guard_Resume_Patrol" modpriority="100"
+		lifetime="0"
+	/>	
+						
+	
+</state>

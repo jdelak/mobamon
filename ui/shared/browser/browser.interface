@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="webbrowser" >
+	<!--
+	<webbrowser url="https://www.youtube.com/embed/UNVf0HGa5No?autohide=1&amp;autoplay=1&amp;controls=2&amp;fs=0&amp;modestbranding=1&amp;rel=0&amp;showinfo=0" />
+	<webbrowser url="https://www.strife.com" />
+	<webbrowser url="https://www.google.com" />
+	-->
+	<panel name="browser1_panel" bgcolor="grey" height="50%" width="50%" align="right" >
+		<button name="browser1_refresh" width="60" height="16" align="right" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser1_browser'):WebBrowserReload()" >
+			<label name="browser1_refresh_label" color="black" font="system_medium" text="Reload" align="center" valign="center" />
+		</button>
+		<button name="browser1_stop" width="60" height="16" x="-60" align="right" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser1_browser'):WebBrowserStop()" >
+			<label name="browser1_stop_label" color="black" font="system_medium" text="Stop" align="center" valign="center" />
+		</button>
+		<textbox name="browser1_address" width="-240" height="16" x="120" color="blue" font="system_medium"
+				 onenter="DoEvent()" oneventlua="UIManager.GetActiveInterface():GetWidget('browser1_browser'):WebBrowserLoadURL(self:GetValue())" />
+		<button name="browser1_back" width="60" height="16" x="0" align="left" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser1_browser'):WebBrowserBack()" >
+			<label name="browser1_back_label" color="black" font="system_medium" text="Back" align="center" valign="center" />
+		</button>
+		<button name="browser1_stop" width="60" height="16" x="60" align="left" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser1_browser'):WebBrowserForward()" >
+			<label name="browser1_stop_label" color="black" font="system_medium" text="Forward" align="center" valign="center" />
+		</button>
+		<webbrowser name="browser1_browser" height="-16" valign="bottom" url="https://www.youtube.com/embed/CXImgSlP8gc?autohide=1&amp;autoplay=1&amp;controls=2&amp;fs=0&amp;modestbranding=1&amp;rel=0&amp;showinfo=0" />
+	</panel>
+	
+	<panel name="browser2_panel" bgcolor="grey" width="50%" height="50%" align="right" valign="bottom">
+		<button name="browser2_refresh" width="60" height="16" align="right" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser2_browser'):WebBrowserReload()" >
+			<label name="browser_refresh_label" color="black" font="system_medium" text="Reload" align="center" valign="center" />
+		</button>
+		<button name="browser2_stop" width="60" height="16" x="-60" align="right" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser2_browser'):WebBrowserStop()" >
+			<label name="browser2_stop_label" color="black" font="system_medium" text="Stop" align="center" valign="center" />
+		</button>
+		<textbox name="browser2_address" width="-240" height="16" x="120" color="blue" font="system_medium"
+				 onenter="DoEvent()" oneventlua="UIManager.GetActiveInterface():GetWidget('browser2_browser'):WebBrowserLoadURL(self:GetValue())" />
+		<button name="browser2_back" width="60" height="16" x="0" align="left" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser2_browser'):WebBrowserBack()" >
+			<label name="browser2_back_label" color="black" font="system_medium" text="Back" align="center" valign="center" />
+		</button>
+		<button name="browser2_stop" width="60" height="16" x="60" align="left" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser2_browser'):WebBrowserForward()" >
+			<label name="browser2_stop_label" color="black" font="system_medium" text="Forward" align="center" valign="center" />
+		</button>
+		<webbrowser name="browser2_browser" height="-16" valign="bottom" url="https://www.youtube.com/embed/UNVf0HGa5No?autohide=1&amp;autoplay=1&amp;controls=2&amp;fs=0&amp;modestbranding=1&amp;rel=0&amp;showinfo=0" />
+	</panel>
+	
+	<panel name="browser_panel" bgcolor="grey" width="50%" >
+		<!--
+		<button name="browser_refresh" width="60" height="16" align="right" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserReload()" >
+			<label name="browser_refresh_label" color="black" font="system_medium" text="Reload" align="center" valign="center" />
+		</button>
+		<button name="browser_stop" width="60" height="16" x="-60" align="right" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserStop()" >
+			<label name="browser_stop_label" color="black" font="system_medium" text="Stop" align="center" valign="center" />
+		</button>
+		-->
+		<button name="browser_refresh" width="60" height="16" align="right" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser_panel'):SetWidth('50%')" >
+			<label name="browser_refresh_label" color="black" font="system_medium" text="Reload" align="center" valign="center" />
+		</button>
+		<button name="browser_stop" width="60" height="16" x="-60" align="right" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser_panel'):SetWidth('100%')" >
+			<label name="browser_stop_label" color="black" font="system_medium" text="Stop" align="center" valign="center" />
+		</button>
+		<textbox name="browser_address" width="-240" height="16" x="120" color="blue" font="system_medium"
+				 onenter="DoEvent()" oneventlua="UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserLoadURL(self:GetValue())" />
+		<button name="browser_back" width="60" height="16" x="0" align="left" color="green"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserBack()" >
+			<label name="browser_back_label" color="black" font="system_medium" text="Back" align="center" valign="center" />
+		</button>
+		<button name="browser_stop" width="60" height="16" x="60" align="left" color="red"
+				onmouseluplua="UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserForward()" >
+			<label name="browser_stop_label" color="black" font="system_medium" text="Forward" align="center" valign="center" />
+		</button>
+		<webbrowser name="browser_browser" height="-16" valign="bottom" url="https://www.strife.com" />
+	</panel>
+</interface>

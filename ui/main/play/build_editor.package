@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<style name="abilityGloss" texture="/ui/elements:gloss_up" rendermode="additive" color="#AAAAAA" noclick="true"/>
+	<style name="buildEditorHotkeyLabel" color="black" outline="true" outlinecolor="#DDDDDD" font="maindyn_14" textalign="center" textvalign="center" noclick="true"/>
+	<style name="buildEditorCooldownLabel" textalign="center" textvalign="center" color="white" outline="true" font="maindyn_14" visible="false" noclick="true"/>
+	<style name="buildEditorPrimaryBar" valign="bottom" y="-1h" height="8.4h" grow="true" regrow="true" align="center" float="right" padding="0.4h" x="-0.5h" noclick="true"/>
+	<style name="buildEditorPrimaryContainer" valign="bottom" width="102s" height="69s" sticky="true" stickytoinvis="false" noclick="true"/>	
+	<style name="buildEditorPrimaryBacker" texture="/ui/shared/frames/rounded_bg_white.tga" color="#333333" borderthickness="0.5h" noclick="true"/>
+	<style name="buildEditorPrimaryIconSpace" width="86@" height="86%" x="3.6%" valign="top" y="7.5%" noclick="true"/>	
+	<style name="buildEditorPrimaryIconCorners" texture="/ui/shared/frames/rounded_corner_white.tga" color="#333333" borderthickness="0.5h" noclick="true"/>
+	<style name="buildEditorPrimaryLevelPipContainer" align="right" width="35@" x="-12@" valign="bottom" grow="true" regrow="true" growinvis="false" float="bottom" padding="1.5@" y="-10%" noclick="true"/>
+	<style name="buildEditorPrimaryLevelPip" visible="0" texture="/ui/_textures/elements/hero_primary_levelpip.tga" height="20@" noclick="true" color="1 0.8 0 1"/>
+	<style name="buildEditorPrimaryKeySpace" width="39@" height="39%" align="right" x="-10@" y="10%"/>
+	<style name="buildEditorPrimaryKey" texture="/ui/shared/frames/key.tga" borderthickness="1h" noclick="true"/>
+	<style name="buildEditorPrimaryKeyLabel" style="buildEditorHotkeyLabel" y="-9%"/>
+	<style name="buildEditorPrimaryTimerBar" width="12@" x="1@" valign="center" height="64%" y="1.5%" texture="/ui/shared/frames/rounded_bg_white_horiz.tga" color="#0B0B0B" noclick="true"/>
+	<style name="heroInventoryPrimaryTimerContainer" width="0.168h" height="8.4h" sticky="true" stickytoinvis="false" noclick="true" valign="bottom"/>
+	<style name="buildEditorabilityLevelupIcon" texture="/shared/effects/stextures/plus.tga" align="center" color="1 1 1 1" valign="center" y="0%" width="98%" height="98@" noclick="true"/>
+	
+	<style name="buildEditorItemKey" texture="/ui/shared/frames/key.tga" borderthickness="0.75h"/>
+	<style name="buildEditorKeyHighlight" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.75h" color="#FFCC0011" rendermode="additive" noclick="true" visible="false"/>
+	<style name="buildEditorItemHotkeyLabel" style="buildEditorHotkeyLabel" y="-9%" noclick="true"/>	
+	
+	<template name="buildEditorPrimaryBackers">
+		<panel group="buildEditor{id}TimerContainers" style="heroInventoryPrimaryTimerContainer"/>
+		<panel group="buildEditor{id}Containers" style="buildEditorPrimaryContainer">
+			<!--<frame style="buildEditorPrimaryBacker" color="red"/>-->
+			<panel style="buildEditorPrimaryIconSpace">
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="buildEditorPrimaryIcons">
+		<panel group="buildEditor{id}TimerContainers" style="heroInventoryPrimaryTimerContainer"/>
+		<panel group="buildEditor{id}Containers" style="buildEditorPrimaryContainer">
+			<panel style="buildEditorPrimaryIconSpace">
+				<frame style="buildEditorPrimaryIconCorners"/>
+				<button name="buildEditor{id}Button" color="invisible" interactive="false" disabledmouseover="true" disabledmouseout="true" cangrab="true" dragexclusive="false">
+					<image name="buildEditor{id}Icon" texture="/ui/shared/textures/plus_icon.tga" noclick="true" align="center" valign="center"/>
+				</button>
+				<panel  name="buildEditor{id}DropTarget" visible="false" color="#FFCC0044"/>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="buildEditorPrimaryOverlays">
+		<panel group="buildEditor{id}Containers" style="buildEditorPrimaryContainer">
+					
+			<panel style="buildEditorPrimaryIconSpace">
+				<image name="buildEditor{id}Gloss" style="abilityGloss"/>				
+			</panel>
+			
+			<image texture="/ui/game/ability/textures/ability_frame.tga" width="200@" height="100%" valign="center" noclick="true"/>
+			
+			<panel style="buildEditorPrimaryLevelPipContainer">
+				<panel name="buildEditor{id}LevelPip4" style="buildEditorPrimaryLevelPip"/>
+				<panel name="buildEditor{id}LevelPip3" style="buildEditorPrimaryLevelPip"/>
+				<panel name="buildEditor{id}LevelPip2" style="buildEditorPrimaryLevelPip"/>
+				<panel name="buildEditor{id}LevelPip1" style="buildEditorPrimaryLevelPip"/>
+			</panel>
+
+			<button name="buildEditor{id}HotkeyButton" color="invisible" style="buildEditorPrimaryKeySpace" interactive="false">
+				<panel name="buildEditor{id}HotkeyBody" align="center" valign="center">
+					<frame name="buildEditor{id}HotkeyBacker" style="buildEditorPrimaryKey"/>
+					<frame name="buildEditor{id}HotkeyHighlight" style="buildEditorKeyHighlight"/>
+				</panel>
+			</button>			
+		</panel>
+	</template>
+	
+	<template name="buildEditorPrimaryLabels"><!-- 14 -->
+		<panel group="buildEditor{id}Containers" style="buildEditorPrimaryContainer">
+			<panel style="buildEditorPrimaryKeySpace" noclick="true">
+				<label name="buildEditor{id}Hotkey" style="buildEditorPrimaryKeyLabel" content="?"/>
+			</panel>
+		</panel>
+	</template>
+
+	
+	<template name="main_build_editor_ability_template" >
+		<panel noclick="main_build_editor_ability_{id}" width="102s" height="70s">
+			<instance name="buildEditorPrimaryBackers" id="{id}"/>
+			<instance name="buildEditorPrimaryIcons" id="{id}"/>
+			<instance name="buildEditorPrimaryOverlays" id="{id}"/>
+			<instance name="buildEditorPrimaryLabels12" id="{id}"/>
+			<instance name="buildEditorPrimaryLabels" id="{id}"/>
+		</panel>
+	</template>
+	
+	<template name="main_build_editor_abilityslot_template" >
+		<panel noclick="main_build_editor_abilityslot_{id}" width="64s" height="100%" >
+			<label name="buildEditorSlot{id}Label" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" textalign="center" noclick="1" content="-" /><!-- Content set in lua so it can be properly translated -->
+			<panel noclick="1" width="64s" height="64s" valign="bottom" color=".1 .1 .1 1">
+				<button name="buildEditorSlot{id}Button" enabled="0" color="invisible" interactive="false" disabledmouseover="true" disabledmouseout="true" cangrab="true" dragexclusive="false">
+					<image name="buildEditorSlot{id}Icon" texture="/ui/shared/textures/plus_icon.tga" rendermode="grayscale" width="80@" height="80%" color="1 1 1 .4" align="center" valign="center" noclick="true"/>
+					<instance name="iconFrame" />
+				</button>
+			</panel>
+			<instance name="DropLand" id="buildEditorSlot{id}DropTarget" align="center" valign="center" width="+2s" height="+2s" />
+		</panel>
+	</template>	
+
+</package>

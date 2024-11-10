@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<include file="notification_templates.package"/>	
+	
+	<template name="quest_footerbar_template">
+		<panel name="{id}" noclick="{noclick=1}" onclicklua="{onclicklua}" height="36s" width="36s" float="right" padding="0.2h" visible="{visible=0}" sticky="1" stickytoinvis="0" 
+			onmouseoverlua="
+				self:GetWidget('{id}_count_label_parent'):FadeIn(50)
+				self:GetWidget('{id}_icon'):SetRenderMode('normal')
+				self:GetWidget('{id}_icon'):SetColor('1 1 1 1')
+			"
+			onmouseoutlua="
+				self:GetWidget('{id}_count_label_parent'):FadeOut(50)
+				self:GetWidget('{id}_icon'):SetRenderMode('grayscale')
+				self:GetWidget('{id}_icon'):SetColor('1 1 1 0.6')
+			"	
+			onloadlua="{onloadlua}"
+		>
+			<image name="{id}_icon" texture="{icon}" width="100@" height="100%" noclick="1" rendermode="grayscale" color="1 1 1 0.6" />
+			<label name="{labelID}" visible="0" textvalign="center" fitx="true" outline="true" outlinecolor="#5d350d" color="1 1 1 1" font="maindyn_18" content="" noclick="1"/>
+			<instance
+				name="NumberValue"
+				id="{id}_count_label_parent"
+				labelId="{id}_count_label"
+				x="14s" y="-22s"
+				label="0"
+				countShown="0"
+			/>		
+		</panel>
+	</template>
+	
+	<template name="notification_mini_bubble_template">
+		<panel name="notification_{id}_bubble" visible="0" grow="1" regrow="1" width="{width}" height="{height}" x="{x}" y="{y}" align="{align=left}" valign="{valign=bottom}" noclick="0"
+			onclicklua="self:SetVisible(0)"
+			onrightclicklua="self:SetVisible(0)"
+		>
+			<frame texture="/ui/main/shared/frames/speech_bl_nip.tga" width="+40s" height="+10s" borderthickness="30s" bordercolor="1 1 1 1"  noclick="1" />			
+			<panel x="24s" y="0" grow="true" regrow="true" valign="center" align="center" noclick="1" float="bottom" padding="1s" >
+				<label name="notification_{id}_bubble_label" fity="1" fitypadding="50s" valign="center" textvalign="center" fitx="1" fitxpadding="10s" fitxmax="250s" wrap="1" style="labelBase" font="maindyn_16" noclick="1" content="" />
+				<panel noclick="1" height="1s" />
+			</panel>				
+		</panel>
+	</template>	
+	
+	<template name="notification_standard_template">
+		<panel name="notification_{id}" noclick="{noclick=1}" height="36s" width="36s" float="right" padding="0.2h" visible="{visible=0}" sticky="1" stickytoinvis="0" 
+			onmouseoverlua="
+				self:GetWidget('notification_{id}_count_parent'):FadeIn(50)
+				self:DoEventN(1)
+				self:Sleep(1, function() end)
+			"
+			onmouseoutlua="
+				self:GetWidget('notification_{id}_count_parent'):FadeOut(50)
+				self:DoEventN(0)
+				self:Sleep(1, function() end)
+			"
+			onevent1lua="
+				self:GetWidget('notification_{id}_icon'):SetRenderMode('normal')
+				self:GetWidget('notification_{id}_icon'):SetColor('1 1 1 1')
+				self:GetWidget('notification_{id}_icon_glow'):FadeIn(125)
+			"	
+			onevent0lua="
+				self:GetWidget('notification_{id}_icon'):SetRenderMode('grayscale')
+				self:GetWidget('notification_{id}_icon'):SetColor('1 1 1 0.6')
+				self:GetWidget('notification_{id}_icon_glow'):FadeOut(125)
+			"
+		>
+			<image x="0" name="notification_{id}_icon_glow" texture="{icon}_glow.tga" width="{iconSize=100}@" height="{iconSize=100}%" valign="center" align="center" noclick="1" color="1 1 1 0.6" visible="0"  />
+			<image x="0" name="notification_{id}_icon" texture="{icon}.tga" width="{iconSize=100}@" height="{iconSize=100}%" valign="center" align="center" noclick="1" rendermode="grayscale" color="1 1 1 0.6"  />
+			
+			<panel name="notification_{id}_animated_icon_parent" x="0" width="100@" height="100%" noclick="1" visible="{showAnimated=0}">
+				<animatedimage name="notification_{id}_animated_icon" texture="/ui/main/notification/textures/challenge.tga" width="{aniIconSize=94}@" height="{aniIconSize=94}%" valign="center" align="center" noclick="true" loop="1" fps="9" onshow="StartAnim(1);"/>
+				<label name="notification_{id}_animated_label" style="labelBase" x="0" y="7" width="18s" textalign="center" textvalign="center" font="subdyn_13" color="1 1 1 1" content="1" noclick="1" visible="0"/>
+			</panel>
+			
+			<instance
+				name="NumberValue"
+				id="notification_{id}_count_parent"
+				labelId="notification_{id}_count"
+				x="14s" y="-22s"
+				label="0"
+				countShown="0"
+			/>	
+			<instance name="notification_mini_bubble_template" id="{id}" height="36s" width="36s" x="34s" y="-38s" />
+		</panel>
+	</template>
+
+	<!-- footer overlay -->
+	<panel name="main_notification_footer_overlay" noclick="1" grow="1" regrow="1" growinvis="0" height="22s" y="-2" width="0" valign="bottom" float="right" padding="0.8h" reverse="true">
+		 
+		<!-- Notifications -->
+		<instance name="notification_standard_template" id="unclaimed_loot" icon="/ui/main/notification/textures/loot" noclick="0" />
+		<instance name="notification_standard_template" id="unclaimed_quest" icon="/ui/main/shared/textures/quest" noclick="0" />
+		<instance name="notification_standard_template" id="unclaimed_spin" icon="/ui/main/notification/textures/spin" noclick="0" />
+		<instance name="notification_standard_template" id="incoming_ims" icon="/ui/main/notification/textures/im" noclick="0" />
+		<instance name="notification_standard_template" id="friend_request" icon="/ui/main/notification/textures/friend" noclick="0" />
+		<instance name="notification_standard_template" id="party_invite" icon="/ui/main/notification/textures/party" noclick="0" />
+		<instance name="notification_standard_template" id="clan_invite" icon="/ui/main/notification/textures/party" noclick="0" />
+		<instance name="notification_standard_template" id="lobby_invite" icon="/ui/main/notification/textures/party" noclick="0" />
+		<instance name="notification_standard_template" id="party_challenge" icon="/ui/main/notification/textures/party" noclick="0" />
+		<instance name="notification_standard_template" id="pending_challenge" icon="/ui/main/notification/textures/party" showAnimated="1" iconSize="0" noclick="0" />
+		<instance name="notification_standard_template" id="update" icon="/ui/main/notification/textures/update" noclick="0" />
+		<instance name="notification_standard_template" id="system" icon="/ui/main/shared/textures/gear" noclick="0" />
+		<instance name="notification_standard_template" id="rap" icon="/ui/shared/textures/karma_toxic" noclick="0" />
+		<instance name="notification_standard_template" id="leaver" iconSize="80" icon="/ui/shared/textures/karma_toxic" noclick="0" />
+		<instance name="notification_standard_template" id="catchall" icon="/ui/main/notification/textures/default" noclick="0" />
+		
+		<panel width="5s" noclick="1">
+			<panel width="1" align="right" valign="bottom" y="-1s" height="-1s" color="#222629" visible="0" />
+		</panel>
+	</panel>
+	
+	<panel name="main_notification_sleeper" noclick="1" />	
+	
+	<lua file="notification.lua"/>
+	
+
+</package>

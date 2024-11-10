@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Hale_Ability2_Speed"
+
+	icon="icon.tga"
+	
+	movespeedpercharge="20"
+	maxcharges="10"
+	
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	impactinterval="650"
+	ishidden="true"
+>
+	<oninflict>
+		<setcharges a="10" />
+	</oninflict>
+
+	<onimpact>
+		<setaccumulator value="1" />
+	</onimpact>
+
+	<onframe>
+		<compare a="accumulator" b="1" op="eq" >
+			<removecharge a="1" />
+		</compare>
+	</onframe>
+
+	<onattackstart >
+		<cantarget targetscheme="enemy_units_and_Towers">
+			<addattackimpactactions>
+				<expire/>
+			</addattackimpactactions>
+		</cantarget>
+	</onattackstart>
+
+</state>

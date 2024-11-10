@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".75">
+		
+
+			<template name="">
+			
+				<terrainemitter
+					position="{zpos}"
+					spawnrate="33"
+					particlelife="1500"
+					offsetsphere="50 50 0"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="400"
+							maxlife="500"
+							material="/shared/effects/materials/ice_blob_overlay.material"
+							startscale="1.5"
+							minendscale="1.5"
+							maxendscale="2"
+							color="0 0 0"
+							startalpha=".4"
+							midalpha=".4"
+							endalpha="0"
+							midalphapos=".75"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							minrollspeed="-45"
+							maxrollspeed="45"
+							depthbias="-50"
+						/>
+						
+						<billboard
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/smaterials/rings.material"
+							minstartscale=".15"
+							maxstartscale=".3"
+							minendscale=".6"
+							maxendscale="1"
+							startcolor=".8"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="0"
+							depthbias="-75"
+						/>
+
+					</particle>
+				</terrainemitter>
+	
+			</template>
+			
+			<instance name="" zpos="0 0 0"/>
+
+		
+		
+		
+		
+		
+		
+
+			<template name="beam">
+				<beam
+					expirelife="250"		
+					bone_a="{a}"
+					bone_b="{b}"
+					size="{size}"
+					color="0 0 0"
+					startalpha="1"
+					endalpha="0"
+					material="/shared/effects/materials/goo.material"
+				/>
+
+				<beam
+					expirelife="250"		
+					bone_a="{a}"
+					bone_b="{b}"
+					size="{size}"
+					color="0 0 0"
+					startalpha="1"
+					endalpha="0"
+					material="/shared/effects/materials/goo.material"
+				/>
+			</template>		
+
+			<instance name="beam" a="_bone_righthand" b="_bone_lefthand" size="40"/>
+			<instance name="beam" a="_bone_righthand" b="_bone_rightfoot" size="45"/>
+			<instance name="beam" a="_bone_lefthand" b="_bone_leftfoot" size="45"/>
+			<instance name="beam" a="_bone_leftfoot" b="_bone_rightfoot" size="40"/>
+			<instance name="beam" a="_bone_back" b="_bone_rightfoot" size="30"/>
+			<instance name="beam" a="_bone_back" b="_bone_leftfoot" size="30"/>
+			<instance name="beam" a="_bone_chest" b="_bone_rightfoot" size="30"/>
+			<instance name="beam" a="_bone_chest" b="_bone_leftfoot" size="30"/>
+
+			<template name="">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="150"
+					particlelife="1000"
+					offsetsphere="0 0 0"
+					direction="0 0 0"
+					minspeed="150"
+					maxspeed="350"
+					gravity="0"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="{zbone}"
+							minlife="150"
+							maxlife="400"
+							color="0 0 0"
+							material="/shared/effects/smaterials/goop_drop_white.material"
+							startalpha="1"
+							endalpha="1"
+							midalphapos=".25"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							directionalspace="local"
+							minstartscale=".75"
+							maxstartscale="1.25"
+							minendscale="0"
+							maxendscale=".75"
+							depthbias="-25"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zbone="_bone_leftfoot"/>  
+			<instance name="" zbone="_bone_rightfoot"/> 
+
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

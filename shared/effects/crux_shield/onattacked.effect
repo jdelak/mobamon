@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.25">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2000" 
+				volume="0.45" 
+				sample="/buildings/base/melee_rax/shield/sounds/impact_%.wav"
+			/>
+
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor=".2 .2 .4"
+				endcolor="0 0 0"
+				scale="5"
+				model="../generator_shield/octagonal_shield/model.mdf"
+				anim="idle"
+			/>
+
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				scale="5"
+				model="../generator_shield/pulse_shield/model.mdf"
+				anim="idle"
+			/>
+			
+			
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor=".1 .65 .65"
+				endcolor="0 0 0"
+				startscale="5"
+				endscale="5.4"
+				model="../generator_shield/octagonal_shield/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+			/>
+			
+<!--
+			<simpleemitter
+			count="1"
+				spawnrate="2000"
+				particlelife="1000"
+				material="/shared/effects/materials/phantom_smoke_04.material"
+				direction="0 0 -1"
+				minangle="0"
+				maxangle="1"
+				minspeed="500"
+				maxspeed="500"
+			>
+					<particle
+					>
+					
+						<billboard
+						position="0 0 250"
+							material="/shared/effects/materials/ring_ground.material"
+							startcolor="0 0 0"
+							midcolor="0 .05 .1"
+							endcolor="0 0 0"
+							midcolorpos=".75"
+							life="500"
+							startsize="700"
+							endsize="850"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					
+
+						<model
+						life="1000"
+							position="0 0 0"
+							startcolor="0 0 0"
+							midcolor="0 .1 .2"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startscale="5"
+							endscale="5"
+							model="ring_shield/model.mdf"
+							loop="true"
+						/>
+
+						
+						
+					</particle>
+			</simpleemitter>
+-->
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Ganker_Ult_3"
+
+	icon="icon.tga"
+
+	modifierkey="no_tele"
+	impactinterval="1500"
+	revealed="true"
+	sighted="true"
+	effecttype="StatusDebuff DOT"
+>
+
+	<onimpact>
+		<playanim name="attack_1" target="this_proxy_entity" />
+		<playeffect effect="effects/impact.effect" source="this_owner_entity" target="this_owner_entity" />
+		<setvar0 a="118,131,144,157,170,183,196,209,222,235,248,261,274,287,300"/>
+		<setvar0 a="var0" b="5" op="div" />
+		<damage effecttype="Familiar DOT" amount="1" b="var0" op="mult" />
+	</onimpact>
+	
+	<oninflict>
+		<setactivemodifierkey entity="this_proxy_entity" name="no_tele" />
+		<playanim name="attack_1" target="this_proxy_entity" />
+		<playeffect effect="effects/impact.effect" source="this_owner_entity" target="this_owner_entity" />
+		<setvar0 a="118,131,144,157,170,183,196,209,222,235,248,261,274,287,300"/>
+		<setvar0 a="var0" b="5" op="div" />
+		<damage effecttype="Familiar DOT" amount="1" b="var0" op="mult" />
+		<spawnunit name="Gadget_Ganker_Ult_1" target="source_entity" count="1" pushentity="true" />
+		<bind target="stack_entity" entity="this_owner_entity" />
+	</oninflict>
+
+	<onexpired>
+		<setactivemodifierkey entity="this_proxy_entity" name="" />
+	</onexpired>
+</state>

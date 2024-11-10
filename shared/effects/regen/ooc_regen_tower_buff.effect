@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="2.15">
+
+			<simpleemitter
+				delay="200"
+				bone="_bone_head"
+				minspawnrate="1"
+				maxspawnrate="2"
+				particlelife="1500"
+				gravity="-15"
+				speed="00"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/plus_purple.material"
+				offsetsphere="10 10 20"
+				minangle="90"
+				maxangle="-90"
+				depthbias="-50"
+			>
+				<particle
+					startsize="00"
+					midsize="20"
+					midsizepos=".1"
+					endsize="10"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>		
+		
+			<simpleemitter
+				bone="_bone_head"
+				minspawnrate="1"
+				maxspawnrate="1"
+				particlelife="1500"
+				gravity="-15"
+				speed="00"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whiterectangleside.material"
+				offsetsphere="10 10 20"
+				minangle="90"
+				maxangle="-90"
+				depthbias="-50"
+			>
+				<particle
+					startsize="00"
+					midsize="20"
+					midsizepos=".1"
+					endsize="10"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

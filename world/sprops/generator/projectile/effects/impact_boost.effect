@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1.25">
+
+			<sound
+				falloffstart="500"
+				falloffend="2000"
+				volume="0.3"
+				sample="/world/sprops/generator/sounds/generator_projectile_impact_%.wav"
+			/>
+
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="12"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-50"
+			>
+				<particle
+					color="1 .75 0"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha=".5"
+					startscale="35"
+					endscale="85"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="4"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-50"
+			>
+				<particle
+					color="1 1 0"
+					startalpha=".75"
+					midalpha=".75"
+					endalpha="0"
+					startscale="20"
+					endscale="40"
+					turn="true"
+				/>
+			</simpleemitter>
+
+      </particlesystem>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+		<particlesystem name="system1" space="world" scale="2">
+
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="2.5 2.5 0"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="100"
+				endfalloffend="300"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="12"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-75"
+			>
+				<particle
+					color=".65 .65 0"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha=".5"
+					startscale="45"
+					endscale="95"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-75"
+			>
+				<particle
+					color=".65 .4 0"
+					startalpha=".75"
+					midalpha=".75"
+					endalpha="0"
+					startscale="30"
+					endscale="50"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="250"
+				startcolor=".5 .2 0"
+				endcolor="0"
+				midcolorpos=".75"
+				size="165"
+				depthbias="25"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+
+			<simpleemitter
+				count="1"
+				spawnrate="2500"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<billboard
+						life="250"
+						color=".2 .1 0"
+						endcolor="0 0 0"
+						midcolorpos="0.8"
+						startsize="75"
+						endsize="350"
+						lockup="1"
+						pitch="90"
+						lockright="1"
+						maxroll="360"
+						material="/shared/effects/materials/ring_ground.material"
+						loop="false"
+						depthbias="-100"
+					/>
+					
+					<billboard
+						life="250"
+						color=".1 0 0"
+						endcolor="0 0 0"
+						midcolorpos="0.8"
+						startsize="55"
+						endsize="330"
+						lockup="1"
+						pitch="90"
+						lockright="1"
+						maxroll="360"
+						material="/shared/effects/materials/ring_ground.material"
+						loop="false"
+						depthbias="-100"
+					/>
+					
+					<billboard
+						life="250"
+						color=".05 0 0"
+						endcolor="0 0 0"
+						midcolorpos="0.8"
+						startsize="35"
+						endsize="310"
+						lockup="1"
+						pitch="90"
+						lockright="1"
+						maxroll="360"
+						material="/shared/effects/materials/ring_ground.material"
+						loop="false"
+						depthbias="-100"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+			bone="_bone_center"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".25 .1 0"			
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="100"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".25 .1 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="100"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".25 .1 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="100"
+				endsize="300"
+				depthbias="-150"			
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="25"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="350"
+				maxspeed="700"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+				depthbias="75"
+			>
+				<particle
+					minstartheightdistort=".025"
+					maxstartheightdistort=".035"
+					endheightdistort="0"
+					startsize="4"
+					endsize="2"
+					startcolor="1 1 0"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+
+		</particlesystem>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+   </definitions>
+   <thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

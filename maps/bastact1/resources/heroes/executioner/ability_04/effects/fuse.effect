@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="entity" scale=".9">
+			<!-- fuse -->
+
+			<sound
+				volume="0.1"
+				falloffstart="250"
+				falloffend="2400"
+				sample="../sounds/sfx_trail.wav"
+			/>
+
+			<model
+				bone="_bone_fx"
+				life="7500"
+				timenudge="1000"
+				model="models/bomb.mdf"
+				anim="burndown"
+				yawspeed="0"
+				startscale="1.1"
+				endscale="1.1"
+				color="1"
+				alpha="0"
+				position="0.0 0.0 0.0"
+				directionalspace="local"
+			>
+				<beam
+					life="7500"
+					bone_a="_bone_fuse_01"
+					bone_b="_bone_fuse_02"
+					loop="1"
+					size="5"
+					startcolor="1"
+					endcolor="1"
+					startalpha="1"
+					midalpha="1"
+					endalpha="1"
+					material="/shared/effects/materials/rope.material"
+					framespeed="1"
+					depthbias="-50"
+				/>
+
+				<!-- Fireball flames -->
+				<!-- Dark Red -->
+				<simpleemitter
+					bone="_bone_fuse_01" 
+					life="7500" 
+					spawnrate="500"
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					minspeed="10"
+					maxspeed="150"
+					drag="0"
+					acceleration="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/flamewisps.material"
+					direction="0 0 1"
+					offsetsphere="5"
+					depthbias="50"
+					minangle="0"
+					maxangle="0"
+					directionalspace="world"
+				>
+
+					<particle 
+						minanglespeed="-200"
+						maxanglespeed="200"
+						startcolor="1 0.7 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".3"
+						minstartsize="40"
+						maxstartsize="60"
+						startsize="0"
+						midsize="100"
+						endsize="0"
+						midsizepos=".2"
+						startalpha="1"
+						endalpha="0"
+						scale=".15"
+					/>	
+				</simpleemitter>		
+				
+				<!-- yellow orange -->
+				<simpleemitter
+					bone="_bone_fuse_01" 
+					life="7500" 
+					spawnrate="400"
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					minspeed="10"
+					maxspeed="150"
+					drag="0"
+					acceleration="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/flamewisps.material"
+					direction="0 0 1"
+					offsetsphere="5"
+					depthbias="50"
+					minangle="0"
+					maxangle="0"
+					directionalspace="world"
+				>
+
+					<particle
+						minanglespeed="-200"
+						maxanglespeed="200"
+						startcolor="1 1 0"
+						midcolor="1 .5 0"
+						endcolor="0.5 0 0"
+						midcolorpos="0.5"
+						minstartsize="40"
+						maxstartsize="60"
+						startsize="0"
+						midsize="70"
+						endsize="0"
+						midsizepos=".2"
+						startalpha="0.5"
+						endalpha="0"
+						scale=".1"
+					/>	
+				</simpleemitter>
+
+				<!-- White yellow -->
+				<simpleemitter
+					bone="_bone_fuse_01" 
+					life="7500" 
+					spawnrate="200"
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					minspeed="10"
+					maxspeed="100"
+					drag="0"
+					acceleration="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/flamewisps.material"
+					direction="0 0 1"
+					offsetsphere="2"
+					depthbias="50"
+					minangle="0"
+					maxangle="0"
+					directionalspace="world"
+				>
+
+					<particle 
+						minanglespeed="-900"
+						maxanglespeed="900"
+						startcolor="1 1 1"
+						midcolor="1 1 0"
+						endcolor="0 0 0"
+						midcolorpos="0.5"
+						minstartsize="40"
+						maxstartsize="60"
+						startsize="0"
+						midsize="50"
+						endsize="0"
+						midsizepos=".2"
+						startalpha="0.5"
+						endalpha="0"
+						scale=".1"
+					/>	
+				</simpleemitter>
+
+				<!--Ember bits-->			
+				<simpleemitter
+					bone="_bone_fuse_01" 
+					life="7500" 
+					spawnrate="10"			
+					particlelife="500"
+					gravity="0"
+					collide="1"
+					bounce="0"
+					minspeed="10"
+					maxspeed="200"
+					drag="0"
+					position="0 0 0"
+					acceleration="0"
+					direction="0 0 1"
+					offsetsphere="5"
+					depthbias="50"
+					minangle="0"
+					maxangle="0"
+					directionalspace="world"
+					inheritvelocity="true"
+				>
+					<particle>
+
+						<billboard
+							minlife="200"
+							maxlife="350"
+							startcolor="1 1 0"
+							endcolor="0"
+							minsize="4"
+							maxsize="8"
+							depthbias="50"
+							material="/shared/effects/smaterials/whitedot.material"
+							minrollspeed="-200"
+							maxrollspeed="200"
+							scale=".3"
+						/>
+					
+						<billboard
+							minlife="200"
+							maxlife="350"
+							startcolor="1 .5 0"
+							endcolor="0"
+							minsize="5"
+							maxsize="10"
+							depthbias="50"
+							material="/shared/effects/smaterials/whitedot.material"
+							minrollspeed="-200"
+							maxrollspeed="200"
+							scale=".3"
+						/>
+						
+						<billboard
+							minlife="200"
+							maxlife="350"
+							startcolor="1 0 0"
+							endcolor="0"
+							minsize="6"
+							maxsize="12"
+							depthbias="50"
+							material="/shared/effects/smaterials/whitedot.material"
+							minrollspeed="-200"
+							maxrollspeed="200"
+							scale=".3"
+						/>
+
+					</particle>
+				</simpleemitter>
+				
+				<billboard
+					bone="_bone_fuse_01"
+					life="7500"
+					expirelife="250"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="1 0.5 0"
+					endcolor="0"
+					position="0 0 0"
+					size="10"
+					depthbias="7"
+				/>
+			</model>
+				
+			<!-- red growing bomb -->
+			<model
+				bone="_bone_fx"
+				delay="5500"
+				life="2000"
+				model="models/bomb.mdf"
+				anim="idle"
+				yawspeed="0"
+				startscale="1.2"
+				endscale="1.7"
+				startcolor="1"
+				endcolor="10 0 0"
+				alpha="1"
+				position="0.0 0.0 0.0"
+				directionalspace="local"
+			/>
+			
+			<billboard
+				bone="_bone_bomb"
+				life="7500"
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 0 0"
+				endcolor="0"
+				position="0 0 0"
+				size="40"
+				depthbias="-5"
+			/>
+				
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<wait duration="55"/>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

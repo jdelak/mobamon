@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="rain" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				volume="1" 
+				soundloop="true"
+				sample="/shared/sounds/ambiance/environment/weather/rain_1.wav"
+				linearfalloff="true"
+				falloffstart="2500"
+				falloffend="2500"
+				fadein="3000"
+				fadeout="1000"
+			/>
+
+			<!-- Closer thunder -->
+
+			<simpleemitter	
+				minspawnrate="0.1"
+				maxspawnrate="0.03"
+				particlelife="5000"			
+				position="0 0 500"
+				timenudge="2000"
+			>
+				<particle
+				>
+					<sound
+						volume="1" 
+						sample="/shared/sounds/ambiance/environment/weather/thunder_%.wav"
+						linearfalloff="true"
+						falloffstart="200"
+						falloffend="1400"
+						life="13000"
+					/>
+					
+					<light
+						delay="400"
+						position="-500 0 0"
+						life="75"
+						startcolor="10 10 10"					
+						endcolor="0"
+						falloffstart="500"
+						falloffend="1900"
+					/>
+					
+					<light	
+						delay="475"					
+						life="25"
+						startcolor="-5"					
+						endcolor="0"
+						falloffstart="500"
+						falloffend="1900"
+					/>
+						
+					<light	
+						delay="500"					
+						position="500 0 0"
+						life="150"
+						startcolor="8 7 8"	
+						midcolor="1 1 1"						
+						endcolor="0"
+						falloffstart="200"
+						falloffend="2300"
+					/>					
+				</particle>
+			</simpleemitter>
+
+			<!-- Distant thunder -->
+
+			<simpleemitter	
+				minspawnrate="0.01"
+				maxspawnrate="0.05"
+				particlelife="5000"			
+				position="0 0 500"
+				timenudge="2000"
+			>
+				<particle
+				>
+					<sound
+						volume="1" 
+						sample="/shared/sounds/ambiance/environment/weather/thunder_far_%.wav"
+						linearfalloff="true"
+						falloffstart="200"
+						falloffend="1400"
+						life="13000"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<precipemitter 
+				count="10000" 
+				minspeed="250"                                         
+				maxspeed="450"
+				direction="-.2 -.20 -1.0" 
+				angle="0" 
+				material="/shared/effects/materials/rain_overlay.material" 
+				drawdistance="550.0" 
+		  	 > 
+				<particle 
+					angle="180"
+					turn="1"
+					width="1.6" 
+					height="19" 
+					lockup="true" 
+					color="1.00 1.00 1.00"
+				/> 
+			</precipemitter> 			 
+			
+			<terrainemitter
+				spawnrate="1101"
+				startrange="1500"
+				endrange="1500"
+				particlelife="2000"
+				position="0 -20 0"
+			>
+				<particle>
+					<simpleemitter
+						count="1"
+						minparticlelife="160"
+						maxparticlelife="280"
+						spawnrate="640"
+						minspeed="5"
+						maxspeed="15"
+						gravity="5"
+						direction="0 0 1"
+						drag="0.05"
+						material="/shared/effects/materials/whitewater_02.material"
+						position="0 0 10"
+						depthbias="0"
+					>
+						<particle
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-60"
+							maxanglespeed="60"
+							startsize="15"
+							endsize="45"
+							startcolor=".5"
+							endcolor="0"
+							startalpha=".1"
+							midalpha=".1"
+							endalpha="0"
+							minscale=".7"
+							maxscale="1.3"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter		
+						count="1"
+						delay="200"
+						minparticlelife="250"
+						maxparticlelife="350"			
+						position="0 0 20"
+						material="/shared/effects/materials/refract_ripples.material"
+					>
+						<particle
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							startparam=".12915"
+							endparam="0"
+							startsize="20"
+							endsize="50"
+							depthbias="-5"
+							lockup="true"
+							pitch="90"
+							minscale=".8"
+							maxscale="1.3"
+						/>
+					</simpleemitter>
+				</particle>
+			</terrainemitter>
+
+			<simpleemitter
+				count="2"
+				particlelife="500"
+				spawnrate="640"
+				gravity="-15"
+				direction="0 0 1"
+				drag="0.05"
+				material="/shared/effects/materials/whitewater_02.material"
+				offsetsphere="25 25 10"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-60"
+					maxanglespeed="60"
+					startsize="30"
+					endsize="75"
+					startcolor=".5"
+					endcolor="0"
+					startalpha=".1"
+					midalpha=".1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

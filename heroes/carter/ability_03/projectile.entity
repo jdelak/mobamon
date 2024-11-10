@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Carter_Ability3_FakeAttack"
+
+	speed="1200"
+	gravity="0"
+
+	modelscale="1.8"
+	model=""
+	traileffect=""
+	canturn="0"
+	deatheffect=""
+	
+	
+	touchradius="150"
+	touchcliffs="false"
+  
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="carter_firering"
+	toucheffecttype="Magic"
+	touchignoreinvulnerable="true"
+>
+	<onimpact>
+		<entitytype type="Gadget_Carter_Ability3_Attack" target="this_proxy_entity">
+			<kill target="this_proxy_entity" source="" />
+<!--
+			<playeffect effect="../projectile_blue/effects/impact.effect" source="target_entity" />
+-->
+		</entitytype>
+	</onimpact>
+
+	<ontouch>
+		<spawnunit name="Gadget_Carter_Ability3_Attack" count="1" source="source_entity" target="this_position" pushentity="true" />
+		<bind entity="this_entity" target="stack_entity" position="true" positionoverride="0 0" />
+		<setproxy entity="stack_entity" target="this_proxy_entity" />
+		<setproxy entity="this_entity" target="stack_entity" />
+	</ontouch>
+  
+</projectile>

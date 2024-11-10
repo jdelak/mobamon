@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="deferred_view_position">
+	<dependency name="ViewDistance" type="float" />
+	<dependency name="InterpolatedViewRay" type="float3" source="InterpolatedViewRay" />
+	<output name="Out" type="float3" />
+	<?hlsl
+		float3 f3ViewRay = normalize(InterpolatedViewRay);
+		Out = f3ViewRay * ViewDistance;
+	?>
+	<?glsl
+		vec3 f3ViewRay = normalize(InterpolatedViewRay);
+		Out = f3ViewRay * ViewDistance;
+	?>
+</node>

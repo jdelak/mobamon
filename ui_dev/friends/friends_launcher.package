@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="friends_button">
+		<button name="{id}" width="{width=100%}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onclicklua="{onclicklua}" onmouseoverlua="{onmouseoverlua}" onmouseoutlua="{onmouseoutlua}"
+			usebitmask="1" bitmaskfile="/ui/main/footer/textures/friends_tab.tga"
+		>
+			<panel name="{id}Body" align="center" valign="center">				
+				<image name="{id}Background" texture="/ui/main/footer/textures/friends_tab.tga" width="256s" height="64s" align="right" valign="bottom" />
+				<image name="BackgroundHover" texture="/ui/main/footer/textures/friends_tab_hover.tga" width="256s" height="64s" align="right" valign="bottom" visible="0" />			
+				<panel noclick="1" height="28s" width="130s" align="right" valign="bottom" >
+					<label name="{id}Label" style="labelBase" y="-5s" width="-20s" align="right" textalign="center" textvalign="center" font="{font=maindyn_20}" color="{labelcolor=white}" content="mainlobby_label_cc_friends"/>				
+					<image name="{id}BaseIcon" texture="/ui/main/friends/textures/social_handdown.tga" x="-12s" y="-7s" width="43s" height="43s" valign="center" visible="1" />							
+					<panel  name="{id}_notification_parent" noclick="1" visible="0" >
+						<animatedimage name="{id}NotificationBaseIcon" texture="/ui/main/friends/textures/social_wave.tga" x="-12s" y="-7s" width="43s" height="43s" valign="center" noclick="true" loop="1" fps="9" onshow="StartAnim(0);"/>
+						<label name="{id}_notification_label" style="labelBase" x="-10s" y="2s" width="18s" textalign="center" textvalign="center" font="maindyn_16" color="{labelcolor=white}" content=""/>
+					</panel>				
+					<panel name="{id}PartyTime" width="43s" height="43s" valign="center" noclick="1" visible="0">
+						<image texture="/ui/main/friends/textures/partyhat.tga" x="-15s" y="-12s" noclick="1"/>
+						<image name="{id}PartyTimeBlower" texture="/ui/main/friends/textures/party_blower.tga" x="-17s" y="-11s" noclick="1"/>
+					</panel>
+				</panel>
+			</panel>			
+			<instance name="friends_mini_bubble_template" id="{id}" height="36s" width="36s" x="-304s" y="-24s" />
+		</button>		
+		<panel name="{id}_droptarget" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" color="#00CCFF44" rendermode="additive" visible="false"/>		
+	</template>
+	<instance id="friends_footer_button" name="friends_button" width="256s" height="64s" align="right" valign="bottom" x="-2s" y="-2s" visible="0"
+		label=""
+		onclicklua="
+			Friends.ToggleFriendsList()
+		"		
+		onmouseoverlua="GetWidget('BackgroundHover'):FadeIn(125)"
+		onmouseoutlua="GetWidget('BackgroundHover'):FadeOut(125)"
+	/>
+</package>

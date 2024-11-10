@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+	
+<!--
+		<modifier
+			name="modifier0"
+			life="750"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+		/>
+-->
+
+		<particlesystem name="system0" space="world" scale=".5">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".25"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+<!--
+			<billboard
+				bone="_bone_centerofchest"
+				minlife="300"
+				maxlife="300"
+				startcolor="1 0 0"
+				midcolor="1 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				startscale="1"
+				endscale="3"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+				depthbias="-25"
+			/>
+-->
+
+			<controller
+				life="2000"
+				owner="source"
+				lookat="true"
+				lookatowner="target"
+			>
+				<model
+					life="400"
+					position="0 0 100"
+					anim="idle"
+					model="weapon/model.mdf"
+					material="weapon/material.material"
+					scale="1.3"
+					color="1 1 1"
+					startalpha="0"
+					midalpha="0"
+					endalpha="0"
+					midalphapos=".75"
+					yaw="-180"
+					roll="180"
+				>
+
+					<simpleemitter
+						count="25"
+						bone="_bone_fx_03"
+						spawnrate="500"
+						particlelife="1000"
+						gravity="20"
+						position="0 0 0"
+						offsetsphere="0 50 0"
+						direction="0 -1 0"
+						minspeed="200"
+						maxspeed="400"
+						minangle="0"
+						maxangle="45"
+						directionalspace="local"
+					>
+						<particle
+							turn="true"
+						> 
+							<billboard
+								bone="_bone_fx_03"
+								minlife="250"
+								maxlife="500"
+								color=".75 0 0"
+								material="/shared/effects/smaterials/goop_drop.material"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								directionalspace="local"
+								minstartscale="1.25"
+								maxstartscale="1.75"
+								midscale=".75"
+								minendscale=".25"
+								maxendscale=".75"
+								depthbias="-75"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</model>
+
+			</controller>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1.15">
+
+			<sound
+				volume="0.45"
+				falloffstart="500"
+				falloffend="2200"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="12"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-15"
+			>
+				<particle
+					color=".5 0 0"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="55"
+					endscale="115"
+					turn="true"
+				/>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="6"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-30"
+			>
+				<particle
+					color=".5 0 0"
+					startalpha=".75"
+					midalpha=".75"
+					endalpha="0"
+					startscale="40"
+					endscale="60"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+			<billboard
+				life="300"
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 0 0"
+				endcolor="0 0 0"
+				size="100"
+				position="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				depthbias="-100"
+			/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		<spawnmodifier instance="instance2" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+		<waitfordeath instance="instance2"/>
+	</thread>
+</effect>

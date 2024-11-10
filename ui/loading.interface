@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="loading" luatable="true">
+	
+	<!-- Styles -->
+	<style name="loading_hero_parent" width="8.9w" clip="1" noclick="1" />
+	<style name="loading_hero_slice" noclick="1" height="78%" color="0.02 0.02 0.02 1" clip="1" />
+	<style name="loading_hero_slice_reflection" noclick="1" height="78%" color="0.02 0.02 0.02 0.3" clip="1" y="76%" />
+	<style name="loading_hero_slice_image" hmargin="0.6h" vmargin="0.6h" noclick="1" />	
+	<style name="loading_hero_slice_petimage" y="-6%" width="68%" height="68@" align="center" valign="bottom" color=".02 .02 .02 1" noclick="1" />
+	<style name="loading_hero_slice_petimage_reflection" style="loading_hero_slice_petimage" y="8%" valign="top" background="0 0 0 1" />
+	
+	<!-- Background -->
+	<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center" visible="1" color="#86afc4" noclick="1" />
+	<panel color="0.22 0.71 0.96 0.06" rendermode="additive" noclick="1"/>
+	<image texture="/ui/main/shared/textures/grad_vert.tga" valign="bottom" height="35h" color="0 0 0 .85" noclick="1" />
+
+	<!-- Hero Slice Template -->
+	<template name="loading_team_item_template" >
+		<panel name="loading_team_{playerid}_parent" visible="0" style="loading_hero_parent">
+		
+			<!-- Reflections -->
+			<panel style="loading_hero_slice_reflection" visible="1">				
+				<splashimage
+					name="loading_team_{playerid}_image_reflection"
+					noclick="true"
+					color="1 1 1 0.07"
+					style="loading_hero_slice_image"
+					image=""
+					onhidelua="self:SetImage('') self:SetVisible(0)"
+					hflip="{hflip}" vflip="1"
+					view="clip"
+				/>
+				
+				<panel style="loading_hero_slice_petimage_reflection">
+					<panel noclick="1" width="-0.8h" height="-0.8h" align="center" valign="center" color="#000000" />
+					<image
+						name="loading_team_{playerid}_pet_reflection" visible="0"
+						noclick="1"
+						texture="$checker"
+						width="-0.8h" height="-0.8h" align="center" valign="center"
+						color="1 1 1 .08"
+						hflip="{hflip}" vflip="1"
+					/>
+					<panel color="0.02 0.02 0.02 0.5" width="-0.8h" height="-0.8h" align="center" valign="center" noclick="1"/>
+				</panel>
+				
+				<!-- Username -->
+				<panel name="loading_team_{playerid}_username_reflection_parent" y="2.3h" height="3h" align="center" valign="top" noclick="1" visible="1">
+					<panel color="0.03 0.03 0.03 0.3" noclick="1" />
+				</panel>
+			</panel>
+		
+			<panel name="loading_team_{playerid}" style="loading_hero_slice" >	
+				<panel noclick="true" color="#0a1317" style="loading_hero_slice_image" />
+				<!-- Hero -->
+				<splashimage
+					name="loading_team_{playerid}_image"
+					noclick="true"
+					visible="1"
+					bgcolor="black"
+					style="loading_hero_slice_image"
+					image=""
+					onhidelua="self:SetImage('') self:SetVisible(0)"				
+					hflip="{hflip}"
+					view="clip"
+				/>
+				<image texture="/ui/main/shared/textures/grad_vert.tga" style="loading_hero_slice_image" color="1 1 1 .35" valign="top" height="20%" vflip="1" noclick="1" />
+				
+				<!-- Pet -->
+				<panel style="loading_hero_slice_petimage" visible="1">
+					<panel noclick="1" width="-0.8h" height="-0.8h" align="center" valign="center" color="#090d11" />
+					<image
+						name="loading_team_{playerid}_pet" visible="0"
+						noclick="1"
+						texture="$checker"
+						width="-0.8h" height="-0.8h" align="center" valign="center"
+						hflip="{hflip}"
+					/>
+					<panel color="0.02 0.02 0.02 0.46" width="-0.8h" height="-0.8h" align="center" valign="center" noclick="1"/>
+				</panel>
+
+				<!-- Username -->
+				<panel name="loading_team_{playerid}_username_parent" y="-0.8h" height="3h" align="center" valign="bottom" noclick="1" visible="0">
+					<panel color="0.03 0.03 0.03 0.7" noclick="1" />
+					<label name="loading_team_{playerid}_username" fitx="1" style="labelBase" color=".7 .7 .7 1" font="subdyn_11" textvalign="center" align="center" valign="center" noclick="1" content="" />
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<!-- Hero Slices: Team 1 and 2 -->
+	<panel name="loading_team_1" noclick="1" x="1%" y="5%" width="47.6w" float="right" padding="0.8%">				
+		<instance name="loading_team_item_template" teamid="1" playerid="0" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="1" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="2" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="3" hflip="true" />
+		<instance name="loading_team_item_template" teamid="1" playerid="4" hflip="true" />			
+	</panel>
+	
+	<panel name="loading_team_2" noclick="1" x="-1%" y="5%" width="47.6w" float="right" padding="0.8%" align="right">	
+		<instance name="loading_team_item_template" teamid="2" playerid="5" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="6" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="7" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="8" hflip="false" />
+		<instance name="loading_team_item_template" teamid="2" playerid="9" hflip="false" />	
+	</panel>
+	
+	<!-- Teams -->
+	<image name="loading_team_1_myteam_indicator" visible="0" texture="/ui/game/loading/textures/team_kablamo_green.tga" width="52h" height="25h" color=".7 .7 .7 .7" align="left" vflip="1" hflip="0" noclick="1" />
+	<panel name="loading_team_1_myteam_indicator_logo" align="left" valign="top" x="1h" y="0" noclick="true" texture="/ui/game/loading/textures/team_logo_glory_red.tga" width="11h" height="11h"/>
+	<label align="left" valign="top" x="12h" y="1.2h" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_glory" font="maindyn_72" />
+	<label name="loading_team_1_myteam_indicator_label" align="left" valign="top" x="12h" y="0" fity="1" color=".8 .8 .8 1" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+	
+	<image name="loading_team_2_myteam_indicator" visible="0" texture="/ui/game/loading/textures/team_kablamo_green.tga" width="52h" height="25h" color=".7 .7 .7 .7" align="right" vflip="1" hflip="1" noclick="1" />
+	<panel name="loading_team_2_myteam_indicator_logo" align="right" valign="top" x="0.2h" y="0.2h" noclick="true" texture="/ui/game/loading/textures/team_logo_valor_red.tga" width="12.6h" height="11.2h"/>
+	<label align="right" valign="top" x="-10h" y="1.2h" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_valor" font="maindyn_72" />
+	<label name="loading_team_2_myteam_indicator_label" align="right" valign="top" x="-10h" y="0" fity="1" color=".8 .8 .8 1" outline="1" outlinecolor="black" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+	
+	<image texture="/ui/main/shared/textures/grad_center.tga" color="#2a5a72" width="34h" align="center" noclick="1" />
+	
+	<panel y="12.5h" width="16h" height="16h" align="center" valign="center" noclick="1" >
+		<image noclick="1" texture="/ui/game/loading/textures/loading_disc.tga"/>
+		<piegraph name="loadingProgressBar" end="-90" start="270" square="0" color="0 0 0 0.7" noclick="true" value="1.0" align="center" valign="center" height="88%" width="88%" />
+		<label fity="1" color="white" outline="1" outlinecolor="0 0 0 .5" align="center" valign="center" textvalign="center" textalign="center" fitx="1" noclick="1" content="general_vs" font="maindyn_48" />
+	</panel>
+	
+	<!-- Tip -->
+	<panel height="15%" valign="bottom" noclick="1">
+		<panel name="loadingTipContainer" grow="1" align="center" valign="center" noclick="0" clip="true" onclick="">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".02 .02 .02 .65" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor="#283136" borderthickness="1.0h" color="invisible" noclick="1"/>
+			<label name="loadingTipLabel" fity="1" color="white" outline="1" outlinecolor="black" fitypadding="2.0h" fitxpadding="4.0h" textvalign="center" textalign="center" fitx="1" fitxmax="55h" noclick="1" content="main_simple_load_tip" font="maindyn_22" wrap="1" />
+		</panel>
+	</panel>
+
+	<?lua
+		local _G = getfenv(0)
+		local random = _G.math.random
+		local tipContainer = object:GetWidget('loadingTipContainer')
+		local tipLabel = object:GetWidget('loadingTipLabel')
+		local tips = {
+			TranslateOrNil("main_simple_load_tip") or '1?',
+			TranslateOrNil("main_simple_load_tip2") or '2?',
+			TranslateOrNil("main_simple_load_tip3") or '3?',
+			TranslateOrNil("main_simple_load_tip4") or '4?',
+			TranslateOrNil("main_simple_load_tip5") or '5?',
+			TranslateOrNil("main_simple_load_tip6") or '6?',
+			TranslateOrNil("main_simple_load_tip7") or '7?',
+			TranslateOrNil("main_simple_load_tip8") or '8?',
+			TranslateOrNil("main_simple_load_tip9") or '9?',
+			TranslateOrNil("main_simple_load_tip10") or '10?',
+			TranslateOrNil("main_simple_load_tip11") or '11?',
+			TranslateOrNil("main_simple_load_tip12") or '12?',
+			TranslateOrNil("main_simple_load_tip13") or '13?',
+			TranslateOrNil("main_simple_load_tip14") or '14?',
+			TranslateOrNil("main_simple_load_tip15") or '15?',
+			TranslateOrNil("main_simple_load_tip16") or '16?',
+			TranslateOrNil("main_simple_load_tip17") or '17?',
+			TranslateOrNil("main_simple_load_tip19") or '19?',
+			TranslateOrNil("main_simple_load_tip20") or '20?',
+		}
+		tipContainer:SetCallback('onclick', function()
+			tipLabel:SetText(tips[random(#tips)])
+		end)
+
+		tipContainer:SetCallback('onload', function()
+			tipLabel:SetText(tips[random(#tips)])
+		end)
+	
+		for playerid = 0,9,1 do
+			object:GetWidget('loading_team_' .. (playerid) .. '_parent'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.entityName and (not Empty(trigger.entityName)) then
+					widget:SetVisible(1)
+				else
+					widget:SetVisible(0)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_parent'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetVisible(0)
+			end, true, nil)
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_image'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.entityName and (not Empty(trigger.entityName)) then
+					local conceptArtPath = '/ui/game/loading/textures/'
+					if (trigger.entityName == trigger.gearSetName) or (Empty(trigger.gearSetName)) then
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_default.jpg'
+					else
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_' .. string.lower(trigger.gearSetName) .. '.jpg'
+					end		
+					widget:SetImage(conceptArtPath)
+					widget:SetVisible(true)
+					if IsMe(trigger.identID) or (trigger.isTeammate) then
+						if (playerid < 5) then
+							widget:GetWidget('loading_team_1_myteam_indicator'):SetVisible(1)
+							widget:GetWidget('loading_team_1_myteam_indicator_logo'):SetTexture('/ui/game/loading/textures/team_logo_glory_green.tga')
+							widget:GetWidget('loading_team_1_myteam_indicator_label'):SetText(Translate('general_your_team'))
+						else
+							widget:GetWidget('loading_team_2_myteam_indicator'):SetVisible(1)
+							widget:GetWidget('loading_team_2_myteam_indicator_logo'):SetTexture('/ui/game/loading/textures/team_logo_valor_green.tga')
+							widget:GetWidget('loading_team_2_myteam_indicator_label'):SetText(Translate('general_your_team'))
+						end
+					end
+				else
+					widget:SetImage('')
+					widget:SetVisible(false)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_image'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetImage('')
+			end, true, nil)
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_image_reflection'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.entityName and (not Empty(trigger.entityName)) then
+					local conceptArtPath = '/ui/game/loading/textures/'
+					if (trigger.entityName == trigger.gearSetName) or (Empty(trigger.gearSetName)) then
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_default.jpg'
+					else
+						conceptArtPath = conceptArtPath .. string.lower(trigger.entityName) .. '_' .. string.lower(trigger.gearSetName) .. '.jpg'
+					end		
+					widget:SetImage(conceptArtPath)
+					widget:SetVisible(true)
+				else
+					widget:SetImage('')
+					widget:SetVisible(false)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_image_reflection'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetImage('')
+			end, true, nil)						
+			
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_pet'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.familiarIcon and (not Empty(trigger.familiarIcon)) then
+					widget:SetTexture(trigger.familiarIcon)
+					widget:SetVisible(1)
+				else
+					widget:SetTexture('')
+					widget:SetVisible(false)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_pet'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			--	widget:SetTexture('')
+			--	widget:SetVisible(false)
+			end, true, nil)			
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_pet_reflection'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.familiarIcon and (not Empty(trigger.familiarIcon)) then
+					widget:SetTexture(trigger.familiarIcon)
+					widget:SetVisible(1)
+				else
+					widget:SetTexture('')
+					widget:SetVisible(false)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_pet_reflection'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetTexture('')
+				widget:SetVisible(false)
+			end, true, nil)			
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_username'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				
+				local text = ''
+				if (trigger) and (trigger.clanTag) and (not Empty(trigger.clanTag)) then
+					text = (('[' .. (trigger.clanTag or '') ..']') .. (trigger.playerName or ''))
+				elseif (trigger) then
+					text = (trigger.playerName or '')
+				end				
+				
+				if text and (not Empty(text)) then
+					widget:SetText(text)
+					widget:SetVisible(1)
+				else
+					widget:SetText('')
+					widget:SetVisible(false)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_username'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetText('')
+			end, true, nil)
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_username_parent'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.playerName and (not Empty(trigger.playerName)) then
+					widget:SetVisible(1)
+				else
+					widget:SetVisible(0)
+				end
+			end)
+
+			object:GetWidget('loading_team_' .. (playerid) .. '_username_parent'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetVisible(0)
+			end, true, nil)
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_username_reflection_parent'):RegisterWatchLua('LoadingPlayerInfo' .. (playerid), function(widget, trigger)
+				if trigger.playerName and (not Empty(trigger.playerName)) then
+					widget:SetVisible(1)
+				else
+					widget:SetVisible(0)
+				end
+			end)
+			
+			object:GetWidget('loading_team_' .. (playerid) .. '_username_reflection_parent'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+				widget:SetVisible(0)
+			end, true, nil)			
+		end
+
+		object:GetWidget('loading_team_1_myteam_indicator'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetVisible(0)
+		end, true, nil)
+		
+		object:GetWidget('loading_team_2_myteam_indicator'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetVisible(0)
+		end, true, nil)		
+		
+		object:GetWidget('loading_team_1_myteam_indicator_logo'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetTexture('/ui/game/loading/textures/team_logo_glory_red.tga')
+		end, true, nil)
+		
+		object:GetWidget('loading_team_2_myteam_indicator_logo'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetTexture('/ui/game/loading/textures/team_logo_valor_red.tga')
+		end, true, nil)			
+	
+		object:GetWidget('loading_team_1_myteam_indicator_label'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetText(Translate('general_team'))
+		end, true, nil)
+	
+		object:GetWidget('loading_team_2_myteam_indicator_label'):RegisterWatchLua('EventEnterGame', function(widget, trigger)
+			widget:SetText(Translate('general_team'))
+		end, true, nil)			
+		
+		object:GetWidget('loadingProgressBar'):RegisterWatchLua('LoadingProgress', function(widget, trigger)
+			widget:SetValue(1.0 - trigger.loadPercent)
+		end, true, nil, 'loadPercent')
+	?>
+
+</interface>

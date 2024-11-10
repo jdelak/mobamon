@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.1" >
+				
+			<simpleemitter
+				delay="0"
+				bone="_bone_weapon2"
+				life="5000"
+				count="20"
+				spawnrate="1000"
+				offsetsphere="0"
+				position="0 0 0"
+				depthbias="-50"	
+				particlelife="5000"
+				direction="0 0 -1"
+				minangle="0"
+				maxangle="10"
+				speed="2500"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+
+				>
+			
+					<simpleemitter
+						spawnrate="25"
+						offsetsphere="50"
+						position="0 100 0"
+						depthbias="-50"	
+						particlelife="5000"
+						direction="0 0 1"
+						minangle="0"
+						maxangle="0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								life="300"
+								position="0 0 -100"
+								material="/shared/effects/smaterials/whitedot.material"						
+								startcolor="0"
+								midcolor="0.2 .1 0"
+								endcolor="0"
+								minstartscale="3.5"
+								maxstartscale="4.5"
+								endscale="0"
+								depthbias="-50"	
+								directionalspace="local"
+								lockup="1"
+								lockright="1"
+								height="50"
+								width="2"
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					<simpleemitter
+						spawnrate="20"
+						offsetsphere="20"
+						position="0 0 0"
+						depthbias="-50"	
+						particlelife="5000"
+						direction="0 0 1"
+						minangle="0"
+						maxangle="0"
+						
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								life="300"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"						
+								color="1 0.7 0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								minstartscale="0.5"
+								maxstartscale="1.5"
+								endscale="0"
+								depthbias="-50"	
+								directionalspace="local"
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					<trailemitter
+						life="5000"
+						spawnrate="50"
+						particlelife="500"
+						texpostime="1000"
+						texposscale="0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						depthbias="-50"	
+					>
+						<particle
+							startcolor="0"
+							midcolor="1 0.7 0"
+							endcolor="0 0 0"
+							startsize="75"
+							endsize="0"
+							midcolorpos=".5"
+							midsizepos=".1"
+						/>
+					</trailemitter>
+					
+					<billboard
+						life="5000"
+						delay="100"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						scale="4"
+						startcolor="0.25 0.17 0"
+						endcolor="0 0 0"
+						depthbias="-50"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						height="40"
+						width="20"
+						directionalspace="local"	
+					/>
+					
+					<billboard
+						life="5000"
+						delay="100"
+						position="0 5 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						scale="4"
+						startcolor="0.5 0.35 0"
+						endcolor="0 0 0"
+						depthbias="-50"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						height="40"
+						width="20"
+						directionalspace="local"	
+					/>
+					
+					<billboard
+						life="5000"
+						delay="100"
+						position="0 0 0"
+						material="/shared/effects/smaterials/archer_arrow_add.material"						
+						color="1"
+						startalpha="1"
+						endalpha="0"
+						scale="3"
+						startheight="60"
+						endheight="0"
+						width="20"
+						lockright="1"
+						lockup="1"	
+						pitch="90"
+						roll="0"
+						depthbias="-50"	
+						directionalspace="local"	
+					/>
+					
+					<billboard
+						life="5000"
+						delay="100"
+						position="0 0 0"
+						material="/shared/effects/smaterials/archer_arrow_add.material"						
+						color="1"
+						startalpha="1"
+						endalpha="0"
+						scale="3"
+						startheight="60"
+						endheight="0"
+						width="20"
+						lockright="1"
+						lockup="1"	
+						pitch="90"
+						yaw="90"
+						depthbias="-50"	
+						directionalspace="local"	
+					/>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	<waitfordeath instance="instance0" />
+
+</thread>
+</effect>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".85">
+
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.65"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<simpleemitter
+				count="45"
+				delay="{zdelay}"
+				spawnrate="50000"
+				life="50"
+				minparticlelife="150"
+				maxparticlelife="600"
+				minspeed="0"
+				maxspeed="200"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				offsetradial="65 0 0"
+				offsetsphere="10 10 0"
+				depthbias="-75"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1"
+					endscale="1"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor=".25 .7 1"
+					midcolorpos=".35"
+					startalpha="0"
+					midalpha=".75"
+					endalpha="0"
+					midalphapos=".2"
+					minstartsize="80"
+					maxstartsize="110"
+					endsize="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".45">
+<!--
+			<light
+				life="300"
+				startcolor="0 3 10"
+				midcolor="0 3 10"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="0"
+				falloffend="265"
+				position="0 0 50"
+			/>
+-->
+			<simpleemitter
+				position="0 0 75"
+				count="50"
+				spawnrate="2000"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="750"
+				maxspeed="1500"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+				depthbias="-75"
+			>
+				<particle
+					startheightdistort=".2"
+					endheightdistort="0"
+					startsize="12"
+					endsize="12"
+					startcolor="1 1 1"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<billboard
+						life="250"
+						position="0 0 150"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="1 1 1"
+						endcolor="0 0 0"
+						size="600"
+						depthbias="-75"
+					/>
+				</particle>
+			</simpleemitter>
+			
+
+
+
+		</particlesystem>
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	
+	<!--
+	<panel width="74h" height="2h" valign="center" y="5h">
+		<panel valign="center" width="100%" height="109.523@" texture="/ui/main/enchanting/enchant_sample_itemlist.tga"/>
+	</panel>
+	-->
+	
+
+	<panel name="craftingInventory" y="120s" height="610s" width="528s" visible="false"><!-- Crafted Item Inventory -->
+
+		<panel width="+14s" align="right" noclick="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".1 .1 .1 1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+		</panel>
+		
+		<panel hmargin="20s" vmargin="20s" noclick="1">
+		
+			<label noclick="true" style="h1" font="maindyn_36" content="crafting_inventory_title"/>
+			
+			<instance name="iconButton" id="craftingInventoryClose"
+				icon="/ui/main/shared/textures/close.tga"
+				y="6s" width="26s" height="26s" align="right" borderthickness="4s"
+			/>	
+			
+			<panel name="craftingInventoryCategoryList" height="60s" x="10s" y="50s" float="right" padding="20s" noclick="true">
+				<instance name="mainEnchantItemListTab" id="1" icon="all"/><!-- All -->
+				<instance name="mainEnchantItemListTab" id="2" icon="caster"/><!-- Ability -->
+				<instance name="mainEnchantItemListTab" id="3" icon="physical"/><!-- Attack -->
+				<instance name="mainEnchantItemListTab" id="4" icon="mana"/><!-- Mana -->
+				<instance name="mainEnchantItemListTab" id="5" icon="defense"/><!-- Survival -->
+				<instance name="mainEnchantItemListTab" id="6" icon="support"/><!-- Utility -->			
+			</panel>
+			
+			<panel valign="bottom" height="-130s">
+				<listbox
+					width="-21s"
+					name="craftingInventoryListbox"
+					color="invisible"
+					itemheight="108s"
+					select="false"
+					highlightcolor="invisible"
+					highlightbordercolor="invisible"
+					exteriorscrollbars="true"
+					scrollbarplaceholder="true"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					scrollbarsize="24s"
+					handleheight="48s"
+					scrollbaroffset="6s"
+					hscrollbar="0"
+					horizontal="false"					
+				>
+					<!--
+					<listitem><instance name="mainEnchantItemListEntry"/></listitem>
+					<listitem><instance name="mainEnchantItemListEntry"/></listitem>
+					<listitem><instance name="mainEnchantItemListEntry"/></listitem>
+					<listitem><instance name="mainEnchantItemListEntry"/></listitem>
+					<listitem><instance name="mainEnchantItemListEntry"/></listitem>
+					<listitem><instance name="mainEnchantItemListEntry"/></listitem>
+					-->
+				</listbox>
+				<panel noclick="1" passivechildren="true" visible="0" valign="bottom" height="-130s" >
+					<?lua
+						libGeneral.createGroupTrigger('CraftedItemsExistance', { 'CraftedItems0.name', 'CraftedItems1.name', 'CraftedItems2.name', 'CraftedItems3.name', 'CraftedItems4.name', 'CraftedItems5.name' })
+						object:RegisterWatchLua('CraftedItemsExistance', function(widget, groupTrigger)
+							local showIt = true
+							for i = 0,5,1 do
+								if (groupTrigger['CraftedItems'..i].name) and (not Empty(groupTrigger['CraftedItems'..i].name)) then
+									showIt = false
+								end
+							end
+							widget:SetVisible(showIt)
+						end)
+					?>
+					<label x="-10s" y="-100s" width="-140s" align="center" textalign="center" textvalign="center" wrap="true" style="labelbase" color=".7 .7 .7 1" font="maindyn_30" noclick="true" content="enchanting_no_items"/>
+				</panel>					
+			</panel>
+			
+		</panel>
+	</panel>
+
+</package>

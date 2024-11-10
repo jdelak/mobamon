@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_PendantofDefiance_Empower_1"
+	
+	cost="825"
+
+>
+	<!-- Tooltip only -->
+	<constant name="manareturn_enchant" value="2" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<ondamaged>
+		<setvar0 a="0.02" b="source_maxhealth" op="mult" />
+		<setvar0 a="damage_attempted" b="var0" op="div" />
+		<getconstant name="mana" />
+		<givemana amount="result" b="var0" op="mult" target="source_entity" />
+	</ondamaged>
+</qualityitem>

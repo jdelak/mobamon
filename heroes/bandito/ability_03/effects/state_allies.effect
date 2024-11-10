@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="purgeEffect" deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system1" space="world" scale="1">
+		
+
+
+			<template name="smoke">
+
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="300"
+					maxparticlelife="600"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="35"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor=".1 .08 .06"
+						midcolor=".1 .08 0"
+						endcolor="0 0 0"
+						size="65"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="200"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="35"
+					offsetsphere="25"
+					minspeed="0"
+					maxspeed="50"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="1 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize="2.5"
+						maxsize="5"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="smoke" zbone="_bone_centerofchest" zpos="0 0 0"/>
+			<instance name="smoke" zbone="_bone_centerofchest" zpos="0 0 -35"/>
+			<instance name="smoke" zbone="_bone_centerofchest" zpos="0 0 35"/>
+
+			
+			
+			<billboard
+				bone="_bone_centerofchest"
+				expirelife="250"
+				position="0 -10 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				scale="3"
+				depthbias="-50"
+			/>
+			
+
+			
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />	
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+
+
+
+
+
+

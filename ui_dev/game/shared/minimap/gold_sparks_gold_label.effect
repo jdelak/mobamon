@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+		<particlesystem name="system0" space="world">
+			
+			<template name="border_glow" >
+				<billboard
+					material="/shared/effects/materials/whitedot.material"
+					height="{height}"
+					width="{width}"
+					roll="{roll}"
+					color="1 .85 .35"
+					position="{pos}"
+					life="4500"
+					startcolor="0"
+					midcolor="1 .85 .35"
+					endcolor="0"					
+				/>
+			</template>
+			
+
+			<instance name="border_glow" width="150%" height="30%" roll="0"  pos="5 0 9%" />
+			<instance name="border_glow" width="150%" height="30%" roll="0"  pos="5 0 -9%" />
+
+			<template name="border_emitter" >
+				<simpleemitter
+					position="{pos}"
+					spawnrate="{spawnrate}"
+					particlelife="2300"
+					direction="{direction}"
+					speed="20"
+					offsetcube="{offsetcube}"
+					material="/shared/effects/materials/flare_02.material"
+					angle="0"
+					minangle="-90"
+					maxangle="-70"
+					life="3000"
+				>
+					<particle
+						anglespeed="-160"
+						startcolor="0"
+						midcolor="1 .85 .35"
+						endcolor="0"
+						startsize="11"
+						endsize="1"
+						midcoloralphapos=".6"
+					/>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance name="border_emitter" spawnrate="45" pos="-1 0 10" direction="0 0 1"  offsetcube="50 0 0" />
+			<instance name="border_emitter" spawnrate="45" pos="-1 0 -10"  direction="0 0 -1"   offsetcube="50 0 0" />
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

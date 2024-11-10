@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Trixie_Ability4"
+	
+	icon="icon.tga"
+	
+	morphpriority="101"
+	morphmodel="effects/frog/model.mdf"
+	passiveeffect="effects/frog/effects/body.effect"
+
+	morphpreglobalscale="1.6"
+	morpheffectscale="1"
+	morphmodelscale="1"
+	
+	movespeedslow="0.35"
+	
+	silenced="true"
+	disarmed="true"
+	perplexed="true"
+
+	ishidden="true"
+	
+	effecttype="StatusDebuff StatusDisable CrowdControl"
+	allowtransfer="true"
+>
+	<onframe />
+
+
+
+	<onexpired>
+		<playeffect effect="effects/transition_out.effect" source="this_owner_entity" target="this_owner_entity" />
+	</onexpired>
+
+
+	<modifier key="Trixie_Ult_Creeps" condition="creep" modpriority="100"
+		morphpreglobalscale="0.75"
+		morpheffectscale="1.0"
+		morphmodelscale="1.0" 
+		morphpriority="101"
+		morphmodel="effects/frog/model.mdf"
+	/>
+
+</state>

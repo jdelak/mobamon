@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_TowerRegen"
+	icon="icon.tga"
+	ishidden="false"
+>
+
+	<onframe>
+		<hasmodifier entity="this_owner_entity" name="out_of_combat_regen">
+			<setactivemodifierkey name="ooc_boost" />
+		</hasmodifier>
+	</onframe>
+	
+	<modifier key="ooc_boost" modpriority="100" 
+		healthregen="8.0"
+		manaregen="4.0"
+	>
+	<!-- TODO
+		passiveeffect="/shared/effects/regen/ooc_regen_tower_buff.effect"-->
+		
+		<onframe>
+			<hasmodifier entity="this_owner_entity" name="out_of_combat_regen">
+			</hasmodifier>
+			<else>
+				<setactivemodifierkey name="" />
+			</else>
+		</onframe>
+	 </modifier>
+
+
+</state>

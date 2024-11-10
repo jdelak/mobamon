@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Rip_Ability3_Enemy_Sight"
+
+	icon="icon.tga"
+	ishidden="true"
+	deathpersist="true"
+	impactinterval="100"
+
+>
+
+	<onimpact>
+		<areaofeffect
+			global="true"
+			targetscheme="visible_enemy_heroes"
+			targetselection="all"
+			ignoreinvulnerable="true"
+		>
+			<compare a="this_proxy_entity" b="target_entity" op="eq" >
+				<applystate name="State_Rip_Ability3_Sighted" duration="100" />
+			</compare>
+		</areaofeffect>
+	</onimpact>
+
+</state>

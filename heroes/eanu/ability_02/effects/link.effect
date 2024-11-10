@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+
+
+			<light
+				owner="source"
+				life="400"
+				startcolor="0 4 10"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+				position="0 0 50"
+			/>
+
+			<template name="">
+
+				<beam
+					delay="0"
+					life="400"
+					owner_b="target"
+					position_b="0 0 10"
+					owner_a="source"
+					bone_a="_bone_fx_water01"
+					size="150"
+					color="0 .25 .5"
+					startframe="0"
+					endframe="1"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+				</beam>
+
+				<beam
+					delay="0"
+					life="400"
+					owner_b="target"
+					position_b="0 0 10"
+					owner_a="source"
+					bone_a="_bone_fx_water01"
+					size="150"
+					color="0 .5 1"
+					alpha="1"
+					startframe="0"
+					endframe="1"
+					material="/shared/effects/smaterials/animated_round_energy.material"
+				>
+				</beam>
+				
+				<beam
+					delay="0"
+					life="400"
+					owner_b="target"
+					position_b="0 0 10"
+					owner_a="source"
+					bone_a="_bone_fx_water01"
+					size="55"
+					color=".4 .65 .65"
+					startframe="0"
+					endframe="1"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+				>
+				</beam>
+
+			</template>
+			
+			<instance name="" zbone=""/>
+
+			<simpleemitter
+			delay="75"
+				count="7"
+				position="0 -25 0"
+				spawnrate="100"
+				particlelife="1500"
+				offsetsphere="25 75 0"
+				directionalspace="local"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+				turn="true"
+				
+				>
+					<groundsprite
+						minlife="300"
+						maxlife="600"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						minstartscale=".35"
+						maxstartscale=".7"
+						minendscale="1"
+						maxendscale="1.5"
+						minyaw="-360"
+						maxyaw="360"
+						color="0 .75 1"
+						startalpha=".2"
+						midalpha=".2"
+						endalpha="0"
+						midalphapos=".5"
+					/>
+
+					<groundsprite
+						minlife="300"
+						maxlife="600"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="1.5"
+						minyaw="-360"
+						maxyaw="360"
+						startcolor="0 .25 .5"
+						endcolor="0 0 0"
+						startalpha=".5"
+						midalpha=".25"
+						endalpha="0"
+						midalphapos=".5"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			count="8"
+				spawnrate="20"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="200"
+				gravity="0"
+			>
+				<particle
+					turn="true"
+				>
+					<template name="">
+					
+						<billboard
+							life="300"
+							startcolor=".25 .5 .5"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							minendscale="{zminendscale}"
+							maxendscale="{zmaxendscale}"
+							depthbias="-75"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="180"
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="1.2" zminendscale="1.2" zmaxendscale="2.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="1.2" zminendscale="1.2" zmaxendscale="2.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="2.2" zminendscale="3.2" zmaxendscale="4.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="2.2" zminendscale="3.2" zmaxendscale="4.2" zcolor="0 .5 1"/>
+
+					
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				life="400"
+				owner="source"
+				bone="_bone_fx_water01"
+				spawnrate="100"
+				particlelife="1000"
+				gravity="30"
+				position="0 0 0"
+				offsetsphere="15"
+				direction="0 -1 0"
+				minspeed="200"
+				maxspeed="400"
+				minangle="0"
+				maxangle="35"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						bone="_bone_fx_water01"
+						minlife="200"
+						maxlife="400"
+						color="0 .5 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".5"
+						maxstartscale="1"
+						minendscale=".25"
+						maxendscale=".5"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_fx_water01"
+				life="600"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".5"
+				midcolor="0 .25 .5"
+				endcolor="0 0 0"
+				startscale="4"
+				endscale="0"
+			/>
+
+		</particlesystem>
+
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="10" radius="2000" duration="400" frequency="22" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

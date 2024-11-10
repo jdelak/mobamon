@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_TowerMaster_Ability3"
+
+	icon=""
+	portrait=""
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	passiveeffect="/npcs/cindara/ability_03/effects/charge.effect"
+	deatheffect="/npcs/cindara/ability_03/effects/death.effect"
+	
+	boundsheight="0"
+	boundsradius="0"
+	isselectable="false"
+	iscontrollable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+
+	sightrangeday="0"
+	sightrangenight="0"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="true"
+	flyheight="120"
+	drawonmap="false"
+	
+	unittype="boss_orb"
+	diewithowner="true"
+	
+	lifetime="2500"
+>
+
+	<onspawn>
+		<starttimer duration="2500" />
+	</onspawn>
+
+	<onexpired>
+		<playeffect effect="/npcs/cindara/ability_03/effects/death.effect" target="source_position" occulude="true"/>
+		
+		<areaofeffect
+			radius="1500"
+			targetselection="random"
+			targetscheme="enemy_heroes"
+			ignoreinvulnerable="true"
+		>
+			<hasstate name="State_TowerMaster_CanAttack">
+				<hasstate name="State_TowerMaster_Ability3">
+					<compare a="accumulator" b="1" op="lt" >
+						<spawnprojectile name="Projectile_TowerMaster_Ability3" source="this_entity" bind="this_entity" bindturn="true" target="target_entity" proxy="this_proxy_entity"/>
+						<changeaccumulator b="1" op="add" />
+					</compare>
+				</hasstate>
+			</hasstate>
+		</areaofeffect>
+	</onexpired>
+</gadget>

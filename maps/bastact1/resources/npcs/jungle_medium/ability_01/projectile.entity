@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rat_Enemy"
+
+	speed="1750"
+	gravity="7000"
+
+	modelscale="4"
+	model="/shared/models/invis.mdf"
+	traileffect=""
+	
+	deatheffect=""
+	
+	canturn="0"
+	
+	flying="false"
+	flyheight="0"
+	
+	touchradius="50"
+	touchcliffs="false"
+
+	hazardradius="300"
+	hazardoffset="200"
+
+  
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="player_controlled_units"
+	toucheffecttype="Magic CrowdControl"
+>
+	<ontouch>
+		<playeffect effect="effects/bite.effect" source="source_entity" target="target_entity"/>
+		<playeffect effect="effects/bite_impact.effect" source="target_entity" target="target_entity"/>
+		<damage amount="50" effecttype="Magic" />
+		<kill target="this_entity" />
+	</ontouch>
+  
+</projectile>

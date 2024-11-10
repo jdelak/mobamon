@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.2">
+
+			 <sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<sound
+				soundloop="true"
+				linearfalloff="true"
+				fadeout="500"
+				falloffstart="100"
+				falloffend="2000"
+				volume=".1"
+				sample="../sounds/sfx_state.wav"
+			/>
+			
+			<controller
+				expirelife="300"
+				owner="source"
+				lookat="true"
+				lookatowner="target"
+			>
+				<model
+					position="0 0 5"
+					expirelife="300"
+					model="bug_carcass/model.mdf"
+					material="bug_carcass/material_poison_leech.material"
+					anim="idle"
+					scale="5.8"
+					startalpha="1"
+					endalpha="0"
+					midalphapos=".75"
+					color="5 10 0"
+					yaw="180"
+					pitch="-35"
+				/>
+			</controller>
+			
+			<controller
+				expirelife="300"
+				owner="source"
+				lookat="true"
+				lookatowner="target"
+			>
+				<model
+					position="0 0 -2"
+					expirelife="300"
+					model="poison_bug_parts/model.mdf"
+					material="poison_bug_parts/material_poison_leech.material"
+					anim="idle"
+					scale="5"
+					startalpha="1"
+					endalpha="0"
+					midalphapos=".75"
+					color="3 6 0"
+					yaw="180"
+					pitch="-35"
+				/>
+			</controller>
+			
+
+			<model
+				position="0 0 0"
+				expirelife="500"
+				model="poison_bug/model.mdf"
+				anim="idle"
+				scale="1.25"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".75"
+				color="1.2 1.4 1"
+				pitch="90"
+				roll="225"
+				directionalspace="world"
+			>
+			
+				<groundsprite
+					delay="250"
+					position="0 0 75"
+					expirelife="600"
+					material="/shared/effects/smaterials/queso_round.material"
+					size="20"
+					midsizepos=".05"
+					color=".35 1 0"
+					startalpha=".5"
+					endalpha="0"
+					directionalspace="world"
+				/>
+
+				<groundsprite
+					delay="100"
+					position="0 0 0"
+					expirelife="600"
+					material="/shared/effects/smaterials/puke.material"
+					size="60"
+					midsizepos=".15"
+					color=".8"
+					startalpha=".5"
+					endalpha="0"
+					directionalspace="world"
+				/>
+
+				<groundsprite
+					delay="250"
+					position="90 0 0"
+					expirelife="600"
+					material="/shared/effects/smaterials/puke.material"
+					size="35"
+					midsizepos=".15"
+					color=".8"
+					startalpha=".5"
+					endalpha="0"
+					directionalspace="world"
+					yaw="25"
+				/>
+
+			</model>
+			
+			
+
+
+
+
+
+			<light
+				expirelife="1000"
+				startcolor=".5 2 0"
+				midcolor=".5 2 0"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				falloffend="300"
+				position="0 0 100"
+			/>
+
+
+			<simpleemitter
+				spawnrate="200"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="-.2"
+				speed="10"
+				drag="0.07"
+				acceleration="0.0"
+				mintimenudge="0"
+				maxtimenudge="1000"
+				position="0 0 0"
+				material="/shared/effects/smaterials/poison_smoke.material"
+				depthbias="-50"
+				offsetsphere="150 150 0"
+				minspeed="0"
+				maxspeed="500"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-30"
+					startcolor=".5 1 0"
+					endcolor="0 1 0"
+					maxanglespeed="30"
+					startscale="20"
+					minendscale="40"
+					maxendscale="100"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					midalphapos=".25"
+					startanchor="0"
+					endanchor="0"
+				/>
+			</simpleemitter>
+
+			<template name="">
+
+				<model
+					model="/shared/effects/models/circle_of_bones/model.mdf"
+					anim="idle"
+					startscale="{zstartscale}"
+					endscale="{zendscale}"
+					life="{zlife}"
+					position="0 0 0"
+					loop="{zloop}"
+				>
+				
+					<template name="smoke">
+					
+
+
+						<simpleemitter
+							bone="{bone}"
+							spawnrate="150"
+							minparticlelife="1000"
+							maxparticlelife="1000"
+							gravity="0"
+							drag="0.07"
+							acceleration="0.0"
+							position="0 0 0"
+							material="/shared/effects/smaterials/poison_smoke.material"
+							depthbias="-35"
+							offsetradial="100 100 0"
+							inheritvelocity="0"
+							minspeed="0"
+							maxspeed="100"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-30"
+								startcolor=".5 1 0"
+								endcolor="0 1 0"
+								maxanglespeed="30"
+								startsize="25"
+								endsize="65"
+								startalpha="0"
+								midalpha=".25"
+								endalpha="0"
+								midalphapos=".2"
+								startanchor="0"
+								endanchor="0"
+							 />
+						</simpleemitter>
+						
+						<simpleemitter
+							bone="{bone}"
+							spawnrate="150"
+							minparticlelife="1000"
+							maxparticlelife="1000"
+							gravity="0"
+							drag="0.07"
+							acceleration="0.0"
+							position="0 0 0"
+							material="/shared/effects/materials/whitedot.material"
+							depthbias="-35"
+							offsetradial="100 100 0"
+							inheritvelocity="0"
+							minspeed="0"
+							maxspeed="100"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-30"
+								startcolor="0 0 0"
+								midcolor=".05 .1 0"
+								endcolor="0 0 0"
+								maxanglespeed="30"
+								minscale="20"
+								maxscale="50"
+								startalpha="0"
+								midalpha=".35"
+								endalpha="0"
+								midalphapos=".2"
+								startanchor="0"
+								endanchor="0"
+							 />
+							 
+							<particle 
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-30"
+								startcolor="0 0 0"
+								midcolor=".04 .02 0"
+								endcolor="0 0 0"
+								maxanglespeed="30"
+								minscale="20"
+								maxscale="50"
+								startalpha="0"
+								midalpha=".35"
+								endalpha="0"
+								midalphapos=".2"
+								startanchor="0"
+								endanchor="0"
+							 />
+						</simpleemitter>
+					</template>
+
+					<instance name="smoke" bone="Scene Root" />
+					
+				</model>
+
+			</template>
+			
+			<instance name="" zstartscale="0" zlife="2000" zendscale="1.75" zloop="true"/>
+			<instance name="" zstartscale="1" zlife="1000" zendscale="1.75" zloop="false"/>
+
+			
+<!--
+			<billboard
+				life="2000"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor="0 0 0"
+				midcolor=".25 .25 0"
+				endcolor="0 0 0"
+				startscale="0"
+				endscale="10"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				loop="true"
+				depthbias="-90"
+			/>
+
+			
+			
+-->
+			<billboard
+				expirelife="600"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".125 .125 0"
+				endcolor="0 0 0"
+				scale="3.5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-90"
+			/>
+
+			
+
+			<simpleemitter
+				count="1"
+				spawnrate="20"
+				particlelife="1000"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+			>
+				<particle
+				>
+
+					<billboard
+						life="400"
+						startcolor=".25 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/splashes.material"
+						directionalspace="world"
+						startscale="3.2"
+						endscale="5.2"
+						depthbias="-25"
+					/>
+					
+					<billboard
+						life="400"
+						startcolor=".25 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/splashes.material"
+						directionalspace="world"
+						startscale="3.2"
+						endscale="5.2"
+						depthbias="-25"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+
+			<simpleemitter
+				count="60"
+				spawnrate="6000"
+				particlelife="1000"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="200"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="300"
+						maxlife="600"
+						startcolor=".5 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".75"
+						maxstartscale="1.5"
+						midscale=".75"
+						endscale=".25"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 25"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+				
+					<billboard
+						minlife="300"
+						maxlife="500"
+						startcolor="1 1 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						scale="3"
+						depthbias="-25"
+					/>
+				
+				</particle>
+			</simpleemitter>
+
+
+			
+
+			
+			
+			<template name="splats">
+
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="7"
+					particlelife="2000"
+					direction="0 0 1"
+					offsetsphere="{zoffset}"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							life="500"
+							material="/shared/effects/smaterials/animated_goop.material"
+							startcolor="{zcolor}"
+							midcolor="{zcolor}"
+							endcolor="0 0 0"
+							midcolorpos=".8"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".75"
+							position="0 0 0"
+							startframe="0"
+							endframe="1"
+							minscale=".15"
+							maxscale=".45"
+							lockup="true"
+							lockright="90"
+							pitch="-75"
+							depthbias="0"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="splats" zpos="0 0 5" zoffset="39 39 0" zcolor=".4 .2 .1"/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

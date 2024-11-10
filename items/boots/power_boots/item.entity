@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item
+	name="Item_PowerBoots"
+	
+	itemtype="Boots"
+	ignoredynamicactivation="true"
+	
+	icon="icon.tga"
+	
+	cost="950"
+	components="Item_Marchers"
+	disabled="true"
+	
+	cooldowntime="35000"
+	actiontype="target_self"
+	noentercombat="true"
+	filters="boots,power,other_mobility"
+	
+	showinpractice="true"
+>
+	<constant name="penetration" value="20" adjustment="none" op="add"/>
+	
+	
+	
+	<modifier key="boots" modpriority="50" exclusive="true"
+		movespeed="65"
+		power="20"
+		disabled="false"
+	>
+		<onimpact>
+			<starttimer duration="5000" />
+			<applystate name="State_Powerboots" target="source_entity" duration="5000" /> 
+		</onimpact>
+		
+	</modifier>
+	
+</item>

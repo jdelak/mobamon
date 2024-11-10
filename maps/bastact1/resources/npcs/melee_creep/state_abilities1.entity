@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="Affector_Guard_Enemy"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	
+	impactinterval="1200"
+	ishidden="true"
+
+	wanderrange="90"
+>
+	<oninflict>
+
+		<!-- ===== Play Random Aggro Sound ===== -->
+		<chance threshold="0.16">
+			<playeffect effect="effects/sound_alert3_4.effect" source="source_entity" target="source_entity" />
+		</chance>
+		<else>
+			<chance threshold="0.2">
+				<playeffect effect="effects/sound_alert3_5.effect" source="source_entity" target="source_entity" />
+			</chance>
+			<else>
+				<chance threshold="0.25">
+					<playeffect effect="effects/sound_alert4_1.effect" source="source_entity" target="source_entity" />
+				</chance>
+				<else>
+					<chance threshold="0.33">
+						<playeffect effect="effects/sound_alert6_3.effect" source="source_entity" target="source_entity" />
+					</chance>
+					<else>
+						<chance threshold="0.5">
+							<playeffect effect="effects/sound_alert6_4.effect" source="source_entity" target="source_entity" />
+						</chance>
+						<else>
+							<playeffect effect="effects/sound_alert6_5.effect" source="source_entity" target="source_entity" />
+						</else>
+					</else>
+				</else>
+			</else>
+		</else>		
+		<!-- =================================== -->
+
+		<applystate name="State_IgnoreAffector_Guard_Enemy" target="source_entity" duration="-1" />
+		<setactivemodifierkey entity="source_entity" name="Guard_Alert" />
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="player_and_mobs"
+			center="source_entity"
+			maxtotalimpacts="-1"
+		>
+			<condition test="not_hasstate State_Bastact1_Hiding" target="target_entity" >
+	     		<spawnunit name="Gadget_Bastact1_GrantSight_Guards" count="1" lifetime="2000" target="source_position" pushentity="true"  owner="source_entity" />
+				<distance source="source_entity" target="target_entity"/>
+				<setvar0 a="result"/>
+				<compare a="var0" b="2000" op="lt" >
+					<chance threshold="0" >
+						<useability source="source_entity" target="target_entity" slot="0" force="true" queue="front" />
+						<order command="attack" target="target_entity"    />
+					</chance>
+					<else>
+						<pushability entity="source_entity" slot="1" />
+						<canactivate entity="stack_entity">
+     						<chance threshold="1.0" >
+								<useability source="source_entity" target="target_entity" slot="1" force="true" queue="front" />
+								<order command="attack" target="target_entity"    />
+							</chance>
+   						</canactivate>
+						<else>
+							<order command="attack" target="target_entity" force="true" queue="front"   />
+						</else>
+					</else>	
+				</compare>
+				 <else>
+				 	<compare a="var0" b="2000" op="ge">
+						<applystate name="State_Guard_Enemy" duration="-1" target="source_entity" />
+					</compare>	
+			 	</else>	
+	    	 </condition>
+	    	 <else>
+	    	 	
+	    	 </else>
+		</areaofeffect>	
+	</oninflict>	
+
+	<onimpact>
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="player_and_mobs"
+			center="source_entity"
+			maxtotalimpacts="-1"
+		>
+			<condition test="not_hasstate State_Bastact1_Hiding" target="target_entity" >
+	     		<spawnunit name="Gadget_Bastact1_GrantSight_Guards" count="1" lifetime="2000" target="source_position" pushentity="true"  owner="source_entity" />
+				<distance source="source_entity" target="target_entity"/>
+				<setvar0 a="result"/>
+				<compare a="var0" b="2000" op="lt" >
+					<chance threshold="0" >
+						<useability source="source_entity" target="target_entity" slot="0" force="true" queue="front" />
+						<order command="attack" target="target_entity"    />
+					</chance>
+					<else>
+						<pushability entity="source_entity" slot="1" />
+						<canactivate entity="stack_entity">
+     						<chance threshold="1.0" >
+								<useability source="source_entity" target="target_entity" slot="1" force="true" queue="front" />
+								<order command="attack" target="target_entity"    />
+							</chance>
+   						</canactivate>
+						<else>
+							<order command="attack" target="target_entity" force="true" queue="front"   />
+						</else>
+					</else>	
+				</compare>
+				 <else>
+				 	<compare a="var0" b="2000" op="ge">
+						<applystate name="State_Guard_Enemy" duration="-1" target="source_entity" />
+					</compare>	
+			 	</else>	
+	    	 </condition>
+	    	 <else>
+	    	 	
+	    	 </else>
+		</areaofeffect>	
+		 <else>
+			<applystate name="State_Guard_Enemy" duration="-1" target="source_entity" />
+		 </else>		
+	</onimpact>
+
+		
+		
+
+	<modifier key="Guard_Resume_Patrol" modpriority="100"
+		lifetime="0"
+	/>	
+						
+	
+</state>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item
+	name="Item_RuneBoots"
+	
+	itemtype="Boots"
+	ignoredynamicactivation="true"
+	
+	icon="icon.tga"
+	
+	cost="1080"
+	components="Item_Marchers"
+	disabled="true"
+
+	cooldowntime="45000"
+	botitem="StaffOfMeditationItem"
+	frontqueue="true"
+	inheritmovement="true"
+	
+	actiontype="target_self"
+	noentercombat="true"
+	filters="boots,other_mobility,cd_reduction,health_regen"
+	
+	showinpractice="true"
+>
+	<constant name="mana" value="15" adjustment="none"/>
+	<constant name="health" value="15" adjustment="support"/>
+	<modifier key="runeboots" modpriority="75" exclusive="true"  
+		movespeed="70"
+		reducedcooldowns="0.15"
+		disabled="false"
+	>
+		<onimpact>
+			<starttimer duration="3000" />
+			<applystate name="State_Item_RuneBoots" duration="3000" proxy="this_entity"/>
+		</onimpact>
+		
+		<ondamaged priority="1">
+			<currentdamageeffecttype effecttype="DOT">
+				<applystate name="State_RuneBoots_Disabled" target="source_entity" duration="100" />
+			</currentdamageeffecttype>
+		</ondamaged>
+
+	</modifier>
+	
+	<modifier key="runeboots_disabled" modpriority="100"
+		disabled="true"
+	/>
+</item>

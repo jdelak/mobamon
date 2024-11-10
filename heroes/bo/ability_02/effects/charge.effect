@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world">
+
+			<sound
+				sample="../sounds/sfx_cast.wav"
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2200"
+			/>
+
+			<sound
+				life="5000"
+				sample="../sounds/sfx_trail.wav"
+				volume="0.55"
+				falloffstart="500"
+				falloffend="2200"
+			/>
+			
+			
+			
+			
+
+			
+			
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="fire">
+				<simpleemitter
+				delay="{zdelay}"
+					position="{zpos}"				
+					life="500"			
+					bone="{zbone}"
+					startspawnrate="0"		
+					endspawnrate="100"		
+					gravity="-17"
+					speed="0"
+					drag="0"
+					particlelife="500"
+					material="/shared/effects/smaterials/firesprite_blend.material"	
+					offsetsphere="38"	
+					depthbias="50"				
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						minsize="{zminsize}"			
+						maxsize="{zmaxsize}"			
+						startcolor="1 1 1"
+						midcolor="1 0 0"
+						endcolor="1 0 0"
+						midcolorpos=".75"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						turn="1"					
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+				delay="{zdelay}"
+					position="{zpos}"				
+					life="500"			
+					bone="{zbone}"
+					startspawnrate="0"		
+					endspawnrate="200"		
+					gravity="-23"
+					speed="0"
+					drag="0"
+					particlelife="500"
+					material="/shared/effects/smaterials/firesprite_swirl.material"	
+					offsetsphere="43"	
+					depthbias="50"				
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						minsize="{zminsize}"			
+						maxsize="{zmaxsize}"			
+						startcolor="1 1 1"
+						midcolor="1 0 0"
+						endcolor="1 0 0"
+						midcolorpos=".75"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						turn="1"					
+					/>
+				</simpleemitter>
+			</template>
+
+
+
+			
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="1000" zanchor="1" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_center" zdelay="1000" zanchor="1" zpos="0 0 25" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="1000" zanchor="0" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_center" zdelay="1000" zanchor="0" zpos="0 0 25" zminsize="35" zmaxsize="70"/>
+
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="2000" zanchor="1" zpos="0 0 0" zminsize="50" zmaxsize="100"/>
+			<instance name="fire" zbone="_bone_center" zdelay="2000" zanchor="1" zpos="0 0 25" zminsize="50" zmaxsize="100"/>
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="2000" zanchor="0" zpos="0 0 0" zminsize="50" zmaxsize="100"/>
+			<instance name="fire" zbone="_bone_center" zdelay="2000" zanchor="0" zpos="0 0 25" zminsize="50" zmaxsize="100"/>
+			
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="3000" zanchor="1" zpos="0 0 0" zminsize="50" zmaxsize="100"/>
+			<instance name="fire" zbone="_bone_center" zdelay="3000" zanchor="1" zpos="0 0 25" zminsize="50" zmaxsize="100"/>
+			<instance name="fire" zbone="_bone_centerofchest" zdelay="3000" zanchor="0" zpos="0 0 0" zminsize="50" zmaxsize="100"/>
+			<instance name="fire" zbone="_bone_center" zdelay="3000" zanchor="0" zpos="0 0 25" zminsize="50" zmaxsize="100"/>
+
+			
+			
+			
+			<template name="model">
+				<model
+					delay="{zdelay}"
+					life="1000"
+					parentskeleton="1"
+					parentmodel="1"
+					startscale="1"
+					endscale="1"
+					startcolor="1 1 1"
+					midcolor="{zmidcolor}"
+					endcolor="1 1 1"
+					midcolorpos=".15"
+				>
+				</model>
+			
+			</template>
+
+
+			<instance name="model" zdelay="0" zmidcolor="1.5 0 0"/>
+			<instance name="model" zdelay="1000" zmidcolor="1.5 0 0"/>
+			<instance name="model" zdelay="2000" zmidcolor="1.75 0 0"/>
+			<instance name="model" zdelay="3000" zmidcolor="2.25 0 0"/>
+			
+			
+			<template name="model">
+				<model
+					delay="{zdelay}"
+					life="1000"
+					parentskeleton="1"
+					parentmodel="1"
+					material="/shared/effects/smaterials/shell_falling_water.material"
+					startscale="1"
+					endscale="1"
+					startcolor="0 0 0"
+					midcolor="{zmidcolor}"
+					endcolor="0 0 0"
+					midcolorpos=".15"
+				>
+				</model>
+			
+			</template>
+
+			<instance name="model" zdelay="2000" zmidcolor="1 0 0"/>
+			<instance name="model" zdelay="3000" zmidcolor="1 0 0"/>
+			
+			
+			<template name="light">
+				<groundsprite
+					delay="{zdelay}"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startsize="{zstartsize}"
+					endsize="{zendsize}"
+					startcolor="1 .25 0"
+					midcolor="1 .25 0"
+					endcolor="0 0 0"
+				/>
+			</template>
+
+
+
+			<instance name="light" zdelay="1000" zstartsize="75" zendsize="150"/>
+			<instance name="light" zdelay="2000" zstartsize="75" zendsize="150"/>
+			<instance name="light" zdelay="3000" zstartsize="75" zendsize="150"/>
+			
+			<template name="light">
+				<groundsprite
+					delay="{zdelay}"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startsize="{zstartsize}"
+					endsize="{zendsize}"
+					startcolor="1 .25 0"
+					midcolor="1 .25 0"
+					endcolor="0 0 0"
+				/>
+			</template>
+
+
+			<instance name="light" zdelay="1000" zstartsize="0" zendsize="150"/>
+			<instance name="light" zdelay="2000" zstartsize="0" zendsize="150"/>
+			<instance name="light" zdelay="3000" zstartsize="0" zendsize="150"/>
+<!--
+			
+			<template name="light1">
+				<simpleemitter
+				delay="{zdelay}"
+					count="{zcount}"
+					bone="_bone_centerofchest"
+					spawnrate="5000"
+					minparticlelife="200"
+					maxparticlelife="400"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					minspeed="250"
+					maxspeed="500"
+					depthbias="0"
+				>
+					<particle 
+						minangle="0"
+						maxangle="0"
+						startcolor="1 .5 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						size="25"
+						minstartscale="1"
+						maxstartscale="2"
+						endscale="0"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="light1" zdelay="0" zcount="150"/>
+			<instance name="light1" zdelay="1000" zcount="200"/>
+			<instance name="light1" zdelay="2000" zcount="250"/>
+			<instance name="light1" zdelay="3000" zcount="300"/>
+-->
+
+
+
+
+
+			<template name="light">
+				<simpleemitter
+					count="30"
+					delay="{zdelay}"
+					life="1000"
+					bone="_bone_centerofchest"
+					spawnrate="2000"
+					particlelife="1000"
+					material="/shared/effects/materials/whitedot.material"
+					offsetsphere="0 0 0"
+					position="0 0 0"
+				>
+					<particle
+					anchor="1"
+						minangle="0"
+						maxangle="360"
+						width="{zwidth}"
+						minheight="{zminheight}"
+						maxheight="{zmaxheight}"
+						startcolor=".5 .25 0"
+						endcolor="0 0 0"
+
+					/>
+				</simpleemitter>
+			</template>
+
+
+			<instance name="light" zdelay="2000" zwidth="25" zminheight="225" zmaxheight="275"/>
+			<instance name="light" zdelay="3000" zwidth="25" zminheight="375" zmaxheight="425"/>
+
+
+			
+			
+			
+			
+			
+<!--
+			<template name="light">
+
+				<billboard
+					bone="_bone_center"
+					delay="{zdelay}"
+					life="200"
+					material="/shared/effects/smaterials/animated_arc.material"
+					startsize="100"
+					endsize="200"
+					startcolor="1 .25 0"
+					midcolor="1 .25 0"
+					endcolor="0 0 0"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					depthbias="-45"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+				
+			</template>
+
+			<instance name="light" zdelay="0" zstartsize="0" zendsize="150"/>
+			<instance name="light" zdelay="1000" zstartsize="0" zendsize="150"/>
+			<instance name="light" zdelay="2000" zstartsize="0" zendsize="150"/>
+			<instance name="light" zdelay="3000" zstartsize="0" zendsize="150"/>
+			
+			
+			
+
+			
+			
+			
+
+			<billboard
+				bone="_bone_center"
+				delay="200"
+				life="200"
+				material="/shared/effects/smaterials/animated_arc.material"
+				startsize="200"
+				endsize="300"
+				startcolor="1 .25 0"
+				midcolor="1 .25 0"
+				endcolor="0 0 0"
+				framespeed="1"
+				startframe="0"
+				endframe="1"
+				depthbias="-45"
+
+			/>
+			
+			<billboard
+				bone="_bone_center"
+				delay="400"
+				life="200"
+				material="/shared/effects/smaterials/animated_arc.material"
+				startsize="300"
+				endsize="400"
+				startcolor="1 .25 0"
+				midcolor="1 .25 0"
+				endcolor="0 0 0"
+				framespeed="1"
+				startframe="0"
+				endframe="1"
+				depthbias="-45"
+
+			/>
+-->
+			
+			
+			
+			
+<!--
+			<billboard
+			bone="_bone_center"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 10"
+				startsize="150"
+				endsize="400"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 0 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 10"
+				startsize="150"
+				endsize="400"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".3 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 10"
+				startsize="150"
+				endsize="400"
+				depthbias="-150"			
+			/>
+-->
+			
+			
+			
+			
+			
+			
+			<billboard
+			bone="_bone_center"
+			delay="1000"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 .1 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="1100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 0 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="1200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".3 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+			bone="_bone_center"
+			delay="2000"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 .1 0"			
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="400"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="2100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 0 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="400"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="2200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".3 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="400"
+				depthbias="-150"			
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+			bone="_bone_center"
+			delay="3000"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor="1 .15 0"			
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="500"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="3100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor="1 0 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="500"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+			bone="_bone_center"
+				delay="3200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".5 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="500"
+				depthbias="-150"			
+			/>
+			
+			
+			
+			
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<modifier
+			life="4500"
+			name="modifier0"
+			startcolor="1 1 1"
+			midcolor="1 0 0"
+			endcolor="1 1 1"
+			midcolorpos="0.95"
+			alpha="1"
+		/>
+
+	</definitions>
+	
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+</effect>

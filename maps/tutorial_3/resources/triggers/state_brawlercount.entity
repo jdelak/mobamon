@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial3_BrawlerCount"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	maxcharges="10"
+	ishidden="true"
+	deathpersist="true"
+	impactinterval="500"
+>
+
+
+	<aura state="State_Tutorial3_BrawlerCheck" radius="1000" targetscheme="enemy_creeps" ignoreinvulnerable="true" />	
+	
+	<onimpact>
+		<compare a="charges" b="6" op="ge" >
+			<setscriptvalue name="creeps_killed" value="1" />
+			<expire />
+		</compare>
+
+	</onimpact>
+
+</state>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				volume=".7"
+				sample="../sounds/impact.wav"
+				linearfalloff="true"
+				falloffstart="0" 
+				falloffend="1500" 
+			/>
+
+			<simpleemitter
+			delay="250"
+			bone="_bone_centerofchest"
+			count="20"
+				spawnrate="100"
+				particlelife="1000"
+				gravity="-55"
+				speed="40"
+				drag=".08"
+				acceleration="0"
+				position="0 0 -25"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="30 30 0"
+				minangle="90"
+				maxangle="-90"
+			>
+				<particle 
+					startcolor="0 0 0"
+					midcolor="0 .5 .5"
+					endcolor="0"
+					midcolorpos=".1"
+					startframe="0"
+					endframe="1"
+					startwidth="20"
+					midwidth="15"
+					endwidth="6"
+					midwidthpos=".5"
+					startheight="0"
+					endheight="500"
+					lockup="true"
+				/>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				spawnrate="20"
+				particlelife="500"
+				gravity="-100"
+				material="/shared/effects/smaterials/whitedot.material"
+				position="0 0 20"
+			>
+				<particle
+					startcolor="1 1 1"
+					midcolor="0 1 1"
+					endcolor="0 0 0"
+					midcolorpos="0.5"
+					startalpha="1"
+					endalpha="0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="0"
+					maxanglespeed="0"
+					width="19"
+					startheight="0"
+					endheight="50"
+					flare="true"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Eye_Of_Tempra_Enchant1"
+
+	radius="390"
+	
+	lifetime="2500"
+	targetselection="all"
+	targetscheme="all"
+	ignoreinvulnerable="true"
+	effecttype=""
+	
+	effect="effects/aoe_enchant.effect"
+	
+	
+>
+
+	<onframeimpact>
+			<targettype type="boss">
+			</targettype>
+			<else>
+				<targettype type="boss1">
+				</targettype>
+				<else>
+					<targettype type="gadget">
+						<applystate name="State_Eye_Of_Tempra_GadgetDisable" continuous="true" timeout="frametime" />
+					</targettype>
+						<else>
+						<applystate name="State_Eye_Of_Tempra" continuous="true" timeout="frametime" />
+						</else>
+				</else>
+			</else>
+	</onframeimpact>
+	
+
+
+
+</affector>

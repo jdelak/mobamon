@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_CapriceTutorial_Ability2"
+
+	radius="200"
+	impactdelay="500"
+	targetselection="all"
+	targetscheme="enemy_units"
+	effecttype="Magic"
+	hazardradius="200"
+
+>
+	<onspawn>
+		<playeffect effect="/heroes/caprice/ability_02/effects/impact.effect" source="target_position" target="" occlude="true" />		
+	</onspawn>
+	
+	<onimpact>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<applystate target="target_entity" name="State_Stunned" duration="700,900,1100,1300"  />
+				
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+	</onimpact>
+	
+	<modifier key="CapriceTutorial_Ability3_Learned" modpriority="100"
+	>
+		<onimpact>
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<applystate target="target_entity" name="State_Stunned" duration="700,900,1100,1300"  />
+					<applystate target="target_entity" name="State_CapriceTutorial_Ability3" duration="5000"  />
+					
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+				</onimpact>
+			</combatevent>
+			<recordheroaggression  />
+			<aggression />
+		</onimpact>
+	</modifier>
+</affector>

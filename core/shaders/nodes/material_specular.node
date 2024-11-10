@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_specular">
+	<parameter name="Specular" type="float3" default="0.0 0.0 0.0" />
+	<dependency name="Specular" type="*" source="Specular" />
+	<output name="MaterialSpecular" type="*" solution="MaterialSpecular" />
+	<case>
+		<dependency name="Specular" type="float" source="Specular" />
+		<output name="MaterialSpecular" type="float3" solution="MaterialSpecular" />
+		<?hlsl
+			MaterialSpecular = float3(Specular, Specular, Specular);
+		?>
+		<?glsl
+			MaterialSpecular = vec3(Specular);
+		?>
+	</case>
+	<case>
+		<dependency name="Specular" type="float3" source="Specular" />
+		<output name="MaterialSpecular" type="float3" solution="MaterialSpecular" />
+		<?hlsl
+			MaterialSpecular = Specular;
+		?>
+		<?glsl
+			MaterialSpecular = Specular;
+		?>
+	</case>
+	<case>
+		<dependency name="Specular" type="float4" source="Specular" />
+		<output name="MaterialSpecular" type="float3" solution="MaterialSpecular" />
+		<?hlsl
+			MaterialSpecular = Specular.xyz;
+		?>
+		<?glsl
+			MaterialSpecular = Specular.xyz;
+		?>
+	</case>
+</node>

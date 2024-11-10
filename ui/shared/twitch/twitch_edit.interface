@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="twitch_edit" luatable="true">
+	
+	<include file="/ui/shared/twitch/twitch_interface_contents.package"/>
+
+	<label name="twitch_edit_center_screen_announce" align="center" valign="center" outline="1" outlinecolor="black" shadow="1" shadowcolor="black" fity="1" fitx="1" color="white" font="maindyn_72" content="" visible="0" noclick="true" />
+	
+	<template name="twitch_memberlist_entry_template">
+		<button passivechildren="1" noclick="0" hmargin="0.15h" vmargin="0.15h" cangrab="true" dragexclusive="false" color="invisible"
+			cursor="/core/cursors/arrow_right.cursor"
+			oninstantiatelua="
+				self:RegisterWatchLua('ChatChannelMember', function(sourceWidget, trigger)
+						if (trigger.channelID == '{channelID=-1}') and (trigger.playerName == ('{playerName=-1}')) and (trigger.playerUniqueID == ('{uniqueID=-1}')) and (trigger.leave) then
+							GetWidget('overlay_chat_channel{channelID=-1}_memberlist_listbox'):EraseListItemByValue('{playerName=-1}{uniqueID=-1}')
+						end
+					end,
+					false,
+					nil,
+					'identID', 'leave', 'channelID', 'playerUniqueID', 'playerName'
+				)
+				self:Sleep(1, function()
+					RegisterRockingScrollingLabel(self, '{playerName}', 'maindyn_16', 0, self:GetChildren()[1]:GetChildren()[2]:GetChildren()[1])
+				end)
+				globalDraggerRegisterSource(self, 12)
+			"
+			onmouseoverlua="self:SetColor('1 1 1 0.1')"
+			onmouseoutlua="self:SetColor('1 1 1 0')"
+		>
+			<panel hmargin="0.35h" vmargin="0.35h" noclick="1">
+				<panel width="100@" height="100%" noclick="1">
+					<image align="center" valign="center" texture="{accountIcon=/ui/shared/textures/user_icon.tga}" noclick="1"/>
+				</panel>
+				<panel x="-0.3h" y="-0.3h" align="right" width="-125@" noclick="1"	>
+					<label x="0.3h" y="0.3h" textvalign="center" color="{labelColor=white}" shadow="true" font="maindyn_16" content="{playerName}" noclick="1" />
+				</panel>
+			</panel>
+		</button>
+	</template>		
+	
+	<panel name="Twitch_InGame_Stream_Notification" width="10h" x="0" y="-0.25h" height="2.5h" align="right" valign="top" visible="0" noclick="0" onclicklua="TwitchEdit.ToggleLoginPanel()">
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="#232143AA" borderthickness="0.5h" height="+10%" noclick="true" visible="1" />
+		<panel noclick="1" float="right" padding="0.8h" >
+			<panel x="0.5h" height="100%" width="100@" noclick="1">
+				<image texture="/ui/main/shared/textures/user_status_light.tga" color="1 0 0 1" height="65%" width="65@" valign="center" align="center" noclick="1" />
+			</panel>
+			<label font="maindyn_16" content="twitch_live" fitx="1" width="100%" height="100%" textvalign="center" align="left" valign="top" outline="1" outlinecolor="black" color="white" noclick="1"/>
+		</panel>
+	</panel>
+	
+	<panel name="Twitch_InGame_Chat_Notification" width="5h" x="-11h" y="-0.25h" height="3.2h" align="right" valign="top" visible="0" noclick="0">
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="#232143CC" borderthickness="0.5h" height="+10%" noclick="1" visible="1" />
+		<panel noclick="1" >
+			<image name="Twitch_InGame_Chat_Notification_icon" texture="/ui/main/chat/textures/chat_min.tga" color="1 1 1 1" y="5%" height="95%" width="95@" valign="center" align="center" noclick="1" />
+			<label name="Twitch_InGame_Chat_Notification_label" font="maindyn_14" content="" fitx="1" y="-2%" width="100%" height="100%" textalign="center" textvalign="center" align="center" valign="top" outline="1" outlinecolor="black" color="white" noclick="1"/>
+		</panel>
+	</panel>	
+	
+	<template name="TwitchChatHeader">
+		<image noclick="1" width="100@" height="{height=100%}" texture="/ui/main/chat/textures/chat_header_l.tga" color="{barcolor=#1e6898}"/>
+		<image noclick="1" hmargin="100@" height="{height=100%}" texture="/ui/main/chat/textures/chat_header_c.tga" color="{barcolor=#1e6898}"/>
+		<image noclick="1" width="100@" height="{height=100%}" align="right" texture="/ui/main/chat/textures/chat_header_r.tga" color="{barcolor=#1e6898}"/>
+	</template>	
+	
+	<sizingframe name="Twitch_InGame_Chat_Window_parent" visible="0" align="left" width="25w" x="65w" y="8h" valign="top" height="30h" noclick="0" constraintoparent="0"
+		canmove="1" minwidth="15h" maxwidth="80w" minheight="12h" maxheight="80h"
+	>
+			
+		<instance name="dialogWrapper1" outerpadding="+10s" innerpadding="+5s" />
+
+		<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.6" borderthickness="8s" noclick="1" />
+		
+		<panel noclick="1" name="Twitch_InGame_Chat_Window_parent_left_container" visible="1" width="100%" align="left" >
+			<!-- Chat Buffer -->
+			<panel noclick="true" y="3h" height="-80s">
+
+				<chatoutputbuffer
+					name="Twitch_InGame_Chat_Window_Buffer"
+					valign="top"
+					textcolor="#f8f8f2"
+					color="invisible"
+					font="maindyn_18"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					indent="32"
+					paddingleft="4s"
+					paddingright="4s"
+					paddingbottom="4s"
+					paddingtop="4s"
+					shadow="true"
+					outline="false"
+					shadowoffset="1"
+					onloadlua="
+						self:SetChannelID('Twitch')
+						self:SetBaseOverselfCursor('/core/cursors/k_text_select.cursor')
+						self:SetBaseSenderOverselfCursor('/core/cursors/arrow.cursor')
+
+						self:SetBaseFormat('{timestamp}{sender}: {message}')
+						self:SetBaseTextColor('#ffffff')
+						self:SetBaseSenderTextColor('#88FFff')
+						self:SetBaseMessageTextColor('#ffffff')
+						
+						self:SetStreamFormat('public', '{timestamp}{sender}: {message}')
+						self:SetStreamTextColor('public', '#ffffff')
+						self:SetStreamSenderTextColor('public', '#88FFff')
+						self:SetStreamMessageTextColor('public', '#ffffff')
+						
+						self:SetBaseSenderOverselfTextColor('#ffff88')
+						self:SetBaseMessageOversiblingTextColor('#00bbff')
+						self:SetBaseMessageOverselfTextColor('#00bbff')						
+					"
+					scrollbarsize="24s"				
+					maxhandleheight="48s"
+					handlewidth="24s"
+					minhandlesize="48s"
+					maxhandlesize="48s"
+					onfocuslua=""
+					hscrollbar="0"
+					horizontal="false"			
+					onmouseoutlua=""
+					onupdate=""
+					oldmessagedarkfactor="0.7"
+					onclicklua=""
+					onmouseldownlua=""
+					onmouseluplua=""
+				/>	
+			</panel>
+			
+			<!-- Chat Input -->
+			<frame name="Twitch_InGame_Chat_Window_frame" texture="/ui/elements:text_input_dark" borderthickness="6s" noclick="1" height="36s" width="-18s" valign="bottom">
+				<chatinputbuffer
+					name="Twitch_InGame_Chat_Window_input"
+					x="8s" y="-8s"
+					textcolor="1 1 1 1"
+					color="invisible"
+					font="maindyn_18"
+					scrolltexture="/ui/_textures/elements/combobox.tga"
+					indent="0"
+					width="-85s"
+					grow="true"
+					valign="bottom"
+					onloadlua="
+						self:SetChannelID('Twitch') 
+					"
+					onesclua="self:SetFocus(false)"
+					onmouseldownlua=""
+					onfocuslua=""
+					hscrollbar="0"
+					horizontal="false"		
+					onmouseoutlua=""
+					onsizelua="
+						if (self:GetWidget('Twitch_InGame_Chat_Window_buffer')) then
+							self:GetWidget('Twitch_InGame_Chat_Window_buffer'):SetHeight(-(self:GetHeightFromString('56s') + self:GetHeight()))
+						end
+						if (self:GetWidget('Twitch_InGame_Chat_Window_frame')) then
+							self:GetWidget('Twitch_InGame_Chat_Window_frame'):SetHeight(self:GetHeightFromString('16s') + self:GetHeight())
+						end
+					"
+				/>						
+				<instance noclick="0" x="-5s" y="5s" height="3h" valign="top" width="7h" align="right"
+					name="standardButton" id="Twitch_InGame_Chat_Window_input_btn"
+					label="general_send"
+					font="maindyn_20"
+					onclicklua="
+						self:GetWidget('Twitch_InGame_Chat_Window_input'):ProcessInputLine()
+					"
+				/>						
+			</frame>
+
+		</panel>
+		
+		<panel noclick="1" name="Twitch_InGame_Chat_Window_parent_right_container" visible="0" width="11h" align="right" >
+			<panel noclick="1" y="-45s" height="-86s" valign="bottom" >
+				<panel x="-6s" width="4s" height="100%" color=".1 .1 .1 1" noclick="1" />
+				<listbox name="Twitch_InGame_Chat_Window_memberlist_listbox" style="simpleListbox" height="100%" width="-25s" noclick="1"
+					color="invisible"
+					itemheight="4.0h"
+					scrollbaroffset="5s"
+					select="true"
+					highlightcolor="invisible"
+					highlightbordercolor="invisible"
+					exteriorscrollbars="true"
+					scrollbarplaceholder="false"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					scrollbarsize="24s"
+					handleheight="48s"
+					hscrollbar="0"
+					horizontal="false"							
+				/>
+			</panel>					
+		</panel>
+		
+		<panel height="32s" noclick="1" >
+			<instance name="TwitchChatHeader"/>
+			<label name="Twitch_InGame_Chat_Window_header_label" noclick="1" x="1h" y="-0.25h" textvalign="center" style="labelBase" font="maindyn_22" color="white" content="twitch" />
+			
+			<panel noclick="1" align="right" grow="true" float="right" padding="0.8h" x="-0.25h" height="-0.2h" valign="center">
+				
+				<!-- Memberlist Btn -->
+				<panel x="-45s" width="85s" height="25s" align="right" valign="center" noclick="true" visible="1" >
+					<button name="Twitch_InGame_Chat_Window_memberlist_button" width="100%" height="100%" passivechildren="true" visible="1" interactive="false" enabled="1" color="invisible"
+						onclicklua="
+							if self:GetWidget('Twitch_InGame_Chat_Window_parent_right_container'):IsVisible() then
+								self:GetWidget('Twitch_InGame_Chat_Window_parent_right_container'):FadeOut(100)
+								self:GetWidget('Twitch_InGame_Chat_Window_parent_left_container'):ScaleWidth('100%', 250, false)
+							else
+								self:GetWidget('Twitch_InGame_Chat_Window_parent_right_container'):FadeIn(250)
+								self:GetWidget('Twitch_InGame_Chat_Window_parent_left_container'):ScaleWidth('-12h', 100, false)
+							end
+						"
+					>
+						<panel align="center" valign="center">
+							<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="4s" color=".8 .8 .8 1" rendermode="grayscale" />
+							<label name="Twitch_InGame_Chat_Window_member_label" style="labelBase" noclick="1" outline="true" outlinecolor="0 0 0 0.5" y="-2" content="0" width="-5s" align="right" textalign="center" textvalign="center" font="maindyn_20" color="white" />
+							<image texture="/ui/main/friends/textures/social.tga" x="-14s" width="28s" height="28s" valign="center" />
+						</panel>
+					</button>						
+				</panel>
+				
+				<!-- Min Btn -->
+				<instance name="iconButton" id="Twitch_InGame_Chat_Window_minimise_button"
+					icon="/ui/main/shared/textures/minimize.tga"
+					onclicklua=""
+					x="-5s" width="25s" height="25s" align="right" valign="center" borderthickness="4s"
+				/>				
+				
+			</panel>
+		</panel>
+
+		<image noclick="1" height="16s" width="16s" x="1s" y="1s" align="right" valign="bottom" texture="/ui/shared/textures/framecontrol_resize.tga" />	
+	</sizingframe>		
+	
+	<!-- Twitch slide in menu -->
+	<panel name="Twitch_Panel" width="38.5h" x="0" height="90h" color="#8276ba" align="right" valign="bottom" visible="0" noclick="1">
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="#504482" borderthickness="0.5h" noclick="true"/>
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="invisible" x="-0.5h" y="-0.5h" width="+2h" height="+2h" bordercolor="#8276ba" borderthickness="0.6h" noclick="true"/>
+		
+		<panel float="bottom">		
+			<panel name="Twitch_Header" width="100%" height="15%" noclick="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="#65599b" borderthickness="0.5h" height="+10%h" noclick="true"/>
+				<instance name="standardButton" id="Twitch_Minimize" x="-1%" y="3%" width="9%" height="23%" align="right" valign="top" label=""
+					onclicklua="
+						TwitchEdit.ToggleLoginPanel()
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+				<panel x="-1%" y="3%" name="Twitch_Minimize_Button" width="9%" height="23%" align="right" valign="top" noclick="1">
+					<image texture="/ui/shared/textures/button_minimize.tga" width="65%" height="60%" align="center" valign="bottom" noclick="1"/>	
+				</panel>
+				<image y="-18%" texture="/ui/shared/twitch/textures/twitch_logo.tga" width="45%" height="125%" align="center" valign="top" noclick="1"/>
+				<label y="-20%" font="maindyn_16" content="twitch_header_text" width="100%" height="10%" textalign="center" align="center" valign="bottom" color="white" noclick="1"/>
+			</panel>
+			
+			
+			<panel name="Twitch_Login_Holder" width="100%" height="26%" color="#dfe4e0" float="bottom" sticky="1" stickytoinvis="0" visible="1" noclick="1">
+				<panel name="Twitch_Login_Links" width="100%" height="16%" float="right" noclick="1">
+					<panel name="Twitch_Login_Links_Login" height="100%" width="25%">
+						<label y="12%" font="maindyn_16" content="twitch_sign_in" width="80%" textalign="center" align="center" color="#4d4d4d" noclick="1"/>
+						<panel height="23%" width="80%" align="center" valign="bottom" color="#a8aaa8" visible="1" noclick="1"/>
+					</panel>
+
+					<panel name="Twitch_Login_Links_Signup" height="100%" width="25%"
+						onmouseoverlua="
+							self:GetWidget('Twitch_Login_Links_Signup_Label'):SetColor('#6c59c3')
+							self:GetWidget('signup_tab'):SetVisible(true)
+						"
+						onmouseoutlua="
+							self:GetWidget('Twitch_Login_Links_Signup_Label'):SetColor('#65599b')
+							self:GetWidget('signup_tab'):SetVisible(false)
+						"
+					>
+						<label name="Twitch_Login_Links_Signup_Label" y="12%" font="maindyn_16" content="twitch_sign_up" width="80%" textalign="center" align="center" color="#65599b" noclick="1"/>
+						<panel name="signup_tab" height="23%" width="80%" align="center" valign="bottom" color="#9386cd" visible="0" noclick="1"/>
+					</panel>		
+				</panel>
+				
+				<panel name="line" height="0.5%" noclick="1">
+					<panel width="98%" align="center" valign="bottom" color="#a8aaa8" noclick="1"/>
+				</panel>
+				
+				<panel name="Twitch_Login_Form" width="100%" height="62%" float="bottom" noclick="1">
+					<!-- Username -->
+					<panel height="37.5%" noclick="1">
+						<panel width="95%" height="85%" align="center" valign="center">
+							<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.8h" noclick="true"/>
+							<panel color="0.87 0.89 0.88 0.7" noclick="1"/>							
+							<textbox
+								name="Twitch_Login_Form_Username"
+								style="textBot1Input"
+								font="maindyn_22"
+								color="invisible"
+								textcolor="#4d4d4d"
+								hmargin="10s" vmargin="5s"
+								onesc="Cmd('Script TwitchEdit.LoginInputOnEsc()')"
+								onenter="Cmd('Script TwitchEdit.LoginInputOnEnter()')"
+								ontab="Cmd('Script TwitchEdit.LoginInputOnEnter()')"
+								taborder="12"
+							/>							
+							<label name="Twitch_Login_Form_Username_Coverup" font="maindyn_22" content="twitch_username" textvalign="center" hmargin="10s" vmargin="1s" color="#4d4d4d88" noclick="1" />
+						</panel>
+					</panel>
+					
+					<!-- Password -->
+					<panel height="37.5%" noclick="1">
+						<panel width="95%" height="85%" align="center" valign="center" noclick="1">
+							<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.8h" noclick="true"/>
+							<panel color="0.87 0.89 0.88 0.7" noclick="1"/>
+							<textbox
+								name="Twitch_Login_Form_Password"
+								style="textBot1Input" passwordchar="*"
+								font="maindyn_22"
+								color="invisible"
+								textcolor="#4d4d4d"
+								hmargin="10s" vmargin="5s"
+								onesc="Cmd('Script TwitchEdit.LoginPWInputOnEsc()')"
+								onenter="Cmd('Script TwitchEdit.LoginPWInputOnEnter()')"	
+								taborder="13"
+							/>							
+							<label name="Twitch_Login_Form_Password_coverup" font="maindyn_22" content="twitch_password" textvalign="center" hmargin="10s" vmargin="1s" color="#4d4d4d88" noclick="1"/>
+						</panel>
+					</panel>
+					
+					<!-- Remember Me?  -->
+					<panel name="Twitch_Login_Form_RememberMe" height="25%" noclick="0">
+						<label x="-11%" font="maindyn_14" content="twitch_remember_me" width="90%" height="100%" align="right" valign="center" textalign="right" textvalign="center" color="#4d4d4d" noclick="1"/>
+						
+						<panel x="-2.5%" width="70@" height="70%" align="right" valign="center" noclick="1">
+							<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.5h" noclick="true"/>
+							<panel color="0.87 0.89 0.88 0.7" noclick="1"/>
+							
+							<image name="Twitch_Login_Form_RememberMe_check" visible="0" texture="/ui/shared/twitch/textures/stylized_x.tga" width="70%" height="70@" align="center" valign="center" noclick="1"/>
+						</panel>
+					</panel>
+					
+				</panel>
+				
+				<panel name="Twitch_Login_Send" width="100%" height="22%" noclick="1">
+					<label name="Twitch_Login_Trouble" x="-45%" font="maindyn_14" content="twitch_trouble_signing_in" width="50%" height="100%" align="right" valign="center" textalign="right" textvalign="center" color="#65599b"
+						onmouseoverlua="
+							self:GetWidget('Twitch_Login_Trouble'):SetColor('#6c59c3')
+							self:GetWidget('trouble_tab'):SetVisible(true)
+						"
+						onmouseoutlua="
+							self:GetWidget('Twitch_Login_Trouble'):SetColor('#65599b')
+							self:GetWidget('trouble_tab'):SetVisible(false)
+						"
+						onclick="PlaySound('/ui/sounds/sfx_button_generic.wav')"
+					/>
+					<panel x="-45%" y="16%" name="trouble_tab" height="2%" width="40%" align="right" valign="center" color="#9386cd" visible="0" noclick="1"/>
+					
+					<instance name="standardButton" enabled="0" id="Twitch_Login_Send_Button" x="-2%" width="40%" height="80%" align="right" valign="center" font="maindyn_20" label="general_login"
+						onclicklua=""
+					/>
+				</panel>
+				
+				<panel color="#504482" height="200%" noclick="1"/>
+			</panel>
+			
+			<panel name="Twitch_Logged_Holder" width="100%" height="48%" color="#dfe4e0" float="bottom" sticky="1" stickytoinvis="0" visible="0" noclick="1">
+				<panel name="Twitch_Logged_Info" height="30%" noclick="1">
+					<label x="2%" style="labelBase" color=".35 .35 .35 1" outlinecolor="1 1 1 .5" height="85%" width="85@" textalign="center" textvalign="center" valign="center" noclick="1" font="maindyn_20" content="twitch_webcam_preview" wrap="1" />					
+					<image x="2%" name="Twitch_Logged_ID" color="1 1 1 1" height="85%" width="85@" valign="center" noclick="1" texture="/ui/main/watch/textures/icon_live.tga" rendermode="grayscale"
+						onloadlua="
+							local trigger = LuaTrigger.GetTrigger('TwitchStatus')
+							if (trigger.webCamActive) then
+								if (trigger.webCamTexture) and (not Empty(trigger.webCamTexture)) then
+									self:SetTexture(trigger.webCamTexture)
+								else
+									self:SetTexture('$twitchwebcam_0')
+								end
+								self:SetVFlip(trigger.webCamFlipped)
+								self:SetColor('1 1 1 1')
+								self:SetRenderMode('normal')
+							else
+								self:SetTexture('/ui/main/watch/textures/icon_live.tga')
+								self:SetColor('1 1 1 0.2')
+								self:SetRenderMode('grayscale')
+							end
+							self:UnregisterWatchLua('TwitchStatus')
+							self:RegisterWatchLua('TwitchStatus', function(widget, trigger)
+								if (trigger.webCamActive) then
+									if (trigger.webCamTexture) and (not Empty(trigger.webCamTexture)) then
+										widget:SetTexture(trigger.webCamTexture)
+									else
+										widget:SetTexture('$twitchwebcam_0')
+									end
+									widget:SetColor('1 1 1 1')
+									widget:SetRenderMode('normal')
+								else
+									widget:SetTexture('/ui/main/watch/textures/icon_live.tga')
+									widget:SetColor('1 1 1 0.2')
+									widget:SetRenderMode('grayscale')
+								end
+								widget:SetVFlip(trigger.webCamFlipped)
+							end, false, nil, 'webCamTexture', 'webCamFlipped', 'webCamActive')
+						"					
+					/>
+					
+					<panel name="Twitch_Logged_UserInfo" width="82%" align="right" valign="top" float="bottom">
+						<panel x="19%" height="37%">
+							<label name="Twitch_Logged_Username" content="" fitx="1" font="maindyn_20" color="#65599b" textvalign="bottom" valign="bottom" noclick="1"/>
+						</panel>
+						
+						<panel height="20%" noclick="1" float="right" padding="3%">
+							<image name="Twitch_Logged_Status" texture="/ui/main/shared/textures/user_status_light.tga" color="0 1 0 1" height="70%" width="70@" valign="center" noclick="1" />
+							<label name="Twitch_Logged_StatusType" content="twitch_status_online" font="maindyn_16" color="#4e4e4e" textvalign="center" valign="center" noclick="1"/>
+						</panel>
+						
+						<panel visible="1" height="25%" noclick="1" float="right" padding="2%">
+							<image x="0" name="Twitch_Logged_ViewCount2" visible="0" texture="/ui/shared/twitch/textures/views_icon.tga" height="60%" width="60@" valign="bottom" noclick="1" sticky="0" sticktoinvis="0"  />
+							<label x="8%" name="Twitch_Logged_ViewCount" visible="0" content="" fitx="1" font="maindyn_14" color="#4e4e4e" textvalign="bottom" valign="bottom" noclick="1" sticky="0" sticktoinvis="0"/>
+							<image x="35%" name="Twitch_Logged_FollowerCount2" visible="0" texture="/ui/shared/twitch/textures/followers_icon.tga" height="60%" width="60@" valign="bottom" noclick="1" sticky="0" sticktoinvis="0" />
+							<label x="43%" name="Twitch_Logged_FollowerCount" visible="0" content="" fitx="1" font="maindyn_14" color="#4e4e4e" textvalign="bottom" valign="bottom" noclick="1" sticky="0" sticktoinvis="0"/>
+						</panel>
+					</panel>
+				</panel>
+				
+				<panel height="30%" noclick="1">					
+					<panel width="90%" height="70%" align="center" valign="center" noclick="1">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="#d4d8d5" borderthickness="0.5h" noclick="1"/>
+						
+						<label x="6%" y="-15%" content="twitch_current_title" color="#969a96" font="maindyn_16" noclick="1"/>
+						
+						<image x="3%" y="5%" texture="/ui/shared/twitch/textures/quotes.tga" height="20%" width="20@" align="left" valign="top" />
+						<image x="-3%" y="-5%" texture="/ui/shared/twitch/textures/quotes.tga" height="20%" width="20@" align="right" valign="bottom" hflip="1"/>
+
+						<panel padding="3%"
+							onclicklua="
+								self:GetWidget('Twitch_Stream_Title'):FadeIn(250)
+								PlaySound('/ui/sounds/sfx_button_generic.wav')
+							"
+						>
+							<label name="Twitch_Logged_Title" content="" wrap="1" color="#4e4e4e" font="maindyn_16" align="center" valign="center" textalign="center" textvalign="center" noclick="1"/>
+						</panel>
+					</panel>
+				</panel>
+				
+				<instance id="Twitch_Logged_Update" name="Twitch_Logged_Button" color="#edf4ea" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="edit_icon.tga" label="twitch_update_stream_title" noclick="1"
+					onclicklua="
+						self:GetWidget('Twitch_Stream_Title'):FadeIn(250)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"				
+				/>
+				
+				<instance id="Twitch_Logged_Overlay" name="Twitch_Logged_Button" color="#dfe4e0" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="overlay_icon.tga" label="twitch_edit_overlay" noclick="1"
+					onclicklua="
+						self:GetWidget('Twitch_Overlays_Holder'):SetVisible(true)
+						TwitchEdit.ToggleLoginPanel()
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+				
+				<instance id="Twitch_Logged_Settings" name="Twitch_Logged_Button" color="#edf4ea" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="webcam_settings_icon.tga" label="twitch_settings" noclick="1"
+					onclicklua="
+						self:GetWidget('Twitch_Settings'):FadeIn(250)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+				
+				<instance id="Twitch_Toggle_Chat" name="Twitch_Logged_Button" color="#dfe4e0" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="quotes.tga" label="twitch_chat_on" noclick="1"
+					onclicklua="
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>				
+				
+				<instance id="Twitch_Toggle_Webcam" name="Twitch_Logged_Button" color="#edf4ea" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="webcam_icon.tga" label="twitch_webcam_on" noclick="1"
+					onclicklua="
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+				
+				<!--
+				<instance id="Twitch_BRB_Button" name="Twitch_Logged_Button" height="10.5%" color="#dfe4e0" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="broadcast_icon.tga" label="twitch_brb_show" noclick="1"/>
+				
+				<instance id="Twitch_About_To_Stream_Button" name="Twitch_Logged_Button" height="10.5%" color="#edf4ea" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="broadcast_icon.tga" label="twitch_soontm_show" noclick="1"/>
+				
+				<instance id="Twitch_Commercial_Break_Button" name="Twitch_Logged_Button" height="10.5%" color="#dfe4e0" hover="#ffffff" type="#65599b" hovertype="#6c59c3" texture="broadcast_icon.tga" label="twitch_playcommercial_show" noclick="1"/>
+				-->
+				
+				<instance id="Twitch_Logged_Broadcast" name="Twitch_Logged_Button" height="10.5%" color="#95271c" hover="#bd3829" type="#edf4ea" hovertype="#ffffff" texture="broadcast_icon.tga" label="twitch_broadcast_live" noclick="1"/>
+				
+				<panel name="Twitch_Logout_Send" width="100%" height="60%" color="#504482" noclick="1">					
+					<instance name="standardButton" id="Twitch_Logout_Send_Button" x="-2%" y="5%" width="40%" height="18%" align="right" valign="top" font="maindyn_20" label="twitch_logout"
+						onclicklua=""
+					/>
+				</panel>
+			</panel>
+		</panel>
+	</panel>
+
+	<panel noclick="1" name="twitch_instantiate_layer" visible="0" />
+	<panel noclick="1" name="twitch_helper_layer" visible="0" />
+	
+	<panel noclick="1" name="twitch_command_layer" visible="0" >
+		
+		<panel name="Twitch_Overlays_Holder" width="56.8h" height="46.2h" align="center" valign="center" noclick="0" cangrab="1" visible="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">			
+				<!-- Buttons -->
+				<panel y="5.4h" height="36.8h" width="41%" float="bottom" noclick="1" >
+					<instance id="Twitch_Overlay_Webcam" 	name="Twitch_Overlay_Button" color="invisible" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="webcam_icon.tga" 	label="twitch_add_webcam" />
+					<instance id="Twitch_Overlay_Image" 	name="Twitch_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="overlay_icon.tga" 	label="twitch_add_image" />
+					<instance id="Twitch_Overlay_Text" 		name="Twitch_Overlay_Button" color="invisible" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="text_icon.tga" 		label="twitch_add_label" />
+					<instance id="Twitch_Overlay_Remove" 	name="Twitch_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="clear_icon.tga" 	label="twitch_remove_all" />					
+					<instance id="Twitch_Overlay_Revert" 	name="Twitch_Overlay_Button" color="invisible" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="undo_icon.tga" 		label="twitch_undo_changes" />
+					<!--<instance id="Twitch_Overlay_Save" 		name="Twitch_Overlay_Button" color="0 0 0 .2" 	height="5.1h" hover="#142227" type="#bdbdbd" hovertype="#ffffff" texture="save_icon.tga" 		label="twitch_save_changes" />-->
+				</panel>					
+				<!-- Overlay List -->
+				<panel y="5.0h" height="-10.4h" width="59%" align="right" float="bottom" noclick="1" >
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="0.8h" color="1 1 1 .8" />					
+					<listbox name="Twitch_Overlays_List_Listbox" style="simpleListbox"
+						y="0" height="-1.6h" width="-1.2h" align="center" valign="center"
+						color="invisible"
+						itemheight="4.0h"
+						itemwidth="-0.2h"
+						scrollbaroffset="-0.4h"
+						select="false"
+						exteriorscrollbars="1"
+						scrollbarplaceholder="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbarsize="3.0h"
+						handlewidth="3.0h"
+						handleheight="6.0h"
+						hscrollbar="0"
+						horizontal="false"
+						highlight="under"
+						hoverselect="false"
+						hoverhighlight="true"
+						highlightcolor="#46adff42"
+						highlightbordercolor="#46adff22"
+						selectedcolor="#46adff42"
+						selectedbordercolor="invisible"						
+					/>
+				</panel>
+				
+				<panel name="Twitch_Overlays_Header" width="100%" height="3.6h" noclick="1">					
+					<image noclick="1" texture="/ui/shared/twitch/textures/twitch_icon.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="twitch_overlays_header" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Twitch_Overlays_Header_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="" />
+				</panel>
+				
+				<instance name="standardButton" id="Twitch_Overlay_Cancel" rendermode="grayscale" x="1.2h" width="34%" height="4.4h" align="left" label="general_cancel" font="maindyn_22" valign="bottom" 
+					onclicklua="
+						self:GetWidget('Twitch_Overlays_Holder'):SetVisible(false)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>				
+				<instance name="standardButton" id="Twitch_Overlay_Save" width="59%" height="4.4h" align="right" label="general_save" font="maindyn_22" valign="bottom" 
+					onclicklua="
+						self:GetWidget('Twitch_Overlays_Holder'):SetVisible(false)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+				
+			</panel>			
+		</panel>
+		
+	</panel>	
+	
+	<panel name="Twitch_Image_Content" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="56h" width="70h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">
+			
+				<panel width="100%" height="3.6h" noclick="1">
+					<image noclick="1" texture="/ui/shared/twitch/textures/twitch_icon.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="twitch_create_choose_an_image" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Twitch_Image_Content_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Twitch_Image_Content'):FadeOut(250)" />
+				</panel>
+				
+				<label y="4.6h" fity="1" wrap="1" style="labelBase" color=".7 .7 .7 1" font="subdyn_13" content="twitch_no_image" noclick="true" />			
+
+				<listbox name="Twitch_Image_Content_Listbox" style="simpleListbox"
+					y="10.2h" height="-16h" width="100%"
+					color="invisible"
+					itemheight="6.0h"
+					itemwidth="-0.5h"
+					scrollbaroffset="0"
+					select="true"
+					exteriorscrollbars="false"
+					scrollbarplaceholder="false"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					scrollbarsize="3h"
+					handleheight="8h"
+					hscrollbar="0"
+					horizontal="false"		
+
+					highlight="under"
+					hoverselect="false"
+					hoverhighlight="true"
+					highlightcolor="#46adff42"
+					highlightbordercolor="#46adff22"
+					selectedcolor="#46adff42"
+					selectedbordercolor="invisible"						
+				/>
+
+				<instance noclick="0" height="4.4h" valign="bottom" width="18h" align="right"
+					name="standardButton" id="Twitch_Image_Content_input_btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						self:GetWidget('Twitch_Image_Content'):FadeOut(250)
+					"
+				/>
+			
+			</panel>		
+
+		</panel>
+	</panel>	
+
+	<panel name="Twitch_Label_Content" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="21.2h" width="50h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">					
+
+				<panel width="100%" height="3.6h" noclick="1">					
+					<image noclick="1" texture="/ui/shared/twitch/textures/twitch_icon.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="twitch_create_text_content" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Twitch_Label_Content_input_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Twitch_Label_Content'):FadeOut(250)" />
+				</panel>
+				
+				<panel y="4.4h" height="-10.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Twitch_Label_Content_input"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+				</panel>
+				
+				<instance noclick="0" height="4.4h" valign="bottom" width="24h" align="right"
+					name="standardButton" id="Twitch_Label_Content_input_btn"
+					label="general_ok"
+					font="maindyn_22"
+					onclicklua="
+						println(' input ' .. tostring(self:GetWidget('Twitch_Label_Content_input'):GetInputText()))
+						self:GetWidget('Twitch_Label_Content'):FadeOut(250)
+					"
+				/>				
+				
+			</panel>
+			
+		</panel>			
+		
+	</panel>
+	
+	<panel name="Twitch_Stream_Title" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel height="21.2h" width="50h" noclick="true" valign="center" align="center" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">					
+
+				<panel width="100%" height="3.6h" noclick="1">					
+					<image noclick="1" texture="/ui/shared/twitch/textures/twitch_icon.tga" height="100%" width="100@"/>
+					<label noclick="1" y="-0.4h" x="130@" content="twitch_edit_channel_title" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+					<instance name="closeXButton" buttonName="Twitch_Stream_Title_input_closex" width="100@" height="100%" align="right" valign="center" noclick="1" onclicklua="self:GetWidget('Twitch_Stream_Title'):FadeOut(250)" />
+				</panel>
+				
+				<panel y="4.4h" height="-10.4h" noclick="1" clip="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+					<chatinputbuffer
+						name="Twitch_Stream_Title_input"
+						textcolor="0 0 0 1"
+						color="invisible"
+						font="maindyn_18" grow="1"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-2.0h" height="-2.0h" align="center" valign="center"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+					/>	
+				</panel>
+				
+				<instance noclick="0" height="4.4h" valign="bottom" width="24h" align="right"
+					name="standardButton" id="Twitch_Stream_Title_input_btn"
+					label="twitch_edit_channel_title_con"
+					font="maindyn_22"
+					onclicklua="
+						println(' input ' .. tostring(self:GetWidget('Twitch_Stream_Title_input'):GetInputText()))
+						self:GetWidget('Twitch_Stream_Title'):FadeOut(250)
+					"
+				/>				
+				
+			</panel>
+			
+		</panel>			
+		
+	</panel>
+	
+	<panel name="Twitch_Settings" align="center" valign="center" noclick="0" visible="0" color="0 0 0 0.8">
+		<panel name="Twitch_Settings_Holder" width="52h" height="62h" align="center" valign="center" noclick="1">		
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.0h" color=".1 .1 .1 1" noclick="true" />
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="1.0h" noclick="1"/>			
+			
+			<panel hmargin="2.0h" vmargin="2.0h" noclick="1">	
+						
+				<instance id="Twitch_Overlays_Header" name="Window_Header_LG" label="twitch_settings_header" height="3.6h" closewidth="3.6h" noclick="1"
+					onclicklua="
+						self:GetWidget('Twitch_Settings'):SetVisible(false)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>
+
+				<instance name="standardButton" id="Twitch_Overlays_Close" width="40%" align="right" font="maindyn_22" label="twitch_im_done" height="4.4h" valign="bottom" 
+					onclicklua="
+						self:GetWidget('Twitch_Settings'):SetVisible(false)
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>			
+				
+				<instance name="standardButton" id="Twitch_Overlays_Auto" width="40%" align="left" font="maindyn_22" label="twitch_auto_detect" height="4.4h" valign="bottom" rendermode="grayscale"
+					onclicklua="
+						Twitch.AutoDetect()
+						PlaySound('/ui/sounds/sfx_button_generic.wav')
+					"
+				/>				
+				
+				<!-- Settings -->				
+				<panel y="10%" float="bottom" padding="1.0h" align="center" noclick="1" reverse="1">
+					
+					<!-- Device -->
+					<panel height="3.0h" noclick="true" sticky="true" stickytoinvis="false">
+						<label y="-0.1h" height="100%" textvalign="center" width="-2.6h" style="h2" color="#bdbdbd" font="maindyn_20" content="twitch_select_device" noclick="true" />
+					</panel>					
+					<instance name="simpleCombobox" id="twitch_settings_webcam_combobox"
+						noclick="1"
+						height="3.7h"
+						maxlistheight="10"										
+					/>	
+					
+					<instance name="hr" />
+					
+					<!-- Capability -->
+					<panel height="2.2h" noclick="true" sticky="true" stickytoinvis="false">
+						<label y="-0.1h" height="100%" textvalign="center" width="-2.6h" style="h2" color="#bdbdbd" font="maindyn_20" content="twitch_select_format" noclick="true" />
+					</panel>
+					<instance name="simpleCombobox" id="twitch_settings_capabilities_combobox"
+						noclick="1"
+						height="3.7h"
+						maxlistheight="10"										
+					/>						
+
+					<instance name="hr" />
+					
+					<!-- Stream To Ingest Server -->
+					<panel height="2.2h" noclick="true" sticky="true" stickytoinvis="false">
+						<label y="-0.1h" height="100%" textvalign="center" width="-2.6h" style="h2" color="#bdbdbd" font="maindyn_20" content="twitch_select_server" noclick="true" />
+					</panel>					
+					<instance name="simpleCombobox" id="twitch_settings_ingest_server_combobox"
+						noclick="1"
+						height="3.7h"
+						maxlistheight="10"										
+					/>						
+					
+					<instance name="hr" />
+					
+					<!-- Volume -->			
+					<instance name="twitch_slider_integer_v3"
+						cvar=""
+						title="twitch_output_volume"
+						percent="true"
+						round_var="false"
+						height="5.8h" 
+						id="twitch_settings_output_volume"
+					/>						
+					
+					<instance name="hr" />
+					
+					<!-- BitRate -->				
+					<instance name="twitch_slider_integer_v3"
+						cvar=""
+						title="twitch_output_bitrate"
+						percent="true"
+						round_var="false"
+						height="5.8h" 
+						id="twitch_settings_output_bitrate"
+						minvalue="230"
+						maxvalue="3500"
+					/>						
+					
+				</panel>
+
+			
+			</panel>
+		</panel>
+	</panel>	
+	
+	<lua file="/ui/shared/twitch/twitch_edit.lua"/>	
+	
+</interface>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<panel name="mainPetsUnlockPet" color="0 0 0 0.7" visible="0">
+		
+		<panel width="450s" grow="true" regrow="true"  growinvis="0" align="center" valign="center">
+		
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" style="doubleFrameBg"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			
+			<panel grow="1" regrow="1" growinvis="0" width="100%" float="bottom" padding="20s">
+			
+				<panel height="28s" noclick="1">
+					<label textvalign="center" style="h1" font="maindyn_36" content="corral_unlockpet_title"/>
+					<instance name="iconButton"
+						id="mainPetsUnlockPetClose"
+						icon="/ui/main/shared/textures/close.tga"
+						width="100@" height="100%" align="right" valign="top" borderthickness="4s"
+					/>
+				</panel>
+				
+				<label fity="true" wrap="true" font="maindyn_20" style="labelBase" content="corral_unlockpet_body"/>
+				
+				<panel height="44s" grow="1" regrow="1" growinvis="0" float="right" padding="4%" align="center">
+					
+					<panel width="245s" align="left">
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".5 .5 .5 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>						
+						<panel float="right" padding="4s" grow="1" regrow="1" height="84%" align="center" valign="center" noclick="1">						
+							<label fitx="1" height="100%" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content="corral_you_own" noclick="1" />
+							<panel grow="1" height="100%" float="right" padding="3s">
+								<label name="mainPets_unlock_seals_available" fitx="true" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1"  content=""
+									onloadlua="
+										self:RegisterWatchLua('Corral', function(widget, trigger)
+											widget:SetText(trigger.fruit)
+										end)
+									"							
+								/>
+								<image texture="/ui/main/shared/textures/commodity_seal.tga" width="100@" height="100%"/>
+							</panel>						
+						</panel>						
+					</panel>
+					
+					<panel width="245s" align="left"
+						onloadlua="
+							self:RegisterWatchLua('CorralSelectedPet', function(widget, trigger)
+								widget:SetVisible(trigger.petGemCost > 0)
+							end)
+						"					
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".5 .5 .5 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel float="right" padding="4s" grow="1" regrow="1" height="70%" align="center" valign="center" noclick="1">						
+							<label fitx="1" height="100%" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content="corral_you_own" noclick="1" />
+							<panel grow="1" height="100%" float="right" padding="6s">
+								<label name="mainPets_unlock_gems_available" fitx="true" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content=""
+									onloadlua="
+										self:RegisterWatchLua('GemOffer', function(widget, trigger)
+											widget:SetText(trigger.gems)
+										end)
+									"
+								/>
+								<image texture="/ui/main/shared/textures/gem.tga" width="100@" height="100%"/>
+							</panel>						
+						</panel>						
+					</panel>
+					
+				</panel>				
+				
+				<panel height="130s" grow="1" regrow="1" growinvis="0" float="right" padding="4%" align="center">
+					<panel width="245s" align="left" height="130s" >
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="#0f2124"/>
+							<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" color="invisible"/>
+						</panel>
+						<panel y="10s" grow="1" height="60s" align="center" float="right" padding="0">
+							<label name="mainPetsUnlockPetCost" fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---"/>
+							<image texture="/ui/main/shared/textures/commodity_seal.tga" width="100@" height="100%"/>
+						</panel>
+						<panel y="-10s" height="40s" valign="bottom">
+							<instance id="mainPetsUnlockPetOKButton" name="standardButton" width="90%" align="center" label="corral_petcurrency_use" font="maindyn_22"/>
+						</panel>
+					</panel>
+					
+					<panel width="245s" align="right"
+						onloadlua="
+							self:RegisterWatchLua('CorralSelectedPet', function(widget, trigger)
+								widget:SetVisible(trigger.petGemCost > 0)
+							end)
+						"						
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="#0f2124"/>
+							<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" color="invisible"/>
+						</panel>
+						<panel y="10s" grow="1" height="60s" align="center" float="right" padding="5s">
+							<label name="mainPetsUnlockPetCostGems" fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---"/>
+							<panel width="100@" height="100%">
+								<image texture="/ui/main/shared/textures/gem.tga" width="80@" height="80%" align="center" valign="center" />
+							</panel>
+						</panel>
+						<panel y="-10s" height="40s" valign="bottom">
+							<instance id="mainPetsUnlockPetOKGemsButton" name="standardButton" width="90%" align="center" label="corral_unlockpet_usegems" font="maindyn_22"/>
+						</panel>
+					</panel>
+				</panel>
+			
+			</panel>
+		</panel>
+	</panel>
+	
+</package>

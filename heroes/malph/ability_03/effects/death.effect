@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+<!--
+			<light
+				position="0 0 75"
+				expirelife="500"
+				startcolor="1.5 1.1 .75"
+				endcolor="0"
+				falloffstart="25"
+				falloffend="1000"
+			/>
+-->
+			<terrainemitter
+				count="25"
+				spawnrate="250"
+				expirelife="1000"
+				offsetsphere="175 175 0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="500"
+						maxlife="1000"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						minstartscale="6.5"
+						maxstartscale="6.5"
+						minendscale="7"
+						maxendscale="8"
+						color="0 0 0"
+						startalpha="0"
+						midalpha=".35"
+						endalpha="0"
+						depthbias="-2"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxyroll="360"
+					/>
+				</particle>
+			</terrainemitter>
+			
+			
+			
+			
+			<template name="">
+				<terrainemitter
+				delay="350"
+					count="20"
+					spawnrate="3000"
+					particlelife="1500"
+					offsetsphere="110 110 0"
+					offsetradial="200 0 0"
+					directionalspace="world"
+					direction="0 0 1"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="500"
+							maxlife="600"
+							material="/shared/effects/smaterials/goop_blend_ground.material"
+							minscale="2"
+							maxscale="2.5"
+							color="0"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							midalphapos=".8"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+						/>
+						
+						<billboard
+							minlife="500"
+							maxlife="500"
+							material="/shared/effects/materials/ice_blob_overlay.material"
+							minscale="1.5"
+							maxscale="2.5"
+							color="0"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							midalphapos=".8"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+						/>
+						
+						<billboard
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/smaterials/rings.material"
+							minstartscale=".45"
+							maxstartscale=".6"
+							minendscale="1.05"
+							maxendscale="1.55"
+							startcolor=".3"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="0"
+							depthbias="-75"
+						/>
+						
+						<simpleemitter
+							count="5"
+							position="0 0 0"
+							spawnrate="150"
+							particlelife="1000"
+							offsetsphere="0 0 0"
+							direction="0 0 0"
+							minspeed="75"
+							maxspeed="150"
+							gravity="20"
+						>
+							<particle
+								turn="true"
+							>
+								<billboard
+									minlife="200"
+									maxlife="400"
+									color="0 0 0"
+									material="/shared/effects/smaterials/tar_goop_drop.material"
+									startalpha="1"
+									endalpha="1"
+									midalphapos=".25"
+									lockup="true"
+									lockright="true"
+									pitch="90"
+									directionalspace="local"
+									minstartscale="1"
+									maxstartscale="2"
+									minendscale="0"
+									maxendscale="1"
+									depthbias="-25"
+								/>
+							</particle>
+						</simpleemitter>
+						
+					</particle>
+				</terrainemitter>
+			</template>
+			
+			<instance name="" zpos="0 0 0"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="90"
+				position="0 0 375"
+				spawnrate="3000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="200"
+				gravity="35"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="300"
+						maxlife="600"
+						color=".5"
+						material="/shared/effects/smaterials/tar_goop_drop.material"
+						startalpha="1"
+						endalpha="1"
+						midalphapos=".25"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="2"
+						minendscale="0"
+						maxendscale=".75"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<terrainemitter
+				count="15"
+				spawnrate="60"
+				expirelife="1000"
+				offsetsphere="275 275 0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="300"
+						maxlife="500"
+						material="/shared/effects/smaterials/rings.material"
+						minstartscale="1"
+						maxstartscale="2"
+						minendscale="4"
+						maxendscale="4"
+						startcolor=".15"
+						endcolor="0 0 0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="0"
+						depthbias="-75"
+					/>
+				</particle>
+			</terrainemitter>
+
+			
+			
+			
+			
+			
+			<terrainemitter
+				delay="0"
+				spawnrate="40"
+				expirelife="1000"
+				offsetsphere="175 175 0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="500"
+						maxlife="1000"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						minstartscale="6.5"
+						maxstartscale="6.5"
+						minendscale="7"
+						maxendscale="8"
+						color="0 0 0"
+						startalpha="0"
+						midalpha=".35"
+						endalpha="0"
+						depthbias="-2"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxyroll="360"
+					/>
+				</particle>
+			</terrainemitter>
+
+			
+			<terrainemitter
+				delay="0"
+				spawnrate="40"
+				expirelife="1000"
+				offsetsphere="250 250 0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="600"
+						maxlife="1000"
+						material="/shared/effects/smaterials/rings.material"
+						minstartscale="1"
+						maxstartscale="2"
+						minendscale="4"
+						maxendscale="4"
+						startcolor=".15"
+						endcolor="0 0 0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="0"
+						depthbias="-75"
+					/>
+				</particle>
+			</terrainemitter>
+			
+			
+			
+			
+			
+			
+			
+			<template name="">
+				<terrainemitter
+					position="{zpos}"
+					spawnrate="30"
+					particlelife="1500"
+					offsetsphere="110 110 0"
+					offsetradial="200 0 0"
+					directionalspace="world"
+					direction="0 0 1"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="400"
+							maxlife="600"
+							material="/shared/effects/smaterials/goop_blend_ground.material"
+							minscale="2"
+							maxscale="2.5"
+							color="0"
+							startalpha=".65"
+							midalpha=".65"
+							endalpha="0"
+							midalphapos=".8"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+						/>
+						
+						<billboard
+							minlife="400"
+							maxlife="600"
+							material="/shared/effects/materials/ice_blob_overlay.material"
+							minscale="1.5"
+							maxscale="2.5"
+							color="0"
+							startalpha=".65"
+							midalpha=".65"
+							endalpha="0"
+							midalphapos=".8"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+						/>
+						
+						<billboard
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/smaterials/rings.material"
+							minstartscale=".45"
+							maxstartscale=".6"
+							minendscale="1.05"
+							maxendscale="1.55"
+							startcolor=".3"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="0"
+							depthbias="-75"
+						/>
+						
+						<simpleemitter
+							count="5"
+							position="0 0 0"
+							spawnrate="150"
+							particlelife="1000"
+							offsetsphere="0 0 0"
+							direction="0 0 0"
+							minspeed="75"
+							maxspeed="150"
+							gravity="20"
+						>
+							<particle
+								turn="true"
+							>
+								<billboard
+									minlife="200"
+									maxlife="400"
+									color="0 0 0"
+									material="/shared/effects/smaterials/tar_goop_drop.material"
+									startalpha="1"
+									endalpha="1"
+									midalphapos=".25"
+									lockup="true"
+									lockright="true"
+									pitch="90"
+									directionalspace="local"
+									minstartscale="1"
+									maxstartscale="2"
+									minendscale="0"
+									maxendscale="1"
+									depthbias="-25"
+								/>
+							</particle>
+						</simpleemitter>
+						
+					</particle>
+				</terrainemitter>
+			</template>
+			
+			<instance name="" zpos="0 0 0"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<model
+				position="0 0 -10"
+				life="400"
+				model="../../ability_04/effects/gopher_hole/model.mdf"
+				color=".5 .4 .3"
+				startalpha="1"
+				endalpha="1"
+				startscale="0"
+				midscale="3.25"
+				endscale="2.75"
+				yaw="0"
+			/>
+			
+			<model
+			delay="400"
+				position="0 0 -10"
+				expirelife="250"
+				model="../../ability_04/effects/gopher_hole/model.mdf"
+				color=".5 .4 .3"
+				startalpha="1"
+				endalpha="1"
+				startscale="2.75"
+				endscale="0"
+				yaw="0"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			<template name="">
+
+				<controller
+					expirelife="0"
+					position="{zpos}"
+					startscale="{zscale}"
+					endscale="0"
+				>
+					<terrainemitter
+						delay="{zdelay}"
+						count="1"
+						position="{zpos}"
+						spawnrate="1000"
+						expirelife="1000"
+						offsetradial="0 0 0"
+						offsetsphere="{zoffset}"
+						directionalspace="world"
+						direction="0 0 1"
+					>
+						<particle
+						>
+							<terrainemitter
+								spawnrate="2"
+								particlelife="1500"
+								offsetsphere="25 25 0"
+								directionalspace="local"
+								timenudge="4000"
+							>
+								<particle
+									turn="true"
+								>
+									<billboard
+										minlife="1500"
+										maxlife="2000"
+										material="/shared/effects/materials/ice_blob_overlay.material"
+										minstartscale="4"
+										maxstartscale="4"
+										minendscale="4"
+										maxendscale="5"
+										color="0 0 0"
+										startalpha=".4"
+										midalpha=".4"
+										endalpha="0"
+										midalphapos=".75"
+										depthbias="-2"
+										lockup="1"
+										lockright="1"
+										pitch="90"
+										minroll="0"
+										maxyroll="360"
+									/>
+								</particle>
+							</terrainemitter>
+
+							
+							<template name="">
+								<terrainemitter
+									position="{zpos}"
+									spawnrate="15"
+									particlelife="1500"
+									offsetsphere="30 30 0"
+									directionalspace="world"
+									offsetradial="90 0 0"
+								>
+									<particle
+										turn="true"
+									>
+									
+										<billboard
+											minlife="400"
+											maxlife="600"
+											material="/shared/effects/smaterials/goop_drop.material"
+											minscale=".45"
+											maxscale=".7"
+											color="0 0 0"
+											startalpha=".5"
+											midalpha=".5"
+											endalpha="0"
+											midalphapos=".8"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+											minroll="0"
+											maxroll="360"
+											depthbias="-50"
+										/>
+										
+										<billboard
+											minlife="400"
+											maxlife="600"
+											material="/shared/effects/smaterials/goop_blend_ground.material"
+											minscale="1"
+											maxscale="2"
+											color="0"
+											startalpha=".5"
+											midalpha=".5"
+											endalpha="0"
+											midalphapos=".8"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+											minroll="0"
+											maxroll="360"
+											depthbias="-50"
+										/>
+										
+										<billboard
+											minlife="400"
+											maxlife="600"
+											material="/shared/effects/materials/ice_blob_overlay.material"
+											minscale=".5"
+											maxscale="1"
+											color="0"
+											startalpha=".5"
+											midalpha=".5"
+											endalpha="0"
+											midalphapos=".8"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+											minroll="0"
+											maxroll="360"
+											depthbias="-50"
+										/>
+										
+										<billboard
+											minlife="300"
+											maxlife="500"
+											material="/shared/effects/smaterials/rings.material"
+											minstartscale=".15"
+											maxstartscale=".3"
+											minendscale=".75"
+											maxendscale="1.25"
+											startcolor=".3"
+											endcolor="0 0 0"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+											minroll="0"
+											maxroll="0"
+											depthbias="-75"
+										/>
+										
+										<simpleemitter
+											count="5"
+											position="0 0 0"
+											spawnrate="150"
+											particlelife="1000"
+											offsetsphere="0 0 0"
+											direction="0 0 0"
+											minspeed="75"
+											maxspeed="150"
+											gravity="20"
+										>
+											<particle
+												turn="true"
+											>
+												<billboard
+													minlife="200"
+													maxlife="400"
+													color="0 0 0"
+													material="/shared/effects/smaterials/tar_goop_drop.material"
+													startalpha="1"
+													endalpha="1"
+													midalphapos=".25"
+													lockup="true"
+													lockright="true"
+													pitch="90"
+													directionalspace="local"
+													minstartscale=".35"
+													maxstartscale=".7"
+													minendscale="0"
+													maxendscale=".75"
+													depthbias="-25"
+												/>
+											</particle>
+										</simpleemitter>
+										
+									</particle>
+								</terrainemitter>
+							</template>
+							
+							<instance name="" zpos="0 0 0"/>
+
+							<template name="">
+								<model
+									position="0 0 0"
+									expirelife="1000"
+									model="../../ability_04/effects/debris/model.mdf"
+									anim="idle"
+									color="1.5 1.15 1"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									minscale=".15"
+									maxscale=".2"
+									minyaw="{zmin}"
+									maxyaw="{zmax}"
+								/>
+							</template>
+							
+							<instance name="" zmin="0" zmax="45"/>
+							<instance name="" zmin="180" zmax="225"/>
+
+							
+							
+							
+							
+							
+							
+							
+							
+
+							<simpleemitter
+								delay="300"
+								position="{zposgoop}"
+								spawnrate="150"
+								offsetsphere="0 0 0"
+								direction="0 0 0"
+								minspeed="100"
+								maxspeed="200"
+								gravity="35"
+							>
+								<particle
+									turn="true"
+								>
+									<billboard
+										minlife="300"
+										maxlife="600"
+										color=".5"
+										material="/shared/effects/smaterials/tar_goop_drop.material"
+										startalpha="1"
+										endalpha="1"
+										midalphapos=".25"
+										lockup="true"
+										lockright="true"
+										pitch="90"
+										directionalspace="local"
+										minstartscale=".5"
+										maxstartscale="1"
+										minendscale="0"
+										maxendscale=".75"
+										depthbias="-25"
+									/>
+								</particle>
+							</simpleemitter>
+
+							<billboard
+								delay="300"
+								height="25"
+								width="{zwidth}"
+								expirelife="1000"
+								startalpha="1"
+								midalpha="0"
+								endalpha="0"
+								color="0" 
+								material="/shared/effects/smaterials/animated_round_energy.material"
+								startframe="0"
+								endframe="1"
+								framespeed="1"
+								lockup="1"
+								roll="90"
+							/>
+							
+							<billboard
+								delay="300"
+								height="25"
+								width="{zwidth}"
+								expirelife="1000"
+								startalpha="1"
+								midalpha="0"
+								endalpha="0"
+								color="0" 
+								material="/shared/effects/smaterials/animated_round_energy.material"
+								startframe="0"
+								endframe="1"
+								framespeed="1"
+								lockup="1"
+								roll="90"
+							/>
+							
+							<billboard
+								delay="300"
+								height="25"
+								width="{zwidth}"
+								expirelife="1000"
+								startalpha="1"
+								midalpha="0"
+								endalpha="0"
+								color="0" 
+								material="/shared/effects/smaterials/animated_round_energy.material"
+								startframe="0"
+								endframe="1"
+								framespeed="1"
+								lockup="1"
+								roll="90"
+							/>
+							
+							<billboard
+								delay="300"
+								height="25"
+								width="{zwidth}"
+								expirelife="1000"
+								startalpha="1"
+								midalpha="0"
+								endalpha="0"
+								color="0" 
+								material="/shared/effects/smaterials/animated_round_energy.material"
+								startframe="0"
+								endframe="1"
+								framespeed="1"
+								lockup="1"
+								roll="90"
+							/>
+
+							<simpleemitter
+								position="0 0 25"
+								minparticlelife="400"				
+								maxparticlelife="500"				
+								spawnrate="100"
+								minspeed="0"
+								maxspeed="125"
+								gravity="25"
+								direction="0 0 1"
+								minangle="20"
+								maxangle="15"
+								drag="0.01"
+								material="/shared/effects/materials/ice_blob_overlay.material"
+								offsetsphere="0 0 25"
+								directionalspace="world"
+								depthbias="-10"
+							>
+								<particle 
+									maxangle="360"
+									startscale="0"
+									minendscale="10"
+									maxendscale="20"
+									color="0 0 0"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									midalphpos=".5"
+								/>
+							</simpleemitter>
+
+						</particle>
+					</terrainemitter>
+				</controller>
+				
+			</template>
+			
+			<instance zdelay="0" zpos="0 0 0" zscale="1.5" zoffset="0 0 0" zwidth="520" zposgoop="0 0 260"/> 
+
+
+			
+			<instance zdelay="100" zpos="110 0 0" zscale="1.1" zoffset="50 50 0" zwidth="150" zposgoop="0 0 75"/>  
+			<instance zdelay="300" zpos="-100 0 0" zscale="1.1" zoffset="50 50 0" zwidth="100" zposgoop="0 0 50"/>  
+			<instance zdelay="400" zpos="0 100 0" zscale="1.1" zoffset="50 50 0" zwidth="250" zposgoop="0 0 125"/>  
+			<instance zdelay="200" zpos="0 -110 0" zscale="1.1" zoffset="50 50 0" zwidth="70" zposgoop="0 0 35"/>  
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />	
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

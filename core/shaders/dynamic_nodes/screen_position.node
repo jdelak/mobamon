@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="screen_position">
+	<dependency name="HomogeneousPosition" type="float4" source="HomogeneousPosition" />
+	<dependency name="mSceneProj" type="float4x4" source="mSceneProj" />
+	<output name="Out" type="float4" solution="ScreenPosition" />
+	<?hlsl
+		Out = mul(HomogeneousPosition, mSceneProj);
+	?>
+	<?glsl
+		Out = mSceneProj * HomogeneousPosition;
+	?>
+</node>

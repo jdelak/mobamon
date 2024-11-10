@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			expirelife="0"
+			startcolor=".35"
+			endcolor="1"
+			alpha=".9"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+<!--
+			<simpleemitter
+				spawnrate="50"
+				particlelife="2000"
+				offsetsphere="65 65 0"
+				inheritvelocity=".15"
+			>
+				<particle
+				>
+					<billboard
+						minlife="750"
+						maxlife="1000"
+						material="/shared/effects/smaterials/greenish_poofy_no_center.material"
+						minstartscale="1.25"
+						maxstartscale="1.5"
+						minendscale="2"
+						maxendscale="3"
+						startcolor="1 1 1"
+						endcolor="0 1 1"
+						startalpha="0"
+						midalpha=".55"
+						endalpha="0"
+						midalphapos=".05"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-12"
+					/>
+
+					<billboard
+						minlife="750"
+						maxlife="1000"
+						material="/shared/effects/smaterials/whitedot.material"
+						minstartscale="1.25"
+						maxstartscale="1.5"
+						minendscale="2"
+						maxendscale="3"
+						startcolor="0 0 0"
+						midcolor="0 .05 .05"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-12"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.05">
+<!--
+			<light
+			position="0 0 50"
+				expirelife="250"
+				startcolor="0 1 2.5"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+-->
+			<sound
+				life="3000"
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.75"
+				sample="../sounds/sfx_state.wav"
+			/>
+<!--
+			<billboard
+				position="0 0 75"
+				expirelife="250"
+				material="/shared/effects/smaterials/swoosh_ring.material"
+				startcolor="0 .05 .1"
+				endcolor="0 0 0"
+				size="300"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				rollspeed="180"
+				roll="45"
+			/>
+-->
+
+
+<!--
+			<model
+			position="0 0 75"
+				expirelife="250"
+				startcolor="0 .25 1"
+				endcolor="0"
+				directionalspace="world"
+				scale=".95"
+				model="shield/shield.mdf"
+				yawspeed="180"
+				rollspeed="0"
+				
+			/>
+
+			<model
+			position="0 0 75"
+				expirelife="250"
+				startcolor="0 .25 1"
+				endcolor="0"
+				directionalspace="world"
+				scale=".95"
+				model="shield/shield.mdf"
+				yawspeed="180"
+				rollspeed="0"
+				
+			/>
+-->
+			
+			
+			
+
+
+
+			<model
+				position="0 0 75"
+				expirelife="0"
+				color="1 1 1"
+				startalpha="1"
+				endalpha="0"
+				scale="2"
+				model="runes/model.mdf"
+				anim="idle"
+				roll="0"
+				yawspeed="180"
+				yaw="0"
+			>
+
+
+				<groundsprite
+					bone="_bone_fx_01"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					size="35"
+					color="0 .05 .1"
+					position="0 0 50"
+					loop="true"
+				
+				/>
+
+				<billboard
+					bone="_bone_fx_01"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="150"
+					expirelife="250"
+					startcolor="0 .05 .1"
+					endcolor="0 0 0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+
+				/>
+				
+				<billboard
+					life="250"
+					bone="_bone_fx_01"
+					material="/shared/effects/smaterials/whitedot.material"
+					startsize="0"
+					endsize="150"
+					startcolor="0 .5 1"
+					endcolor="0 0 0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+				/>
+				
+				<billboard
+					startwidth="0"
+					endwidth="300"
+					height="5"
+					bone="_bone_fx_01"
+					life="250"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="0 .5 1"
+					endcolor="0  0 0"
+				/>
+
+			</model>
+		
+			<model
+				position="0 0 75"
+				expirelife="0"
+				color="1 1 1"
+				startalpha="1"
+				endalpha="0"
+				scale="2"
+				model="runes/model.mdf"
+				anim="idle"
+				roll="0"
+				yawspeed="180"
+				yaw="180"
+			>
+			
+			
+
+				<groundsprite
+					bone="_bone_fx_01"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					size="35"
+					color="0 .05 .1"
+					position="0 0 50"
+					loop="true"
+				
+				/>
+
+				<billboard
+					bone="_bone_fx_01"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="150"
+					expirelife="250"
+					startcolor="0 .05 .1"
+					endcolor="0 0 0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+
+				/>
+				
+				<billboard
+					life="250"
+					bone="_bone_fx_01"
+					material="/shared/effects/smaterials/whitedot.material"
+					startsize="0"
+					endsize="150"
+					startcolor="0 .5 1"
+					endcolor="0 0 0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+				/>
+				
+				<billboard
+					startwidth="0"
+					endwidth="300"
+					height="5"
+					bone="_bone_fx_01"
+					life="250"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="0 .5 1"
+					endcolor="0  0 0"
+				/>
+
+			</model>
+			
+
+		</particlesystem>
+		
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

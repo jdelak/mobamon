@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="Bastact1_State_Explode_Bomb"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	
+
+	ishidden="true"
+
+	
+>
+	<onexpired>
+	<areaofeffect
+			radius="400"
+			targetselection="all"
+			targetscheme="all_heroes"
+			center="this_proxy_entity"
+			maxtotalimpacts="-1"
+		>	
+		<damage amount="1000" effecttype="Magic" />
+		<kill target="this_proxy_entity" />
+		<printdebuginfo/>
+		</areaofeffect>	
+		<else>
+			<kill target="this_proxy_entity" />
+		</else>	
+
+	</onexpired>	
+	
+</state>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Tutorial2_Revive"
+	
+	
+	icon=""
+	portrait=""
+	model="/shared/models/invis.mdf"
+	passiveeffect=""
+	
+	preglobalscale="0.9"
+	modelscale="1.0"
+	effectscale="1"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	canattack="false"
+
+	sightrangeday="800"
+	sightrangenight="800"
+
+	unitwalking="true"
+	maxlevel="1"
+	baselevel="1"
+
+	deathtime="0"
+	corpsetime="0"
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="false"
+	clearvision="true"
+	maxhealth="900"
+	drawonmap="false"
+
+
+>
+
+	<onframe>
+		<areaofeffect
+			radius="1900"
+			targetselection="all"
+			targetscheme="all_heroes"
+			center="this_entity"
+		>
+			<entitytype type="Hero_CapriceTutorial2" target="target_entity">
+				<setproxy entity="target_entity" target="this_entity" />
+				<setent1 name="revive1" />
+				<pushentity entity="this_entity" />
+				<compare a="stack_entity" b="ent1" op="ne" >
+					<setactivemodifierkey name="glow" />
+					<popup name="checkpoint" source="this_entity" target="this_entity" />
+				</compare>
+			</entitytype>
+		</areaofeffect>
+	</onframe>
+
+	<modifier key="glow" passiveeffect="effects/glow.effect" modpriority="100">
+		<onframe/>
+	</modifier>
+	
+
+</gadget>

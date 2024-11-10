@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.75"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<light
+				life="200"
+				startcolor="12 4 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+				position="0 75 50"
+			/>
+			
+			<simpleemitter
+				position="35 120 20"
+				bone="_bone_origin"
+				count="1"
+				particlelife="1000"
+				spawnrate="5000"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="0 -1 0"
+				speed="0"
+			>
+				<particle
+					turn="true"
+				>
+
+					<groundsprite
+						position="0 100 0"
+						life="500"
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						size="100"
+						color="1 1 1"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".1"
+						height="500"
+						directionalspace="local"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+		
+		
+		
+
+			<beam
+				life="200"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_lefthand"
+				bone_b="_bone_centerofchest"
+				startsize="200"
+				endsize="100"
+				startcolor="1 0 0"
+				midcolor="1 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".9"
+				alpha="1"
+				material="/shared/effects/smaterials/animated_fire_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed=".1"
+			/>
+			
+			<beam
+				life="200"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_lefthand"
+				bone_b="_bone_centerofchest"
+				startsize="200"
+				endsize="100"
+				startcolor="1 0 0"
+				midcolor="1 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".9"
+				alpha="1"
+				material="/shared/effects/smaterials/animated_fire_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed=".1"
+			/>
+			
+			<beam
+				life="200"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_lefthand"
+				bone_b="_bone_centerofchest"
+				startsize="125"
+				endsize="50"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				midcolorpos=".9"
+				alpha="1"
+				material="/shared/effects/smaterials/animated_fire_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed=".1"
+			/>
+			
+			<beam
+				life="250"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_lefthand"
+				bone_b="_bone_centerofchest"
+				startsize="125"
+				endsize="50"
+				startcolor=".7 .35 0"
+				midcolor=".7 .35 0"
+				endcolor="0 0 0"
+				midcolorpos=".9"
+				alpha="1"
+				material="/shared/effects/smaterials/animated_fire_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed=".1"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+				<simpleemitter
+				count="450"
+				bone="_bone_lefthand"
+					spawnrate="2000"
+					minparticlelife="100"
+					maxparticlelife="250"
+					gravity="5"
+					offsetsphere="5 5 5"
+					material="/shared/effects/smaterials/whitedot.material"
+					minspeed="250"
+					maxspeed="500"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						startcolor="1 .5 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						size="25"
+						minstartscale="1"
+						maxstartscale="2"
+						endscale="0"
+					/>
+				</simpleemitter>
+			
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<camerashake2 scale="15.0" radius="1500" duration="400" frequency="22" />		
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+
+
+
+
+
+

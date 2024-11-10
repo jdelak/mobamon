@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Building_HellbourneRax_Base"
+
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+
+	skin=""
+	
+	passiveeffect="effects/idle.effect"
+	destroyedsound=""
+	lowhealtheffect="effects/damage.effect"
+	lowhealthsound=""
+	selectsound=""
+	
+	preglobalscale="1.0"
+	modelscale="1.8"
+	effectscale="1"
+	boundsheight="256"
+	radiusheight="256"
+	boundsradius="86"
+	selectionradius="115"
+	targetoffset="0 0 64"
+
+
+	canattack="false"
+	invulnerable="true"
+	hidealtinfo="true"
+	isselectable="false"
+	buildingwalking="true"
+	immunity="CrowdControlImmunity"
+	stunnedimmunity="true"
+	
+	corpsetime="0"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	unittype="Building_HellbourneTower_Base"
+	
+	turnrate="320"
+	ismobile="false"
+	canrotate="true"
+	
+	istower="true"
+	deathtime="0"
+>
+
+	<ondeath>
+		<pushentitysearch global="true" targetscheme="ally_main_base_structure" ignoreinvulnerable="true" />
+		<setaccumulator entity="stack_entity" value="1" />
+	</ondeath>
+
+	<onattackeddamageevent>
+		<compare a="source_health_percent" b="0.6" op="le" >
+			<areaofeffect
+				targetscheme="enemy_heroes"
+				effecttype=""
+				ignoreinvulnerable="true"
+				targetselection="all"
+				radius="1500"
+				maximpactspertarget="1"
+			>
+			</areaofeffect>
+			<compare a="result" b="1" op="ge" >
+				<areaofeffect
+					targetscheme="ally_heroes"
+					effecttype=""
+					ignoreinvulnerable="true"
+					targetselection="all"
+					radius="1500"
+					maximpactspertarget="1"
+				>
+					<playconductorevent name="BaseDefend_2" entity="target_entity" />
+				</areaofeffect>
+				<areaofeffect
+					targetscheme="enemy_heroes"
+					effecttype=""
+					ignoreinvulnerable="true"
+					targetselection="all"
+					radius="1500"
+					maximpactspertarget="1"
+				>
+					<playconductorevent name="BaseAttack_2" entity="target_entity" />
+				</areaofeffect>
+			</compare>
+		</compare>
+		<else>
+			<areaofeffect
+				targetscheme="enemy_heroes"
+				effecttype=""
+				ignoreinvulnerable="true"
+				targetselection="all"
+				radius="1500"
+				maximpactspertarget="1"
+			>
+			</areaofeffect>
+			<compare a="result" b="1" op="ge" >
+				<areaofeffect
+					targetscheme="ally_heroes"
+					effecttype=""
+					ignoreinvulnerable="true"
+					targetselection="all"
+					radius="1500"
+					maximpactspertarget="1"
+				>
+					<playconductorevent name="BaseDefend_1" entity="target_entity" />
+				</areaofeffect>
+				<areaofeffect
+					targetscheme="enemy_heroes"
+					effecttype=""
+					ignoreinvulnerable="true"
+					targetselection="all"
+					radius="1500"
+					maximpactspertarget="1"
+				>
+					<playconductorevent name="BaseAttack_1" entity="target_entity" />
+				</areaofeffect>
+			</compare>
+		</else>
+	</onattackeddamageevent>
+
+	<modifier key="tower_damaged1" modpriority="100">
+
+	</modifier>
+	
+	<modifier key="tower_damaged2" modpriority="100">
+
+	</modifier>
+	
+</building>

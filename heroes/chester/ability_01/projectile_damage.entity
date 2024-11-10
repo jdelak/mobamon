@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Chester_Ability1"
+
+	lifetime="-1"
+	speed="800"
+	touchradius="110"
+	touchpropradius="110"
+	touchpropanim="hit"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+	
+	modelscale=".4"
+	model="effects/chess_piece/model.mdf"
+	traileffect="effects/trail.effect"
+	
+	canturn="true"
+	hazardradius="380"
+	
+	flying="true"
+	flyheight="0"
+	maxtouches="1"
+	
+>
+	
+	<ontouch>
+		<spawnaffector name="Affector_Chester_Ability1" owner="source_entity" target="this_position" />
+		<playeffect effect="effects/impact_aoe.effect" source="this_position" target="this_position" occlude="true" />
+		
+		<kill target="this_entity" source="" />
+	</ontouch>
+	
+	
+	
+	<onimpact>
+		<playeffect effect="effects/end.effect" source="this_position" target="this_position" occlude="true" />
+	</onimpact>
+		
+</projectile>

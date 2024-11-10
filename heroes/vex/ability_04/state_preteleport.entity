@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Vex_Ability4_PreTeleport"
+
+	
+	
+	icon="icon.tga"
+	passiveeffect="effects/preteleport.effect"
+	stunned="true"
+	ishidden="true"
+>
+	<onexpired>
+		<unbind target="source_entity" />
+		<playeffect effect="effects/cast.effect" target="source_entity" />
+		<teleport source="source_entity"  interpolate="false" target="this_proxy_entity" />
+		<disjoint target="source_entity" />
+		
+		<areaofeffect
+			center="this_proxy_entity"
+			radius="400"
+			targetselection="all"
+			targetscheme="ally_heroes"
+			effecttype="Magic"
+		>
+			<applystate name="State_Vex_Ability4_Buff" duration="5000" />
+		</areaofeffect>
+	</onexpired>
+</state>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rook_Ability1_Zoom_Bastact1"
+
+	speed="1800"
+	gravity="1500"
+	
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	canturn="0"
+	
+	touchprojectileblockers="true"
+	touchradius="1"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+
+	touchpropradius="90"
+	touchpropanim="hit"
+>
+	<ontouch>
+		<delete target="this_entity" />
+		<kill target="this_proxy_entity" source="" />	
+	</ontouch>
+	
+	<onimpact>		
+		<kill target="this_proxy_entity" source="" />		
+	</onimpact>
+	
+	<ondeath>		
+		<playeffect effect="effects/sound2.effect" />		
+		<areaofeffect
+			radius="500"
+			targetselection="closest"
+			targetscheme="all_other_visible_heroes"
+			maxtotalimpacts="1"
+			effecttype="AttackDamage"
+		>
+			<order command="attack" source="source_entity" target="target_entity" queue="back" />
+		</areaofeffect>
+	</ondeath>
+
+</projectile>

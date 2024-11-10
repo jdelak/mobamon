@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".58">
+
+			<simpleemitter
+				timenudge="10000"
+				spawnrate="20"
+				particlelife="5000"
+				gravity="0"
+				drag="0.05"
+				minspeed="0"
+				maxspeed="0"
+				acceleration="0"
+				position="0 0 8"
+				minangle="45"
+				maxangle="45"
+				direction="0 1 0"
+				offsetsphere="75 0 30"
+				
+			> 
+				<particle
+				>
+				
+					<billboard
+						life="5000"
+						material="/shared/effects/smaterials/cartoon_dust.material"
+						color=".8 .9 1"
+						position="0 75 0"
+						depthbias="0"
+						startalpha="0"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".25"
+						minscale=".5"
+						maxscale="1.5"
+						minroll="0"
+						maxroll="360"
+						minrollspeed="-35"
+						maxrollspeed="35"
+					/>
+
+					<billboard
+						life="5000"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor=".05 .075 .1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						position="0 100 0"
+						depthbias="-25"
+						minscale="1"
+						maxscale="1.5"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				timenudge="10000"
+				spawnrate="10"
+				particlelife="5000"
+				gravity="0"
+				drag="0.05"
+				minspeed="0"
+				maxspeed="25"
+				acceleration="0"
+				position="0 0 8"
+				direction="0 0 0"
+				offsetsphere="90 0 50"
+			> 
+				<particle
+				>
+				
+					<billboard
+						minlife="2500"
+						maxlife="5000"
+						material="/shared/effects/smaterials/cartoon_dust.material"
+						color=".8 .9 1"
+						position="0 75 0"
+						depthbias="0"
+						startalpha="0"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".25"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="0"
+						minroll="0"
+						maxroll="360"
+						minrollspeed="-90"
+						maxrollspeed="90"
+					/>
+
+					<billboard
+						minlife="2500"
+						maxlife="5000"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor=".1 .2 .3"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						position="0 100 0"
+						depthbias="-25"
+						minstartscale=".5"
+						maxstartscale="1"
+						endscale="0"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			
+
+			<billboard
+				expirelife="250"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				color=".8 .9 1"
+				position="5 150 -15"
+				depthbias="0"
+				startalpha=".9"
+				endalpha="0"
+				midalphapos=".1"
+				minscale="1"
+				maxscale="1.2"
+				minroll="0"
+				maxroll="360"
+				minrollspeed="-15"
+				maxrollspeed="15"
+			/>
+			
+			<billboard
+				expirelife="250"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				color=".8 .9 1"
+				position="35 150 -5"
+				depthbias="0"
+				startalpha=".75"
+				endalpha="0"
+				midalphapos=".1"
+				scale=".8"
+				minroll="0"
+				maxroll="360"
+				minrollspeed="5"
+				maxrollspeed="15"
+			/>
+			
+			<billboard
+				expirelife="250"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				color=".8 .9 1"
+				position="-30 150 -20"
+				depthbias="0"
+				startalpha=".75"
+				endalpha="0"
+				midalphapos=".1"
+				scale=".7"
+				minroll="0"
+				maxroll="360"
+				minrollspeed="-5"
+				maxrollspeed="-15"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+
+
+	

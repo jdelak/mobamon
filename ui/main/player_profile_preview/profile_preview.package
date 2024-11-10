@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="playerProfilePreviewAchievement">
+		<panel width="35s" height="35s">
+			<panel width="80%" height="80%" align="center" valign="center" color=".09 .09 .09 1" noclick="1" />
+			<image texture="/ui/main/shared/textures/iconframe_displayinfo.tga" noclick="1" />	
+			<image texture="/ui/main/player_profile/textures/achievement.tga" width="54@" height="54%" align="center" valign="center" rendermode="grayscale" color=".4 .4 .4 .2" />
+		</panel>
+	</template>
+	
+	<floater name="profile_preview_parent" x="0" align="center" valign="bottom" height="120s" y="-35s" grow="1" regrow="1" growinvis="0" visible="0" group="main_tooltips" >
+		<panel name="profile_preview_info" visible="0" noclick="1" float="bottom" padding="0" grow="1" regrow="1" growinvis="0" >	
+			<instance name="dialogWrapper1" y="0" outerpadding="+4s" innerpadding="+2s" />
+			<image y="0" name="profile_preview_icon" height="78s" width="78s" texture="/ui/shared/textures/account_icons/default.tga" noclick="true" />
+			<animatedimage name="profile_preview_throb" visible="0" texture="/ui/shared/throb/throb.tga" width="78s" height="78s" valign="top" align="left" x="0" y="0" noclick="true" loop="1" fps="30" onshow="StartAnim(1);" />
+			<panel y="0" noclick="1" x="72s" grow="1" regrow="1" growinvis="0" sticky="0" stickytoinvis="0" float="right" padding="4s">
+				<label name="profile_preview_display_name"  sticky="0" stickytoinvis="0" textalign="center" textvalign="center" fitx="1" fity="1" fitxpadding="20s" font="maindyn_36" color="1 1 1 1" content="" />	
+				<label name="profile_preview_unique_id"	 	sticky="0" stickytoinvis="0" textalign="center" align="center" textvalign="center" fitx="1" fitxpadding="20s" font="maindyn_26" color=".7 .7 .7 1" content="" />	
+			</panel>
+			<panel noclick="1" y="43s" x="82s" grow="1" regrow="1" growinvis="0" sticky="0" stickytoinvis="0" float="right" padding="2s">
+				<instance name="playerProfilePreviewAchievement" id="0" />	
+				<instance name="playerProfilePreviewAchievement" id="1" />	
+				<instance name="playerProfilePreviewAchievement" id="2" />	
+				<instance name="playerProfilePreviewAchievement" id="3" />	
+				<instance name="playerProfilePreviewAchievement" id="4" />	
+				<instance name="playerProfilePreviewAchievement" id="5" />	
+			</panel>			
+		</panel>
+		
+	</floater>
+	
+	<lua file="profile_preview.lua"/>
+
+</package>

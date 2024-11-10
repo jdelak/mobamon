@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<model
+				life="450"
+				model="../../model.mdf"
+				material="../../material.material"
+				anim="idle"
+				startscale="2"
+				endscale="1"
+				color="1 1 1"
+				startalpha="1"
+				endalpha="1"
+				position="0 0 0"
+				pitch="90"
+			>
+			</model>
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+ 			<template name="">
+
+				<trailemitter
+				life="450"
+					position="{zpos}"
+					spawnrate="400"
+					particlelife="500"
+					texpostime="500"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/trail_blend.material"
+					subframepos="true"
+					startparticlealpha="1"
+					endparticlealpha="0"
+				>
+					<particle
+						color="1 .2 0"
+						startsize="140"
+						endsize="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>
+				</trailemitter>
+				
+				
+				<trailemitter
+				life="450"
+					position="{zpos}"
+					spawnrate="150"
+					particlelife="500"
+					texpostime="500"
+					texposscale="0.0"
+					texstretchscale="1"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="0 0 0"
+						startsize="100"
+						endsize="0"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+
+			</template>
+			
+
+			<instance name="" zpos="0 0 100"/> 
+			<instance name="" zpos="0 0 100"/> 
+-->
+			
+			
+			<simpleemitter
+				spawnrate="100"
+				particlelife="2000"
+				direction="0 0 0"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle
+					turn="true"
+				>
+				
+					<billboard
+						minlife="150"			
+						maxlife="250"			
+						startcolor="1 1 0"		
+						midcolor=".5 0 0"		
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+						startsize="200"
+						endsize="400"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+					
+					<billboard
+						minlife="75"			
+						maxlife="150"			
+						startcolor=".5 .125 0"				
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startsize="200"
+						endsize="400"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

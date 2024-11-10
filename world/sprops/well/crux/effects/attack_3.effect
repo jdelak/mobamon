@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="impact" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".5">
+
+			<sound
+				sample="../sounds/sfx_impact.wav"
+				volume="0.85"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2000"
+			/>
+			
+			<template name="flash">
+			
+			
+			<light
+			bone="{zbone}"
+				position="0 0 25"
+				life="1000"
+				startcolor="0 2 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="500"	
+			/>
+			
+
+			
+
+			<simpleemitter
+			bone="{zbone}"
+				count="7"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="0"
+			>
+				<particle
+					color=".1 .35 1"
+					startscale="100"
+					endscale="250"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			bone="{zbone}"
+				count="7"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="0"
+			>
+				<particle
+					color=".45 .65 1"
+					startscale="50"
+					endscale="100"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			
+
+				
+				<billboard
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/animated_arc.material"
+					size="300"
+					color="0 .65 1"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="1"
+					depthbias="-50"
+				/>
+				
+				<billboard
+				delay="200"
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/animated_arc.material"
+					size="350"
+					color="0 .65 1"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="1"
+					roll="45"
+					depthbias="-50"
+				/>
+
+				
+				
+				<billboard
+					delay="200"
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="350"
+					startcolor=".25 .75 1"
+					midcolor=".25 .75 1"
+					endcolor="0 0 0"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					directionalspace="1"
+					depthbias="-100"
+				/>
+				
+				<billboard
+					delay="200"
+					bone="{zbone}"
+					life="200"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="150"
+					startcolor="1 1 1"
+					endcolor="0 0 0"
+					framespeed="1"
+					startframe="0"
+					endframe="1"
+					lockup="1"
+					lockright="1"
+					directionalspace="1"
+					depthbias="-100"
+				/>
+				
+				<billboard
+				bone="{zbone}"
+				color="0 .5 1"
+					life="250"
+					startscale="25"
+					endscale="0"
+					material="/shared/effects/smaterials/streak_flare.material"
+					depthbias="-100"
+					width="85"
+					height="35"
+				/>
+			
+			</template>
+
+
+			
+
+
+			<!-- top rax -->
+			<instance name="flash" zbone="_bone_fx_02" />
+
+
+
+		
+
+      </particlesystem>
+   </definitions>
+   <thread>
+      <wait duration="100" />
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

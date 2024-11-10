@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tracks of higher priority will stop playing lower priority tracks and keep playing until all layers are stopped. Lower priority tracks are still listening and responding to events.
+Tracks can have the same events as other tracks, but layers cannot.
+Tracks of the same priority will be swapped.
+	A)	If different tracks of the same priority have the same event, the track will not be swapped 
+	
+Layers will only play one sample at a time, if a new sample is played on the same layer, it will use the fade in/out, no file specified will stop the layer
+
+Can use Temp1-5 as custom events
+-->
+
+
+<!-- Can I have more layers in a track? -->
+<!-- Can I stop layers without making events to do it? -->
+<!-- What specifically does playconductorevent do? -->
+
+
+<conductor>
+	<track name="Lane" priority="1" >
+		<layer name="LaneMusic" volume="0.65" fadein="5000" fadeout="5000" loop="true" >
+			<!--Used for match beginning and after excitement scenerios if the player is not in the jungle-->
+			<!-- <event name="Normal"								file="/music/ingame/music_dungeon.ogg" >
+				<synctrack name="Excitement" />
+			</event> -->
+
+			<event name="EnterRegion_ambient_cell"				file="/music/ingame/music_dungeon.ogg" />
+			<event name="EnterRegion_ambient_exterior_water1"	file="/music/ingame/music_exterior.ogg" />
+			<event name="EnterRegion_ambient_greathall"			file="/music/ingame/music_greathall.ogg" />
+
+		</layer>
+
+		<layer name="TowerDamageLayer" volume="0.35" fadein="1000" fadeout="3000" loop="true" >
+			<!-- Captured Music -->
+			<event name="TowerDamage"					file="/music/ingame/music_exterior_executioner.ogg" />			
+			<event name="Temp1" >
+				<!-- Blank Layer to stop other events -->
+			</event>
+
+			<!-- Rook Stealth Music -->
+			<event name="Temp2"							file="/music/ingame/music_exterior_rook.ogg" />	
+
+			<!-- <event name="Temp3"							>
+				<synctrack name="Jungle" />
+			</event> -->
+
+			<!-- Flute Overlay -->
+			<event name="OurTowerDestroyed"				file="/music/ingame/music_dungeon_flute.ogg" />		
+			
+		</layer>
+	</track>
+
+	<track name="Jungle" priority="2" >
+
+		<layer name="JungleMusic" volume="0.65" fadein="5000" fadeout="5000" loop="true" >
+			<event name="EnterRegion_ambient_cellar"			file="/music/ingame/music_cellar.ogg" />
+			<event name="EnterRegion_ambient_exterior_water1" >
+			</event>
+		</layer>
+
+		<layer name="ExcitementLayer" volume="0.75" fadein="2000" fadeout="4500" loop="true" >
+
+			<!-- Wine Cellar Tension Music -->
+			<event name="Temp3"							file="/music/ingame/music_cellar_tension.ogg" />
+
+			<event name="Temp1" >
+				<!-- Blank Layer to stop other events -->
+			</event>
+
+			<!-- Executioner Boss Battle -->
+			<event name="Temp5"							file="/music/ingame/music_boss_executioner.ogg" />
+
+			<!-- Wizard Battle -->
+			<event name="Temp4"							file="/music/ingame/music_boss_wizard.ogg" />
+
+		</layer>
+	</track>
+
+	
+
+	<track name="Death" priority="4" nosync="true" >
+		<layer name="Death" volume="0.35" fadein="2000" fadeout="1000" loop="true" >
+			<!--Used when the player has died-->
+			<event name="Death"						file="/music/ingame/music_death.ogg" >
+				<spawnevent name="DeathStinger"	/>
+			</event>
+			<event name="StopDeath" />
+		</layer>
+	</track>
+
+	<stingers>
+		<layer name="FireAndForget" volume="1" fadein="0" fadeout="0" loop="false" fireandforget="true" >
+			<event name="DeathStinger"				file="/music/ingame/music_death_stinger.ogg" />
+			<event name="RespawningSoon"			file="/music/ingame/music_death_prespawn.ogg" >
+				<spawnevent name="StopDeath" delay="3000"  />
+			</event>
+		</layer>
+		<layer name="FireAndForget2" volume="0.5" fadein="1000" fadeout="0" loop="false" fireandforget="true" >
+			<event name="OurTowerDestroyed"			file="/music/ingame/music_dungeon_torch.ogg" />
+			<!-- <event name="EnemyTowerDestroyed"		file="/music/ingame/music_tower_destroy_positive.ogg" /> -->
+		</layer>
+	</stingers>
+
+</conductor>

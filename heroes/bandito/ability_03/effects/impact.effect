@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2">
+
+
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="15"
+				spawnrate="2000"
+				particlelife="750"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="0"
+			>
+				<particle
+					anchor="1"
+					startcolor=".5 .4 .05"
+					midcolor=".5 .4 .05"
+					endcolor="0 0 0"
+					startscale="8"
+					midscale="12"
+					endscale="12"
+					turn="true"
+					minheight="6"
+					maxheight="15"
+					minwidth="1"
+					maxwidth="4"
+				/>
+			</simpleemitter>
+
+			<template name="">
+				<simpleemitter
+					delay="{zdelay}"
+					count="1"
+					bone="_bone_centerofchest"
+					spawnrate="10"
+					particlelife="1000"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="0"
+					depthbias="100"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor="{zcolor}"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startscale=".5"
+						endscale=".85"
+						minwidth="150"
+						maxwidth="150"
+						height="150"
+					/>
+				</simpleemitter>
+			</template>
+			
+			<instance name="" zcolor=".1 .075 .02" zdelay="0"/>
+			<instance name="" zcolor=".1 .075 .02" zdelay="75"/>
+			<instance name="" zcolor=".1 .075 .02" zdelay="150"/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="8"
+				life="1000"
+				spawnrate="150"
+				particlelife="2000"
+				position="0 0 0"
+			>
+				<particle
+				>
+					<simpleemitter
+						count="1"
+						bone="_bone_centerofchest"
+						life="3000"
+						minspeed="75"
+						maxspeed="150"
+						spawnrate="220"
+						gravity="10"
+						direction="0 0 0"
+						offsetsphere="30 30 30"
+						particlelife="2000"
+					>
+						<particle
+						>
+							<model
+								bone="_bone_centerofchest"
+								model="/npcs/neutrals/rare/projectile/effects/coin/model.mdf"
+								color="1 1 1"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="600"
+								maxlife="800"
+								minpitch="-360"
+								maxpitch="360"
+								scale="2.35"
+								startalpha="1"
+								midalpha="1"
+								endalpha="1"
+							/>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			<billboard
+				life="500"
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 .7 0"
+				endcolor="0 0 0"
+				size="200"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-25"
+			/>
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

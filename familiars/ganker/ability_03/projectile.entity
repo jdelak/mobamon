@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Ganker_Ult_1"
+
+	gravity="0"
+	lifetime="300"
+	useexactlifetime="true"
+
+	modelscale="1.0"
+	model=""
+	deatheffect=""
+	flying="true"
+	flyheight="100"
+	canturn="true"
+	
+	impactdistance="100"
+	
+>
+	
+	<onimpact>
+		<applystate target="target_entity" name="State_Ganker_Ult_1" proxy="this_proxy_entity" duration="6500" />
+		<applystate target="target_entity" name="State_Ganker_Ult_No_Heal" proxy="this_proxy_entity" duration="6500" />
+		<getyaw />
+		<setvar0 a="result" b="90" op="sub" />
+		<spawnprojectile name="Projectile_Ganker_Ult_1_Orbit" source="source_entity" target="target_entity" noresponse="true" bind="this_proxy_entity" orbitstartingtheta="var0" proxy="this_proxy_entity" /> 
+	</onimpact>
+	
+
+</projectile>

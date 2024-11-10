@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attachablegadget
+	name="Bastact1_Bomb1"
+
+	model="../effects/models/bomb.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+
+	isselectable="true"
+	iscontrollable="false"
+
+	preglobalscale="2"
+	modelscale="1.6"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="100"
+	selectionradius="100"
+
+	canattack="false"
+
+	canrotate="true"
+	ismobile="false"
+	
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	flying="true"
+	flyheight="0"
+
+	infoheight="200"
+
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="0"
+	lifetime="3500"
+	hidealtinfo="true"
+	unittype="throwable"
+>
+
+	<onspawn>	
+		<playeffect effect="effects/ring.effect" source="this_entity" target="this_entity"  visibility="all"/>
+		<playeffect effect="../effects/fuse.effect" source="this_entity" target="this_entity" visibility="all"/>		
+		<playeffect effect="../effects/pickup_indicator.effect" source="this_entity" target="this_entity" visibility="all"/>
+		<applystate name="State_Bastact1_EffectPlay" target="this_entity" duration="-1"/>
+		<setaccumulator entity="this_entity" value="0" valueb="0"/>
+		
+	</onspawn>
+
+	<onexpired>
+		<areaofeffect
+			radius="240"
+			targetselection="all"
+			targetscheme="all"
+			center="this_entity"
+			maxtotalimpacts="-1"
+			effecttype="Magic Splash"
+		>	
+			<damage amount="150" effecttype="Magic Splash" />
+		</areaofeffect>	
+		<compare a="accumulator" b="1" op="eq">
+		<pushability entity="this_owner_target_entity" slot="2" />
+		<deactivatemodifierkey entity="this_owner_target_entity" name="with_nohitch_withsword" />
+		<deactivatemodifierkey entity="stack_entity" name="throw2" />
+		<activatemodifierkey entity="stack_entity" name="pickup2" />
+		<attach source="this_proxy_entity" target="" boneslot="1" />
+		<pushability entity="this_owner_target_entity" slot="2" />
+		<multcharges entity="stack_entity" value="0"/>
+		<changeaccumulator b="1" op="sub" />
+		</compare>
+		<spawnunit name="Gadget_Bastact1_Bomb1_Blank" target="this_entity" lifetime="7500" pushentity="true" />
+		<playeffect effect="../effects/death_orange_scorched.effect" source="stack_entity" occlude="true" visibility="all"/>
+	</onexpired>
+
+
+	<onkilled>
+		<areaofeffect
+			radius="240"
+			targetselection="all"
+			targetscheme="all"
+			center="this_entity"
+			maxtotalimpacts="-1"
+			effecttype="Magic Splash"
+		>	
+			<damage amount="150" effecttype="Magic Splash" />
+			
+			
+		</areaofeffect>	
+		<spawnunit name="Gadget_Bastact1_Bomb1_Blank" target="this_entity" lifetime="7500" pushentity="true" />
+		<playeffect effect="../effects/death_orange_scorched.effect" source="stack_entity" occlude="true" visibility="all"/>
+	</onkilled>
+
+
+
+	<modifier key="flying" modpriority="100"
+		flying="true"
+		flyheight="0"
+
+	>
+		
+	</modifier>
+
+	<modifier key="flying2" modpriority="100"
+		flying="true"
+		flyheight="160"
+		unitwalking="true"
+
+	>
+		<onframe>
+				<teleport source="this_entity" target="this_owner_target_entity" interpolate="true" facetarget="true"/>
+		</onframe>
+	</modifier>
+	
+</attachablegadget>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high_3.model" type="K2" high="high_3.model" med="high_3.model" low="high_3.model" >
+
+	<skin name="Black">
+		<reference mesh="Box001"			material="material_black.material" />
+	</skin>
+	
+	<skin name="Pink">
+		<reference mesh="Box001"			material="material_pink.material" />
+	</skin>
+
+	<skin name="Pharoh">
+		<reference mesh="Box001"			material="material_pharoh.material" />
+	</skin>
+
+	<skin name="Red">
+		<reference mesh="Box001"			material="material_red.material" />
+	</skin>
+		
+	<skin name="Legion">
+		<reference mesh="Box001"			material="material_legion.material" />
+	</skin>
+	
+	<skin name="hunter">
+		<reference mesh="Box001"			material="material_ranger.material" />
+	</skin>
+
+
+	<anim name="idle"  clip="clips/default_1.clip" loop="true" blendtime="500" />
+
+	<anim name="portrait" clip="clips/portrait.clip" loop="true"/>
+
+	<anim name="item_1" clip="clips/item_1.clip"/>
+
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+
+	<anim name="item_channel_1" clip="clips/item_channel_1.clip" loop="true"/>
+
+	<anim name="bored_1" clip="clips/bored_1.clip"/>
+
+	<anim name="spawn_1" clip="clips/spawn_1.clip" />
+
+	<anim name="emote_1" clip="clips/emote_1.clip" blendtime="100" fps="30" loop="false" >
+		<frameevent frame="40" cmd="StartEffect effects/emote.effect 0"/>
+		<frameevent frame="1" cmd="PlayStreamLinear ../sounds/voice/vo_emote_uber.wav 1500 3000 1"/>
+	</anim>
+
+	<anim name="emote_2" clip="clips/emote_2.clip"/>
+
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" fps="25">
+		<frameevent frame="2" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="5" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 400 2000 .2"/>
+		<frameevent frame="16" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="18" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 400 2000 .2"/>
+		<frameevent frame="29" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="32" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 400 2000 .2"/>
+		<frameevent frame="42" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="45" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 400 2000 .2"/>
+	</anim>
+
+	<anim name="walk_2" clip="clips/walk_2.clip" loop="true" />
+
+	<anim name="taunt_1" clip="clips/taunt_1.clip"/>
+
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="25" cmd="PlaySoundLinear ../sounds/sfx_foley_death.wav 1500 2800 .45"/>
+	</anim>
+
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="32" />
+
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="32" />
+
+	<anim name="ability_1" clip="clips/ability_1.clip" blendtime="0"/>
+
+	<anim name="ability_1_fly" clip="clips/ability_1_fly.clip" blendtime="0" numframes="4" loopbackframe="4" loop="true" />
+
+	<anim name="ability_1_land" clip="clips/ability_1_fly.clip" blendtime="0" startframe="4" numframes="-1" />
+
+	<anim name="ability_2" clip="clips/ability_2.clip" blendtime="200"/>
+
+	<anim name="ability_2_down" clip="clips/ability_2_down.clip" loop="true" loopbackframe="-1"/>
+
+	<anim name="ability_2_up" clip="clips/ability_2_up.clip" blendtime="200"/>
+
+	<anim name="ability_3" clip="clips/ability_3.clip" loop="true" loopbackframe="-1" fps="400"/>
+
+	<anim name="ability_4_start" clip="clips/ability_4.clip"  fps="15" numframes="15" loopbackframe="15" loop="true" />
+
+	<anim name="ability_4_end" clip="clips/ability_4.clip"  fps="30" startframe="15" numframes="55" blendtime="0" />
+
+	<anim name="ability_4_2" clip="clips/attack_1.clip"  fps="100" />
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip"/>
+
+	<anim name="knock_1" clip="clips/knock_1.clip" loop="true" loopbackframe="-1"/>
+
+	<anim name="getup_1" clip="clips/getup_1.clip"/>
+
+	<anim name="port_out" clip="clips/port_out.clip"/>
+
+	<anim name="port_in" clip="clips/port_in.clip"/>
+
+</model>

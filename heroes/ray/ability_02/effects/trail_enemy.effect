@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system1" space="world"  scale="1">
+
+			<trailemitter				
+				spawnrate="50"
+				particlelife="500"
+				texpostime="500"
+			 	texposscale="0.0"
+			 	texstretchscale=".4"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle				
+					 startcolor="1 0 0"
+					 midcolor=".8 0 0"
+					 endcolor="0 0 0"
+					 startsize="35"
+					 midsize="25"
+					 endsize="5"
+					 midsizepos="0.2"
+			 />
+			</trailemitter>	
+
+			<groundsprite
+				bone="_bone_fx_01"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot_ground.material"
+				startcolor=".4 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				loop="true"
+				size="90"
+
+			/>
+
+			<billboard
+				bone="_bone_fx_01"
+				position="0 0 0"
+				life="500"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="1 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				lockup="1"
+				pitch="90"
+				size="300"
+				loop="true"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system1" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

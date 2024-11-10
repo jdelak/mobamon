@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_Trixie_Ability2"
+
+	icon="icon.tga"
+
+	effecttype=""
+	passiveeffect="effects/state.effect"
+	ishidden="true"
+>
+
+	<oninflict>
+		<getconstant name="shield" adjustmentsource="this_entity" />
+		<setvalue source="this_entity" name="source_max_shield" a="result" b="source_max_shield" op="add"/>
+		<getconstant name="shield" adjustmentsource="this_entity" />
+		<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="result" op="add" />
+	</oninflict>
+
+	<onframe>
+		<compare source="this_owner_entity" a="source_shield" b="0" op="le" >
+			<expire />
+		</compare>
+	</onframe>
+	
+	<onexpired>
+		<playeffect effect="effects/death.effect" target="source_entity" source="source_entity"/>
+		<starttimer entity="tool_entity" duration="0" />
+	</onexpired>
+
+</statenetaccum>

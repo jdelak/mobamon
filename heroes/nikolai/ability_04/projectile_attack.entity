@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Nikolai_Ability4_Attack"
+
+	lifetime="400"
+	useexactlifetime="true"
+	
+	model="/shared/models/invis.mdf"
+
+	effectscale="1"
+	traileffect="effects/trail_down.effect"
+	
+
+>
+
+	<onimpact>
+		<playeffect effect="effects/impact_big.effect" source="target_position" target="target_position" />
+		<spawnaffector name="Affector_Nikolai_Ability4" target="target_position" />
+		
+		<pushentity entity="target_entity" />
+		<areaofeffect
+			radius="1000"
+			targetselection="closest"
+			targetscheme="Nikolai_Location"
+			ignoreinvulnerable="true"
+		>
+			<teleport source="stack_entity" target="target_entity" interpolate="true" />
+			<setpos0 position="target_entity" offsetspace="target_entity" offset="80 0 0" />
+			<teleport source="this_proxy_entity" target="pos0" interpolate="true" />
+		</areaofeffect>
+	</onimpact>
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+</projectile>

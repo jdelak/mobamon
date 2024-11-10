@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				volume="0.75"
+				falloffstart="500"
+				falloffend="2500"
+				sample="../sounds/sfx_impact.wav"
+			/>
+<!--
+			<simpleemitter
+				bone="_bone_lefthand"
+				count="1"
+				position="0 0 0"
+				spawnrate="2000"
+				particlelife="1000"
+			>
+				<particle
+				>
+					<groundsprite
+						bone="_bone_lefthand"
+						position="0 0 0"
+						life="1250"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						startsize="45"
+						midsize="45"
+						endsize="45"
+						midsizepos=".05"
+						color="1 1 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						depthbias="-25"
+					/>
+					
+					<groundsprite
+						bone="_bone_lefthand"
+						position="0 0 0"
+						life="1250"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						startsize="55"
+						midsize="55"
+						endsize="55"
+						midsizepos=".05"
+						color="1 1 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rook_Ability1"
+
+
+	speed="1800"
+	gravity="0"
+
+	impactdistance="80"
+
+	modelscale="4.1"
+	model="/shared/models/invis.mdf"
+	canturn="0"
+	flying="false"
+	flyheight="0"
+	
+	touchradius="140"
+	touchpropradius="140"
+	touchpropanim="hit"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype=""
+	
+	maxtouchespertarget="1"
+
+>
+	<ontouch>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<targettype type="hero" >
+					<playeffect target="source_entity" effect="effects/impact.effect" />
+				</targettype>
+				
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+	</ontouch>
+	
+	<onimpact>
+		<playanim name="stop" target="this_proxy_entity" />
+		<playeffect effect="effects/sound.effect" />
+		<setactivemodifierkey entity="this_proxy_entity" name="stop_passive_effect" />
+		<setactivemodifierkey entity="tool_entity" name="rookhook" />
+		<starttimer entity="tool_entity" duration="3200" />
+	</onimpact>
+</projectile>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<modifier
+			life="350"
+			alpha="0"
+		/>
+
+		<particlesystem name="system0" space="world" scale="2">
+
+      <sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume=".75"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+
+			<simpleemitter
+				count="12"
+				spawnrate="5000"
+				particlelife="2000"
+				offsetsphere="45 45 0"
+				position="0 0 0"
+			>
+				<particle
+				>
+		
+					<template name="">
+						<billboard
+							material="/shared/effects/smaterials/black_spot_ground.material"
+							startalpha="0 0 0"
+							midalpha="{zalpha}"
+							endalpha="0"
+							midalphapos=".2"
+							minlife="550"
+							maxlife="750"
+							position="0 0 65"
+							startscale="{zscale}"
+							midscale="{zscale}"
+							endscale="0"
+							midscalepos=".8"
+							depthbias="0"
+							minheight="400"
+							maxheight="600"
+							width="{zwidth}"
+							lockup="1"
+							lockright="1"
+						/>
+						
+						<billboard
+							material="/shared/effects/smaterials/black_spot_ground.material"
+							startalpha="0 0 0"
+							midalpha="{zalpha}"
+							endalpha="0"
+							midalphapos=".2"
+							minlife="550"
+							maxlife="750"
+							position="0 0 65"
+							startscale="{zscale}"
+							midscale="{zscale}"
+							endscale="0"
+							midscalepos=".8"
+							minheight="200"
+							maxheight="300"
+							width="{zwidth}"
+							lockup="1"
+							lockright="1"
+						/>
+					</template>
+					
+					<instance name="" zscale="1.25" zalpha=".1" zwidth="20"/>            
+					<instance name="" zscale="2" zalpha=".1" zwidth="40"/> 
+		
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+			>
+				<particle
+				turn="true"
+				>
+<!--
+					<light
+						position="0 0 75"
+						life="1500"
+						startcolor="2 2 10"
+						endcolor="0"
+						falloffstart="25"
+						falloffend="175"
+					/>
+-->
+
+					<groundsprite
+						life="1250"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						size="75"
+						color=".45 .35 .5"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".8"
+					/>
+
+					<groundsprite
+						material="/shared/effects/smaterials/black_hole_overlay.material"
+						startsize="35"
+						midsize="40"
+						endsize="40"
+						midsizepos=".1"
+						life="1250"
+						color="1 1 1"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".8"
+						startframe="1"
+						endframe=".01"
+						yaw="20"
+					/>
+
+					<template name="">
+						<billboard
+							material="/shared/effects/smaterials/black_spot_ground.material"
+							startalpha="{zalpha}"
+							endalpha="0"
+							life="400"
+							position="0 0 65"
+							startscale="{zscale}"
+							endscale="0"
+							depthbias="0"
+							height="600"
+							width="{zwidth}"
+							lockup="1"
+							lockright="1"
+						/>
+					</template>
+					
+					<instance name="" zscale="1.25" zalpha=".5" zwidth="20"/>            
+					<instance name="" zscale="2" zalpha=".5" zwidth="40"/>  
+
+					<groundsprite
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						startscale="2"
+						midscale="0"
+						endscale="0"
+						life="1500"
+						color="0 0 0"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+					/>
+
+					<groundsprite
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						startscale="1"
+						midscale="0"
+						endscale="0"
+						life="1500"
+						color="0 0 0"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+					/>
+
+					<model
+						position="0 0 50"
+						life="1000"
+						model="../../model.mdf"
+						anim="ability_2_cast"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+						midalphapos=".95"
+						startcolor="-.5"
+					>
+					</model>
+
+				</particle>
+			</simpleemitter>
+			
+		</particlesystem>	
+
+		<particlesystem name="system1" space="world" scale=".75">
+
+			<simpleemitter
+				delay="350"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+			>
+				<particle
+					turn="true"
+				>
+					<simpleemitter
+						count="75"
+						spawnrate="5000"
+						particlelife="2000"
+						offsetsphere="50 50 0"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						minspeed="0"
+						maxspeed="350"
+						depthbias="-25"
+					>
+						<particle
+						>
+							<billboard
+								life="500"
+								material="/shared/effects/smaterials/sand_poofy_no_center.material"
+								startscale="1"
+								minendscale="2"
+								maxendscale="3"
+								color="0 0 0"
+								startalpha="0"
+								midalpha=".5"
+								endalpha="0"
+								midalphapos=".2"
+								minroll="0"
+								maxroll="360"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								depthbias="-10"
+							/>
+						</particle>
+					</simpleemitter>
+
+					<template name="">
+						<simpleemitter
+							delay="0"
+							bone="_bone_center"
+							count="3"
+							position="{zpos}"
+							spawnrate="50"
+							particlelife="2000"
+							offsetsphere="0 0 0"
+						>
+							<particle
+							>
+								<debris
+									scale=".25"
+									minlife="300"
+									maxlife="600"
+									model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf"
+									anim="idle"
+									minspeed="500"
+									maxspeed="3500"
+									minangle="0"
+									maxangle="20"
+									direction="0 0 1"
+									gravity="75"
+									acceleration="0"
+									drag="0"
+									startcolor="1 0 2"
+									endcolor="-.5"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".5"
+									bounce=".1"
+									reflect=".8"
+									collide="false"
+									animpose="false"
+									offsetsphere="75 75 150"
+									directionalspace="world"
+								>
+								</debris>
+							</particle>
+						</simpleemitter>
+						
+					</template>
+					
+					<instance name="" zpos="0 0 0"/>
+					
+					
+					
+					
+					<simpleemitter
+						count="2"
+						position="0 0 0"
+						spawnrate="30"
+						particlelife="10000"
+						offsetsphere="15 15 0"
+					>
+						<particle
+						>
+							<model
+								position="0 0 0"
+								minlife="8000"
+								maxlife="10000"
+								name="emitter0" 
+								anim="idle"
+								model="/heroes/ray/ability_01/effects/rocks/model.mdf"
+								minscale=".3"
+								maxscale=".4"
+								color=".25 0 .5"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".75"
+								minyaw="0"
+								maxyaw="360"
+							/>
+						</particle>
+					</simpleemitter>
+					
+					
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+		<waitfordeath  instance="instance2"/>
+	</thread>
+</effect>

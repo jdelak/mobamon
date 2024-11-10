@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".5">
+
+		
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.85"
+				sample="../sounds/sfx_impact.wav"
+			/>
+		
+<!--
+			<template name="">
+
+				<simpleemitter
+					delay="{zdelay}"
+					bone="_bone_center"
+					count="7"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+					depthbias="0"
+				>
+					<particle
+						color=".25 0 .75"
+						startalpha="{zalpha}"
+						endalpha="0"
+						scale="200"
+						turn="true"
+						minheight="2"
+						maxheight="5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zdelay="0" zalpha="1"/>
+			<instance name="" zdelay="50" zalpha=".75"/>
+			<instance name="" zdelay="100" zalpha=".5"/>
+			<instance name="" zdelay="150" zalpha=".5"/>
+-->
+			<light
+				life="400"
+				startcolor="2 0 10"
+				midcolor="2 0 10"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="500"
+				endfalloffend="750"
+				position="0 0 50"
+			/>
+
+			<billboard
+				bone="_bone_center"
+				life="500"
+				startcolor=".25 0 1"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startsize="550"
+				endsize="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-25"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			
+			<simpleemitter
+				bone="_bone_center"
+				count="8"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-75"
+			>
+				<particle
+					startcolor="1 0 .75"
+					endcolor="0 0 0"
+					scale="200"
+					turn="true"
+					startalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_center"
+				count="4"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-75"
+			>
+				<particle
+					startcolor=".2 0 1"
+					endcolor="0 0 0"
+					scale="200"
+					turn="true"
+					minheight="6"
+					maxheight="12"
+					width=".65"
+				/>
+			</simpleemitter>	
+
+		</particlesystem>
+
+		<modifier
+			name="modifier0"
+			life="400"
+			startcolor=".25 0 .5"
+			midcolor="5 0 5"
+			endcolor="1 1 1"
+		/>
+
+	</definitions>
+	
+	
+	
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

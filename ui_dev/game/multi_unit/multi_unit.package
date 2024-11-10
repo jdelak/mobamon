@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="multi_select_unit">
+		<panel width="4.0h" watch="SelectedVisible{index}" ontriggerlua="self:SetVisible(AtoB(param))">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="3" watch="SelectedColor{index}" ontriggerlua="self:SetBorderColor(param)"/>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="3" color="0 0 0 .9"/>
+			<frame texture="/ui/elements:roundframe" watch="SelectedColor{index}" ontriggerlua="self:SetBorderColor(param)" borderthickness="3"/>
+
+			<panel align="center" valign="center" width="85%" height="85%" float="bottom" padding="1%" color="invisible">
+				<panel align="center" height="85@" width="85%" color="invisible" >
+					<image
+						watch="SelectedIcon{index}"
+						ontriggerlua="self:SetTexture(param)"
+						watch0="SelectedIllusion{index}"
+						ontrigger0lua="	if (AtoB(param)) then
+											self:SetRenderMode('grayscale')
+											self:SetColor('0.35 1.3 0.35')
+										else
+											self:SetRenderMode('normal')
+											self:SetColor('white')
+										end"
+					/>
+				</panel>
+				<panel height="7%" width="85%" color="black" watch="SelectedHealth{index}" ontriggerlua="self:SetVisible(tonumber(param1) > 0)">
+					<!--
+					<panel watch="SelectedHealth{index}" ontrigger="SetColor(Saturate(1 - (param2 - 0.50) / 0.50), (param2 + (((param2 - 0.05) / 1.0)*0.2)) / 0.45, 0, 1); ScaleWidth(FtoP(param2), 500);" color="0 1 0 0" noclick="1">
+						<panel color="0 0 0 .5"/>
+					</panel>
+					-->
+					<panel watch="SelectedHealth{index}" ontriggerlua="self:SetWidth(FtoP(param2)) self:SetColor(Saturate(1 - (tonumber(param2) - 0.50) / 0.50), (tonumber(param2) + (((tonumber(param2) - 0.05) / 1.0) * 0.2)) / 0.45, 0, 1)" color="0 1 0 0" noclick="1">
+						<panel color="1 1 1 .1" align="right" width=".1h" rendermode="additive"/>
+					</panel>
+				</panel>
+				<panel height="7%" width="85%" color="black" watch="SelectedMana{index}" ontriggerlua="self:SetVisible(tonumber(param1) > 0)">
+					<!--
+					<panel color="0 0.2 1 .8" watch="SelectedMana{index}"  ontrigger="ScaleWidth(FtoP(param2), 500, -1);"/>
+					-->
+					<panel color="0 0.4 1 1" watch="SelectedMana{index}"  ontriggerlua="self:SetWidth(FtoP(param2))"/>
+				</panel>
+			</panel>
+			
+			<image
+				texture="$invis"
+				rendermode="additive"
+				color="white"
+				watch="SelectedActive{index}"
+				ontriggerlua="self:SetVisible(AtoB(param))"
+			/>
+			<!-- UIScript -->
+			<button
+				color="invisible"
+				onclick="If(GetModifier1(), DeselectUnit({index}), SetControlUnit({index}));"
+				onrightclick="DeselectUnit({index});"
+				onmouseoverlua="GetWidget('unit_tooltip_info{index}', 'game'):SetVisible(1)"
+				onmouseoutlua="GetWidget('unit_tooltip_info{index}', 'game'):SetVisible(0)"
+				interactive="false"
+			/>
+		</panel>
+	</template>
+
+	<!-- Selection Info Right -->
+	<panel name="selection_info_right" group="game_selection_info" visible="true" width="29.8h" height="29.8h" align="right" valign="bottom" color="invisible" noclick="1">
+		<!-- Info - Units/Heroes -->
+		<!-- UIScript -->
+		<panel name="game_selected_info_unit" visible="0" group="selected_info" watch="SelectedVisible0 SelectedVisible1 SelectedType0" ontrigger="SetVisible(SelectedVisible0 and !SelectedVisible1 and !StringEquals(SelectedType0, 'building'));" color="invisible" noclick="1">
+			<panel name="game_selected_info_unit_bg" width="24.0h" height="16.0h" align="right" valign="bottom" color="black"/>
+			<!-- Icon -->
+			<panel name="game_selected_info_unit_icon" x="-17.1h" y="-8.7h" height="6.0h" width="6.0h" align="right" valign="bottom">
+				<image texture="$invis" color="1 1 1 1"/>
+				<image name="game_botright_portrait_icon_0"
+					onmouseldownlua="Action('PortraitCenterInfo', 1.0)" onmouseluplua="Action('PortraitCenterInfo', 0.0)"
+					onmouseoverlua="GetWidget('unit_tooltip_info0', 'game'):SetVisible(1)"   onmouseoutlua="GetWidget('unit_tooltip_info0', 'game'):SetVisible(0)"
+					onhidelua="Action('PortraitCenterInfo', 0.0);"
+				/>
+				<!-- lifetime bar section-->
+				<panel name="game_botright_life_bar_backer" visible="false" noclick="true" passivechildren="true">
+					<piegraph texture="$invis" start="225" end="-49" square="1" color=".2 .2 .1 1" value="1" noclick="true"/>
+					<piegraph name="game_botright_life_bar_ring" texture="$invis" start="225" end="-49" square="1" color="#e5df2f" value=".2" noclick="true"/>
+					<label name="game_botright_life_bar_label" width="100%" height="100%" valign="center" textalign="center" textvalign="center" font="dyn_14" color="white" shadow="true" shadowoffset="2" />
+				</panel>
+				<image texture="$invis" color="#ffffffbb" noclick="true" />
+			</panel>
+
+			<!-- Health -->
+			<panel name="game_botright_health_bar_bg_0"
+				x="-1.2h"
+				y="-10.8h"
+				width="14.5h"
+				height="1.4h"
+				align="right" valign="bottom"
+				color="0 .2 0 0"
+				onmouseoverlua="GetWidget('health_tooltip_info', 'game'):SetVisible(1)"
+				onmouseoutlua="GetWidget('health_tooltip_info', 'game'):SetVisible(0)"
+				passivechildren="true"
+			>
+				<panel name="game_botright_health_bar_backer_0" color="0 1 0 0" noclick="1">
+					<panel color="0 0 0 .85"/>
+				</panel>
+				<panel name="game_botright_health_bar_0" color="0 1 0 0" noclick="1">
+					<panel color="1 1 1 .1" align="right" width=".1h" rendermode="additive"/>
+				</panel>
+				<image width="-0.6h" align="center" texture="$invis"/>
+				<label name="game_botright_health_label_0" font="dyn_8" color="white" outline="1" width="100%" height="100%" textalign="center" textvalign="center" />
+			</panel>
+
+			<!-- Mana -->
+			<panel name="game_botright_mana_bar_bg_0"
+				x="-1.2h"
+				y="-9.0h"
+				width="14.5h"
+				height="1.4h"
+				align="right" valign="bottom"
+				color="0 0 .1 1"
+				onmouseoverlua="GetWidget('mana_tooltip_info', 'game'):SetVisible(1)"
+				onmouseoutlua="GetWidget('mana_tooltip_info', 'game'):SetVisible(0)"
+				passivechildren="true"
+			>
+				<panel name="game_botright_mana_bar_0" color="0 .4 1 1">
+					
+				</panel>
+				<image width="-0.6h" align="center" texture="$invis"/>
+				<label name="game_botright_mana_label_0" font="dyn_8" color="white" outline="1" width="100%" height="100%" textalign="center" textvalign="center" />
+			</panel>
+
+			<!-- Level -->
+			<panel name="game_botright_level_bg_0"
+				x="-0.7h" y="-12.2h" height="3.6h" width="3.6h" valign="bottom" align="right"
+				passivechildren="true"
+				onmouseoverlua="GetWidget('experience_tooltip_info', 'game'):SetVisible(1)"
+				onmouseoutlua="GetWidget('experience_tooltip_info', 'game'):SetVisible(0)"
+			>
+				<label name="game_botright_level_label_0" width="100%" textalign="center" height="100%" textvalign="center" font="dyn_9" color="yellow" shadow="true" />
+			</panel>
+
+			<!-- Name -->
+			<label name="game_botright_name_label_0" x="0.7h" y="-13.1h" width="-13.2h" height="1.6h" align="right" valign="bottom" textalign="left" textvalign="center" color="white" font="dyn_10" shadow="true" shadowoffset="2" noclick="true" />
+			<label name="game_botright_name_label_0B" x="0.7h" y="-13.1h" width="-13.2h" height="1.6h" align="right" valign="bottom" textalign="right" textvalign="center" color="white" font="dyn_10" shadow="true" shadowoffset="2" noclick="true" />
+
+			<!-- Selected Stats -->
+			<panel name="game_selected_info_unit_stats" x="-14.5h" y="-1.0h" width="8.8h" height="6.8h" align="right" valign="bottom" color="invisible" float="bottom" padding="0.25h">
+				<!-- Damage -->
+				<panel height="1.6h" watch="SelectedDamage" ontriggerlua="self:SetVisible(tonumber(param1) ~= 0)" onmouseoverlua="GetWidget('attack_tooltip_info', 'game'):SetVisible(1)" onmouseoutlua="GetWidget('attack_tooltip_info', 'game'):SetVisible(0)" passivechildren="true">
+					<image width="100@" height="100%" texture="$invis"/>
+					<label x="15@" width="-100@" height="100%" align="right" font="dyn_8" color="white" shadow="1" textalign="left" textvalign="center"
+						watch="SelectedDamage"
+						ontriggerlua="self:SetText(round(tonumber(param0) + tonumber(param2)) .. ' - ' .. round(tonumber(param1) + tonumber(param2)))"
+					/>
+				</panel>
+				<!-- Armor -->
+				<panel height="1.6h" onmouseoverlua="GetWidget('defense_tooltip_info', 'game'):SetVisible(1)" onmouseoutlua="GetWidget('defense_tooltip_info', 'game'):SetVisible(0)" passivechildren="true"
+					onload="
+						CreateFloat('game_player_info_armor', 0);
+						CreateFloat('game_player_info_magicarmor', 0);
+					"
+				>
+					<image width="100@" height="100%" texture="$invis"/>
+					<label x="15@" width="-100@" height="100%" align="right" font="dyn_8" color="white" shadow="1" textalign="left" textvalign="center"
+						watch="SelectedArmor"
+						ontriggerlua="self:SetText(FtoA(param1, 1)..' ^777/^999 '..FtoA(GetCvarNumber('game_player_info_magicarmor'), 1)) Set('game_player_info_armor', param1)"
+						watch1="SelectedMagicArmor"
+						ontrigger1lua="self:SetText(FtoA(GetCvarNumber('game_player_info_armor'), 1)..' ^777/^999 '..FtoA(param1, 1)) Set('game_player_info_magicarmor', param1)"					
+					/>				
+				</panel>
+				<!-- Movement Speed -->
+				<panel height="1.6h" watch="SelectedMoveSpeed" ontriggerlua="self:SetVisible(tonumber(param1) ~= 0)" onmouseoverlua="GetWidget('movement_tooltip_info', 'game'):SetVisible(1)" onmouseoutlua="GetWidget('movement_tooltip_info', 'game'):SetVisible(0)" passivechildren="true">
+					<image width="100@" height="100%" texture="$invis"/>
+					<label x="15@" width="-100@" height="100%" align="right" font="dyn_8" color="white" shadow="1" textalign="left" textvalign="center"
+						watch="SelectedMoveSpeed"
+						ontriggerlua="self:SetText(round(param1))"
+					/>
+				</panel>
+				<!-- Attributes -->
+				<panel height="1.6h" color="invisible" float="right" watch="SelectedHasAttributes" ontriggerlua="self:SetVisible(AtoB(param))" onmouseoverlua="GetWidget('attribute_tooltip_info', 'game'):SetVisible(1)" onmouseoutlua="GetWidget('attribute_tooltip_info', 'game'):SetVisible(0)" passivechildren="true">
+					<image width="100@" height="100%" texture="$invis"/>
+					<label x="15@" width="-100@" height="100%" align="right" font="dyn_8" color="white" shadow="1" textalign="left" textvalign="center"
+						watch="SelectedAttributes"
+						ontriggerlua="self:SetText(round(param0)..' '..round(param1)..' '..round(param2))"
+					/>
+				</panel>
+			</panel>
+
+			<!-- Targetting Catcher -->
+			<!-- UIScript -->
+			<button
+				color="invisible"
+				watch="ToolTargetingEntity"
+				ontrigger="SetVisible(param); RefreshCursor();"
+				onclick="SelectUnit(SelectedIndex0);"
+				interactive="false"
+			/>
+		</panel>
+
+
+		<!-- Info - Buildings -->
+		<!-- UIScript -->
+		<panel name="game_selected_info_building" visible="0" color="invisible" noclick="1" watch="SelectedVisible0 SelectedVisible1 SelectedType0" ontrigger="SetVisible(SelectedVisible0 and !SelectedVisible1 and StringEquals(SelectedType0, 'building'));">
+
+			<panel name="game_selected_info_building_bg" width="24.0h" height="12.0h" align="right" valign="bottom" color="black"/>
+
+			<!-- Icon -->
+			<panel name="game_selected_info_building_icon" x="-17.1h" y="-4.8h" height="6.0h" width="6.0h" align="right" valign="bottom">
+				<image texture="$invis" color="1 1 1 1"/>
+				<image name="game_botright_portrait_icon_1"
+					onmouseldownlua="Action('PortraitCenterInfo', 1.0)"
+					onmouseluplua="Action('PortraitCenterInfo', 0.0)"
+					onmouseoverlua="GetWidget('unit_tooltip_info0', 'game'):SetVisible(1)"
+					onmouseoutlua="GetWidget('unit_tooltip_info0', 'game'):SetVisible(0)"
+					onhidelua="Action('PortraitCenterInfo', 0.0)"
+				/>
+				<image texture="$invis" color="#ffffffbb" noclick="true" />
+			</panel>
+
+			<!-- Health -->
+			<panel name="game_botright_health_bar_bg_1"
+				x="-1.2h"
+				y="-7.0h"
+				width="14.5h"
+				height="1.4h"
+				align="right" valign="bottom"
+				color="0 .2 0 0"
+				onmouseoverlua="GetWidget('health_tooltip_info', 'game'):SetVisible(1)"
+				onmouseoutlua="GetWidget('health_tooltip_info', 'game'):SetVisible(0)"
+				passivechildren="true"
+			>
+				<panel name="game_botright_health_bar_backer_1" color="0 1 0 0" noclick="1">
+					<panel color="0 0 0 .85"/>
+				</panel>
+				<panel name="game_botright_health_bar_1" color="0 1 0 0" noclick="1">
+					<panel color="1 1 1 .1" align="right" width=".1h" rendermode="additive"/>
+					
+				</panel>
+				<image width="-0.6h" align="center" texture="$invis"/>
+				<label name="game_botright_health_label_1" font="dyn_9" color="white" outline="1" width="100%" height="100%" textalign="center" textvalign="center" />
+			</panel>
+
+			<!-- Shared abilities -->
+			<panel name="game_selected_info_building_shared_abilities" width="15.0h" height="8.0h" align="right" valign="bottom" color="invisible" noclick="1">
+				<panel name="game_selected_info_building_shared_abilities_pos" x="0.4h" y="0.35h" width="100%" align="center" float="right" color="invisible" padding="0" noclick="0">
+					<!--
+					<instance name="ability_frame_shared" slot="33"/>
+					<instance name="ability_frame_shared" slot="34"/>
+					<instance name="ability_frame_shared" slot="35"/>
+					-->
+				</panel>
+			</panel>
+
+			<!-- Level -->
+			<panel name="game_botright_level_bg_1"
+				x="-0.7h" y="-8.3h" height="3.6h" width="3.6h" valign="bottom" align="right"
+				passivechildren="true"
+				onmouseoverlua="GetWidget('experience_tooltip_info', 'game'):SetVisible(1)"
+				onmouseoutlua="GetWidget('experience_tooltip_info', 'game'):SetVisible(0)"
+			>
+				<image x="-0.5h" y="-0.5h" width="5.0h" height="5.0h" texture="$invis" noclick="true" />
+				<label name="game_botright_level_label_1" width="100%" textalign="center" height="100%" textvalign="center" font="dyn_9" color="yellow" shadow="true" />
+			</panel>
+
+			<!-- Name -->
+			<label name="game_botright_name_label_1" x="0.7h" y="-9.3h" width="-13.2h" height="1.6h" align="right" valign="bottom" textalign="left" textvalign="center" color="white" font="dyn_10" shadow="true" shadowoffset="2" noclick="true" />
+			<label name="game_botright_name_label_1B" x="0.7h" y="-9.3h" width="-13.2h" height="1.6h" align="right" valign="bottom" textalign="right" textvalign="center" color="white" font="dyn_10" shadow="true" shadowoffset="2" noclick="true" />
+			
+			<!-- Selected Stats -->
+			<panel name="game_selected_info_building_stats" x="-14.9h" y="-0.8h" width="8.8h" height="3.3h" align="right" valign="bottom" color="invisible" float="bottom" padding="0.2h">
+
+				<!-- Selected Damage -->
+				<panel width="-0.25h" height="1.7h" align="right" watch="SelectedDamage" ontriggerlua="self:SetVisible(tonumber(param1) ~= 0)" onmouseoverlua="GetWidget('attack_tooltip_info', 'game'):SetVisible(1)" onmouseoutlua="GetWidget('attack_tooltip_info', 'game'):SetVisible(0)" passivechildren="true">
+					<image width="1.7h" height="1.7h" texture="$invis"/>
+					<label width="-1.5h" height="100%" align="right" font="dyn_8" color="white" shadow="1" textalign="left" textvalign="center"
+						watch="SelectedDamage"
+						ontriggerlua="
+							if (tonumber(param1) == 0) then
+								self:SetText('')
+							elseif (tonumber(param2) == 0) then
+								self:SetText(round(param0)..' - '..round(param1))
+							elseif (tonumber(param2) > 0) then
+								self:SetText(round(param0)..' - '..round(param1)..' ^g+'..round(param2))
+							else
+								self:SetText(round(param0)..' - '..round(param1)..' ^r'..round(param2))
+							end
+						"
+					/>
+				</panel>
+
+				<!-- Selected Armor -->
+				<panel width="-0.25h" height="1.7h" align="right" onmouseoverlua="GetWidget('defense_tooltip_info', 'game'):SetVisible(1)" onmouseoutlua="GetWidget('defense_tooltip_info', 'game'):SetVisible(0)" passivechildren="true">
+					<image width="1.7h" height="1.7h" texture="$invis"/>
+					<label width="-1.7h" height="100%" align="right" font="dyn_8" color="white" shadow="1" textalign="left" textvalign="center"
+						watch="SelectedArmor"
+						ontriggerlua="
+							local diff = (tonumber(param1) - tonumber(param0))
+							if (diff == 0.0) then
+								self:SetText(FtoA(param0, 2))
+							elseif (diff > 0) then
+								self:SetText(FtoA(param0, 2)..' ^g+'..FtoA(diff, 2))
+							else
+								self:SetText(FtoA(param0, 2)..' ^r'..FtoA(diff, 2))
+							end
+						"
+					/>
+				</panel>
+
+			</panel>
+		</panel>
+
+		<!-- Multiple Selected -->
+		<!-- UIScript -->
+		<panel visible="0" watch="SelectedVisible0 SelectedVisible1" ontrigger="SetVisible(SelectedVisible0 and SelectedVisible1);" noclick="1">
+
+			<panel name="game_selected_info_mult_backer" width="24.0h" height="13.0h" align="right" valign="bottom" color="black"/>
+
+			<panel name="game_selected_info_mult_units" x="-0.8h" y="-0.4h" width="21.4h" height="13.8h" align="right" valign="bottom" color="invisible" visible="1" float="bottom" padding="0.2h">
+				<panel y="0.5h" height="4.2h" float="right" padding="0.1h">
+					<instance name="multi_select_unit" index="0"/>
+					<instance name="multi_select_unit" index="1"/>
+					<instance name="multi_select_unit" index="2"/>
+					<instance name="multi_select_unit" index="3"/>
+					<instance name="multi_select_unit" index="4"/>
+				</panel>
+
+				<panel height="4.2h" float="right" padding="0.1h">
+					<instance name="multi_select_unit" index="5"/>
+					<instance name="multi_select_unit" index="6"/>
+					<instance name="multi_select_unit" index="7"/>
+					<instance name="multi_select_unit" index="8"/>
+					<instance name="multi_select_unit" index="9"/>
+				</panel>
+
+				<panel height="4.2h" float="right" padding="0.1h">
+					<instance name="multi_select_unit" index="10"/>
+					<instance name="multi_select_unit" index="11"/>
+					<instance name="multi_select_unit" index="12"/>
+					<instance name="multi_select_unit" index="13"/>
+					<instance name="multi_select_unit" index="14"/>
+				</panel>
+			</panel>
+		</panel>
+
+	</panel>
+	<!-- END BOTTOM RIGHT -->	
+	
+	<lua file="multi_unit.lua"/>
+	
+</package>

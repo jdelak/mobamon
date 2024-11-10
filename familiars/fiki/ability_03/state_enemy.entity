@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Fiki_Ability3_Enemy"
+
+	
+	
+	icon="icon.tga"
+	silenced="true"
+	perplexed="true"
+
+	passiveeffect="effects/state.effect"
+	
+>
+	<onframe>
+		<targettype type="alive" target="source_entity" />
+		<else>
+			<expire/>
+		</else>
+	</onframe>
+	
+	<oninflict>
+		<aggression />
+		<order command="attack" force="true" forceduration="5000" source="target_entity" target="proxy_entity" />
+	</oninflict>
+	
+	<onrefresh>
+		<aggression />
+		<order command="attack" force="true" forceduration="5000" source="target_entity" target="proxy_entity" />
+	</onrefresh>
+
+	<onexpired>
+		<targettype type="creep" >
+			<order command="stop" source="this_owner_entity" target="this_owner_entity" />
+		</targettype>
+	</onexpired>
+	
+	
+</state>

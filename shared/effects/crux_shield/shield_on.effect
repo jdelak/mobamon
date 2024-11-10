@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.25">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2000" 
+				volume="0.45" 
+				sample="/buildings/base/melee_rax/shield/sounds/impact_%.wav"
+			/>
+			
+			<billboard
+				expirelife="100"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor=".2 .2 .4"
+				endcolor="0 0 0"
+				scale="5"
+				model="../generator_shield/octagonal_shield/model.mdf"
+				anim="idle"
+			/>
+
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor=".1 1 .1"
+				endcolor="0 0 0"
+				scale="5"
+				model="../generator_shield/pulse_shield/model.mdf"
+				anim="idle"
+			/>
+			
+			
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor=".2 .5 1"
+				endcolor="0 0 0"
+				startscale="5"
+				endscale="5.4"
+				model="../generator_shield/octagonal_shield/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+			/>
+			
+			
+			
+			
+			<model
+				position="0 0 0"
+				expirelife="250"
+				startcolor=".05 .05 .1"
+				endcolor="0 0 0"
+				scale="5"
+				model="../generator_shield/octagonal_shield/model.mdf"
+				anim="idle"
+			/>
+
+			<model
+				position="0 0 0"
+				expirelife="250"
+				startcolor=".06 .2 .175"
+				endcolor="0 0 0"
+				scale="5"
+				model="../generator_shield/pulse_shield/model.mdf"
+				material="../generator_shield/pulse_shield/material_slower.material"
+				anim="idle"
+			/>
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

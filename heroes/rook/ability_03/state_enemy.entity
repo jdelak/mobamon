@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Rook_Ability3_Enemy"
+
+	
+	
+	icon="icon.tga"
+	passiveeffect="effects/state_enemy.effect"
+	maxcharges="5"
+>
+	<oninflict>
+		<addcharges count="1" />
+	</oninflict>
+	
+	<onrefresh>
+		<addcharges count="1" />
+	</onrefresh>
+	
+	<onattackeddamageevent>
+		<damagesupertype supertype="attack">
+			<damageeffecttype effecttype="Splash" />
+			<else>
+				<cantarget targetscheme="self" source="this_inflictor_entity">
+					<getconstant name="damage" adjustmentsource="this_inflictor_entity" />
+					<setvar0 a="result" b="charges" op="mult" />
+					<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="add" />
+				</cantarget>
+			</else>
+		</damagesupertype>
+	</onattackeddamageevent>
+
+</state>

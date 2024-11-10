@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="foliage_tangent">
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="OutObject" type="float3" solution="ObjectTangent" />
+	<output name="OutWorld" type="float3" solution="WorldTangent" />
+	<output name="OutSign" type="float" solution="ObjectTangentSign" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			OutObject = float3(0.0f, 0.0f, 0.0f);
+			OutWorld = OutObject;
+			OutSign = 1.0f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			OutObject = float3(0.0f, 0.0f, 0.0f);
+			OutWorld = OutObject;
+			OutSign = 1.0f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			OutObject = vec3(0.0f, 0.0f, 0.0f);
+			OutWorld = OutObject;
+			OutSign = 1.0f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			OutObject = vec3(0.0f, 0.0f, 0.0f);
+			OutWorld = OutObject;
+			OutSign = 1.0f;
+		?>
+	</case>
+</node>

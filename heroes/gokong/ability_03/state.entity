@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_GoKong_Ability3"
+
+	icon="icon.tga"
+
+	effecttype="StatusBuff"
+	allowtransfer="true"
+
+	attackrange="200"
+	basedamage="5,15,25,35"
+	
+	passiveeffect="effects/state_weapon.effect"
+	propagatetoillusions="false"
+	
+	modifierkey="ability3_active"
+	ishidden="true"
+	displaylevel="true"
+
+>
+
+	<onattackstart>
+		<playanim name="ability_3_attack_1" speed="source_attackspeed" target="source_entity" />
+	</onattackstart>
+	
+	<onattackimpact>
+		<playeffect effect="effects/impact_enemy.effect" source="target_entity" target="target_entity" occlude="true" />
+	</onattackimpact>
+
+	
+</state>

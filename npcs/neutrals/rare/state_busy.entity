@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Neutral_Rare_Busy"
+	
+	icon="icon.tga"
+	
+	ishidden="true"
+	
+	allowtransfer="true"
+	modifierkey="rare_busy"
+	
+>
+
+	<onexpired>
+		<setaccumulator entity="source_entity" value="0" />
+		<playanim name="burrow_1" target="source_entity"/>
+		<applystate name="State_Neutral_Rare_Stunned" duration="500" target="source_entity" />
+	</onexpired>
+
+</state>

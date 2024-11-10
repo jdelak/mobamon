@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Harrower_Ability2_Damage"
+	
+	icon="icon.tga"
+	effecttype=""
+	allowtransfer="true"
+	ishidden="true"
+	
+	
+>
+	<oninflict>
+		<applystate name="State_Harrower_Ability2_DamageTiming" target="target_entity" pushentity="true" duration="200" />
+		<setaccumulator entity="stack_entity" value="1" />
+	</oninflict>
+	
+	<onrefresh>
+		<applystate name="State_Harrower_Ability2_DamageTiming" target="target_entity" pushentity="true" duration="200" />
+		<setaccumulator entity="stack_entity" value="0.33" />
+	</onrefresh>
+
+</state>

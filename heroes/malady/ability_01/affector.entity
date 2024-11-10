@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Malady_Ability1"
+
+	radius="150"
+	arc="180"
+	
+	speed="1588" 
+
+	hazardradius="300"
+	hazardoffset="150"
+
+	touchpropradius="120"
+	touchpropanim="flamehit"
+	
+	lifetime="450"
+	maximpactspertarget="1"
+	targetselection="all"
+	targetscheme="enemy_units_and_buildings"
+	effecttype="Magic"
+	persist="true"
+	effect="effects/tornado.effect"
+> 
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+		<combatevent effecttype="BindingProjectile Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<setvar1 a="result" />
+				<damage effecttype="Magic Splash" amount="1" b="result" op="mult"/>
+				
+				<cantarget effecttype="CrowdControl">
+					<applystate name="State_Stunned" duration="1000,1350,1650,2000"/>
+					<unbind target="target_entity" />
+					<spawnunit name="Gadget_Malady_Ability1" target="target_position" count="1" pushentity="true" fixedposition="true" />
+					<playeffect effect="effects/impact.effect" target="" source="target_position" occlude="true"  />
+					<spawnprojectile name="Projectile_Malady_Ability1_Orbit" source="stack_entity" target="stack_entity" bind="target_entity" bindturn="true" ignoretargetoffset="true" noresponse="true" orbitstartingtheta="0" bindpriority="2"/>
+					<setproxy target="stack_entity" />
+				</cantarget>
+
+				<applystate name="State_Malady_Ability1_Enemy" pushentity="true" proxy="this_proxy_entity" duration="570"/>
+			</onimpact>
+		</combatevent>
+	</onimpact>
+</affector>

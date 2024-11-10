@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Pal_Ability4"
+
+	radiusstart="0"
+	radiusend="700"
+	
+	lifetime="400"
+	maximpactspertarget="1"
+	targetselection="all"
+	targetscheme="enemy_units_and_buildings"
+	effecttype="Magic"
+	persist="true"
+	impacteffect=""
+	effect=""
+>
+
+
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+
+		<playeffect effect="effects/impact_enemy.effect" source="target_entity" target="target_entity" />
+		
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" />
+		<setvar1 a="var0" b="0.4" op="mult" />
+		<setvar0 a="var0" b="0.6" op="mult" />
+		
+		<setvar2 a="param" b="100" op="div" />
+		<setvar0 a="var2" b="var0" op="mult" />
+		
+		<setvar0 a="var1" b="var0" op="add" />
+		
+		<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+
+	</onimpact>
+</affector>

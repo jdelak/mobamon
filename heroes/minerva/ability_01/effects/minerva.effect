@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity">
+<!--
+			<billboard
+				bone="_bone_fx_01"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				expirelife="250"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+			/>
+-->
+			<simpleemitter
+				position="0 0 0"
+				delay="25"
+				bone="_bone_fx_01"
+				count="1"
+				particlelife="1000"
+				spawnrate="5000"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				speed="2000"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="_bone_fx_01"
+						position="0 0 100"
+						material="/shared/effects/smaterials/lightning.material"
+						life="110"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor=".75 .85 1"
+						scale="8"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="-90"
+						framespeed="9"
+						depthbias="-75"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+

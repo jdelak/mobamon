@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				volume="0.6"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+<!--
+			<billboard
+				bone="_bone_centerofchest"
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+				scale="5"
+				depthbias="-75"
+			/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="3000"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".2 0 1"
+				midcolor=".2 0 1"
+				endcolor="0 0 0"
+				scale="5"
+				depthbias="-75"
+			/>
+-->
+
+			<model
+			expirelife="250"
+				position="0 0 75"
+				model="shield/model.mdf"
+				material="shield/material.material"
+				anim="idle"
+				color="2"
+				startscale="5.5"
+				endscale="7.5"
+				midscalepos=".25"
+				yawspeed="270"
+			/>
+			
+
+			
+			
+			
+			
+			
+			
+
+			<template name="orbs">
+
+				<model
+					life="{zlife}"
+					delay="{zdelay}"
+					bone="_bone_center"
+					model="orbit/orbit.mdf"
+					anim="idle"
+					startscale="1.85"
+					endscale="{zscale}"
+					roll="{zroll}"
+					yaw="{zyaw}"
+					pitch="{zpitch}"
+					position="0 0 30"
+					yawspeed="{zyawspeed}"
+				>
+					<model
+						expirelife="0"
+						bone="_bone_fx"
+						model="gem_singles/model.mdf"
+						material="gem_singles/material.material"
+						anim="idle"
+						scale=".55"
+						color="6"
+						rollspeed="720"
+						position="0 0 0"
+						alpha=".5"
+					/>
+
+					<billboard
+						expirelife="0"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".1 0 .5"
+						endcolor="0 0 0"
+						scale="1.25"
+						depthbias="-25"
+					/>
+					
+					
+					<trailemitter
+						bone="_bone_fx"
+						life="1500"
+						spawnrate="50"
+						particlelife="800"
+						texpostime="800"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							 startcolor=".25 0 1"
+							 midcolor=".25 0 1"
+							 endcolor="0 0 0"
+							 midcolorpos=".1"
+							 startsize="10"
+							 midsize="10"
+							 endsize="10"
+							 midsizepos="0.2"
+							 alpha="0"
+					 />
+					</trailemitter>
+					
+					<billboard
+						bone="_bone_fx"
+						life="300"
+						minstartscale="5"
+						maxstartscale="5"
+						endscale="0"
+						color=".75 .25 1"
+						material="/shared/effects/smaterials/streak_flare_purple.material"
+						depthbias="-50"
+					/>
+					
+					
+					
+<!--
+					<simpleemitter
+					delay="2600"
+						bone="_bone_fx"
+						count="4"
+						spawnrate="1055"
+						particlelife="100"
+						gravity="0"
+						minspeed="22.0"
+						maxspeed="22"
+						acceleration="0.0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+						depthbias="-25"
+					>
+						<particle
+							color=".7 0 .35"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							scale="200"
+							turn="true"
+							minheight="2.2"
+							maxheight="3"
+						/>
+					</simpleemitter>
+-->
+
+
+					
+					
+
+					
+					
+					
+
+				</model>
+			
+			</template>
+
+			<instance name="orbs" zlife="3250" zdelay="0" zroll="45" zyaw="80" zyawspeed="180" zpitch="0" zscale="2.15"/>
+
+			<instance name="orbs" zlife="2250" zdelay="1000" zroll="-45" zyaw="180" zyawspeed="360" zpitch="0" zscale="2.05"/>
+
+			<instance name="orbs" zlife="1250" zdelay="2000" zroll="0" zyaw="0" zyawspeed="540" zpitch="45" zscale="1.95"/>
+			
+			
+			
+			<template name="glow">
+			
+				<billboard
+				delay="{zdelay}"
+					position="0 0 75"
+					life="300"
+					minstartscale="6"
+					maxstartscale="6"
+					endscale="0"
+					color=".55 .1 .8"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-75"
+				/>
+			
+			</template>
+			
+			<instance name="glow" zdelay="0"/>
+			<instance name="glow" zdelay="1000"/>
+			<instance name="glow" zdelay="2000"/>
+			
+			
+			
+
+
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">	
+
+			<model
+				expirelife="0"
+				model="cauldron/model.mdf"
+				anim="idle"
+				scale="8"
+				startalpha="1"
+				endalpha="0"
+				pitchspeed="-360"
+			>
+
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="250"
+					startcolor="1 1 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="0"
+					scale=".21"
+				/>
+				
+				<billboard
+					bone="_bone_fx_01"
+					position="0 0 0"
+					expirelife="250"
+					startcolor="1 1 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="0"
+					scale=".21"
+				/>
+				
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="800"
+					gravity="35"
+					minparticlelife="100"
+					maxparticlelife="500"
+					offsetsphere="3"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="-50"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor=".15 .5 0"
+						midcolor=".15 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="5"
+						minendsize="2"
+						maxendsize="5"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="250"
+					gravity="35"
+					minparticlelife="100"
+					maxparticlelife="500"
+					offsetsphere="7"
+					material="/shared/effects/smaterials/bubble_add.material"
+					depthbias="-75"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor=".3 .5 0"
+						midcolor=".15 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						minsize="3"
+						maxsize="5"
+					/>
+				</simpleemitter>
+
+				
+				
+				
+				
+				
+				
+				
+
+				<template name="">
+
+					<simpleemitter
+						delay="{zdelay}"
+						count="250"
+						bone="_bone_fx_01"
+						spawnrate="1000"
+						gravity="35"
+						minparticlelife="100"
+						maxparticlelife="500"
+						offsetsphere="3"
+						material="/shared/effects/materials/whitedot.material"
+						depthbias="-50"
+					>
+						<particle 
+							minangle="-360"
+							maxangle="360"
+							startcolor=".25 1 0"
+							midcolor=".25 1 0"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							startsize="5"
+							minendsize="2"
+							maxendsize="5"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						delay="{zdelay}"
+						count="250"
+						bone="_bone_fx_01"
+						spawnrate="1000"
+						gravity="35"
+						minparticlelife="100"
+						maxparticlelife="500"
+						offsetsphere="7"
+						material="/shared/effects/smaterials/bubble_add.material"
+						depthbias="-75"
+					>
+						<particle 
+							minangle="-360"
+							maxangle="360"
+							startcolor=".75 1 0"
+							midcolor=".35 1 0"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							minsize="3"
+							maxsize="5"
+						/>
+					</simpleemitter>
+					
+				</template>
+
+				<instance name="" zdelay="275"/>
+
+			</model>
+			
+			
+			
+			
+			
+			
+
+
+			<terrainemitter
+				spawnrate="50"
+				particlelife="1000"
+				position="0 0 0"
+				offsetradial="0 0 0"
+				offsetsphere="75 75 0"
+			>
+				<particle
+				>
+
+					<billboard
+					delay="300"
+						position="0 0 0"
+						minlife="200"
+						maxlife="300"
+						startcolor=".35 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".5"
+						maxscale=".9"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+
+					<billboard
+					delay="300"
+						position="0 0 0"
+						minlife="200"
+						maxlife="300"
+						startcolor=".35 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".5"
+						maxscale=".9"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+					
+					<billboard
+					delay="300"
+						position="0 0 10"
+						minlife="75"
+						maxlife="150"
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/bubble_add.material"
+						minscale=".3"
+						maxscale=".6"
+						depthbias="-75"
+					/>
+
+				</particle>
+			</terrainemitter>
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

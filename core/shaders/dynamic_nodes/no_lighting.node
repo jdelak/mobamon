@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="no_lighting">
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+		
+		Out.rgb = Diffuse * Color.rgb + Emissive;
+		Out.a = Opacity * Color.a;
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+		
+		Out.rgb = Diffuse * Color.rgb + Emissive;
+		Out.a = Opacity * Color.a;
+	?>
+</node>

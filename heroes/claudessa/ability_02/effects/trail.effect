@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="local" scale="1.2">
+		
+<!--
+			<model
+				expirelife="250"
+				parentskeleton="1"
+				parentmodel="1"
+				material="/shared/effects/smaterials/shell_glass.material"
+				startcolor=".5 2.5 5"
+				endcolor="0 0 0"
+			/>
+-->
+			<billboard
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				size="250"
+				startcolor="0 .15 1"
+				endcolor="0 0 0"
+				depthbias="-100"
+			/>
+			
+			
+			<template name="">
+				<trailemitter
+					spawnrate="50"
+					particlelife="800"
+					texpostime="800"
+					texposscale="0"
+					texstretchscale=".4"
+					material="/shared/effects/materials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor="0 .25 1"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startsize="40"
+						midsize="60"
+						endsize="0"
+						midsizepos=".1"
+					/>
+				</trailemitter>
+			</template>
+			
+			<instance name="" zbone=""/>
+			<instance name="" zbone=""/>
+			<instance name="" zbone=""/>
+			<instance name="" zbone=""/>
+
+
+
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

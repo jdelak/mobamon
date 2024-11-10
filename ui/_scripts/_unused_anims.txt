@@ -1,0 +1,54 @@
+	local function PositionRegister(widget, positionTable) -- leave screen and re enter anim
+		widget:RegisterWatchLua('mainButtonPositionTrigger', function(widget, trigger)
+			
+			if (mainButtonPositionTrigger.state == 1) then
+				
+				local x,y = widget:GetX(), widget:GetY()
+
+				widget:SetX(x)
+				widget:SetY(y)
+				
+				-- widget:FadeOut(125)
+				widget:SlideX(widget:GetXFromString('100w') + widget:GetWidth(), 250, true)
+			
+				widget:Sleep(350, function(widget)
+					
+					widget:SetHeight(positionTable[trigger.state][3])
+					widget:SetWidth(positionTable[trigger.state][4])
+					
+					widget:SetX(positionTable[trigger.state][1])
+					widget:SetY(widget:GetHeight() * -1)			
+				
+					widget:SlideY(positionTable[trigger.state][2], 125, true)	
+
+					widget:FadeIn(1)
+					
+				end)
+				
+			else
+			
+				local x,y = widget:GetX(), widget:GetY()
+
+				widget:SetX(x)
+				widget:SetY(y)
+				
+				-- widget:FadeOut(125)
+				widget:SlideY(widget:GetYFromString('0') - widget:GetHeight(), 250, true)
+			
+				widget:Sleep(250, function(widget)
+
+					widget:SetHeight(positionTable[trigger.state][3])
+					widget:SetWidth(positionTable[trigger.state][4])				
+				
+					widget:SetY(positionTable[trigger.state][2])
+					widget:SetX(widget:GetXFromString('100w') + widget:GetWidth())			
+				
+					widget:SlideX(positionTable[trigger.state][1], 350, true)	
+
+					widget:FadeIn(1)
+					
+				end)			
+			
+			end
+		end)	
+	end

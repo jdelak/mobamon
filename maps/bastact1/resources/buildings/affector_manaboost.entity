@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_ManaBoost"
+	effect="key.effect"
+	radius="100"
+	targetselection="all"
+	targetscheme="player_controlled_units"
+	lifetime="-1"
+	maximpactspertarget="1"
+	diewithowner="false"
+
+>
+	<onimpact>
+		<entitytype type="Hero_Bastion1Bastact1">
+			<print text="Bastion has picked up a Mana Boost" />
+			<applystate name="State_Bastact1_ManaBoost" duration="2000" target="target_entity"/> 
+			<delete target="this_entity" />
+		</entitytype>
+	</onimpact>
+
+</affector>

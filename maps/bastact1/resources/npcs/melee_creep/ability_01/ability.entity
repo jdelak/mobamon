@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Guard_Enemy"
+
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="500"
+	castactiontime="200"
+
+	actiontype="target_position"
+	targetradius="500"
+	casteffecttype="Magic"
+	targetscheme="player_and_mobs"
+	casteffect="effects/cast.effect"
+	
+    ischanneling="true"
+  	channeltime="1000"
+	manacost="0"
+	cooldowntime="10000"
+
+	range="500"
+	forcerange="500"
+	
+	
+>
+	<onchannelstart>
+    <showchannelbar duration="1500"/>
+    <order command="forcechannel" force="true" queue="front" />
+  	</onchannelstart>
+
+  	<onchannelend>
+  		<areaofeffect
+			radius="500"
+			targetselection="all"
+			targetscheme="player_and_mobs"
+			maxtotalimpacts="1"
+			
+		>
+		
+			<spawnprojectile name="Projectile_Guard_Enemy" bind="source_entity" bindturn="true"  source="source_entity" target="target_position" bindnopush="true"  />
+
+		</areaofeffect>
+		<else>
+			<applystate name="State_Guard_Enemy" duration="-1" target="source_entity" />
+		</else>	
+	</onchannelend>
+	
+</ability>

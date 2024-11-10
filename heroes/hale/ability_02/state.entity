@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Hale_Ability2"
+
+	icon="icon.tga"
+
+	passiveeffect="effects/state.effect"
+	modifierkey="ability2"
+	 
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	ishidden="true"
+>
+
+	<onattackstart >
+		<applystate name="State_Hale_Ability2" duration="300" target="source_entity"/>
+		<cantarget targetscheme="enemy_units_and_buildings">
+			<addattackimpactactions>
+				<combatevent effecttype="Counterable">
+					<onimpact>
+						<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="700" />
+						<spawnprojectile name="Projectile_Hale_Ability2" source="source_entity" target="pos0" proxy="target_entity" offset="0 75 125"/>
+
+						<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity"/>
+						<playeffect effect="effects/cast_second.effect" target="source_entity" source="source_entity"/>
+					</onimpact>
+				</combatevent>
+				<expire/>
+			</addattackimpactactions>
+		</cantarget>
+	</onattackstart>
+
+	<onattack>
+		<clearcriticals/>
+		<getconstant name="damage_increase" />
+		<setvar0 a="result" b="0.01" op="mult" />
+		<setvar0 a="source_attackdamage" b="result" op="mult" />
+		<bonusdamageadd target="" a="result" />
+	</onattack>
+
+</state>

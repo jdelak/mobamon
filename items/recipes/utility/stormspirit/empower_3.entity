@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Stormspirit_Empower_3"
+
+	cost="825"
+>
+	<constant name="movespeed_enchant" value="100" adjustment="none" />
+	<onimpact>
+		<breakchannel entity="target_entity" />
+		<unbind />
+		<setpos0 position="source_position" offsetspace="source_entity" offset="0 50 0" />
+		<spawnunit name="Gadget_Item2I" target="target_position" mount="target_entity" facing="pos0" pushentity="true" />
+		<applystate name="State_Item2I_Empower_3" duration="2000" proxy="stack_entity" />
+		<popup name="invulnerable" source="source_entity" target="source_entity" />
+
+		<startcooldown/>
+		<getconstant name="cooldown_analog" />
+		<setvar0 a="result" b="1000" op="mult" />
+		<reducecooldown duration="var0" />
+
+	</onimpact>
+</qualityitem>

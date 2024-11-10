@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="true">
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale=".225">
+
+			<template name="link">
+				<beam
+					expirelife="500"
+					owner_a="source"
+					owner_b="target"
+					bone_a="{bone1}"
+					bone_b="{bone2}"
+					size="115"
+					color="1 1 .75"
+					tile="2.25"
+					material="/shared/effects/smaterials/chainlinkconnect_gray_panning.material"
+				>
+				</beam>
+				
+				<beam
+					expirelife="500"
+					owner_a="source"
+					owner_b="target"
+					bone_a="{bone1}"
+					bone_b="{bone2}"
+					size="115"
+					color="1 .5 0"
+					tile="2.25"
+					material="/shared/effects/smaterials/chainlinkconnect_gray_add_panning.material"
+				>
+				</beam>
+	
+			</template>
+			
+			<instance name="link" bone1="_bone_centerofchest" bone2="_bone_center" size="30" startframe=".2" framespeed="3"/>
+			<instance name="link" bone1="_bone_centerofchest" bone2="_bone_center" size="32" startframe=".5" framespeed="4.5"/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+
+		<particlesystem name="system1" space="world" scale=".5">
+
+			<template name="">
+
+				<billboard
+					owner="{zowner}"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					startcolor=".5 .25 0"
+					endcolor="0 0 0"
+					startsize="500"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-100"
+				/>
+				
+				<billboard
+					owner="{zowner}"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					startcolor=".5 .35 .15"
+					endcolor="0 0 0"
+					startsize="100"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-100"
+				/>
+
+				<simpleemitter
+					position="0 0 -18"
+					owner="{zowner}"
+					bone="_bone_centerofchest"
+					spawnrate="35"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="12.0"
+					minspeed="750"
+					maxspeed="1500"
+					drag="0.005"
+					acceleration="0.0"
+					offsetsphere="12 12 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					particledirectionalspace="world"
+				>
+					<particle
+						startheightdistort="0.25"
+						endheightdistort="0"
+						startsize="8"
+						endsize="4"
+						startcolor="1 1 1"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						turn="1"
+					>
+					</particle>
+				</simpleemitter>
+				
+			</template>
+			
+			<instance name="" zowner="source"/>
+			
+			
+			
+			
+			
+			
+			<template name="">
+
+				<billboard
+					owner="{zowner}"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					startcolor=".25 .125 0"
+					endcolor="0 0 0"
+					startsize="500"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-100"
+				/>
+				
+				<billboard
+					owner="{zowner}"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					startcolor=".25 .15 .075"
+					endcolor="0 0 0"
+					startsize="100"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-100"
+				/>
+
+				<simpleemitter
+					position="0 0 -18"
+					owner="{zowner}"
+					bone="_bone_centerofchest"
+					spawnrate="25"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="12.0"
+					minspeed="750"
+					maxspeed="1500"
+					drag="0.005"
+					acceleration="0.0"
+					offsetsphere="12 12 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					particledirectionalspace="world"
+				>
+					<particle
+						startheightdistort="0.25"
+						endheightdistort="0"
+						startsize="8"
+						endsize="4"
+						startcolor="1 1 1"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						turn="1"
+					>
+					</particle>
+				</simpleemitter>
+				
+			</template>
+			
+			<instance name="" zowner="target"/>
+			
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system2" space="world" scale="2.25">
+			
+			<template name="">
+			
+				<model
+					position="{zpos}"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					color="1 1 1"
+					startalpha="1"
+					endalpha="0"
+					model="chains/model.mdf"
+					anim="idle"
+					roll="-90"
+					yawspeed="{zyawspeed}"
+					directionalspace="world"
+				/>
+
+				<model
+					position="{zpos}"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					startcolor="1.25 .75 .2"
+					endcolor="0 0 0"
+					model="chains/model.mdf"
+					material="/shared/effects/smaterials/shell_glass.material"
+					anim="idle"
+					roll="-90"
+					yawspeed="{zyawspeed}"
+					directionalspace="world"
+				/>
+
+			</template>
+			
+
+			<instance zyawspeed="0" zpos="0 0 -10"/>
+			
+<!--
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				bone="_bone_centerofchest"
+				owner="source"
+				expirelife="500"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				size="175"
+				depthbias="-150"
+			/>
+-->
+			
+
+			
+
+
+		</particlesystem>
+	  
+	  
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <spawnparticlesystem instance="instance1" particlesystem="system1" />
+      <spawnparticlesystem instance="instance2" particlesystem="system2" />
+      <waitfordeath instance="instance0" />
+      <waitfordeath instance="instance1" />
+      <waitfordeath instance="instance2" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

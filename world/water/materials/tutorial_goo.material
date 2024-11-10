@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/water_directional2.shader" vDiffuseColor="0.7 2 0.2" fSpecularLevel="0.8" fGlossiness="445.0" fBumpLevel="1.0" fOpacity="1.0">
+		<vec3 name="vAlphaParams" value=".35 .3 .23" />
+		<vec3 name="vTextureParams" value=".012 .005 .23" />
+		<rotvec name="vRotation" value="225" />
+	</parameters>
+	<phase name="color" cull="back" alphawrite="false" vampire="true" depthwrite="false" depthsortbias="10.0" blend="composite">
+		<sampler name="waterdiffuse" texture="../textures/goo_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="waternormalmap1" texture="../textures/goo_normal.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="waternormalmap2" texture="../textures/water_normal.tga" repeat_u="true" repeat_v="true" />
+		<samplercube name="cube" texture="/world/sky/deadlock/1.tga" />
+	</phase>
+</material>

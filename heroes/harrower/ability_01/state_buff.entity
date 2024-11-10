@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Harrower_Ability1_Buff"
+	
+	icon="icon.tga"
+	passiveeffect="effects/state_buff.effect"
+	
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	ishidden="true"
+>
+	<onattack>
+		<getconstant name="attack_charged" adjustmentsource="this_entity" />
+
+		<bonusdamageadd target="" a="result" />	
+		<expire />
+	</onattack>
+
+	<onattackstart >
+		<setattackprojectile name="Projectile_Harrower_Ability1_Buff" />
+		<playanim name="attack_1" speed="source_attackspeed" target="source_entity" />
+	</onattackstart>
+	
+	<onattackimpact>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" occlude="true"/>
+
+	</onattackimpact>
+
+	<onexpired>
+		<starttimer entity="this_proxy_entity" duration="0" />
+	</onexpired>
+	
+	<modifier key="harrower_morph" modpriority="100" >
+		<onattackstart >
+			<playanim name="attack_1" speed="source_attackspeed" target="source_entity" />
+		</onattackstart>
+	</modifier>
+
+
+</state>

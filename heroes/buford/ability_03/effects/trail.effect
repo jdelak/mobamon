@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				life="2000"
+				volume="0.35"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_trail_%.wav"
+			/>
+			
+			
+			<template name="">
+			
+				<model
+					position="{zpos}"
+					expirelife="0"
+					model="leech/model.mdf"
+					material="leech/material_poison_leech.material"
+					anim="{zanim}"
+					scale="{zscale}"
+					startalpha="1"
+					midalpha="1"
+					endalpha="1"
+					color="2"
+					pitchspeed="0"
+					pitch="0"
+					minyawspeed="{zminyawspeed}"
+					maxyawspeed="{zmaxyawspeed}"
+				>
+				
+					<billboard
+						bone="_bone_leechBody"
+						expirelife="250"
+						startcolor=".1 0 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						scale=".75"
+						depthbias="-50"
+					/>
+					
+				</model>
+			
+			</template>
+			
+			<instance name="" zpos="22 -15 35" zscale="3" zminyawspeed="0" zmaxyawspeed="360" zanim="idle_faster"/>
+			<instance name="" zpos="0 0 0" zscale="6" zminyawspeed="0" zmaxyawspeed="0" zanim="idle"/>
+			<instance name="" zpos="-22 -45 0" zscale="4" zminyawspeed="0" zmaxyawspeed="360" zanim="idle_fast"/>
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				count="50"
+				spawnrate="6000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="200"
+				maxspeed="400"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="200"
+						maxlife="400"
+						startcolor=".75 0 1"
+						endcolor=".75 0 1"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minscale=".7"
+						maxscale=".9"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				count="3"
+				spawnrate="6000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="0"
+				maxspeed="0"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="300"
+						maxlife="500"
+						startcolor=".2 0 .35"
+						midcolor=".2 0 .35"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						minscale="3.5"
+						maxscale="4.5"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

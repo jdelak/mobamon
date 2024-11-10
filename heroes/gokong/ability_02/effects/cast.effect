@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+<!--
+		<modifier
+			life="100"
+			name="modifier0"
+			color="0 0 0"
+			alpha="0"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.75"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_cast_%.wav"
+			/>	
+
+			<sound
+				volume="0.75"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/vo_grunt_%.wav"
+			/>	
+
+
+			<!--on the monkey 
+			<model
+				position="0 0 0"
+				life="700"
+				model="../../ability_01/effects/staff/model.mdf"
+				parentskeleton="true"
+				material="../../ability_01/effects/staff/material.material"
+				startscale="1"
+				endscale="1"
+				color="1 1 5"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+			/>
+			
+			<model
+				position="0 0 0"
+				life="700"
+				model="../../ability_01/effects/staff/model.mdf"
+				parentskeleton="true"
+				material="/shared/effects/smaterials/shell_glass.material"
+				startscale="1"
+				endscale="1"
+				startcolor="1 5 5"
+				midcolor="1 5 5"
+				endcolor="0 0 0"
+				alpha="1"
+			/>
+-->
+			
+			<template name="">
+<!--
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="450"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="0 .5 1"
+					endcolor="0 0 0"
+					size="150"
+					depthbias="-75"
+				/>
+				
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="450"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".5"
+					endcolor="0 0 0"
+					size="50"
+					depthbias="-75"
+				/>
+-->
+			</template>
+
+			<instance name="" zbone="_bone_weapon3"/>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

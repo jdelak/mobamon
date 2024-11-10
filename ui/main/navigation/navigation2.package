@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<style name="submenu_nav_text" fitx="1" color="#5eabc3" outline="1" outlinecolor="#0f1b22" textvalign="center" font="maindyn_16" noclick="1" align="center" sticky="1" stickytoinvis="0"/>
+	<style name="submenu_nav_text_current" style="submenu_nav_text" color="#00313c" outlinesize="1" outlinecolor="#14adde8f" />
+	
+	<template name="canCraftProgressNavTop">
+		<panel name="canCraftProgress" passivechildren="true" visible="0">
+			<panel x="-10s" y="70%" width="90%" align="center" height="10s" hmargin="2s" vmargin="2s" color="#000000" noclick="1">
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="#333333" noclick="1"/>
+				<panel name="canCraftProgressBar" width="0" texture="/ui/elements:rounded_bg_vert" color="#22EE33" noclick="1"/>
+				<frame texture="/ui/elements:rounded_corner_white" borderthickness="2s" color="#333333" noclick="1"/>
+			</panel>
+			<image texture="/ui/main/pregame/textures/locked.tga" x="0" y="-11s" width="26s" height="26s" valign="center" align="left" hflip="0" noclick="1" />
+		</panel>
+	</template>
+
+	<template name="main_top_button">
+		<panel name="{id}" noclick="true"  width="{width=100%}" height="{height=100%}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" visible="{visible=true}">
+			<button name="{id}Button" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+				onclicklua="{onclicklua}"
+				onloadlua="
+					libButton2.initializeButton(self, '{id}', 'navButton', nil, true)
+				"
+				onmouseoverlua="self:GetWidget('{id}Background'):SetTexture('{prefix}over.tga')"
+				onmouseoutlua="self:GetWidget('{id}Background'):SetTexture('{prefix}up.tga')"
+				onmouseldownlua="self:GetWidget('{id}Background'):SetTexture('{prefix}selected.tga')"
+				onmouseluplua="self:GetWidget('{id}Background'):SetTexture('{prefix}over.tga')"
+			>
+				<panel name="{id}Body" align="center" valign="center">
+					
+					<panel name="{id}PulseEffect" visible="false">
+						<!-- The frame inside this will pulse outward and fade out. -->
+						<frame name="{id}PulseEffectFrame" texture="/ui/shared/frames/button_glow.tga" borderthickness="14s" bordercolor="#33f5ffa3" color="#33f5ffa3"  width="+18s" height="+18s" align="center" valign="center" noclick="1" />
+					</panel>
+					<image name="{id}Background" texture="{prefix}up.tga" x="{imageX}" y="{imageY}" width="{imageWidth}" height="{imageHeight}" color="{imageColor=white}" align="center" borderthickness="{borderthickness=14s}" hflip="{hflip=0}"/>
+					<image name="{id}BackgroundCurrent" texture="{prefix}selected.tga" x="{imageX}" y="{imageY}" width="{imageWidth}" height="{imageHeight}" color="{imageColor=white}" align="center" borderthickness="{borderthickness=14s}" hflip="{hflip=0}" visible="0"/>										
+
+					<modelpanel name="{id}Label2FX" width="112s" height="80%" align="center" valign="center" noclick="1" visible="0"
+						effect="/ui/main/navigation/effects/subtxt.effect"
+						sunaltitude="-25"
+						suncolor="1 1 1"
+						ambientcolor="1 1 1"
+						cameranear="0.01"
+						model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="0 0 0" anim="idle" rotation="0" modelscale="1.0"	
+					/>
+					
+					<panel y="{y=0s}" align="{align}">
+						<label name="{id}Label" x="{label1x=0}" y="{label1y=0}" textalign="{align}" textvalign="center" font="{font=maindyn_12}" color="{labelcolor=#bbe6f1}" outline="true" outlinecolor="{imageOutline=#05242b}" content="{label=temp_button}"/>						
+						<label name="{id}Label2" x="{label2x=0}" y="{label2y=45s}" textalign="{align}" font="maindyn_12" color="#a6e9ff" outline="true" outlinecolor="#0c3c46" content="{label2=temp_button}"/>						
+					</panel>
+				</panel>
+				<widgetstate statename="disabled">
+					<panel y="{y=0s}" align="{align}">
+						<label name="{id}Label" x="{label1x=0}" y="{label1y=0}" textalign="{align}" textvalign="center" font="{font=maindyn_12}" color="red" outline="true" outlinecolor="{imageOutline=#05242b}" content="{label=temp_button}"/>
+					</panel>
+				</widgetstate>				
+			</button>
+			<instance name="{unlockProgress}"/>
+		</panel>
+	</template>
+	
+	<template name="main_top_breadcrumb_template">
+		<panel name="{id}" grow="1" height="100%" sticky="1" stickytoinvis="0" group="{group}" visible="{visible=1}"
+				onmouseoverlua="
+						self:GetWidget('main_top_breadcrumb_{index}_over'):FadeIn(140)
+				"
+				onmouseoutlua="self:GetWidget('main_top_breadcrumb_{index}_over'):FadeOut(60)"
+				onloadlua="{onloadlua}"
+		>
+			<frame name="main_top_breadcrumb_{index}" grow="1" height="100%" texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="3s" color="0.3 0.4 0.43 0.95" noclick="1">
+				<panel name="main_top_breadcrumb_{index}_width" width="130s" noclick="1" />				
+				<panel grow="1" growinvis="false" height="100%" align="center" float="right" padding="2s" noclick="1" >
+					<panel name="main_top_breadcrumb_{index}_icon_parent" width="100@" height="100%" visible="{iconVis=0}" sticky="1" stickytoinvis="0" noclick="1" >
+						<image name="main_top_breadcrumb_{index}_icon" width="{iconSize=90}@" height="{iconSize=90}%" valign="center" texture="{icon=$invis}" noclick="1" color="1 1 1 .5" rendermode="grayscale" />
+					</panel>
+					<label content="{text}" style="submenu_nav_text"/>
+				</panel>
+			</frame>			
+			<panel name="main_top_breadcrumb_{index}_over" visible="0" noclick="1" >
+				<frame texture="/ui/shared/frames/blue_btn_over.tga" borderthickness="3s" color="1 1 1 0.1" noclick="1" />						
+				<image texture="/ui/main/play/textures/mode_highlight.tga" y="-1s" align="center" valign="bottom" width="92%" height="12s" color="#30cdff82" noclick="1" />					
+			</panel>			
+			<frame name="main_top_breadcrumb_{index}_selected" visible="0" group="main_top_breadcrumb_selected_group" grow="1" height="100%" texture="/ui/shared/frames/blue_btn_selected.tga" borderthickness="3s" noclick="1">
+				<panel name="main_top_breadcrumb_{index}_width2" width="130s" noclick="1" />				
+				<panel grow="1" growinvis="false" height="100%" align="center" float="right" padding="2s" noclick="1">
+					<panel name="main_top_breadcrumb_{index}_selected_icon_parent" width="100@" height="100%" visible="{iconVis=0}" sticky="1" stickytoinvis="0" noclick="1">
+						<image name="main_top_breadcrumb_{index}_selected_icon" width="{iconSize=90}@" height="{iconSize=90}%" valign="center" texture="{icon=$invis}" noclick="1" color="1 1 1 1" rendermode="normal" />
+					</panel>
+					<label content="{text}" style="submenu_nav_text_current"/>
+				</panel>				
+			</frame>
+			<panel width="100%" height="100%" noclick="1">
+				<instance
+					name="NumberValue"
+					id="{id}_count_label_parent" countShown="0"
+					labelId="{id}_count_label"
+					x="-4s" y="-6s" height="22s" width="24s" valign="top" align="left"
+					label=""
+				/>
+			</panel>
+		</panel>
+	</template>
+	
+	<!-- Top Submenu - layered below the main navigation -->
+	<panel name="main_top_breadcrumb_Container" noclick="1" visible="0">
+		<panel height="76s" color="#030a0c" noclick="1" />
+		<panel name="main_top_breadcrumb_backing" y="76s" color="0 0 0 0.4" height="42s" noclick="1">
+			<panel valign="bottom" height="2s" color="0 0 0 0.3" noclick="1" />
+		</panel>
+		<panel name="main_top_breadcrumb_Parent" y="81s" height="32s" float="right" padding="5s" align="center" grow="1" regrow="1" growinvis="0" noclick="1"/>
+	</panel>
+	
+	<!-- Background images to make navigation look nice -->
+	<panel name="mainBackgroundTopContainer" visible="1" noclick="1">
+		<image texture="/ui/main/navigation/textures/top_base.tga" align="left" width="512s" height="128s" noclick="1"/>
+		<image texture="/ui/main/navigation/textures/top_base.tga" align="right" width="512s" height="128s" noclick="1" hflip="1"/>
+		<image texture="/ui/main/navigation/textures/top_menu.tga" align="center" width="1024s" height="128s" noclick="1"/>
+	</panel>
+	
+	<!-- Top Menu -->
+	<panel x="3s" name="main_top_button_container" noclick="1" visible="1">		
+		<panel width="600s" height="200s" visible="1" align="center" float="right" grow="1" noclick="1">
+			<instance id="main_top_button_menu"   name="main_top_button"  font="maindyn_20"  label="general_home"	label2="" visible="1" height="70s" width="125s" align="left"   prefix="/ui/main/navigation/textures/menu_std_01_"  y="-15s"	 label1y="2s"  label2y="48s"  label1x="17s"	 label2x="22s"   imageX="7s"   imageY="-3s"  imageWidth="155s"  imageHeight="77s"/>
+			<instance id="main_top_button_pets"   name="main_top_button"  font="maindyn_20"  label="general_pets"	label2="" visible="1" height="70s" width="134s" align="left"   prefix="/ui/main/navigation/textures/menu_std_02_"  y="-10s"	 label1y="0s"				  label1x="17s"	 label2x="22s"   imageX="7s"   imageY="-3s"  imageWidth="155s"  imageHeight="80s"/>
+			<instance id="main_top_button_play"   name="main_top_button"  font="maindyn_40"  label="general_play"	label2="" visible="1" height="70s" width="175s" align="center" prefix="/ui/main/navigation/textures/menu_play_"	   y="-10s"	 label1y="11s" label2y="63s" 								 imageX="0s"   imageY="-8s"  imageWidth="175s"  imageHeight="95s" imageOutline="#9a2216"  labelcolor="#fff7f7"/>
+			<instance id="main_top_button_craft"  name="main_top_button"  font="maindyn_20"  label="general_craft"	label2="" visible="1" height="70s" width="130s" align="right"  prefix="/ui/main/navigation/textures/menu_std_02_"  y="-10s"	 label1y="0s"				  label1x="-12s" label2x="-17s"  imageX="-5s"  imageY="-3s"  imageWidth="155s"  imageHeight="80s" hflip="1" unlockProgress="canCraftProgressNavTop"/>
+			<instance id="main_top_button_watch"  name="main_top_button"  font="maindyn_20"  label="general_watch"	label2="" visible="1" height="70s" width="135s" align="right"  prefix="/ui/main/navigation/textures/menu_std_01_"  y="-15s"	 label1y="2s"  label2y="48s"  label1x="-18s" label2x="-23s"  imageX="-7s"  imageY="-3s"  imageWidth="155s"  imageHeight="77s" hflip="1"/>
+		</panel>
+	</panel>
+	
+
+	<lua file="/ui/main/navigation/navigation2.lua"/>	
+
+</package>

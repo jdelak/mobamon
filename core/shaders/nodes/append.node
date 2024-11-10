@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="append">
+	<dependency name="A" type="*" />
+	<dependency name="B" type="*" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="A" type="float" />
+		<dependency name="B" type="float" />
+		<output type="float2" name="Out" />
+		<?hlsl
+			Out = float2(A, B);
+		?>
+		<?glsl
+			Out = vec2(A, B);
+		?>
+	</case>
+	<case>
+		<dependency name="A" type="float2" />
+		<dependency name="B" type="float" />
+		<output type="float3" name="Out" />
+		<?hlsl
+			Out = float3(A.x, A.y, B);
+		?>
+		<?glsl
+			Out = vec3(A, B);
+		?>
+	</case>
+	<case>
+		<dependency name="A" type="float" />
+		<dependency name="B" type="float2" />
+		<output type="float3" name="Out" />
+		<?hlsl
+			Out = float3(A, B.x, B.y);
+		?>
+		<?glsl
+			Out = vec3(A, B);
+		?>
+	</case>
+	<case>
+		<dependency name="A" type="float3" />
+		<dependency name="B" type="float" />
+		<output type="float4" name="Out" />
+		<?hlsl
+			Out = float4(A.x, A.y, A.z, B);
+		?>
+		<?glsl
+			Out = vec4(A, B);
+		?>
+	</case>
+	<case>
+		<dependency name="A" type="float2" />
+		<dependency name="B" type="float2" />
+		<output type="float4" name="Out" />
+		<?hlsl
+			Out = float4(A.x, A.y, B.x, B.y);
+		?>
+		<?glsl
+			Out = vec4(A, B);
+		?>
+	</case>
+	<case>
+		<dependency name="A" type="float" />
+		<dependency name="B" type="float3" />
+		<output type="float4" name="Out" />
+		<?hlsl
+			Out = float4(A, B.x, B.y, B.z);
+		?>
+		<?glsl
+			Out = vec4(A, B);
+		?>
+	</case>
+</node>

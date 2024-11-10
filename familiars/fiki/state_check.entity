@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Fiki_LowHpCheck"
+
+	passiveeffect=""
+	
+	icon="icon.tga"
+	ishidden="true"
+	powerpercharge="0"
+
+>
+	<oninflict>
+		<setaccumulator value="0" />
+	</oninflict>
+	
+	<onframe>
+		<setvar0 a="source_health_percent" />
+		<compare a="var0" b="0.25,0.3,0.35" op="le">
+			<compare a="accumulator" b="0" op="eq">
+				<setvar0 a="source_level" b="2" op="mult" />
+				<setcharges a="var0" b="10" op="add" />
+				<setactivemodifierkey name="backstab_hplow" />
+				<applystate name="State_Fiki_PetLow" continuous="true" target="this_proxy_entity" />
+				<setaccumulator value="1" />
+			</compare>
+		</compare>
+		<else>
+			<compare a="accumulator" b="1" op="eq">
+				<setactivemodifierkey name="" />
+				<expirestate name="State_Fiki_PetLow" target="this_proxy_entity" />
+				<setaccumulator value="0" />
+			</compare>
+		</else>
+	</onframe>
+	
+	<modifier key="backstab_hplow" modpriority="100"
+		powerpercharge="1"
+	>
+	</modifier>
+</state>

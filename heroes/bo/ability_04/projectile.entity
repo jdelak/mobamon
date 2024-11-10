@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bo_Ability4"
+
+	speed="1100"
+	gravity="0"
+
+	modelscale="1.0"
+	model="/shared/models/invis.mdf"
+	
+	canturn="true"
+	flying="true"
+	flyheight="0"
+	touchradius="100"
+	touchpropradius="100"
+	touchpropanim="hit"
+	maxtouchespertarget="1"
+	hazardradius="200"
+	hazardoffset="100"
+	hazardthreat="extreme"
+	
+	touchprojectileblockers="true"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_units"
+	toucheffecttype=""
+>
+	
+
+	<ondeath>
+		<targettype type="alive" target="source_entity" >
+			<playanim name="idle" target="source_entity" />
+		</targettype>
+		<kill target="this_proxy_entity" source="" />
+	</ondeath>
+	
+	<ontouch>
+		<targettype type="alive" target="source_entity" >
+			<condition test="hasstate State_Bo_Ability4" target="source_entity" >
+				<cantarget targetscheme="enemy_units" >
+					<combatevent effecttype="Counterable">
+						<onimpact>
+							<cantarget effecttype="CrowdControl" >
+								<unbind target="target_entity" />
+								<bind entity="this_entity" target="target_entity" position="false" />
+								
+								<applystate target="target_entity" name="State_Bo_Ability4_Disabled" duration="500"  />
+							</cantarget>
+						</onimpact>
+					</combatevent>
+					<recordheroaggression  />
+					<aggression />
+				</cantarget>
+			</condition>
+		</targettype>
+	</ontouch>
+	
+	<onimpact>
+		<targettype type="alive" target="source_entity" >
+			<areaofeffect
+				targetscheme="enemy_heroes"
+				effecttype=""
+				ignoreinvulnerable="true"
+				targetselection="all"
+				radius="200"
+				maximpactspertarget="1"
+			>
+				<cantarget effecttype="CrowdControl" >
+					<applystate target="target_entity" name="State_Stunned" duration="300"  />
+				</cantarget>
+			</areaofeffect>
+		</targettype>
+	</onimpact>
+</projectile>

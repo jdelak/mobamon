@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale=".75">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55"
+				sample="../sounds/sfx_state_end.wav"
+			/>
+
+			<model
+				bone="_bone_centerofchest"
+				life="500"
+				startcolor=".125 .125 .125"
+				midcolor=".125 0 .125"
+				endcolor=".125 .125 .125"
+				startscale="1.75"
+				endscale="1.75"
+				model="shield_death/shield.mdf"
+				anim="idle"
+				rollspeed="0"
+			/>
+
+			<model
+				bone="_bone_centerofchest"
+				life="500"
+				startcolor=".5"
+				endcolor="0 0 0"
+				startscale="1.75"
+				endscale="1.75"
+				model="shield_death/shield.mdf"
+				anim="idle"
+				material="shield/shell_sludge.material"
+				rollspeed="0"
+			/>
+
+
+			
+			<template name="">
+			
+				<simpleemitter
+					bone="_bone_centerofchest"
+					count="1"
+					spawnrate="5000"
+					particlelife="2000"
+				>
+					<particle
+					>
+						<simpleemitter
+						delay="0"
+							count="25"
+							bone="_bone_centerofchest"
+							position="0 0 0"
+							minspeed="0"
+							maxspeed="300"
+							spawnrate="2000"
+							minparticlelife="75"
+							maxparticlelife="400"
+							offsetradial="100 0 0"
+							offsetsphere="25 25 25"
+							material="/shared/effects/smaterials/bubble_add.material"
+						>
+							<particle
+								color="{zcolor}"
+								startalpha=".5"
+								midalpha=".5"
+								endalpha="0"
+								minstartscale="15"
+								maxstartscale="30"
+								endscale="0"
+								depthbias="-160"
+							/>
+						</simpleemitter>
+						
+						<simpleemitter
+						delay="0"
+							count="6"
+							bone="_bone_centerofchest"
+							position="0 0 0"
+							minspeed="0"
+							maxspeed="300"
+							spawnrate="2000"
+							minparticlelife="75"
+							maxparticlelife="400"
+							offsetradial="30 0 0"
+							offsetsphere="20 20 20"
+							material="/shared/effects/smaterials/bubble_add.material"
+						>
+							<particle
+								color="{zcolor}"
+								startalpha=".5"
+								midalpha=".5"
+								endalpha="0"
+								minstartscale="10"
+								maxstartscale="10"
+								endscale="0"
+								depthbias="-160"
+							/>
+						</simpleemitter>
+
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zcolor=".75 .25 1"/>
+			<instance name="" zcolor="1 .5 .5"/>
+			<instance name="" zcolor="0 0 1"/>
+			<instance name="" zcolor="0 1 0"/>
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="50"
+				bone="_bone_centerofchest"
+				spawnrate="5000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="150"
+				maxspeed="600"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+				
+					<billboard
+						bone="_bone_centerofchest"
+						minlife="250"
+						maxlife="500"
+						startcolor="1 1 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/water_splat_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="3"
+						endscale=".25"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

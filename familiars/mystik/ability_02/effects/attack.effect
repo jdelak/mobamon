@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<modifier
+			life="250"
+			name="modifier0"
+			startalpha="0"
+			midalpha="0"
+			endalpha="1"
+			midalphapos=".99"
+		/>
+
+		<particlesystem name="system0" space="entity" scale=".6">
+		
+		<sound
+				volume="1"
+				sample="../../sounds/sfx_impact.wav"
+				linearfalloff="true"
+				falloffstart="500" 
+				falloffend="2000" 
+			/>		
+		
+		
+			<light
+			delay="250"
+				life="600"			
+				startcolor="0 2 5"			
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="25"
+				falloffend="300"
+				position="0 0 50"	
+			/>	
+
+			
+			
+<!--
+			<template name="flashes">
+				<simpleemitter
+					delay="{zdelay}"
+					bone="_bone_center"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .25 1"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="50"
+						endscale="125"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					delay="{zdelay}"
+					bone="_bone_center"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color="0 .25 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="30"
+						endscale="60"
+						turn="true"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flashes" zpos="0 0 0" zdelay="0"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<billboard
+				bone="_bone_center"
+				material="/shared/effects/materials/whitewater_02.material"
+				startcolor="1 .25 0"
+				endcolor="0"
+				life="200"
+				position="0 0 0"
+				startsize="150"
+				endsize="400"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				maxroll="360"
+			/>
+
+			<billboard
+				bone="_bone_center"
+				material="/shared/effects/materials/whitewater_02.material"
+				startcolor="1 .25 0"
+				endcolor="0"
+				life="200"
+				position="0 0 0"
+				startsize="150"
+				endsize="400"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				maxroll="360"
+			/>
+
+			<billboard
+				bone="_bone_center"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="0 .2 1"
+				midcolor="1 .25 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				life="200"
+				position="0 0 0"
+				startsize="200"
+				endsize="650"
+				lockup="true"
+				pitch="90"
+			/>
+
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="10000"
+				count="24"
+				particlelife="400"
+				offsetsphere="00 0  0"
+				direction="0 0 1"
+				directionalspace="local"
+				minspeed="250"
+				maxspeed="750"
+				drag="0.018"
+				gravity="0"
+				minangle="90"
+				maxangle="90"
+				material="/shared/effects/smaterials/crow_proj_yellow.material"
+			>
+				<particle
+					height="10"
+					width="2"
+					turn="1"
+					scale="5"
+					startcolor="1 1 1"
+					endcolor="1 .75 .25"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".35"
+					minpitch="-50"
+					maxpitch="50"
+				>
+				</particle>
+				
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_center"
+				life="300"
+				spawnrate="5000"
+				midspawnratepos=".99"
+				minparticlelife="150"
+				maxparticlelife="400"
+				mincount="50"
+				maxcount="65"
+				material="/shared/effects/materials/whitedot.material"
+				minspeed="175"
+				maxspeed="2000"
+				drag="0.02"
+				gravity="50"
+				direction="0 0 1"
+				directionalspace="global"
+				minangle="70"
+				maxangle="100"
+			>
+				<particle
+					startcolor="0 .2 1"
+					midcolor="1 .25 0"
+					endcolor="0"
+					midcolorpos=".7"
+					scale="5"
+					minwidth=".5"
+					maxwidth="1"
+					minheight="3"
+					maxheight="6"
+					turn="1"
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+      		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

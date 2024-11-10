@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Minerva_Ability1"
+
+	speed="2000"
+
+	modelscale="1"
+	
+	model="effects/bone_rig/model.mdf"
+	
+	canturn="false"
+	flying="false"
+	deatheffect=""
+	impacteffect=""
+	traileffect="effects/minerva.effect"
+
+>
+	<onimpact>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<applystate name="State_Minerva_Ability1_Buff" target="source_entity" duration="6000" proxy="this_entity" pushentity="true" />
+				<cantarget target="proxy_entity" targetscheme="enemy_units">
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<damage target="proxy_entity" amount="1" b="result" op="mult" effecttype="Magic" />
+					<order command="attack" source="source_entity" target="proxy_entity" />
+				</cantarget>
+			</onimpact>
+		</combatevent>
+		<playeffect effect="effects/impact.effect" target="" source="this_proxy_entity" />
+	</onimpact>
+</projectile>

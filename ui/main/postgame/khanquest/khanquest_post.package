@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<include file="khanquest_post_templates.package"/>
+	
+	<template name="postgame_khanquest_template" >
+		<panel name="postgame_khanquest" visible="0" noclick="1" >
+			
+			<!-- Prize.  Ended up giving these numbered names in case we end up with multiple chests again, etc. -->
+			<panel y="20s" width="512s" height="512s" align="center">				
+				<image name="postGame_khanquestChest1Spotlight" texture="/ui/main/postgame/khanquest/textures/prize_spotlight.tga" color="1 1 1 .6" /><!-- Spotlight -->
+				<image name="postGame_khanquestChest1Sparkle" texture="/ui/main/postgame/khanquest/textures/prize_chest_sparkle.tga" rendermode="additive" /><!-- Spotlight Sparkle -->
+				
+				<!-- Chest -->
+				<panel name="postGame_khanquestChest1" y="3%" width="52%" height="52@" valign="center" align="center" noclick="0">
+					<panel name="postGame_khanquestChest1Body" noclick="true">
+						<image name="postGame_khanquestChest1Shadow" texture="/ui/main/postgame/khanquest/textures/prize_chest_shadow.tga" color="0 0 0 .5" /><!-- Prize Shadow -->
+						<image name="postGame_khanquestChest1Image" texture="/ui/main/postgame/khanquest/textures/prize_chest1.tga" /><!-- Prize Texture -->
+						<image name="postGame_khanquestChest1Glow" texture="/ui/main/postgame/khanquest/textures/prize_chest1_flash.tga" visible="0" /><!-- Prize Flash -->
+					</panel>
+				</panel>				
+			
+			</panel>
+			
+			<!-- Wins -->
+			<panel grow="1" growinvis="0" height="128s" float="right" y="-200s" align="center" valign="bottom" noclick="1">
+				<instance name="postGame_khanquestMatch" id="1" />
+				<instance name="postGame_khanquestMatch" id="2" />
+				<instance name="postGame_khanquestMatch" id="3" />
+				<instance name="postGame_khanquestMatch" id="4" />
+				<instance name="postGame_khanquestMatch" id="5" />
+				<instance name="postGame_khanquestMatch" id="6" />
+				<instance name="postGame_khanquestMatch" id="7" />
+			</panel>
+			
+			<!-- Messaging -->
+			<panel height="128s" y="104s" align="center" valign="top" noclick="1" color="1 1 1 0">
+				<image name="postGame_khanquestInfoDivider" texture="/ui/main/postgame/khanquest/textures/flare_seperator.tga" y="16s" width="512s" height="128s" align="center" valign="center" noclick="1" rendermode="additive" />
+				<label name="postGame_khanquestInfoLabel1" fitx="1" align="center" textvalign="top" style="h3" font="maindyn_72" content="X Wins" />
+				<label name="postGame_khanquestInfoLabel2" fitx="1" align="center" textvalign="bottom" style="labelBase" font="maindyn_40" content="" />			
+			</panel>			
+
+			<instance name="postGame_khanquestTicket" id="1"/>			
+			
+			<instance name="postGame_khanquestChestUpgradeProjectile" id="1"/><!-- Only one of these should ever exist, so no need to set up a spawn system -->
+			
+		</panel>
+
+	</template>
+	
+	
+</package>

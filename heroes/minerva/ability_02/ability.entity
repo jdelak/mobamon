@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Minerva2"
+	
+	icon="icon.tga"
+	
+	anim="ability_2"
+	casttime="400"
+	castactiontime="300"
+	casteffect="effects/cast.effect"
+
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_entity"
+	casteffecttype="Magic"
+	targetscheme="enemy_units_and_buildings"
+	
+	manacost="70,80,90,100"
+	cooldowntime="10000"
+
+	range="500"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	doubleactivate="true"
+	doubleactivatenoninterrupting="true"
+	
+>
+	<constant name="damage" value="85,115,145,175" adjustment="ability" />
+	<!--Display Only-->
+	<constant name="taperingslow" value="24,32,40,48" adjustment="none" />
+	<constant name="bounce" value="1,1,2,3" adjustment="none" />
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" />
+				
+				<damage effecttype="Magic" amount="1" b="result" op="mult" />
+				<applystate name="State_Minerva_Ability2_Sight" target="target_entity" duration="3000" />
+			</onimpact>
+		</combatevent>
+		
+		<playeffect effect="effects/shock.effect" source="source_entity" target="target_entity"/>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+	</onimpact>
+	
+	<ondoubleactivate>
+		<areaofeffect
+			radius="700"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+		>
+			<useability source="source_entity" slot="1" />
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<cancel />
+		</compare>
+	</ondoubleactivate>
+	
+</ability>

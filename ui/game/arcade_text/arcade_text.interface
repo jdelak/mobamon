@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="arcade_text">
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+
+	<template name="arcadeTextMultiKillBannerStar">
+		<panel width="100@" height="100%">
+			<image name="arcadeTextMultiKillBannerStar{id}" texture="/ui/game/arcade_text/textures/kill_banner_star_empty.tga" visible="{notfilled=false}"/>
+			<image name="arcadeTextMultiKillBannerStar{id}Filled" texture="/ui/game/arcade_text/textures/kill_banner_star.tga" visible="{filled=false}" align="center" valign="center"/>
+		</panel>
+	</template>
+
+	<template name="arcadeStreakPortrait">
+		<panel width="30s" noclick="1">
+			<image name="arcadeStreakPortrait_{id}" y="{y=0}" x="{x}" texture="{texture}" noclick="1" />
+		</panel>
+	</template>
+
+	<panel name="center_announcements_0_sleeper" noclick="1" />
+	<panel visible="1" name="center_announcements_0" passivechildren="1" align="center" x="0" grow="1" regrow="1" growinvis="0" width="40h" height="18h" y="0.0h" noclick="true" color="0 1 0 0.0" float="right" padding="1.0h" >
+		
+		<!-- cv_counterstrife -->
+		<!-- Counter-Strife Round End Messages -->
+		<panel name="arcadeTextCounterStrife" y="14h" align="center" height="10.0h" noclick="1" passivechildren="true" visible="0">
+			
+			<!-- Round Win Message -->
+			<panel y="-5.5h" height="4.5h" width="50h" align="center" noclick="1">
+				
+				<!-- Team Banner
+				Color: Green/Red based on Ally/Enemy-->
+				<image name="arcadeTextCounterStrifeBannerCenter" texture="/ui/game/arcade_text/textures/kill_banner_center.tga" hmargin="30%" height="100%" color="0.06 0.51 0.13 0.65" noclick="1"/>
+				<image name="arcadeTextCounterStrifeBannerLeft" texture="/ui/game/arcade_text/textures/kill_banner_left.tga" width="30%" height="100%" align="left" color="0.06 0.51 0.13 0.65" noclick="1"/>	
+				<image name="arcadeTextCounterStrifeBannerRight" texture="/ui/game/arcade_text/textures/kill_banner_left.tga" width="30%" height="100%" align="right" hflip="true" color="0.06 0.51 0.13 0.65" noclick="1"/>	
+
+				<!-- arcade_text_valor OR arcade_text_glory -->
+				<label name="arcadeTextCounterStrifeTeamWin" font="maindyn_26" fity="1" textvalign="center" textalign="center" color="#d69f3c" outline="1" outlinecolor="0 0 0 0.4" content="arcade_text_valor" noclick="1" sticky="1" />
+				
+				<image name="arcadeTextCounterStrifeTeamIcon" texture="/ui/shared/textures/team_logo_valor.tga" x="-12%" y="-50%" height="150%" width="150@" align="right" color="#edb34c" noclick="1"
+					onshowlua="
+						self:Rotate(20, 10)
+					"
+				/>
+			</panel>
+		
+			<!-- Big MVP Hero/Player Message -->
+			<panel width="500@" align="center">
+				<panel name="arcadeTextCounterStrifeBanner" align="center" width="100%">
+					<image texture="/ui/game/arcade_text/textures/kill_banner_center.tga" hmargin="50@" height="100%" color="#54869c65"/>
+					<image texture="/ui/game/arcade_text/textures/kill_banner_left.tga" width="50@" height="100%" color="#54869c65" />
+					<image texture="/ui/game/arcade_text/textures/kill_banner_left.tga" width="50@" height="100%" align="right" hflip="true" color="#54869c65" />
+				</panel>
+				
+				<modelpanel name="arcadeTextCounterStrifeBannerGlow" y="0" width="+82.5h" height="+112.5h" align="center" valign="center" noclick="1" visible="1"
+					effect="/ui/game/arcade_text/effects/templates/doublekill/doublekill_orange.effect"
+
+					sunaltitude="-25"
+					suncolor="1 1 1"
+					ambientcolor="1 1 1"
+					cameranear="0.001"
+
+					model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+					cameraangles="0 0 180" camerafov="90"
+
+				/>
+				
+				<panel y="2%" height="86%">				
+					<!-- Round MVP -->
+					<panel width="60@" height="60%" valign="center" x="60@">
+						<image align="center" valign="center" texture="/maps/counter-strife/resources/ui/textures/mvp.tga"/>
+					</panel>
+					<label name="arcadeTextCounterStrifeBannerRound" textvalign="center" x="125@" y="-16%" width="100@" font="maindyn_16" color="#bbbbbb" outline="true" outlinecolor="#00000077" content="arcade_text_round"/>
+					<label name="arcadeTextCounterStrifeBannerMVP" textvalign="center" x="125@" y="10%" width="100@" font="maindyn_26" color="white" outline="true" outlinecolor="#00000077" content="arcade_text_mvp"/>
+					
+					<!-- Hero Icon -->
+					<panel name="arcadeTextCounterStrifeBannerHeroIcon" align="center" width="140@" height="140%" valign="bottom" texture="/heroes/moxie/icon_full.tga"/>
+
+					<label name="arcadeTextCounterStrifeHeroName" textvalign="center" x="400@" y="-10%" width="100@" font="maindyn_26" color="white" outline="true" outlinecolor="#00000077" content="Moxie"/>
+					<label name="arcadeTextCounterStrifePlayerName" textvalign="center" x="400@" y="16%" width="100@" font="maindyn_16" color="#bbbbbb" outline="true" outlinecolor="#00000077" content="Vesta"/>
+				</panel>
+			</panel>
+			
+			<!-- Round MVP Reason -->
+			<panel y="2h" height="3h" width="60h" valign="bottom" align="center" noclick="1" visible="0">
+				<image texture="/ui/game/arcade_text/textures/kill_banner_center.tga" hmargin="30%" height="100%" color="#15445975" noclick="1"/>
+				<image texture="/ui/game/arcade_text/textures/kill_banner_left_grad.tga" width="30%" height="100%" align="left" color="#15445975" noclick="1"/>	
+				<image texture="/ui/game/arcade_text/textures/kill_banner_left_grad.tga" width="30%" height="100%" align="right" hflip="true" color="#15445975" noclick="1"/>	
+
+				<label name="arcadeTextCounterStrifeMVPReason" y="-0.2h" font="maindyn_14" textvalign="center" textalign="center" color="#bbbbbb" outline="1" outlinecolor="0 0 0 0.77" content="arcade_text_destroy" noclick="1" sticky="1" />
+			</panel>
+		</panel>
+	
+		<!-- Multi Kill-->
+		<panel name="center_announcements_multikill" y="18h" align="center" height="10.0h" width="10.0h" noclick="1" visible="0">
+			<modelpanel name="center_announcements_multikill_model" y="-35%" width="+110h" height="+150h" align="center" valign="center" noclick="1" visible="1"
+				effect="/ui/game/arcade_text/effects/templates/doublekill/doublekill_green.effect"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+
+			/>
+
+			<!-- Slashes -->
+			<panel name="center_announcements_multikill_slashscaler" y="-10%" width="0%" height="0%" align="center" valign="center" visible="0">
+				<image name="center_announcements_multikill_slash1" texture="/ui/game/arcade_text/textures/slash01_green.tga" color="1 1 1 0.8" y="-27%" x="-75%" height="200%" width="50%" align="center" valign="center" visible="0"/>
+				<image name="center_announcements_multikill_slash2" texture="/ui/game/arcade_text/textures/slash02_green.tga" color="1 1 1 0.8" y="-27%" x="-30%" height="200%" width="50%" align="center" valign="center" visible="0"/>
+				<image name="center_announcements_multikill_slash3" texture="/ui/game/arcade_text/textures/slash01_green.tga" color="1 1 1 0.8" y="-27%" x="30%" height="200%" width="50%" align="center" valign="center" visible="0"/>
+				<image name="center_announcements_multikill_slash4" texture="/ui/game/arcade_text/textures/slash01_green.tga" color="1 1 1 0.8" y="-27%" x="75%" height="200%" width="50%" align="center" valign="center" visible="0"/>
+				<image name="center_announcements_multikill_slash5" texture="/ui/game/arcade_text/textures/slash03_green.tga" color="1 1 1 0.9" y="-27%" x="0%" height="250%" width="430%" align="center" valign="center" visible="0"/>
+			</panel>
+
+			<!-- Title-->
+			<label name="center_announcements_multikill_title" fitx="1" y="-140%" align="center" font="maindyn_36" color="0 1 0" outline="1" outlinecolor="0.04 0.24 0.03 0.9" noclick="1" content="Double Kill!" visible="0"/>
+
+			<!-- Protaganist-->
+			<label name="center_announcements_multikill_username" fitx="1" y="97%" align="center" font="maindyn_20" color="1 0.71 0" outline="1" outlinecolor="0.16 0.07 0.03 0.9" noclick="1" content="SillyWink" visible="0"/>
+
+			<!--Portrait-->
+			<image name="center_announcements_multikill_holder" texture="/ui/game/arcade_text/textures/icon_holder.tga" y="-48%" align="center" valign="center" height="0%" width="0%" noclick="1" color="0.75 1 0.78" visible="0"/>
+			<image name="center_announcements_multikill_icon" texture="/heroes/carter/icon_full.tga" y="-50%" align="center" valign="center" height="0%" width="0%" noclick="1" visible="0"/>
+
+		</panel>
+
+		<!-- Kill Streak-->
+		<panel name="center_announcements_killstreak" y="18h" align="center" height="10.0h" width="10.0h" noclick="1" visible="0">
+			<modelpanel name="center_announcements_killstreak_model" y="-35%" width="+110h" height="+150h" align="center" valign="center" noclick="1" visible="1"
+				effect="/ui/game/arcade_text/effects/templates/doublekill/doublekill_green.effect"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+
+			/>
+
+			<!-- Title-->
+			<label name="center_announcements_killstreak_title" fitx="1" y="-140%" align="center" font="maindyn_36" color="0 1 0" outline="1" outlinecolor="0.04 0.24 0.03 0.9" noclick="1" content="Kill Streak!" visible="0"/>
+
+			<!-- Protaganist-->
+			<label name="center_announcements_killstreak_username" fitx="1" y="97%" align="center" font="maindyn_20" color="1 0.71 0" outline="1" outlinecolor="0.16 0.07 0.03 0.9" noclick="1" content="SillyWink" visible="0"/>
+
+			<!--Badges-->
+			<image name="center_announcements_killstreak_holder" texture="/ui/game/arcade_text/textures/icon_holder.tga" y="-48%" align="center" valign="center" height="0%" width="0%" noclick="1" color="0.75 1 0.78" visible="0"/>
+
+			<panel name="center_announcements_killstreak_badgescaler" y="-50%" x="5%" align="center" valign="center" height="90%" width="90%" visible="0">
+				<image name="center_announcements_killstreak_badge" texture="/ui/game/arcade_text/textures/ks_badge.tga" align="center" valign="center" height="100%" width="100%" noclick="1" visible="0"/>
+				<image name="center_announcements_killstreak_badge3" texture="/ui/game/arcade_text/textures/ks_badge_3k.tga" align="center" valign="center" height="100%" width="100%" noclick="1" visible="0"/>
+				<image name="center_announcements_killstreak_badge5" texture="/ui/game/arcade_text/textures/ks_badge_5k.tga" align="center" valign="center" height="100%" width="100%" noclick="1" visible="0"/>
+				<image name="center_announcements_killstreak_badge10" texture="/ui/game/arcade_text/textures/ks_badge_10k.tga" align="center" valign="center" height="100%" width="100%" noclick="1" visible="0"/>
+				<image name="center_announcements_killstreak_badge15" texture="/ui/game/arcade_text/textures/ks_badge_15k.tga" align="center" valign="center" height="100%" width="100%" noclick="1" visible="0"/>
+			</panel>
+
+			<!--Portrait-->
+			<image name="center_announcements_killstreak_icon" texture="/heroes/carter/icon_full.tga" y="-50%" x="-50%" align="center" valign="center" height="100%" width="100%" noclick="1" visible="0"/>
+
+			<!-- Streak-->
+			<label name="center_announcements_killstreak_streak" fitx="1" y="-45%" x="140%" align="center" textalign="left" font="maindyn_72" color="1 1 1" outline="1" outlinecolor="0.1 0.1 0.1 0.9" noclick="1" content="15" visible="0"/>
+
+		</panel>
+
+		<!-- Krytos Push -->
+		<panel name="center_announcements_krytospush" y="18h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+			<modelpanel name="center_announcements_krytospush_model" width="+45h" height="+45h" align="center" valign="center" visible="1" noclick="1"
+
+				effect="/ui/game/arcade_text/effects/krytos_pushing_red.effect"
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.01"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+			/>
+
+			<!-- Title -->
+			<label name="center_announcements_krytospush_title" wrap="1" y="-35%" x="-35%" textalign="left" textvalign="center" align="center" style="h1" font="maindyn_20" color="0.7 0 0" noclick="1" outline="1" outlinecolor="0.10 0 0 0.9" content="Krytos is Pushing" visible="0"/>
+			<label name="center_announcements_krytospush_lane" wrap="1" y="-5%" x="55%" textalign="left" textvalign="center" align="center" style="h1" font="maindyn_36" color="1 0 0" outline="1" outlinecolor="0.1 0.1 0.1 0.9" noclick="1" content="Bottom Lane!" visible="0"/>
+
+		</panel>
+
+		<!-- Cindara Defeated -->
+		<panel name="center_announcements_cindaradefeat" y="18h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+			<modelpanel name="center_announcements_cindaradefeat_model" width="+45h" height="+45h" align="center" valign="center" visible="1" noclick="1"
+
+				effect="/ui/game/arcade_text/effects/cindara_defeat_red.effect"
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.01"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+			/>
+
+			<!-- Title -->
+			<label name="center_announcements_cindaradefeat_title" wrap="1" textalign="center" y='-20%' x="-50%" textvalign="center" align="center" style="h1" font="maindyn_26" color="0.7 0 0" noclick="1" outline="1" outlinecolor="0.10 0 0 0.9" content="Cindara" visible="0"/>
+			<label name="center_announcements_cindaradefeat_defeat" wrap="1" textalign="center" y='10%' x="50%" textvalign="center" align="center" style="h1" font="maindyn_36" color="1 0 0 1" noclick="1" outline="1" outlinecolor="0.1 0.1 0.1 0.9" content="Defeated!" visible="0"/>
+
+			<!-- Gold
+			<label name="center_announcements_cindaradefeat_label" x='40s' y='23s' width='1s' textalign="right" textvalign="center" align="center" valign="center" style="h1" font="maindyn_30" color="1 1 1 1" noclick="1" content="+250"/>-->
+
+		</panel>
+
+		<!-- Baldir Defeated -->
+		<panel name="center_announcements_baldirdefeat" y="18h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+			<modelpanel name="center_announcements_baldirdefeat_model" width="+45h" height="+45h" align="center" valign="center" visible="1" noclick="1"
+
+				effect="/ui/game/arcade_text/effects/baldir_defeat_red.effect"
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.01"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+			/>
+
+			<label name="center_announcements_baldirdefeat_title" wrap="1" y='-20%' x="-50%" textalign="center" textvalign="center" align="center" style="h1" font="maindyn_30" color="1 0 0 1" outline="1" outlinecolor="0.10 0 0 0.9" noclick="1" content="Baldir" visible="0"/>
+			<label name="center_announcements_baldirdefeat_defeat" wrap="1" y="10%" x="50%" textalign="center" textvalign="center" align="center" style="h1" font="maindyn_30" color="1 0 0 1" outline="1" outlinecolor="0.1 0.1 0.1 0.9" noclick="1" content="Defeated!" visible="0"/>
+
+			<!-- Gold
+			<label name="center_announcements_baldirdefeat_award_label" x='40s' y='23s' width='1s' textalign="right" textvalign="center" align="center" valign="center" style="h1" font="maindyn_30" color="1 1 1 1" noclick="1" content="+250"/> -->
+
+		</panel>
+
+		<!-- Tower Destroyed -->
+		<panel name="center_announcements_tower1" y="18h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+		
+			<!-- Glow - To be replaced by effect 
+			<image name="center_announcements_tower1_glow" texture="/ui/game/arcade_text/textures/tower1_glow.tga" y="-150%" align="center" height="300%" width="300@" color="0 1 0 .8" rendermode="additive" noclick="1" />
+-->
+
+			<modelpanel name="center_announcements_tower1_model" y="-35%" width="+110h" height="+150h" align="center" valign="center" noclick="1" visible="1"
+				effect="/ui/game/arcade_text/effects/tower_destroyed_green.effect"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+
+			/>
+<!--
+
+			<image texture="/ui/game/arcade_text/textures/tower1.tga" y="-150%" align="center" height="300%" width="300@" noclick="1" />
+-->
+			<!-- Title -->
+			<label name="center_announcements_tower1_title" wrap="1" textalign="center" y='-20%' x="-50%" textvalign="center" align="center" style="h1" font="maindyn_26" color="0.7 0 0" noclick="1" outline="1" outlinecolor="0.10 0 0 0.9" content="Tower" visible="0"/>
+			<label name="center_announcements_tower1_defeat" wrap="1" textalign="center" y='10%' x="50%" textvalign="center" align="center" style="h1" font="maindyn_36" color="1 0 0 1" noclick="1" outline="1" outlinecolor="0.1 0.1 0.1 0.9" content="Destroyed!" visible="0"/>
+		</panel>
+
+		<!-- Generator Destroyed -->
+		<panel name="center_announcements_generator" y="18h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+			<!-- Glow - To be replaced by effect
+			<image name="center_announcements_generator_glow" texture="/ui/game/arcade_text/textures/generator_glow.tga" y="-150%" align="center" height="300%" width="300@" color="1 0 0 1" rendermode="additive" noclick="1" />
+-->
+			<modelpanel name="center_announcements_generator_model" y="-35%" width="+110h" height="+150h" align="center" valign="center" noclick="1" visible="1"
+				effect="/ui/game/arcade_text/effects/generator_destroyed_green.effect"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+			/>
+<!--
+			<image texture="/ui/game/arcade_text/textures/generator.tga" y="-150%" align="center" height="300%" width="300@" noclick="1" />
+-->
+			<!-- Title -->
+			<label name="center_announcements_generator_title" wrap="1" textalign="center" y='-20%' x="-50%" textvalign="center" align="center" style="h1" font="maindyn_26" color="0.7 0 0" noclick="1" outline="1" outlinecolor="0.10 0 0 0.9" content="Generator" visible="0"/>
+			<label name="center_announcements_generator_defeat" wrap="1" textalign="center" y='10%' x="50%" textvalign="center" align="center" style="h1" font="maindyn_36" color="1 0 0 1" noclick="1" outline="1" outlinecolor="0.1 0.1 0.1 0.9" content="Destroyed!" visible="0"/>
+
+		</panel>
+
+		<!-- Your hero respawned (off screen) -->
+		<panel name="center_announcements_respawn" y="18h" align="center" height="28.0h" width="28h"  noclick="1" visible="0">
+
+			<!-- Title -->
+			<label name="center_announcements_respawn_title" wrap="1" y="-55%" textalign="center" textvalign="center" align="center" style="h1" font="maindyn_26" color="0 0.75 1 1" noclick="1" content="You Have" visible="0"/>
+			<label name="center_announcements_respawn_sub" y="-40%" textalign="center" textvalign="center" align="center" style="h1" font="maindyn_48" color="1 1 1 1" noclick="1" content="Respawned" visible="0"/>
+		</panel>
+
+		<!-- Victory -->
+		<panel name="center_announcements_victory" y="25h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+			<!-- Glow - To be replaced by effect -->
+			<image name="center_announcements_victory_glow" texture="/ui/game/arcade_text/textures/baldir_defeat_glow.tga" y="-150%" align="center" height="300%" width="300@" color="0 1 0 .8" rendermode="additive" noclick="1" />
+
+			<modelpanel name="center_announcements_victory_model" y="-35%" width="+110h" height="+150h" align="center" valign="center" noclick="1" visible="1"
+				onloadlua="self:SetEffect('/ui/main/postgame/rewards/models/chests/effects/default_cloud.effect')"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+
+			/>
+
+			<image texture="/ui/game/arcade_text/textures/baldir_defeat.tga" y="-150%" align="center" height="300%" width="300@" noclick="1" />
+
+			<!-- Title -->
+			<label name="center_announcements_victory_title" wrap="1" y="10%" textalign="center" textvalign="center" align="center" style="h1" font="maindyn_72" color="0 1 0 1" outline="1" outlinecolor="0.04 0.24 0.03 0.9" noclick="1" content="events_victory" visible="0"/>
+
+		</panel>
+
+		<!-- Defeat -->
+		<panel name="center_announcements_defeat" y="25h" align="center" height="11.0h" width="44.0h" noclick="1" visible="0">
+			<!-- Glow - To be replaced by effect -->
+			<image name="center_announcements_defeat_glow" texture="/ui/game/arcade_text/textures/baldir_defeat_glow.tga" y="-150%" align="center" height="300%" width="300@" color="0 1 0 .8" rendermode="additive" noclick="1" />
+
+			<modelpanel name="center_announcements_defeat_model" y="-35%" width="+110h" height="+150h" align="center" valign="center" noclick="1" visible="1"
+				onloadlua="self:SetEffect('/ui/main/postgame/rewards/models/chests/effects/default_cloud.effect')"
+
+				sunaltitude="-25"
+				suncolor="1 1 1"
+				ambientcolor="1 1 1"
+				cameranear="0.001"
+
+				model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+				cameraangles="0 0 180" camerafov="90"
+
+			/>
+
+			<image texture="/ui/game/arcade_text/textures/baldir_defeat.tga" y="-150%" align="center" height="300%" width="300@" noclick="1" />
+
+			<!-- Title -->
+			<label name="center_announcements_defeat_title" wrap="1" y="10%" textalign="center" textvalign="center" align="center" style="h1" font="maindyn_72" color="1 0 0 1" outline="1" outlinecolor="0.24 0.01 0.01 0.9" noclick="1" content="events_defeat" visible="0"/>
+
+		</panel>
+
+		<!-- New Multikill -->
+		<panel name="arcadeTextMultiKill" y="12h" align="center" height="10.0h" noclick="1" passivechildren="true" visible="false">
+		
+			<panel width="536.36@" align="center"><!-- 59h vs 11h -->
+				<panel name="arcadeTextMultiKillBanner" align="center" width="100%">
+					<image name="arcadeTextMultiKillBannerCenter" texture="/ui/game/arcade_text/textures/kill_banner_center.tga" hmargin="50@" height="100%" color="1 1 1 0.65"/>
+					<image name="arcadeTextMultiKillBannerLeft" texture="/ui/game/arcade_text/textures/kill_banner_left.tga" width="50@" height="100%" color="1 1 1 0.65" />
+					<image name="arcadeTextMultiKillBannerRight" texture="/ui/game/arcade_text/textures/kill_banner_left.tga" width="50@" height="100%" align="right" hflip="true" color="1 1 1 0.65" />
+				</panel>
+				<modelpanel name="arcadeTextMultiKillBannerGlow" y="0" width="+82.5h" height="+112.5h" align="center" valign="center" noclick="1" visible="1"
+					effect="/ui/game/arcade_text/effects/templates/doublekill/doublekill_orange.effect"
+
+					sunaltitude="-25"
+					suncolor="1 1 1"
+					ambientcolor="1 1 1"
+					cameranear="0.001"
+
+					model="/shared/models/invis.mdf" depthclear="true" depthcompress="false" lookat="false" modelpos="0 -200 0" modelangles="8 0 0" anim="idle" rotation="0" modelscale="1.0"
+					cameraangles="0 0 180" camerafov="90"
+
+				/>
+				<panel y="2%" height="86%">
+					<!--
+						<label name="arcadeTextMultiKillBannerKillCount" textvalign="center" x="15@" width="100@" textalign="right" font="maindyn_56" color="#e1eaef" outline="true" outlinecolor="#00000077" content="2"/>
+					-->
+					<panel width="60@" height="60%" valign="center" x="60@">
+						<panel name="arcadeTextMultiKillBannerKillCount" align="center" valign="center" texture="/ui/shared/textures/number_2.tga"/>
+					</panel>
+					<label name="arcadeTextMultiKillBannerKillType" textvalign="center" x="120@" y="-12%" width="100@" font="maindyn_16" color="#DDDDDD" outline="true" outlinecolor="#00000077" content="arcade_text_kill_2"/>
+					<label name="arcadeTextMultiKillBannerKill" textvalign="center" x="120@" y="13%" width="100@" font="maindyn_26" color="#DDDDDD" outline="true" outlinecolor="#00000077" content="arcade_text_kill"/>
+					<panel name="arcadeTextMultiKillBannerHeroArrow" valign="center" width="25@" height="25%" align="center" x="-90@" texture="/ui/game/arcade_text/textures/kill_banner_arrow.tga"/>
+					<panel name="arcadeTextMultiKillBannerHeroIcon" align="center" width="140@" height="140%" valign="bottom" texture="/heroes/bo/icon_full.tga"/>
+
+					<panel width="100@" x="135@" align="center">
+						<label name="arcadeTextMultiKillBannerHeroName" width="+400%" textvalign="center" y="-25%" font="maindyn_26" color="#FFFFFF" outline="true" outlinecolor="#00000077" content="Bo"/>
+						<label name="arcadeTextMultiKillBannerPlayerName" width="+400%" textvalign="center" y="5%" font="maindyn_16" color="#DDDDDD" outline="true" outlinecolor="#00000077" content="BlinkyisaNoob"/>
+						<panel height="22%" valign="bottom" y="-9%" float="right" padding="6.5@">
+							<instance name="arcadeTextMultiKillBannerStar" id="1" filled="true"/>
+							<instance name="arcadeTextMultiKillBannerStar" id="2" filled="true"/>
+							<instance name="arcadeTextMultiKillBannerStar" id="3" notfilled="true"/>
+							<instance name="arcadeTextMultiKillBannerStar" id="4" notfilled="true"/>
+							<instance name="arcadeTextMultiKillBannerStar" id="5" notfilled="true"/>
+						</panel>
+					</panel>
+
+				</panel>
+			</panel>
+		
+
+		</panel>
+
+	</panel>
+
+	<lua file="arcade_text.lua"/>
+
+</interface>

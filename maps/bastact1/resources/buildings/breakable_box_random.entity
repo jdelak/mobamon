@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_BreakableBox_Random"
+
+	model="/world/sprops/speprops/crate/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	isselectable="false"
+	iscontrollable="false"
+	preglobalscale="1.15"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="false"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="100"
+	deathtime="100"
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="1"
+	canrotate="false"
+	ismobile="false"
+	infoheight="10000"
+	lifetime=""
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	drawonmap="false"
+	unittype="breakable"
+	alwaysvisible="true"
+
+>
+
+	<ondeath>	
+			<chance threshold=".1" >
+				<spawnaffector name="Affector_Bastact1_HealthPickup" owner="target_entity"  target="source_position" count="1" />
+			</chance>
+		<else>
+			<chance threshold="0.1" >
+				<spawnaffector name="Affector_Bastact1_ManaPickup" owner="target_entity"  target="source_position" count="1" />
+			</chance>
+			<else>		
+				<spawnunit name="Bastact1_Enemy_Rat" target="source_entity" />
+			</else>	
+		</else>
+	</ondeath>
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>	
+	
+</pet>

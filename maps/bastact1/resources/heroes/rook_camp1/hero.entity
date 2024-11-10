@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hero
+	name="Hero_Rook_Bastact1"
+
+	team="final"
+	icon="icon.tga"
+	portrait="icon.tga" 
+	model="model.mdf"
+	skin="black"
+	mapicon="icon_circle.tga"
+	isselectable="true"
+	
+	passiveeffect="effects/body.effect"
+	spawneffect=""
+	respawneffect="/shared/effects/respawn.effect"
+	selectedsound=""
+	selectedflavorsound=""
+		
+	heroselectannouncement=""
+	heroselectflavorannouncement=""
+	confirmmovesound=""
+	confirmattacksound=""
+	nomanasound=""
+	cooldownsound=""
+	streaksound=""
+	
+	creepkillannouncement=""
+	herokillfrequentannouncement=""
+	herokillinfrequentannouncement=""
+	herolevelultannouncement=""
+	creepdamageannouncement=""
+	toweraggroannouncement=""
+	deathannouncement=""
+	respawnannouncement=""
+	itemacquireannouncement=""
+	itempurchaseannouncement=""
+	lowhealthannouncement=""
+	abilityflavorannouncement=""
+	missingtopannouncement=""
+	missingmiddleannouncement=""
+	missingbottomannouncement=""
+	
+	preglobalscale="1.6"
+	modelscale="1.0"
+	effectscale="1.05"
+	boundsheight="112"
+	boundsradius="24"
+	selectionradius="48"
+	targetoffset="0 0 64"
+	infoheight="200"
+	searchradius="105"
+	minsearchradius="65"
+	searchheight="125"
+	invulnerable="false"
+
+	revealrange="700"
+	revealtype="hero"
+
+	category="magic"
+	difficulty="4"
+	movespeed="385"
+	turnrate="900"
+	turnsmoothing="0.01"
+	
+	rolesurvival="0"
+	rolecrowdcontrol="0"
+	rolephysicaldamage="4"
+	rolemagicdamage="3"
+	roleutility="2"
+
+	maxhealth="2000"
+	maxhealthperlevel="0"
+	healthregen="8"
+	healthproportionregen="0"
+	
+	unitcriticalmultiplier="1.0"
+	
+	maxmana="240"
+	maxmanaperlevel="10"
+	manaregen="10"
+	manaproportionregen="0.0"
+
+	armor="10,11.5,13,14.5,16,17.5,19,20.5,22,23.5,25,26.5,28,29.5,31"
+	magicarmor="10,11.5,13,14.5,16,17.5,19,20.5,22,23.5,25,26.5,28,29.5,31"
+
+	inventory0="Ability_Rook1_Bastact1"
+	inventory1="Ability_Rook2_Bastact1"
+	inventory2="Ability_Rook3_Bastact1"
+	inventory3="Ability_Rook4_Bastact1"
+	inventory4="Ability_Rook4_Bastact1"
+	inventory5=""
+	inventory6=""
+	inventory7=""
+	inventory8="Ability_HomecomingStone_Home"
+	inventory9=""
+	inventory10="Ability_WardSwitch"
+	inventory11="Ability_AutomatedCourier"
+
+	ismobile="true"
+	
+	powerperlevel="0"
+	attackduration="500"
+	attackactiontime="200"
+	attackcooldown="500"
+	attackdamagemin="30"
+	attackdamageminperlevel="0"
+	attackdamagemax="40"
+	attackdamagemaxperlevel="0"
+	attacknumanims="2"
+	tiltfactor="0.0"
+	tiltspeed="90.0"
+	attackoffset="0 50 80"
+	attackprojectile="Projectile_Rook_Attack"
+	attackrange="550"
+	attackstarteffect="effects/attack.effect"
+	attackactioneffect=""
+	attackimpacteffect="projectile/effects/impact.effect"
+	critimpacteffect="/shared/effects/crit_impact.effect"
+	attacktype="ranged"
+	attackdamagetype="AttackDamage"
+	combattype="Ranged"
+	attacktargetscheme="visible_enemy_units"
+	
+
+	aggrorange="800"
+	sightrangeday="1500"
+	sightrangenight="1500"
+	wanderrange="250"
+	clearvision="true"
+
+	primaryattribute="Intelligence"
+	strength="0"
+	strengthperlevel="0"
+	agility="0"
+	agilityperlevel="0"
+	intelligence="0"
+	intelligenceperlevel="0"
+	
+	previewmodel="preview.mdf"
+	previewpos="20 0 -75"
+	previewangles="20 0 0"
+	previewscale="1.45"
+	defaultbehavior="aggro"
+	
+	storemodel="preview.mdf"
+	storepos="0 0 -120"
+	storeangles="0 0 0"
+	storescale="1.45"
+	
+	occlusionstealthtype="occlusion"
+	occlusionfadeineffect="/shared/effects/fade_in.effect"
+	occlusionfadeouteffect="/shared/effects/fade_out.effect"
+	
+	defaultfamiliar="Familiar_Razer"
+	itembuild="Rook"
+	levelbuild="1,2,3,1,2,4,1,1,2,2,4,3,3,3,4"
+	
+	corpsetime="1500"
+	corpsefadetime="4000"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+>	
+			
+	<onframe>
+		<targettype target="source_entity" type="alive">
+			<compare a="accumulator" b="1" op="eq" >
+				<setaccumulator value="0" />
+				<setscriptvalue name="isDead" value="0" />
+				<teleport source="source_entity" target="this_proxy_entity" />
+			</compare>
+		</targettype>
+	</onframe>
+
+	<ondamage>
+		<damageeffecttype effecttype="AttackDamage" >
+			<compare a="source_damage" b="0" op="gt">
+    			<playeffect effect="projectile/effects/impact.effect" source="target_entity" target="target_entity" />
+    		</compare>
+    	</damageeffecttype>
+    </ondamage>
+
+	<ondeath>
+		<setaccumulator value="1" />
+		<setscriptvalue name="isDead" value="1" />
+		<setscriptvalue name="death" value="1" />
+		<setscriptvalue name="analytics_playerDeath" value="1" />	
+		<clientuitrigger name="cinematic_fadeBlackInSlow" />
+	</ondeath>
+	
+	<onrespawn>
+		<clientuitrigger name="cinematic_fadeBlackOut" />
+	</onrespawn>	
+
+	<modifier key="frost" modpriority="100"
+		attackprojectile="Projectile_Frost"
+	>
+	</modifier>
+	
+	<modifier key="shop_access_dead" condition="!alive" modpriority="100" exclusive="true"
+		shopaccess="Shop_Utility Shop_Basic Shop_Boots Shop_Consumables Shop_MagicDefense Shop_PhysicalDefense Shop_VitalBoosters Shop_Artifacts Shop_Offense Shop_Crafted"
+		stashaccess="true"
+	/>
+	
+	<modifier key="no_aggro" modpriority="100"
+		defaultbehavior="aggro"
+	/>
+
+	<modifier key="hide" modpriority="100"
+		drawonmap="false"
+		sightrangeday="0"
+		sightrangenight="0"
+	>
+	</modifier>
+
+	<modifier key="noattack" modpriority="100"
+			attackrange="0"
+	>
+	</modifier>
+
+	<modifier key="invuln" modpriority="100"
+		invulnerable="true"
+		ismobile="false"
+	>
+	</modifier>
+	
+	<modifier key="cinematic_mode" modpriority="100"
+		invulnerable="true"
+		canattack="false"
+		hidealtinfo="true"
+	>
+	</modifier>
+
+	<modifier key="slowed" modpriority="100"
+		movespeed="230"
+	>
+	</modifier>
+
+	<modifier key="no_movement" modpriority="100"
+		ismobile="false"
+	>
+	</modifier>
+
+</hero>

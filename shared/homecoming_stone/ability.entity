@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_HomecomingStone"
+	
+	icon="icon_b.tga"
+	
+	actiontype="target_position"
+	allowoutofrangecast="true"
+	casttime="0"
+	castactiontime="0"
+	cooldowntime="85000"
+	cooldowntype="teleport"
+	
+	range="99999"
+
+	doubleactivate="true"
+	noentercombat="true"
+	responsetype="NoResponse"
+	casteffecttype="NoResponse"
+>
+
+	<ondoubleactivate>
+		<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+		<compare a="stack_entity" b="0" op="ne">
+			<playanim name="item_1" target="source_entity" />
+			<setpos0 position="stack_position" positionmodifier="minonline" positionend="target_position" positionvalue="400" />
+			<spawnunit name="Gadget_HomecomingStone_Base" count="1" target="pos0" pushentity="true" proxy="stack_entity" />
+			<applystate name="State_HomecomingStone_Source_Base" target="source_entity" proxy="stack_entity" duration="8000"/>
+		</compare>
+	</ondoubleactivate>
+	
+	<ondamaged>
+		<condition test="target_type player_controlled">
+			<condition test="not_target_type self">
+				<startcooldown duration="6000" />
+			</condition>
+		</condition>
+	</ondamaged>
+
+	<onattackingdamageevent>
+		<condition test="target_type player_controlled">
+			<condition test="not_target_type self">
+				<damageeffecttype effecttype="DOT" />
+				<else>
+					<startcooldown duration="6000" />
+				</else>
+			</condition>
+		</condition>
+	</onattackingdamageevent>
+	
+	
+	<onimpact>
+		<pushentity searchfortarget="true" searchorigin="target_position" radius="99999" targetscheme="ally_buildings" ignoreinvulnerable="true"/>
+		<playanim name="item_1" target="source_entity" />
+		<playanim name="port_out" target="source_entity" />
+
+		<setpos0 position="stack_position" positionmodifier="minonline" positionend="target_position" positionvalue="400" />
+
+		<spawnunit name="Gadget_HomecomingStone" count="1" target="pos0" pushentity="true" proxy="stack_entity" />
+
+		<applystate name="State_HomecomingStone_Source" target="source_entity" proxy="stack_entity" duration="3000"/>
+	</onimpact>
+	
+	<oncomplete>
+		<order command="hold" force="true" source="source_entity" target="source_entity" queue="back" />
+	</oncomplete>
+</ability>

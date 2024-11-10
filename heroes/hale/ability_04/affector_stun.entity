@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Hale_Ability4_Stun"
+	
+	radiusstart="150"
+	radiusend="550"
+	lifetime="350"
+	maximpactspertarget="1"
+	impacteffect="effects/impact.effect"
+	targetselection="all"
+	targetscheme="enemy_units_and_buildings"
+	effecttype="Magic"
+
+	touchpropradius="475"
+	touchpropanim="flamehit"
+>
+	<onimpact>
+		<cantarget effecttype="CrowdControl">
+			<getconstant name="stun" />
+			<setvar0 a="result" b="1000" op="mult" />
+			<spawnprojectile name="Projectile_Hale_Ability4" source="target_entity" target="target_position" bind="target_entity" bindstate="State_Hale_Ability4" bindpriority="2" pushentity="true"/>
+			<applystate name="State_Hale_Ability4_Stun" duration="var0" proxy="stack_entity"/>
+		</cantarget>
+		<getconstant name="damage" />
+		<damage amount="1" b="result" op="mult" effecttype="Magic Splash" />
+		<recordheroaggression  />
+	    <aggression />
+	</onimpact>
+</affector>

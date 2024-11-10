@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Barrel_Spawner"
+
+	model="/maps/bastact1/resources/buildings/castle_gate/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	
+	isselectable="false"
+	iscontrollable="false"
+	preglobalscale="1.80"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="true"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="100"
+	deathtime="100"
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="1"
+	canrotate="false"
+	ismobile="false"
+	infoheight="10000"
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	drawonmap="false"
+	unittype="PseudoPet"
+	alwaysvisible="true"
+
+>
+
+<!-- Need to set this spawner's proxy to gadget_barrel_target on spawn in game_info -->
+
+<oninflicted>
+	
+	<!-- <playanim name="open" source="this_entity" target="this_entity" speed="50" /> -->
+	<setpos0 position="source_position" offsetspace="source_entity" offset="0 0 150" />
+	<setpos1 position="source_position" offsetspace="source_entity" offset="0 500 60" />
+	<spawnunit name="Gadget_Bastact1_Barrel" count="1" target="source_entity" pushentity="true"  lifetime="5000" />
+	<spawnprojectile name="Projectile_Bastact1_Barrel" source="pos0" target="pos1" bind="stack_entity" proxy="stack_entity" />
+</oninflicted>	
+
+<modifier key="explode" modpriority="100"
+	name="Bastact1_Barrel_Spawner"
+
+	model="/maps/bastact1/resources/buildings/castle_gate_smashed/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	
+	isselectable="false"
+	iscontrollable="false"
+	preglobalscale="1.8"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="true"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="100"
+	deathtime="100"
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="1"
+	canrotate="false"
+	ismobile="false"
+	infoheight="10000"
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	drawonmap="false"
+	unittype="PseudoPet"
+	unitwalking="true"
+	>
+
+	<oninflicted>
+	<!-- <playanim name="open" source="this_entity" target="this_entity" speed="8" />
+	<spawnprojectile name="Projectile_Bastact1_Barrel" source="this_entity" target="this_proxy_entity" /> -->
+	</oninflicted>
+
+	</modifier>
+	
+</pet>

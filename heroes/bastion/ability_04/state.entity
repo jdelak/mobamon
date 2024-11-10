@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastion_Ability4_Buildup"	
+	
+	icon="icon.tga"
+	passiveeffect="effects/buildup.effect"
+	
+	effecttype=""
+	
+	deathpersist="true"
+	ishidden="true"
+	modifierkey="Bastionult_refresherorb"
+>
+	<onframe/>
+	
+	
+	<onexpired>
+		<targettype type="alive" target="source_entity" >
+			<propareaeffect center="source_entity" radius="350" anim="flamehit" />
+			<areaofeffect
+				radius="450"
+				targetselection="all"
+				targetscheme="enemy_units_and_buildings"
+				effecttype="Magic"
+			>
+				<combatevent effecttype="Counterable">
+					<onimpact>
+						<getconstant name="damage" adjustmentsource="this_entity" />
+						<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+						<applystate name="State_Bastion_Ability4_Slow" duration="6000" />
+					</onimpact>
+				</combatevent>
+				<recordheroaggression  />
+				<aggression />
+			</areaofeffect>
+			
+			<playeffect effect="effects/explosion.effect" source="this_owner_entity" target="this_owner_entity" />
+			<playanim name="ability_4" target="source_entity" />
+			<applystate name="State_Bastion_Ability4_Immolation" duration="8000" />
+			<starttimer duration="8000" entity="tool_entity" />
+		</targettype>
+	</onexpired>
+	
+
+</state>

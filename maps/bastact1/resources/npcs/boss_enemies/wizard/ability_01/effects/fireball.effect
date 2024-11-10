@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="false">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.0">
+			<!-- Glow along the ground -->
+	
+			<!-- <groundsprite
+				delay="120"
+				position="0 -100 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".6 0 .6"
+				endcolor="0 0 0"
+				midcolorpos=".1"
+				size="50"
+				directionalspace="local"
+				height="200"
+				width="70"
+			/>
+ -->
+
+ 			
+
+			<!-- Ground flash -->
+			<groundsprite
+				life="200"
+				position="0 -25 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".6 0 .6"
+				endcolor="0"
+				size="300"
+				directionalspace="local"
+			/>	
+
+			<!-- Fireball flames -->
+				<!-- Darker purple -->
+			<simpleemitter
+				delay="0"
+				spawnrate="500"
+				minparticlelife="250"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="50"
+				maxspeed="100"
+				drag="0"
+				acceleration="0"
+				position="0 -40 -30"
+				material="/shared/effects/smaterials/flamewisps.material"
+				direction="0 0 0"
+				offsetsphere="0 0 0"
+				
+			>	<particle 
+					minanglespeed="-200"
+					maxanglespeed="200"
+					startcolor=".8 0 1"
+					endcolor="0 0 0"
+					midcolorpos=".3"
+					minstartsize="40"
+					maxstartsize="60"
+					startsize="0"
+					midsize="100"
+					endsize="0"
+					midsizepos=".2"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".3"
+					startanchor="1"
+					endanchor="0"
+				/>
+
+			</simpleemitter>
+			
+				<!-- lighter purple -->
+			<simpleemitter
+				spawnrate="500"
+				minparticlelife="150"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="200"
+				maxspeed="400"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/flamewisps.material"
+				direction="0 0 0"
+				offsetsphere="10 10 10"
+				
+			>
+
+				<particle 
+					minanglespeed="-200"
+					maxanglespeed="200"
+					startcolor="1 0.9 1"
+					midcolor="0.9 0 0.9"
+					endcolor="0 0 0"
+					midcolorpos=".3"
+					minstartsize="40"
+					maxstartsize="60"
+					startsize="0"
+					midsize="100"
+					endsize="0"
+					midsizepos=".2"
+					startalpha="1"
+					endalpha="0"
+					startanchor="1"
+					endanchor="0"
+				/>	
+			</simpleemitter>		
+			
+				<!--White front-->	
+			<simpleemitter
+				spawnrate="200"
+				minparticlelife="100"
+				maxparticlelife="200"
+				gravity="0"
+				minspeed="50"
+				maxspeed="150"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/flamewisps.material"
+				direction="0 0 0"
+				offsetsphere="20 20 20"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-200"
+					maxanglespeed="200"
+					color="1 1 1"
+					size="60"
+					midsizepos=".2"
+					startalpha=".5"
+					endalpha="0"
+					startanchor="1"
+					endanchor="0"
+				/>
+			</simpleemitter>
+
+				<!--Ember bits-->	
+			<simpleemitter
+				expirelife="100"
+				spawnrate="100"
+				minparticlelife="100"
+				maxparticlelife="500"
+				mingravity="-5"
+				maxgravity="5"
+				minspeed="-100"
+				maxspeed="-200"
+				minangle="0"
+				maxangle="90"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitecircleblurred_add_greenglow.material"
+				direction="0 1 0"
+				offsetsphere="50"
+			>
+				<particle 
+					
+					minanglespeed="-200"
+					maxanglespeed="200"
+					color=".6 0 .6"
+					startsize="5"
+					endsize="0"
+					startalpha="1"
+					midalpha=".5"
+					endalpha="0"
+				/>
+			</simpleemitter>
+		</particlesystem>
+		
+		<particlesystem name="system1" space="entity" scale="1.0">
+			
+				<!-- lighter purple -->
+			<simpleemitter
+				spawnrate="500"
+				minparticlelife="150"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="200"
+				maxspeed="400"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/flamewisps.material"
+				direction="0 0 0"
+				offsetsphere="10 10 10"
+				
+			>
+
+				<particle 
+					minanglespeed="-200"
+					maxanglespeed="200"
+					startcolor="1 0.9 1"
+					midcolor="0.9 0 0.9"
+					endcolor="0 0 0"
+					midcolorpos=".3"
+					minstartsize="40"
+					maxstartsize="60"
+					startsize="0"
+					midsize="100"
+					endsize="0"
+					midsizepos=".2"
+					startalpha="1"
+					endalpha="0"
+					startanchor="1"
+					endanchor="0"
+				/>	
+			</simpleemitter>		
+			
+				<!--White front-->	
+			<simpleemitter
+				spawnrate="200"
+				minparticlelife="100"
+				maxparticlelife="200"
+				gravity="0"
+				minspeed="50"
+				maxspeed="150"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/flamewisps.material"
+				direction="0 0 0"
+				offsetsphere="20 20 20"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-200"
+					maxanglespeed="200"
+					color="1 1 1"
+					size="60"
+					midsizepos=".2"
+					startalpha=".5"
+					endalpha="0"
+					startanchor="1"
+					endanchor="0"
+				/>
+			</simpleemitter>
+			
+			<billboard
+				expirelife="400"
+				startcolor="0.6 0 0.6"
+				endcolor="0"
+				startsize="120"
+				endsize="0"
+				depthbias="-50"
+				material="/shared/effects/smaterials/bulb_add.material"
+			/>
+			
+			<light
+				delay="0"
+				position="0 0 20"
+				startcolor="3 0 3"
+				midcolor="3 0 3"
+				endcolor="0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="200"	
+			/>
+			
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

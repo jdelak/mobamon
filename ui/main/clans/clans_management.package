@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="clan_management" >
+		<panel noclick="0" name="clan_management" visible="1" x="16s" y="70s" width="-48s" height="-72s" float="bottom" reverse="1">
+		
+			<panel height="42s" width="100%" sticky="1" stickytoinvis="0" noclick="1">
+				<label style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_24" content="clans_finder_language" noclick="1" />
+				<panel grow="1" regrow="1" height="22s" align="right" valign="center" y="2s" float="right" padding="5s" reverse="1" >
+
+					<combobox
+						name="clan_management_language_combobox" x="0s" y="-2s" visible="1"
+						width="250s"
+						height="32s"
+						align="left"
+						valign="top"
+						color="invisible"
+						itemwidth="100%"
+						itemheight="32s"
+						cvar=""
+						maxlistheight="12"
+						exteriorscrollbars="1"
+						scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+						handleheight="100@" handlewidth="100%"
+						highlight="under"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						onlosefocuslua="self:GetWidget('clan_management_language_combobox_listbox'):SetVisible(0)"
+						onselectlua=""
+						onmouseover="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+						watch9="UIUpdateRegion"
+						ontrigger9="DoEvent(9);"
+						onevent9lua="UIManager.GetInterface('main'):StrifeRegionF('PopulateLanguageSelector', self)"
+						onshow=""
+						onloadlua="
+							self:GetWidget('clan_management_language_combobox_listbox'):SetCallback('onlosefocus', function()
+								self:GetWidget('clan_management_language_combobox_listbox'):SetVisible(0)
+							end)
+							self:GetWidget('clan_management_language_combobox_listbox'):SetCallback('onhide', function()
+								self:GetWidget('clan_management_language_combobox_listbox'):SetVisible(0)
+							end)				
+						"		
+						hscrollbar="0"
+						horizontal="false"		
+					>
+						<instance name="clans_combobox_state" state="up" color=".8 .8 .8 1" />
+						<instance name="clans_combobox_state" state="over" color="1 1 1 1" />
+						<instance name="clans_combobox_state" state="down" color=".4 .4 .4 1" />
+						<widgetstate statename="listbg">
+							<frame texture="/ui/elements:rounded_bg_white" height="+10s" valign="center" color=".1 .1 .1 .95" borderthickness="5s" />
+							<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+						</widgetstate>
+						<widgetstate statename="itembg">
+							
+						</widgetstate>
+						<widgetstate statename="itemhighlight">
+							<frame texture="/ui/elements:rounded_bg_white" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+						</widgetstate>
+					</combobox>									
+				
+				</panel>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>
+			
+			<panel height="42s" width="100%" sticky="1" stickytoinvis="0" noclick="1" visible="0"> <!-- NO REGIONS SEARCH THIS PHRASE -->
+				<label style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_24" content="clans_finder_region" noclick="1" />
+				<panel grow="1" regrow="1" height="22s" align="right" valign="center" y="2s" float="right" padding="5s" reverse="1" >
+
+					<combobox
+						name="clan_management_region_combobox" x="0s" y="-2s" visible="1"
+						width="250s"
+						height="32s"
+						align="left"
+						valign="top"
+						color="invisible"
+						itemwidth="100%"
+						itemheight="32s"
+						cvar=""
+						maxlistheight="12"
+						exteriorscrollbars="1"
+						scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+						handleheight="100@" handlewidth="100%"
+						highlight="under"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"					
+						onlosefocuslua="self:GetWidget('clan_management_region_combobox_listbox'):SetVisible(0)"
+						onselectlua=""
+						onmouseover="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+						onshow=""
+						onloadlua="
+							self:GetWidget('clan_management_region_combobox_listbox'):SetCallback('onlosefocus', function()
+								self:GetWidget('clan_management_region_combobox_listbox'):SetVisible(0)
+							end)
+							self:GetWidget('clan_management_region_combobox_listbox'):SetCallback('onhide', function()
+								self:GetWidget('clan_management_region_combobox_listbox'):SetVisible(0)
+							end)				
+						"		
+						hscrollbar="0"
+						horizontal="false"		
+					>
+						<instance name="clans_combobox_state" state="up" color=".8 .8 .8 1" />
+						<instance name="clans_combobox_state" state="over" color="1 1 1 1" />
+						<instance name="clans_combobox_state" state="down" color=".4 .4 .4 1" />
+						<widgetstate statename="listbg">
+							<frame texture="/ui/elements:rounded_bg_white" height="+10s" valign="center" color=".1 .1 .1 .95" borderthickness="5s" />
+							<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+						</widgetstate>
+						<widgetstate statename="itembg">
+							
+						</widgetstate>
+						<widgetstate statename="itemhighlight">
+							<frame texture="/ui/elements:rounded_bg_white" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+						</widgetstate>
+					</combobox>									
+				
+				</panel>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>	
+							
+			<panel height="42s" width="100%" sticky="1" stickytoinvis="0" noclick="0">
+				<frame name="clan_management_clannameinput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" height="-8s" y="-1s" width="-38s" valign="center" noclick="1">
+					<textbox
+						name="clan_management_clannameinput_buffer" taborder="30"
+						maxlength="32"
+						textcolor="#35608c"
+						textoutlinecolor="#87c2ff"
+						color="invisible"
+						font="maindyn_20"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-16s" align="center" y="4s"
+						height="-4s" valign="center"
+						grow="1"
+						onloadlua=""
+						onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+						onsizelua=""
+						onesc="DoEvent()"
+						onenter="DoEvent(2)"							
+					/>		
+					<label name="clan_management_clannameinput_frame_coverlabel" x="10s" y="-1s" noclick="true" textvalign="center" valign="center" color="#35608c" font="maindyn_18" content="clans_management_enterclubname"/>									
+				</frame>
+				<frame name="clan_management_clannameinput_highlight" texture="/ui/shared/frames/text_input.tga" color="invisible" bordercolor="#4bb3fd" borderthickness="4s" noclick="1" visible="0" />
+				<panel name="clan_management_clannameinput_edit_parent" visible="1" noclick="1" float="right" grow="1" regrow="1" growinvis="0" height="100%" padding="10s" valign="center">
+					<label visible="1" style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_24" content="clans_management_name" noclick="1" />
+					<label name="clan_management_clannameinput_label" visible="1" style="labelBase" fitx="1" textvalign="center" font="maindyn_24" content="Brawl Club Name" noclick="1" />						
+				</panel>
+				<instance name="iconButton" id="clan_management_clannameinput_edit_btn" visible="1"
+					icon="/ui/main/shared/textures/edit.tga" iconsize="80"
+					width="30s" height="30s" align="right" valign="center" borderthickness="3s" colorized="1"
+					onclicklua=""
+					onmouseoverlua="simpleTipGrowYUpdate(true, '/ui/main/shared/textures/edit.tga', Translate('clans_create_pick_name'), Translate('clans_create_pick_name_tip'), self:GetHeightFromString('220s'))"
+					onmouseoutlua="simpleTipGrowYUpdate(false)"					
+				/>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>
+			
+			<panel height="42s" width="100%" sticky="1" stickytoinvis="0" noclick="0">
+				<frame name="clan_management_clantaginput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" height="-8s" y="-1s" width="-38s" valign="center" noclick="1">
+					<textbox
+						name="clan_management_clantaginput_buffer" taborder="31"
+						maxlength="4"
+						textcolor="#35608c"
+						textoutlinecolor="#87c2ff"
+						color="invisible"
+						font="maindyn_20"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-16s" align="center" y="4s"
+						height="-4s" valign="center"
+						grow="1"
+						onloadlua=""
+						onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+						onsizelua=""
+						onesc="DoEvent()"
+						onenter="DoEvent(2)"							
+					/>		
+					<label name="clan_management_clantaginput_frame_coverlabel" x="10s" y="-1s" noclick="true" textvalign="center" valign="center" color="#35608c" font="maindyn_18" content="clans_management_enterclubtag"/>									
+				</frame>
+				<panel name="clan_management_clantaginput_edit_parent" visible="1" noclick="1" float="right" grow="1" regrow="1" growinvis="0" height="100%" padding="10s" valign="center" >
+					<label visible="1" style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_24" content="clans_management_tag" noclick="1" />
+					<label name="clan_management_clantaginput_label" visible="1" style="labelBase" fitx="1" textvalign="center" font="maindyn_24" content="Brawl Club Tag" noclick="1" />						
+				</panel>
+				<instance name="iconButton" id="clan_management_clantaginput_edit_btn" visible="1"
+					icon="/ui/main/shared/textures/edit.tga" iconsize="80"
+					width="30s" height="30s" align="right" valign="center" borderthickness="3s" colorized="1"
+					onclicklua=""
+					onmouseoverlua="simpleTipGrowYUpdate(true, '/ui/main/shared/textures/edit.tga', Translate('clans_create_tag'), Translate('clans_create_tag_tip'), self:GetHeightFromString('220s'))"
+					onmouseoutlua="simpleTipGrowYUpdate(false)"					
+				/>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>
+			
+			<panel height="72s" width="100%" sticky="1" stickytoinvis="0" valign="top" noclick="0">
+				<frame name="clan_management_clandescriptioninput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" height="-20s" y="-1s" width="-38s" valign="center" noclick="1">
+					<textbox
+						name="clan_management_clandescriptioninput_buffer" taborder="32"
+						maxlength="100"
+						textcolor="#35608c"
+						textoutlinecolor="#87c2ff"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						wrap="1"
+						width="-16s" align="center" y="2s"
+						height="-4s" valign="center"
+						grow="1"
+						onloadlua=""
+						onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+						onsizelua=""
+						onesc="DoEvent()"
+						onenter="DoEvent(2)"							
+					/>		
+					<label name="clan_management_clandescriptioninput_frame_coverlabel" x="8s" y="4s" noclick="true" valign="center" color="#35608c" font="maindyn_18" content="clans_management_enterclubdesc"/>									
+				</frame>
+				<panel name="clan_management_clandescriptioninput_edit_parent" y="4s" width="-38s" visible="1" noclick="1" float="bottom" grow="1" regrow="1" growinvis="0" height="100%" padding="10s" valign="center" >
+					<label visible="1" style="BrawlH_30" fitx="1" textvalign="top" fity="1" font="maindyn_22" lineheight="12s" content="clans_management_desc" noclick="1" />
+					<label name="clan_management_clandescriptioninput_label" visible="1" style="labelBase" wrap="1" textvalign="top" fity="1" font="maindyn_18" lineheight="19s" content="Brawl Club Description" noclick="1" />					
+				</panel>
+				<instance name="iconButton" id="clan_management_clandescriptioninput_edit_btn" visible="1"
+					icon="/ui/main/shared/textures/edit.tga" iconsize="80"
+					width="30s" height="30s" align="right" valign="center" borderthickness="3s" colorized="1"
+					onclicklua=""
+					onmouseoverlua="simpleTipGrowYUpdate(true, '/ui/main/shared/textures/edit.tga', Translate('clans_create_desc'), Translate('clans_create_desc_tip'), self:GetHeightFromString('220s'))"
+					onmouseoutlua="simpleTipGrowYUpdate(false)"					
+				/>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>
+			
+			<panel height="72s" width="100%" sticky="1" stickytoinvis="0" valign="top" noclick="0">
+				<frame name="clan_management_chattopicinput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" height="-20s" y="-1s" width="-38s" valign="center" noclick="1">
+					<textbox
+						name="clan_management_chattopicinput_buffer" taborder="33"
+						maxlength="100"
+						textcolor="#35608c"
+						textoutlinecolor="#87c2ff"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						wrap="1"
+						width="-16s" align="center" y="2s"
+						height="-4s" valign="center"
+						grow="1"
+						onloadlua=""
+						onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+						onsizelua=""
+						onesc="DoEvent()"
+						onenter="DoEvent(2)"							
+					/>		
+					<label name="clan_management_chattopicinput_frame_coverlabel" x="8s" y="4s" noclick="true" valign="center" color="#35608c" font="maindyn_18" content="clans_management_enterclubmotd"/>									
+				</frame>
+				<panel name="clan_management_chattopicinput_edit_parent" y="4s" width="-38s" visible="1" noclick="1" float="bottom" grow="1" regrow="1" growinvis="0" height="100%" padding="10s" valign="center" >
+					<label visible="1" style="BrawlH_30" fitx="1" textvalign="top" fity="1" font="maindyn_22" lineheight="12s" content="clans_management_motd" noclick="1" />
+					<label name="clan_management_chattopicinput_label" visible="1" style="labelBase" wrap="1" textvalign="top" fity="1" font="maindyn_18" lineheight="19s" content="Brawl Club Topic" noclick="1" />					
+				</panel>
+				<instance name="iconButton" id="clan_management_chattopicinput_edit_btn" visible="1"
+					icon="/ui/main/shared/textures/edit.tga" iconsize="80"
+					width="30s" height="30s" align="right" valign="center" borderthickness="3s" colorized="1"
+					onclicklua=""
+					onmouseoverlua="simpleTipGrowYUpdate(true, '/ui/main/shared/textures/edit.tga', Translate('clans_create_pick_topic'), Translate('clans_create_pick_topic_tip'), self:GetHeightFromString('220s'))"
+					onmouseoutlua="simpleTipGrowYUpdate(false)"					
+				/>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>			
+			
+			<panel height="72s" width="100%" noclick="1" sticky="1" stickytoinvis="0" float="bottom" >
+				<panel noclick="1" height="3s" />
+				<label style="BrawlH_30" fitx="1" fity="1" fitypadding="8s" textvalign="center" font="maindyn_26" content="clans_finder_membership" noclick="1" />
+				<panel height="22s" align="left" valign="top" float="right" padding="5s" >
+					<instance id="clan_management_filter_0_1" name="deckSimpleRadio" title="Open" font="maindyn_18" height="100%" width="86s" />
+					<instance id="clan_management_filter_0_2" name="deckSimpleRadio" title="Application" font="maindyn_18" height="100%" width="120s" />
+					<instance id="clan_management_filter_0_3" name="deckSimpleRadio" title="Invite-Only" font="maindyn_18" height="100%" width="120s" />
+				</panel>
+				<panel noclick="1" height="9s" />
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>		
+	
+			<panel height="42s" width="100%" noclick="1" sticky="1" stickytoinvis="0" visible="0"  >
+				<label style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_26" content="clans_finder_focus" noclick="1" />
+				<panel grow="1" regrow="1" height="22s" align="right" valign="center" y="2s" float="right" padding="5s" >
+					<instance id="clan_management_filter_1_1" name="deckSimpleRadio" title="Social" font="maindyn_18" height="100%" width="86s" />
+					<instance id="clan_management_filter_1_2" name="deckSimpleRadio" title="Competitive" font="maindyn_18" height="100%" width="136s" />
+					<instance id="clan_management_filter_1_3" name="deckSimpleRadio" title="Both" font="maindyn_18" height="100%" width="70s" />
+				</panel>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>		
+	
+			<panel height="42s" width="100%" noclick="1" sticky="1" stickytoinvis="0" visible="0" >
+				<label style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_26" content="clans_finder_skill" noclick="1" />
+				<panel grow="1" regrow="1" height="22s" align="right" valign="center" y="2s" float="right" padding="5s">
+					<instance id="clan_management_filter_2_1" name="deckSimpleRadio" title="Newbies" font="maindyn_18" height="100%" width="110s" />
+					<instance id="clan_management_filter_2_2" name="deckSimpleRadio" title="Experienced" font="maindyn_18" height="100%" width="138s" />
+					<instance id="clan_management_filter_2_3" name="deckSimpleRadio" title="Anyone" font="maindyn_18" height="100%" width="90s" />
+				</panel>
+				<instance name="hr" valign="bottom" light="1 1 1 .13" dark="0 0 0 .22" />
+			</panel>	
+			
+			<panel height="82s" width="100%" noclick="1" sticky="1" stickytoinvis="0" visible="1" >
+				<instance name="clans_slider_template_int" id="clans_management_minRating" sliderWidth="-70s" intWidth="68s" tip_id="clans_management_minRating_tip" showtip="1" valign="center" minvalue="0" maxvalue="3000" step="1" title="clans_applicants_medals_tip" tip_name="clans_applicants_medals_tip" tip_text1="clans_applicants_medals_desc"/>
+			</panel>
+			
+			<panel height="36s" width="100%" y="-14s" valign="bottom" noclick="1" >
+				<label style="BrawlH_30" fitx="1" textvalign="center" font="maindyn_26" content="clans_management_leaveclub_desc" noclick="1" />
+				<instance name="standardButton" id="clans_leave_clan_btn" rendermode="grayscale" x="-240s" font="maindyn_20" label="clans_management_leaveclub" width="150s" align="right" defaultsound="0"
+					onclicklua="mainUI.Clans.PromptLeaveClan()"
+				/>
+				<instance name="standardButton" id="clans_management_close_2" font="maindyn_20" label="general_close" width="150s" align="right" defaultsound="0"
+					onclicklua="mainUI.Clans.SetTab('clan_management')"
+				/>				
+			</panel>
+			
+		</panel>
+	</template>		
+		
+</package>

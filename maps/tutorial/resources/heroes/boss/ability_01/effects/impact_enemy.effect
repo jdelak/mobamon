@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".9">
+
+			<sound
+			    forcestereo="true"
+			    norestart="true"
+				channel="6000"
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="1300"
+				volume="1"
+				sample="/heroes/salomon/ability_01/sounds/hit_enemy.wav"
+			/>
+			
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+	  	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	  	<waitfordeath instance="instance0" />
+	  	<waitfordeath instance="instance1" />	  
+	</thread>
+
+</effect>

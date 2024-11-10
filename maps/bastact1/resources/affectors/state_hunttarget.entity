@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_HuntTarget"
+
+	passiveeffect=""  
+	icon="icon.tga"
+	ishidden="true"
+
+	impactinterval="4900"
+>
+	<onspawn>
+	</onspawn>
+
+	<oninflict>
+		<!-- <printdebuginfo/> -->
+		<print text="hunt inflict"/>
+		<areaofeffect radius="3000"	targetselection="all" targetscheme="all_heroes" center="this_owner_entity" maxtotalimpacts="1">
+			<order command="attack" source="this_owner_entity" target="target_entity" force="true" forceduration="5000" />
+		</areaofeffect>	
+	</oninflict>
+
+	<onimpact>
+
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			center="this_owner_entity"
+			maxtotalimpacts="-1"
+		>
+			<order command="attack" source="this_owner_entity" target="target_entity" force="true" forceduration="5000" />
+		</areaofeffect>				
+	</onimpact>
+
+	<modifier key="kamikaze" modpriority="100"
+	>
+		<onimpact> <print text="BLAJDKLGJSL" /> </onimpact>
+		<onframe>
+			<print text="kamikaze state frame" />
+			<compare a="accumulator" b="0" op="eq">
+				<changeaccumulator b="1" op="add" />
+			</compare>
+		</onframe>
+	</modifier>
+</state>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neutralboss
+	name="Neutral_Tutorial_Cindara"
+	
+	icon="/npcs/cindara/icon.tga"
+	portrait="icon.tga"
+	model="/npcs/cindara/model.mdf"
+	skin=""
+	
+	passiveeffect="/npcs/cindara/effects/body.effect"
+	spawneffect="/npcs/cindara/effects/spawn.effect"
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+
+	drawonmap="false"
+	
+	preglobalscale="1"
+	modelscale="1.5"
+	effectscale="1"
+	boundsheight="198"
+	radiusheight="198"
+	boundsradius="48"
+	selectionradius="96"
+	targetoffset="0 0 100"
+	searchheight="175"
+	searchradius="90"
+	minsearchradius="64"
+
+	movespeed="270"
+	turnrate="320"
+	unitwalking="true"
+	treewalking="true"
+	
+	infoheight="425"
+
+	maxhealth="8000"
+	maxhealthperlevel="0"
+	healthregen="0"
+	healthproportionregen="0"
+	maxmana="0"
+	manaregen="10"
+
+	armor="0"
+	magicarmor="0"
+	immunity="BossImmunity"
+	ismobile="1"
+	
+
+	cancarryitems="false"
+	inventory0="Ability_TowerMaster3_Tutorial2"
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+
+	attackduration="1000"
+	attackactiontime="300"
+	attackcooldown="1000"
+	attacktargetscheme="everything_but_towers"
+	attackdamagemin="75"
+	attackdamagemax="75"
+	attacknumanims="2"
+	attackoffset="20 175 245"
+	attackprojectile="Projectile_TowerMasterAttack"
+	attackrange="800"
+	attackstarteffect="/npcs/cindara/effects/attackaction.effect"
+	attackactioneffect=""
+	attackimpacteffect=""
+	attacktype="ranged"
+	combattype="Hero"
+	attackdamagetype="AttackDamage"
+
+	largeunit="true"
+	aggrorange="0"
+	sightrangeday="1400"
+	sightrangenight="1400"
+	
+	experiencebounty="850"
+	goldbountymin="250"
+	goldbountymax="250"
+	goldbountyteam="250"
+	
+
+	
+	corpsetime="10000"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	unittype="Boss Boss2"
+	
+	aggroscheme="neutral_aggro"
+	proximityscheme="neutral_aggro" 
+>
+	<onkilled>
+		<setscriptvalue name="cindara_killed" value="1" />
+		
+		<areaofeffect
+			radius="2000"
+			targetselection="closest"
+			targetscheme="Kongor_Chained"
+			ignoreinvulnerable="true"
+			maxtotalimpacts="1"
+		>
+			<kill target="target_entity" source="this_entity" />
+		</areaofeffect>
+
+		<areaofeffect
+			radius="2000"
+			targetselection="all"
+			targetscheme="boss_orb"
+			ignoreinvulnerable="true"
+		>
+			<kill target="target_entity" source="this_entity" />
+		</areaofeffect>
+
+		<areaofeffect
+			global="true"
+			targetselection="all"
+			targetscheme="all_heroes"
+		>
+			<playconductorevent name="Temp1" entity="target_entity" />
+		</areaofeffect>
+	</onkilled>
+	
+	<ondamaged>
+		<compare a="accumulator" b="2" op="eq" >
+			<setaccumulator value="0" />
+		</compare>
+		<areaofeffect
+			radius="700"
+			targetselection="all"
+			targetscheme="all_heroes"
+		>
+			<playconductorevent name="Guardian" entity="target_entity" />
+		</areaofeffect>
+
+		<compare a="source_health_percent" b="0.25" op="lt" >
+			<setscriptvalue name="Caprice_Low" value="1" />
+		</compare>
+	</ondamaged>
+	
+	<onspawn>
+		<setaccumulator value="2" />
+
+		<spawnunit name="Gadget_TowerMaster_SpawnZone2" target="pos0" duration="-1" fixedposition="true" pushentity="true" />
+
+	</onspawn>
+	
+	<onframe>
+		<setvar0 a="source_maxhealth" b="0.9" op="mult" />
+		<compare a="source_health" b="var0" op="lt" >
+			<compare a="accumulator" b="1" op="lt" >
+				<playeffect effect="effects/talk.effect" source="source_entity" target="source_entity" occlue="true"/>
+				<setaccumulator value="1" />
+			</compare>
+		</compare>
+	</onframe>
+	
+	<modifier key="charged_up" modpriority="100"
+		attackprojectile="Projectile_TowerMasterAttack_ChargedUp"
+	/>
+</neutralboss>

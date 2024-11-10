@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1" >
+	<definitions>
+
+		<particlesystem name="system1" space="world">
+
+			<simpleemitter
+				spawnrate="15"
+				offsetsphere="42 42 0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="0 -1 0"
+				speed="0"
+			>
+				<particle
+					turn="true"
+				>
+					<groundsprite
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitesquare_ground.material"
+						minlife="500"
+						maxlife="1000"
+						startcolor="0 .25 .5"
+						endcolor="0 0 0"
+						minstartscale=".15"
+						maxstartscale=".4"
+						endscale="0"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				particlelife="2000"
+				spawnrate="30"
+				offsetsphere="45 45 150"
+				position="0 0 50"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				minspeed="150"
+				maxspeed="300"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitesquare.material"
+						minlife="150"
+						maxlife="300"
+						size="15"
+						startcolor="0 .25 .5"
+						midcolor="0 .25 .5"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="1.5"
+						maxstartscale="3"
+						endscale="0"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				particlelife="2000"
+				spawnrate="40"
+				offsetsphere="45 45 150"
+				position="0 0 50"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				minspeed="0"
+				maxspeed="0"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitesquare.material"
+						minlife="400"
+						maxlife="850"
+						size="15"
+						startcolor="0 .25 .5"
+						midcolor="0 .25 .5"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="1.5"
+						maxstartscale="3"
+						endscale="0"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+

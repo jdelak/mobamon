@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_SpiderGuard_Attack"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	
+	lifetime="-1"
+	impactinterval="500"
+	maximpactspertarget="1"
+
+>
+
+<oninflict>	
+	<activatemodifierkey name="no_aura" target="source_entity" />
+	<setaccumulator entity="this_entity" value="0" valueb="0"/>
+	<order command="attack" source="source_entity" target="this_proxy_entity" />
+	<setent0 name="guard_movepoint" />
+	<spawnunit name="Patrol_Gadget" count="1" target="ent0" pushentity="true" owner="source_entity" />
+	<setproxy entity="this_entity" target="stack_entity" />
+</oninflict>	
+
+<onimpact>
+	<!-- Check to see where the guard is, and act accordingly -->
+	<setpos0 position="this_proxy_entity" />
+	<distance source="this_owner_entity" target="pos0" />
+	<compare a="result" b="500" op="gt" >
+		<compare a="accumulator" b="1" op="lt">
+			<changeaccumulator b="1" op="add" />
+			<forgetattacks source="source_entity" target="source_entity" />
+			<order command="stop" target="source_entity" />
+			<order command="move" source="source_entity" target="this_proxy_entity" />
+			<applystate name="State_Blank" source="source_entity" target="source_entity" duration="-1" />
+		</compare>
+	</compare>
+	<else>
+		<distance source="this_owner_entity" target="pos0" />
+		<compare a="result" b="30" op="lt" >
+			<expirestate name="State_Bastact1_SpiderGuard_Attack" target="source_entity" />
+		</compare>
+	</else>
+</onimpact>	
+
+<onexpired>
+	<activatemodifierkey name="looking_for_spider" entity="source_entity" />
+	<deactivatemodifierkey name="no_aura" target="source_entity" />
+	<delete target="this_proxy_entity" />
+</onexpired>
+
+</state>

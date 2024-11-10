@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Hale1"
+	
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="250"
+	castactiontime="250"
+	casteffect="effects/cast.effect"
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+	activatescheme="movement"
+	
+	targetradius="200"
+	casteffecttype="Magic"
+	targetscheme="all_units_and_buildings"
+	manacost="95"
+	
+	queue="dropmovement"
+
+	conecastmaterial="/shared/materials/hale_cast.material"
+
+	showconecast="true"
+
+	conecastwidth="700"
+	conecastrange="1000"
+
+	cooldowntime="18000,15000,13000,11000"
+	
+	range="475"
+	forcerange="475"
+	novoiceresponse="true"
+	allowoutofrangecast="true"
+>	
+	<constant name="damage" value="70,95,120,145" adjustment="ability"/>
+
+	<onimpact>
+
+		<spawnunit name="Gadget_Hale_Ability1" target="target_position" pushentity="true" offsetspace="source_entity" offset="0 275 0"/>
+		<distance source="source_entity" target="stack_position" usepathing="true" />
+
+		<setvar0 a="result" b="200" op="sub" />
+		<applystate name="State_Hale_Ability1_Self" duration="750" target="source_entity" proxy="stack_entity" pushentity="true"/>
+		<spawnprojectile name="Projectile_Hale_Ability1" source="source_entity" target="target_position" proxy="stack_entity" bind="source_entity" bindturn="true" unbindondeath="true" pushentity="true"  offset="0 60 0" bindpriority="1"/>
+
+
+		<compare a="var0" b="750" op="gt" >
+			<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="626" />
+			<spawnprojectile name="Projectile_Hale_Ability1_Cliff" source="source_entity" target="pos0" proxy="stack_entity" offsetspace="source_entity" offset="0 150 0" />
+		</compare>
+	</onimpact>
+	
+	<aura state="State_Hale_Ability1_Cooldown" radius="400" notooltip="true" targetscheme="enemy_heroes" stack="true" />
+		
+	
+</ability>

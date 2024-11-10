@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_RingOfSorcery_Empower_3"
+	
+	cost="900"
+
+>
+	<!-- Tooltip only -->
+	<constant name="area_enchant" value="300" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onimpact>
+		<playeffect effect="effects/cast.effect" source="source_position" target="" occlude="true" />
+		
+		<areaofeffect
+			radius="900"
+			targetselection="all"
+			targetscheme="ally_mana_units"
+			effecttype=""
+			ignoreinvulnerable="true"
+		>
+			<getconstant name="mana"/>
+			<setvar0 a="result" b="0.01" op="mult" />
+			<setvar0 a="source_maxmana" b="var0" op="mult" />
+
+			<givemana amount="var0"/>
+			
+			<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" occlude="true" />
+		</areaofeffect>
+	</onimpact>
+
+</qualityitem>

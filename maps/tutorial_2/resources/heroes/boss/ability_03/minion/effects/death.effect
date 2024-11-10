@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+	
+
+		<modifier
+			name="modifier0"
+			life="10000"
+			startcolor="5 10 0"
+			endcolor="1 1 1"
+			alpha="0"
+		/>
+
+
+		<particlesystem name="system0" space="world" scale="2.5">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2000"
+				volume=".35"
+				sample="../../../sounds/sfx_impact_2_%.wav"
+			/>
+
+			<light
+				life="600"
+				startcolor="4 8 0"
+				endcolor="0"
+				falloffstart="00"
+				falloffend="300"
+				position="0 0 50"
+			/>
+			
+			<simpleemitter
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-20"
+			>
+				<particle
+					color="0 .5 0"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="50"
+					endscale="75"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 25"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-20"
+			>
+				<particle
+					color=".35 .5 0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					startscale="20"
+					endscale="35"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				count="100"
+				spawnrate="1500"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="300"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						bone="_bone_center"
+						minlife="300"
+						maxlife="600"
+						startcolor=".5 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".75"
+						maxstartscale="1.25"
+						midscale=".75"
+						endscale=".2"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				minlife="150"
+				maxlife="300"
+				startcolor="0 0 0"
+				midcolor="0 .75 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				startscale="1"
+				endscale="5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			<simpleemitter
+			count="30"
+				spawnrate="200"
+				particlelife="1000"
+				position="0 0 0"
+				offsetradial="40 0 0"
+				offsetsphere="15 15 0"
+			>
+				<particle
+				> 
+
+
+					<billboard
+					position="0 0 0"
+						delay="250"
+						minlife="250"
+						maxlife="500"
+						startcolor=".35 1 0"
+						midcolor=".35 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".2"
+						maxscale=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+					
+					<billboard
+					position="0 15 0"
+						delay="250"
+						minlife="250"
+						maxlife="500"
+						startcolor=".35 1 0"
+						midcolor=".35 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".2"
+						maxscale=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+
+					
+				</particle>
+			</simpleemitter>
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<camerashake2 scale="12" radius="3000" duration="250" frequency="22" />
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>=
+	</thread>
+</effect>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Caprice_Ability1"
+
+	speed="1600"
+	gravity="0"
+
+	modelscale="3.3"
+	model="effects/barrel.mdf"
+	traileffect="effects/trail.effect"
+	
+	deatheffect="effects/barrel_pop.effect"
+	
+	canturn="false"
+	flying="true"
+	flyheight="10"
+	
+	touchradius="180"
+	touchpropradius="125"
+	touchpropanim="hit"
+	hazardradius="350"
+	hazardoffset="210"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic Splash"
+	touchradiusdiradjust="true"
+	
+	lifetime="-1"
+>
+
+	<ontouch>	
+		<combatevent effecttype="Counterable">	
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+	</ontouch>
+
+	<modifier key="Caprice_Ability3_Learned" modpriority="100"
+	>
+		<ontouch>
+			<combatevent effecttype="Counterable">	
+				<onimpact>	
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<damage effecttype="Magic Splash" significant="true" amount="1" b="result" op="mult"/>
+					<applystate target="target_entity" name="State_Caprice_Ability3" duration="5000"  />
+				</onimpact>
+			</combatevent>
+			<recordheroaggression  />
+			<aggression />
+		</ontouch>
+	</modifier>
+
+</projectile>

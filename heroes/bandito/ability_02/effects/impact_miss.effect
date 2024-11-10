@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+
+
+			<simpleemitter
+				count="6"
+
+				life="500"
+				spawnrate="2000"
+				particlelife="2000"
+				position="0 0 0"
+				minspeed="150"
+				maxspeed="400"
+				offsetsphere="0"
+				gravity="20"
+			>
+				<particle
+				>
+					<billboard
+						bone="_bone_centerofchest"
+						minlife="400"
+						maxlife="400"
+						material="/shared/effects/smaterials/card_back.material"
+						color="1 1 1"
+						size="50"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						depthbias="0"
+						minroll="0"
+						maxroll="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				count="6"
+
+				life="500"
+				spawnrate="2000"
+				particlelife="2000"
+				position="0 0 0"
+				minspeed="150"
+				maxspeed="400"
+				offsetsphere="0"
+				gravity="20"
+
+			>
+				<particle
+				>
+					<billboard
+
+						minlife="400"
+						maxlife="400"
+						material="/shared/effects/smaterials/card_front.material"
+						color="1 1 1"
+						size="50"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						depthbias="0"
+						minroll="0"
+						maxroll="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+<!--
+			<billboard
+
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 0 1"
+				endcolor="0 0 0"
+				life="500"
+				startscale="4"
+				endscale="12"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-50"
+			/>
+-->
+
+			<billboard
+
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .125 .25"
+				midcolor="0 .125 .25"
+				endcolor="0 0 0"
+				life="500"
+				scale="5"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-100"
+			/>
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

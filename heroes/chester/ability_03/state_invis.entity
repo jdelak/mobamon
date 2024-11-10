@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Chester_Ability3_Invis"
+
+	passiveeffect="effects/invis.effect"  
+	icon="icon.tga"
+	fadetime="0"
+	stealthtype="item"
+	unitwalking="true"
+
+	impactinterval="250"
+
+	modifierkey="chester_invis"
+>
+	<oninflict> 
+		<startfade /> 
+	</oninflict>
+
+	<onimpact>
+
+	</onimpact>
+	
+	<onactivatestart>
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" >
+			<casteffecttype entity="inflictor_entity" effecttype="BreakStealth" >
+				<expire/>
+			</casteffecttype>
+		</casteffecttype>
+		<else>
+			<expire/>
+		</else>
+	</onactivatestart>
+
+	<onattackimpact>
+		<expire/>
+	</onattackimpact>
+
+</state>

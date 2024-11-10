@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Ray_Ability1_Iseeyou"
+	
+	icon=""
+	passiveeffect=""
+	
+	serverentity="true"
+	
+	effecttype=""
+>
+	 <oninflict>
+	 	<spawnaffector name="Affector_Ray_Ability1_Hazard" owner="this_owner_entity" source="this_owner_entity" target="source_entity" />
+		<playanim name="activate" target="this_owner_entity" />
+		<playeffect effect="effects/activate.effect" source="this_owner_position" occlude="true" />
+	 </oninflict>
+	 
+	<onexpired>
+		<cantarget targetscheme="enemy_units" target="this_proxy_entity" >
+			<spawnprojectile name="Projectile_Ray_Ability1" source="this_owner_entity" target="this_proxy_entity" bind="this_owner_entity" noresponse="true" proxy="this_owner_entity" owner="this_owner_entity" />
+			<applystate name="State_Ray_Ability1_Run" continuous="true" target="this_owner_entity" proxy="this_proxy_entity" />
+			<playanim name="walk_1" target="this_owner_entity" />
+		</cantarget>
+		<else>
+			<applystate name="State_Ray_Ability1_Stealth" continuous="true" target="this_owner_entity" />
+			<playanim name="idle" target="this_owner_entity" />
+		</else>
+	</onexpired>
+
+</state>

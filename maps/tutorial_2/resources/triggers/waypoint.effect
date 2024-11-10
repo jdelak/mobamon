@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="0" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<light
+				expirelife="250"
+				startcolor="0 3 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="00"
+				falloffend="500"
+				position="0 0 50"
+			/>
+
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				size="100"
+				startcolor=".25 .5 0"
+				endcolor="0 0 0"
+			/>
+			
+			<billboard
+				position="0 0 850"
+				life="4000"
+				material="/shared/effects/smaterials/whitesquare.material"
+				size="75"
+				startcolor=".01 .01 0"
+				midcolor=".1 .2 0"
+				endcolor=".01 .01 0"
+				height="2000"
+				width="65"
+				lockup="1"
+				loop="true"
+
+			/>
+			
+			<billboard
+				position="0 0 850"
+				life="2000"
+				material="/shared/effects/smaterials/whitesquare.material"
+				size="75"
+				startcolor=".01 .01 0"
+				midcolor="0 .05 0"
+				endcolor=".01 .01 0"
+				height="2000"
+				width="45"
+				lockup="1"
+				loop="true"
+
+			/>
+
+			<simpleemitter
+				particlelife="2000"
+				spawnrate="20"
+				gravity="-0"
+				speed="0"
+				acceleration="0.0"
+				position="0 0 0"
+				direction="0 0 1"
+				minangle="90"
+				maxangle="90"
+			>
+				<particle
+					directionalspace="local"
+					turn="1"
+				>	
+					<simpleemitter
+						count="3"
+						spawnrate="22"
+						particlelife="1000"
+						particledirectionalspace="local"
+						material="/shared/effects/materials/shout_blend.material"
+						inheritvelocity="1"
+						minspeed="0"
+						maxspeed="0"
+						direction="0 1 0"
+						minangle="0"
+						maxangle="1"
+						depthbias="-100"
+					>
+						<particle
+							size="50"
+							startscale="1"
+							endscale="5"
+							startcolor="0 1 0"
+							endcolor=".5 1 0"
+							turn="0"
+							startalpha="0"
+							midalpha=".15"
+							endalpha="0"
+							midalphapos=".2"
+							lockup="1"
+							lockright="1"
+							pitch="-90" 
+						/>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			<simpleemitter
+				expirelife="5000"
+				spawnrate="25"
+				particlelife="2000"
+				gravity="-55"
+				speed="40"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 0"
+				minangle="90"
+				maxangle="-90"
+			>
+				<particle 
+					startcolor="0 .1 0"
+					endcolor="0"
+					midcolorpos=".1"
+					startframe="0"
+					endframe="1"
+					startwidth="20"
+					midwidth="15"
+					endwidth="6"
+					midwidthpos=".5"
+					startheight="0"
+					endheight="2500"
+					lockup="true"
+				/>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				timenudge="7500"
+				spawnrate="50"
+				particlelife="5000"
+				position="0 0 300"
+				offsetsphere="15 15 500"
+				direction="0 0 -1"
+				minspeed="50"
+				maxspeed="200"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						life="1000"
+						startcolor="0 0 0"
+						midcolor=".025 .05 0"
+						endcolor="0 0 0"
+						size="20"
+						material="/shared/effects/smaterials/whitedot.material"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				spawnrate="50"
+				particlelife="2500"
+				speed="10"
+				drag="0"
+				offsetsphere="50 50 0"
+				acceleration="0"
+				depthbias="0"
+			>
+				<particle
+				>
+					<billboard
+						minlife="500"
+						maxlife="1500"
+						startcolor="0 0 0"
+						midcolor=".025 .05 0"
+						endcolor="0 0 0"
+						startscale=".2"
+						minmidscale="1"
+						maxmidscale="1"
+						endscale=".5"
+						depthbias="-25"
+						position="0 0 5"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

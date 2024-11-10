@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/shell_ice.shader" vDiffuseColor="0.9 1.0 1.0" fSpecularLevel="1.0" fGlossiness="32.0" fOpacity="1.0" fReflect="1.0">
+		<float name="fOffset" value="2" />
+	</parameters>
+	<phase name="shadow" cull="back" blend="alphatest" />
+	<phase name="color" cull="back" refractive="true" depthwrite="true" blend="none">
+		<sampler name="diffuse" texture="ice.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="/shared/textures/water_normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" colorwrite="false" alphawrite="false" refractive="true" depthwrite="true" blend="none">
+		<multipass cull="back" refractive="true" depthwrite="false" blend="translucent">
+			<sampler name="diffuse" texture="ice.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="/shared/textures/water_normal.tga" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+</material>

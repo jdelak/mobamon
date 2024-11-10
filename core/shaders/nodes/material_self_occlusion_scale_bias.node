@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_self_occlusion_scale_bias">
+	<parameter name="SelfOcclusionScaleBias" type="float2" default="5.0 0.0" />
+	<dependency name="SelfOcclusionScaleBias" type="float2" source="SelfOcclusionScaleBias" />
+	<output name="MaterialSelfOcclusionScaleBias" type="float2" solution="MaterialSelfOcclusionScaleBias" />
+	<?hlsl
+		MaterialSelfOcclusionScaleBias = SelfOcclusionScaleBias;
+	?>
+	<?glsl
+		MaterialSelfOcclusionScaleBias = SelfOcclusionScaleBias;
+	?>
+</node>

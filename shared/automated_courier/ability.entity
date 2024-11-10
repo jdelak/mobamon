@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_AutomatedCourier"
+	
+	icon="icon.tga"
+	anim="idle_1"
+	actiontype="target_self"
+	casttime="0"
+	castactiontime="0"
+	cooldowntime="0"
+	frontqueue="true"
+	inheritmovement="true"
+	noninterrupting="true"
+	doubleactivatenoninterrupting="true"
+	
+	range="99999"
+	noentercombat="true"
+	responsetype="NoResponse"
+	casteffecttype="NoResponse"
+>	
+	<checkcost>
+		<countslaves region="stash" />
+		<compare a="result" b="0" op="eq">
+			<invalidate />
+		</compare>
+	</checkcost>
+
+	<onframe>
+		<compare a="accumulator" b="0" op="eq" >
+			<chance threshold="0.33" >
+				<setaccumulator value="1" />
+			</chance>
+			<else>
+				<chance threshold="0.5" >
+					<setaccumulator value="2" />
+				</chance>
+				<else>
+					<setaccumulator value="3" />
+				</else>
+			</else>
+		</compare>
+	</onframe>
+	
+	<onimpact>
+		<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+		
+		<compare a="accumulator" b="1" op="eq" >
+			<spawnunit name="Pet_Courier" target="stack_position" pushentity="true" />
+			<setproxy entity="this_entity" target="stack_entity" />	
+		</compare>
+		<compare a="accumulator" b="2" op="eq" >
+			<spawnunit name="Pet_Courier2" target="stack_position" pushentity="true" />
+			<setproxy entity="this_entity" target="stack_entity" />	
+		</compare>
+		<compare a="accumulator" b="3" op="eq" >
+			<spawnunit name="Pet_Courier3" target="stack_position" pushentity="true" />
+			<setproxy entity="this_entity" target="stack_entity" />	
+		</compare>
+		<transferitemstocourier source="this_owner_entity" />
+		<countslaves region="stash" />
+		<transferitemsfromcourier target="source_entity" source="this_proxy_entity" targetregion="backpack"/>
+		<applystate name="State_AutomatedCourier" target="this_proxy_entity" proxy="this_entity" duration="-1" />
+		<setactivemodifierkey name="automated_courier_cancel" />
+		<playsound name="couriersend" source="this_owner_entity" target="this_owner_entity"/>
+		<setscriptvalue name="courier_sent" value="1" />
+	</onimpact>
+	
+	<ondeath>
+		<transferitems source="this_proxy_entity" target="this_owner_entity" sourceregion="backpack" targetregion="stash"/>
+		<kill target="this_proxy_entity" source="" />
+		<setactivemodifierkey name="" />
+		
+	</ondeath>
+
+
+	<modifier key="automated_courier_cancel" modpriority="100"
+		icon="icon_busy.tga"
+	>
+		<checkcost />
+		<onimpact>
+			<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+			<transferitemsfromcourier target="this_owner_entity" source="this_proxy_entity" targetregion="stash"/>
+			<playeffect effect="effects/return.effect" source="proxy_position" target="" occlude="true" />
+			<delete target="this_proxy_entity" />
+			<setactivemodifierkey name="" />
+			<playsound name="couriercancel" source="this_owner_entity" target="this_owner_entity"/>
+		</onimpact>
+	</modifier>	
+	
+	<modifier key="automated_courier_disabled" modpriority="100"
+		icon="icon_busy.tga"
+		disabled="true"
+		anim="ability_4"
+	>
+	</modifier>	
+	
+	<modifier key="tutorialmod" modpriority="100"
+		disabled="true"
+	/>
+	
+	<modifier key="Mole_underground" modpriority="100"
+		disabled="true"
+	/>
+</ability>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+	<sound volume="0.25" falloffstart="1000" falloffend="2200" linearfalloff="true" sample="sounds/staff.wav" channel="90034"/>
+	<sound delay="600"  volume="0.46" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="870" falloffend="2521" channel="90034"/>		
+	
+</particlesystem>
+
+
+<!-- 1 -->
+<particlesystem name="system1" space="entity" scale="2">
+
+	<!-- Passive2 -->	
+	<template name="p2" parentmodel="true" parentskeleton="true" directionalspace="local">
+		<billboard bone="_bone_righthand" size="100" material="/shared/effects/smaterials/whitedot.material" color=".15 .1 .0" depthbias="-10" directionalspace="local"/>
+		<orbiteremitter bone="_bone_righthand" spawnrate="3" particlelife="5000" gravity="0" minspeed=".8" maxspeed="1.5" acceleration="0" drag="0" minangle="-90" maxangle="90" position="0 0 20" origin="1 1 30" orbit="1 0 1" direction="0 0 1" offset="3.14 0 20" cylindrical="false" material="/shared/effects/smaterials/lightbug.material" directionalspace="local" particledirectionalspace="local">
+			<particle startcolor=".9 .6 .4" midcolor=".9 .6 .4" endcolor="0 0 0" midcolorpos="0.5" startalpha="0" midalpha="1" endalpha="0" minanglespeed="63" maxanglespeed="-63" frame="0" framespeed="4" minscale="1.25" maxscale="1.75" turn="true"/>
+		</orbiteremitter>
+		<orbiteremitter bone="_bone_righthand" spawnrate="2" particlelife="5000" gravity="0" minspeed=".8" maxspeed="1.5" acceleration="0" drag="0" minangle="-90" maxangle="90" position="0 0 0" origin="1 1 20" orbit="1 0 1" direction="0 0 -1" offset="3.14 0 20" cylindrical="false" material="/shared/effects/smaterials/lightbug.material" directionalspace="local" particledirectionalspace="local">
+			<particle startcolor=".9 .6 .4" midcolor=".9 .6 .4" endcolor="0 0 0" midcolorpos="0.5" startalpha="0" midalpha="1" endalpha="0" minanglespeed="90" maxanglespeed="-90" frame="0" framespeed="4" minscale="1.25" maxscale="1.75" turn="1"/>
+		</orbiteremitter>
+	</template>
+	<instance name="p2"/>
+
+</particlesystem>
+
+
+
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+<waitfordeath instance="instance0"/>
+<waitfordeath instance="instance1"/>
+</thread>
+</effect>

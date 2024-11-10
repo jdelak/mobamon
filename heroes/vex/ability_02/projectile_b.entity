@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Vex_Ability2_b"
+
+	speed="700"
+	gravity="3000"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	effectscale="1"
+	impacteffect="effects/exp.effect"
+	traileffect="effects/trail.effect"
+	curve="-4000"
+>
+
+	<onimpact>
+		<playeffect effect="effects/impact.effect" source="target_entity"/>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<setvar0 a="result" b="10" op="div" />
+				<setvar0 a="result" b="param" op="mult" />
+				<damage effecttype="Magic Splash" significant="true" amount="1" b="var0" op="mult" />
+			</onimpact>
+		</combatevent>
+	</onimpact>
+
+</projectile>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_Thief_Blink"
+
+	icon=""
+	passiveeffect=""
+	impactinterval="700"
+	effecttype=""
+	
+>
+
+	<oninflict>
+		<setent0 name="clearing_position" />
+		<setpos0 position="this_owner_entity" positionend="ent0" positionmodifier="pointonline" positionvalue="10" />
+		<order command="move" source="this_owner_entity" target="pos0" />
+		
+		<chance threshold="0.33" >
+			<playanim name="jump_2" target="source_entity" />
+		</chance>
+		<else>
+			<chance threshold="0.5" >
+				<playanim name="jump_1" target="source_entity" />
+			</chance>
+			<else>
+				<playanim name="jump_3" target="source_entity" />
+			</else>
+		</else>
+	</oninflict>
+	
+	<onimpact>
+		<compare a="accumulator" b="0" op="eq" >
+
+			<playeffect effect="effects/warpout.effect" source="source_position" target="source_position" />
+			<spawnprojectile name="Projectile_Tutorial_Thief_Dash" source="source_entity" bindstate="State_Tutorial_Thief_Invulnerable" target="this_proxy_entity" bind="source_entity" />
+			<disjoint />
+			<playeffect effect="effects/warpin.effect" source="source_entity" target="source_entity" />
+
+		</compare>
+		<expire />
+	</onimpact>
+	
+	<onattackeddamageevent>	
+		<setaccumulator value="1" />
+	</onattackeddamageevent>
+
+</state>

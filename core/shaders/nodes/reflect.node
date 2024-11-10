@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="reflect">
+	<dependency name="I" type="*" />
+	<dependency name="N" type="*" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="I" type="float2" />
+		<dependency name="N" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="I" type="float3" />
+		<dependency name="N" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="I" type="float4" />
+		<dependency name="N" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = reflect(I, N);
+	?>
+	<?glsl
+		Out = reflect(I, N);
+	?>
+</node>

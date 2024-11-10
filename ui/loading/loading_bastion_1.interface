@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="loading_bastion_1" luatable="true">
+
+	<style name="loading_hero_slice" noclick="1" width="9.1w" height="100%" clip="1" />	
+	<style name="loading_hero_slice_image" noclick="1" width="100w" height="100h" color="1 1 1 1" rendermode="normal" />	
+	
+	<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center" visible="1" />
+	
+	<splashimage
+		noclick="true"
+		visible="1"
+		bgcolor="black"
+		style="loading_hero_slice_image"
+		image=""
+		onhidelua=""
+		onshowlua=""
+		onloadlua="self:SetImage('/ui/game/loading/textures/bastact1_startscreen.jpg'); self:RegisterWatchLua('RemoveLoadingAssets', function (widget, trigger) self:SetImage('') end)"
+
+		view="pad"
+	/>
+
+	<panel width="512" height="512" align="center" valign="top" noclick="1">
+		<image name="tick01" noclick="1" texture="/ui/game/loading/textures/loading_tick01.tga" align="center" valign="bottom" visible="0"/>
+		<image name="tick02" noclick="1" texture="/ui/game/loading/textures/loading_tick02.tga" align="center" valign="bottom" visible="0"/>
+		<image name="tick03" noclick="1" texture="/ui/game/loading/textures/loading_tick03.tga" align="center" valign="bottom" visible="0"/>
+		<image name="tick04" noclick="1" texture="/ui/game/loading/textures/loading_tick04.tga" align="center" valign="bottom" visible="0"/>
+		<image name="tick05" noclick="1" texture="/ui/game/loading/textures/loading_tick05.tga" align="center" valign="bottom" visible="0"/>
+		
+		<piegraph y="-32" name="loadingProgressBar" end="-180" start="0" square="0" texture="/ui/game/loading/textures/bastact1_loading_disc.tga" noclick="true" value="0.13" align="center" valign="bottom" />
+	</panel>
+
+	<?lua
+		local tick01 	= object:GetWidget('tick01')
+		local tick02 	= object:GetWidget('tick02')
+		local tick03 	= object:GetWidget('tick03')
+		local tick04 	= object:GetWidget('tick04')
+		local tick05 	= object:GetWidget('tick05')
+		
+		local lastStep	= 0
+		
+		object:GetWidget('loadingProgressBar'):RegisterWatchLua('LoadingProgress', function(widget, trigger)
+			local loaded = trigger.loadPercent
+			
+			if (loaded <= 0.11 and lastStep ~= 1) then
+				tick01:SetVisible(false)
+				tick02:SetVisible(false)
+				tick03:SetVisible(false)
+				tick04:SetVisible(false)
+				tick05:SetVisible(false)
+				lastStep = 1
+			elseif (loaded > 0.11 and loaded <= 0.28 and lastStep ~= 2) then
+				tick01:SetVisible(true)
+				lastStep = 2
+			elseif (loaded > 0.28 and loaded <= 0.49 and lastStep ~= 3) then
+				tick02:SetVisible(true)
+				lastStep = 3
+			elseif (loaded > 0.49 and loaded <= 0.69 and lastStep ~= 4) then
+				tick03:SetVisible(true)
+				lastStep = 4
+			elseif (loaded > 0.69 and loaded <= 0.87 and lastStep ~= 5) then
+				tick04:SetVisible(true)
+				lastStep = 5
+			elseif (loaded > 0.87  and lastStep ~= 6) then
+				tick05:SetVisible(true)
+				lastStep = 6
+			end
+			
+			widget:SetValue(1.0 - loaded)
+		end, true, nil, 'loadPercent')
+	?>	
+	
+</interface>

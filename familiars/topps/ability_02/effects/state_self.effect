@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1" >
+	<definitions>
+<!--
+		<modifier
+			life="500"
+			name="modifier0"
+			startalpha="1"
+			endalpha="1"
+			startcolor="6 2.5 1"
+			endcolor="1 1 1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale=".4">
+		
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65" 
+				sample="../../sounds/sfx_impact_%.wav"
+			/>
+
+
+			<billboard
+				bone="_bone_Bip01 Spine02"
+				life="1000"
+				startcolor="0 0 0"
+				midcolor="1 0 0"
+				endcolor="0"
+				midcolorpos=".2"
+				startsize="500"
+				endsize="0"
+				depthbias="20"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+
+			<template name="flames">
+				<simpleemitter
+					life="500"
+					bone="_bone_Bip01 Spine02"
+					spawnrate="450"
+					minparticlelife="400"
+					maxparticlelife="600"
+					gravity="-5"
+					position="0 0 0"
+					offsetsphere="55"
+					material="/shared/effects/smaterials/firesprite_01.material"
+					depthbias="20"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="1 1 1"
+						midcolor=".25 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startsize="25"
+						midsize="75"
+						endsize="75"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					life="500"
+					bone="_bone_Bip01 Spine02"
+					spawnrate="450"
+					minparticlelife="400"
+					maxparticlelife="600"
+					gravity="-5"
+					position="0 0 0"
+					offsetsphere="55"
+					material="/shared/effects/smaterials/firesprite_01.material"
+					depthbias="20"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="1 1 1"
+						midcolor=".25 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startsize="25"
+						midsize="75"
+						endsize="75"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					life="500"
+					bone="_bone_Bip01 Spine02"
+					spawnrate="100"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					gravity="6"
+					position="0 0 0"
+					offsetsphere="100"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="20"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="1 .5 0"
+						midcolor="1 .2 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						minscale="1"
+						maxscale="5"
+						endscale="0"
+					/>
+				</simpleemitter>
+			
+			</template>
+
+			<instance name="flames"/>
+			<instance name="flames"/>
+
+
+
+
+
+
+		</particlesystem>
+
+</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

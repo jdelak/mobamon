@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1.5">
+	
+			<sound
+				life="5000"
+				volume="0.85"
+				falloffstart="800" 
+				falloffend="2400"
+				sample="../sounds/sfx_explode.wav"
+			/>
+
+			<light
+			
+			bone="_bone_skeleton02"
+			position="0 0 150"
+				life="1250"
+				startcolor="5 2.5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="200"
+				endfalloffend="500"
+			/>
+
+
+			
+			<template name="">
+			
+				<simpleemitter	
+				bone="{zbone}"
+					spawnrate="15"
+					life="800"							
+					position="0 0 0"
+					minparticlelife="1000"			
+					maxparticlelife="1500"	
+					depthbias="0" 			
+					material="/shared/effects/smaterials/clouds.material"			
+					offsetsphere="50 50 25"
+					minspeed="0"
+					maxspeed="500"
+					angle="10"
+					direction="0 0 1"
+					drag=".01"
+					gravity="15"
+				>
+					<particle 
+						minangle="-10"
+						maxangle="10"
+						minanglespeed="-100"
+						maxanglespeed="100"
+						startcolor="1 .75 0"
+						midcolor=".05 .05 0"
+						endcolor=".05 .05 0"
+						minstartsize="100"
+						maxstartsize="200"
+						endsize="0"
+						startalpha="0"
+						midalpha=".125"
+						endalpha="0"
+						midalphapos=".2"
+					/>
+				</simpleemitter>
+
+
+				<simpleemitter	
+				bone="{zbone}"
+					spawnrate="20"
+					life="800"							
+					position="0 0 0"
+					minparticlelife="500"			
+					maxparticlelife="1000"	
+					depthbias="-20"			
+					material="/shared/effects/smaterials/cartoon_dust.material"			
+					offsetsphere="50 50 25"
+					minspeed="0"
+					maxspeed="500"
+					minangle="0"
+					maxangle="12"
+					direction="0 0 1"
+					gravity="12"
+					drag=".005"
+				>
+					<particle 
+						minangle="-25"
+						maxangle="25"
+						minanglespeed="-100"
+						maxanglespeed="100"
+						startcolor="1 .5 .25"
+						midcolor="1 .5 .25"
+						endcolor="1 .5 .25"
+						startsize="60"
+						endsize="100"
+						startalpha="0"
+						midalpha=".1"
+						endalpha="0"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zbone="_bone_skeleton02"/>   
+			<instance name="" zbone="_bone_skeleton03"/>  
+			
+<!--
+			<simpleemitter	
+				spawnrate="50"
+				life="200"							
+				position="0 0 175"
+				minparticlelife="500"			
+				maxparticlelife="1000"	
+				depthbias="10"			
+				material="/shared/effects/smaterials/dust_puff.material"			
+				offsetsphere="50 50 50"
+				minspeed="0"
+				maxspeed="500"
+				minangle="0"
+				maxangle="12"
+				direction="0 0 1"
+				gravity="12"
+				drag=".005"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					color=".11 .13 .15"
+					startsize="50"
+					endsize="100"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="">
+
+				<simpleemitter	
+					bone="{zbone}"
+					startspawnrate="10"
+					endspawnrate="60"
+					life="2000"							
+					position="0 0 0"
+					minparticlelife="500"			
+					maxparticlelife="1000"	
+					depthbias="-50"			
+					material="/shared/effects/smaterials/cartoon_dust.material"			
+					offsetsphere="25 25 25"
+					drag=".005"
+				>
+					<particle 
+						minangle="-25"
+						maxangle="25"
+						minanglespeed="-100"
+						maxanglespeed="100"
+						startcolor="1 .5 .25"
+						midcolor="1 .5 .25"
+						endcolor=".6 .45 .45"
+						startsize="80"
+						endsize="25"
+						startalpha="0"
+						midalpha=".05"
+						endalpha="0"
+						midcolorpos=".25"
+					/>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance name="" zbone="_bone_skeleton05"/>
+			<instance name="" zbone="_bone_skeleton06"/>
+			<instance name="" zbone="_bone_skeleton07"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

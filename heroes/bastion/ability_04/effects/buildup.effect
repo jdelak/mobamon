@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<modifier
+			life="3000"
+			name="modifier0"
+			startcolor="1 1 1"
+			endcolor="1.75 1.35 1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="2">
+				
+			<sound
+				falloffstart="1500"
+				falloffend="2500"
+				volume="0.55"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<light
+				bone="_bone_center"
+				life="3000"
+				startcolor="0 0 0"
+				endcolor="10 2 0"
+				falloffstart="0"
+				falloffend="100"
+				position="0 0 200"
+			/>
+
+			<groundsprite
+				bone="_bone_center"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				life="3000"
+				startcolor="0 0 0"
+				endcolor="1 .7 .2"
+				size="125"
+			/>
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				delay="0"
+				count="1"
+				position="0 150 50"
+				targetbone="_bone_lefthand"
+				tracktype="linear"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				speed="750"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<billboard
+						life="150"
+						width="250"
+						height="8"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<billboard
+						life="150"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<model
+						model="bracer/model.mdf"
+						anim="idle"
+						life="250"
+						color="3 2 1"
+						startscale="1.75"
+						midscale=".6"
+						endscale=".6"
+						midscalepos=".75"
+					/>
+				</particle>
+			</trackeremitter>
+			
+			<billboard
+				bone="_bone_lefthand"
+				delay="150"
+				life="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0  0 0"
+				size="120"
+				depthbias="-50"
+			/>
+			
+			<model
+				parentskeleton="true"
+				delay="150"
+				model="left_bracer_skinned/model.mdf"
+				life="2850"
+				color="3 2 1"
+			/>
+			
+
+			<trackeremitter
+				delay="300"
+				count="1"
+				position="175 0 50"
+				targetbone="_bone_righthand"
+				tracktype="linear"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				speed="450"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<billboard
+						life="150"
+						width="250"
+						height="8"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<billboard
+						life="150"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<model
+						model="bracer/model.mdf"
+						anim="idle"
+						life="450"
+						color="3 2 1"
+						startscale="1.75"
+						midscale=".6"
+						endscale=".6"
+						midscalepos=".75"
+					/>
+				</particle>
+			</trackeremitter>
+			
+			<billboard
+				bone="_bone_righthand"
+				delay="550"
+				life="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".25 .125 0"
+				midcolor=".25 .125 0"
+				endcolor="0  0 0"
+			/>
+			
+			<model
+				parentskeleton="true"
+				delay="550"
+				model="right_bracer_skinned/model.mdf"
+				life="2450"
+				color="3 2 1"
+			/>
+
+			
+			
+
+
+
+			
+			
+			
+			<trackeremitter
+				delay="900"
+				count="1"
+				position="0 -150 50"
+				targetbone="_bone_Bip02 R UpperArm"
+				tracktype="linear"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				speed="500"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<billboard
+						life="150"
+						width="250"
+						height="8"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<billboard
+						life="150"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<model
+						model="shoulderpad/model.mdf"
+						anim="idle"
+						life="300"
+						color="3 2 1"
+						startscale="2"
+						midscale=".6"
+						endscale=".6"
+						midscalepos=".75"
+					/>
+				</particle>
+			</trackeremitter>
+			
+			<billboard
+				bone="_bone_Bip02 R UpperArm"
+				delay="1100"
+				life="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0  0 0"
+				size="120"
+				depthbias="-50"
+			/>
+
+			<model
+				parentskeleton="true"
+				delay="1100"
+				model="right_shoulderpad_skinned/model.mdf"
+				life="1900"
+				color="3 2 1"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				delay="1350"
+				count="1"
+				position="50 150 50"
+				targetbone="_bone_Bip02 L UpperArm"
+				tracktype="linear"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				speed="600"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<billboard
+						life="150"
+						width="250"
+						height="8"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<billboard
+						life="150"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<model
+						model="shoulderpad/model.mdf"
+						anim="idle"
+						life="250"
+						color="3 2 1"
+						startscale="2"
+						midscale=".6"
+						endscale=".6"
+						midscalepos=".75"
+					/>
+				</particle>
+			</trackeremitter>
+			
+			<billboard
+				bone="_bone_Bip02 L UpperArm"
+				delay="1500"
+				life="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0  0 0"
+				size="120"
+				depthbias="-50"
+			/>
+
+			<model
+				parentskeleton="true"
+				delay="1500"
+				model="left_shoulderpad_skinned/model.mdf"
+				life="1500"
+				color="3 2 1"
+			/>
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				delay="1800"
+				count="1"
+				position="50 150 50"
+				targetbone="_bone_Bip02 Spine2"
+				tracktype="linear"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				speed="500"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<billboard
+						life="150"
+						width="250"
+						height="8"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<billboard
+						life="150"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<model
+						model="chestpiece/model.mdf"
+						anim="idle"
+						life="350"
+						color="3 2 1"
+						startscale="2"
+						midscale=".6"
+						endscale=".6"
+						midscalepos=".75"
+					/>
+				</particle>
+			</trackeremitter>
+			
+			<billboard
+				bone="_bone_Bip02 Spine2"
+				delay="2000"
+				life="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0  0 0"
+				size="120"
+				depthbias="-50"
+			/>
+
+			<model
+				parentskeleton="true"
+				delay="2000"
+				model="chestpiece_skinned/model.mdf"
+				life="1000"
+				color="3 2 1"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				delay="2400"
+				count="1"
+				position="0 0 275"
+				targetbone="_bone_head"
+				tracktype="linear"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				speed="500"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<billboard
+						life="150"
+						width="250"
+						height="8"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<billboard
+						life="150"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+					/>
+					
+					<model
+						model="helmet/model.mdf"
+						anim="idle"
+						life="375"
+						color="3 2 1"
+						startscale="2"
+						midscale=".6"
+						endscale=".6"
+						midscalepos=".75"
+					/>
+				</particle>
+			</trackeremitter>
+			
+			<billboard
+				bone="_bone_head"
+				delay="2600"
+				life="400"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0  0 0"
+				size="120"
+				depthbias="-50"
+			/>
+
+			<model
+				parentskeleton="true"
+				delay="2775"
+				model="helmet_skinned/model.mdf"
+				life="225"
+				color="3 2 1"
+			/>
+
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				life="2500"
+				bone="_bone_center"
+				position="0 0 150"
+				startspawnrate="4"
+				endspawnrate="20"
+				particlelife="1000"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="28 28 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="750"
+					maxstartheight="1500"
+					endheight="100"
+					width="50"
+					depthbias="-100"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+
+</effect>

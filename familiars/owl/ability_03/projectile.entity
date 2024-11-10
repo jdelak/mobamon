@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Owl_Reveal"
+
+	speed="1500"
+	gravity="1000"
+	
+	lifetime="8000"
+	
+	modelscale="1.0"
+	traileffect=""
+	deatheffect=""
+	
+	canturn="0"
+	flying="true"
+	flyheight="300"
+	
+>
+	<onimpact>
+		<hasmodifier entity="proxy_entity" name="baby">
+			<spawnunit name="Pet_Owl_Baby" count="1" duration="8000" target="target_position" pushentity="true" proxy="this_proxy_entity" />
+			<setproxy target="stack_entity" />
+			<applystate target="proxy_entity" name="State_Owl_Invis" duration="8000" />
+			<playeffect effect="effects/aoe.effect" duration="8000" target="stack_entity" source="stack_entity" occlude="true" visibility="allies"/>
+			<playeffect effect="effects/aoe_red.effect" duration="8000" target="stack_entity" source="stack_entity" occlude="true" visibility="enemies"/>
+		</hasmodifier>
+		<else>
+			<hasmodifier entity="proxy_entity" name="adult">
+				<spawnunit name="Pet_Owl_Adult" count="1" duration="8000" target="target_position" pushentity="true"  proxy="this_proxy_entity" />
+				<setproxy target="stack_entity" />
+				<applystate target="proxy_entity" name="State_Owl_Invis" duration="8000" />
+				<playeffect effect="effects/aoe.effect" duration="8000" target="stack_entity" source="stack_entity" occlude="true" visibility="allies"/>
+				<playeffect effect="effects/aoe_red.effect" duration="8000" target="stack_entity" source="stack_entity" occlude="true" visibility="enemies"/>
+			</hasmodifier>
+			<else>	
+				<spawnunit name="Pet_Owl" count="1" duration="8000" target="target_position" pushentity="true"  proxy="this_proxy_entity" />
+				<setproxy target="stack_entity" />
+				<applystate target="proxy_entity" name="State_Owl_Invis" duration="8000" />
+				<playeffect effect="effects/aoe.effect" duration="8000" target="stack_entity" source="stack_entity" occlude="true" visibility="allies"/>
+				<playeffect effect="effects/aoe_red.effect" duration="8000" target="stack_entity" source="stack_entity" occlude="true" visibility="enemies"/>
+			</else>
+		</else>
+	</onimpact>
+	
+</projectile>

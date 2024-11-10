@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_MainBaseStructure_Music"
+
+	ishidden="true"
+	impactinterval="500"
+>
+	<onimpact>
+		<areaofeffect
+			targetscheme="enemy_heroes"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="2100"
+			maximpactspertarget="1"
+		>
+		</areaofeffect>
+		<compare a="result" b="1" op="ge" >
+			<areaofeffect
+				targetscheme="ally_heroes"
+				effecttype=""
+				ignoreinvulnerable="true"
+				targetselection="all"
+				radius="2100"
+				maximpactspertarget="1"
+			>
+				<playconductorevent name="BaseDefend_2" entity="target_entity" />
+			</areaofeffect>
+		</compare>
+		<areaofeffect
+			targetscheme="enemy_heroes"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="2100"
+			maximpactspertarget="1"
+		>
+			<playconductorevent name="BaseAttack_2" entity="target_entity" />
+		</areaofeffect>
+	</onimpact>
+
+</state>

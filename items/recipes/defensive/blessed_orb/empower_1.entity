@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Blessed_Orb_Empower_1"
+	
+	cost="1240"
+
+>
+	<constant name="heal_enchant" value="30" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<!-- Tooltip only -->
+	<constant name="heal_chance_enchant" value="25" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onabilityimpact ignoreresponsetype="NoResponse">
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" />
+		<else>
+			<chance threshold="0.25">
+				<setaccumulator value="source_health_percent" />
+				<setproxy target="source_entity"/>
+					<areaofeffect
+						radius="800"
+						center="source_entity"
+						targetselection="all"
+						targetscheme="ally_heroes"
+					>
+						<compare a="target_health_percent" b="accumulator" op="lt" >
+							<setproxy target="target_entity" />
+							<setaccumulator value="target_health_percent" />
+						</compare>
+					</areaofeffect>
+						<getconstant name="heal_enchant" />
+						<heal target="proxy_entity" a="result" b="1" op="mult" />
+			</chance>
+		</else>
+	</onabilityimpact>
+
+</qualityitem>

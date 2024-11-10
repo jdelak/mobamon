@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="smoke">
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="200"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-25"
+					minspeed="200"
+					maxspeed="400"
+					drag="0.025"
+					acceleration="0.0"
+					position="{zpos}"
+					direction="0 0 0"
+					offsetsphere="12 12 0"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					depthbias="20"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor="1 .45 .75"
+						midcolor=".35 .1 .25"
+						endcolor=".35 .1 .25"
+						midcolorpos=".75"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+					
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor=".75 .45 1"
+						midcolor=".25 .1 .4"
+						endcolor=".25 .1 .4"
+						midcolorpos=".75"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="smoke" zbone="_bone_leftfoot" zpos="-5 0 0"/>
+			<instance name="smoke" zbone="_bone_rightfoot" zpos="5 0 0"/>
+
+			<billboard
+				expirelife="250"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				color=".25 0 .5"
+				scale="4"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+
+			<simpleemitter
+				spawnrate="8"
+				particlelife="1000"
+				minspeed="0"
+				maxspeed="100"
+				offsetsphere="75 75 10"
+				direction="0 0 0"
+				gravity="0"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 25"
+						minlife="500"
+						maxlife="750"
+						material="/shared/effects/smaterials/animated_wind_rush.material"
+						minstartsize="135"
+						maxstartsize="135"
+						minendsize="135"
+						maxendsize="170"
+						startcolor=".6 0 .6"
+						midcolor=".6 0 .6"
+						endcolor="0 0 0"
+						midcolorpos=".01"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-50"
+						framespeed="3"
+						alpha="0"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

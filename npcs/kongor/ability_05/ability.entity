@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Kongor5"
+	
+	icon="icon.tga"
+	
+	anim="jump_2"
+	casttime="800"
+	castactiontime="400"
+	casteffect=""
+
+
+
+	actiontype="target_entity"
+	targetscheme="enemy_buildings"
+	casteffecttype="Magic"
+	
+	manacost="0"
+	cooldowntime="2000"
+	
+	range="800"
+	showareacast="true"
+	areacastmaterial=""
+	hoverareacastrange="525,575,625,675"
+	
+	allowautocast="true"
+	doubleactivate="true"
+	doubleactivatenoninterrupting="true"
+	
+
+>
+	<onframe>
+		<targettype type="alive" target="source_entity">
+			<condition test="not_hasstate State_Kongor_AttackOrder" target="source_entity" >
+				<areaofeffect
+					radius="800"
+					targetselection="closest"
+					targetscheme="enemy_buildings"
+					maxtotalimpacts="1"
+					effecttype="Magic"
+				>
+					<useability source="source_entity" slot="4"/>
+				</areaofeffect>
+			</condition>
+		</targettype>
+	</onframe>
+
+	<onimpact>
+		<setpos0 position="target_position" positionend="source_position" positionmodifier="pointonline" positionvalue="200" />
+		<spawnprojectile name="Projectile_Kongor_Ability5" bind="source_entity" source="source_entity" target="pos0" proxy="target_entity" bindturn="true" unbindondeath="true" bindstate="State_Kongor_Ability5"/>
+		<spawnprojectile name="Projectile_Kongor_Ability5_Anim" source="source_entity" target="target_entity" />
+		<applystate name="State_Kongor_AttackOrder" target="source_entity" duration="5000" />
+		<order command="attack" force="true" forceduration="60000" />
+		<setscriptvalue name="Kongor_Tower" value="1" />
+	</onimpact>
+
+
+	<modifier key="lanepusher_aggrotower" modpriority="100"
+	>
+		<onframe />
+	</modifier>
+	
+
+	
+</ability>

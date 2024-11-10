@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="sampler_normalmap_nx" novs="true">
+	<parameter name="Sampler" type="sampler2D" />
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float4 f4NormalmapColor = tex2D(Sampler, Texcoord).agbr;
+			Out.xy = float2(f4NormalmapColor.rg * 2.0f - 1.0f);
+			Out.z = sqrt(1.0f - Out.x * Out.x - Out.y * Out.y);
+			Out.w = f4NormalmapColor.a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float4 f4NormalmapColor = Sampler_texture.Sample(Sampler_sampler, Texcoord).agbr;
+			Out.xy = float2(f4NormalmapColor.rg * 2.0f - 1.0f);
+			Out.z = sqrt(1.0f - Out.x * Out.x - Out.y * Out.y);
+			Out.w = f4NormalmapColor.a;			
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec4 f4NormalmapColor = texture2D(Sampler, Texcoord).agbr;
+			Out.xy = vec2(f4NormalmapColor.rg * 2.0f - 1.0f);
+			Out.z = sqrt(1.0f - Out.x * Out.x - Out.y * Out.y);
+			Out.w = f4NormalmapColor.a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec4 f4NormalmapColor = texture(Sampler, Texcoord).agbr;
+			Out.xy = vec2(f4NormalmapColor.rg * 2.0f - 1.0f);
+			Out.z = sqrt(1.0f - Out.x * Out.x - Out.y * Out.y);
+			Out.w = f4NormalmapColor.a;
+		?>
+	</case>
+</node>

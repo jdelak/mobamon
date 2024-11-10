@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="ime_candidate">
+	<!-- Horizontal IME 
+		Should attempt to display directly below input line. Above is sencond choice it seems, based on the design of the newest methods I've seen.	
+	-->	
+	<template name="ime_horiz_option">
+		<panel
+			name="ime_option{id}_master"
+			onmouseover="ShowWidget('ime_option{id}');"
+			onmouseout="HideWidget('ime_option{id}');"
+			onclicklua="SelectIMECandidate({id}-1)"
+			passivechildren="true"
+			grow="true" height="100%" sticky="true" stickytoinvis="false" float="right" padding="0.1h"
+		>
+			<panel grow="true" regrow="true" height="100%">
+				<!-- Hover/Selection Indication -->				
+				<frame name="ime_option{id}" height="-0.4h" valign="center" texture="/ui/elements:rounded_bg_white" borderthickness="0.3h" color="#bce3ff" blockinput="false" visible="false"/>												
+				<label name="ime_option{id}_label" x="0.6h" fitx="true" fitxpadding="0.6h" height="100%" textvalign="center" font="maindyn_14" color=".1 .1 .1 1" shadow="true" shadowcolor=".8 .8 .8 1" />
+			</panel>
+			<panel width="2" height="100%">
+				<panel width="1" height="-0.8h" valign="center" align="left" color=".8 .8 .8 1"/>
+				<panel width="1" height="-0.8h" valign="center" align="right" color=".3 .3 .3 1"/>
+			</panel>
+		</panel>
+	</template>	
+
+	<!-- the +/-5 on the textbox area is simply for padding so the textbox has some breathing room -->
+	<panel height="1.2h" grow="true" regrow="true" growinvis="false"
+		watch="NewIMECandidateList"
+		ontriggerlua="
+			local tblCandidateList = GetIMECandidateList()
+			
+			function Empty(stringVar)
+				if (stringVar) then
+					return (0 >= string.len(stringVar)) 
+				else
+					return true
+				end
+			end
+
+			function NotEmpty(stringVar)
+				if (stringVar) then
+					return (string.len(stringVar) >= 1) 
+				else
+					return false
+				end
+			end
+			
+			for i=1,9 do
+				if (tblCandidateList.tblCandidates[i] and NotEmpty(tblCandidateList.tblCandidates[i])) then
+					self:GetWidget('ime_option'..i..'_label', 'ime_candidate'):SetText(i..' '..tblCandidateList.tblCandidates[i])
+					if (i == 1) then
+						self:GetWidget('ime_option'..i..'_label', 'ime_candidate'):SetColor('.1 .1 .9 1')
+					else
+						self:GetWidget('ime_option'..i..'_label', 'ime_candidate'):SetColor('.1 .1 .1 1')
+					end
+					self:GetWidget('ime_option'..i..'_master', 'ime_candidate'):SetVisible(1)
+				else
+					self:GetWidget('ime_option'..i..'_master', 'ime_candidate'):SetVisible(0)
+				end
+			end
+		"
+		watch2="IMECandidateTextboxArea"
+		ontrigger2lua="
+				local interface = self:GetInterface()
+				if (interface ~= nil and interface:IsValid()) then
+					local left, top, right, bottom = (tonumber(param0) - 5), (tonumber(param1) - 5), (tonumber(param2) + 5), (tonumber(param3) + 5)
+					local width, height = self:GetWidth(), self:GetHeight()
+					local screenX, screenY = GetScreenWidth(), GetScreenHeight()
+
+					local destX, destY = 0, 0
+
+					if ((left + width) > screenX) then
+						destX = math.max(0, (screenX - width))
+					elseif (0 > left) then
+						destX = 0
+					else
+						destX = left
+					end
+
+					if ((bottom + height) > screenY) then
+						destY = math.max(0, (top - height))
+					else
+						destY = bottom
+					end
+
+					interface:SetPos(destX, destY)
+				end
+		"
+	>
+		<frame width="+1.0h" height="+1.0h" align="center" valign="center" texture="/ui/elements:squareglow" color="0 0 0 .7" borderthickness="0.8h" bordercolor="0 0 0 .7" noclick="true"/>
+		<frame texture="/ui/elements:rounded_bg_solid" borderthickness="0.3h" color=".8 .8 .8 1" blockinput="false" noclick="true"/>
+		<frame texture="/ui/elements:roundframe" color="1 1 1 1" borderthickness="0.3h" blockinput="false" noclick="true"/>
+		<panel x="0.2h" grow="true" regrow="true" growinvis="false" height="100%" float="right" padding="0.2h">
+			<instance name="ime_horiz_option" id="1" />
+			<instance name="ime_horiz_option" id="2" />
+			<instance name="ime_horiz_option" id="3" />
+			<instance name="ime_horiz_option" id="4" />
+			<instance name="ime_horiz_option" id="5" />
+			<instance name="ime_horiz_option" id="6" />
+			<instance name="ime_horiz_option" id="7" />
+			<instance name="ime_horiz_option" id="8" />
+			<instance name="ime_horiz_option" id="9" />
+
+			<!-- Forward/Back Indicators, sadly we don't have a way of properly highlighting these if there is more pages -->
+			<panel height="100%" width="230@" noclick="true">
+				<panel width="150@" height="150%" valign="center" align="left" noclick="1">
+					<image x="0.1h" y="0.1h" texture="/ui/_textures/elements/play.tga" hflip="true" color="0 0 0 1" noclick="1" />
+					<image name="ime_left_arrow" texture="/ui/_textures/elements/play.tga" hflip="true" color="1 1 1 1" noclick="1" />
+				</panel>
+				<!-- captures clicking, the image's panel is much larger than just the arrow, so these smaller guys capture input -->
+				<panel x="25@" width="90@" height="100%" valign="center" align="left"
+					onclicklua="IMECandidateListPageUp();"
+					ondoubleclicklua="IMECandidateListPageUp();"
+				/>
+
+				<panel width="150@" height="150%" valign="center" align="right" noclick="1">
+					<image x="0.1h" y="0.1h" texture="/ui/_textures/elements/play.tga" color="0 0 0 1" noclick="1"/>
+					<image name="ime_right_arrow"  texture="/ui/_textures/elements/play.tga" color="1 1 1 1" noclick="1"/>
+				</panel>
+				<!-- see above comment -->
+				<panel x="-25@" width="90@" height="100%" valign="center" align="right"
+					onclicklua="IMECandidateListPageDown();"
+					ondoubleclicklua="IMECandidateListPageDown();"
+				/>
+			</panel>			
+		</panel>	
+	</panel>
+	
+	
+	
+	<!-- Verticle IME  (Listbox version, like DJ's example). The horizontal version seems to be preferred, if that can be done -->	
+	<!-- <template name="ime_vert_item">
+		<label content="{text}" color=".1 .1 .1 1" shadow="true" shadowcolor=".8 .8 .8 1" noclick="1" font="dyn_12" width="-1.0h" textvalign="center" textalign="left" align="center" valign="center" />
+	</template>	
+	<template name="ime_vert" >
+		<panel width="12h" y="-26.0h" grow="true" regrow="true" growinvis="false" align="center" valign="center">
+			<frame width="+1.0h" height="+1.0h" align="center" valign="center" texture="/ui/elements:squareglow" color="0 0 0 .7" borderthickness="0.8h" bordercolor="0 0 0 .7" noclick="true"/>
+			<frame texture="/ui/_textures/frames/rounded_bg_flat.tga" borderthickness="0.3h" color=".8 .8 .8 1" blockinput="false" noclick="true"/>
+			<frame texture="/ui/elements:roundframe" color="1 1 1 1" borderthickness="0.3h" blockinput="false" noclick="true"/>
+			<panel height="26.0h" noclick="true">
+				<listbox
+					y="0.5h"
+					width="-1.0h"
+					height="-4.0h"
+					align="center"
+					color="invisible"
+					itemwidth="100%"
+					itemheight="2.3h"
+					highlight="under"
+					hoverselect="false"
+					hoverhighlight="true"
+					highlightcolor="#46adff42"
+					highlightbordercolor="invisible"
+					selectedcolor="#46adff42"
+					selectedbordercolor="invisible"
+					scrollbarsize="2.0h"
+					scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+					handleheight="2.0h"
+				>
+					<listitem><instance name="ime_vert_item" text="1. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="2. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="3. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="4. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="5. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="6. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="7. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="8. SYM"/></listitem>
+					<listitem><instance name="ime_vert_item" text="9. SYM"/></listitem>
+				</listbox> -->
+				<!-- Forward/Back Indicators
+					If can page = top play.tga color is '1 1 1 1'
+					If not = top play.tga color is '.8 .8 .8 1'
+				-->
+				<!--<panel y="-0.5h" height="3.5h" valign="bottom" noclick="true">
+					<panel x="1.5h" width="96@" height="96%" valign="center" align="left">
+						<image x="0.1h" y="0.1h" texture="/ui/_textures/elements/play.tga" hflip="true" color="0 0 0 1" />
+						<image texture="/ui/_textures/elements/play.tga" hflip="true" color=".7 .7 .7 1" />
+					</panel>
+					<panel x="-1.5h" width="96@" height="96%" valign="center" align="right">
+						<image x="0.1h" y="0.1h" texture="/ui/_textures/elements/play.tga" color="0 0 0 1" />
+						<image texture="/ui/_textures/elements/play.tga" color="1 1 1 1" />
+					</panel>
+				</panel>
+				
+			</panel>	
+		</panel>
+	</template> -->
+	
+	<!-- ORIG template for a list item -->
+	<!--<template name="IME_listbox_item">
+		<label content="{text}" color="white" noclick="1" font="dyn_12" width="-1.0h" textvalign="center" textalign="left" align="center" valign="center" shadow="1" />
+	</template> -->
+
+	<!-- ORIG the list itself -->
+	<!--<panel name="IME_list" width="12h" height="21.5h" noclick="1" >
+		<frame texture="/ui/info/backdrop.tga" borderthickness="1.6h" color="1 1 1 1" noclick="1" />
+		<listbox
+			height="-0.4h"
+			width="-0.4h"
+			align="center"
+			valign="center"
+			color="invisible"
+			itemwidth="100%"
+			itemheight="2.3h"
+			highlight="under"
+			hoverselect="false"
+			hoverhighlight="true"
+			highlightcolor="#46adff42"
+			highlightbordercolor="invisible"
+			selectedcolor="#346dff52"
+			selectedbordercolor="invisible"
+			backgroundimage="/ui/fe2/elements/comm_item_bg.tga"
+			backgroundimagecolor="#1d2f3b"
+			scrollbarsize="1.4h"
+			scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+			handleheight="1.4h"
+			watch="NewIMECandidateList"
+			ontriggerlua="
+				local tblCandidateList = GetIMECandidateList()
+				self:ClearItems();
+				
+				local nListIndex = 0
+				for nCandidateIndex=1,#tblCandidateList.tblCandidates do						
+					self:AddTemplateListItem('IME_listbox_item', nListIndex, 'text', tblCandidateList.tblCandidates[nCandidateIndex])
+					nListIndex = nListIndex + 1
+				end
+				self:SetSelectedItemByIndex(tblCandidateList.nSelectionIndex)
+			"
+			watch1="IMECandidateTextboxArea"
+			ontrigger1lua="
+				local nLeft = tonumber(param0)
+				local nTop = tonumber(param1)
+				local nRight = tonumber(param2)
+				local nBottom = tonumber(param3)
+				
+				local Interface = self:GetInterface()
+				if (Interface ~= nil and Interface:IsValid()) then
+					Interface:SetPos(nLeft, nBottom)
+				end
+			"
+			onselectlua="
+				SelectIMECandidate(self:GetValue())
+			"
+		/>
+	</panel> -->
+</interface>

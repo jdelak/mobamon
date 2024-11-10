@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="true" deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.8">
+
+			<simpleemitter
+			delay="400"
+				life="5500"
+				spawnrate="12"		
+				particlelife="1000"					
+				position="-50 -35 0"
+				offsetsphere="100 350 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				minspeed="0"
+				maxspeed="0"
+			>
+				<particle
+				> 
+					<model
+						life="2000"
+						position="0 0 -50"
+						model="/heroes/carter/ability_02/effects/bubble/model.mdf"
+						anim="idle"
+						color="1 .85 0"
+						startalpha=".25"
+						midalpha=".25"
+						endalpha="0"
+						startscale="1.5"
+						midscale="3"
+						endscale="0"
+						midscalepos=".2"
+					/>
+					
+					<billboard
+						position="0 0 0"
+						life="2000"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="200"
+						startcolor=".175 .35 0"
+						endcolor="0 0 0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+<!--
+					<billboard
+						position="0 0 0"
+						life="1250"
+						param="0.1"
+						startsize="100"
+						midsize="200"
+						endsize="0"
+						startalpha=".1"
+						midalpha=".1"
+						endalpha="0"
+						material="/shared/effects/smaterials/refract_swell.material"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-20"
+					/>
+-->
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+		<particlesystem name="system1" space="world" scale="1.88">
+
+			<light
+				life="7000"
+				startcolor="1.5 3 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="0"
+				falloffend="450"
+				position="0 0 75"
+			/>
+
+
+			
+			
+			
+			
+			<model
+				position="20 30 -25"
+				life="6900"
+				model="goo/model.mdf"
+				anim="idle"
+				color="1.5 1.5 1"
+				startalpha=".5"
+				midalpha=".5"
+				endalpha="0"
+				midalphapos=".8"
+				yaw="80"
+			/>
+			
+
+			<model
+				position="20 30 -25"
+				life="6900"
+				model="goo/model.mdf"
+				anim="idle"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				startcolor=".3 1 0"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				alpha=".4"
+				yaw="80"
+			/>
+			
+			
+<!--
+			<billboard
+				position="-75 0 0"
+				life="1500"
+				material="/shared/effects/smaterials/goo_area.material"
+				startsize="50"
+				endsize="700"
+				color="1 1 1"
+				startalpha="0"
+				midalpha=".6"
+				endalpha=".6"
+				midalphapos=".2"
+				depthbias="15"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				roll="120"
+			/>
+
+			<billboard
+			delay="1500"
+				position="-75 0 0"
+				life="1500"
+				material="/shared/effects/smaterials/goo_area.material"
+				startsize="700"
+				endsize="1000"
+				color="1 1 1"
+				alpha=".6"
+				depthbias="15"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				roll="120"
+			/>
+
+			<billboard
+			delay="3000"
+				position="-75 0 0"
+				life="3900"
+				material="/shared/effects/smaterials/goo_area.material"
+				startsize="1000"
+				endsize="1430"
+				color="1 1 1"
+				startalpha=".6"
+				midalpha=".6"
+				endalpha="0"
+				midalphapos=".75"
+				depthbias="15"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				roll="120"
+			/>
+-->
+
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			
+			
+			
+			<template name="splats">
+
+				<simpleemitter
+				delay="650"
+				life="5500"
+				position="{zpos}"
+					spawnrate="12"
+					particlelife="2000"
+					direction="0 0 1"
+					offsetsphere="{zoffset}"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							life="1000"
+							material="/shared/effects/smaterials/animated_goop.material"
+							startcolor="{zcolor}"
+							midcolor="{zcolor}"
+							endcolor="0 0 0"
+							midcolorpos=".8"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".75"
+							position="0 0 0"
+							startframe="0"
+							endframe="1"
+							framspeed="1"
+							minscale=".1"
+							maxscale=".75"
+							lockup="true"
+							lockright="90"
+							pitch="-25"
+							depthbias="0"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="splats" zpos="-125 -175 20" zoffset="150 175 0" zcolor="1 1 .5"/>
+			<instance name="splats" zpos="-175 0 20" zoffset="150 125 0" zcolor="1 .75 0"/>
+			<instance name="splats" zpos="-100 100 20" zoffset="150 175 0" zcolor=".5 .5 .25"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="goop">
+
+				<simpleemitter
+					delay="{zdelay}"
+					life="1750"
+					position="{zpos}"
+					spawnrate="50"
+					particlelife="3000"
+					gravity="75"
+					speed="150"
+					acceleration="0"
+					offsetsphere="35 35 0"
+					minangle="0"
+					maxangle="10"
+					direction="0 0 1"
+					depthbias="-100"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							life="1000"
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor=".125 .25 0"
+							midcolor=".125 .25 0"
+							endcolor="0 0 0"
+							position="0 0 0"
+							minscale=".5"
+							maxscale="1"
+							lockup="true"
+							lockright="1"
+							pitch="90"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				<simpleemitter
+					delay="{zdelay}"
+					life="1750"
+					position="{zpos}"
+					spawnrate="50"
+					particlelife="3000"
+					gravity="75"
+					speed="150"
+					acceleration="0"
+					offsetsphere="18 18 0"
+					minangle="0"
+					maxangle="10"
+					direction="0 0 1"
+					depthbias="-100"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							life="1000"
+							material="/shared/effects/smaterials/bubble_add.material"
+							startcolor=".25 .5 0"
+							midcolor=".25 .5 0"
+							endcolor="0 0 0"
+							position="0 0 0"
+							minscale=".35"
+							maxscale=".75"
+							lockup="true"
+							lockright="1"
+							pitch="90"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				
+				
+
+				<simpleemitter
+					life="1750"
+					position="{zpos}"
+					spawnrate="3"
+					particlelife="3000"
+					minspeed="50"
+					maxspeed="100"
+					acceleration="0"
+					offsetsphere="15 0 0"
+					direction="-1 0 0"
+					minangle="-30"
+					maxangle="30"
+				>
+					<particle
+					>
+						<billboard
+							life="1000"
+							material="/shared/effects/smaterials/fire_arc_white.material"
+							startcolor="0 0 0"
+							midcolor=".125 .25 0"
+							endcolor="0 0 0"
+							midcolorpos=".15"
+							position="0 -50 0"
+							minscale="1"
+							maxscale="6"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							roll="90"
+							depthbias="-60"
+						/>
+					</particle>
+				</simpleemitter>
+
+				
+
+
+			</template>
+
+
+			<instance name="goop" zpos="100 100 11" zdelay="20"/>
+			<instance name="goop" zpos="100 50 11" zdelay="20"/>
+			<instance name="goop" zpos="100 0 10" zdelay="250"/>
+			<instance name="goop" zpos="100 -50 5" zdelay="300"/>
+			<instance name="goop" zpos="92 -100 5" zdelay="150"/>
+			<instance name="goop" zpos="85 -150 13" zdelay="160"/>
+
+
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

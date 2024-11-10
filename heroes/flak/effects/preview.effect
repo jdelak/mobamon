@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+
+	<!-- 1 -->
+	<template name="passive1" parentmodel="true" parentskeleton="true" directionalspace="local" particledirectionalspace="local">
+		<model expirelife="0" scale="1" model="gun_parts/model.mdf" parentskeleton="true" directionalspace="local" startcolor="0 5 10" endcolor="0 0 0" />
+		<model expirelife="0" scale="1" model="screen_parts/model.mdf" parentskeleton="true" directionalspace="local" startcolor="0 5 10" endcolor="0 0 0" />
+		<template name="glow" parentmodel="true" parentskeleton="true" directionalspace="local" particledirectionalspace="local">
+			<simpleemitter expirelife="0" bone="{zbone}" spawnrate="3" minparticlelife="600" maxparticlelife="700" gravity="0" acceleration="0" position="0 0 0" material="/shared/effects/smaterials/whitedot_ground_inverted.material" offsetsphere="0 0 0" directionalspace="local" particledirectionalspace="local">
+				<particle anchor="1" startcolor="0 0 0" midcolor="0 .25 .25" endcolor="0 0 0" midcolorpos=".25" startscale="0" midscale="0.25" endscale="0.5" width="300" height="300"/>
+			</simpleemitter>
+			<billboard bone="{zbone}" expirelife="0" position="0 0 0" startcolor="0 .2 .4" endcolor="0" size="70" material="/shared/effects/smaterials/whitedot.material" depthbias="-15" directionalspace="local"/>
+			<billboard bone="{zbone}" expirelife="0" position="0 0 0" startcolor="0 .75 .85" endcolor="0" size="40" material="/shared/effects/smaterials/whitedot.material" depthbias="-15" directionalspace="local"/>
+		</template>
+		<instance name="glow" zbone="_bone_fx_13"/>	
+	</template>
+	<instance name="passive1"/>
+
+	
+	<sound delay="400" sample="sounds/passive.wav" linearfalloff="true" falloffstart="600" falloffend="2400" volume="0.35" channel="90024" />	
+	<sound delay="0" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="500" falloffend="3400" volume="0.45" channel="90024" />	
+
+
+	
+	
+</particlesystem>
+
+</definitions>
+<thread>
+
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

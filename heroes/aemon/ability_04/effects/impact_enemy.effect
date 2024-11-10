@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+	
+
+		<modifier
+			name="modifier0"
+			life="500"
+			startcolor="0"
+			midcolor="0"
+			endcolor="1"
+			midcolorpos=".2"
+		/>
+
+	
+		<particlesystem name="system0" space="world" scale="2">
+
+			<simpleemitter
+			count="75"
+				bone="_bone_centerofchest"
+				spawnrate="3000"
+				minparticlelife="300"
+				maxparticlelife="650"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/firesprite_swirl.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="30"
+				directionalspace="world"
+				offsetsphere="25"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					color="1 1 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".1"
+					startframe="0"
+					endframe="1"
+					minstartscale="25"
+					maxstartscale="40"
+					minmidscale="0"
+					maxmidscale="25"
+					endscale="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+			count="25"
+				bone="_bone_centerofchest"
+				spawnrate="3000"
+				minparticlelife="300"
+				maxparticlelife="750"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/firesprite_swirl_add.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="30"
+				directionalspace="world"
+				offsetsphere="25"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					color=".25 .125 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".1"
+					startframe="0"
+					endframe="1"
+					minstartscale="25"
+					maxstartscale="40"
+					minmidscale="0"
+					maxmidscale="25"
+					endscale="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			count="5"
+				bone="_bone_centerofchest"
+				spawnrate="5000"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/whitedot.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="0"
+				directionalspace="world"
+				offsetsphere="26"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					startcolor=".5 .25 0"
+					midcolor=".5 .25 0"
+					endcolor="0 0 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".1"
+					startframe="0"
+					endframe="1"
+					minstartscale="20"
+					maxstartscale="40"
+					minmidscale="0"
+					maxmidscale="20"
+					endscale="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<!-- beams -->
+			<template name="">
+				<billboard
+					position="0 0 150"
+					life="600"
+					startscale="3"
+					midscale="3"
+					endscale="3"
+					startcolor=".25 .125 0"
+					midcolor=".25 .125 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_128.material"
+					lockup="1"
+					lockright="1"
+					depthbias="0"
+					directionalspace="world"
+					startheight="0"
+					endheight="2000"
+					width="20"
+				/>
+				
+				<billboard
+					position="0 0 150"
+					life="600"
+					startscale="3"
+					midscale="3"
+					endscale="3"
+					startcolor=".25 .25 0"
+					midcolor=".25 .125 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_128.material"
+					lockup="1"
+					lockright="1"
+					depthbias="0"
+					directionalspace="world"
+					startheight="0"
+					endheight="1000"
+					width="10"
+				/>
+			</template>
+			
+			<instance name="" />
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>

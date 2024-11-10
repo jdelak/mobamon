@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_MaxManaPower_Empower_1"
+	
+	cost="1350"
+
+>
+	<!-- Tooltip only -->
+	<constant name="maxmana_health_enchant" value="10" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onframe>
+		<setcharges a="0.04" b="source_maxmana" op="mult" />
+
+		<applystate name="State_MaxManaPower_Legendary" target="source_entity" duration="100" pushentity="true" />
+		<getconstant name="maxmana_health_enchant" />
+		<setvar0 a="result" b="100" op="div" />
+		<setcharges entity="stack_entity" a="var0" b="source_maxmana" op="mult" />
+
+	</onframe>
+
+</qualityitem>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Bastion4"
+	statuseffecttooltip="State_Bastion_Ability4_Bastion"
+	
+	icon="icon.tga"
+	
+	anim="ability_4"
+	casttime="0"
+	castactiontime="0"
+	queue="front"
+	inheritmovement="true"
+	
+	casteffect=""
+	
+	maxlevel="3"
+	requiredlevel="6,11,15"
+
+	actiontype="target_self"
+	targetscheme="self"
+	casteffecttype=""
+	
+	manacost="110,125,140"
+	cooldowntime="110000,100000,90000"
+
+	hoverareacastrange="400"
+	
+	novoiceresponse="true"
+>
+
+	<constant name="damage" value="200,250,300" adjustment="ability" />
+	<constant name="attack_bonus" value="40,50,60" adjustment="none" />
+
+	
+	<onimpact>
+		<applystate name="State_Bastion_Ability4_Buildup" duration="3000" />
+		<spawnaffector name="Affector_Bastion_Ability4_Hazard" target="source_entity" />
+		<starttimer duration="3000" />
+	</onimpact>
+	
+	<modifier key="Bastionult_refresherorb" modpriority="100" disabled="true"/>
+	
+</ability>

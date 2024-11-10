@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="attack01.max" file="high.model" type="K2" >
+
+	<anim name="idle" clip="clips/idle.clip" />
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="55" loop="false" >
+		<frameevent frame="1" cmd="StartEffect effects/fire.effect"/>
+	</anim>
+	
+	<anim name="death_1" blendtime="0" clip="clips/top_death_hide.clip" loop="true" loopbackframe="-1">
+		<startevent cmd="StopSound 0" />
+		<startevent cmd="StartEffect effects/death.effect 0"/>	
+		<startevent cmd="StartEffect effects/crumble.effect 1"/>
+		<startevent cmd="StartEffect effects/explosion.effect 2"/>
+		<endevent cmd="StopEffect 1" />
+	</anim>	
+</model>

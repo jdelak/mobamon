@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			delay="200"
+			expirelife="250"
+			startcolor=".25 .25 .25"
+			endcolor="1 1 1"
+		/>
+
+
+	</definitions>
+
+	<thread>
+      <spawnparticlesystem instance="instance0"  particlesystem="system0" />	
+	  <spawnmodifier instance="instance1" modifier="modifier0"/>  
+	  <waitfordeath instance="instance0" />
+	  <waitfordeath instance="instance1" />	 
+	</thread>
+
+</effect>

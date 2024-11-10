@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_TowerMaster_Ability3_Tutorial2"
+
+	icon=""
+	portrait=""
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	passiveeffect="/npcs/cindara/ability_03/effects/charge.effect"
+	deatheffect="/npcs/cindara/ability_03/effects/death.effect"
+	
+	boundsheight="0"
+	boundsradius="0"
+	isselectable="false"
+	iscontrollable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+
+	sightrangeday="0"
+	sightrangenight="0"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="true"
+	flyheight="120"
+	drawonmap="false"
+	
+	unittype="boss_orb"
+	diewithowner="true"
+	
+	lifetime="2500"
+>
+
+	<onspawn>
+		<starttimer duration="2500" />
+	</onspawn>
+
+	<onexpired>
+		<playeffect effect="/npcs/cindara/ability_03/effects/death.effect" target="source_position" occulude="true"/>
+		<printdebuginfo/>
+		<targettype type="alive" target="this_proxy_entity" >
+			<areaofeffect
+				radius="1500"
+				targetselection="closest"
+				targetscheme="enemy_heroes"
+				ignoreinvulnerable="true"
+			> 
+				<condition test="not_hasstate State_TowerMaster_Ability3" target="target_entity">
+					<compare a="accumulator" b="1" op="lt" >
+						<applystate name="State_TowerMaster_Ability3" proxy="target_entity" duration="10000" />
+						<spawnprojectile name="Projectile_TowerMaster_Ability3" source="this_entity" bind="this_entity" bindturn="true" target="target_entity" proxy="this_proxy_entity"/>
+						<changeaccumulator b="1" op="add" />
+					</compare>
+				</condition>
+			</areaofeffect>
+			
+			<compare a="accumulator" b="1" op="lt" >
+				<areaofeffect
+					radius="1500"
+					targetselection="closest"
+					targetscheme="enemy_heroes"
+					ignoreinvulnerable="true"
+				>
+
+					<compare a="accumulator" b="1" op="lt" >
+						<applystate name="State_TowerMaster_Ability3" proxy="target_entity" duration="10000" />
+						<spawnprojectile name="Projectile_TowerMaster_Ability3" source="this_entity" bind="this_entity" bindturn="true" target="target_entity" proxy="this_proxy_entity"/>
+						<changeaccumulator b="1" op="add" />
+					</compare>
+
+				</areaofeffect>
+			</compare>
+		</targettype>
+	</onexpired>
+</gadget>

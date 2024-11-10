@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Zaku_Ability3_Timer"
+
+	icon=""
+	portrait=""
+	modelscale="1.1"
+	effectscale="1.1"
+	preglobalscale="1.8"
+	model="/shared/models/invis.mdf"
+
+	passiveeffect=""
+	boundsheight="0"
+	boundsradius="0"
+	isselectable="false"
+	iscontrollable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+	searchradius="0"
+	minsearchradius="0"
+	searchheight="0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	maxhealth="1"
+	flying="false"
+
+	sightrangeday="0"
+	sightrangenight="0"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	invulnerable="false"
+	hidealtinfo="false"
+	nothreat="true"
+	drawonmap="false"
+
+	infoheight="275"
+	
+	immunity="GadgetImmunity"
+	
+	showlifetime="true"
+	lifetime="6000"
+	unittype=""
+>
+	
+	<onframe>
+		<setvar0 a="target_health_percent" b="100" op="mult" target="this_proxy_entity" />
+		<setvar0 a="source_health" b="var0" op="sub" />
+		<compare a="var0" b="0" op="gt">
+			<damage effecttype="" source="source_entity" target="source_entity" amount="1" b="var0" op="mult" nonlethal="true" />
+		</compare>
+		<compare a="var0" b="0" op="lt">
+			<setvar0 a="var0" b="-1" op="mult" />
+			<heal a="var0" />
+		</compare>
+		<targettype type="alive" target="this_proxy_entity"/>
+		<else>
+			<delete target="this_entity" />
+		</else>
+	</onframe>
+
+	<ondamaged>
+		<entitytype type="Pet_Zaku_Ability3_Timer" source="target_entity" target="target_entity" />
+		<else>
+			<scaledamage scale="0" />
+		</else>
+	</ondamaged>
+</pet>

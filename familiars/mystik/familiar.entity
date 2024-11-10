@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<familiar
+	name="Familiar_Mystik"
+	
+	icon="model_2\icon.tga"
+	portrait="model_2\icon.tga"
+	model="model_2\model.mdf"
+	skin="" 
+	petselectannouncement="sounds/sfx_selectpet.wav"
+	
+	passiveeffect="" 
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	preglobalscale="1.0"
+	modelscale="2.5"
+	effectscale="1.0"
+	boundsheight="64"
+	radiusheight="64"
+	boundsradius="16"
+	selectionradius="32"
+	targetoffset="0 0 0"
+	iscontrollable="false"
+	invulnerable="true"
+	hidealtinfo="true"
+	isselectable="false"
+	nothreat="true"
+   	inheritvisibilityfromowner="true"
+   	matchownermovespeed="true"
+	
+	previewscale="5.0"
+
+	movespeed="1"
+	turnrate="450"
+	turnsmoothing="0.05"
+
+	maxmana="0"
+	manaregen="0"
+
+	resistance="0"
+	immunity="GadgetImmunity"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	
+	canattack="false"
+	attacktargetscheme="nothing"
+	attacktype="none"
+	combattype="Melee"
+
+	aggrorange="0"
+	sightrangeday="0"
+	sightrangenight="0"
+	
+	unitwalking="true"
+	
+	flying="true"
+	flyheight="75"
+	diewithowner="true"
+	unittype="EmeraldWardenpet AntiTP"
+	
+	corpsetime="0"
+	corpsefadetime="0"
+	
+	corralmodelscale="0.75"
+	corralmodelposition="2 350 0"
+	corralmodelorient="0 0 140"
+	
+	heroselectmodelscale=".65"
+	heroselectmodelposition="0 350 10,05 350 10,0 350 10"
+	heroselectmodelorient="0 0 220"
+
+	combinevisibilitywithowner="true"
+	
+	abilitypassive=""
+	abilitytriggered="Ability_Mystik_TriggeredPassive_1,Ability_Mystik_TriggeredPassive_2,Ability_Mystik_TriggeredPassive_3"
+	abilityactive="Ability_Mystik_Ult_1,Ability_Mystik_Ult_2,Ability_Mystik_Ult_3"
+
+	
+>
+	<onframe>
+		<applystate name="State_Familiar_Follow_Logic" continuous="true" target="this_entity" />
+		<getlevel entity="this_owner_entity" />
+		<setvar0 a="result" />
+		<pushability entity="this_owner_entity" slot="16" />
+		<setlevel entity="stack_entity" value="var0" />
+		<pushability entity="this_owner_entity" slot="17" />
+		<setlevel entity="stack_entity" value="var0" />
+		<pushability entity="this_owner_entity" slot="18" />
+		<setlevel entity="stack_entity" value="var0" />
+	</onframe>
+
+	<modifier key="passive_1" modpriority="1" abilitypassive="Ability_Mystik_Passive_1,Ability_Mystik_Passive_2,Ability_Mystik_Passive_3" />
+	<modifier key="baby" modpriority="1" altavatar="true" icon="model_1\icon.tga" portrait="model_1\icon.tga" model="model_1\model.mdf" corralmodelscale="0.65" corralmodelposition="2 350 -10" corralmodelorient="0 0 150" heroselectmodelscale=".65" heroselectmodelposition="0 350 3,0 350 3,0 350 3" heroselectmodelorient="0 0 220" modelscale="2.1" />
+	<modifier key="adult" modpriority="1" altavatar="true" icon="model_3\icon.tga" portrait="model_3\icon.tga" model="model_3\model.mdf" corralmodelscale="0.65" corralmodelposition="5 350 -7" corralmodelorient="0 0 150" heroselectmodelscale=".65" heroselectmodelposition="8 350 3" heroselectmodelorient="0 0 220" modelscale="2" />
+	
+	
+</familiar>

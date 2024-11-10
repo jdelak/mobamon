@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bandito_Ability1"
+
+	speed="1600"
+	gravity="0"
+
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	effectscale="1.0"
+
+	flying="true"
+	flyheight="100"
+	
+	lifetime="7000"
+
+>
+	<onimpact>
+	
+
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult" />
+
+		<cantarget effecttype="CrowdControl" >
+			<applystate name="State_Stunned" target="target_entity" duration="800" />
+		</cantarget>
+		
+		<targettype type="hero">
+			<spawnprojectile name="Projectile_Bandito_Ability1_Rebound" source="this_position" target="source_entity" noresponse="true" />
+		</targettype>
+		<else>
+			<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+		</else>
+		
+		<recordheroaggression  />
+		<aggression />
+
+		<delete target="this_entity" />
+	</onimpact>
+	
+	
+</projectile>

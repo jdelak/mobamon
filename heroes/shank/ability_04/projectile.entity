@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Shank_Ability4"
+
+	speed="1600"
+	gravity="0"
+
+	modelscale="2.7"
+	model="/shared/models/invis.mdf"
+
+	traileffect="effects/trail_out_sound.effect"
+
+	canturn="false"
+	flying="true"
+	flyheight="90"
+
+	hazardradius="300"
+	hazardoffset="200"
+	
+	touchradius="110"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_nonboss_units_and_buildings"
+	toucheffecttype="Magic"
+
+	touchpropradius="120"
+	touchpropanim="hit"
+	
+	maxtouchespertarget="1"
+	
+>
+	<onspawn>
+		<playeffect effect="effects/trail.effect" source="source_entity" target="this_proxy_entity" />
+		<playanim name="clamp_open" target="this_proxy_entity" />
+		<setparam a="0" />
+	</onspawn>
+ 
+	<onimpact>
+			<spawnprojectile name="Projectile_Shank_Ability4_Return" source="this_entity" target="source_entity" bind="this_proxy_entity" proxy="this_proxy_entity"  />
+			<playanim name="clamp_closed" target="this_proxy_entity" />
+	</onimpact>
+	
+	<ontouch>
+		<cantarget targettype="enemy_units" effecttype="CrowdControl">
+			<compare a="param" b="0" op="eq" >
+				<applystate name="State_Shank_Ability4_Delay" duration="-1" proxy="this_proxy_entity" />
+				<unbind target="target_entity" />
+				<delete target="this_entity" />
+				<setparam a="1" />
+				
+				<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" amount="1" b="result" op="mult" />
+				
+				<setpos0 position="this_proxy_entity" positionend="target_entity" positionmodifier="pointpastline" positionvalue="100" />
+				<push force="-800" duration="100" source="pos0" target="this_proxy_entity" />
+			</compare>
+		</cantarget>
+		<cantarget targettype="enemy_buildings" effecttype="Magic">
+			<compare a="param" b="0" op="eq" >
+				<applystate name="State_Shank_Ability4_Delay_Building" duration="-1" proxy="this_proxy_entity" />
+				<unbind target="target_entity" />
+				<delete target="this_entity" />
+				<setparam a="1" />
+				
+				<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" amount="1" b="result" op="mult" />
+				
+				<setpos0 position="this_proxy_entity" positionend="target_entity" positionmodifier="pointpastline" positionvalue="100" />
+				<push force="-800" duration="100" source="pos0" target="this_proxy_entity" />
+			</compare>
+			
+		</cantarget>
+	</ontouch>
+	
+
+	
+
+</projectile>

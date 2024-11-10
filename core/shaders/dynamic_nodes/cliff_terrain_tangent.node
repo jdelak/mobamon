@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="cliff_terrain_tangent">
+	<dependency name="Tangent" type="float4" source="TerrainTangent" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" solution="ObjectTerrainTangent" />
+	<output name="OutSign" type="float" solution="ObjectTerrainTangentSign" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float4 vInTangent = (Tangent / 255.0f) * 2.0f - 1.0f;
+			Out = vInTangent.xyz;
+			OutSign = vInTangent.w;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float4 vInTangent = Tangent;
+			Out = vInTangent.xyz;
+			OutSign = vInTangent.w;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec4 vInTangent = (Tangent / 255.0f) * 2.0f - 1.0f;
+			Out = vInTangent.xyz;
+			OutSign = vInTangent.w;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec4 vInTangent = (Tangent / 255.0f) * 2.0f - 1.0f;
+			Out = vInTangent.xyz;
+			OutSign = vInTangent.w;
+		?>
+	</case>
+</node>

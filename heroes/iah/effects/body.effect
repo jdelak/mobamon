@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".25">
+
+			<sound
+				life="5000"
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_aoe.wav"
+			/>
+
+
+
+			
+			
+			
+			
+			
+			
+			
+
+
+			
+			
+			
+			
+			
+			
+			
+
+
+			<simpleemitter
+				bone="_bone_fx_07"			
+				position="0 0 0"
+				spawnrate="10"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/twirl_blend.material"
+				depthbias="-50"
+			>
+				<particle
+				anchor="1"
+					minangle="0"
+					maxangle="180"
+					color="1 .7 .2"
+					startalpha="0"
+					midalpha=".1"
+					endalpha="0"
+					midalphapos=".2"
+					anglespeed="0"
+					startsize="200"
+					endsize="400"
+					lockup="1"
+					lockright="1"
+					pitch="180"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_fx_07"			
+				position="0 0 0"
+				spawnrate="10"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/sand_spin_no_center.material"
+				depthbias="-50"
+			>
+				<particle
+				anchor="1"
+					minangle="0"
+					maxangle="180"
+					color=".5 .35 .15"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".2"
+					anglespeed="0"
+					startsize="100"
+					endsize="250"
+					lockup="1"
+					lockright="1"
+					pitch="180"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				bone="_bone_fx_07"			
+				position="0 0 0"
+				spawnrate="20"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/sand_poofy_no_center.material"
+				depthbias="-50"
+			>
+				<particle
+				anchor="1"
+					minangle="0"
+					maxangle="180"
+					color="1 .9 .5"
+					startalpha="0"
+					midalpha=".15"
+					endalpha="0"
+					midalphapos=".2"
+					anglespeed="0"
+					startsize="100"
+					endsize="350"
+					lockup="1"
+					lockright="1"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<panel name="craftingItemCrafted" color="0 0 0 .85" visible="0" noclick="1"><!-- Successfully crafted item -->
+	
+		<panel name="craftingItemCraftedBody" y="25s" grow="1" regrow="1" growinvis="0" width="586s" align="center" valign="center" >
+			
+			<panel height="0"><label y="-80s" fitx="1" align="center" style="h1" font="maindyn_40" content="crafting_enchant_results_success" noclick="1"/></panel>
+			
+			<panel width="100%" height="100%" noclick="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" color=".04 .04 .04 0.9" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" width="+30s" height="+30s" align="center" valign="center" borderthickness="10s" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+			</panel>
+			
+			<!-- Title and Icon -->
+			<panel noclick="1" height="86s" width="100%">
+				<panel width="100@" height="100%" color="invisible">
+					<image name="craftingItemCraftedIcon" texture="/ui/main/crafting/textures/recipe_blank.tga"/>
+					<instance name="iconFrame" />
+				</panel>
+				<label name="craftItemQualityItemName" style="labelLegendary" fity="1" valign="center" x="120@" width="-300@" wrap="1" font="maindyn_36" content="Item Name" />
+				<!-- In-game Cost -->
+				<panel y="-5s" valign="center" grow="1" regrow="1" align="right" noclick="0">
+					<label fity="1" fitx="1" align="center" style="labelBase" font="subdyn_11" content="crafting_ingame_cost" noclick="1" />
+					<panel y="8s" grow="1" regrow="1" float="right" padding="3s" noclick="1" align="center">
+						<label name="craftingItemCraftedIngameCost" fitx="1" fity="1" valign="center" style="labelBase" color="1 1 1 1" font="maindyn_30" content="---" noclick="1" />
+						<image texture="/ui/elements:gold_coins" width="32s" height="32s" noclick="1"/>
+					</panel>
+				</panel>
+			</panel>
+			
+			<panel width="100%" y="100s" height="78s" noclick="true">
+				<instance name="mainCraftingCompleteComponent" id="1" align="left"/>
+				<instance name="mainCraftingCompleteComponent" id="2" align="center"/>
+				<instance name="mainCraftingCompleteComponent" id="3" align="right"/>
+			</panel>
+			
+			<instance name="iconButton" id="craftingItemCraftedClose"
+				icon="/ui/main/shared/textures/close.tga"
+				width="32s" height="32s" align="right" x="24s" y="-24s" borderthickness="4s"
+			/>
+			
+			<panel y="192s" grow="1" regrow="1" growinvis="false" width="100%" float="bottom" padding="5s" noclick="1">				
+				<panel grow="1" regrow="1" width="100%" noclick="1" sticky="true" stickytoinvis="false" >
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".9 .9 .9 1" color=".9 .9 .9 1" />				
+					<panel width="1" height="0" align="right" noclick="1">					
+						<image texture="/ui/main/crafting/textures/recipe_blank.tga" x="9s" y="-14s" align="right" width="36s" height="36s" noclick="1" />
+					</panel>				
+					<panel grow="1" regrow="1" growinvis="0" y="3@" width="96%" align="center" noclick="1" float="bottom" padding="8s">				
+						<!-- Recipe Info -->
+						<panel grow="1" regrow="1" width="100%" noclick="1">
+							<panel height="56s" width="56s">
+								<image name="craftingItemCraftedIconScroll" texture="/ui/main/crafting/textures/recipe_blank.tga" y="3%" width="68%" height="68%" valign="center" align="center" rendermode="grayscale" noclick="1" />
+								<image texture="/ui/elements:scroll_overlay" rendermode="grayscale" noclick="true" />
+							</panel>
+							<panel name="shopItemTipRecipeDescriptionContainer" width="-64s" grow="1" regrow="1" align="right" noclick="1">
+								<label name="craftingItemCraftedDescription" fity="1" wrap="1" lineheight="22s" style="labelBase" font="subdyn_15" color="1 1 1 1" content="Description" noclick="1" />
+							</panel>
+						</panel>				
+						<panel height="0" noclick="1" />
+											
+						<panel name="craftingItemCraftedmbuementContainer" grow="1" regrow="1" growinvis="false" width="100%" float="bottom" padding="8s" noclick="1" sticky="true" stickytoinvis="false" visible="1">						
+							<panel name="craftingItemCraftedImbuement" grow="1" regrow="1" width="100%" noclick="1">
+								<instance name="hr" y="-10s" />
+								<panel height="52s" width="52s">
+									<image name="craftingItemCraftedImbuement_icon" texture="/ui/main/crafting/textures/imbue_icon_selected.tga" noclick="1" />
+								</panel>
+								<panel grow="1" regrow="1" width="-64s" align="right" float="bottom" noclick="1">
+									<label name="craftingItemCraftedImbuement_label_1" style="labelBase" color="#b712d6" y="-2s" fity="1" font="subdyn_15" content="Imbuement Name" noclick="1" />
+									<label name="craftingItemCraftedImbuement_label_3" style="labelBase" fity="1" wrap="1" font="subdyn_13" color=".7 .7 .7 1" content="Imbuement Desc" noclick="1" />
+								</panel>
+								<label name="craftingItemCraftedImbuement_label_2" style="itemTipImbuementTypeLegendary" content="" noclick="1" />
+							</panel>						
+						</panel>
+						<panel height="5s" noclick="1" />					
+					</panel>				
+				</panel>				
+				<panel width="100%" height="60s" noclick="1">
+					<instance name="standardButton" id="craftingItemCraftedFinish" height="48s" width="148s" font="maindyn_26" borderthickness="10s" label="general_close" valign="bottom" align="right" />
+				</panel>				
+			</panel>			
+			
+			<!-- UNUSED GOES BELOW -->
+			<!-- Bonus Display -->
+			<panel align="right" width="-150s" noclick="true" visible="0">		
+				<panel y="147s" height="278s" width="-10s" visible="0">
+					<instance name="mainCraftingCompleteBonus" id="Analog" align="left" enchantName="crafting_common" lableStyle="labelCommon" lockvisible="false"/>
+					<instance name="mainCraftingCompleteBonus" id="Rare" align="center" enchantName="crafting_rare" lableStyle="labelRare"/>
+					<instance name="mainCraftingCompleteBonus" id="Legendary" align="right" enchantName="crafting_legendary" lableStyle="labelLegendary"/>
+				</panel>
+			</panel>
+			<!-- Progress Bar -->
+			<panel y="454s" height="58s" align="right" width="-20h" color="1 1 1 0.1" visible="0">
+				<panel height="+8s" width="+15s" x="-10s" valign="center">
+					<image texture="/ui/main/shared/textures/progress_bar_center.tga" width="-100@" align="center" />
+					<image texture="/ui/main/shared/textures/progress_bar_left.tga" width="50@" height="100%" align="left" />
+					<image texture="/ui/main/shared/textures/progress_bar_right.tga" width="50@" height="100%" align="right" />
+				</panel>
+				<!--
+				<instance name="progress_bar" barstyle="barCommon" id="craftingItemCraftedBonusBar" />
+				<label name="craftingItemCraftedBonusBarLabel" textalign="center" textvalign="center" font="maindyn_20" color="#CCCCCC" outline="true" outlinecolor="0 0 0 0.75" content=""/>
+				-->
+				<panel width="33.33%" noclick="true">
+					<instance name="mainCraftingBarPips" id="craftItemQualityCommonBarPipsContainer" isvisible="1" />
+					<instance name="progress_bar" barstyle="barCommon" id="craftItemQualityCommonBar" />
+					<label name="craftItemQualityCommonBarLabel" textalign="center" textvalign="center" font="maindyn_20" style="labelBase" color=".7 .7 .7 1" content=""/>
+					<label name="craftItemQualityCommonUnlockLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" visible="false" content="-"/>
+				</panel>				
+				<panel width="33.33%" align="center" noclick="true">
+					<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .6" />
+					<instance name="mainCraftingBarPips" id="craftItemQualityRareBarPipsContainer" isvisible="1" />
+					<instance name="progress_bar" id="craftItemQualityRareBar" barstyle="barRare" width="0%" />
+					<label name="craftItemQualityRareBarLabel" textalign="center" textvalign="center" font="maindyn_20" style="labelBase" color=".7 .7 .7 1" content="crafting_unlock_rare"/>
+					<label name="craftItemQualityRareUnlockLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" content="crafting_unlock_rare"/>
+				</panel>
+				<panel align="right" width="33.33%" noclick="true">
+					<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .6" />
+					<instance name="mainCraftingBarPips" id="craftItemQualityLegendaryBarPipsContainer" isvisible="1" />
+					<instance name="progress_bar" id="craftItemQualityLegendaryBar" barstyle="barLegendary" width="0%" />
+					<label name="craftItemQualityLegendaryBarLabel" textalign="center" textvalign="center" font="maindyn_20" style="labelBase" color=".7 .7 .7 1" content="crafting_unlock_legendary"/>
+					<label name="craftItemQualityLegendaryUnlockLabel" noclick="true" textalign="center" textvalign="center" font="maindyn_24" style="lableBase" color=".4 .4 .4 1" content="crafting_unlock_legendary"/>
+				</panel>
+				<panel name="craftItemQualityMarker" width="1" height="100%" noclick="true" visible="false">
+					<panel name="craftItemQualityMarkerBody" texture="/ui/main/crafting/textures/quality_marker.tga" width="50@" height="100%" align="center" />
+				</panel>
+			</panel>
+			
+			<!-- Re-Craft Button -->
+			<panel width="172s" height="82s" x="0" y="444s" noclick="true" visible="0"><!-- Craft Button -->
+				<instance name="standardButton" id="craftingItemCraftedRecraft" font="maindyn_36" labelY="-17s" borderthickness="10s" label="general_recraft"/>			
+				<panel valign="bottom" y="-4s" noclick="true" height="38s" grow="true" regrow="true" align="center" float="right" padding="5s" passivechildren="true">
+					<label name="craftingItemCraftedRecraftCost" fitx="true" textvalign="center" color="#CCCCCC" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_30" content="--"/>
+					<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" heihgt="100%" noclick="1" />
+				</panel>
+			</panel>
+
+			<panel valign="bottom" grow="true" height="58s" align="right" float="right" padding="15s" noclick="true" visible="0">
+				<instance name="iconButton" id="craftingItemCraftedSalvage" sticky="1" stickytoinvis="0" visible="0"
+					icon="/ui/main/shared/textures/salvage.tga" iconsize="90" iconY="-1s"
+					width="63s" borderthickness="10s" colorized="0"
+				/>				
+				<panel width="190s" noclick="true" visible="0" sticky="1" stickytoinvis="0">
+					<instance name="standardButton" id="craftingItemCraftedUpgrade" font="maindyn_26" borderthickness="10s" labelWidth="-90@" labelAlign="right" label="general_enchant" />
+					<image texture="/ui/main/shared/textures/commodity_essence.tga" width="96@" height="96%" valign="center" x="10@" noclick="true" />
+				</panel>				
+				<!-- <instance name="standardButton" id="craftingItemCraftedFinish" sticky="1" stickytoinvis="0" width="168s" height="58s" font="maindyn_26" borderthickness="10s" label="general_close" align="right" /> -->
+			</panel>
+			
+		</panel>
+	</panel>
+
+	<!-- Temper Item -->
+	<panel name="craftingPromptTemper" color="0 0 0 .7" visible="false">
+
+		<panel width="300s" grow="true" regrow="true" align="center" valign="center">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrameBg" borderthickness="12s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="12s" />
+			
+			<panel grow="1" width="100%" float="bottom" padding="20s">
+			
+				<panel height="28s" noclick="1">
+					<label textvalign="center" style="h1" content="crafting_prompt_temper_title"/>
+					<instance name="iconButton"
+						id="craftingPromptTemperClose"
+						icon="/ui/main/shared/textures/close.tga"
+						width="100@" height="100%" align="right" valign="top" borderthickness="4s"
+					/>
+				</panel>
+				
+				<label fity="true" wrap="true" font="maindyn_20" style="labelBase" content="crafting_prompt_temper_description"/>
+				
+				<panel height="130s">
+					<panel width="48%" align="left">
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel y="10s" grow="1" height="60s" align="center" float="right" padding="0">
+							<label name="craftingPromptTemperCost" fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---"/>
+							<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%"/>
+						</panel>
+						<panel y="-10s" height="40s" valign="bottom">
+							<instance id="craftingTemperOKButton" name="standardButton" width="90%" align="center" label="crafting_prompt_temper_useessences" font="maindyn_22"/>
+						</panel>
+					</panel>
+					
+					<panel width="48%" align="right">
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel y="10s" grow="1" height="60s" align="center" float="right" padding="5s">
+							<label name="craftingPromptTemperCostGems" fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---"/>
+							<panel width="100@" height="100%">
+								<image texture="/ui/main/shared/textures/gem.tga" width="80@" height="80%" align="center" valign="center" />
+							</panel>
+						</panel>
+						<panel y="-10s" height="40s" valign="bottom">
+							<instance id="craftingTemperOKButtonGems" name="standardButton" width="90%" align="center" label="crafting_prompt_temper_usegems" font="maindyn_22"/>
+						</panel>
+					</panel>
+				</panel>
+				
+
+			</panel>
+
+		</panel>
+	</panel>
+
+	<!-- Salvage Item -->
+	<panel name="craftingPromptSalvage" color="0 0 0 .7" visible="0">
+		
+		<panel width="220s" grow="true" regrow="true" align="center" valign="center">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrameBg" borderthickness="12s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="12s" />
+				
+			<panel grow="1" width="100%" float="bottom" padding="20s">
+				<panel height="28s" noclick="1">
+					<label textvalign="center" style="h1" content="crafting_prompt_salvage_title"/>
+					<instance name="iconButton"
+						id="craftingPromptSalvageClose"
+						icon="/ui/main/shared/textures/close.tga"
+						width="100@" height="100%" align="right" valign="top" borderthickness="4s"
+					/>
+				</panel>			
+				<label fity="true" wrap="true" font="maindyn_20" style="labelBase" content="crafting_prompt_salvage_description"/>			
+				<panel height="40s">
+					<panel width="80%" align="center">
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>					
+						<panel hmargin="10s" vmargin="4s">
+							<label textvalign="center" font="maindyn_18" style="labelBase" color=".8 .8 .8 1" content="crafting_prompt_salvage_origcost"/>							
+							<label name="craftingPromptSalvageOreCost" align="right" x="-120@" textalign="right" textvalign="center" style="labelBase" font="maindyn_24" color=".8 .8 .8 1" content="--" noclick="1" />
+							<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%" align="right"/>
+						</panel>
+					</panel>
+				</panel>			
+				<panel height="60s">
+					<panel width="90%" align="center">
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>					
+						<panel hmargin="10s" vmargin="4s">
+							<label textvalign="center" font="maindyn_22" style="labelBase" content="crafting_prompt_salvage_costreturn"/>							
+							<label name="craftingPromptSalvageOreReturned" align="right" x="-120@" textalign="right" textvalign="center" style="labelBase" font="maindyn_24" content="--" noclick="1" />
+							<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%" align="right"/>
+						</panel>
+					</panel>
+				</panel>			
+				<panel height="40s">
+					<instance id="craftingSalvageOKButton" name="standardButton" width="90%" align="center" label="crafting_prompt_salvage_ok" font="maindyn_22"/>
+				</panel>			
+			</panel>
+		</panel>
+	</panel>
+	
+	<panel name="craftingError" color="0 0 0 .7" visible="0">
+		<panel width="180s" grow="true" regrow="true" align="center" valign="center">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrameBg" borderthickness="12s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="12s" />
+			
+			<panel grow="1" width="100%" float="bottom" padding="20s">
+				<panel height="28s" noclick="1">
+					<label textvalign="center" style="h1" content="crafting_error_title"/>
+					<instance name="iconButton"
+						id="craftingErrorClose"
+						icon="/ui/main/shared/textures/close.tga"
+						width="100@" height="100%" align="right" valign="top" borderthickness="4s"
+					/>
+				</panel>			
+				<label name="craftingErrorLabel" fity="true" wrap="true" font="maindyn_20" style="labelBase" content="crafting_error0"/>
+				<panel height="40s">
+					<instance id="craftingErrorOKButton" name="standardButton" width="50%" align="center" label="generic_ok" font="maindyn_22"/>
+				</panel>				
+			</panel>
+			
+		</panel>
+	</panel>
+
+	<panel name="crafting_prompt_purchase_craft" color="0 0 0 0.7" visible="0"
+		onloadlua="
+			self:RegisterWatchLua('mainPanelStatus', function(widget, trigger)
+				if (trigger.main ~= 1) and (trigger.main ~= 6) then
+					widget:SetVisible(0)
+				end
+			end, false, nil, 'main')
+		"		
+	>
+		
+		<panel width="450s" grow="true" regrow="true"  growinvis="0" align="center" valign="center">
+		
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrameBg" borderthickness="12s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="12s" />
+			
+			<panel grow="1" regrow="1" growinvis="0" width="100%" float="bottom" padding="20s">
+			
+				<panel height="28s" noclick="1">
+					<label textvalign="center" style="h1" font="maindyn_36" content="crafting_prompt_craft_item"
+					onloadlua="
+						self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+							if (trigger.isExistingItem) then
+								widget:SetText(Translate('crafting_prompt_recraft_item'))
+							else
+								widget:SetText(Translate('crafting_prompt_craft_item'))
+							end
+						end, false, nil, 'isExistingItem')
+					"						
+					/>
+					<instance name="iconButton"
+						id="crafting_prompt_purchase_craft_close_1"
+						icon="/ui/main/shared/textures/close.tga"
+						width="100@" height="100%" align="right" valign="top" borderthickness="4s"
+						onclicklua="self:GetWidget('crafting_prompt_purchase_craft'):FadeOut(250)"
+					/>
+				</panel>
+				
+				<label fity="true" wrap="true" font="maindyn_20" style="labelBase" content="crafting_prompt_craft_item_desc"
+					onloadlua="
+						self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+							if (trigger.isExistingItem) then
+								widget:SetText(Translate('crafting_prompt_recraft_item_desc'))
+							else
+								widget:SetText(Translate('crafting_prompt_craft_item_desc'))
+							end
+						end, false, nil, 'isExistingItem')
+					"				
+				/>
+				
+				<panel name="crafting_prompt_purchase_row_ownedresources" height="44s" grow="1" regrow="1" growinvis="0" float="right" padding="4%" align="center">
+					
+					<panel width="245s" align="left"
+						onloadlua="
+							self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+								widget:SetVisible(trigger.oreCost)
+							end)
+						"						
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".5 .5 .5 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>						
+						<panel float="right" padding="4s" grow="1" regrow="1" height="84%" align="center" valign="center" noclick="1">						
+							<label fitx="1" height="100%" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content="corral_you_own" noclick="1" />
+							<panel grow="1" height="100%" float="right" padding="3s">
+								<label name="crafting_prompt_purchase_craft_elixir_available" fitx="true" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1"  content=""
+									onloadlua="
+										self:RegisterWatchLua('CraftingCommodityInfo', function(widget, trigger)
+											widget:SetText(trigger.oreCount)
+										end)
+									"							
+								/>
+								<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%"/>
+							</panel>						
+						</panel>						
+					</panel>
+					
+					<panel width="245s" align="left"
+						onloadlua="
+							self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+								widget:SetVisible((trigger.gemCost and (trigger.gemCost > 0)) or false)
+							end)
+						"					
+					>
+						<panel width="+4s" height="+4s" align="center" valign="center">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".5 .5 .5 .1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible"/>
+						</panel>
+						<panel float="right" padding="4s" grow="1" regrow="1" height="70%" align="center" valign="center" noclick="1">						
+							<label fitx="1" height="100%" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content="corral_you_own" noclick="1" />
+							<panel grow="1" height="100%" float="right" padding="6s">
+								<label name="crafting_prompt_purchase_craft_gems_available" fitx="true" textvalign="center" font="maindyn_22" style="labelBase" color=".8 .8 .8 1" content=""
+									onloadlua="
+										self:RegisterWatchLua('GemOffer', function(widget, trigger)
+											widget:SetText(trigger.gems)
+										end)
+									"
+								/>
+								<image texture="/ui/main/shared/textures/gem.tga" width="100@" height="100%"/>
+							</panel>						
+						</panel>						
+					</panel>
+					
+				</panel>				
+				
+				<panel name="crafting_prompt_purchase_row_buybuttons" height="130s" grow="1" regrow="1" growinvis="0" float="right" padding="4%" align="center" >
+				
+					<panel width="245s" align="left" height="160s" name="crafting_prompt_purchase_craft_elixir_button"
+						onloadlua="
+							self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+								widget:SetVisible(trigger.oreCost)
+							end)
+						"						
+					>
+						<panel width="+4s" height="110s" align="center" valign="top" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1" noclick="1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible" noclick="1"/>
+						</panel>
+						
+						<panel name="crafting_prompt_purchase_craft_elixir_arrow" noclick="1">
+							<frame width="+4s" height="110s" align="center" valign="top" texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="6s" noclick="1"/>
+							<frame name="crafting_prompt_purchase_craft_elixir_arrow_hover" width="+4s" height="110s" align="center" valign="top" texture="/ui/shared/frames/blue_btn_over.tga" borderthickness="6s" noclick="1" visible="0"/>
+							
+							<panel x="-14s" y="11s" width="38s" height="88s" align="right" noclick="1">							
+								<panel width="4s" noclick="1">
+									<panel width="2s" color="#5daad0" noclick="1"/>
+									<panel width="2s" align="right" color="#0a3144" noclick="1"/>
+								</panel>									
+								<panel y="-8s" color="#3792c0" width="25s" height="4s" align="right" valign="center" noclick="1" />
+								<panel y="0" color="#3792c0" width="25s" height="4s" align="right" valign="center" noclick="1" />
+								<panel y="8s" color="#3792c0" width="25s" height="4s" align="right" valign="center" noclick="1" />							
+							</panel>							
+						</panel>
+						
+						<panel noclick="1" x="4s" width="-54s">
+							<label y="8s" noclick="1" textalign="center" font="maindyn_18" style="labelBase" color="#a6e9ff" content="crafting_prompt_craft_item_duration" />
+							<label name="crafting_prompt_purchase_craft_elixir_duration" y="25s" noclick="1" textalign="center" font="maindyn_26" style="h3" content="" />							
+							<panel y="54s" grow="1" height="50s" align="center" float="right" padding="0" noclick="1">
+								<label name="crafting_prompt_purchase_craft_elixir_cost" noclick="1" fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---" 
+									onloadlua="
+										self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+											widget:SetText(trigger.oreCost or '')
+										end)
+									"									
+								/>
+								<image texture="/ui/main/shared/textures/commodity_essence.tga" noclick="1" width="100@" height="100%"/>
+							</panel>
+						</panel>
+						
+						<panel y="0" height="40s" valign="bottom" noclick="1">
+							<instance id="crafting_prompt_purchase_craft_btn_ok_elixir" name="standardButton" label="crafting_prompt_craft_item_with_elixir" font="maindyn_22"/>
+						</panel>
+					
+						<panel name="crafting_purchase_option_selection_elixir" x="-4s" noclick="1" visible="0" grow="1" regrow="1" width="100%" >							
+							<panel width="+4s" height="+4s" align="center" valign="center">
+								<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".1 .1 .1 1" noclick="1"/>
+								<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible" noclick="1"/>
+							</panel>
+							<panel grow="1" regrow="1" width="100%" float="bottom" noclick="1">
+								<panel visible="1" noclick="1" name="crafting_purchase_option_insertion_point_elixir" x="-3s" y="6s" float="bottom" grow="1" regrow="1" padding="4s" width="-18s" align="center">
+								</panel>
+								<panel height="6s" noclick="1" />
+							</panel>							
+						</panel>		
+					
+					</panel>
+					
+					<panel width="245s" align="right" height="160s" name="crafting_prompt_purchase_craft_gems_button"
+						onloadlua="
+							self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+								widget:SetVisible((trigger.gemCost and (trigger.gemCost > 0)) or false)
+							end)
+						"						
+					>
+						<panel width="+4s" height="110s" align="center" valign="top" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .1" noclick="1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible" noclick="1"/>
+						</panel>
+						
+						<panel name="crafting_prompt_purchase_craft_gems_arrow" noclick="1">
+							<frame width="+4s" height="110s" align="center" valign="top" texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="6s" noclick="1"/>
+							<frame name="crafting_prompt_purchase_craft_gems_arrow_hover" width="+4s" height="110s" align="center" valign="top" texture="/ui/shared/frames/blue_btn_over.tga" borderthickness="6s" noclick="1" visible="0"/>
+							
+							<panel x="-14s" y="11s" width="38s" height="88s" align="right" noclick="1">							
+								<panel width="4s" noclick="1">
+									<panel width="2s" color="#5daad0" noclick="1"/>
+									<panel width="2s" align="right" color="#0a3144" noclick="1"/>
+								</panel>									
+								<panel y="-8s" color="#3792c0" width="25s" height="4s" align="right" valign="center" noclick="1" />
+								<panel y="0" color="#3792c0" width="25s" height="4s" align="right" valign="center" noclick="1" />
+								<panel y="8s" color="#3792c0" width="25s" height="4s" align="right" valign="center" noclick="1" />							
+							</panel>							
+						</panel>
+						
+						<panel noclick="1" x="4s" width="-54s">
+							<label y="8s" noclick="1" textalign="center" font="maindyn_18" style="labelBase" color="#a6e9ff" content="crafting_prompt_craft_item_duration" />
+							<label name="crafting_prompt_purchase_craft_gems_duration" y="25s" noclick="1" textalign="center" font="maindyn_26" style="h3" content="" />							
+							<panel y="54s" grow="1" height="50s" align="center" float="right" padding="0" noclick="1">
+								<label name="crafting_prompt_purchase_craft_gem_cost" noclick="1" fitx="true" textvalign="center" font="maindyn_40" style="labelBase" content="---" 
+									onloadlua="
+											self:RegisterWatchLua('craftingCraftInfo', function(widget, trigger)
+												widget:SetText(trigger.gemCost or '')
+											end)
+										"									
+								/>
+								<panel noclick="1" width="100@" height="100%">
+									<image texture="/ui/main/shared/textures/gem.tga" noclick="1" width="84@" height="84%" align="center" valign="center"/>
+								</panel>
+							</panel>
+						</panel>
+						
+						<panel y="0" height="40s" valign="bottom" noclick="1">
+							<instance id="crafting_prompt_purchase_craft_btn_ok_gems" name="standardButton" label="crafting_prompt_craft_item_with_gems" font="maindyn_22"/>
+						</panel>
+						
+						<panel name="crafting_purchase_option_selection_gems" x="-4s" noclick="1" visible="0" grow="1" regrow="1" width="100%" >							
+							<panel width="+4s" height="+4s" align="center" valign="center">
+								<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".1 .1 .1 1" noclick="1"/>
+								<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor=".2 .2 .2 1" color="invisible" noclick="1"/>
+							</panel>
+							<panel grow="1" regrow="1" width="100%" float="bottom" noclick="1">
+								<panel visible="1" noclick="1" name="crafting_purchase_option_insertion_point_gems" x="-3s" y="6s" float="bottom" grow="1" regrow="1" padding="4s" width="-18s" align="center">
+								</panel>
+								<panel height="6s" noclick="1" />
+							</panel>							
+						</panel>
+						
+					</panel>
+					
+				</panel>
+			
+			</panel>
+		</panel>
+	</panel>	
+
+	<panel name="inputBlocker" color="invisible" blockinput="true" visible="false"/><!-- RMM later on this should be moved above most main UI sections but below friends/chat windows -->		
+</package>

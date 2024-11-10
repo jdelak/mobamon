@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Moxie2"
+
+	icon="icon.tga"
+	anim="ability_2" 
+
+	casttime="400"
+	castactiontime="300"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+	targetscheme="enemy_units_and_buildings"
+	
+	casteffecttype="Magic"
+	casteffect="effects/cast.effect"
+	
+	manacost="90"
+	cooldowntime="7000"
+	range="1000"
+
+	forcerange="1000"
+	allowoutofboundscast="true"
+	allowoutofrangecast="true"
+	showlinecast="true"
+	linecastwidth="150"
+	linecastrange="1150"
+	hoverareacastrange="1150"
+
+>
+	<constant name="damage" value="85,115,145,175" adjustment="ability" />
+	<constant name="mana" value="50" adjustment="none" noshowintooltip="true" />
+	<constant name="manacreeps" value="7" adjustment="none" noshowintooltip="true" />
+	
+	<onimpact>
+		<spawnunit name="Gadget_Moxie_Ability2" target="source_position" pushentity="true" />
+		<spawnprojectile name="Projectile_Moxie_Ability2" target="target_position" bind="stack_entity" param="1" pushentity="true" offset="0 150 0" />
+	</onimpact>
+
+</ability>

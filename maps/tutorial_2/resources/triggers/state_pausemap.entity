@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial2_PauseMap"
+
+	icon="icon.tga"
+	displaylevel="true"
+	passiveeffect=""
+
+	unitwalking="true"
+	disarmed="true"
+
+	ishidden="true"
+	
+	effecttype=""
+
+	modifierkey=""
+>
+	<oninflict>
+		<setproxy target="target_entity" />
+		<areaofeffect
+			global="true"
+			source="target_entity"
+			targetselection="closest"
+			targetscheme="Gadget_Tutorial2_Retreat"
+			effecttype=""
+			maxtotalimpacts="1"
+			ignoreinvulnerable="true"
+		>
+			<setactivemodifierkey name="on" entity="target_entity"/>
+			<applystate name="State_Tutorial_Direction" target="this_proxy_entity" proxy="target_entity" duration="-1" />
+		</areaofeffect>
+		<areaofeffect
+			global="true"
+			source="target_entity"
+			targetselection="all"
+			targetscheme="all_other_nontower_units"
+			effecttype=""
+			maximpactspertarget="1"
+		>
+			<applystate name="State_Tutorial2_PauseStun" duration="-1" />
+		</areaofeffect>
+		<areaofeffect
+			global="true"
+			source="target_entity"
+			targetselection="closest"
+			targetscheme="enemy_towers"
+			effecttype=""
+			maxtotalimpacts="1"
+			ignoreinvulnerable="true"
+		>
+			<applystate name="State_Tutorial2_AttackSlow" target="target_entity" duration="-1" />
+		</areaofeffect>
+	</oninflict>
+
+	<onexpired>
+		<expirestate name="State_Tutorial_Direction" target="target_entity"/>
+		<areaofeffect
+			global="true"
+			source="target_entity"
+			targetselection="closest"
+			targetscheme="Gadget_Tutorial2_Retreat"
+			effecttype=""
+			maximpactspertarget="1"
+			ignoreinvulnerable="true"
+		>
+			<delete target="target_entity" />
+		</areaofeffect>
+		<areaofeffect
+			global="true"
+			source="target_entity"
+			targetselection="all"
+			targetscheme="all_other_nontower_units"
+			effecttype=""
+			maximpactspertarget="1"
+			ignoreinvulnerable="true"
+		>
+			<expirestate name="State_Tutorial2_PauseStun" />
+		</areaofeffect>
+		<areaofeffect
+			global="true"
+			source="target_entity"
+			targetselection="closest"
+			targetscheme="enemy_towers"
+			effecttype=""
+			ignoreinvulnerable="true"
+		>
+			<expirestate name="State_Tutorial2_AttackSlow" target="target_entity" />
+		</areaofeffect>
+		<setscriptvalue name="tower_in_range" value="0" />
+	</onexpired>
+	
+</state>

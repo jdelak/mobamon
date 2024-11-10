@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Hiding"
+
+	passiveeffect="state.effect"  
+	icon="icon.tga"
+
+	ishidden="true"	
+	impactinterval="250"
+
+>
+	<oninflict>
+		<deactivatemodifierkey name="torch_is_lit" entity="this_owner_entity" />
+		<!-- <activatemodifierkey name="with_nohitch" entity="this_owner_entity" /> -->
+
+		<!-- Remove the state from guards that tells them to attack bastion -->
+		<areaofeffect
+			radius="1500"
+			targetselection="all"
+			targetscheme="patrol_guard"
+			center="source_entity"
+			maxtotalimpacts="-1"
+			maximpactspertarget="1"
+			>
+			<condition test="hasstate Affector_Guard_Abilities2" target="target_entity" >
+				<order command="stop" source="target_entity" target="target_entity" force="true" forceduration="500" />
+  				<expirestate name="Affector_Guard_Abilities2" source="source_entity" target="target_entity" />
+  	 		</condition>
+		</areaofeffect>
+
+	</oninflict>
+	
+	<onexpired>
+		<activatemodifierkey name="torch_is_lit" entity="this_owner_entity" />
+		<!-- <deactivatemodifierkey name="with_nohitch" entity="this_owner_entity" /> -->
+		<playeffect effect="sound.effect" source="source_entity" target="this_owner_entity" />
+	</onexpired>
+	
+	
+
+</state>

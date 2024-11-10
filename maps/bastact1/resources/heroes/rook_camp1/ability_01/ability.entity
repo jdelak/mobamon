@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Rook1_Bastact1"
+
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="100"
+	castactiontime="100"
+
+	requiredlevel="14"
+	maxlevel="4"
+
+	actiontype="target_position"
+	responsetype="Ability"
+	casteffecttype="Magic"
+	casteffect="effects/cast.effect"
+	targetoffset="0 0 0"
+	
+	queue="front"
+	cooldowntime="2000"
+
+	range="800"
+	forcerange="800"
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+
+
+	showlinecast="true"
+	linecastrange="800"
+	linecastmaxrange="830"
+	linecastwidth="130"
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	
+	alwaysshowtimer="true"
+	notargetradius="239"
+	notargetmaterial="/shared/materials/area_cast_indicator_simple_red.material"
+	notargetscheme="Gadget_Tutorial2_NoCast"
+	notargetignoreinvulnerable="true"
+	
+
+
+>
+
+	<constant name="damage" value="75,100,125,150" adjustment="ability" />
+
+	<onimpact>
+		<spawnunit name="Gadget_Rook_Ability1_Reveal_Bastact1" count="1" target="source_position" pushentity="true" proxy="this_entity"  />
+		<setproxy target="stack_entity" />
+		<!-- <setactivemodifierkey name="preland" /> -->
+		<spawnprojectile name="Projectile_Rook_Ability1_Bastact1" source="source_entity" target="target_position" bind="stack_entity" bindturn="true" proxy="stack_entity" offset="0 0 50" />
+		<playeffect effect="effects/attachment.effect" source="this_proxy_entity" target="source_entity"/>
+		<applystate name="State_Rook_Ability1_Self_Buff_Bastact1" target="source_entity" duration="6000" />
+		<setaccumulator value="0" /> 
+	</onimpact>
+	
+	<onframe>
+		<distance target="this_proxy_entity" />
+		<compare a="result" b="2500" op="gt" >
+			<kill target="this_proxy_entity" source="" />
+		</compare>
+	</onframe>
+	
+	<ontimer>
+		<compare a="accumulator" b="0" op="eq">
+			<setactivemodifierkey name="" />
+			<kill target="this_proxy_entity" source="" />
+		</compare>
+	</ontimer>
+	
+	<modifier key="rookhook" modpriority="100"
+		ignorecooldown="true"
+		anim=""
+		icon="icon_b.tga"
+		casttime="0"
+		castactiontime="0"
+		manacost="0"
+		actiontype="no_target"
+		casteffect="effects/cast2.effect"
+		cooldowntime="0"
+		
+		inheritmovement="true"
+		noninterrupting="true"
+		queue="none"
+		notargetradius="0"
+
+
+
+		
+
+	>
+		<onframe>
+			<distance target="this_proxy_entity" />
+			<compare a="result" b="2500" op="gt" >
+				<kill target="this_proxy_entity" source="" />
+			</compare>
+
+			<compare a="accumulator" b="1" op="eq">
+				<useability source="source_entity" slot="0"/>
+			</compare>
+
+			<targettype type="dead" target="source_entity" >
+				<setaccumulator value="0" />
+				<starttimer duration="0" />
+				<setactivemodifierkey name="" />
+			</targettype>
+		</onframe>
+
+		<ondeath>
+			<setaccumulator value="0" />
+			<starttimer duration="0" />
+			<setactivemodifierkey name="" />
+		</ondeath>
+
+		<onimpact>
+			<unbind target="this_proxy_entity" />
+			<playanim name="stop" target="this_proxy_entity" />
+			<setactivemodifierkey entity="this_proxy_entity" name="stop_passive_effect" />
+			<playeffect effect="effects/attachment.effect" source="this_proxy_entity" target="source_entity"/>
+			<playanim name="ability_1_fly" target="source_entity" />
+			<spawnprojectile name="Projectile_Rook_Ability1_Zoom_Bastact1" source="source_entity" target="this_proxy_entity" bindturn="true" bindstate="State_Rook_Ability1_Self_Bastact1" bind="source_entity" proxy="this_proxy_entity" bindpriority="1" offset="0 0 100" />
+			<spawnprojectile name="Projectile_Rook_Ability1_Anim_Bastact1" source="source_entity" target="this_proxy_entity"  />
+			<setaccumulator value="1" />
+			<starttimer duration="0" />
+			<setactivemodifierkey name="" />
+		</onimpact>
+	</modifier>
+
+	<modifier key="preland" modpriority="100"
+		ignorecooldown="true"
+		anim=""
+		icon="icon_b.tga"
+		casttime="0"
+		castactiontime="0"
+		manacost="0"
+		casteffect=""
+		actiontype="no_target"
+		cooldowntime="0"
+		inheritmovement="true"
+		noninterrupting="true"
+		responsetype="NoResponse"
+		casteffecttype="NoResponse"
+	
+
+		
+	>
+		<onimpact>
+			<setaccumulator value="1" />
+		</onimpact>
+	</modifier>
+
+	<modifier key="TowerMode" modpriority="100"
+		icon="icon_tower.tga"
+		casttime="500"
+		castactiontime="300"
+		manacost="0"
+		range="3000"
+		cooldowntime="50"
+		maxlevel="1"
+
+		showareacast="false"
+		areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+		targetradius="300"
+		targetmaterial="/shared/materials/area_cast_indicator.material"
+		
+		showlinecast="false"
+
+		forcerange=""
+
+		anim=""
+	>
+		<onimpact>
+
+			<pushentityproxy entity="source_entity" />
+			<setent0 entity="stack_entity" />
+			<spawnunit target="target_position" name="BastAct1_Bastact1_CannonShot" pushentity="true" />	
+
+			<spawnprojectile name="Bastact1_Projectile_Cannon" source="ent0" target="stack_entity" offsetspace="ent0" offset="0 0 400" />
+		</onimpact>
+
+		<onframe>
+		</onframe>
+
+		<ontimer>
+		</ontimer>
+	</modifier>
+
+	<modifier key="great_hall_ability"
+		cooldowntime="5000"
+		range="800"
+		forcerange="800"
+		allowoutofrangecast="false"
+		allowoutofboundscast="false"
+		>
+	</modifier>
+	
+</ability>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale=".5">
+
+			<template name="">
+
+				<model
+				position="{zpos}"
+					expirelife="1000"
+					name="spin"
+					model="side_to_side/model.mdf"
+					anim="idle"
+					scale="2.35"
+					roll="{zroll}"
+				>
+
+					<template name="">
+
+						<!--sparks
+						<simpleemitter
+							bone="_bone_fx_01"
+							position="{zpos}"
+							spawnrate="200"
+							minparticlelife="200"
+							maxparticlelife="425"
+							gravity="0"
+							minspeed="0"
+							maxspeed="600"
+							drag=".01"
+							material="/shared/effects/materials/whitedot.material"
+							offsetsphere="2 2 0"
+							minangle="0"
+							maxangle="10"
+							direction="0 0 1"
+							directionalspace="world"
+							inheritvelocity="0"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								startcolor="1 1 0"
+								midcolor="1 0 0"
+								endcolor="0 0 0"
+								midcolorpos=".75"
+								minstartsize="8"
+								maxstartsize="10"
+								endsize="3"
+							/>
+						</simpleemitter>
+-->
+					
+					
+					
+					
+					
+					
+
+						<simpleemitter
+							bone="_bone_fx_01"
+							position="{zpos}"
+							spawnrate="150"
+							minparticlelife="250"
+							maxparticlelife="500"
+							gravity="0"
+							minspeed="0"
+							maxspeed="50"
+							material="/shared/effects/smaterials/firesprite_swirl_add.material"	
+							minangle="0"
+							maxangle="0"
+							direction="0 0 1"
+							depthbias="-10"
+							directionalspace="world"
+							offsetsphere="0"
+							inheritvelocity="0"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								minstartscale=".5"
+								maxstartscale="1.5"
+								endscale="1"
+								startcolor=".5 .125 0"
+								midcolor="1 0 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startframe="0"
+								endframe="1"
+								minstartsize="20"
+								maxstartsize="30"
+								endsize="15"
+								turn="true"
+								lockup="1"
+								lockright="1"
+
+							/>
+						</simpleemitter>
+
+						
+
+						<simpleemitter
+							position="{zpos}"
+							bone="_bone_fx_01"
+							spawnrate="70"
+							particlelife="1250"
+							minangle="0"
+							maxangle="0"
+							offsetsphere="0 0 25"
+							direction="0 1 0"
+							directionalspace="local"
+						>
+							<particle
+								turn="1"
+							>
+								<billboard
+									bone="_bone_fx_01"
+									directionalspace="local"
+									life="250"
+									material="/shared/effects/smaterials/firesprite_swirl.material"
+									startcolor="1 1 1"
+									midcolor="1 .5 0"
+									endcolor="1 0 0"
+									midcolorpos=".2"
+									startalpha="0"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".1"
+									minstartscale="2.5"
+									maxstartscale="4.5"
+									endscale="0"
+									lockup="1"
+									lockright="1"
+									minyaw="0"
+									maxyaw="90"
+									minroll="10"
+									maxroll="-20"
+									depthbias="25"
+								/>	
+								
+								<billboard
+									bone="_bone_fx_01"
+									directionalspace="local"
+									life="250"
+									material="/shared/effects/smaterials/firesprite_swirl.material"
+									startcolor="1 1 1"
+									midcolor="1 .5 0"
+									endcolor="1 0 0"
+									midcolorpos=".2"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".1"
+									minstartscale="2.5"
+									maxstartscale="4.5"
+									endscale="0"
+									lockup="1"
+									lockright="1"
+									minyaw="90"
+									maxyaw="90"
+									minroll="10"
+									maxroll="-20"
+									depthbias="25"
+								/>
+							</particle>
+						</simpleemitter>
+						
+						
+						
+						
+
+						
+
+					</template>
+					
+					<instance name="" zpos="-10 0 0"/>   
+					<instance name="" zpos="10 0 0"/> 
+
+					<simpleemitter
+						bone="_bone_fx_01"
+						spawnrate="30"
+						particlelife="1000"
+						minangle="0"
+						maxangle="1"
+						direction="0 1 0"
+					>
+						<particle
+							turn="1"
+						>	
+							<groundsprite
+								bone="_bone_fx_01"
+								life="800"
+								material="/shared/effects/smaterials/scorch_ground.material"
+								minscale=".35"
+								maxscale=".45"
+								color="0"
+								startalpha=".85"
+								endalpha="0"
+								directionalspace="local"
+								minyaw="0"
+								maxyaw="360"
+							/>
+						</particle>
+					</simpleemitter>
+
+					<simpleemitter
+						bone="_bone_fx_01"
+						spawnrate="400"
+						particlelife="1000"
+						minangle="0"
+						maxangle="1"
+						direction="0 1 0"
+						offsetsphere="6 0 0"
+					>
+						<particle
+							turn="true"
+						>
+							<template name="">
+								<billboard
+									position="{zpos}"
+									bone="_bone_fx_01"
+									minlife="600"
+									maxlife="1000"
+									material="/shared/effects/smaterials/whitedot.material"
+									startscale=".2"
+									endscale="0"
+									startcolor=".4 .2 0"
+									midcolor=".2 0 0"
+									endcolor="0"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+									depthbias="-50"
+								/>
+							</template>
+							
+							<instance name="" zpos="9 0 0"/>    
+							<instance name="" zpos="-9 0 0"/>
+							
+						</particle>
+					</simpleemitter>
+<!--	
+			<model
+			bone="_bone_fx_01"
+			position="0 -50 0"
+				life="500"
+				model="dragons/model.mdf"
+				anim="idle"
+				scale=".75"
+				color="1 .5 0"
+				yaw="{zyaw}"
+				roll="{zroll}"
+			/>
+-->
+
+				</model>
+			
+			</template>
+
+			<instance name="" zpos="35 0 0" zyaw="180" zroll="180"/> 
+			<instance name="" zpos="-35 -50 0" zyaw="180" zroll="0"/> 
+
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--sparks beginning-->
+			<simpleemitter
+				position="0 50 0"
+				spawnrate="3300"
+				count="50"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="25"
+				minspeed="1000"
+				maxspeed="2400"
+				drag=".01"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="15 15 0"
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 0"
+					midcolor="1 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					minstartsize="15"
+					maxstartsize="40"
+					endsize="8"
+				/>
+			</simpleemitter>
+
+			<template name="">
+			
+				<billboard
+					position="{zpos}"
+					expirelife="{zexpirelife}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="1 .5 0"
+					midcolorpos=".2"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".1"
+					startscale="0"
+					endscale="8"
+					depthbias="0"
+				/>
+				
+				<billboard
+					position="{zpos}"
+					expirelife="{zexpirelife}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					startcolor="1 1 1"
+					midcolor="1 1 0"
+					endcolor="1 1 0"
+					midcolorpos=".2"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".1"
+					startscale="0"
+					endscale="5"
+					depthbias="0"
+				/>
+
+				<billboard
+					position="{zpos}"
+					expirelife="{zexpirelife}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="1 .5 0"
+					midcolorpos=".2"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".1"
+					startscale="0"
+					endscale="8"
+					depthbias="0"
+					yaw="45"
+				/>
+				
+				<billboard
+					position="{zpos}"
+					expirelife="{zexpirelife}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					startcolor="1 1 1"
+					midcolor="1 1 0"
+					endcolor="1 1 0"
+					midcolorpos=".2"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".1"
+					startscale="0"
+					endscale="5"
+					depthbias="0"
+					yaw="45"
+				/>
+
+				
+				
+				
+				
+				
+				<billboard
+					position="{zpos}"
+					expirelife="300"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="4"
+					startcolor="0 0 0"
+					midcolor="1 .2 0"
+					endcolor="0"
+					midcolorpos=".15"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					depthbias="-5"
+				/>
+
+				<billboard
+					position="{zpos}"
+					expirelife="300"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="1.5"
+					startcolor="0 0 0"
+					midcolor="1 .35 0"
+					endcolor="0"
+					midcolorpos=".15"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					depthbias="-5"
+				/>
+
+			</template>
+
+			<instance name="" zpos="30 0 0" zexpirelife="190"/> 	
+			<instance name="" zpos="-20 0 0" zexpirelife="210"/>
+
+
+		</particlesystem>
+
+	</definitions>
+
+<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+</thread>
+
+</effect>

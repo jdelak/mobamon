@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="main_news_component_manager_entry">
+		<panel height="35s" color="0 .25 .25 .1">
+			<label x="3s" noclick="1" textvalign="center" style="labelBase" font="maindyn_14" color="white" content="{componentName}"/>
+			<panel texture="/ui/main/shared/textures/close.tga" color=".8 .1 .1" x="-3s" align="right" valign="center" width="20s" height="20s"
+				onclicklua="mainUI.news.componentManager.RemoveFromList({ID})"
+			/>
+		</panel>
+	</template>
+	
+	<template name="standardButtonBlue">
+		<button name="{id}" width="{width=100%}" noclick="{noclick=0}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onloadlua="
+				local buttonInfo
+				if (not {dontRegister=false}) then
+					buttonInfo = libButton2.initializeButton(self, '{id}', 'standardButtonBlue', '{rendermode=normal}')
+				end
+				if Empty('{id}') then
+					FindUnnamedWidget(self, 'standardButtonBlue')
+				end
+				{onloadlua}
+			"
+			oninstantiatelua="
+				{oninstantiatelua}
+				self:Sleep(1, function()
+					local buttonInfo
+					if (not {dontRegister=false}) then
+						buttonInfo = libButton2.initializeButton(self, '{id}', 'standardButtonBlue', '{rendermode=normal}')
+					end
+					if Empty('{id}') then
+						FindUnnamedWidget(self, 'standardButtonBlue')
+					end
+				end)
+			"
+			onclicklua="{onclicklua}"
+			disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoutdisabled="{onmouseoutdisabled}"
+			onmouseoverlua="self:GetWidget('{id}Body'):SetHeight('100%') self:GetWidget('{id}Body'):SetWidth('100%')"
+			onmouseoutlua="{onmouseoutlua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame texture="/ui/shared/frames/squareglow.tga" borderthickness="30@" bordercolor="0 0 0 .8" color="0 0 0 .8" width="+16@" height="+16%" align="center" valign="center" visible="{glow=0}" />
+				<frame name="{id}Background" texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />				
+				<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="{labelWidth=100%}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign}" valign="{labelValign}" textalign="{textalign=center}" textvalign="center" font="{font=maindyn_20}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" outlinecolor="{outlinecolor}" content="{label=temp_button}"/>
+				
+				
+				<panel height="20s" width="20s" noclick="true" sticky="true" stickytoinvis="false" valign="center" align="right" x="-5s" visible="{isCheckbox=false}">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+					<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+					<panel name="{id}_check" x="0.1h" y="-0.2h" valign="bottom" align="center" width="125@" height="125%" nolclick="true" visible="false" noclick="1">
+						<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+						<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+					</panel>
+				</panel>
+				
+			</panel>
+		</button>
+	</template>
+	
+	<template name="main_news_component_manager_container_template">
+		<panel name="main_news_component_manager_container" x="400s" y="200s" canmove="1" cangrab="1" width="300s" height="500s" noclick="0" visible="0">
+			<instance name="dialogWrapper1" outerpadding="+8s" innerpadding="+5s" noclick="1" />
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.6" borderthickness="7s" noclick="1" />
+			
+			<panel name="main_news_component_manager_header" noclick="1" color="0 0 0 1" valign="top"  x="0" y="0" height="35.2s" width="100%" >
+				<image noclick="1" width="100@" height="100%" texture="/ui/main/chat/textures/chat_header_l.tga" color="#1e6898"/>
+				<image noclick="1" hmargin="100@" height="100%" texture="/ui/main/chat/textures/chat_header_c.tga" color="#1e6898"/>
+				<image noclick="1" width="100@" height="100%" align="right" texture="/ui/main/chat/textures/chat_header_r.tga" color="#1e6898"/>
+				<label noclick="1" x="8s" y="-2s" textvalign="center" style="labelBase" font="maindyn_22" color="white" content="news_component_manager"/>
+				<instance name="closeXButton" buttonName="main_news_component_manager_close" width="80@" height="80%" x="-10@" align="right" valign="center" visible="true" onclicklua="mainUI.news.StopEditing(false, true)"/>
+			</panel>
+			
+			<listbox name="main_news_component_list" style="simpleListbox" x="5s" y="38s" height="-126s" width="-32s"
+				color="invisible"
+				itemheight="36s"
+				scrollbaroffset="5s"
+				select="true"
+				highlightcolor="invisible"
+				highlightbordercolor="invisible"
+				selectedcolor="1 1 1 .2"
+				hoverselect="false"
+				exteriorscrollbars="true"
+				scrollbarplaceholder="false"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				scrollbarsize="24s"
+				handleheight="48s"
+				hscrollbar="0"
+				horizontal="false"				
+			/>
+			
+				
+			<panel valign="bottom" y="-42s" height="40s" width="85%" align="center" >
+				<instance
+					name="standardButtonBlue"
+					id="main_news_component_overlayToggle"
+					font="maindyn_24" label="news_component_manager_toggle_overlay"
+					isCheckbox="1"
+				/>
+			</panel>
+			
+			<panel valign="bottom" y="-2s" height="40s" width="85%" align="center" >
+				<instance
+					name="standardButtonBlue"
+					id="main_news_component_add"
+					font="maindyn_24" label="news_component_manager_add"
+				/>
+			</panel>
+		</panel>
+	</template>
+	<!--
+	<template name="simpleDropdownItem">
+		<label width="-2.5h" align="center" style="whiteTextColor" shadow="true" shadowoffset="2" font="maindyn_14" textvalign="center" content="{label}"/>
+	</template>	
+	-->
+	<template name="main_news_component_manager_new_component_dialog_template">
+		<panel name="main_news_component_manager_new_component_dialog_background" color="0 0 0 .5" visible="0">
+		
+			<panel name="main_news_component_manager_new_component_dialog" align="center" valign="center" width="600s" height="125s">
+			
+				<instance name="dialogWrapper1" outerpadding="+8s" innerpadding="+5s" noclick="1" />
+				<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.6" borderthickness="7s" noclick="1" />
+				<panel noclick="1" color="0 0 0 1" valign="top"  x="0" y="0" height="35.2s" width="100%" >
+					<image noclick="1" width="100@" height="100%" texture="/ui/main/chat/textures/chat_header_l.tga" color="#1e6898"/>
+					<image noclick="1" hmargin="100@" height="100%" texture="/ui/main/chat/textures/chat_header_c.tga" color="#1e6898"/>
+					<image noclick="1" width="100@" height="100%" align="right" texture="/ui/main/chat/textures/chat_header_r.tga" color="#1e6898"/>
+					<label noclick="1" x="8s" y="-2s" textvalign="center" style="labelBase" font="maindyn_22" color="white" content="news_component_manager_addDialog"/>
+				</panel>
+				
+				<panel valign="bottom" y="-2s" height="40s" width="85%" align="center" >
+					<instance
+						name="standardButtonBlue"
+						id="main_news_component_addComponent"
+						font="maindyn_24" label="news_component_manager_add"
+					/>
+				</panel>
+				
+				<panel name="main_news_component_manager_instantiation_parent" y="80" height="-40" noclick="1"/>
+				
+				<panel align="center" y="40s" width="300s" height="32s" noclick="1">
+					<instance name="simple_combobox_textured" id="main_news_component_manager_new_component_comboBox" maxlistheight="8" handleheight="24s" texturel="/ui/shared/textures/combobox_blue_background_l.tga" texturec="/ui/shared/textures/combobox_blue_background_c.tga" texturer="/ui/shared/textures/combobox_blue_background_r.tga" />
+				</panel>
+				
+			</panel>
+			
+		</panel>
+	</template>
+	
+	
+</package>

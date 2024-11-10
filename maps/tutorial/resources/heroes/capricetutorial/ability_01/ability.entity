@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_CapriceTutorial1"
+
+	icon="/heroes/caprice/ability_01/icon.tga"
+	
+	anim="ability_1"
+	casttime="400"
+	castactiontime="400"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+	casteffecttype="Magic"
+	casteffect="/heroes/caprice/ability_01/effects/cast.effect"
+	
+	manacost="70,80,90,100"
+	cooldowntime="9000"
+	
+	range="620"
+	
+	forcerange="620"
+	allowoutofrangecast="true"
+	showlinecast="true"
+	linecastwidth="140"
+	linecastrange="780"
+
+	notargetradius="350"
+	notargetmaterial="/shared/materials/area_cast_indicator_simple_red.material"
+	notargetscheme="Gadget_Tutorial_NoCast"
+	notargetignoreinvulnerable="true"
+
+	showareacast="true"
+	areacastrange="780"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+>
+
+	<constant name="damage" value="100,130,190,220" adjustment="ability" />
+	
+	<onimpact>
+		<spawnunit name="Gadget_CapriceTutorial_Ability1_Target" count="1" fixedposition="true" target="target_position" pushentity="true" />
+		<spawnunit name="Gadget_CapriceTutorial_Ability1_SecondCast" count="1" fixedposition="true" target="source_position" proxy="stack_entity" />
+		<setpos0 position="target_position" offsetspace="source_entity" offset="0 -285 0" />
+		<placehazard target="pos0" radius="150" duration="1500" />
+		<setpos0 position="target_position" offsetspace="source_entity" offset="0 -485 0" />
+		<placehazard target="pos0" radius="150" duration="1500" />
+		<spawnprojectile name="Projectile_CapriceTutorial_Ability1" target="target_position" offset="0 75 0" />
+		
+		<setscriptvalue name="used_skill" value="1" />
+		
+		<setpos1 position="target_position" offsetspace="source_entity" offset="0 -535 0" />
+		<spawnprojectile name="Projectile_CapriceTutorial_Ability1_Delay" target="pos1" proxy="stack_entity" offset="0 75 50"/>
+	</onimpact>
+	
+	<onlearn>
+		<setscriptvalue name="learned_skill" value="1" />
+		<setscriptvalue name="ui_levelUpPanelOpen" value="1" />
+	</onlearn>
+	
+	<modifier key="No_Ability" modpriority="100"
+		requiredlevel="1,3,5,7"
+	>
+
+	</modifier>
+	
+</ability>

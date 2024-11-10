@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tinders_Chalice_Legendary"
+
+	passiveeffect=""  
+
+	ishidden="true"
+>
+
+	<onactivatestart>
+		<setaccumulator value="source_mana" />
+	</onactivatestart>
+
+	<onactivateimpact>
+		<setaccumulator value="accumulator" valueb="source_mana" valueop="sub" />
+		<getconstant name="mana_enchant" />
+		<setvar0 a="result" b="100" op="div" />
+		<heal target="this_inflictor_entity" a="accumulator" b="var0" op="mult" />
+		<compare a="accumulator" b="25" op="ge" >
+			<playeffect effect="effects/restore.effect" target="source_entity"/>
+		</compare>
+	</onactivateimpact>
+
+</state>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<modifier 
+		life="1500"
+			name="modifier0"
+			expirelife="100"
+			startalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="entity" scale="1">
+		
+		<!--dummy billboard needed for effect not to repeat-->
+			<billboard
+				expirelife="250"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="50" 
+				directionalspace="local"
+				depthbias="-35"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+			/>
+
+
+			<model
+				life="1500"
+				model="sword/model.mdf"
+				parentskeleton="1"
+				material="../../material_b.material"
+				startalpha="1"
+				endalpha="0"
+				color="0 2 5"
+			>
+			</model>
+			
+			
+			<light
+				bone="_bone_sword3"
+				life="1500"
+				startcolor="0 2 10"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="0"
+				falloffend="350"
+			/>
+
+			<template name="fire">
+<!--
+				<simpleemitter
+				life="3000"
+					bone="{zbone}"
+					spawnrate="150"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					gravity="-5"
+					position="0 0 0"
+					offsetsphere="20"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					depthbias="50"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						color="1 .75 .5"
+						startalpha=".5"
+						endalpha="0"
+						minstartsize="25"
+						maxstartsize="50"
+						endsize="0"
+						startanchor="1"
+						endanchor="1"
+					/>
+				</simpleemitter>
+-->
+				
+				
+				<simpleemitter
+				life="1500"
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					gravity="-5"
+					position="0 0 0"
+					offsetsphere="10"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="50"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startcolor="0 .1 .25"
+						endcolor="0 0 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						minstartsize="50"
+						maxstartsize="100"
+						endsize="50"
+						startanchor="1"
+						endanchor="1"
+					/>
+				</simpleemitter>
+
+				<billboard
+				life="1500"
+					bone="{zbone}"
+					expirelife="250"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="50" 
+					directionalspace="local"
+					depthbias="-35"
+					startcolor="0 0 .5"
+					endcolor="0 0 0"
+				/>
+
+			</template>
+
+
+			<instance name="fire" zbone="_bone_sword2" />
+			<instance name="fire" zbone="_bone_sword3" />
+			<instance name="fire" zbone="_bone_sword4" />
+			<instance name="fire" zbone="_bone_sword5" />
+
+			<template name="glow">
+			
+				<simpleemitter
+				life="1500"
+					bone="{zboner}"
+					spawnrate="50"
+					minparticlelife="100"
+					maxparticlelife="300"
+					position="0 0 0"
+					offsetsphere="5"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-20"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="0 .75 1.5"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startsize="25"
+						endsize="0"
+						startanchor="1"
+						endanchor="1"
+					/>
+				</simpleemitter>
+				
+
+				
+				
+				
+				
+			
+			
+			</template>
+
+			<instance name="fire" zbone="_bone_sword2" />
+			<instance name="fire" zbone="_bone_sword3" />
+			<instance name="fire" zbone="_bone_sword4" />
+			<instance name="fire" zbone="_bone_sword5" />
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+<!--
+		<particlesystem name="system1" space="entity" scale="1">
+
+			<template name="fire">
+			
+				<trailemitter
+					bone="{zbone}"
+					spawnrate="20"
+					minparticlelife="1000"
+					maxparticlelife="1500"
+					texpostime="2300"
+					texposscale="1"
+					texstretchscale="0"
+					material="/shared/effects/materials/arrow_trail.material"
+				>
+					<particle
+						startcolor="1 0 0"
+						midcolor="1 .5 0"
+						endcolor=".4 0 .4"
+						startsize="0"
+						midsize="100"
+						endsize="0"
+						midcolorpos=".1"
+						midsizepos=".1"
+					/>
+				</trailemitter>
+
+			</template>
+
+			<instance name="fire" zbone="_bone_sword2" />
+			<instance name="fire" zbone="_bone_sword3" />
+			<instance name="fire" zbone="_bone_sword4" />
+			<instance name="fire" zbone="_bone_sword5" />
+
+		</particlesystem>
+-->
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier2"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+		<waitfordeath instance="instance2" /> 
+	</thread>
+
+</effect>

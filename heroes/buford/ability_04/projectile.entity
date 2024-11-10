@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Buford_Ability4"
+
+	speed="1500"
+	gravity="3000"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	traileffect="effects/trail.effect"
+>
+
+
+	<onimpact>
+
+		<combatevent effecttype="AbilityBasedProjectile">
+			<onimpact>
+				<cantarget targetscheme="enemy_heroes">
+					<killillusions />
+					<dispel type="StatusStealth" />
+					<breakchannel entity="target_entity" />
+					<unbind target="target_entity" />
+					<getconstant name="percent_maxhp" />
+					<setvar0 a="result" b="0.01" op="mult" />
+					<setvar0 a="target_maxhealth" b="var0" op="mult" />
+					<setvar0 a="var0" b="150" op="add" />
+					<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+					<getconstant name="duration" />
+					<setvar0 a="result" b="1000" op="mult" />
+					<applystate name="State_Buford_Ability4_Slug" target="target_entity" duration="var0" />
+					<spawnunit name="Pet_Buford_Ability4_Cage" target="target_entity" offset="0 0 0" maxactive="1" proxy="target_entity" team="0"/>
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+					<recordheroaggression  />
+					<aggression />
+				</cantarget>
+			</onimpact>
+		</combatevent>
+	</onimpact>
+</projectile>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Spellblade"
+
+	gravity="0"
+	speed="9000"
+	impactdistance="0"
+
+	modelscale="1"
+	model="effects/blade/model.mdf"
+	canturn="false"
+	flying="true" 
+	flyheight="50"
+	traileffect="effects/body.effect"
+
+>
+
+	<onspawn>
+	</onspawn>
+
+	<onimpact>
+		<compare a="param" b="1" op="eq" >
+			<getconstant name="mana_enchant" adjustmentsource="tool_entity" />
+			<givemana target="this_owner_entity" amount="result" />
+		</compare>
+		<compare a="param" b="2" op="eq" >
+			<getconstant name="damage" adjustmentsource="tool_entity" />
+			<areaofeffect targetscheme="enemy_units" effecttype="AttackDamage" targetselection="all" radius="225" maximpactspertarget="1" ignore="target_entity">
+				<damage amount="1" b="result" op="mult" effecttype="AttackDamage Splash" />
+			</areaofeffect>
+		</compare>
+	</onimpact>
+	
+</projectile>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0" usentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1.6">
+
+			<light
+				position="0 0 50"
+				expirelife="250"
+				startcolor="1.2 .4 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="150"
+			/>
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 0 0"
+				expirelife="250"
+				size="20"
+			/>
+
+			<template name="target">
+				<groundsprite
+					life="2000"
+					material="/shared/effects/materials/crosshair.material"
+					color=".2 0 0"
+					expirelife="250"
+					startsize="50"
+					midsize="55"
+					endsize="50"
+					loop="true"
+					yawspeed="45"
+				/>
+
+				<groundsprite
+					delay="{zdelay}"
+					material="/shared/effects/materials/crosshair.material"
+					startcolor=".7 0 0"
+					endcolor="0 0 0"
+					life="1000"
+					startsize="50"
+					endsize="25"
+				/>
+
+			</template>
+
+			<instance name="target" zdelay="0"/>
+			<instance name="target" zdelay="2000"/>
+			<instance name="target" zdelay="4000"/>
+				
+				
+			<template name="target01">
+				<groundsprite
+					delay="{zdelay}"
+					material="/shared/effects/materials/crosshair.material"
+					startcolor=".7 0 0"
+					endcolor="0 0 0"
+					life="1000"
+					startsize="50"
+					endsize="25"
+					yaw="45"
+				/>
+				
+			</template>
+
+			<instance name="target01" zdelay="1000"/>
+			<instance name="target01" zdelay="3000"/>
+			<instance name="target01" zdelay="5000"/>
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->

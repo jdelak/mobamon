@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+
+			<sound
+				delay="50"
+				volume="0.35"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_fuse.wav"
+			/>
+			
+<!--
+			<groundsprite
+				expirelife="250"							
+				material="/shared/effects/smaterials/scorch_ground.material"
+				color="0 0 0"				
+				size="250"				
+				startalpha=".85"
+				midalpha=".85"
+				endalpha="0"
+				midalphapos=".8"
+
+			/>
+-->
+
+
+
+
+
+				
+			<terrainemitter
+				count="1"
+				spawnrate="10"
+				particlelife="3250"
+			>
+				<particle
+				>
+					<groundsprite
+						life="3000"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						size="90"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".975"
+					/>
+					
+					<groundsprite
+						life="3000"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						size="70"
+						startalpha=".35"
+						midalpha=".35"
+						endalpha="0"
+						yaw="90"
+						midalphapos=".975"
+					/>
+					
+					<billboard
+						life="3000"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".25 .075 0"
+						midcolor=".25 .075 0"
+						endcolor="0 0 0"
+						midcolorpos=".85"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						size="600"
+						depthbias="-100"
+					/>
+					
+				</particle>
+			</terrainemitter>
+
+
+
+
+			
+			
+			
+			<model
+			expirelife="0"
+				position="0 0 20"
+				color="1.65"
+				scale="3"
+				model="bomb/model.mdf"
+				anim="idle"
+				pitch="-35"
+				yaw="15"
+			>
+				<light
+					bone="_bone_fx_01"
+					life="3000"
+					startcolor="1 .5 0"
+					endcolor="1 .5 0"
+					falloffstart="0"
+					falloffend="150"
+				/>
+
+
+
+				
+				
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="135"
+					minparticlelife="100"
+					maxparticlelife="200"
+					gravity="0"
+					minspeed="0"
+					maxspeed="0"
+					depthbias="-12"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					offsetsphere="0 0 0"
+				>
+					<particle 
+					anchor="1"
+						minangle="0"
+						maxangle="360"
+						startcolor="1 .5 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						turn="1"
+						height="30"
+						width="20"
+						startscale=".5"
+						minendscale="1"
+						maxendscale="1.25"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="150"
+					minparticlelife="200"
+					maxparticlelife="400"
+					minspeed="75"
+					maxspeed="250"
+					drag="0.005"
+					gravity="10"
+					acceleration="0.0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					particledirectionalspace="world"
+					depthbias="-50"
+				>
+					<particle
+						minstartheightdistort="0.02"
+						maxstartheightdistort="0.04"
+						endheightdistort="0"
+						startsize="2"
+						endsize="1.5"
+						startcolor="1 .5 0"
+						midcolor=".5 .15 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						turn="1"
+					>
+					</particle>
+				</simpleemitter>
+				
+			</model>
+			
+			<template name="">
+			
+				<model
+					delay="{zdelay}"
+					life="{zlife}"
+					position="0 0 20"
+					startcolor="1.65"
+					midcolor="12 2 0"
+					endcolor="1.65"
+					scale="3.05"
+					model="bomb_red/model.mdf"
+					anim="idle"
+					pitch="-35"
+					yaw="15"
+					alpha="1"
+				/>
+				
+				<billboard
+					delay="{zdelay}"
+					life="{zlife}"
+					position="0 0 20"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="0 0 0"
+					midcolor=".5 0 0"
+					endcolor="0 0 0"
+					size="250"
+					depthbias="-65"
+				/>
+				
+			</template>
+			
+			<instance name="" zdelay="1000" zlife="500"/>
+			<instance name="" zdelay="1500" zlife="500"/>
+			<instance name="" zdelay="2000" zlife="250"/>
+			<instance name="" zdelay="2250" zlife="250"/>
+			<instance name="" zdelay="2500" zlife="250"/>
+			<instance name="" zdelay="2750" zlife="250"/>
+
+
+			
+			
+			
+			
+
+			<groundsprite
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .35 0"
+				midcolor="0 .35 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				life="5500"
+				startsize="360"
+				endsize="360"
+				alpha="0.5"
+			/>
+
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			<terrainemitter
+				position="0 0 0"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				speed="0"
+			>
+				<particle
+				>
+<!--
+					<billboard
+						position="0 0 12"
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor="0 0 0"
+						midcolor=".15 .125 0"
+						endcolor="0 0 0"
+						life="600"
+						startsize="550"
+						endsize="600"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-65"
+					/>
+					
+					<billboard
+						position="0 0 12"
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor="0 0 0"
+						midcolor=".15 .125 0"
+						endcolor="0 0 0"
+						life="600"
+						startsize="400"
+						endsize="450"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-65"
+					/>
+-->
+					<billboard
+						position="0 0 16"
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor="0 0 0"
+						midcolor=".5 .2 0"
+						endcolor="0 0 0"
+						life="300"
+						startsize="100"
+						endsize="600"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-65"
+						roll="0"
+					/>
+					
+					<billboard
+						position="0 0 16"
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor="0 0 0"
+						midcolor=".15 .05 0"
+						endcolor="0 0 0"
+						life="300"
+						startsize="100"
+						endsize="600"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-65"
+						roll="180"
+					/>
+					
+					<billboard
+						position="0 0 16"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						life="300"
+						startsize="150"
+						endsize="300"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-65"
+					/>
+					
+					<billboard
+						position="0 0 16"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 0 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						life="300"
+						startsize="150"
+						endsize="300"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-65"
+					/>
+				</particle>
+			</terrainemitter>
+			
+			
+
+
+			
+			
+			<simpleemitter
+				count="100"
+				spawnrate="50000"
+				minparticlelife="150"
+				maxparticlelife="600"
+				minspeed="500"
+				maxspeed="1000"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_dust_white.material"			
+				minangle="80"
+				maxangle="100"
+				gravity="-15"
+				direction="0 0 1"
+				drag=".03"
+	
+				offsetsphere="20 20 0"
+				depthbias="-75"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1"
+					minendscale="1"
+					maxendscale="2"
+					startcolor=".8"
+					endcolor=".2"
+					startalpha="0"
+					midalpha=".75"
+					endalpha="0"
+					midalphapos=".2"
+					size="50"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				count="100"
+				spawnrate="50000"
+				minparticlelife="150"
+				maxparticlelife="400"
+				minspeed="500"
+				maxspeed="1000"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"			
+				minangle="80"
+				maxangle="100"
+				gravity="-15"
+				direction="0 0 1"
+				drag=".03"
+	
+				offsetsphere="20 20 0"
+				depthbias="-75"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1"
+					minendscale="1"
+					maxendscale="2"
+					startcolor=".5 .15 0"
+					endcolor="0 0 0"
+					size="50"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				count="3"
+				position="0 0 0"
+				spawnrate="30"
+				particlelife="2000"
+				offsetsphere="15 15 0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="8000"
+						maxlife="10000"
+						name="emitter0" 
+						anim="idle"
+						model="/heroes/ray/ability_01/effects/rocks/model.mdf"
+						minscale=".35"
+						maxscale=".4"
+						color="2 1.5 1.25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

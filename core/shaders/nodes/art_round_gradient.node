@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="art_round_gradient" novs="true"> 
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<parameter name="Alpha" type="float" default="1.0" />
+	<parameter name="Offset" type="float" default="1.0" />
+	<parameter name="Fade" type="float" default="10.0" />
+	
+	<dependency name="Fade" type="float" source="Fade" />
+	<dependency name="Offset" type="float" source="Offset" />
+	<dependency name="Alpha" type="float" source="Alpha" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<output name="Out" type="float4" />
+	<?hlsl
+		float2 vXY = float2(abs(Texcoord.x - 0.5f), abs(Texcoord.y - 0.5f));
+		float fDistance = (vXY.x * vXY.x) + (vXY.y * vXY.y);
+		
+		Out = float4(1.0f, 1.0f, 1.0f, (Offset - (fDistance * Fade)) * Alpha);
+		Out = saturate(Out);
+	?>
+	<?glsl
+		vec2 vXY = vec2(abs(Texcoord.x - 0.5f), abs(Texcoord.y - 0.5f));
+		float fDistance = (vXY.x * vXY.x) + (vXY.y * vXY.y);
+		
+		Out = vec4(1.0f, 1.0f, 1.0f, (Offset - (fDistance * Fade)) * Alpha);
+		Out = clamp(Out, 0.0f, 1.0f);
+	?>
+</node>

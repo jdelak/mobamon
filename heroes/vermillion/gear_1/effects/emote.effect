@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="true" deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<model
+				position="7 0 15"
+				bone="_bone_lefthand"
+				life="500"
+				model="../../effects/cheese/model.mdf"
+				anim="idle"
+				color="2 1.75 1.35"
+				startscale="1.3"
+				midscale="1.3"
+				endscale="0"
+				yaw="-90"
+				yawspeed="90"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".8"
+			/>
+
+			<simpleemitter
+				life="400"
+				bone="_bone_lefthand"
+				startspawnrate="75"
+				endspawnrate="150"
+				gravity="75"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				material="/shared/effects/smaterials/queso.material"
+				offsetsphere="12 12 10"
+				position="7 0 15"
+				depthbias="10"
+			>
+				<particle
+					startcolor="1 1 1"
+					midcolor="1 .75 .25"
+					endcolor="1 .75 .25"
+					minstartsize="8"
+					maxstartsize="12"
+					maxsize="4"
+					alpha="1"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

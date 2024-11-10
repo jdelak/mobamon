@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+
+<skin name="black">
+		<reference mesh="10k_earl"	material="material_black.material" />
+		<reference mesh="3k_earl"	material="material_black.material" />
+		<reference mesh="1.5k_earl"	material="material_black.material" />
+		
+	</skin>
+	
+	<skin name="camo">
+		<reference mesh="10k_earl"	material="material_camo.material" />
+		<reference mesh="3k_earl"	material="material_camo.material" />
+		<reference mesh="1.5k_earl"	material="material_camo.material" />
+		
+	</skin>	
+	
+	<skin name="blue">
+		<reference mesh="10k_earl"	material="material_blue.material" />
+		<reference mesh="3k_earl"	material="material_blue.material" />
+		<reference mesh="1.5k_earl"	material="material_blue.material" />
+		
+	</skin>
+	
+	<skin name="classic">
+		<reference mesh="10k_earl"	material="material_classic.material" />
+		<reference mesh="3k_earl"	material="material_classic.material" />
+		<reference mesh="1.5k_earl"	material="material_classic.material" />
+		
+	</skin>
+
+	<skin name="red">
+		<reference mesh="10k_earl"	material="material_red.material" />
+		<reference mesh="3k_earl"	material="material_red.material" />
+		<reference mesh="1.5k_earl"	material="material_red.material" />
+		
+	</skin>
+	
+	<skin name="pink">
+		<reference mesh="10k_earl"	material="material_pink.material" />
+		<reference mesh="3k_earl"	material="material_pink.material" />
+		<reference mesh="1.5k_earl"	material="material_pink.material" />
+		
+	</skin>
+	
+	<anim name="idle" clip="clips/default_1.clip" fps="30" loop="true">
+	     <startevent cmd="StopSound 1"/>
+	 </anim>
+	 
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+	 
+	<anim name="portrait" clip="clips/portrait_1.clip" fps="30" loop="true"/>
+		
+	<anim name="item_1" clip="clips/item_1.clip" fps="30"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip" />
+	
+	<anim name="port_in" clip="clips/port_in.clip" />
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="30" loop="false" />
+	
+	<anim name="ability_2" clip="clips/ability_2.clip" fps="30" loop="false" />
+
+	<anim name="ability_3" clip="clips/ability_3.clip" fps="30" loop="false" />
+
+	<anim name="ability_4" clip="clips/ability_4_start.clip" fps="30" loop="false" />
+	
+	<anim name="ability_4_land" clip="clips/ability_4_land.clip" fps="30" loop="false" />
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="30" loop="false"/>
+
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="30" loop="false"/>
+ 
+	<anim name="walk_1" clip="clips/walk_1.clip" fps="23" loop="true">
+		<frameevent frame="8" cmd="PlaySoundLinear sounds/sfx_foley_1.wav 500 1500 0.1"/>
+		<frameevent frame="8" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="17" cmd="PlaySoundLinear sounds/sfx_foley_2.wav 500 1500 0.1"/>
+		<frameevent frame="17" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+	</anim>
+
+	<anim name="death_1" clip="clips/death_1.clip" fps="30" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="starteffect effects/death.effect 0"/>
+	</anim>
+	
+	<anim name="bored_1" clip="clips/bored_1.clip" fps="30" loop="false"/>
+	
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="30" loop="false">
+	<frameevent frame="17" cmd="PlayStreamLinear sounds/voice/vo_emote_1.wav 1500 3000 1"/>
+	</anim>
+	
+	<anim name="knock_1" clip="clips/knock_1.clip" fps="30" loop="true" loopbackframe="-1" />
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+	<anim name="upvote_1" clip="clips/upvote_1.clip" fps="30" loop="false"/>
+	
+	<anim name="select_1" clip="clips/select_1.clip" fps="30" loop="false"/>
+
+</model>

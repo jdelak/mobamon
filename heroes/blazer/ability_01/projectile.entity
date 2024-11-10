@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Blazer_Ability1"
+
+	speed="2000"
+	gravity="0"
+
+	modelscale="1.5"
+	model="/shared/models/invis.mdf"
+
+	effectscale="1"
+	traileffect="effects/trail.effect"
+	deatheffect="effects/death.effect"
+	
+	canturn="false"
+	flying="true"
+	flyheight="200"
+
+	hazardradius="200"
+	hazardoffset="50"
+	
+	touchpropradius="120"
+	touchpropanim="hit"
+	
+	touchradius="140"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic Splash"
+	touchradiusdiradjust="true"
+
+>
+
+	<onspawn>
+		<playeffect effect="effects/link.effect" target="this_entity" source="source_entity" />
+	</onspawn>
+
+	<ontouch>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="0.5" op="mult" />
+		<setvar1 a="var0" b="param" op="mult" />
+		<setvar0 a="var0" b="var1" op="add" />
+		
+		<damage effecttype="Magic Splash" significant="true" amount="1" b="var0" op="mult"/>
+		<setparam a="param" b="0.9" op="mult" />
+		<recordheroaggression  />
+		<aggression />
+		
+		<playeffect effect="effects/impact_position.effect" target="target_position" source="target_position" />
+		<targettype type="hero" >
+			<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity" />
+		</targettype>
+		<else>
+			<playeffect effect="effects/impact_creep.effect" target="target_entity" source="target_entity" />
+		</else>
+	</ontouch>
+	
+
+
+
+</projectile>

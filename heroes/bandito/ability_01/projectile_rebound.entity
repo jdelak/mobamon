@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bandito_Ability1_Rebound"
+
+	gravity="5000"
+	lifetime="900"
+	useexactlifetime="true"
+
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail_rebound.effect"
+	impacteffect="effects/impact_rebound.effect"
+
+
+>
+	<onimpact>
+		<getconstant name="bonus_gold" adjustmentsource="this_entity" />
+		<givegold amount="result" target="source_entity" position="source_entity" />
+	</onimpact>
+	
+	
+	<onspawn>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="this_entity" />
+	</onspawn>
+	
+	
+</projectile>

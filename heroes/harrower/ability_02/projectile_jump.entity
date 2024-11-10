@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Harrower_Ability2_Jump"
+
+	gravity="5000"
+	lifetime="400"
+	useexactlifetime="true"
+	flyheight="0"
+	flying="false"
+
+	modelscale="3"
+	canturn="false"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model=""
+	
+
+
+	ignoreinvulnerable="true"	
+	impactdistance="110"
+>
+	<onspawn>
+		<applystate name="State_Harrower_Ability2_Debuff" duration="3000" proxy="this_proxy_entity" />
+		<applystate name="State_Harrower_Ability2_Damage" duration="6000"  />
+	</onspawn>
+
+	<onimpact>
+		<getconstant name="numattacks" adjustmentsource="this_entity" />
+		<setvar0 a="result" />
+		
+		<changeaccumulator entity="this_proxy_entity" b="1" op="add" />
+		<compare a="result" b="var0" op="le">
+			<applystate name="State_Harrower_Ability2_Wait" duration="400" target="this_proxy_entity" proxy="target_entity" />
+		</compare>
+		<else>
+			<kill target="this_proxy_entity" source="" />
+		</else>
+			
+	</onimpact>
+
+</projectile>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item
+    name="Item_Tome_Mana" 
+
+    icon="icon.tga" 
+    category="consumable" 
+
+    cost="550" 
+    costperpurchase="15" 
+
+    initialcharges="1" 
+    chargecost="1" 
+    rechargeable="true" 
+    destroyonempty="true" 
+    allowsharing="true" 
+
+    actiontype="target_self" 
+    queue="front"
+    casttime="0" 
+    castactiontime="0" 
+    maxcharges="99" 
+    nosell="true" 
+
+    itemtype="Consumable" 
+    noentercombat="true" 
+    filters="consumable"
+    hidefromall="true"
+	tome="true"
+>
+
+    <onpurchase>
+        <applystate target="source_entity" name="State_Item_Tome_Mana" continuous="true" />
+		<delete source="" target="this_entity" />
+    </onpurchase>
+</item>

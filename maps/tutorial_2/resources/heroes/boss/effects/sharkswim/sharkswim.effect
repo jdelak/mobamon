@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deffered="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="goo">
+			
+<!--
+				<simpleemitter
+				life="10000"
+					spawnrate="2"
+					particlelife="2000"
+					position="0 0 35"
+					offsetradial="1012 0 10"
+					offsetsphere="35 35 35"
+					direction="0 0 1"
+					speed="0"
+					directionalspace="world"
+				>
+					<particle
+					> 
+						<light
+							life="2000"
+							startcolor="0 0 0"
+							midcolor=".5 1 0"
+							endcolor="0"
+							falloffstart="00"
+							falloffend="750"
+							position="0 0 200"
+						/>
+
+					</particle>
+				</simpleemitter>
+-->
+			
+
+				<simpleemitter
+				life="10000"
+					spawnrate="300"
+					particlelife="2000"
+					position="0 0 35"
+					offsetradial="1012 0 10"
+					offsetsphere="35 35 35"
+					direction="0 0 1"
+					speed="0"
+					directionalspace="world"
+				>
+					<particle
+					> 
+					
+
+						<billboard
+							life="800"
+							material="/shared/effects/smaterials/animated_goop.material"
+							color=".25 .25 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".75"
+							position="0 0 0"
+							startframe="0"
+							endframe="1"
+							framspeed="1"
+							minscale=".35"
+							maxscale=".75"
+							lockup="true"
+							lockright="90"
+							pitch="-25"
+							depthbias="0"
+						/>
+						
+						<billboard
+							minlife="100"
+							maxlife="2000"
+							startcolor="0 0 0"
+							midcolor=".1 .125 0"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							directionalspace="local"
+							scale="2.5"
+							depthbias="0"
+						/>
+
+						
+					</particle>
+				</simpleemitter>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+			</template>
+
+			<instance name="goo"/>
+
+		
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<model
+			position="0 0 40"
+				expirelife="250"
+				model="fog_model/fog.mdf"
+				scale="3"
+				yaw="180"
+				pitch="0"
+			>
+			</model>
+<!--
+			<model
+			position="0 0 40"
+				expirelife="250"
+				model="fog_model/fog.mdf"
+				scale="6"
+
+				pitch="0"
+				yaw="280"
+			>
+			</model>
+-->
+			<model
+			position="0 0 40"
+				expirelife="250"
+				model="fog_model/fog.mdf"
+				scale="10"
+
+				pitch="0"
+				yaw="280"
+			>
+			</model>
+
+
+			
+			
+			
+			
+			
+			
+			
+		</particlesystem>
+<!--
+		<particlesystem name="system0_apex" space="entity" scale="1">
+			<apexemitter asset="fog" position="0 0 25" />
+		</particlesystem>
+-->
+		
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance01" particlesystem="system0_apex" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

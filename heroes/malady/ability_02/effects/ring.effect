@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+
+			<groundsprite
+				position="0 0 25"
+				expirelife="2000"
+				color="1 1 1"
+				startsize="300"
+				midsize="0"
+				endsize="0"
+				startalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+			/>
+
+			<simpleemitter	
+				position="0 0 25"
+				spawnrate="15"
+				particlelife="750"
+				gravity="2"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/twirl_blend.material"
+			>
+				<particle
+					color=".03 .015 .03"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					maxangle="360"
+					anglespeed="-180"
+					startsize="550"
+					endsize="0"
+					lockup="1"
+					lockright="1"
+					pitch="-90"
+					anchor=".8"
+				/>
+
+				<particle
+					color="0 .1 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					maxangle="360"
+					anglespeed="-180"
+					startsize="550"
+					endsize="0"
+					lockup="1"
+					lockright="1"
+					pitch="-90"
+					anchor=".8"
+				/>
+				
+				<particle
+					color="0 0 .1"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					maxangle="360"
+					anglespeed="-180"
+					startsize="550"
+					endsize="0"
+					lockup="1"
+					lockright="1"
+					pitch="-90"
+					anchor=".8"
+				/>
+				
+			</simpleemitter>
+<!--
+			<simpleemitter
+				spawnrate="200"
+				minparticlelife="350"
+				maxparticlelife="700"
+				gravity="0"
+				speed="0"
+				position="0 0 12"
+				acceleration="11"
+				material="/shared/effects/smaterials/flare.material"
+				offsetsphere="200 220 50"
+				drag="0.05"
+				direction="1 0 0"
+			>
+				<particle
+					startstickiness="0"
+					endstickiness=".75"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor=".5 .75 1"
+					startsize="20"
+					endsize="0"	
+					turn="1"
+					heightdistort="0.02"
+				/>
+			</simpleemitter>
+-->
+			
+			<groundsprite
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0.5 0 0"
+				midcolor="0.5 0 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				life="5500"
+				startsize="345"
+				endsize="345"
+				alpha="0.5"
+				
+			/>
+			
+
+			<billboard
+				life="2000"
+				position="0 0 0"
+				color=".5 .25 .5"
+				startsize="700"
+				midsize="740"
+				endsize="700"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				material="/shared/effects/smaterials/cartoon_cloud_01.material"
+				loop="true"
+				startalpha=".2"
+				midalpha=".285"
+				endalpha=".2"
+				depthbias="-75"
+				roll="25"
+			/>
+
+			<model
+				expirelife="250"
+				color="1"
+				position="0 0 35"
+				model="cloud_circle/model.mdf"
+				anim="idle"
+				startalpha=".9"
+				endalpha="0"
+				startscale="12"
+				endscale="0"
+				lockup="1"
+				lockright="1"
+				yawspeed="150"
+			>
+				<simpleemitter
+					spawnrate="150"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					gravity="0"
+					position="0 0 0"
+					minspeed="0"
+					maxspeed="2"
+					offsetradial="15 0 0"
+					offsetsphere="2"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="2"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cloud_particle.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						color="1 1 1"
+						minscale="3"
+						maxscale="6"
+						startalpha="0"
+						midalpha=".1"
+						endalpha="0"
+						midalphapos=".2"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					spawnrate="100"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					gravity="0"
+					position="0 0 0"
+					minspeed="0"
+					maxspeed="2"
+					offsetradial="15 0 0"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="2"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor=".1"
+						endcolor="0 0 0"
+						minscale="4"
+						maxscale="8"
+					/>
+				</simpleemitter>
+			</model>
+
+			<model
+				expirelife="250"
+				color="1"
+				position="0 0 35"
+				model="cloud_circle/model.mdf"
+				anim="idle"
+				startalpha=".85"
+				endalpha="0"
+				startscale="9"
+				endscale="0"
+				lockup="1"
+				lockright="1"
+				yawspeed="120"
+				yaw="90"
+			>
+			</model>
+			
+			<model
+				expirelife="250"
+				color="1"
+				position="0 0 35"
+				model="cloud_circle/model.mdf"
+				anim="idle"
+				startalpha=".8"
+				endalpha="0"
+				startscale="6"
+				endscale="0"
+				lockup="1"
+				lockright="1"
+				yawspeed="90"
+				yaw="45"
+			>
+			</model>
+			
+			<billboard
+				position="0 0 25"
+				life="2000"
+				startcolor=".3 .1 0"
+				midcolor="0 0 .35"
+				endcolor=".35 .1 0"
+				size="300"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-50"
+				loop="true"
+			/>
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

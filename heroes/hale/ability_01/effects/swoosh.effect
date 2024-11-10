@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="ability_03">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".9">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.75"
+				sample="../sounds/sfx_cast_2.wav"
+			/>
+			
+			<groundsprite
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				scale="3"
+				life="500"
+				color="0 0 0"
+				minyaw="-360"
+				maxyaw="360"
+				startalpha=".75"
+				midalpha=".75"
+				endalpha="0"
+				midalphapos=".2"
+			/>
+			
+			
+			
+			<light
+				position="0 0 50"
+				life="350"
+				startcolor="2.5 0 10"
+				endcolor="0"
+				falloffstart="50"
+				falloffend="275"
+			/>
+			
+
+			<model
+				life="300"
+				model="../../model.mdf"
+				anim="ability_1_attack"
+				color="2.5 1 5"
+				startalpha="1"
+				endalpha="0"
+			>
+
+			
+				<billboard
+					bone="_bone_origin"
+					position="0 0 75"
+					life="150"
+					material="/shared/effects/smaterials/black_swoosh.material"
+					color=".15 0 .3"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".75"
+					size="350"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					rollspeed="1950"
+				/>
+			
+				<billboard
+					bone="_bone_origin"
+					position="0 0 75"
+					life="150"
+					material="/shared/effects/smaterials/black_swoosh.material"
+					color=".5 0 1"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".75"
+					size="340"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					rollspeed="1950"
+				/>
+			
+			
+			
+			
+			
+
+				<billboard
+					bone="_bone_origin"
+					position="0 0 75"
+					life="300"
+					material="/shared/effects/smaterials/swoosh_ring_purple.material"
+					startcolor=".25 0 .5"
+					endcolor="0 0 0"
+					size="375"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					rollspeed="1950"
+				/>
+
+				<billboard
+					bone="_bone_origin"
+					position="0 0 75"
+					life="300"
+					material="/shared/effects/smaterials/swoosh_ring_purple.material"
+					startcolor=".375 .125 .5"
+					endcolor="0 0 0"
+					size="300"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					rollspeed="1950"
+				/>
+				
+
+				<billboard
+					bone="_bone_origin"
+					position="0 0 75"
+					life="200"
+					material="/shared/effects/smaterials/swoosh_ring_light.material"
+					startcolor=".3"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					startsize="650"
+					endsize="450"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					rollspeed="600"
+					dephthbias="-35"
+				/>
+
+				<billboard
+					bone="_bone_origin"
+					position="0 0 75"
+					life="200"
+					material="/shared/effects/smaterials/swoosh_ring_light.material"
+					startcolor=".3"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					startsize="650"
+					endsize="450"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					rollspeed="600"
+					dephthbias="-35"
+				/>
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				<light
+				bone="_bone_weapon2"
+					position="0 0 0"
+					life="200"
+					startcolor="5 5 5"
+					midcolor="2.5 0 5"
+					endcolor="0"
+					falloffstart="50"
+					falloffend="100"
+				/>
+
+
+			</model>
+
+
+			
+			
+			
+			
+			
+
+			
+			
+			
+
+
+
+			
+
+			
+			
+			
+			
+
+	</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

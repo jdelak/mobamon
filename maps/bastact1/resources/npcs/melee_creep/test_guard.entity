@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Enemy_TestGuard"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="variations/creep1/model.mdf"
+	skin=""
+	gibanim="death_gib_1"
+	deniedanim="death_deny_1"
+
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	rewardsoundself="receivedgold"
+	rewardsoundteam="seeteamgold"
+	rewardsoundenemy="seeenemygold"
+	
+	aggrosound="creepaggro"
+  
+	preglobalscale="1.4"
+	modelscale="1.5"
+	effectscale="0.75"
+	boundsheight="64"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+
+	movespeed="200"
+	turnrate="320"
+	turnsmoothing="0.05"
+	
+
+	maxhealth="9000"
+	healthregen="1000000000000"
+	maxmana="0"
+	manaregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	
+	inventory0="Ability_Guard_Enemy"
+	inventory1="Ability2_Guard_Enemy"
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+  
+	walknumanims="3"
+	attackduration="1000"
+	attackactiontime="600"
+	attackcooldown="1000"
+	attackdamagemin="140"
+	attackdamagemax="140"
+	deathnumanims="2"
+	attacknumanims="4"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="75"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep1/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="player_controlled_units"
+	leashaggroscheme="player_controlled_units"
+	attackdamagetype="AttackDamage"
+
+	pathing="true"
+	canattack="false"
+	ismobile="false"
+	aggrorange="0"
+	proximityrange="500"
+	sightrangeday="1000"
+	sightrangenight="1000"
+
+	experiencebounty="57"
+  
+	maxdivisiblebountyperplayer="30"
+	totaldivisiblebounty="60"
+	
+	corpsetime="0"
+	corpsefadetime="1500"
+	deathtime="500"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+
+	
+	
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+>
+	<onspawn>
+		<setaccumulator entity="this_entity" value="0" valueb="0"/>
+		<spawnunit name="Patrol_Gadget" count="1" target="this_position" pushentity="true" owner="source_entity" />
+		<setproxy entity="source_entity" target="stack_entity"/>
+	</onspawn>	
+
+	<onframe>
+		<compare a="accumulator" b="1" op="eq" >	
+			<areaofeffect
+				radius="800"
+				targetselection="all"
+				targetscheme="player_and_mobs"
+				center="this_entity"
+				ignoreinvulnerable="true"
+				maximpactspertarget="1"
+			>
+						
+				<distance source="source_entity" target="target_entity"/>
+				<setvar0 a="result"/>	
+				
+						<compare a="var0" b="550" op="lt">
+							<spawnaffector name="Affector_Guard_Enemy" bind="source_entity" bindturn="true" target="source_entity" offset="0 200 0" proxy="this_proxy_entity" />
+							<changeaccumulator b="1" op="add" />
+							<spawnunit name="Gadget_Bastact1_GrantSight" count="1" target="this_position" pushentity="true" />
+							<setproxy entity="this_entity" target="stack_entity" />
+						</compare>
+				
+			</areaofeffect>
+		</compare>			
+	</onframe>
+
+	<oninflicted>
+			<condition test="hasstate State_Guard_Enemy" target="this_entity" >
+			<setactivemodifierkey entity="source_entity" name="" />	
+				<changeaccumulator b="1" op="sub" />
+				<delete target="this_proxy_entity"/>
+				<print text="?????"/>
+			</condition>
+	</oninflicted>		
+
+						
+
+	<modifier key="creep1" modpriority="95"
+		model="variations/creep1/model.mdf"
+		attackimpacteffect="variations/creep1/sound.effect"
+	/>
+	
+	<modifier key="creep2" modpriority="95"
+		model="variations/creep2/model.mdf"
+		attackimpacteffect="variations/creep2/sound.effect"
+	/>
+
+	<modifier key="creep3" modpriority="95"
+		model="variations/creep3/model.mdf"
+		attackimpacteffect="variations/creep3/sound.effect"
+	/>
+
+	<modifier key="tutorialmod" modpriority="100" movespeed="350">
+		<ondamaged/>
+	</modifier>
+
+	<modifier key="Guard_Alert" modpriority="95"
+		movespeed="450"
+		
+	/>
+
+	<onrespawn>
+		<delete target="this_entity" />
+	</onrespawn>
+
+
+</pet>

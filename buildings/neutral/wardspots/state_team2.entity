@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Observatory_Team2_Controlled"
+	modifierkey="team2control"
+	
+	allypassiveeffect="effects/active.effect"
+	enemypassiveeffect="effects/active_enemy.effect"
+	ishidden="true"
+>
+	<oninflict>
+		<playeffect effect="/world/sprops/vision_blue/effects/buildup.effect" target="target_entity" source="target_entity" occlude="true" visibility="allies"/>
+		<playeffect effect="/world/sprops/vision_red/effects/buildup_enemy.effect" target="target_entity" source="target_entity" occlude="true" visibility="enemies"/>
+		<playanim name="activate" target="target_entity"/>
+		<spawnunit name="Pet_ObservationVision" target="source_position" team="2" fixedposition="true" source="source_entity" owner="source_entity" pushentity="true" />
+		<setproxy target="stack_entity" />
+		<setproxy entity="source_entity" target="stack_entity" />
+	</oninflict>
+
+	<onexpired>
+		<delete target="this_proxy_entity" />
+	</onexpired>
+
+</state>

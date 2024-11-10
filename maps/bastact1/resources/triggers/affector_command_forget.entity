@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_MonsterCleanup"
+
+	radius="600"
+	targetselection="all"
+	targetscheme="enemy_units"
+	lifetime="-1"
+	impactdelay="500"
+	maximpactspertarget="5"
+
+>
+	<onimpact>
+		<forgetattacks source="target_entity" target="target_entity" />
+		<order command="move" source="target_entity" target="this_proxy_entity" />
+		<activatemodifierkey entity="target_entity" name="forgetful" />
+	</onimpact>
+</affector>

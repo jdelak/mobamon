@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Originally Bastion's R, should now be his E -->
+<ability
+	name="Ability_Bastion1Bastact1_4"
+
+	icon="icon.tga"
+	
+	anim=""
+	casttime="0"
+	castactiontime="200"
+	casteffect=""
+	
+	actiontype="target_entity"
+	targetscheme="throwable_objects"
+	casteffecttype=""
+	maxcharges="1"
+	maxlevel="4"
+	requiredlevel="3,5,6,7"
+	cooldowntime="875"
+	frontqueue="true"
+	range="76"
+	forcerange="1"
+	queue="dropmovement"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"	
+	noentercombat="true"
+	alwaysshowtimer="true"
+>
+
+	<onimpact>
+		<applystate name="State_Bastion1Bastact1_HasBomb" target="source_entity" duration="-1"/>
+		<starttimer duration="850"/>
+		<applystate name="State_Bastion1Bastact1_Ability4_Stun" target="source_entity" duration="800"/>
+		<playanim name="item_pickup" target="source_entity" speed="1"/>
+		<setcharges a="1" />
+		<setproxy entity="this_entity" target="target_entity"/>
+		<applystate name="State_Bastion1Bastact1_Ability4_Attach" target="source_entity" duration="501" proxy="this_proxy_entity"/>
+		<applystate name="State_Bastion1Bastact1_BombIsHeld" target="target_entity" duration="-1"/>
+	</onimpact>
+
+	<ontimer>
+		<deactivatemodifierkey entity="source_entity" name="with_club" />
+		<activatemodifierkey entity="source_entity" name="with_nohitch" />
+		<activatemodifierkey entity="this_entity" name="throw" />
+		<applystate name="State_Bastion1Bastact1_Ability4_Run" target="source_entity" duration="200"/>
+	</ontimer>	
+
+	<ondamaged>
+		<condition test="hasstate State_Bastion1Bastact1_HasBomb" target="source_entity" >
+			<setvar0 a="source_health" b="damage_applied" op="sub" />
+	  		<compare a="var0" b="0" op="le">
+	  			<!-- Bastion is holding a bomb, and is about to die! -->
+	  			<print text="working"/>
+	  			<starttimer duration="0" entity="this_entity"/>
+	  			<expirestate target="source_entity" name="State_Bastion1Bastact1_HasBomb" />
+	 			<expirestate target="this_proxy_entity" name="State_Bastion1Bastact1_BombIsHeld" />
+	 			<attach source="this_proxy_entity" target="" boneslot="1" />
+	 			<multcharges entity="this_entity" value="0"/>
+	 			<deactivatemodifierkey entity="source_entity" name="with_nohitch" />
+				<deactivatemodifierkey entity="this_entity" name="throw" />
+				<activatemodifierkey entity="source_entity" name="with_club" />
+	  		</compare>
+		</condition>
+	</ondamaged>
+
+	<modifier key="throw" modpriority="100"
+		icon="icon.tga"
+		
+		anim="item_throw"
+		casttime="2000"
+		castactiontime="350"
+		casteffect="effects/cast.effect"
+		actiontype="target_position"
+
+		range="750"
+		forcerange="750"
+		allowoutofboundscast="true"
+		allowoutofrangecast="true"
+		showlinecast="true"
+		linecastwidth="100"
+		linecastrange="750"
+		hoverareacastrange="750"
+		queue="dropmovement"
+		noentercombat="false"
+	>
+
+		<onimpact>
+			<setcharges a="0" />
+			<starttimer duration="349"/>
+			<setpos0 position="source_position" offsetspace="source_entity" offset="0 0 100" />
+			<setpos1 position="target_position" offsetspace="source_entity" offset="0 0 100" />
+			<spawnprojectile name="Projectile_Bastact1_Bastion1_Throw" source="pos0" target="pos1" pushentity="true" proxy="this_proxy_entity"  />
+			<!-- <playanim name="hover" target="this_proxy_entity" speed="10"/> -->
+		
+			<attach source="this_proxy_entity" target="" boneslot="1" />
+			<bind target="this_proxy_entity" entity="stack_entity"/>
+			<expirestate target="source_entity" name="State_Bastion1Bastact1_HasBomb" />
+			<distance source="source_entity" target="target_position" />
+			<setparam entity="stack_entity" a="result" op="none" />
+		</onimpact>	
+
+		<ontimer>
+			<deactivatemodifierkey entity="source_entity" name="with_nohitch" />
+			<activatemodifierkey entity="source_entity" name="with_club" />
+			<deactivatemodifierkey entity="this_entity" name="throw" />
+		</ontimer>
+
+			<ondamaged>
+			<condition test="hasstate State_Bastion1Bastact1_HasBomb" target="source_entity" >
+				<setvar0 a="source_health" b="damage_applied" op="sub" />
+		  		<compare a="var0" b="0" op="le">
+		  			<!-- Bastion is holding a bomb, and is about to die! -->
+		  			<expirestate target="source_entity" name="State_Bastion1Bastact1_HasBomb" />
+		 			<expirestate target="this_proxy_entity" name="State_Bastion1Bastact1_BombIsHeld" />
+		 			<attach source="this_proxy_entity" target="" boneslot="1" />
+		 			<multcharges entity="this_entity" value="0"/>
+		 			<deactivatemodifierkey entity="source_entity" name="with_nohitch" />
+					<deactivatemodifierkey entity="this_entity" name="throw" />
+					<activatemodifierkey entity="source_entity" name="with_club" />
+		  		</compare>
+			</condition>
+		</ondamaged>
+	</modifier>
+
+	<!-- After Bastion hits hero defense, pickup 2 is the new base. Should always have either pickup2 or throw2 at this point -->
+	<modifier key="pickup2" modpriority="50"
+		icon="icon.tga"
+		
+		anim=""
+		casttime="0"
+		castactiontime="0"
+		casteffect="effects/cast.effect"
+		
+		actiontype="target_entity"
+		targetscheme="throwable_objects"
+		casteffecttype=""
+		maxcharges="1"
+		maxlevel="4"
+		requiredlevel="3,5,6,7"
+		cooldowntime="875"
+		frontqueue="true"
+		range="76"
+		forcerange="1"
+		queue="dropmovement"
+		
+		showareacast="true"
+		areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"	
+		noentercombat="true"
+		>
+		<onimpact>
+			<starttimer duration="850"/>
+			<activatemodifierkey entity="source_entity" name="with_sword" />
+			<applystate name="State_Bastion1Bastact1_Ability4_Stun" target="source_entity" duration="750"/>
+			<playanim name="item_pickup" target="source_entity" speed="1.2"/>
+			<setcharges a="1" />
+			<setproxy entity="this_entity" target="target_entity"/>
+
+			<applystate name="State_Bastion1Bastact1_Ability4_Attach" target="source_entity" duration="501" proxy="this_proxy_entity"/>
+
+			<applystate name="State_Bastion1Bastact1_HasBomb" target="source_entity" duration="-1"/>
+			<applystate name="State_Bastion1Bastact1_BombIsHeld" target="target_entity" duration="-1"/>
+
+			<!-- testing -->
+			<!-- <activatemodifierkey entity="this_entity" name="throw2" /> -->
+			<!-- /testing -->
+		</onimpact>
+
+		<ontimer>		
+			<condition test="hasstate State_Bastion1Bastact1_HasBomb" target="source_entity" >
+				<activatemodifierkey entity="source_entity" name="with_nohitch_withsword" />
+				<activatemodifierkey entity="this_entity" name="throw2" />
+				<deactivatemodifierkey entity="source_entity" name="with_sword" />
+				<deactivatemodifierkey entity="this_entity" name="pickup2" />
+				<applystate name="State_Bastion1Bastact1_Ability4_Run" target="source_entity" duration="200"/>
+			</condition>
+		</ontimer>	
+	</modifier>
+
+	<modifier key="throw2" modpriority="100"
+		icon="icon.tga"
+		
+		anim="item_throw"
+		casttime="1000"
+		castactiontime="350"
+		casteffect="effects/cast.effect"
+		actiontype="target_position"
+
+		range="750"
+		forcerange="750"
+		allowoutofboundscast="true"
+		allowoutofrangecast="true"
+		showlinecast="true"
+		linecastwidth="100"
+		linecastrange="750"
+		hoverareacastrange="750"
+		queue="dropmovement"
+		noentercombat="false"
+
+	>
+		<onimpact>
+			<expirestate target="source_entity" name="State_Bastion1Bastact1_HasBomb" />
+			<expirestate target="this_proxy_entity" name="State_Bastion1Bastact1_BombIsHeld" />
+			<setcharges a="0" />
+			<starttimer duration="349"/>
+			<setpos0 position="source_position" offsetspace="source_entity" offset="0 0 100" />
+			<spawnprojectile name="Projectile_Bastact1_Bastion1_Throw" source="pos0" target="target_position" pushentity="true" proxy="this_proxy_entity"  />
+			<!-- <playanim name="hover" target="this_proxy_entity" speed="10"/> -->
+		
+			<attach source="this_proxy_entity" target="" boneslot="1" />
+			
+			<bind target="this_proxy_entity" entity="stack_entity"/>
+			<distance source="source_entity" target="target_position" />
+			<setparam entity="stack_entity" a="result" op="none" />
+		</onimpact>	
+
+		<ontimer>
+			<deactivatemodifierkey entity="source_entity" name="with_nohitch_withsword" />
+			<activatemodifierkey entity="source_entity" name="with_sword" />
+			<activatemodifierkey entity="this_entity" name="pickup2" />
+			<deactivatemodifierkey entity="this_entity" name="throw2" />
+		</ontimer>
+
+		<ondamaged>
+			<condition test="hasstate State_Bastion1Bastact1_HasBomb" target="source_entity" >
+				<setvar0 a="source_health" b="damage_applied" op="sub" />
+		  		<compare a="var0" b="0" op="le">
+		  			<!-- Bastion is holding a bomb, and is about to die! -->
+		  			<expirestate target="source_entity" name="State_Bastion1Bastact1_HasBomb" />
+		 			<expirestate target="this_proxy_entity" name="State_Bastion1Bastact1_BombIsHeld" />
+		 			<attach source="this_proxy_entity" target="" boneslot="1" />
+		 			<multcharges entity="this_entity" value="0"/>
+		 			<deactivatemodifierkey entity="source_entity" name="with_nohitch_withsword" />
+					<deactivatemodifierkey entity="this_entity" name="throw2" />
+					<activatemodifierkey entity="source_entity" name="with_sword" />
+					<activatemodifierkey entity="this_entity" name="pickup2" />
+		  		</compare>
+			</condition>
+		</ondamaged>
+
+	</modifier>
+
+	<modifier key="disable" modpriority="98"
+		disabled="true"
+	>
+	</modifier>
+
+
+</ability>

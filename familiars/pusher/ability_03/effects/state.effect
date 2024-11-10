@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale=".5">
+
+			
+<!--
+			<template name="fire">
+				<simpleemitter
+				delay="300"
+					position="{zpos}"						
+					bone="{zbone}"
+					startspawnrate="50"		
+					endspawnrate="50"		
+					gravity="-17"
+					speed="0"
+					drag="0"
+					minparticlelife="200"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/firesprite_swirl_01.material"	
+					offsetsphere="25"	
+					depthbias="0"				
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						minstartsize="{zminsize}"			
+						maxstartsize="{zmaxsize}"
+						endsize="0"						
+						startcolor="1 1 1"
+						midcolor="1 0 0"
+						endcolor="1 0 0"
+						midcolorpos=".5"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".2"
+						turn="1"					
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+				delay="300"
+					position="{zpos}"								
+					bone="{zbone}"
+					startspawnrate="50"		
+					endspawnrate="50"		
+					gravity="-23"
+					speed="0"
+					drag="0"
+					minparticlelife="200"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/firesprite_swirl_01.material"	
+					offsetsphere="25"	
+					depthbias="0"				
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						minstartsize="{zminsize}"			
+						maxstartsize="{zmaxsize}"
+						endsize="0"				
+						startcolor="1 1 1"
+						midcolor="1 0 0"
+						endcolor="1 0 0"
+						midcolorpos=".5"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".2"
+						turn="1"					
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="300"
+					position="{zpos}"						
+					bone="{zbone}"
+					startspawnrate="100"		
+					endspawnrate="100"		
+					gravity="-23"
+					speed="0"
+					drag="0"
+					minparticlelife="300"
+					maxparticlelife="600"
+					material="/shared/effects/smaterials/whitedot.material"	
+					offsetsphere="25"	
+					depthbias="0"				
+				>
+					<particle 
+						anchor="{zanchor}"
+						minangle="0"
+						maxangle="360"
+						startframe="0"			
+						endframe="1"
+						framespeed="2"					
+						minstartsize="30"			
+						maxstartsize="50"
+						endsize="0"						
+						startcolor="1 .5 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						turn="1"					
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="fire" zbone="_bone_leftwrist" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_leftwrist" zdelay="0" zanchor="0" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_leftwrist" zdelay="0" zanchor="0" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+
+			<instance name="fire" zbone="_bone_rightwrist" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_rightwrist" zdelay="0" zanchor="0" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+			<instance name="fire" zbone="_bone_rightwrist" zdelay="0" zanchor="0" zpos="0 0 0" zminsize="35" zmaxsize="70"/>
+		
+			<template name="">
+				<billboard
+					delay="300"
+					bone="{zbone}"
+					expirelife="500"
+					startcolor="1 .25 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					size="175"
+					depthbias="-20"
+					material="/shared/effects/materials/whitedot.material"
+				/>
+			</template>
+			
+			<instance name="" zbone="_bone_leftwrist"/>
+			<instance name="" zbone="_bone_rightwrist"/>
+			
+-->
+
+
+			<billboard
+				bone="_bone_centerofchest"
+				expirelife="500"
+				startcolor=".1 .05 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				size="500"
+				depthbias="-75"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

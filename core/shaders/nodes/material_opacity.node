@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_opacity">
+	<parameter name="Opacity" type="float" default="1.0" />
+	<dependency name="Opacity" type="float" source="Opacity" />
+	<output name="MaterialOpacity" type="float" solution="MaterialOpacity" />
+	<?hlsl
+		MaterialOpacity = Opacity;
+	?>
+	<?glsl
+		MaterialOpacity = Opacity;
+	?>
+</node>

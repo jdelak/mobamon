@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<modifier 
+			name="modifier0"
+			expirelife="100"
+			startalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<model
+				bone="_bone_sword1"
+				expirelife="100"
+				model="sword/model.mdf"
+				anim="idle"
+				material="../../material.material"
+				startalpha="0"
+				endalpha="0"
+				color="1"
+				directionalspace="local"
+				pitch="180"
+			>
+
+			
+				<template name="fire">
+
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="75"
+						minparticlelife="175"
+						maxparticlelife="250"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="5"
+						material="/shared/effects/smaterials/firesprite_swirl_purple.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							color="1 .5 1"
+							startalpha=".5"
+							endalpha="0"
+							minstartsize="30"
+							maxstartsize="60"
+							endsize="0"
+							startanchor="1"
+							endanchor="0"
+						/>
+					</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="30"
+						minparticlelife="175"
+						maxparticlelife="250"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="5"
+						material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor="0 0 .25"
+							endcolor="0 0 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							minstartsize="50"
+							maxstartsize="125"
+							endsize="0"
+							startanchor="1"
+							endanchor="0"
+						/>
+					</simpleemitter>
+
+
+					
+
+					<billboard
+						bone="{zbone}"
+						expirelife="250"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="50" 
+						directionalspace="local"
+						depthbias="-35"
+						startcolor="0 0 .25"
+						endcolor="0 0 0"
+					/>
+
+					
+					
+<!--
+					
+					<simpleemitter
+						life="50"
+						bone="_bone_centerofchest"
+						spawnrate="100"
+						minparticlelife="100"
+						maxparticlelife="300"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="50 50 50"
+						material="/shared/effects/smaterials/firesprite_01.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="1 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							startsize="100"
+							endsize="0"
+							startanchor="1"
+							endanchor="0"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						life="50"
+						bone="_bone_lefthand"
+						spawnrate="100"
+						minparticlelife="100"
+						maxparticlelife="300"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="25 25 25"
+						material="/shared/effects/smaterials/firesprite_01.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="1 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="100"
+							endsize="0"
+							startanchor="1"
+							endanchor=".5"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						life="50"
+						bone="_bone_righthand"
+						spawnrate="100"
+						minparticlelife="100"
+						maxparticlelife="300"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="25 25 25"
+						material="/shared/effects/smaterials/firesprite_01.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="1 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="100"
+							endsize="0"
+							startanchor="1"
+							endanchor=".5"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						life="50"
+						bone="_bone_rightfoot"
+						spawnrate="100"
+						minparticlelife="100"
+						maxparticlelife="300"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="25 25 25"
+						material="/shared/effects/smaterials/firesprite_01.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="1 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="100"
+							endsize="0"
+							startanchor="1"
+							endanchor=".5"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						life="50"
+						bone="_bone_leftfoot"
+						spawnrate="100"
+						minparticlelife="100"
+						maxparticlelife="300"
+						gravity="-5"
+						position="0 0 0"
+						offsetsphere="25 25 25"
+						material="/shared/effects/smaterials/firesprite_01.material"
+						depthbias="50"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="1 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="100"
+							endsize="0"
+							startanchor="1"
+							endanchor=".5"
+						/>
+					</simpleemitter>
+	-->
+		
+		
+		
+				</template>
+
+				<instance name="fire" zbone="_bone_fx_01" />
+				<instance name="fire" zbone="_bone_fx_02" />
+				<instance name="fire" zbone="_bone_fx_03" />
+				<instance name="fire" zbone="_bone_fx_04" />
+				<instance name="fire" zbone="_bone_fx_05" />
+				<instance name="fire" zbone="_bone_fx_06" />
+				<instance name="fire" zbone="_bone_fx_07" />
+				<instance name="fire" zbone="_bone_fx_08" />
+				<instance name="fire" zbone="_bone_fx_09" />
+				<instance name="fire" zbone="_bone_fx_10" />
+				
+				<instance name="fire" zbone="_bone_fx_11" />
+				<instance name="fire" zbone="_bone_fx_12" />
+				<instance name="fire" zbone="_bone_fx_13" />
+				<instance name="fire" zbone="_bone_fx_14" />
+				<instance name="fire" zbone="_bone_fx_15" />
+				<instance name="fire" zbone="_bone_fx_16" />
+				<instance name="fire" zbone="_bone_fx_17" />
+				<instance name="fire" zbone="_bone_fx_18" />
+				<instance name="fire" zbone="_bone_fx_19" />
+				<instance name="fire" zbone="_bone_fx_20" />
+				<instance name="fire" zbone="_bone_fx_21" />
+				<instance name="fire" zbone="_bone_fx_22" />
+				
+				<instance name="fire" zbone="_bone_fx_23" />
+				<instance name="fire" zbone="_bone_fx_24" />
+				<instance name="fire" zbone="_bone_fx_25" />
+				<instance name="fire" zbone="_bone_fx_26" />
+				<instance name="fire" zbone="_bone_fx_27" />
+				<instance name="fire" zbone="_bone_fx_28" />
+				<instance name="fire" zbone="_bone_fx_29" />
+				<instance name="fire" zbone="_bone_fx_30" />
+				<instance name="fire" zbone="_bone_fx_31" />
+				<instance name="fire" zbone="_bone_fx_32" />
+				<instance name="fire" zbone="_bone_fx_33" />
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<template name="glow">
+				
+					<simpleemitter
+						bone="{zboner}"
+						spawnrate="50"
+						minparticlelife="100"
+						maxparticlelife="300"
+						position="0 0 0"
+						offsetsphere="5"
+						material="/shared/effects/smaterials/whitedot.material"
+						depthbias="-20"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-6"
+							maxanglespeed="6"
+							startcolor="0 0 0"
+							midcolor=".06 0 .125"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							startsize="25"
+							endsize="0"
+							startanchor="1"
+							endanchor="1"
+						/>
+					</simpleemitter>
+				
+				
+				</template>
+
+				<instance name="glow" zboner="_bone_fx_glow_01" />
+				<instance name="glow" zboner="_bone_fx_glow_02" />
+				<instance name="glow" zboner="_bone_fx_glow_03" />
+				<instance name="glow" zboner="_bone_fx_glow_04" />
+				<instance name="glow" zboner="_bone_fx_glow_05" />
+				<instance name="glow" zboner="_bone_fx_glow_06" />
+				<instance name="glow" zboner="_bone_fx_glow_07" />
+				<instance name="glow" zboner="_bone_fx_glow_08" />
+				<instance name="glow" zboner="_bone_fx_glow_09" />
+				<instance name="glow" zboner="_bone_fx_glow_10" />
+				<instance name="glow" zboner="_bone_fx_glow_11" />
+				<instance name="glow" zboner="_bone_fx_glow_12" />
+				<instance name="glow" zboner="_bone_fx_glow_13" />
+				<instance name="glow" zboner="_bone_fx_glow_14" />
+				<instance name="glow" zboner="_bone_fx_glow_15" />
+				<instance name="glow" zboner="_bone_fx_glow_16" />
+				<instance name="glow" zboner="_bone_fx_glow_17" />
+				<instance name="glow" zboner="_bone_fx_glow_18" />
+				<instance name="glow" zboner="_bone_fx_glow_19" />
+				<instance name="glow" zboner="_bone_fx_glow_20" />
+				<instance name="glow" zboner="_bone_fx_glow_21" />
+				<instance name="glow" zboner="_bone_fx_glow_22" />
+				<instance name="glow" zboner="_bone_fx_glow_23" />
+				<instance name="glow" zboner="_bone_fx_glow_24" />
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+	
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

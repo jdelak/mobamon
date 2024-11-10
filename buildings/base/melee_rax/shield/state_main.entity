@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_LegionBase_Shield"
+
+	icon="icon.tga"
+	passiveeffect=""
+	effecttype=""
+	allowtransfer="true"
+	displaylevel="true"
+>
+	
+	<onframe>
+		<!--Shield Value-->
+		<!--Scales from 2800 to 3700 from 20->45 minutes-->
+		<setvar0 a="time" b="1200000" op="sub" />
+		<setvar0 a="result" b="0" op="max" />
+		<setvar0 a="result" b=".000611111" op="mult" />
+		<setaccumulator value="2800" valueb="result" valueop="add" />
+		
+		<compare a="accumulator" b="3700" op="ge">
+			<setaccumulator value="3700" />
+		</compare>
+		
+		<setvar1 a="accumulator" b="5" op="div" />		
+		<setvalue source="this_entity" name="source_max_shield" a="accumulator" />
+	
+		<compare source="this_owner_entity" a="source_shield" b="source_max_shield" op="lt">
+			<setvar0 a="frametime" b="var1" op="mult" />
+			<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+			<expirestate name="State_LegionBase_Shield_NoRegen_Empty" target="source_entity" />
+		</compare>
+	</onframe>
+	
+	<onattackeddamageevent>
+		<startcooldown />
+		<compare a="damage_attempted" b="source_shield" op="ge">
+			<playeffect effect="effects/state_expire.effect" source="source_entity" />
+			<applystate name="State_LegionBase_Shield_NoRegen_Empty" target="source_entity" duration="-1" />
+		</compare>
+
+		<applystate name="State_LegionBase_Shield_NoRegen" duration="20000" target="source_entity" />
+	</onattackeddamageevent>
+	
+	<onattackedpostimpact>
+		<targettype type="enemy">
+			<playeffect effect="effects/impact.effect" source="source_entity"/>
+		</targettype>
+	</onattackedpostimpact>
+	
+	<modifier key="LegionBaseShield_noregen" modpriority="102"
+	>
+		<onframe>
+
+		</onframe>
+	</modifier>
+	
+	<modifier key="LegionBaseShieldDisabled" modpriority="101"
+		passiveeffect="" 
+	>
+		<onattackedpostimpact />
+		
+	</modifier>
+	
+	<modifier key="tutorial3" modpriority="100"
+	>
+		<onframe>
+			<!--Shield Value-->
+			<setvar0 a="1200" />
+		
+			<setvar1 a="var0" b="5" op="div" />		
+			<setvalue source="this_entity" name="source_max_shield" a="var0" />
+		
+			<compare source="this_owner_entity" a="source_shield" b="source_max_shield" op="lt">
+				<setvar0 a="frametime" b="var1" op="mult" />
+				<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+				<expirestate name="State_LegionBase_Shield_NoRegen_Empty" target="source_entity" />
+			</compare>
+			
+		</onframe>
+	</modifier>
+	
+	
+</statenetaccum>

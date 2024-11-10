@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="art_circle_spikes" novs="true"> 
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<parameter name="Spacing" type="float" default="0.2" />
+	<parameter name="Size" type="float" default="0.005" />
+	<parameter name="Alpha" type="float" default="1.0" />
+	<parameter name="Lenght" type="float" default="1.0" />
+	<parameter name="Offset" type="float" default="1.0" />
+	
+	<dependency name="Lenght" type="float" source="Lenght" />
+	<dependency name="Offset" type="float" source="Offset" />
+	<dependency name="Alpha" type="float" source="Alpha" />
+	<dependency name="Spacing" type="float" source="Spacing" />
+	<dependency name="Size" type="float" source="Size" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<output name="Out" type="float4" />
+	<?hlsl
+		float fAmount = Spacing;
+		float fSpikeSize = Size;
+		
+		float fFinalSpikeSize = fAmount * (1.0f - fSpikeSize);
+		
+		float2 vXY = float2(abs(Texcoord.x - 0.5f), abs(Texcoord.y - 0.5f));
+		float fDistance = vXY.x * vXY.x + vXY.y * vXY.y;
+		
+		float fHalfPi = 1.570796326795f;
+		float fATanAngle = atan2(vXY.x, vXY.y) / fHalfPi;
+		float fATanAngle2 = 1.0f - fATanAngle;
+		
+		float fModAngle = fmod(fATanAngle, fAmount);
+		fATanAngle -= fModAngle;
+		fATanAngle = step(fFinalSpikeSize, fModAngle);
+		
+		fModAngle = fmod(fATanAngle2, fAmount);
+		fATanAngle2 -= fModAngle;
+		fATanAngle2 = step(fFinalSpikeSize, fModAngle);
+		
+		Out = float4(1.0f, 1.0f, 1.0f, max(fATanAngle, fATanAngle2) * smoothstep(Lenght * 0.25f, 0.0f, abs(Offset * 0.25f - sqrt(fDistance))) * Alpha);
+		Out = saturate(Out);
+	?>
+	<?glsl
+		float fAmount = Spacing;
+		float fSpikeSize = Size;
+		
+		float fFinalSpikeSize = fAmount * (1.0f - fSpikeSize);
+		
+		vec2 vXY = vec2(abs(Texcoord.x - 0.5f), abs(Texcoord.y - 0.5f));
+		float fDistance = vXY.x * vXY.x + vXY.y * vXY.y;
+		
+		float fHalfPi = 1.570796326795f;
+		float fATanAngle = atan(vXY.x, vXY.y) / fHalfPi;
+		float fATanAngle2 = 1.0f - fATanAngle;
+		
+		float fModAngle = mod(fATanAngle, fAmount);
+		fATanAngle -= fModAngle;
+		fATanAngle = step(fFinalSpikeSize, fModAngle);
+		
+		fModAngle = mod(fATanAngle2, fAmount);
+		fATanAngle2 -= fModAngle;
+		fATanAngle2 = step(fFinalSpikeSize, fModAngle);
+		
+		Out = vec4(1.0f, 1.0f, 1.0f, max(fATanAngle, fATanAngle2) * smoothstep(Lenght * 0.25f, 0.0f, abs(Offset * 0.25f - sqrt(fDistance))) * Alpha);
+		Out = clamp(Out, 0.0f, 1.0f);
+	?>
+</node>

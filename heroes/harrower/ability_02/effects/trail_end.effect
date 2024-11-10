@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".125">
+		
+<!--
+			<billboard
+			bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				expirelife="300"
+				midsizepos=".05"
+				size="750"
+				startcolor=".25"
+				endcolor="0"
+				depthbias="-50"
+			/>
+		
+			<simpleemitter
+			life="700"
+				particlelife="2000"
+				spawnrate="30"
+				offsetsphere="30 30 0"
+				position="0 100 0"
+				depthbias="0"
+			>
+				<particle
+				>
+						<billboard
+							position="0 0 100"
+							material="/shared/effects/smaterials/whitedot.material"
+							life="1000"
+							midsizepos=".05"
+							startsize="1000"
+							endsize="1000"
+							startcolor="0"
+							midcolor=".06"
+							endcolor="0"
+							midcolorpos=".1"
+							minscale=".6"
+							maxscale=".6"
+							depthbias="-50"
+						/>
+
+						<terrainemitter
+							life="500"
+							delay="0"
+							spawnrate="30"
+							particlelife="1500"
+							range="50"
+						>
+							<particle>
+
+								<simpleemitter
+									life="2000"
+									spawnrate="3300"
+									count="1"
+									minparticlelife="250"
+									maxparticlelife="750"
+									gravity="25"
+									minspeed="300"
+									maxspeed="1500"
+									drag=".01"
+									material="/shared/effects/smaterials/whitedot.material"
+									offsetsphere="25"
+									minangle="0"
+									maxangle="35"
+									direction="0 0 1"
+									position="0 0 -10"
+								>
+									<particle
+										minangle="0"
+										maxangle="360"
+										startcolor="1 1 1"
+										midcolor="1 1 1"
+										endcolor="0 0 0"
+										midcolorpos=".75"
+										minstartsize="30"
+										maxstartsize="70"
+										minmidsize="12"
+										maxmidsize="25"
+										endsize="0"
+										startalpha="0"
+										midalpha=".7"
+										endalpha="0"
+										midalphapos=".5"
+									/>
+								</simpleemitter>
+							</particle>
+						</terrainemitter>
+
+
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				particlelife="2000"
+				spawnrate="4"
+				offsetsphere="35 35 0"
+				position="0 0 0"
+				depthbias="0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="500"
+						maxlife="1000"
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						minscale=".75"
+						maxscale="1"
+						color="10 10 10"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+		</particlesystem>
+	</definitions>
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>

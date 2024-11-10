@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rook_Ability4"
+
+	speed="1800"
+	gravity="0"
+	lifetime="15000"
+	traileffect=""
+	modelscale="1.1"
+	model="effects/projectile/model.mdf"
+	canturn="0"
+	flying="true"
+	flyheight="20"
+	deatheffect="effects/projectile/impact.effect"
+	
+	touchradius="150"
+	touchpropradius="150"
+	touchpropanim="hit"
+	hazardradius="800"
+	hazardoffset="650"
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_heroes"
+	toucheffecttype=""
+>
+	<onspawn>
+		<spawnunit name="Gadget_Rook_Ability4" target="this_owner_entity" proxy="proxy_entity" pushentity="true" duration="-1" />
+		<setproxy entity="this_entity" target="stack_entity" />
+	</onspawn>
+	
+	<ondeath>
+		<kill target="proxy_entity" source="" />
+		<spawnunit name="Gadget_Rook_Ability4_Reveal_Linger" count="1" target="this_position" />
+	</ondeath>
+	
+	<ontouch>
+		<playeffect effect="effects/explosion.effect" target="target_entity" source="target_entity" />
+		
+		<combatevent effecttype="AbilityBasedProjectile Counterable">
+			<onimpact>
+				<cantarget effecttype="Magic">
+					<recordheroaggression />
+					<aggression />
+					<setparam a="0" />
+					<distance source="target_entity" target="proxy_entity" />
+					<setvar0 a="result" />
+
+					<compare a="var0" b="700" op="lt">
+						<setparam a="0.5" />
+					</compare>
+					<compare a="var0" b="700" op="ge">
+						<setparam a="0.58" />
+					</compare>
+					<compare a="var0" b="1460" op="ge">
+						<setparam a="0.66" />
+					</compare>
+					<compare a="var0" b="2220" op="ge">
+						<setparam a="0.74" />
+					</compare>
+					<compare a="var0" b="2980" op="ge">
+						<setparam a="0.82" />
+					</compare>
+					<compare a="var0" b="3740" op="ge">
+						<setparam a="0.9" />
+					</compare>
+					<compare a="var0" b="4500" op="ge">
+						<setparam a="1.0" />
+					</compare>
+
+					<cantarget effecttype="CrowdControl" >
+						<compare a="param" b="0.5" op="eq">
+							<popup name="1s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="750"/>
+						</compare>
+						<compare a="param" b="0.58" op="eq">
+							<popup name="12s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="1200"/>
+						</compare>
+						<compare a="param" b="0.66" op="eq">
+							<popup name="18s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="1800"/>
+						</compare>
+						<compare a="param" b="0.74" op="eq">
+							<popup name="22s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="2200"/>
+						</compare>
+						<compare a="param" b="0.82" op="eq">
+							<popup name="26s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="2600"/>
+						</compare>
+						<compare a="param" b="0.9" op="eq">
+							<popup name="3s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="3000"/>
+						</compare>
+						<compare a="param" b="1.0" op="eq">
+							<popup name="35s" source="target_entity" target="source_entity" />
+							<applystate name="State_Stunned" duration="3500"/>
+						</compare>
+					</cantarget>
+
+					<getconstant name="damage" />
+					<setvar1 a="result" b="param" op="mult" />
+					<damage effecttype="Magic" amount="1" b="var1" op="mult"/>
+					<setvar2 a="target_entity" />
+
+				</cantarget>
+			</onimpact>
+		</combatevent>
+		<kill target="this_entity" source="" />
+	</ontouch>
+	
+</projectile>

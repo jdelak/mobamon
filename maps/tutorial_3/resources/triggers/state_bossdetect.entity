@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial3_BossDetect"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	impactinterval="1000"
+	ishidden="true"
+	
+	modifierkey="tutorial3"
+>
+
+
+	<ondamaged>
+		<pushentity entity="this_spawner_entity" />
+
+		<compare a="stack_proxy_entity" b="target_entity" op="ne" >
+			<compare a="target_team" b="1" op="eq">
+				<entitytype type="Neutral_BossPowerUp" target="this_owner_entity">
+					<setscriptvalue name="baldir_attacked" value="1" />
+				</entitytype>
+				<else>
+					<setscriptvalue name="cindara_attacked" value="1" />
+				</else>
+			</compare>
+		</compare>
+	</ondamaged>
+	
+	<onkilled>
+		<entitytype type="Neutral_BossPowerUp" target="this_owner_entity">
+			<setscriptvalue name="baldir_killed" value="1" />
+		</entitytype>
+		<else>
+			<setscriptvalue name="cindara_killed" value="1" />
+		</else>
+	</onkilled>
+
+</state>

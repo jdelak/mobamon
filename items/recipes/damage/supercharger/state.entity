@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Supercharger"
+
+	icon="icon.tga"
+
+	passiveeffect="effects/state.effect"
+	modifierkey="supercharger_powered"
+	effecttype="StatusBuff"
+>
+	<onframe>
+		<getconstant name="percent_manarestore" />
+		<setvar0 a="result" b="250" op="div" />
+		<setvar0 a="source_maxmana" b="var0" op="mult" />
+		<setvar0 a="var0" b="frametime" op="mult" />
+		<givemana target="source_entity" amount="1" b="var0" op="mult" />
+	</onframe>
+
+	
+
+</state>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+
+	<definitions>
+	
+
+	
+		<particlesystem name="system0" space="entity" scale="1.0">
+		
+
+	
+		
+		<template name="spray">
+		
+				<meshemitter
+					mesh="{bone}"
+					spawnrate="31"
+					timenudge="4300"
+					particlelife="3250"
+					gravity="3"
+					speed="122"
+					drag="0.001"
+					acceleration="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/cloud1.material"
+					offsetsphere="00 00 0"
+					minangle="0"
+					maxangle="21"
+				
+					direction="0 0 0"
+					directionalspace="local"
+					lockright="1"
+					offsetdirection="0 0 0"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="-20"
+						
+						color="1 .98 1"
+					
+					
+						startsize="0"
+						midsize="120"
+						endsize="305"
+						startalpha="0"
+						midalpha=".1"
+						endalpha="0"
+						midalphapos=".5"
+					/>
+				</meshemitter>
+				<meshemitter
+					mesh="{bone}"
+					spawnrate="5"
+					timenudge="4300"
+					particlelife="3250"
+					gravity="8"
+					speed="322"
+					drag="0.0051"
+					acceleration="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/water_spray_blend.material"
+					offsetsphere="00 00 0"
+					minangle="0"
+					maxangle="21"
+				
+					direction="0 0 0"
+					directionalspace="local"
+					lockright="1"
+					offsetdirection="0 0 0"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-22"
+						maxanglespeed="20"
+						
+						color="1 .98 1"
+					
+					
+						startsize="111"
+						
+						endsize="305"
+						startalpha="0"
+						midalpha="0.2"
+						endalpha="0"
+						midalphapos=".5"
+					/>
+				</meshemitter>
+			</template>
+			
+		
+			<instance name="spray" bone="_invis_005"/>
+			<instance name="spray" bone="_invis_006"/>
+			<instance name="spray" bone="_invis_007"/>			
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+		<waitfordeath instance="instance0" />
+	  
+	</thread>
+
+</effect>

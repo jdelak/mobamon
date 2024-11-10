@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<simpleemitter
+			name="trail_01"
+			life="500"
+			spawnrate="200"
+			minparticlelife="200"
+			maxparticlelife="1000"
+			position="0 0 0"
+			speed="50"
+			material="/shared/effects/materials/whitedot.material"
+		>
+			<particle
+				startcolor=".15 0 1"
+				midcolor=".15 0 1"
+				endcolor="0 0 0"
+				midcolorpos=".1"
+				startsize="0"
+				midsize="10"
+				endsize="0"
+				midsizepos=".1"
+			/>
+		</simpleemitter>
+		
+		<particlesystem name="system0" space="entity" scale="1.1">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume=".7"
+				sample="../sounds/impact.wav"
+			/>
+			
+			<trackeremitter
+
+				count="10"
+				position="0 0 200"
+				targetbone="_bone_center"
+				tracktype="angular"
+				trackspeed="18"
+				drag="0"
+				spawnrate="250"
+				particlelife="3000"
+				offsetsphere="5 5 5"
+				speed="500"
+				maxspeed="250"
+				acceleration="30.0"
+				direction="0.0 0.0 1.0"
+				inheritvelocity="0.0"
+				distancelife="true"
+			>
+				<particle
+					emitter0="trail_01"
+				/>
+			</trackeremitter>
+			
+			
+			
+			<simpleemitter
+
+				spawnrate="2000"
+				count="20"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="-100"
+				speed="40"
+				drag=".08"
+				acceleration="0"
+				position="0 0 150"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 70"
+				minangle="90"
+				maxangle="-90"
+			>
+				<particle 
+					startcolor="0 0 0"
+					midcolor=".25 0 1"
+					endcolor="0"
+					midcolorpos=".1"
+					startframe="0"
+					endframe="1"
+					startwidth="20"
+					midwidth="15"
+					endwidth="6"
+					midwidthpos=".5"
+					startheight="0"
+					endheight="1000"
+					lockup="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="2000"
+				count="5"
+				minparticlelife="200"
+				maxparticlelife="400"
+				acceleration="0"
+				position="0 0 175"
+				offsetsphere="25 25 75"
+			>
+				<particle
+				
+				>
+					<billboard
+						life="250"
+						color="1 1 .5"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						size="20"
+						material="/shared/effects/smaterials/plus_purple.material"
+					/>
+					
+					<billboard
+						life="250"
+						startcolor=".25"
+						endcolor="0 0 0"
+						size="250"
+						material="/shared/effects/smaterials/flare.material"
+					/>
+				</particle>
+				
+			</simpleemitter>
+
+		</particlesystem>
+		
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>
+

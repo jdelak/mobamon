@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<style name="ladderShadow" width="+20s" height="+20s" align="center" valign="center" noclick="1" color="invisible" borderthickness="15s" bordercolor="0 0 0 0.6" texture="/ui/elements:squareglow" />
+	
+	<style name="ladderRowParent" width="-16s" height="8.8%" align="center" noclick="0" />
+	<style name="ladderRow" noclick="1" float="right" />
+	<style name="ladderRow_hover"  width="100%" height="100%" noclick="1" texture="/ui/shared/textures/scoreboard_highlight01.tga" visible="0"/>
+	
+	<template name="ladderHeaderEntry">
+		<panel width="{width}" noclick="1">
+			<label color="#4f7e87" outline="1" outlinecolor="black" font="maindyn_16" textalign="{textalign=left}" content="{content}" noclick="1" />
+		</panel>
+	</template>
+	
+	<template name="ladderEntry">
+		<panel width="{width}" noclick="1">
+			<label name="{id}" style="labelBase" color=".8 .8 .8 1" font="maindyn_18" textalign="{textalign=left}" content="{content}" noclick="1" />
+		</panel>
+	</template>
+	
+	<template name="ladderEntryX">
+		<panel x="{x}" width="{width}" noclick="1">
+			<label name="{id}" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="{textalign=left}" textvalign="center" content="{content}" noclick="1" />
+		</panel>
+	</template>
+
+	<template name="ladderEntryClickable">
+		<panel noclick="0" name="{id}_parent" grow="1" regrow="1" growinvis="0" valign="center"  >
+			<label name="{id}" color="{color=#ebebeb}" fitx="1" fity="1" valign="center" style="labelBase" font="maindyn_20" textalign="{textalign=left}" textvalign="center" content="{content}" noclick="1" />
+		</panel>
+	</template>
+	
+	<template name="ladderRow">
+		<panel style="ladderRowParent" noclick="0" name="ladderEntry_parent_{id}" >	
+			<panel style="ladderRow" color="{color}" texture="{texture}" noclick="1" />			
+			<panel height="1s" color="0 0 0 0.2" valign="bottom" noclick="1" />		
+			<panel style="ladderRow">
+				<panel y="8s" width="-30s" align="center" float="right" noclick="1">
+					<instance name="ladderEntry" id="ladderEntry_position_{id}"	width="15%"  content="{rank}"		textalign="center"  />
+					<instance name="ladderEntry" id="ladderEntry_player_{id}"	width="45%"  content="{displayname}"					/>
+					<instance name="ladderEntry" id="ladderEntry_points_{id}"	width="20%"  content="{rating}"		textalign="center"	/>
+					<instance name="ladderEntry" id="ladderEntry_change_{id}"	width="20%"  content="{points}"		textalign="center"	/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="ladder_data">
+		<panel height="-12s" noclick="1">		
+			<frame texture="/ui/elements:rounded_bg_white" align="right" float="bottom" color="0 0.07 0.09 0.8" borderthickness="0.8h" noclick="1">
+				<frame style="ladderShadow" />
+				<panel y="0h" x="0" height="44s" color="#00090d" noclick="1">
+					<panel y="16s" x="23s" width="-90s" float="right" noclick="1">
+						<instance name="ladderHeaderEntry" width="15%"  content="ladder_position"		textalign="center"  />
+						<instance name="ladderHeaderEntry" width="45%" 	content="ladder_player"							/>
+						<instance name="ladderHeaderEntry" width="20%"  content="postgame_acct_rating"	textalign="center"	/>
+						<instance name="ladderHeaderEntry" width="20%"  content="ladder_points"			textalign="center"	/>
+					</panel>
+				</panel>
+				
+				<panel height="-54s" noclick="1">
+					<image texture="/ui/shared/textures/inside_glow.tga" align="right" color="0 0 0 0.6" noclick="1"/>
+
+					<scrollbox name="ladder_row_scrollbar" noclick="1" float="bottom" width="-44s"
+						onshow="SetClipAreaToChild(); SetVScrollbarStep('30s');"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbaroffset="0h" scrollbarsize="32s" handlewidth="32s" handleheight="64s" vscrollbar="1" exteriorscrollbars="1"
+						hscrollbar="0" horizontal="false"							
+					>
+					</scrollbox>
+				</panel>
+			</frame>
+			
+			<frame texture="/ui/shared/frames/stone.tga" align="right" color="invisible" borderthickness="50s" bordercolor="white" noclick="1">
+				<image texture="/ui/shared/textures/stone_corner_tl.tga" y="-2s" x="-2s" height="54s" width="54s" align="left" valign="top" noclick="1" />
+				<image texture="/ui/shared/textures/stone_corner_tr.tga" y="-2s" x="2s" height="54s" width="54s" align="right" valign="top" noclick="1" />
+				<image texture="/ui/shared/textures/stone_corner_bl.tga" y="2s" x="-2s" height="54s" width="54s" align="left" valign="bottom" noclick="1" />
+				<image texture="/ui/shared/textures/stone_corner_br.tga" y="2s" x="2s" height="54s" width="54s" align="right" valign="bottom" noclick="1" />				
+				<image texture="/ui/shared/textures/decal_orb.tga" y="-13s" x="-13s" height="46s" width="46s" align="left" valign="top" noclick="1" />
+				<image texture="/ui/shared/textures/decal_orb.tga" y="-13s" x="15s" height="46s" width="46s" align="right" valign="top" noclick="1" />
+			</frame>
+
+		</panel>
+	</template>
+	
+	<template name="miniLadderHeaderEntry">
+		<panel width="{width}" noclick="1" >
+			<label font="subdyn_11" style="labelBase" color="1 1 1 .6" textalign="{textalign=left}" content="{content}" noclick="1" />
+		</panel>
+	</template>	
+	
+	<template name="miniLadderRow">
+		<panel noclick="0" name="ladderEntry_parent_{id}" height="23s" passivechildren="1" >
+			<panel width="100%" float="right" padding="1s" noclick="1">
+				<instance name="ladderEntry" color="{color}" id="ladderEntry_position_{id}"	width="38s"  content="{rank}"		textalign="center"  />
+				<instance name="ladderEntry" color="{color}" id="ladderEntry_player_{id}"	width="168s"  content="{displayname}"					/>
+				<instance name="ladderEntry" color="{color}" id="ladderEntry_points_{id}"	width="60s"  content="{rating}"		textalign="center"	/>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="miniLadder_data">
+		<panel y="{y}" noclick="1" name="ladder_data_parent{index}" visible="{visible=1}">			
+			<panel height="18s" float="right" noclick="1" padding="1s" >
+				<instance name="miniLadderHeaderEntry" width="38s"  content="ladder_slot_caps"		textalign="center"  />
+				<instance name="miniLadderHeaderEntry" width="168s" content="ladder_playername_caps"							/>
+				<instance name="miniLadderHeaderEntry" width="60s"  content="ladder_medals_caps"	textalign="center"	/>
+			</panel>			
+			<scrollbox name="ladder_row_scrollbar{index}" noclick="1" float="bottom" width="100%" y="22s"
+				onshow="SetClipAreaToChild(); SetVScrollbarStep('30s');"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				scrollbaroffset="0h" scrollbarsize="24s" handlewidth="24s" handleheight="48s" vscrollbar="1" exteriorscrollbars="0"
+				hscrollbar="0" horizontal="false"							
+			>
+			</scrollbox>
+		</panel>
+	</template>		
+	
+</package>

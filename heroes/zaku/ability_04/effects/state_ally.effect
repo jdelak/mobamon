@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			
+			<light
+				expirelife="250"
+				startcolor="2 1.5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="200"
+				position="0 0 150"
+			
+			/>
+<!--
+			<light
+				life="500"
+				startcolor="2 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="150"
+				endfalloffend="250"
+				position="0 0 150"
+			
+			/>
+-->
+			
+<!--
+			<groundsprite
+				expirelife="500"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				scale="1"
+				startcolor=".6 .3 0"
+				endcolor="0 0 0"
+				minyaw="0"
+				maxyaw="360"
+			/>
+-->
+			
+
+			<model
+				name="shell"
+				bone="_bone_centerofchest"
+				expirelife="0"
+				position="0 0 0"
+				model="bug_shield/model.mdf"
+				anim="idle"
+				yawspeed="360"
+				startscale=".45"
+				endscale=".45"
+				color="1 1 1"
+				startalpha="1"
+				endalpha="0"
+				directionalspace="world"
+			>
+<!--
+				<template name="">
+			
+					<light
+						bone="{zbone}"
+						life="1000"
+						startcolor="0 5 0"
+						midcolor="0 5 0"
+						endcolor="0 5 0"
+						falloffstart="00"
+						falloffend="100"
+						position="0 0 0"
+						loop="true"
+					
+					/>
+
+				</template>
+				
+				<instance name="" zbone="_bone_fx_04"/>
+				<instance name="" zbone="_bone_fx_05"/>
+				<instance name="" zbone="_bone_fx_06"/>
+-->
+				<template name="vines">
+				
+					<beam
+						expirelife="500"
+						bone_a="{zbone}"
+						bone_b="{zboneb}"
+						size="80"
+						color="1 .6 0"
+						startalpha="1"
+						endalpha="0"
+						material="/shared/effects/smaterials/web_1.material"
+						depthbias="-25"
+					/>
+					
+					<beam
+						expirelife="500"
+						bone_a="{zbone}"
+						bone_b="{zboneb}"
+						size="80"
+						color="1 .6 0"
+						startalpha="1"
+						endalpha="0"
+						material="/shared/effects/smaterials/web_1.material"
+						depthbias="-25"
+					/>
+
+				</template>
+
+				<instance name="vines" zbone="_bone_fx_01" zboneb="_bone_fx_02"/>
+				<instance name="vines" zbone="_bone_fx_02" zboneb="_bone_fx_03"/>
+				<instance name="vines" zbone="_bone_fx_03" zboneb="_bone_fx_01"/>
+
+				
+				
+				
+				
+				
+
+				
+				
+				
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<model
+				bone="_bone_overhead"
+				expirelife="125"
+				model="mask/model.mdf"
+				material="mask/material.material"
+				startscale="1.4"
+				endscale="0"
+				anim="idle"
+				color="1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+				midalphapos=".8"
+				directionalspace="world"
+				yaw="180"
+				pitch="20"
+			>
+				<billboard
+					expirelife="250"
+					bone="_bone_root"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor=".5 .25 0"
+					endcolor="0 0 0"
+					size="85"
+					depthbias="-75"
+				/>
+			</model>
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+   <thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+ 	<waitfordeath instance="instance0" />
+   </thread>
+
+</effect>

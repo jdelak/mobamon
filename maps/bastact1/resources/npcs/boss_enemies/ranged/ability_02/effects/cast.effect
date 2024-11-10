@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".8">
+
+			
+
+			<simpleemitter
+				bone="_bone_weapon"
+				life="500"
+				count="1"
+				spawnrate="1000"
+				particlelife="700"
+				gravity="0"
+				acceleration="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/star_additive.material"
+				minangle="0"
+				maxangle="0"
+				speed="0"
+				direction="0 0 1"
+			>
+				<particle
+					turn="1"
+					pitch="50"
+				>
+					<!-- cast -->
+						<!-- Start shape -->
+					<simpleemitter
+						bone="_bone_weapon"
+						life="500"
+						count="3"
+						spawnrate="1000"
+						particlelife="300"
+						gravity="0"
+						acceleration="0"
+						position="0 0 0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/star_additive.material"
+						minangle="0"
+						maxangle="0"
+						speed="0"
+						direction="0 0 1"
+						directionalspace="local"
+						particledirectionalspace="local"
+					>
+						<particle
+							turn="1"
+							startcolor="1 0.7 0"
+							endcolor="0 0 0"
+							startsize="25"
+							endsize="250"
+							lockup="1"
+							lockright="1"
+							yaw="0"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						bone="_bone_weapon"
+						life="500"
+						count="3"
+						spawnrate="1000"
+						particlelife="300"
+						gravity="0"
+						acceleration="0"
+						position="0 0 0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/star_additive.material"
+						minangle="0"
+						maxangle="0"
+						speed="0"
+						direction="0 0 1"
+						directionalspace="local"
+						particledirectionalspace="local"
+					>
+						<particle
+							turn="1"
+							startcolor="1 0.7 0"
+							endcolor="0 0 0"
+							startsize="25"
+							endsize="250"
+							lockup="1"
+							lockright="1"
+							yaw="0"
+							angle="45"
+						/>
+					</simpleemitter>
+					
+						<!-- Circles out -->
+					<simpleemitter
+						bone="_bone_weapon"
+						life="1000"
+						count="1"
+						spawnrate="100"
+						particlelife="300"
+						gravity="0"
+						acceleration="0"
+						speed="0"
+						minangle="0"
+						maxangle="0"
+						position="0 0 0"
+						offsetsphere="0"
+						direction="0 0 1"
+						material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+						directionalspace="local"
+						particledirectionalspace="local"
+						depthbias="-100"
+					>
+						<particle
+							turn="1"
+							startcolor="0"
+							midcolor="1 0.7 0"
+							endcolor="0"
+							startscale="0"
+							endscale="200"
+							lockup="1"
+							lockright="1"
+							pitch="70"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						bone="_bone_weapon"
+						delay="200"
+						life="500"
+						count="1"
+						spawnrate="100"
+						particlelife="200"
+						gravity="0"
+						acceleration="0"
+						speed="0"
+						position="0 0 0"
+						offsetsphere="0"
+
+						direction="0 0 1"
+						material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+						directionalspace="local"
+						particledirectionalspace="local"
+						depthbias="-100"
+					>
+						<particle
+							turn="1"
+							startcolor="0"
+							midcolor="1 0.7 0"
+							endcolor="0"
+							startscale="100"
+							midscale="300"
+							endscale="350"
+							lockup="1"
+							lockright="1"
+							pitch="70"
+						/>
+					</simpleemitter>
+					
+					<!-- <billboard
+						bone="CTL_arrow"
+						position="0"
+						material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"					
+						startcolor="1"
+						midcolor="1 0.7 0"
+						endcolor="0 0 0"
+						
+						startscale="3"
+						midscale="3"
+						endscale="3.5"
+						directionalspace="local"	
+						lockright="1"
+						lockup="1"	
+						pitch="0"	
+						depthbias="-50"						
+					/> -->
+					
+						<!--Sparks in-->
+					<simpleemitter
+						bone="_bone_weapon"
+						life="1000"
+						count="50"
+						spawnrate="200"
+						particlelife="200"
+						gravity="0"
+						minangle="0"
+						maxangle="360"
+						drag="0"
+						acceleration="0.0"
+						position="0 0 0"
+					>
+						<particle
+							turn="true"
+							minyaw="0"
+							maxyaw="360"
+						>
+
+							<model
+								life="200"
+								model="twirl/model.mdf"
+								anim="idle"
+								position="0 0 0"
+								startscale="3"
+								endscale="3"
+								
+							>
+								<billboard
+									bone="_bone_emissionPoint"
+									life="200"
+									lockup="1"
+									lockright="1"
+									yaw="90"
+									startcolor="0"
+									midcolor="1 0.7 0"
+									endcolor="0"
+									minscale="0.2"
+									maxscale="0.4"
+									material="/shared/effects/materials/bow_glow_03.material"
+									directionalspace="local"
+								/>
+							</model>
+							
+						</particle>
+					</simpleemitter>
+					
+						<!--Stars out -->
+					<simpleemitter
+						bone="_bone_weapon"
+						delay="200"
+						life="500"
+						count="1"
+						spawnrate="100"
+						particlelife="2000"
+						position="0 0 0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						depthbias="-25"
+					>
+						<particle
+							turn="1"
+							pitch="0"
+							minangle="0"
+							maxangle="360"
+						>
+							
+							<simpleemitter
+								
+								life="500"
+								count="3"
+								spawnrate="1000"
+								particlelife="200"
+								gravity="0"
+								acceleration="0"
+								position="0 0 0"
+								offsetsphere="0 0 0"
+								material="/shared/effects/smaterials/star_additive.material"
+								particledirectionalspace="local"
+								depthbias="-25"
+								startparticlecolor="0.5"
+								endparticlecolor="0"
+							>
+								<particle
+									minangle="0"
+									maxangle="360"
+									startcolor="1 0.7 0"
+									endcolor="0 0 0"
+									startsize="50"
+									midsize="400"
+									endsize="0"
+									lockup="1"
+									lockright="1"
+									
+								/>
+							</simpleemitter>
+							
+							<simpleemitter
+								
+								life="500"
+								count="3"
+								spawnrate="1000"
+								particlelife="200"
+								gravity="0"
+								acceleration="0"
+								position="0 0 0"
+								offsetsphere="0 0 0"
+								material="/shared/effects/smaterials/star_additive.material"
+								particledirectionalspace="local"
+								depthbias="-25"
+								startparticlecolor="0.5"
+								endparticlecolor="0"
+							>
+								<particle
+									minangle="0"
+									maxangle="360"
+									startcolor="1 0.7 0"
+									endcolor="0 0 0"
+									startsize="50"
+									midsize="600"
+									endsize="0"
+									lockup="1"
+									lockright="1"
+									
+								/>
+							</simpleemitter>
+							
+							<simpleemitter
+								
+								life="500"
+								count="3"
+								spawnrate="1000"
+								particlelife="200"
+								gravity="0"
+								acceleration="0"
+								position="0 0 0"
+								offsetsphere="0 0 0"
+								material="/shared/effects/smaterials/whitecircleblurred_add_unlit.material"
+								particledirectionalspace="local"
+								depthbias="-10"
+							>
+								<particle
+									
+									startcolor="1 0.7 0"
+									endcolor="0 0 0"
+									startsize="50"
+									midsize="200"
+									endsize="0"
+									lockup="1"
+									lockright="1"
+									
+								/>
+							</simpleemitter>
+							
+												
+							<simpleemitter
+								
+								life="500"
+								count="1"
+								spawnrate="1000"
+								particlelife="200"
+								gravity="0"
+								acceleration="0"
+								position="0 0 0"
+								offsetsphere="0 0 0"
+								material="/shared/effects/smaterials/star_additive.material"
+								particledirectionalspace="local"
+								depthbias="-25"
+							>
+								<particle
+									
+									startcolor="1"
+									endcolor="0 0 0"
+									startsize="40"
+									midsize="300"
+									endsize="0"
+									lockup="1"
+									lockright="1"
+									
+								/>
+							</simpleemitter>
+							
+							<simpleemitter
+								
+								life="500"
+								count="1"
+								spawnrate="1000"
+								particlelife="200"
+								gravity="0"
+								acceleration="0"
+								position="0 0 0"
+								offsetsphere="0 0 0"
+								material="/shared/effects/smaterials/star_additive.material"
+								particledirectionalspace="local"
+								depthbias="-25"
+							>
+								<particle
+									minangle="0"
+									maxangle="360"
+									startcolor="1"
+									endcolor="0 0 0"
+									startsize="40"
+									midsize="300"
+									endsize="0"
+									lockup="1"
+									lockright="1"
+									
+								/>
+							</simpleemitter>
+						</particle>
+					</simpleemitter>
+					
+					<simpleemitter
+						bone="_bone_weapon"
+						delay="200"
+						count="6"
+						spawnrate="300"
+						offsetsphere="0"
+						position="0 0 0"
+						depthbias="0"
+						particlelife="5000"
+						direction="0 1 0"
+						minangle="0"
+						maxangle="0"
+						
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								position="0 -20 10"
+								material="/shared/effects/smaterials/whitedot.material"						
+								startcolor="0 0 0"
+								midcolor="1 0.7 0"
+								endcolor="0 0 0"
+								minlife="100"
+								maxlife="100"
+								startscale="1"
+								endscale="1"	
+								minheight="20"
+								maxheight="30"
+								minwidth="300"
+								maxwidth="600"
+								directionalspace="local"	
+								lockright="1"
+								lockup="1"	
+								pitch="90"	
+								minroll="0"						
+								maxroll="180"
+								depthbias="-50"						
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					<light
+						bone="_bone_weapon"
+						life="500"
+						position="0 0 0"
+						startcolor="0 0 0"
+						midcolor="3 2 0"
+						endcolor="0"
+						falloffstart="50"
+						startfalloffend="150"
+						endfalloffend="250"
+					/>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+		
+		<particlesystem name="system1" space="world" scale="1">
+			<simpleemitter
+				bone="_bone_weapon"
+				position="0 0 0"
+				delay="200"
+				life="500"
+				spawnrate="5000"
+				count="10"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="300"
+				maxspeed="500"
+				direction="0 0 1"
+				drag="0"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1"
+				endparticlecolor="0"
+				minangle="0"
+				maxangle="360"
+			>
+				<particle
+					height="20"
+					width="2"
+					scale="2"
+					startcolor="1 1 1"
+					endcolor="1 0.7 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die life="500"
+					spawnrate="5000"
+					count="10"/> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

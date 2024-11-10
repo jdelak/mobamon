@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Carter_Ability2"
+
+	radius="250"	
+	touchpropradius="200"
+	touchpropanim="flamehit"
+	targetselection="all"
+	targetscheme="enemy_units_and_buildings"
+	effecttype="Magic"
+	impactdelay="0"
+	impacteffect=""
+>
+	
+	<onimpact>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<recordheroaggression  />
+				<aggression />
+				<getconstant name="damage"/>
+				<setvar1 a="result" />
+				<damage amount="1" b="var1" op="mult" effecttype="Magic Splash"/>
+				<applystate name="State_Carter_Ability2_Slow" target="target_entity" duration="4000" pushentity="true" />
+				<playeffect effect="effects/impact_enemy.effect" source="target_entity" target="target_entity" occlude="true" />	
+					
+					
+					
+				<!-- logic for burn from 3rd skill -->
+				<compare a="param" b="1" op="eq">							
+					<pushability target="this_owner_entity" entity="this_owner_entity" name="Ability_Carter3" />
+					<getconstant name="damage_increase" entity="stack_entity" adjustmentsource="this_owner_entity" />
+					<setvar2 a="result" b="100" op="div" />
+					<setvar0 a="var1" b="var2" op="mult" />
+					<applystate name="State_Carter_Ability3_Projectiles" stack="true" inflictor="this_owner_entity" source="this_owner_entity" target="target_entity" pushentity="true" duration="950"/>
+					<setaccumulator entity="stack_entity" value="var0" />
+				</compare>
+				
+				
+			</onimpact>
+		</combatevent>
+	</onimpact>
+	
+</affector>

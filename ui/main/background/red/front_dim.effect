@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world">
+
+			<light
+				bone="_bone_fx_03"
+				life="20000"
+				startcolor="0 1 2"
+				midcolor="0 4 5"
+				endcolor="0 1 2"
+				midcolorpos=".25"
+				falloffstart="0"
+				falloffend="1000"
+				position="0 250 0"
+				loop="true"				
+			/>
+			
+			<light
+				bone="_bone_fx_04"
+				life="20000"
+				startcolor="0 1 2"
+				midcolor="0 4 5"
+				endcolor="0 1 2"
+				midcolorpos=".25"
+				falloffstart="0"
+				falloffend="1000"
+				position="0 250 0"
+				loop="true"
+			/>
+
+			<model
+				parentskeleton="1"				
+				parentmodel="1"				
+				scale="1"
+				position="0 0 0"
+				life="20000"
+				material="model/glow_1.material"
+				startcolor="1 1 1"
+				endcolor="1 1 1"
+				
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".25"
+				loop="true"
+			/>
+
+			<light
+				bone="_bone_fx_01"
+				life="8000"
+				color="0 2 3"
+				falloffstart="0"
+				falloffend="1000"
+				position="0 250 0"
+				loop="true"
+			/>
+			
+			<light
+				bone="_bone_fx_02"
+				life="8000"
+				color="0 2 3"
+				falloffstart="0"
+				falloffend="1000"
+				position="0 250 0"
+				loop="true"
+			/>
+
+			<billboard
+				bone="_bone_fx_09"
+				life="20000"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .125 .15"
+				midcolor="0 .125 .15"
+				endcolor="0 .125 .15"
+				midcolorpos=".25"
+				scale="20"
+
+				position="0 0 0"
+				loop="true"
+			/>
+			
+			<billboard
+				bone="_bone_fx_10"
+				life="20000"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .125 .15"
+				midcolor="0 .125 .15"
+				endcolor="0 .125 .15"
+				midcolorpos=".25"
+				scale="20"
+				
+				position="0 0 0"
+				loop="true"
+			/>
+			
+			<billboard
+				bone="_bone_fx_11"
+				life="20000"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .125 .15"
+				midcolor="0 .125 .15"
+				endcolor="0 .125 .15"
+				midcolorpos=".25"
+				scale="20"
+				
+				position="0 0 0"
+				loop="true"
+			/>
+			
+			<billboard
+				bone="_bone_fx_12"
+				life="20000"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .125 .15"
+				midcolor="0 .125 .15"
+				endcolor="0 .125 .15"
+				midcolorpos=".25"
+				scale="20"
+				position="0 0 0"
+				loop="true"
+			/>
+
+			<model
+				parentskeleton="1"				
+				parentmodel="1"				
+				scale="1"
+				position="0 0 0"
+				life="20000"
+				material="model/glow_4.material"
+				startcolor=".8 .9 1"
+				endcolor=".8 .9 1"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".25"
+				loop="true"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />		
+	</thread>
+
+</effect>

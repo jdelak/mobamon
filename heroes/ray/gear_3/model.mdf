@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+
+	<skin name="black">
+		<reference mesh="10k_ray"			material="material_black.material" />
+		<reference mesh="10k_tank"			material="material_black.material" />
+		<reference mesh="3k_ray"			material="material_black.material" />
+		<reference mesh="1k_ray"			material="material_black.material" />
+		<reference mesh="lensesMode1001"	material="glass_material.material" />
+	</skin>
+		
+	<skin name="green">
+		<reference mesh="10k_ray"			material="material_green.material" />
+		<reference mesh="10k_tank"			material="material_green.material" />
+		<reference mesh="3k_ray"			material="material_green.material" />
+		<reference mesh="1k_ray"			material="material_green.material" />
+		<reference mesh="lensesMode1001"	material="glass_material.material" />
+	</skin>
+		
+	<skin name="pink">
+		<reference mesh="10k_ray"			material="material_pink.material" />
+		<reference mesh="10k_tank"			material="material_pink.material" />
+		<reference mesh="3k_ray"			material="material_pink.material" />
+		<reference mesh="1k_ray"			material="material_pink.material" />
+		<reference mesh="lensesMode1001"	material="glass_material.material" />
+	</skin>
+	
+	<skin name="red">
+		<reference mesh="10k_ray"			material="material_red.material" />
+		<reference mesh="10k_tank"			material="material_red.material" />
+		<reference mesh="3k_ray"			material="material_red.material" />
+		<reference mesh="1k_ray"			material="material_red.material" />
+		<reference mesh="lensesMode1001"	material="glass_material.material" />
+	</skin>
+	
+	
+		
+	<anim name="idle" clip="clips/default_1.clip" fps="30" loop="true"/>
+
+	<anim name="portrait" clip="clips/portrait_1.clip" fps="30" loop="true"/>
+
+	<anim name="bored_1" clip="clips/bored_1.clip" fps="30" blendtime="250">
+		<frameevent frame="1" cmd="StartEffect effects/bored.effect"/>
+	</anim>
+	
+	<anim name="port_out" clip="clips/port_out.clip" />
+	
+	<anim name="port_in" clip="clips/port_in.clip" />
+	
+	
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="30" loop="false" >
+		<frameevent frame="1" cmd="PlayStreamLinear ../sounds/voice/vo_emote_%.wav 1000 2500 .70"/>
+	</anim>
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+	
+	<anim name="item_1" clip="clips/item_1.clip"/>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="40" />
+
+	<anim name="ability_2" clip="clips/ability_2.clip" fps="30" />
+
+	<anim name="ability_3" clip="clips/ability_3.clip" fps="30" />
+
+	<anim name="ability_4b" clip="clips/ability_4.clip" fps="30" />
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="30" />
+
+	<anim name="attack_2" clip="clips/attack_1.clip" fps="30" />
+
+	<anim name="walk_1" clip="clips/walk_1.clip" fps="30" loop="true">
+		<frameevent frame="1" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_move.wav 200 1500 .05"/>
+		<frameevent frame="8" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="8" cmd="PlaySoundLinear sounds/sfx_move.wav 200 1500 .05"/>
+		<frameevent frame="15" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="15" cmd="PlaySoundLinear sounds/sfx_move.wav 200 1500 .05"/>
+		<frameevent frame="23" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="23" cmd="PlaySoundLinear sounds/sfx_move.wav 200 1500 .05"/>
+	</anim>
+
+	<anim name="death_1" clip="clips/death_1.clip" fps="30" loop="true" loopbackframe="-1" >
+		<frameevent frame="24" cmd="PlaySoundLinear sounds/sfx_death_foley.wav 500 2200 0.55"/>
+	</anim>
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true" loopbackframe="10" />
+	
+</model>

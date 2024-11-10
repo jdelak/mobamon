@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="one_minus">
+	<dependency name="A" type="*" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="A" type="float" />
+		<output type="float" name="Out" />
+	</case>
+	<case>
+		<dependency name="A" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="A" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="A" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = 1.0f - A;
+	?>
+	<?glsl
+		Out = 1.0f - A;
+	?>
+</node>

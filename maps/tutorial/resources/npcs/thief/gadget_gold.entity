@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Tutorial_Thief_Gold"
+	
+	icon=""
+	portrait=""
+	model="chest/model.mdf"
+	
+	preglobalscale="1"
+	modelscale="1"
+	effectscale="1"
+	boundsheight="64"
+	boundsradius="64"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+
+	sightrangeday="100"
+	sightrangenight="100"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	
+	invulnerable="true"
+	flying="false"
+	drawonmap="false"
+	
+	unittype="Tutorial_Gold"
+
+>
+
+	<onframe>
+		<areaofeffect
+			radius="150"
+			targetselection="closest"
+			targetscheme="all_heroes"
+			maxtotalimpacts="1"
+		>
+			<compare a="target_entity" b="this_proxy_entity" op="eq" >
+				<setscriptvalue name="gold_collected" value="1" />
+				<playeffect effect="effects/collectgold.effect" source="target_entity" target="" occlude="true" />
+				<delete target="this_entity" />
+			</compare>
+		</areaofeffect>
+	</onframe>
+
+
+</gadget>

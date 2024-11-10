@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			life="500"
+			startcolor="5 2.5 1"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+<!--
+			<model
+				life="500"
+				startcolor="5 2.5 1"
+				endcolor="1 1 1"
+				parentskeleton="1"
+				parentmodel="1"
+				position="0 0 0"
+				startscale=".5"
+				midscale=".5"
+				endscale="1"
+				startalpha="1"
+				endalpha="1"
+			/>
+-->
+
+			
+		</particlesystem>
+			
+		<particlesystem name="system1" space="world" scale=".75">
+		
+		
+			<light
+				life="600"
+				startcolor="5 1 0"
+				midcolor="5 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="450"
+				position="0 0 50"
+			/>
+		
+		
+			
+			<template name="">
+
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"
+					count="5"
+					spawnrate="1055"
+					particlelife="200"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="0"
+				>
+					<particle
+						color="1 .25 0"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="200"
+						endscale="400"
+						turn="true"
+					/>
+					<particle
+						color="1 .5 0"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="200"
+						endscale="400"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"
+					count="5"
+					spawnrate="1055"
+					particlelife="200"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="0"
+				>
+					<particle
+						color="1 .25 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="150"
+						endscale="300"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<billboard
+					delay="{zdelay}"
+					position="{zpos}"
+					life="500"
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					startsize="600"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+				
+				<billboard
+					delay="{zdelay}"
+					position="{zpos}"
+					life="500"
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					startsize="600"
+					endsize="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+				
+			</template>
+			
+			<instance name="" zpos="0 0 0" zdelay="0"/>  
+			<instance name="" zpos="0 0 75" zdelay="125"/>  
+
+
+		</particlesystem>
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0"  particlesystem="system0" />
+		<spawnparticlesystem instance="instance1"  particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+</effect>

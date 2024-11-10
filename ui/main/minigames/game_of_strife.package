@@ -1,0 +1,99 @@
+<package>
+	<!--
+	<template name="game_of_strife_question_template">
+		<panel name="game_of_strife_ability_{id}" height="16.2h" width="100%" noclick="1" passivechildren="1" clip="1">
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+			<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+			
+			<panel hmargin="1.0h" vmargin="0.8h" noclick="1" >
+				<panel width="100@" height="100%" noclick="1">
+					<image name="game_of_strife_ability_{id}_icon" texture="/ui/shared/textures/ability_coverup.tga" noclick="1"/>
+					<frame borderthickness="0.2h" color="invisible" bordercolor="black" noclick="1"/>
+				</panel>
+				<panel height="100%" width="-110@" align="right" noclick="1" float="bottom">
+					<label name="game_of_strife_ability_{id}_name" wrap="1" textvalign="top" y="0.8h" fity="1" font="maindyn_26" color="white" outline="true" content="" noclick="1"/>
+					<label name="game_of_strife_ability_{id}_description" wrap="1" fity="1" textvalign="center" height="2h" font="maindyn_18" color=".8 .8 .8 1" outline="true" content="" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>	
+
+	<template name="game_of_strife_ability_template">
+		<panel name="game_of_strife_ability_{id}" group="game_of_strife_abilities" height="8.6h" width="100%" noclick="0" passivechildren="1" clip="1">
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+			<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+			<frame name="game_of_strife_ability_{id}_frame" color="1 1 1 0.55" texture="/ui/elements:roundframe" borderthickness="0.75h" noclick="1" visible="0" />
+			<frame name="game_of_strife_ability_{id}_frame2" bordercolor="1 1 1 0.55" color="invisible" texture="/ui/elements:roundframe" borderthickness="0.75h" valign="center" align="center" width="-1.2h" height="-1.2h" noclick="1" visible="0" />
+			
+			<panel hmargin="1.0h" vmargin="0.8h" noclick="1" >
+				<panel width="100@" height="100%" noclick="1">
+					<image name="game_of_strife_ability_{id}_icon" texture="/ui/shared/textures/ability_coverup.tga" noclick="1"/>
+					<frame name="game_of_strife_ability_{id}_border" borderthickness="0.2h" group="game_of_strife_abilities_borders" color="invisible" bordercolor="black" noclick="1"/>
+				</panel>
+				<panel height="100%" width="-110@" align="right" noclick="1" >
+					<label name="game_of_strife_ability_{id}_name" textvalign="top" fity="1" font="maindyn_20" color="white" outline="true" content="" noclick="1"/>
+					<label name="game_of_strife_ability_{id}_description" y="2.3h" wrap="1" fity="1" textvalign="center" height="2h" font="maindyn_14" color=".8 .8 .8 1" outline="true" content="" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>	
+
+	<panel name="main_game_of_strife" visible="0" color="invisible" onshow="BringToFront();" noclick="1" >
+		<panel noclick="0" width="76h" height="42.5h" align="center" valign="center" cangrab="1" >
+			
+			<instance y="0" name="dialogWrapper1" inneralpha="0 0 0 .9" noclick="1" />
+			
+			<panel noclick="1" width="-1.5h" align="center" valign="center" >	
+				
+				<panel y="0" align="center" float="bottom" padding="0.75h" width="100%" height="5.75h" noclick="1" >
+					<panel height="0" noclick="1"/>
+					<panel height="5.0h" noclick="1">
+						<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="1"/>
+						<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="1"/>
+						<label name="game_of_strife_header_1" textvalign="center" x="0.75h" font="maindyn_24" style="goldColor" outline="true" outlinecolor="0 0 0 .7" content="game_of_strife_header" noclick="1"/>
+						<label name="game_of_strife_header_2" textalign="right"  align="right" textvalign="center" width="-5h" x="-6.5h" font="maindyn_20" color="0.8 1 0.8" outline="true" outlinecolor="0 0 0 .7" content="" noclick="1"/>
+						<panel align="right" grow="1" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h" noclick="1">
+							<panel width="100@" noclick="1">
+								<instance name="closeXButton" buttonName="main_game_of_strife_closex" onclicklua="self:GetWidget('main_game_of_strife'):SetVisible(false)" align="center" valign="center"/>
+							</panel>
+						</panel>
+					</panel>
+				</panel>				
+					
+				<panel y="7.0h" width="100%" height="-19h" align="center" valign="top" noclick="1" >
+					<instance name="game_of_strife_question_template" id="0" noclick="1" />
+					<panel name="game_of_strife_correct" visible="0" color="0 0 0 0.75" noclick="1">
+						<label textalign="center" textvalign="center" font="maindyn_30" color="0 1 0 1" outline="true" outlinecolor="0 0 0 .7" content="game_of_strife_correct" noclick="1"/>
+					</panel>
+					<panel name="game_of_strife_incorrect" visible="0" color="0 0 0 0.75" noclick="1" >
+						<label textalign="center" textvalign="center" font="maindyn_30" color="1 0 0 1" outline="true" outlinecolor="0 0 0 .7" content="game_of_strife_incorrect" noclick="1"/>
+					</panel>					
+				</panel>
+				
+				<panel noclick="1" width="100%" height="18h" align="center" valign="bottom" >
+					<panel noclick="1" width="100%" height="50%" align="center" valign="top" >
+						<panel noclick="1" width="49.5%" height="100%" align="left" valign="top" >
+							<instance name="game_of_strife_ability_template" id="1" />
+						</panel>				
+						<panel noclick="1" width="49.5%" height="100%" align="right" valign="top" >
+							<instance name="game_of_strife_ability_template" id="2" />
+						</panel>
+					</panel>				
+					<panel noclick="1" width="100%" height="50%" align="center" valign="bottom" >
+						<panel noclick="1" width="49.5%" height="100%" align="left" valign="top" >
+							<instance name="game_of_strife_ability_template" id="3" />
+						</panel>				
+						<panel noclick="1" width="49.5%" height="100%" align="right" valign="top" >
+							<instance name="game_of_strife_ability_template" id="4" />
+						</panel>				
+					</panel>				
+				</panel>	
+					
+			</panel>
+			
+		</panel>
+	</panel>
+
+	<lua file="game_of_strife.lua"/>
+	-->
+</package>	

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="terrain_normal">
+	<dependency name="Data0" type="float4" source="Data0" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="OutObject" type="float3" solution="ObjectNormal" />
+	<output name="OutWorld" type="float3" solution="WorldNormal" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float3 f3Data0 = Data0.xyz / 255.0f;
+			OutObject = float3(f3Data0.xy * 2.0f - 1.0f, f3Data0.z);
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float3 f3Data0 = Data0.xyz;
+			OutObject = float3(f3Data0.xy * 2.0f - 1.0f, f3Data0.z);
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec3 f3Data0 = Data0.xyz / 255.0f;
+			OutObject = vec3(f3Data0.xy * 2.0f - 1.0f, f3Data0.z);
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec3 f3Data0 = Data0.xyz / 255.0f;
+			OutObject = vec3(f3Data0.xy * 2.0f - 1.0f, f3Data0.z);
+			OutWorld = OutObject;
+		?>
+	</case>
+</node>

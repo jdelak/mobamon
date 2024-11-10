@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<familiar
+	name="Familiar_Tinker"
+	
+	icon="model_2\icon.tga"
+	portrait="model_2\icon.tga"
+	model="model_2\model.mdf"
+	skin=""
+	petselectannouncement="sounds/sfx_selectpet.wav"
+	
+	enabled="true"
+	
+	passiveeffect="ability_03/effects/state.effect"
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	preglobalscale="2"
+	modelscale="1.1"
+	effectscale="1"
+	boundsheight="64"
+	radiusheight="64"
+	boundsradius="16"
+	selectionradius="32"
+	targetoffset="0 0 0"
+	iscontrollable="false"
+	invulnerable="true"
+	hidealtinfo="true"
+	isselectable="false"
+	nothreat="true"
+	inheritvisibilityfromowner="true"
+	matchownermovespeed="true"
+
+	movespeed="1"
+	turnrate="900"
+	turnsmoothing="0.05"
+
+	maxmana="0"
+	manaregen="0"
+
+	resistance="0"
+	immunity="GadgetImmunity"
+	
+	unitwalking="true"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	
+	canattack="false"
+	attacktargetscheme="nothing"
+	attacktype="none"
+	combattype="Melee"
+
+	aggrorange="0"
+	sightrangeday="0"
+	sightrangenight="0"
+	
+	flying="true"
+	flyheight="0"
+	diewithowner="true"
+	unittype="EmeraldWardenpet AntiTP"
+	
+	corpsetime="0"
+	corpsefadetime="0"
+
+	corralmodelscale="0.685"
+	corralmodelposition="2 350 -7"
+	corralmodelorient="0 0 150"
+	
+	heroselectmodelscale=".85"
+	heroselectmodelposition="0 350 3,0 350 3,0 350 3"
+	heroselectmodelorient="0 0 220"
+
+	combinevisibilitywithowner="true"
+	
+	abilitypassive=""
+	abilitytriggered="Ability_Tinker_TriggeredPassive_1,Ability_Tinker_TriggeredPassive_2,Ability_Tinker_TriggeredPassive_3"
+	abilityactive="Ability_Tinker_Ult_1,Ability_Tinker_Ult_2,Ability_Tinker_Ult_3"
+>
+
+	<onframe>
+		<applystate name="State_Familiar_Follow_Logic" continuous="true" target="this_entity" />
+		<getlevel entity="this_owner_entity" />
+		<setvar0 a="result" />
+		<pushability entity="this_owner_entity" slot="16" />
+		<setlevel entity="stack_entity" value="var0" />
+		<pushability entity="this_owner_entity" slot="17" />
+		<setlevel entity="stack_entity" value="var0" />
+		<pushability entity="this_owner_entity" slot="18" />
+		<setlevel entity="stack_entity" value="var0" />
+	</onframe>
+	
+	<modifier key="no_tele" modpriority="100" passiveeffect="">
+		<onframe>
+			<distance source="this_entity" target="this_owner_entity" usepathing="true"/>
+			<setvar0 a="result" />
+			<compare a="var0" b="250" op="gt">
+				<applystate name="State_Tinker_MovementCatchup" continuous="true" timeout="750" proxy="this_owner_entity" target="this_entity" />
+			</compare>
+			<compare a="var0" b="600" op="gt">
+				<applystate name="State_Tinker_MovementCatchupExtreme" continuous="true" timeout="500" proxy="this_owner_entity" target="this_entity" />
+			</compare>
+			<condition test="not_hasorder" target="this_entity" source="this_entity">
+				<order command="follow" source="this_entity" target="this_owner_entity" />
+			</condition>
+			<condition test="stealthed" target="this_owner_entity">
+				<applystate name="State_Tinker_Ability4_Invis" continuous="true" target="this_entity" />
+			</condition>
+			<else>
+				<expirestate name="State_Tinker_Ability4_Invis" target="this_entity"/>
+			</else>
+			<getlevel entity="this_owner_entity" />
+			<setvar0 a="result" />
+			<pushability entity="this_owner_entity" slot="16" />
+			<setlevel entity="stack_entity" value="var0" />
+			<pushability entity="this_owner_entity" slot="17" />
+			<setlevel entity="stack_entity" value="var0" />
+			<pushability entity="this_owner_entity" slot="18" />
+			<setlevel entity="stack_entity" value="var0" />
+		</onframe>
+	</modifier>
+
+	<modifier key="passive_1" modpriority="1" abilitypassive="Ability_Tinker_Passive_1,Ability_Tinker_Passive_2,Ability_Tinker_Passive_3" />
+	<modifier key="baby" modpriority="1" altavatar="true" icon="model_1\icon.tga" portrait="model_1\icon.tga" model="model_1\model.mdf" corralmodelscale=".6" corralmodelposition="0 350 -7" corralmodelorient="0 0 150" heroselectmodelscale=".74" heroselectmodelposition="0 350 0" heroselectmodelorient="0 0 220" preglobalscale="2" modelscale="1" effectscale="1" />
+	<modifier key="adult" modpriority="1" altavatar="true" icon="model_3\icon.tga" portrait="model_3\icon.tga" model="model_3\model.mdf" corralmodelscale=".72" corralmodelposition="0 350 -7" corralmodelorient="0 0 160" heroselectmodelscale=".9" heroselectmodelposition="5 350 0" heroselectmodelorient="0 0 220" preglobalscale="2" modelscale="1.1" effectscale="1" />
+
+</familiar>

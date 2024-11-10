@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Slayer"
+	icon="icon.tga"
+	ishidden="true"
+
+>
+
+	<oninflict>
+		<addcharges />
+		<compare a="charges" b="3" op="ge">
+			<setcharges a="0" />
+			<applystate name="State_Slayer_Weakened" duration="6000" />
+		</compare>
+	</oninflict>
+	
+	<onrefresh>
+		<addcharges />
+		<compare a="charges" b="3" op="ge">
+			<setcharges a="0" />
+			<applystate name="State_Slayer_Weakened" duration="6000" />
+		</compare>
+	</onrefresh>
+
+	<modifier key="slayer_empower_1" modpriority="100"
+		maxcharges="5"
+		>
+
+		<oninflict>
+			<addcharges />
+			<compare a="charges" b="3" op="ge">
+				<setcharges a="0" />
+				<applystate name="State_Slayer_Weakened" duration="6000" />
+				<applystate name="state_Legendary_Slayer" duration="6000" />
+			</compare>
+		</oninflict>
+		
+		<onrefresh>
+			<addcharges />
+			<compare a="charges" b="3" op="ge">
+				<setcharges a="0" />
+				<applystate name="State_Slayer_Weakened" duration="6000" />
+				<applystate name="state_Legendary_Slayer" duration="6000" />
+			</compare>
+		</onrefresh>
+	</modifier>
+	
+	<modifier key="slayer_empower_2" modpriority="100"
+		maxcharges="5"
+		>
+
+		<oninflict>
+			<addcharges />
+			<compare a="charges" b="3" op="ge">
+				<setcharges a="0" />
+				<applystate name="State_Slayer_Weakened" duration="8000" />
+			</compare>
+		</oninflict>
+		
+		<onrefresh>
+			<addcharges />
+			<compare a="charges" b="3" op="ge">
+				<setcharges a="0" />
+				<applystate name="State_Slayer_Weakened" duration="8000" />
+			</compare>
+		</onrefresh>
+	</modifier>
+
+</state>

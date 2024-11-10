@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="state_bastact1_executioner_end_invincible"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+
+	ishidden="true"
+>
+
+<oninflicted>
+	<print text="State invincible applied"/>
+</oninflicted>
+
+	<ondamaged priority="1">
+    	<setvar0 a="source_health" b="damage_applied" op="sub" />
+		<setvar1 a="var0" b="source_maxhealth" op="div" />
+  		<compare a="var1" b=".01" op="le">
+ 			<heal target="source_entity" a="source_damage" />
+			<scaledamage scale="0.0" />
+			<setscriptvalue name="battle_end" value="1"/>
+			<applystate name="state_bastact1_executioner_quick_stun" target="source_entity" source="source_entity" duration="2000"/>
+			<applystate name="state_bastact1_executioner_tele" target="source_entity" source="source_entity" duration="600"/>
+			
+			<expirestate name="Bastact1_State_Executioner2_Ability5" target="source_entity"/>
+			<expirestate name="Bastact1_State_Executioner2_Stage3" target="source_entity"/>
+			<expire/>
+  		</compare>
+	</ondamaged>			
+	
+</state>

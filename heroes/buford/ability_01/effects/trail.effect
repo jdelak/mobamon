@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale="7">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.45"
+				sample="../sounds/sfx_trail_%.wav"
+			/>
+
+
+			<simpleemitter
+				count="50"
+				spawnrate="6000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="25"
+				maxspeed="40"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="300"
+						maxlife="500"
+						startcolor=".75 1 0"
+						endcolor=".75 1 0"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minscale=".1"
+						maxscale=".15"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+				
+					<light
+						life="300"
+						startcolor="0 0 0"
+						midcolor="3 6 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						falloffstart="0"
+						startfalloffend="60"
+						endfalloffend="60"
+						position="0 0 0"
+					/>
+				
+				</particle>
+			</simpleemitter>
+			
+
+			
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+				
+					<billboard
+						minlife="600"
+						maxlife="600"
+						startcolor=".25 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						scale=".6"
+						depthbias="-25"
+					/>
+				
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			<template name="">
+				<model
+				position="{zpos}"
+					expirelife="0"
+					model="poison_bug/model.mdf"
+					anim="idle"
+					scale=".9"
+					startalpha="1"
+					endalpha="0"
+					color="1.2 1.4 1"
+					pitchspeed="-135"
+					pitch="60"
+				/>
+			</template>
+			
+			<instance name="" zpos="0 0 0"/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+<!--
+		<particlesystem name="system1" space="world" scale=".7">
+
+
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="100"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 25"
+				inheritvelocity=".1"
+			>
+				<particle
+					startcolor=".2 .15 0"
+					endcolor="0"
+					startscale="90"
+					endscale="90"
+					minheight="1"
+					maxheight="3"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<model
+				life="750"
+				model="pod_base/model.mdf"
+				anim="idle"
+				startscale=".25"
+				midscale=".75"
+				endscale="0"
+				midscalepos=".35"
+				startalpha="1"
+				endalpha="1"
+				color="1.2"
+				rollspeed="720"
+				roll="180"
+				minpitch="-90"
+				maxpitch="90"
+			/>
+
+			<light
+				expirelife="500"
+				startcolor="2 3 0"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				falloffend="200"
+				position="0 0 75"
+			/>
+
+
+		</particlesystem>
+-->
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+
+</effect>

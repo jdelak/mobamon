@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Chester_Ability1"
+	
+	icon="icon.tga"
+	passiveeffect=""
+	ishidden="true"
+	impactinterval="800"
+
+>
+	<oninflict>
+		<spawnprojectile
+			name="Projectile_Chester_Ability1"
+			source="target_entity"
+			target="proxy_entity"
+			owner="this_inflictor_entity"
+			offset="0 0 0"
+			offsetspace="target_entity"
+		/>
+			
+		<playeffect effect="effects/sound.effect" target="this_proxy_entity" source="this_proxy_entity" />
+	</oninflict>
+
+	<onimpact>
+			<spawnprojectile
+			name="Projectile_Chester_Ability1"
+			source="target_entity"
+			target="proxy_entity"
+			owner="this_inflictor_entity"
+			offset="0 0 0"
+			offsetspace="target_entity"
+			/>
+	</onimpact>
+</state>

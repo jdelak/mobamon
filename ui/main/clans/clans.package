@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel name="clans_parent" visible="0" align="left" width="1130s" height="705s" noclick="0" y="38s" x="80s" >
+		
+		<panel noclick="1" color="0 0 0 0.6" width="120w" height="120h" x="-10w" y="-10h" />
+		
+		<panel width="-8s" height="-8s" align="center" valign="center" noclick="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="18s" style="windowBase" noclick="1" y="0" />
+			
+			<!-- Header -->			
+			<frame texture="/ui/shared/frames/header_bg.tga" borderthickness="18s" style="windowHeader" height="72s" noclick="1" y="0">
+				
+				<instance name="iconButton" id="clans_window_switchview_button"
+					icon="/ui/main/shared/textures/hamburger.tga"
+					x="18s" width="38s" height="38s" valign="center" align="left" borderthickness="4s" colorized="1" iconsize="60"
+					onclicklua="self:GetWidget('clans_window_switcher'):FadeIn(150)"
+				/>	
+
+				<instance name="iconButton" id="clans_window_window_button"
+					icon="/ui/main/shared/textures/maximize.tga"
+					x="-63s" width="38s" height="38s" valign="center" align="right" borderthickness="4s" colorized="1" iconsize="66"
+					onclicklua=""
+					onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('clan_windowmode_title'), Translate('clan_windowmode_desc'), self:GetHeightFromString('340s'))"
+					onmouseoutlua="simpleTipGrowYUpdate(false)"
+				/>	
+
+				<instance name="iconButton" id="clans_parent_minimise_button"
+					icon="/ui/main/shared/textures/minimize.tga"
+					x="-18s" width="38s" height="38s" valign="center" align="right" borderthickness="4s" colorized="1"
+					onclicklua=""
+				/>	
+			
+				<instance name="hr" valign="bottom" />
+			</frame>
+			
+			<frame texture="/ui/shared/frames/thick.tga" borderthickness="18s" style="windowFrame" noclick="1" y="0" />
+		
+			<panel y="73s" height="-96s" width="-32s" align="center" noclick="1">
+			
+				<instance name="clan_finder" />
+				
+				<instance name="clan_clubhouse" />
+				
+				<instance name="clan_create" />
+			
+			</panel>
+
+			<!-- Mode Switcher -->
+			<frame name="clans_window_switcher" x="16s" y="16s" width="300s" height="168s" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" style="windowBase" visible="0">
+			
+				<panel noclick="1" y="18s" width="-36s" align="center" float="bottom" padding="10s">
+
+					<instance name="standardButton" id="clans_view_clan_finder_btn" font="maindyn_22" label="clans_view_clan_finder" height="38s" defaultsound="0"
+						onclicklua="
+							mainUI.Clans.SetTab('clan_finder')
+							self:GetWidget('clans_window_switcher'):FadeOut(150)
+						"
+					/>				
+
+					<instance name="standardButton" id="clans_view_clan_btn2" font="maindyn_22" label="clans_view_my_club" height="38s" defaultsound="0"
+						onclicklua="
+							mainUI.Clans.SetTab('clan_clubhouse')
+							self:GetWidget('clans_window_switcher'):FadeOut(150)
+						"
+					/>				
+
+					<instance name="standardButton" id="clans_create_clan_btn" font="maindyn_22" label="clans_view_startaclub" height="38s" defaultsound="0"
+						onclicklua="
+							mainUI.Clans.SetTab('clan_create')
+							self:GetWidget('clans_window_switcher'):FadeOut(150)
+						"
+					/>
+					
+				</panel>	
+				
+			
+				<frame texture="/ui/shared/frames/thick.tga" borderthickness="14s" style="windowFrame" noclick="1" y="0" />
+			</frame>
+			
+		</panel>		
+
+		<panel name="clans_parent_npe_blocker" visible="0" width="-8s" height="-8s" align="center" valign="center" noclick="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="18s" style="windowBase" noclick="1" y="0" />
+		
+			<frame texture="/ui/shared/frames/header_bg.tga" borderthickness="18s" style="windowHeader" height="72s" noclick="1" y="0">
+
+				<instance name="iconButton" id="clans_parent_minimise_button3"
+					icon="/ui/main/shared/textures/minimize.tga"
+					x="-18s" width="38s" height="38s" valign="center" align="right" borderthickness="4s" colorized="1"
+					onclicklua="mainUI.Clans.Toggle()"
+				/>	
+
+				<instance name="hr" valign="bottom" />
+			</frame>	
+	
+			<panel y="0s" height="70s" noclick="1" >		
+				<label y="0s" content="clans_view_clan_finder" x="54s" style="BrawlBlueReverse" textvalign="center" font="maindyn_36" noclick="1" />		
+			</panel>	
+	
+			<label style="labelBase" font="maindyn_48" content="navigation_deck_locked_desc" wrap="1" lineheight="30s" align="center" valign="center" textvalign="center" textalign="center" fity="1" fitypadding="0" y="4s" noclick="1"/>
+	
+		</panel>
+		
+		<panel name="clans_detailed_splash" color="0 0 0 .4" visible="0" noclick="0">
+			<panel width="660s" height="640s" align="center" valign="center">	
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="18s" style="windowBase" noclick="1" y="0" />					
+				<frame texture="/ui/shared/frames/header_bg.tga" borderthickness="18s" style="windowHeader" height="80s" noclick="1" y="0">
+					<panel name="club_finder_details_clan_label_parent" width="85%" noclick="1" align="left" x="20s" >
+						<label name="club_finder_details_clan_name" y="-12s" style="labelBase" align="left" textvalign="center" font="maindyn_48" content="Clan Name" noclick="1" />
+						<label name="club_finder_details_clan_score" y="20s" style="labelBase" align="left" textvalign="center" font="maindyn_28" content="Clan Score" noclick="1" />
+					</panel>
+					<instance name="hr" valign="bottom" />
+				</frame>			
+
+				<panel noclick="1" name="clan_detailed_ladder" y="10s" visible="1" width="-130s" align="center">
+					
+					<panel noclick="1" visible="1" y="80s" >
+						<instance name="clanLadder_data" index="_clan_detailed" visible="1" />
+					</panel>
+
+				</panel>			
+				
+				<instance name="closeXButton" buttonName="clans_detailed_splash_close" width="48s" height="48s" align="right" y="15s" x="-26s" valign="top" borderthickness="4s" 
+					onclicklua="self:GetWidget('clans_detailed_splash'):SetVisible(0)" 
+				/>			
+				
+				<frame texture="/ui/shared/frames/thick.tga" borderthickness="18s" style="windowFrame" noclick="1" y="0" />
+			</panel>
+		</panel>		
+		
+	</panel>	
+
+</package>

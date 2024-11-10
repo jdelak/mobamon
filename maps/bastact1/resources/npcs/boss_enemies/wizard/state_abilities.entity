@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Wizard_Enemy"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	radius="1"
+	impactinterval="2000"
+	ishidden="true"
+	stack="false"
+	propagatetoillusions="false"
+	impactdelay="1000"
+
+>
+
+	<onimpact>
+		<hasmodifier entity="this_proxy_entity" name="dontshootstuff">
+			<expirestate name="State_Bastact1_Wizard_Enemy" source="this_proxy_entity" target="this_proxy_entity"/>
+		</hasmodifier>
+		<else>
+			<condition test="not_hasstate State_Stunned" target="this_proxy_entity" >
+   				<areaofeffect
+					radius="2000"
+					targetselection="all"
+					targetscheme="player_controlled_units"
+					center="this_proxy_entity"
+					maxtotalimpacts="-1"
+					source="this_proxy_entity"
+					innerradius="1000"
+				>
+					<distance source="this_owner_entity" target="target_entity"/>
+					<setvar0 a="result"/>
+					<compare a="var0" b="400" op="lt" >
+						<pushability entity="this_proxy_entity" slot="2" />
+						<canactivate entity="stack_entity">
+							<useability source="this_proxy_entity" target="this_proxy_entity" slot="2"/>
+						</canactivate>
+						<else>
+							<useability source="this_proxy_entity" target="this_proxy_entity" slot="1"/>
+						</else>
+					</compare>
+					<else>
+						<useability source="this_proxy_entity" target="target_entity" slot="0"/>
+					</else>
+				</areaofeffect>
+   	 		</condition>
+		</else>
+	</onimpact>			
+	
+</state>

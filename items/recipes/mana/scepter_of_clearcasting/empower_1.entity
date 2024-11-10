@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_ScepterOfClearcasting_Empower_1"
+	cost="1055"
+
+	maxcharges="5"
+	powerpercharge="3"
+>
+	<!--Tooltip only-->
+	<constant name="power_enchant" value="3" adjustment="none" />
+	<constant name="stacks_enchant" value="5" adjustment="none" />
+
+	<ontimer>
+		<setcharges a="0" />
+	</ontimer>
+	
+	<onabilityimpact ignoreresponsetype="NoResponse">
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" />
+		<else>
+			<addcharges count="1"/>
+			<starttimer duration="5000" />
+		</else>
+	</onabilityimpact>
+</qualityitem>

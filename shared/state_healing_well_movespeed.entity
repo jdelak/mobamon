@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_HealingWellMovespeed"
+
+	
+	
+	icon="icon.tga"
+	passiveeffect="effects/well_speed.effect"
+	
+	movespeedpercharge="3"
+	
+	impactinterval="3000"
+	effecttype="StatusBuff"
+	maxcharges="100"
+>
+	<oninflict>
+		<setcharges a="100" />	
+	</oninflict>
+
+	<onrefresh>
+		<setcharges a="100" />	
+		<setaccumulator value="0" />
+	</onrefresh>
+	
+	<onimpact>
+		<setaccumulator value="1" />
+	</onimpact>
+
+	<onframe>
+		<compare a="accumulator" b="1" op="eq" >
+			<removecharge a="2" />
+		</compare>
+
+		<distance target="source_entity" source="target_entity" />
+		<compare a="result" b="4000" op="ge" >
+			<expire/>
+		</compare>
+		<compare a="movement" b="0" op="eq" >
+			<setactivemodifierkey name="not_moving" />
+		</compare>
+		<else>
+			<setactivemodifierkey name="" />
+		</else>
+	</onframe>
+
+	<ondamaged>
+		<expire/>
+	</ondamaged>
+
+	<onattackingdamageevent>
+		<targettype type="enemy">
+			<expire />
+		</targettype>
+	</onattackingdamageevent>
+
+	<modifier key="not_moving" modpriority="100"
+		passiveeffect=""
+	/>
+
+	
+</state>

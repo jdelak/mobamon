@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Guards_SearchForPlayer"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="500"
+	ishidden="true"
+	wanderrange="90"
+>
+	<!-- Proxy Entity should be patrol gadget -->
+	<oninflict>
+		<!-- <print text="=========State_Bastact1_Guards_SearchForPlayer Inflicted==========" />
+		<printdebuginfo/>
+		<print text="==================================================================" /> -->
+	</oninflict>
+
+	<onimpact>
+		<condition test="not_hasstate State_Stunned" target="this_owner_entity" >
+			<areaofeffect
+				radius="500"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="1"
+				center="this_owner_entity"
+				source="this_owner_entity"
+			>
+				<!-- Apply the attacking state when a Player is found -->
+				<applystate name="Affector_Guard_Abilities2" source="this_owner_entity" target="this_owner_entity" duration="-1" proxy="this_proxy_entity" />
+				<applystate name="State_Bastact1_Guards_ReturnToPatrolGadget" source="this_owner_entity" target="this_owner_entity" duration="-1" proxy="this_proxy_entity" />
+				<applystate name="State_IgnoreAffector_Guard_Enemy" source="this_owner_entity" target="this_owner_entity" duration="-1" />
+				<expirestate name="State_Bastact1_Guards_SearchForPlayer" target="this_owner_entity" />
+			</areaofeffect>
+   	 	</condition>	
+
+		
+	</onimpact>
+	
+</state>

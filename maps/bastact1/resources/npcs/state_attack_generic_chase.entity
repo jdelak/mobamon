@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Campaign_AttackPlayerOnImpact_Chase"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="500"
+	ishidden="true"
+	
+>
+	<!-- Make sure that when this state is applied that it's proxy is set to the entity that needs to attack -->
+	<oninflict>
+		<areaofeffect
+			radius="2000"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			maxtotalimpacts="1"
+			center="this_proxy_entity"
+			source="this_proxy_entity"
+		>
+			<order command="attack" source="this_proxy_entity" target="target_entity" force="true" forceduration="-1"/>	
+		</areaofeffect>
+	</oninflict>
+
+	<onimpact>
+		<areaofeffect
+			radius="2000"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			maxtotalimpacts="1"
+			center="this_proxy_entity"
+			source="this_proxy_entity"
+		>
+			<order command="attack" source="this_proxy_entity" target="target_entity" force="true" forceduration="-1" />	
+		</areaofeffect>
+	</onimpact>
+	
+</state>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Ranged_Enemy_Move"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	radius="1600"
+	impactinterval="5000"
+	ishidden="true"
+
+>
+	<oninflict>
+		<chance threshold="0.16">
+			<setent0 name="archer_movepoint1"/>
+			<order command="move" source="source_entity" target="ent0" />
+			<print text="Spawnstuff 1"/>
+		</chance>
+		<else>
+			<chance threshold="0.2">
+				<setent0 name="archer_movepoint2"/>
+				<order command="move" source="source_entity" target="ent0" />
+				<print text="Spawnstuff 2"/>
+			</chance>
+			<else>
+				<chance threshold="0.25">
+					<setent0 name="archer_movepoint3"/>
+					<order command="move" source="source_entity" target="ent0" />
+					<print text="Spawnstuff 3"/>
+				</chance>
+				<else>
+					<chance threshold="0.33">
+						<setent0 name="archer_movepoint4"/>
+						<order command="move" source="source_entity" target="ent0" />
+						<print text="Spawnstuff 4"/>
+					</chance>
+					<else>
+						<chance threshold="0.5">
+							<setent0 name="archer_movepoint5"/>
+							<order command="move" source="source_entity" target="ent0" />
+							<print text="Spawnstuff 5"/>
+						</chance>
+						<else>
+							<setent0 name="archer_movepoint6"/>
+							<order command="move" source="source_entity" target="ent0" />
+							<print text="Spawnstuff 6"/>
+						</else>
+					</else>
+				</else>
+			</else>
+		</else>		
+	</oninflict>
+	
+</state>

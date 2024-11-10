@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="8" >
+            
+            <sound
+                falloffstart="500"
+                falloffend="2400"
+                volume="0.75"
+                sample="../sounds/sfx_cast.wav"
+            />
+            
+            <sound
+                soundloop="true"
+                fadein="250"
+                fadeout="500"
+                falloffstart="100"
+                falloffend="1000"
+                volume="0.25"
+                sample="../sounds/sfx_loop.wav"
+            />
+
+
+			<light
+				expirelife="250"
+				startcolor="4 3 1"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="0"
+				falloffend="75"
+				position="0 0 50"
+			/>
+
+			<template name="">
+				<billboard
+					life="2000"
+					position="0 0 0"			
+					startcolor=".07 .035 0"
+					midcolor=".2 .1 0"
+					endcolor=".07 .035 0"
+					size="118"
+					material="/shared/effects/smaterials/ring_ground_thick.material"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					loop="true"
+				/>
+				
+				<billboard
+					expirelife="250"
+					position="0 0 0"			
+					startcolor=".1 .05 0"
+					endcolor="0 0 0"
+					size="108"
+					material="/shared/effects/smaterials/ring_ground_thick.material"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					loop="true"
+				/>
+			</template>
+<!--
+			<instance name=""/>
+
+			<model
+				expirelife="250"
+				model="../../ability_04/effects/fx_rig/model.mdf"
+				anim="idle"
+				scale="1"
+				yawspeed="-135"
+			>
+
+				<template name="">
+					<simpleemitter
+						position="0 0 0"
+						bone="{zbone}"
+						spawnrate="100"
+						minparticlelife="350"
+						maxparticlelife="550"
+						gravity="0"
+						minspeed="0"
+						maxspeed="75"
+						material="/shared/effects/smaterials/firesprite_swirl.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-25"
+						directionalspace="local"
+						offsetsphere="5 5 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor="1 1 0"
+							endcolor="1 1 0"
+							midcolorpos=".2"
+							startalpha="0"
+							midalpha=".7"
+							endalpha="0"
+							midalphapos=".15"
+							minstartscale="0"
+							maxstartscale="6"
+							minmidscale="6"
+							maxmidscale="12"
+							endscale="0"
+							lockup="1"
+							lockright="1"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						position="0 0 0"
+						bone="{zbone}"
+						spawnrate="50"
+						minparticlelife="300"
+						maxparticlelife="600"
+						gravity="0"
+						minspeed="0"
+						maxspeed="75"
+						material="/shared/effects/smaterials/whitedot.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-25"
+						directionalspace="world"
+						offsetsphere="5 5 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor=".15"
+							endcolor=".15 .075 0"
+							midcolorpos=".15"
+							startalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							minstartscale="0"
+							maxstartscale="5"
+							minmidscale="5"
+							maxmidscale="15"
+							endscale="0"
+							turn="true"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						position="0 0 0"
+						bone="{zbone}"
+						name="trail_01"
+						spawnrate="100"
+						minparticlelife="600"
+						maxparticlelife="1000"
+						material="/shared/effects/smaterials/whitedot.material"
+						minspeed="0"
+						maxspeed="100"
+						gravity="5"
+						depthbias="-25"
+						direction="0 0 1"
+						minangle="0"
+						maxangle="1"
+					>
+						<particle
+							startcolor="1 .5 0"
+							midcolor="1 .5 0"
+							endcolor="0 0 0"
+							minstartscale=".75"
+							maxstartscale="1.5"
+							minendscale="0"
+							maxendscale="0"
+						/>
+					</simpleemitter>
+
+				</template>
+				
+				<instance name="" zbone="_bone_fx_08"/>
+				<instance name="" zbone="_bone_fx_01"/>
+
+			</model>
+-->
+			<model
+				expirelife="250"
+				model="../../ability_04/effects/fx_rig/model.mdf"
+				anim="idle"
+				scale="1"
+				yawspeed="90"
+			>
+
+				<template name="fire">
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="50"
+						minparticlelife="350"
+						maxparticlelife="550"
+						gravity="0"
+						minspeed="0"
+						maxspeed="75"
+						material="/shared/effects/smaterials/firesprite_swirl.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-25"
+						directionalspace="world"
+						offsetsphere="5 5 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor="1 1 0"
+							endcolor="1 1 0"
+							midcolorpos=".2"
+							startalpha="0"
+							midalpha=".075"
+							endalpha="0"
+							midalphapos=".1"
+							minstartscale="5"
+							maxstartscale="5"
+							minmidscale="5"
+							maxmidscale="15"
+							endscale="0"
+							turn="true"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="25"
+						minparticlelife="300"
+						maxparticlelife="600"
+						gravity="0"
+						minspeed="0"
+						maxspeed="50"
+						material="/shared/effects/smaterials/whitedot.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-35"
+						directionalspace="world"
+						offsetsphere="8 8 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor="0 0 0"
+							midcolor=".05 .025 0"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							minstartscale="7"
+							maxstartscale="17"
+							endscale="0"
+							turn="true"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="25"
+						minparticlelife="300"
+						maxparticlelife="600"
+						gravity="0"
+						minspeed="0"
+						maxspeed="0"
+						material="/shared/effects/smaterials/whitedot.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-35"
+						directionalspace="world"
+						offsetsphere="8 8 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor="0"
+							midcolor=".05 .025 0"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							minstartscale="0"
+							maxstartscale="7"
+							minmidscale="7"
+							maxmidscale="17"
+							endscale="0"
+							turn="true"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</simpleemitter>
+
+				</template>
+				
+				<instance name="fire" zbone="_bone_fx_01" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_02" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_03" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_04" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_05" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_06" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_07" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_08" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_09" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_10" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_11" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_12" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_13" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_14" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_15" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_16" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_17" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_18" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_19" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_20" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_21" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_22" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_23" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_24" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_25" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_26" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_27" zdelay="0"/>
+				<instance name="fire" zbone="_bone_fx_28" zdelay="0"/>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<template name="">
+
+					<simpleemitter
+						position="0 0 0"
+						bone="{zbone}"
+						spawnrate="100"
+						minparticlelife="400"
+						maxparticlelife="700"
+						gravity="0"
+						minspeed="0"
+						maxspeed="70"
+						material="/shared/effects/smaterials/firesprite_swirl.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-25"
+						directionalspace="local"
+						offsetsphere="5 5 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor="1 1 0"
+							endcolor="1 1 0"
+							midcolorpos=".2"
+							startalpha="0"
+							midalpha=".7"
+							endalpha="0"
+							midalphapos=".15"
+							minstartscale="0"
+							maxstartscale="6"
+							minmidscale="6"
+							maxmidscale="12"
+							endscale="0"
+							lockup="1"
+							lockright="1"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						position="0 0 0"
+						bone="{zbone}"
+						spawnrate="50"
+						minparticlelife="300"
+						maxparticlelife="600"
+						gravity="0"
+						minspeed="0"
+						maxspeed="75"
+						material="/shared/effects/smaterials/whitedot.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						depthbias="-25"
+						directionalspace="world"
+						offsetsphere="5 5 0"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-360"
+							maxanglespeed="360"
+							startcolor=".15"
+							endcolor=".15 .075 0"
+							midcolorpos=".15"
+							startalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							minstartscale="0"
+							maxstartscale="5"
+							minmidscale="5"
+							maxmidscale="15"
+							endscale="0"
+							turn="true"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+						position="0 0 0"
+						bone="{zbone}"
+						name="trail_01"
+						spawnrate="100"
+						minparticlelife="600"
+						maxparticlelife="1000"
+						material="/shared/effects/smaterials/whitedot.material"
+						minspeed="0"
+						maxspeed="100"
+						gravity="5"
+						depthbias="-25"
+						direction="0 0 1"
+						minangle="0"
+						maxangle="1"
+					>
+						<particle
+							startcolor="1 .5 0"
+							midcolor="1 .5 0"
+							endcolor="0 0 0"
+							minstartscale=".75"
+							maxstartscale="1.5"
+							minendscale="0"
+							maxendscale="0"
+						/>
+					</simpleemitter>
+
+				</template>
+				
+
+				<instance name="" zbone="_bone_fx_01"/>
+
+			</model>
+
+			
+
+			<simpleemitter
+				spawnrate="2"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<template name="">
+						<billboard
+							delay="{zdelay}"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor=".2 .1 0"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							life="2000"
+							position="0 0 0"
+							startsize="50"
+							endsize="125"
+							depthbias="-100"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</template>
+					
+					<instance name="" zdelay="0"/>
+					<instance name="" zdelay="100"/>
+					<instance name="" zdelay="200"/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

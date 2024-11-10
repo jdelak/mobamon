@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale=".5">
+		
+				
+			
+<!--
+			<beam
+				life="4000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_weapon1"
+				startsize="135"
+				midsize="160"
+				endsize="135"
+				color=".35 .7 0"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="10"
+			/>
+
+			<beam
+				life="4000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_weapon1"
+				startsize="50"
+				midsize="100"
+				endsize="50"
+				color="1 1 0"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy_additive.material"
+				startframe="0"
+				endframe="1"
+				framespeed="10"
+			/>
+			
+			<beam
+				life="4000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_weapon1"
+				size="40"
+				color="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy_additive.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+-->
+
+<!--
+			<billboard
+				bone="_bone_weapon1"
+				owner="source"
+				life="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="150"
+				startcolor="1 1 0"
+				endcolor="1 1 0"
+				depthbias="-50"
+			/>
+-->
+			
+			<light
+				position="0 0 35"
+				life="300"
+				startcolor="5 5 0"
+				midcolor="1.5 5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="300"
+				endfalloffend="500"
+			/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".5">
+
+			<simpleemitter
+				count="100"
+				bone="_bone_weapon2"
+				owner="source"
+				spawnrate="5000"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+			>
+				<particle
+					color=".25 1 0"
+					alpha="1"
+					startscale="25"
+					endscale="100"
+					minheight="1"
+					maxheight="3"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				count="40"
+				bone="_bone_weapon2"
+				owner="source"
+				spawnrate="5000"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+			>
+				<particle
+					color=".25 .25 0"
+					alpha=".5"
+					startscale="35"
+					endscale="65"
+					minheight="1"
+					maxheight="3"
+					turn="true"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

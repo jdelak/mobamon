@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="apex_normal">
+	<dependency name="Normal" type="float3" source="Normal" />
+	<output name="Out" type="float3" solution="ObjectNormal" />	
+	<?hlsl
+		float3 vInNormal = Normal;
+		Out = vInNormal;
+	?>
+	<?glsl
+		vec3 vInNormal = Normal;
+		Out = vInNormal;
+	?>
+</node>

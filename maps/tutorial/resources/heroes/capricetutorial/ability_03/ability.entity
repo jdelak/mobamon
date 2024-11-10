@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_CapriceTutorial3"
+
+	icon="/heroes/caprice/ability_03/icon.tga"
+	
+	maxlevel="4"
+	requiredlevel="2,3,5,7"
+	modifierkey="CapriceTutorial_Ability3_Learned"
+	actiontype="passive"
+	cooldowntime="3500"
+	
+>
+
+	<!-- tooltiponly -->
+	<constant name="damage" value="30,45,60,75" adjustment="Ability" />
+	
+	<onlearn>
+		<clientuitrigger name="tutorial_tip4aHide" />
+	</onlearn>
+	
+	<onattackstart >
+		<cantarget targetscheme="enemy_units">
+			<addattackimpactactions>
+				<applystate name="State_CapriceTutorial_Ability3" duration="5000" target="target_entity" />
+			</addattackimpactactions>
+		</cantarget>
+	</onattackstart>
+	
+	<modifier key="No_Ability" modpriority="100"
+		requiredlevel="3,3,5,7"
+	>
+	</modifier>
+</ability>

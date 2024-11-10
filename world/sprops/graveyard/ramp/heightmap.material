@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_opacity.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="16.0" fOpacity="1.0" fReflect="1.0" eLightingScheme="terrain" />
+	<phase name="shadow" cull="back" blend="none" />
+	<phase name="outline" cull="back" depthwrite="true" depthread="true" blend="none" />
+	<phase name="color" cull="back" depthread="false" blend="additive">
+		<sampler name="diffuse" texture="$white" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat_matte" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="$invis" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

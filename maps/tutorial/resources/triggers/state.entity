@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_General"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	
+	impactinterval="200"
+>
+
+	<onimpact>
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="enemy_buildings"
+			source="this_owner_entity"
+		>
+			<setaccumulator value="1" />
+		</areaofeffect>
+	
+		<compare a="1" b="accumulator" op="eq" >
+			<setaccumulator value="0" />
+			<areaofeffect
+				radius="1100"
+				targetselection="all"
+				targetscheme="ally_creeps"
+				source="this_owner_entity"
+			>
+				<changeaccumulator b="1" op="add" />
+			</areaofeffect>
+			
+			<compare a="accumulator" b="2" op="le" >
+				<setscriptvalue name="creepwave_alert" value="1" />
+				<applystate name="State_Tutorial_TipBusy" target="this_proxy_entity" duration="8000" />
+				<applystate name="State_Tutorial_DamageCheck" target="this_proxy_entity" duration="-1" />
+				<applystate name="State_Tutorial_CreepCheck" target="this_proxy_entity" duration="-1" />
+				<expire />
+			</compare>
+		</compare>
+		
+		<setaccumulator value="0" />
+	</onimpact>
+	
+
+</state>

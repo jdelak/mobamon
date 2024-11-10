@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".9">
+
+      <sound
+        life="6000"
+        linearfalloff="true"
+        falloffstart="500"
+        falloffend="2400"
+        volume="0.55"
+        sample="../sounds/sfx_state.wav"
+			/>
+
+			<template name="flashes">
+
+			<simpleemitter
+				bone="{zbone}"
+				spawnrate="100"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="{zdir}"
+				minspeed="150"
+				maxspeed="300"
+				gravity="70"
+				minangle="0"
+				maxangle="45"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="{zbone}"
+						minlife="300"
+						maxlife="600"
+						startcolor="0 1 1"
+						midcolor="0 1 1"
+						endcolor="0 .5 1"
+						midcolorpos=".15"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".25"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						startscale=".5"
+						minmidscale=".5"
+						maxmidscale=".8"
+						minendscale=".1"
+						maxendscale=".4"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+	
+			</template>
+
+			<instance name="flashes" zbone="_bone_centerofchest" zdir="0 1 0"/>
+			<instance name="flashes" zbone="_bone_centerofchest" zdir="0 -1 0"/>
+
+			
+<!--
+			<template name="flashes">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="45"
+					particlelife="1000"
+					position="0 0 0"
+					offsetsphere="0 0 0"
+					direction="{zdir}"
+					minspeed="150"
+					maxspeed="300"
+					gravity="70"
+					minangle="0"
+					maxangle="45"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							bone="{zbone}"
+							minlife="200"
+							maxlife="300"
+							startcolor=".5"
+							midcolor="0 .3 .6"
+							endcolor="0 0 0"
+							midcolorpos=".15"
+							material="/shared/effects/smaterials/whitedot.material"
+							startalpha=".65"
+							midalpha=".65"
+							endalpha="0"
+							midalphapos=".15"
+							directionalspace="local"
+							startscale=".5"
+							minmidscale=".5"
+							maxmidscale=".8"
+							minendscale=".1"
+							maxendscale=".4"
+							depthbias="-25"
+						/>
+					</particle>
+				</simpleemitter>
+	
+			</template>
+
+			<instance name="flashes" zbone="_bone_centerofchest" zdir="0 1 0"/>
+			<instance name="flashes" zbone="_bone_centerofchest" zdir="0 -1 0"/>
+
+			
+			
+			
+-->
+
+			<template name="flashes">
+<!--
+				<billboard
+					expirelife="250"
+					bone="{zbone}"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="5"
+					depthbias="-75"
+					startcolor="0 .125 .25"
+					endcolor="0 0 0"
+					directionalspace="local"
+				/>
+-->
+			</template>
+			
+			<instance name="flashes" zbone="_bone_centerofchest"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<template name="flashes">
+			
+				<terrainemitter
+					position="{zpos}"
+					spawnrate="30"
+					particlelife="1500"
+					offsetsphere="50 50 0"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="400"
+							maxlife="600"
+							material="/shared/effects/materials/ice_blob_overlay.material"
+							minstartscale="1.5"
+							maxstartscale="2.5"
+							minendscale="2.5"
+							maxendscale="5"
+							color="0 1 1"
+							startalpha=".125"
+							midalpha=".05"
+							endalpha="0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-75"
+						/>
+
+					</particle>
+				</terrainemitter>
+	
+			</template>
+			
+			<instance name="flashes" zpos="0 0 0"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<template name="flashes">
+
+				<terrainemitter
+					position="{zpos}"
+					spawnrate="50"
+					particlelife="1500"
+					offsetsphere="120 120 0"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/materials/ice_blob_overlay.material"
+							minstartscale=".15"
+							maxstartscale=".3"
+							minendscale=".6"
+							maxendscale="1.35"
+							color="0 1 1"
+							startalpha=".25"
+							midalpha=".125"
+							endalpha="0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-75"
+						/>
+						
+						<billboard
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/materials/whitedot.material"
+							minstartscale=".15"
+							maxstartscale=".3"
+							minendscale=".6"
+							maxendscale="1.35"
+							startcolor="0 .15 .15"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-75"
+						/>
+
+						<billboard
+							minlife="300"
+							maxlife="500"
+							material="/shared/effects/smaterials/rings.material"
+							minstartscale=".15"
+							maxstartscale=".3"
+							minendscale=".6"
+							maxendscale="1.35"
+							startcolor="0 .3 .3"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-75"
+						/>
+
+					</particle>
+				</terrainemitter>
+	
+			</template>
+			
+			<instance name="flashes" zpos="0 0 0"/>
+
+
+		</particlesystem>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		<particlesystem name="system1" space="world" scale="1.25">
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="2"
+				particlelife="2000"
+				timenudge="3000"
+			>
+				<particle
+				>
+					<simpleemitter
+						bone="_bone_centerofchest"
+						count="75"
+						spawnrate="6000"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						minspeed="150"
+						maxspeed="350"
+						gravity="50"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								bone="_bone_centerofchest"
+								minlife="600"
+								maxlife="900"
+								startcolor="0 1 1"
+								midcolor="0 1 1"
+								endcolor="0 .5 1"
+								midcolorpos=".15"
+								material="/shared/effects/smaterials/goop_drop_white.material"
+								startalpha=".5"
+								endalpha="0"
+								midalphapos=".25"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								directionalspace="local"
+								minstartscale=".6"
+								maxstartscale=".9"
+								minendscale=".1"
+								maxendscale=".25"
+								depthbias="-25"
+							/>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+</effect>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Rat_Enemy"
+
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="100"
+	castactiontime="600"
+
+	actiontype="target_position"
+	targetradius="500"
+	casteffecttype="Magic"
+	targetscheme="player_controlled_units"
+	casteffect="effects/cast.effect"
+	
+    ischanneling="true"
+	manacost="0"
+	cooldowntime="0"
+
+	range="750"
+	forcerange="500"
+	
+	
+>
+
+  	<onimpact>
+  		<areaofeffect
+			radius="1600"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			maxtotalimpacts="1"
+			
+		>
+		
+			<spawnprojectile name="Projectile_Rat_Enemy" bind="source_entity" bindturn="true"  source="source_entity" target="target_position" bindnopush="true"  />
+
+		</areaofeffect>
+	</onimpact>
+	
+</ability>

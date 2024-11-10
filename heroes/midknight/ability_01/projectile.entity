@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Midknight_Ability1"
+	
+	lifetime="450"
+	useexactlifetime="true"
+	gravity="0"
+	
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	flying="true"
+	flyheight="100" 
+	canturn="false"
+
+
+	touchradius="100"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+	maxtouchespertarget="1"
+	maxtouches="1"
+	alwaystransmitdata="true"
+
+>
+
+	<ontouch>
+		<cantarget effecttype="Magic">
+			<compare a="param" b="0" op="eq" >
+				<unbind target="target_entity" />
+				<delete target="this_entity" />
+				<setparam a="1" />
+				
+				<playeffect effect="effects/impact_enemy.effect" source="target_entity" target="source_entity" />
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" amount="1" b="result" op="mult" />
+				
+				<setpos0 position="this_proxy_entity" positionend="target_entity" positionmodifier="pointpastline" positionvalue="100" />
+				<push force="-300" duration="150" source="pos0" target="this_proxy_entity" />
+				<applystate name="State_Midknight_Ability1_Root" duration="400" target="target_entity" pushentity="true" />  
+				<spawnprojectile name="Projectile_Midknight_Ability1_Bind" source="source_entity" target="target_entity" bindstate="State_Midknight_Ability1_Bind" bind="source_entity" bindturn="true" noresponse="true" pushentity="true" proxy="this_proxy_entity"/>
+
+			</compare>
+		</cantarget>
+	</ontouch>
+	
+	<onimpact>
+		<spawnprojectile name="Projectile_Midknight_Ability1_Return" source="this_position" target="source_entity" bind="this_proxy_entity" proxy="this_proxy_entity"/>
+	</onimpact>
+
+	
+</projectile>

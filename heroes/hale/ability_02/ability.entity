@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Hale2"
+	
+	icon="icon.tga"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_self"
+
+	casteffect="effects/cast.effect"
+	
+	anim="ability_2"
+	casttime="0"
+	castactiontime="0"
+	inheritmovement="true"
+	queue="front"
+
+	cooldowntime="10000,9000,8000,7000"
+	manacost="70"
+
+	alwaysshowtimer="true"
+
+
+>
+	<constant name="damage_increase" value="30,40,50,60" adjustment="none" />
+
+	<onimpact>
+		<resetattackcooldown/>
+		<applystate name="State_Hale_Ability2_Speed" target="source_entity" duration="2000" />
+		<applystate name="State_Hale_Ability2" target="source_entity" duration="3000" />
+		<starttimer duration="3000" />
+	</onimpact>
+
+	<onattackimpact>
+		<starttimer duration="0" />
+	</onattackimpact>
+
+</ability>

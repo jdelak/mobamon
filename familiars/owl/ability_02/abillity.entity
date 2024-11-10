@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Owl_TriggeredPassive"
+
+	icon="icon.tga"
+		
+	maxlevel="15"
+	actiontype="passive"
+	manacost="0"
+	showareacast="false"
+	cooldowntime="12000"
+>
+	<onentercombat>
+		<isready>
+			<applystate name="State_Owl_NoEnterCombat" duration="5000" proxy="this_proxy_entity" target="this_owner_entity" />
+			<playsound name="owl_combatprevent" source="this_owner_entity" target="this_owner_entity" />
+			<playeffect effect="effects/noentercombat.effect" target="this_owner_entity" occlude="true" />
+			<startcooldown />
+			<negate /> 
+		</isready>
+	</onentercombat>
+
+</ability>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Trace3"
+	
+	icon="icon.tga"
+	
+	anim="ability_3"
+	casttime="0"
+	castactiontime="0"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_self"
+	activatescheme="movement"
+
+	casteffecttype="Magic"
+	casteffect="effects/cast.effect"
+
+	queue="front"
+	inheritmovement="true"
+	
+	manacost="85"
+	cooldowntime="20000,19000,18000,17000"
+	
+	alwaysshowtimer="true"
+>
+
+	<constant name="attack_charged" value="55,70,85,100" adjustment="ability" />
+	
+	<onimpact >
+		<applystate name="State_Trace_Ability3" target="source_entity" duration="-1" />
+		<applystate name="State_Trace_Ability3_Disable" target="source_entity" duration="200" />
+		<applystate name="State_Trace_Ability3_AttackBuff" target="source_entity" duration="-1" />
+		<applystate name="State_Trace_Ability3_Ending" target="source_entity" duration="-1" />
+		
+		<spawnunit name="Gadget_Trace_Ability3" count="1" target="source_entity" source="source_entity" pushentity="true"/>
+		<setproxy entity="this_entity" target="stack_entity" /> 
+		<starttimer duration="4000" />
+	</onimpact>
+	
+	<modifier key="port_ready" modpriority="90" ignorecooldown="true" casteffect="effects/reverse.effect" anim=""  icon="icon2.tga" casttime="0"  castactiontime="0"  manacost="0"  actiontype="no_target"  cooldowntime="0" queue="none">
+		<onimpact >
+			<expirestate name="State_Trace_Ability3" target="source_entity" />
+			<expirestate name="State_Trace_Ability3_AttackBuff" target="source_entity" />
+			<expirestate name="State_Trace_Ability3_Ending" target="source_entity" />
+			<spawnprojectile name="Projectile_Trace_Ability3_Return" source="source_entity" target="this_proxy_entity" bind="source_entity" bindstate="State_Trace_Ability3_Bind" bindturn="true" unbindondeath="true" />
+			<resettimer />
+		</onimpact>
+		
+		<ontimer>
+			<expirestate name="State_Trace_Ability3" target="source_entity" />
+			<expirestate name="State_Trace_Ability3_AttackBuff" target="source_entity" />
+			<expirestate name="State_Trace_Ability3_Ending" target="source_entity" />
+			<kill target="this_proxy_entity" source="" />
+		</ontimer>
+		
+		<onframe>
+			<distance target="this_proxy_entity" />
+			<compare a="result" b="3500" op="gt" >
+				<expirestate name="State_Trace_Ability3" target="source_entity" />
+				<expirestate name="State_Trace_Ability3_AttackBuff" target="source_entity" />
+				<expirestate name="State_Trace_Ability3_Ending" target="source_entity" />
+				<kill target="this_proxy_entity" source="" />
+				<resettimer />
+			</compare>
+		</onframe>
+		
+	</modifier>
+
+	<modifier key="disable_port" modpriority="100" ignorecooldown="true" anim="" icon="icon2.tga" casttime="0" castactiontime="0" manacost="0" actiontype="no_target" cooldowntime="0" queue="none" disabled="true">
+	</modifier>
+</ability>

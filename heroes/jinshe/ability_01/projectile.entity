@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_JinShe_Ability1"
+
+	speed="1300"
+	gravity="0"
+	modelscale="1.75"
+	model="/shared/models/invis.mdf"
+
+	impacteffect="effects/impact_enemy.effect"
+	
+	traileffect="effects/trail.effect"
+	deatheffect="effects/death.effect"
+	
+	flying="true"
+	flyheight="0"
+
+	touchradius="90"
+	touchpropradius="90"
+	touchpropanim="hit"
+	maxtouchespertarget="1"
+	touchtargetscheme="all_units_and_buildings"
+	toucheffecttype="Magic"
+	
+	hazardradius="250"
+	hazardoffset="160"
+>
+
+	<onspawn>
+		<playeffect effect="effects/cast_impact.effect" target="this_position" source="this_position" occlude="true"/>
+	</onspawn>
+
+	<ontouch>
+		<combatevent effecttype="Counterable" >
+			<onimpact>
+				<cantarget targetscheme="enemy_nonboss_units_and_buildings">
+					<applystate name="State_Stunned" duration="1000" />
+					<applystate name="State_JinShe_Ability1_Damage" duration="200" />
+					<recordheroaggression  />
+					<aggression />
+					<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity" occlude="true" />
+				</cantarget>
+
+				<setpos0 position="proxy_position" positionend="this_position" positionmodifier="pointpastline" positionvalue="800" />
+				<retarget target="pos0" />
+			</onimpact>
+		</combatevent>
+	</ontouch>
+
+	<modifier key="fireballz" modpriority="100"
+	>
+		<ontouch>
+			<combatevent effecttype="Counterable" >
+				<onimpact>
+					<cantarget targetscheme="enemy_nonboss_units_and_buildings">
+						<applystate name="State_Stunned" duration="1000" />
+						<applystate name="State_JinShe_Ability1_Damage" duration="200" />
+						<recordheroaggression  />
+						<aggression />
+						<cantarget targetscheme="enemy_heroes_and_buildings">
+							<setpos0 position="this_position" positionend="target_position" positionmodifier="pointpastline" positionvalue="300" />
+	
+							<spawnaffector name="Affector_JinShe_Ability4_Random" target="pos0" proxy="target_entity" />
+	
+							<setpos0 position="this_position" positionend="target_position" positionmodifier="pointpastline" positionvalue="160" />
+							<spawnunit name="Gadget_JinShe_Ability4" target="target_entity" count="1" owner="source_entity" pushentity="true" maxactive="12" />
+							<spawnprojectile name="Projectile_JinShe_Ability4_Spray" source="target_entity" target="pos0" bind="stack_entity" bindturn="true" />
+							
+							
+						</cantarget>
+						<else>
+							<setpos0 position="this_position" positionend="target_position" positionmodifier="pointpastline" positionvalue="160" />
+							<spawnunit name="Gadget_JinShe_Ability4" target="target_entity" count="1" owner="source_entity" pushentity="true" maxactive="12" />
+							<spawnprojectile name="Projectile_JinShe_Ability4_Spray" source="target_entity" target="pos0" bind="stack_entity" bindturn="true" />
+						</else>
+						
+						<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity" occlude="true" />
+						
+					</cantarget>
+					
+					
+					<setpos0 position="proxy_position" positionend="this_position" positionmodifier="pointpastline" positionvalue="800" />
+					<retarget target="pos0" />
+				</onimpact>
+			</combatevent>
+		</ontouch>
+	</modifier>
+</projectile>

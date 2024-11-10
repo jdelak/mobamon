@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<include file="hero_progress_templates.package"/>
+
+	<template name="hero_progress_body">		
+		<!-- Hero Menu -->
+		<panel name="playerProfile_heroProgressMenu" group="profile_animation_hero_progress_widgets" x="-23s" noclick="1" width="476s" height="560s" y="24s" align="left">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>
+			
+			<listbox
+				name="playerProfileHeroProgressEntryListbox" style="simpleListbox" vscrollbar="1" hscrollbar="0" handleheight="56s" handlewidth="28s" scrollbarsize="28s" scrollbarplaceholder="false" scrollbaroffset="8s" x="-10s" align="right" valign="center" width="-20s" height="-20s" wrap="row"
+				itemwidth="91s" itemheight="108s" select="false" highlightcolor="invisible" highlightbordercolor="invisible"
+			>
+
+			</listbox>
+		</panel>
+		
+		<!-- Hero Mastery -->
+		<panel x="490s" y="40s" width="420s" height="192s" noclick="1" group="profile_animation_hero_progress_widgets" >
+			<label style="h1" textalign="center" font="maindyn_40" noclick="1" content="player_profile_hero_mastery" />			
+			<label name="playerProfileHeroProgressEntry_prog_title" y="45s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="player_profile_hero_mastery_progress" />			
+			<!-- Hero Progression -->
+			<panel name="playerProfileHeroProgressEntry_prog_parent" width="308s" height="88s" y="82s" align="center" noclick="0" >				
+				<panel height="60s" float="right" padding="3s" noclick="1" >
+					<instance name="playerProfileHeroProgressEntry_level_star" index="1" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="2" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="3" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="4" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="5" />
+				</panel>
+				<panel name="playerProfileHeroProgressEntry_prog_meter" visible="1" noclick="1">
+					<panel height="18s" valign="bottom" width="-28s" noclick="1">
+						<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".6 .6 .6 1" color=".6 .6 .6 1" noclick="1">
+							<panel hmargin="2s" vmargin="3s" noclick="1" passivechildren="1">
+								<instance name="progress_bar" id="playerProfileHeroProgressEntry_level_bar" width="0%" borderthickness="3s" barstyle="barCommon" noclick="1"  />
+							</panel>
+						</frame>
+					</panel>
+					<panel height="24s" width="24s" align="right" valign="bottom" noclick="1">
+						<image texture="/ui/shared/textures/star.tga" noclick="1" />
+						<label x="1s" y="1s" textalign="center" textvalign="center" font="subdyn_13" color="0 0 0 .7" content="+" noclick="1"/>
+					</panel>
+				</panel>
+				<label name="playerProfileHeroProgressEntry_prog_nometer" x="1s" outline="1" textalign="center" textvalign="bottom" font="maindyn_20" color="white" content="stat_name_hero_mastered" visible="0" noclick="1"/>
+				<panel name="playerProfileHeroProgressEntry_prog_hover" noclick="1" visible="0">
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" y="2s" align="center" valign="center" width="+8s" height="+8s" borderthickness="8s" bordercolor=".1 .1 .1 0.85" color=".1 .1 .1 0.85" noclick="1">
+						<label name="playerProfileHeroProgressEntry_label_1" x="1s" y="1s" height="65%" textalign="center" outline="1" textvalign="center" font="maindyn_24" color="white" content="stat_name_hero_wins_x" noclick="1"/>
+						<label name="playerProfileHeroProgressEntry_label_2" x="1s" y="-10s" height="35%" valign="bottom" outline="1" textalign="center" textvalign="center" font="maindyn_18" color="white" content="stat_name_hero_wins_next_star_x" noclick="1"/>
+					</frame>
+				</panel>
+				
+				<panel name="playerProfileHeroProgressEntry_rating_parent_1" y="26s" height="24s" valign="bottom" noclick="0"
+					onmouseoverlua="
+						simpleTipGrowYUpdate(true, nil, Translate('selection_rating_title'), Translate('selection_rating_desc'), 250)
+					"
+					onmouseoutlua="
+						simpleTipGrowYUpdate(false)
+					"					
+				>
+					<label name="playerProfileHeroProgressEntry_rating_label_1" style="labelBase" textalign="center" textvalign="center" font="subdyn_15" color="1 1 1 1" outlinecolor="0 0 0 1" content="1500000" noclick="1"/>
+				
+					<panel noclick="1" grow="1" regrow="1" align="right" valign="center" x="-30s" >
+						<label fitx="true" fity="1" style="labelClickable" font="maindyn_20" content="?" noclick="1" />						
+					</panel>				
+				
+				</panel>					
+				
+			</panel>						
+		</panel>		
+		
+		<!-- Funzone -->
+		<panel name="playerProfileHeroFunzone" visible="0" group="profile_animation_hero_progress_widgets" x="490s" y="280s" width="420s" height="306s" noclick="1">
+			<panel name="playerProfileHeroFunzone2" align="center" width="240s" sticky="true" stickytoinvis="false" visible="1" noclick="1">
+				<modelpanel
+					name="playerProfileHeroFunzone_Model" noclick="1" y="-10s"
+					width="200%" align="center" height="200%" valign="center"
+					depthclear="true" depthcompress="false"
+					lookat="0"
+
+					cameranear="1500.0"
+					camerafar="3000.0"
+					cameradistance="30"
+					camerapos="20 1720 1665"
+					cameraangles="-45 0 180"
+					camerafov="7"
+
+					modelpos="20 0 0" modelangles="30 25 -45" modelscale="1.0"
+					sunazimuth="120" sunaltitude="50" suncolor="0.9 0.9 0.9" ambientcolor="0.6 0.7 0.7"
+					resourcecontext="playerProfileHeroFunzone"
+					anim="idle"
+					model="/heroes/moxie/model.mdf"
+					color="1 1 1 1"
+				/>
+				<panel float="bottom" grow="1" regrow="1" width="240s" align="center" valign="bottom">
+					<panel align="center" width="+44s" height="100%" noclick="1"><image texture="/ui/main/shared/textures/rectangle_shadow.tga" y="-30s" height="140s" color="0 0 0 .5" /></panel>
+					<label y="8s" name="playerProfileHeroFunzone_label_1" fity="1" wrap="1" textalign="center" style="h1" font="maindyn_30" content="Label1" noclick="1" />
+					<label name="playerProfileHeroFunzone_label_2" fity="1" fitypadding="10s" wrap="1" textalign="center" style="labelBase" color="white" font="subdyn_15" content="Label2" noclick="1" />
+					<instance
+						name="standardButton"
+						id="playerProfileHeroFunzone_next_btn"
+						label="player_profile_show_another" align="center" height="34s" width="216s"
+					/>
+				</panel>
+			</panel>
+		</panel>
+		
+		<!-- Rewards -->
+		<panel group="profile_animation_hero_progress_widgets" x="0" y="40s" width="150s" height="-50s" align="right" noclick="1">
+			<label style="h3" textalign="center" font="maindyn_30" noclick="1" content="general_rewards" />
+			
+			<instance name="playerProfileHeroProgressFrame" id="playerProfileHeroProgressFrameMastered" frame="hp_mastered" y="50s" earnedLabel="player_profile_hero_progress_earned_master" />
+			<instance name="playerProfileHeroProgressFrame" id="playerProfileHeroProgressFrameDivision4" frame="hp_division4" y="235s" earnedLabel="player_profile_hero_progress_earned_div4" />
+			<instance name="playerProfileHeroProgressFrame" id="playerProfileHeroProgressFrameDivision5" frame="hp_division5" y="395s" earnedLabel="player_profile_hero_progress_earned_div5" />
+		</panel>	
+		
+	</template>
+	
+</package>

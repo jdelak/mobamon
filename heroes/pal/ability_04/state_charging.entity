@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Pal_Ability4_Charging"
+	impactinterval="100"
+	ishidden="true"
+	
+>
+	<oninflict>
+		<setaccumulator value="0" />
+		<expirestate name="State_Pal_Ability4_Decay" target="source_entity" />
+	</oninflict>
+	
+	<onrefresh>
+		<setaccumulator value="0" />
+		<expirestate name="State_Pal_Ability4_Decay" target="source_entity" />
+	</onrefresh>
+	
+	<onimpact>
+		<compare a="accumulator" b="20" op="le" >
+			<addcharges entity="this_proxy_entity" count="1" />
+		</compare>
+		
+		<changeaccumulator b="1" op="add" />
+	</onimpact>
+
+
+	<onexpired>
+		<applystate name="State_Pal_Ability4_Decay" duration="-1" target="source_entity" proxy="this_proxy_entity" />
+	</onexpired>
+
+</state>

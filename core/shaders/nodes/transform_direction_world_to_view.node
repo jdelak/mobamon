@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="transform_direction_world_to_view">
+	<dependency name="Value" type="float3" />
+	<dependency name="mViewRotate" type="float3x3" source="mViewRotate" />
+	<output name="Out" type="float3" />
+	<?hlsl
+		Out = mul(Value, mViewRotate);
+	?>
+	<?glsl
+		Out = mViewRotate * Value;
+	?>
+</node>

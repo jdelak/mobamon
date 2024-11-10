@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+			
+
+		<billboard
+			position="0  0 0"
+			bone="CTL_beltEye"
+			expirelife="1500"
+			color=".5 .2 0"
+			
+			size="50"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-10"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			
+		/>
+		
+
+
+		
+
+		
+		<simpleemitter		
+			bone="Bip01 Pelvis"
+		
+			position="0  0 10"
+			spawnrate="30"			
+			particlelife="400"
+			gravity="-31"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="5 5 5"
+			direction="0 0 1"
+			minangle="-50"
+			maxangle="-90"
+			drag="0.14"
+			depthbias="-12"
+			
+			minspeed="15"
+			maxspeed="15"
+			directionalspace="local"
+			inheritvelocity="0.2"			
+		>
+			<particle
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-170"
+				maxanglespeed="170"
+				startsize="22"				
+				endsize="60"
+				
+				startcolor=".5 1 1"
+				endcolor=".5 1 1"	
+				anchor="1"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".15"
+			/>
+		</simpleemitter>
+
+
+
+		<simpleemitter		
+			bone="Bip01 Neck"
+		
+			position="5 13 0"
+			spawnrate="20"			
+			particlelife="1800"
+			gravity="-4"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="8 8 8 "
+			direction="0 0 1"
+			minangle="-50"
+			maxangle="-90"
+			drag="0.04"
+			depthbias="0"
+
+			minspeed="10"
+			maxspeed="20"
+			directionalspace="local"
+			inheritvelocity="0"			
+		>
+			<particle
+				anchor="1"
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-270"
+				maxanglespeed="270"
+				startsize="30"				
+				endsize="0"
+				
+				startcolor="1 1 1"
+				endcolor="1 1 1"		
+				
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".25"
+			/>
+		</simpleemitter>
+
+		<billboard
+			position="0 0 0"
+			bone="Bip01 Neck"
+			expirelife="1500"
+			startcolor=".1 .35 .35"
+			endcolor="0 0 0"
+			size="92"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-50"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>
+		
+		<template name="hand">
+			<simpleemitter		
+				bone="{bone}"
+			
+				position="0 0 0"
+				spawnrate="10"			
+				particlelife="1100"
+				gravity="15"
+				material="/shared/effects/smaterials/baldir_puff.material"
+				offsetsphere="0 0 0 "
+				direction="0 0 1"
+				minangle="-50"
+				maxangle="-90"
+				drag="0.08"
+				depthbias="-00"
+
+				minspeed="11"
+				maxspeed="22"
+				directionalspace="local"
+				inheritvelocity="0.0"			
+			>
+				<particle
+					startanchor="1"
+					endanchor=""
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-270"
+					maxanglespeed="270"
+					startsize="30"				
+					endsize="3"
+					
+					startcolor=".5 1 1"
+					endcolor="1 .5 .5"	
+					
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".15"
+				/>
+			</simpleemitter>
+			
+			<billboard
+				position="0 0 2"
+				bone="{bone}"
+				expirelife="1500"
+				startcolor=".2 .5 .5"
+				endcolor="0 0 0"
+				size="55"
+				material="/shared/effects/smaterials/whitedot.material"
+				directionalspace="local"
+				depthbias="0"
+				minroll="-180"
+				maxroll="180"
+				rollspeed="-360"
+				loop="true"
+			/>			
+			
+		</template>
+
+
+
+	<instance name="hand" bone="_bone_righthand" />
+	<instance name="hand" bone="_bone_lefthand" />
+
+
+		<twopointemitter
+			bone_a="_bone_fx_R_upperArm"
+			bone_b="Bip01 R Clavicle"
+			
+			spawnrate="50"
+			minparticlelife="1000"
+			maxparticlelife="2000"
+			gravity="0"
+			minspeed="10"			
+			maxspeed="30"			
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="0 0 0"
+			anchor="1"
+		>
+				<particle
+				
+					startanchor="1"
+					endanchor="1"
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-270"
+					maxanglespeed="270"
+					startsize="30"				
+					endsize="3"
+					anchor="1"
+					startcolor=".5 1 1"
+					endcolor="1 .5 .5"	
+					
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".15"
+				/>
+		 </twopointemitter>
+			
+		<twopointemitter
+			bone_a="_bone_fx_L_upperArm"
+			bone_b="Bip01 L Clavicle"
+			
+			spawnrate="50"
+			minparticlelife="1000"
+			maxparticlelife="2000"
+			gravity="0"
+			minspeed="10"			
+			maxspeed="30"			
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="0 0 0"
+			anchor="1"
+		>
+				<particle
+					startanchor="1"
+					endanchor="1"
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-270"
+					maxanglespeed="270"
+					startsize="30"				
+					endsize="3"
+					anchor="1"
+					startcolor=".5 1 1"
+					endcolor="1 .5 .5"	
+					
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".15"
+				/>
+		 </twopointemitter>
+			
+		
+
+
+
+
+
+
+
+
+<!--
+			<trackeremitter
+				bone="_bone_fx_sword1"
+				targetbone="_bone_fx_sword2"
+				tracktype="linear"
+				trackspeed="1000"
+				spawnrate="550"
+				minparticlelife="50"
+				maxparticlelife="480"
+				minspeed="150"			
+				maxspeed="700"			
+				material="/shared/effects/materials/smoke_particle.material"
+				offsetsphere="20 0 30"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor=".3 .3 .3"
+					endcolor="1 1 1"
+					maxanglespeed="30"
+					startsize="90"
+					endsize="10"
+					startalpha=".35"
+					midalpha=".35"
+					endalpha="0"
+					midalphapos="0.3"
+				 />	
+				 
+				 
+			</trackeremitter>
+			
+			<trackeremitter
+				bone="_bone_fx_chestSmoke"
+				targetbone="_bone_fx_headSmoke"
+				tracktype="target"
+				trackspeed="1000"
+				spawnrate="100"
+				minparticlelife="500"
+				maxparticlelife="1250"
+				minspeed="50"			
+				maxspeed="300"			
+				material="/shared/effects/materials/smoke_particle.material"
+				offsetsphere="50 50 0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor=".1 .1 .1"
+					endcolor="1 1 1"
+					maxanglespeed="30"
+					startsize="200"
+					endsize="100"
+					startalpha=".25"
+					midalpha=".45"
+					endalpha=".10"
+					midalphapos="0.7"
+					directionalspace="local"
+										
+				 />					 	 
+			</trackeremitter>
+			
+			
+			<trackeremitter
+				bone="_bone_fx_R_upperArm"
+				targetbone="Bip01 R Clavicle"
+				tracktype="target"
+				spawnrate="50"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				gravity="0"
+				minspeed="100"			
+				maxspeed="300"			
+				material="/shared/effects/materials/smoke_particle.material"
+				offsetsphere="50 50 0"
+
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor=".1 .1 .1"
+					endcolor="1 1 1"
+					maxanglespeed="30"
+					startsize="120"
+					endsize="80"
+					startalpha=".25"
+					midalpha=".45"
+					endalpha=".10"
+					midalphapos="0.7"
+					directionalspace="local"
+				 />	
+				 </trackeremitter>
+				
+				<trackeremitter
+				bone="_bone_fx_L_upperArm"
+				targetbone="Bip01 L Clavicle"
+				tracktype="target"
+				spawnrate="50"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				gravity="0"
+				minspeed="100"			
+				maxspeed="300"			
+				material="/shared/effects/materials/smoke_particle.material"
+				offsetsphere="50 50 0"
+
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor=".1 .1. 1"
+					endcolor="1 1 1"
+					maxanglespeed="30"
+					startsize="120"
+					endsize="80"
+					startalpha=".25"
+					midalpha=".45"
+					endalpha=".10"
+					midalphapos="0.7"
+					directionalspace="local"
+				 />	
+				 </trackeremitter>
+				
+				<trackeremitter
+				bone="_bone_fx_headSmoke"
+				targetbone="_bone_overhead"
+				tracktype="target"
+				spawnrate="50"
+				minparticlelife="100"
+				maxparticlelife="1700"
+				gravity="0"
+				minspeed="10"
+				maxspeed="200"
+				drag="0.1"
+							
+				material="/shared/effects/materials/smoke_particle.material"
+				position="0 0 0"
+				offsetsphere="0 0 25"
+				
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="100"
+					startcolor="1 1 1"
+					endcolor="0 0 0"
+					maxanglespeed="200"
+					startsize="125"
+					endsize="10"
+					startalpha="1"
+					endalpha=".25"
+					midalphapos=".2"
+					
+				 />	
+				 
+				 </trackeremitter>
+				
+
+			
+
+
+			<template name="glowChest">
+				<billboard
+					bone="{bone}"
+					delay="200"
+					position="0 0 0"
+					life="250"
+					color=".5 1 0"
+					size="55"
+					rollspeed="-1250"
+					depthbias="-50"
+					material="/shared/effects/materials/whitedot.material"
+				/>
+				
+				<billboard
+					expirelife="500"
+					bone="{bone}"
+					delay="200"
+					position="0 0 0"
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					size="135"
+					rollspeed="-1250"
+					depthbias="-10"
+					material="/shared/effects/materials/flare_01.material"
+				/>
+
+				<simpleemitter
+					delay="0"
+					bone="{bone}"
+					position="0 0 0" 
+					spawnrate="50"
+					particlelife="350"
+					gravity="0.0"
+					offsetsphere="10"
+					speed="75"
+					drag="0"
+					acceleration="0"
+					material="/shared/effects/materials/flare_01.material"
+					minangle="0"
+					maxangle="10"
+					direction="0 -1 0"
+				>
+					<particle 
+						startcolor="0 0 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						minangle="0"
+						maxangle="360"
+						startsize="30"
+						endsize="15"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						lockright="true"
+						lockup="true"
+						pitch="90"
+						directionalspace="local"
+					/>
+				</simpleemitter>
+			</template>
+			
+			<instance name="glowChest" bone="_bone_lefteye" />
+			<instance name="glowChest" bone="_bone_righteye" />
+			
+			
+			-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

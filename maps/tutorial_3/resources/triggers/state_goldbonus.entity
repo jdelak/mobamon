@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial3_GoldBonus"
+
+	icon=""
+	passiveeffect=""
+	deathpersist="true"
+	effecttype=""
+	impactinterval="1000"
+	ishidden="true"
+>
+
+
+	<onimpact>
+		<compare a="target_gold" b="2000" op="gt" >
+			<setscriptvalue name="gold_accumulator" value="1" />
+		</compare>
+		
+	</onimpact>
+	
+	<onkill>
+		<cantarget targetscheme="neutral_nonboss_units">
+			<areaofeffect
+				radius="600"
+				targetselection="all"
+				targetscheme="neutral_nonboss_units"
+			>
+			</areaofeffect>
+			<printvalue value="result" />
+			<compare a="result" b="1" op="le" >
+				<setscriptvalue name="neutrals_killed" value="1" />
+			</compare>
+
+
+		</cantarget>
+	</onkill>
+	
+
+</state>

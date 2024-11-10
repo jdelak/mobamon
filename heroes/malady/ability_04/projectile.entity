@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Malady_Ability4"
+
+	speed="6000"
+	gravity="0"	
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	canturn="true"
+	impacteffect="effects/impact.effect"
+	traileffect="effects/trail.effect"
+	
+	flying="true"
+	flyheight="150"
+	
+>
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+		<combatevent effecttype="AbilityBasedProjectile Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+			
+				<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult" target="proxy_entity" />
+			</onimpact>
+		</combatevent>
+	</onimpact>
+	
+</projectile>

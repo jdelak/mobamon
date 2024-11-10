@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="false" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<simpleemitter
+			timenudge="2000"
+				spawnrate="15"
+				particlelife="2000"
+				gravity="-55"
+				speed="40"
+				drag=".08"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/materials/phantom_smoke_10.material"
+				offsetsphere="10 10 0"
+				minangle="90"
+				maxangle="-90"
+			>
+				<particle 
+					startcolor="0 0 0"
+					midcolor=".5 0 0"
+					endcolor="0"
+					midcolorpos=".1"
+					startframe="0"
+					endframe="1"
+					startwidth="20"
+					midwidth="15"
+					endwidth="6"
+					midwidthpos=".5"
+					startheight="0"
+					endheight="1750"
+					lockup="true"
+				/>
+			</simpleemitter>
+			
+			
+			<model
+				position="0 0 15"
+				life="2000"
+				model="arrows/model.mdf"
+				anim="idle"
+				scale=".25"
+				startcolor=".35 .15 0"
+				midcolor=".35 .15 0"
+				endcolor=".35 .15 0"
+				yaw="45"
+				loop="true"
+			>
+			</model>
+
+			<model
+				position="0 0 15"
+				life="2000"
+				model="arrows/model.mdf"
+				anim="idle"
+				scale=".275"
+				startcolor=".175 .075 0"
+				midcolor=".175 .075 0"
+				endcolor=".175 .075 0"
+				yaw="45"
+				loop="true"
+			>
+			</model>
+			
+			<model
+				position="0 0 15"
+				life="2000"
+				model="arrows/model.mdf"
+				anim="idle"
+				scale=".3"
+				startcolor=".25 0 0"
+				midcolor=".25 0 0"
+				endcolor=".25 0 0"
+				yaw="45"
+				loop="true"
+			>
+			</model>
+
+			<simpleemitter
+				spawnrate="5"
+				particlelife="400"
+				gravity="-6"
+				speed="0.0"
+				acceleration="0.0"
+				position="0 0 15"
+				offsetsphere="0 0 0"
+				material="/shared/effects/materials/blink.material"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="1 .35 0"
+					endcolor="0 0 0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startsize="200"
+					midsize="100"
+					endsize="50"
+					lockup="true"
+					pitch="90"
+				/>
+				<particle
+					startcolor="0 0 0"
+					midcolor="1 .35 0"
+					endcolor="0 0 0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startsize="200"
+					midsize="100"
+					endsize="50"
+					lockup="true"
+					pitch="90"
+				/>
+			</simpleemitter>
+
+	</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

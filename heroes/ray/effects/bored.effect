@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="1">
+
+			<simpleemitter
+				count="1"
+				spawnrate="2500"
+				particlelife="3000"
+				material="/shared/effects/materials/spark_10.material"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+			>
+				<particle 
+					turn="1"
+				>
+					<model
+						life="2500"
+						position="0 0 0"
+						model="../ability_01/effects/spider_mine/model.mdf"
+						anim="bored_anim"
+						scale="1"
+						color="1 1 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+					>
+						<billboard
+							bone="_bone_bombfx"
+							position="0 0 0"
+							expirelife="250"
+							material="/shared/effects/materials/whitedot.material"
+							startcolor=".5 0 0"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							depthbias="-25"
+							lockup="1"
+							pitch="90"
+							size="25"
+						/>
+						
+						<billboard
+							delay="250"
+							bone="Box014"
+							position="0 0 0"
+							expirelife="250"
+							material="/shared/effects/materials/whitedot.material"
+							startcolor=".25 .1 0"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							depthbias="-25"
+							lockup="1"
+							pitch="90"
+							size="100"
+						/>
+					</model>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

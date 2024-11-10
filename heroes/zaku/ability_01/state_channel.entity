@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Zaku_Ability1_Channel"
+
+	ishidden="false"
+	
+	icon="icon.tga"
+	passiveeffect="effects/state_channel.effect"
+	channeltime="5000"
+	ischanneling="true"
+
+	>
+	<onchannelstart>
+		<showchannelbar duration="3000"/>
+		<order command="forcechannel" />
+	</onchannelstart>
+	
+	<onframe>  
+		<setpos0 position="source_entity" offsetspace="source_entity" offset="0 100 0" />
+		<setpos1 position="source_entity" offsetspace="source_entity" offset="0 875 0" />
+		<lineofeffect
+			radius="150"
+			start="pos0"
+			end="pos1"
+			targetselection="all"
+			targetscheme="enemy_units_and_buildings"
+			effecttype="Magic"
+		>
+			<applystate name="State_Zaku_Ability1" continuous="true" timeout="4000" />
+			<applystate name="State_Zaku_Ability1_DOT" continuous="true" timeout="frametime" />
+		</lineofeffect>
+	</onframe>
+</state>

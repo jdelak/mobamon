@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="cyclone" deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<modifier
+			expirelife="1000"
+			alpha="0"
+			endalpha="1"
+		/>
+
+		<groundsprite
+			name="emitter0" 
+			minlife="500"
+			maxlife="750"
+			loop="false"
+			material="/shared/effects/materials/blood_ground.material"
+			minsize="50"
+			maxsize="85"
+			minyaw="-360"
+			maxyaw="360"
+			color="0 0 0"
+			startalpha="1"
+			midalpha="1"
+			endalpha="0"
+		/>
+	
+		<particlesystem name="system0" space="world" scale="1.2">
+			
+			
+
+			
+			
+			
+
+<!--
+			<model
+				expirelife="100"
+				model="additional_model/model.mdf"
+				parentskeleton="true"
+				startcolor="1 .25 0"
+				endcolor="0"
+				material="/shared/effects/materials/shell3.material"
+			/>
+-->
+			<simpleemitter
+				
+				position="0 0 25"
+				spawnrate="100"
+				drag="0"
+				minparticlelife="300"
+				maxparticlelife="425"
+				gravity="-1"
+				speed="40"
+				offsetsphere="30"
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+				material="/shared/effects/materials/soul_projectile2.material"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".4 .2 .1"
+					endcolor="0 0 0"
+					midcolorpos=".35"
+					maxangle="360"
+					minanglespeed="-60"
+					maxanglespeed="60"
+					startsize="35"
+					endsize="60"
+					midsizepos=".4"
+					startalpha="0.0"
+					midalpha="1.0"
+					endalpha="0.0"
+					midalphapos="0.25"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				
+				position="0 0 10"
+				spawnrate="50"
+				drag="0"
+				minparticlelife="300"
+				maxparticlelife="500"
+				gravity="-1"
+				speed="40"
+				offsetsphere="40"
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+				material="/shared/effects/materials/soul_projectile2.material"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".4 .2 .1"
+					endcolor="0 0 0"
+					midcolorpos=".35"
+					maxangle="360"
+					minanglespeed="-60"
+					maxanglespeed="60"
+					startsize="35"
+					endsize="60"
+					midsizepos=".4"
+					startalpha="0.0"
+					midalpha="1.0"
+					endalpha="0.0"
+					midalphapos="0.25"
+					startanchor="1"
+					endanchor=".5"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				
+				position="0 0 25"
+				spawnrate="100"
+				minparticlelife="300"
+				maxparticlelife="500"
+				gravity="50"
+				speed="0"
+				offsetsphere="25"
+				material="/shared/effects/materials/spark_10.material"
+			>
+				<particle
+					startcolor="1 .9 .8"
+					midcolor="1 .9 .8"
+					endcolor="0 0 0"
+					midcolorpos=".35"
+					maxangle="360"
+					minanglespeed="-60"
+					maxanglespeed="60"
+					startsize="15"
+					endsize="25"
+					midsizepos=".4"
+					startalpha="0.0"
+					midalpha="1.0"
+					endalpha="0.0"
+					midalphapos="0.25"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				
+				position="0 0 25"
+				spawnrate="100"
+				minparticlelife="300"
+				maxparticlelife="500"
+				gravity="50"
+				speed="0"
+				offsetsphere="25"
+				material="/shared/effects/materials/spark_10.material"
+				minangle="0"
+				maxangle="10"
+				direction="0 0 1"
+				
+			>
+				<particle
+					startcolor="1 .9 .8"
+					midcolor="1 .9 .8"
+					endcolor="0 0 0"
+					midcolorpos=".35"
+					maxangle="360"
+					minanglespeed="-60"
+					maxanglespeed="60"
+					startsize="15"
+					endsize="25"
+					midsizepos=".4"
+					startalpha="0.0"
+					midalpha="1.0"
+					endalpha="0.0"
+					midalphapos="0.25"
+				/>
+			</simpleemitter>
+			
+			<billboard
+				
+				expirelife="500"
+				startcolor=".25 0 0"
+				endcolor="0 0 0"
+				size="210"
+				position="0 0 0"
+				material="/shared/effects/materials/whitedot.material"
+				directionalspace="local"
+				depthbias="-60"
+				minroll="-180"
+				maxroll="180"
+				rollspeed="-360"
+				loop="true"
+			/>
+
+			<simpleemitter
+				
+				spawnrate="10"
+				minparticlelife="300"
+				maxparticlelife="400"
+				gravity="1"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+				offsetsphere="30"
+				material="/shared/effects/materials/heathaze.material"
+				depthbias="-75"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startparam="0"
+					midparam=".1"
+					endparam="0"
+					startcolor="1 1 1"
+					frame=".1"
+					startalpha="0"
+					midalpha=".85"
+					endalpha="0"
+					midalphapos=".2"
+					startsize="25" 
+					endsize="100"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath  instance="instance0"/>
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

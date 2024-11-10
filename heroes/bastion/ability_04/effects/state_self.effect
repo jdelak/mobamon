@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+		
+
+		
+		<particlesystem name="system1" space="world" scale="1.5">
+		
+		
+			<light
+				bone="_bone_fx_02"
+				position="0 0 0"
+				expirelife="250"
+				startcolor="4 1 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="140"
+			/>
+
+			<template name="fire">
+
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"
+					bone="{zbone}"
+					spawnrate="90"
+					gravity="0"
+					speed="0"
+					drag="0"
+					minparticlelife="200"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/firesprite_swirl.material"
+					offsetsphere="6"
+					depthbias="0"
+				>
+					<particle 
+						startanchor="{zanchor}"
+						endanchor="0"
+						minangle="0"
+						maxangle="360"
+						startframe="0"
+						endframe="1"
+						framespeed="2"
+						minsize="25"
+						maxsize="45"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="1 0 0"
+						midcolorpos=".75"
+						startalpha="0"
+						midalpha=".8"
+						endalpha="0"
+						midalphapos=".1"
+						turn="1"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="25"
+					minparticlelife="200"
+					maxparticlelife="400"
+					gravity="-5"
+					position="0 0 0"
+					offsetsphere="10"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-50"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-360"
+						maxanglespeed="360"
+						startcolor="0 0 0"
+						midcolor=".2 .075 0"
+						endcolor="0 0 0"
+						minstartsize="75"
+						maxstartsize="150"
+						endsize="0"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+				
+				
+				
+
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					size="45" 
+					depthbias="-50"
+					startcolor=".5 .12 0"
+					endcolor="0 0 0"
+				/>
+
+				
+				
+				<!--sparks
+				<simpleemitter
+					delay="750"
+					bone="{zbone}"
+					spawnrate="25"
+					minparticlelife="200"
+					maxparticlelife="400"
+					gravity="-5"
+					speed="125"
+					position="0 0 0"
+					offsetsphere="10"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-50"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-360"
+						maxanglespeed="360"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						minstartsize="5"
+						maxstartsize="7"
+						endsize="0"
+					/>
+				</simpleemitter>
+				-->
+
+			</template>
+
+			<instance name="fire" zbone="_bone_weapon1" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="60"/>
+			<instance name="fire" zbone="_bone_weapon2" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+			<instance name="fire" zbone="_bone_weapon3" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+			<instance name="fire" zbone="_bone_weaponattach" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+			<instance name="fire" zbone="_bone_fx_01" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+			<instance name="fire" zbone="_bone_fx_02" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+			<instance name="fire" zbone="_bone_fx_03" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+
+			<model
+				expirelife="250"
+				parentskeleton="true"
+				model="all/model.mdf"
+				color="3 2 1"
+				startalpha="1"
+				endalpha="0"
+			/>
+			
+			<model
+				expirelife="250"
+				parentskeleton="true"
+				model="all/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				color="1 .25 0"
+				startalpha="1"
+				endalpha="0"
+			/>
+
+		</particlesystem>
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<simpleemitter
+			name="trail_01"
+			life="500"
+			spawnrate="200"
+			minparticlelife="200"
+			maxparticlelife="1000"
+			position="0 0 0"
+			speed="50"
+			material="/shared/effects/materials/whitedot.material"
+		>
+			<particle
+				startcolor=".25 .75 1"
+				midcolor=".25 .75 1"
+				endcolor="0 0 0"
+				midcolorpos=".1"
+				startsize="0"
+				midsize="10"
+				endsize="0"
+				midsizepos=".1"
+			/>
+		</simpleemitter>
+		
+		<particlesystem name="system0" space="entity">
+			
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="1250"
+				falloffend="2400"
+				volume="0.55"
+				sample="../sounds/sfx_heal.wav"
+			/>
+			
+			<trackeremitter
+
+				count="10"
+				position="0 0 200"
+				targetbone="_bone_center"
+				tracktype="angular"
+				trackspeed="18"
+				drag="0"
+				spawnrate="250"
+				particlelife="3000"
+				offsetsphere="5 5 5"
+				speed="500"
+				maxspeed="250"
+				acceleration="30.0"
+				direction="0.0 0.0 1.0"
+				inheritvelocity="0.0"
+				distancelife="true"
+			>
+				<particle
+					emitter0="trail_01"
+				/>
+			</trackeremitter>
+			
+			
+			
+			<simpleemitter
+
+				spawnrate="2000"
+				count="10"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="-100"
+				speed="40"
+				drag=".08"
+				acceleration="0"
+				position="0 0 150"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 70"
+				minangle="90"
+				maxangle="-90"
+			>
+				<particle 
+					startcolor="0 0 0"
+					midcolor=".125 .35 .5"
+					endcolor="0"
+					midcolorpos=".1"
+					startframe="0"
+					endframe="1"
+					startwidth="20"
+					midwidth="15"
+					endwidth="6"
+					midwidthpos=".5"
+					startheight="0"
+					endheight="1000"
+					lockup="true"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+		
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>
+

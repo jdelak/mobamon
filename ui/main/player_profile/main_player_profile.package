@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<style name="playerProfileAddItemListbox" style="simpleListbox" scrollbarplaceholder="false" scrollbaroffset="0.25h" wrap="row" itemwidth="15.5h" itemheight="15.5h" select="false" highlightcolor="invisible" highlightbordercolor="invisible" valign="bottom" height="-4.5h" exteriorscrollbars="false"/>
+	<style name="playerProfileEloStarOrder1" color="1 1 1 1" width="160s" height="160s" align="center" valign="center" noclick="1" />
+	<style name="playerProfileEloStarOrder2" color=".5 .5 .5 1" width="120s" height="120s" align="center" valign="center" noclick="1" />
+	<style name="playerProfileEloStarOrder3" color=".3 .3 .3 1" width="100s" height="100s" align="center" valign="center" noclick="1" />
+	<style name="playerProfileEloStarOrder4" color=".2 .2 .2 1" width="80s" height="80s" align="center" valign="center" noclick="1" />
+	<style name="playerProfileEloStarOrder5" color=".1 .1 .1 1" width="60s" height="60s" align="center" valign="center" noclick="1" />
+
+	<template name="playerProfileColumnEmpty">
+		<panel name="playerProfileColumnEmpty{id}" height="15.5h" noclick="true">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="1.0h" color="#d7c9af" noclick="true" />
+			<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="1.0h" blockinput="false" noclick="true"/>
+			<panel hmargin="0.8h" noclick="true" passivechildren="true">
+				<label y="0.4h" textalign="center" font="maindyn_20" color="#3e371a" outline="true" outlinecolor="0 0 0 .15" content="player_profile_pins" />
+				<label y="-0.5h" valign="bottom" wrap="true" textvalign="bottom" textalign="center" font="maindyn_14" color="#3e371a" content="player_profile_pin_body" />
+			</panel>
+			<image y="-2.7h" width="8.6h" height="8.6h" align="center" texture="/ui/_textures/icons/pin.tga" noclick="true" />
+			<button name="playerProfileColumnEmpty{id}DropTargetCenter" color="#FFDD3366" visible="false">
+				<panel name="playerProfileColumnEmpty{id}DropTargetCenterOver" color="0.15 0.15 0.15" rendermode="additive" visible="false"/>
+			</button>
+		</panel>
+	</template>
+
+	<template name="playerProfileRemoveOverlay">
+		<panel name="{id}RemoveOverlay" noclick="true" passivechildren="true" visible="false">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="{hovercorner=1.0h}" color="0 0 0 .9" noclick="true"/>
+			<panel hmargin="0.8h" vmargin="0.8h">
+				<image width="3.2h" height="3.2h" valign="bottom" texture="/ui/_textures/icons/trash.tga" />
+				<label width="65%" align="right" wrap="true" textvalign="bottom" textalign="right" font="maindyn_14" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .7" content="Remove From Profile" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="replay_participant">
+		<panel height="24s" color="invisible" watch="ReplayInfoPlayer{slot}" ontrigger="SetVisible(!StringEmpty(param0));">
+			<panel height="2.2h" width="2.2h" valign="center">
+				<image watch="ReplayInfoPlayer{slot}" ontrigger="SetTexture(param4);" />
+				<frame color="invisible" bordercolor=".3 .3 .3 1" borderthickness="1" noclick="1" />
+			</panel>
+			<label x="3.2h" height="100%" textvalign="center" font="dyn_10" color="white" shadow="1" watch="ReplayInfoPlayer{slot}" ontrigger="SetText(param0); SetColor(param1);" />
+		</panel>
+	</template>
+
+	<template name="playerProfileAchievement">
+		<panel width="100%" height="100@">
+			<panel width="80%" height="80%" align="center" valign="center" color=".09 .09 .09 1" noclick="1" />
+			<image texture="/ui/main/shared/textures/iconframe_displayinfo.tga" noclick="1" />
+			<image texture="/ui/main/player_profile/textures/achievement.tga" width="54@" height="54%" align="center" valign="center" rendermode="grayscale" color=".4 .4 .4 .2" />
+		</panel>
+	</template>
+
+	<template name="playerProfileIcon">
+		<panel name="playerProfileIcon_{index}" width="100@" height="100%"
+			onmouseoverlua="
+				self:GetWidget('playerProfileIcon_{index}_hover'):SetVisible(1)
+			"
+			onmouseoutlua="
+				self:GetWidget('playerProfileIcon_{index}_hover'):SetVisible(0)
+			"
+			visible="0"
+		>
+			<image name="playerProfileIcon_{index}_icon" texture="/ui/shared/textures/account_icons/default.tga" noclick="1" />
+
+			<!-- Hover State -->
+			<frame name="playerProfileIcon_{index}_hover" texture="/ui/shared/frames/border_double.tga" bordercolor="#a33024" borderthickness="8s" noclick="1" color="invisible" visible="{playerProfileIconHover=false}"/>
+
+			<!-- Locked - Grayscale and lock icon added  - Tooltip to explain how to earn? -->
+			<panel name="playerProfileIcon_{index}_locked" visible="{playerProfileIconLocked=false}" noclick="1">
+				<image texture="/ui/main/shared/textures/lock2.tga" x="8s" y="-10s" align="right" valign="top" width="45s" height="45s"  noclick="1"/>
+			</panel>
+
+		</panel>
+	</template>
+
+	<template name="playerProfileAccountRankStar">
+		<panel width="100@" height="100%" noclick="1" >
+			<image name="playerProfileAccountRankStar{id}Full" texture="/ui/shared/textures/star.tga" noclick="1"  />
+			<panel name="playerProfileAccountRankStar{id}Partial" align="right" clip="1" noclick="1" color="invisible"  >
+				<image texture="/ui/shared/textures/star.tga" align="right" width="100@" rendermode="grayscale" color=".3 .3 .3 .9" noclick="1"  />
+			</panel>
+		</panel>
+	</template>
+
+	<!-- Remove when able -->
+	<template name="playerProfileHeroEntry_level_star">
+		<panel width="100@" height="100%" noclick="1" >
+			<image name="playerProfileHeroEntry{id}_Star{index}_1" texture="/ui/shared/textures/star.tga" noclick="1"  />
+			<panel name="playerProfileHeroEntry{id}_Star{index}_2" align="right" clip="1" noclick="1" color="invisible"  >
+				<image texture="/ui/shared/textures/star.tga" align="right" width="100@" rendermode="grayscale" color=".3 .3 .3 .9" noclick="1"  />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="playerProfileELO_0">
+		<panel name="playerProfileDivision0" y="-25s" height="140s" valign="center" noclick="1" visible="{visible=0}" passivechildren="1">
+			<image texture="/ui/main/shared/textures/elo_rank_5.tga" style="playerProfileEloStarOrder5" x="92s" rendermode="grayscale"/>
+			<image texture="/ui/main/shared/textures/elo_rank_4.tga" style="playerProfileEloStarOrder4" x="68s" rendermode="grayscale" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder3" x="34s" rendermode="grayscale" />
+			<image texture="/ui/main/shared/textures/elo_rank_2.tga" style="playerProfileEloStarOrder2" x="-4s" rendermode="grayscale" />
+			<image texture="/ui/main/shared/textures/elo_rank_1.tga" style="playerProfileEloStarOrder1" x="-58s" rendermode="grayscale" />
+		</panel>
+	</template>	
+	
+	<template name="playerProfileELO_1">
+		<panel name="playerProfileDivision1" y="-25s" height="140s" valign="center" noclick="1" visible="{visible=0}" passivechildren="1">
+			<image texture="/ui/main/shared/textures/elo_rank_5.tga" style="playerProfileEloStarOrder5" x="92s" />
+			<image texture="/ui/main/shared/textures/elo_rank_4.tga" style="playerProfileEloStarOrder4" x="68s" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder3" x="34s" />
+			<image texture="/ui/main/shared/textures/elo_rank_2.tga" style="playerProfileEloStarOrder2" x="-4s" />
+			<image texture="/ui/main/shared/textures/elo_rank_1.tga" style="playerProfileEloStarOrder1" x="-58s" />
+		</panel>
+	</template>
+
+	<template name="playerProfileELO_2">
+		<panel name="playerProfileDivision2" y="-25s" height="140s" valign="center" noclick="1" visible="{visible=0}" passivechildren="1">
+			<image texture="/ui/main/shared/textures/elo_rank_5.tga" style="playerProfileEloStarOrder5" x="94s" />
+			<image texture="/ui/main/shared/textures/elo_rank_4.tga" style="playerProfileEloStarOrder4" x="68s" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder3" x="34s" />
+			<image texture="/ui/main/shared/textures/elo_rank_1.tga" style="playerProfileEloStarOrder3" x="-82s" />
+			<image texture="/ui/main/shared/textures/elo_rank_2.tga" style="playerProfileEloStarOrder1" x="-24s" />
+		</panel>
+	</template>
+
+	<template name="playerProfileELO_3">
+		<panel name="playerProfileDivision3" y="-25s" height="140s" valign="center" noclick="1" visible="{visible=0}" passivechildren="1">
+			<image texture="/ui/main/shared/textures/elo_rank_5.tga" style="playerProfileEloStarOrder4" x="84s" />
+			<image texture="/ui/main/shared/textures/elo_rank_1.tga" style="playerProfileEloStarOrder4" x="-90s" />
+			<image texture="/ui/main/shared/textures/elo_rank_2.tga" style="playerProfileEloStarOrder3" x="-55s" />
+			<image texture="/ui/main/shared/textures/elo_rank_4.tga" style="playerProfileEloStarOrder3" x="55s" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder1" />
+		</panel>
+	</template>
+
+	<template name="playerProfileELO_4">
+		<panel name="playerProfileDivision4" y="-25s" height="140s" valign="center" noclick="1" visible="{visible=0}" passivechildren="1">
+			<image texture="/ui/main/shared/textures/elo_rank_1.tga" style="playerProfileEloStarOrder5" x="-94s" />
+			<image texture="/ui/main/shared/textures/elo_rank_2.tga" style="playerProfileEloStarOrder4" x="-68s" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder3" x="-34s" />
+			<image texture="/ui/main/shared/textures/elo_rank_5.tga" style="playerProfileEloStarOrder3" x="82s" />
+			<image texture="/ui/main/shared/textures/elo_rank_4.tga" style="playerProfileEloStarOrder1" x="24s" />
+		</panel>
+	</template>
+
+	<template name="playerProfileELO_5">
+		<panel name="playerProfileDivision5" y="-25s" height="140s" valign="center" noclick="1" visible="{visible=0}" passivechildren="1">
+			<image texture="/ui/main/shared/textures/elo_rank_1.tga" style="playerProfileEloStarOrder5" x="-92s" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder4" x="-68s" />
+			<image texture="/ui/main/shared/textures/elo_rank_3.tga" style="playerProfileEloStarOrder3" x="-34s" />
+			<image texture="/ui/main/shared/textures/elo_rank_4.tga" style="playerProfileEloStarOrder2" x="4s" />
+			<image texture="/ui/main/shared/textures/elo_rank_5.tga" style="playerProfileEloStarOrder1" x="58s" />
+		</panel>
+	</template>
+
+
+	<!-- Hero Progression Portraits - Remove when not needed -->
+	<template name="playerProfileHeroEntry">
+		<button name="playerProfileHeroEntry{id}" color="invisible" passivechildren="true">
+			<image name="playerProfileHeroEntry{id}Icon" width="58@" height="58%" align="center" y="24s" noclick="1"/>
+			<image name="playerProfileHeroEntry{id}Frame" texture="/ui/main/shared/textures/iconframe_interactive_txt.tga" width="100@" height="100%" align="center" color="1 1 1 1" noclick="1" />
+			<!-- HOVER state -->
+			<panel name="playerProfileHeroEntry{id}Hover" visible="0" noclick="1">
+				<panel width="58@" height="58%" align="center" y="24s" color="0 0 0 .8" noclick="1"/>
+				<image texture="/ui/main/shared/textures/iconframe_interactive_txt_hover.tga" width="100@" height="100%" align="center" noclick="1" />
+				<label name="playerProfileHeroEntry{id}WinCount" y="38s" textalign="center" style="labelBase" font="maindyn_18" content="stat_name_hero_wins_x" noclick="1" />
+				<label name="playerProfileHeroEntry{id}WinsReq" y="64s" width="-40s" align="center" textalign="center" wrap="1" style="labelBase" font="maindyn_18" color=".8 .8 .8 1" content="stat_name_hero_wins_next_star_x" noclick="1" />
+			</panel>
+			<!-- Mastered Hero -->
+			<panel name="playerProfileHeroEntry{id}Mastered" visible="0" noclick="1">
+				<modelpanel name="" visible="1" height="100%" width="100%"
+					noclick="true"
+					y="15s" x="2s"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/shared/effects/mastery_flames.effect"
+					camerapos="26 0 50"
+					cameraangles="0 0 0"
+					camerafov="80"
+					depthclear="true"
+					depthcompress="true"
+				/>
+			</panel>
+
+			<!-- Stars -->
+			<panel y="-14s" width="-28s" height="21s" align="center" valign="bottom" float="right" padding="0" noclick="1">
+				<instance name="playerProfileHeroEntry_level_star" index="1" id="{id}" color="1 1 85 0.25" />
+				<instance name="playerProfileHeroEntry_level_star" index="2" id="{id}" color="1 1 1 0.45" />
+				<instance name="playerProfileHeroEntry_level_star" index="3" id="{id}" color="1 1 85 0.25" />
+				<instance name="playerProfileHeroEntry_level_star" index="4" id="{id}" color="1 1 1 0.45" />
+				<instance name="playerProfileHeroEntry_level_star" index="5" id="{id}" color="1 1 85 0.25" />
+			</panel>
+		</button>
+		<!-- ELO/Rank -->
+		<image
+			name="playerProfileHeroEntry{id}RankIcon"
+			texture="/ui/main/shared/textures/elo_rank_1.tga" width="52s" height="52s" x="-5s" y="-6s" visible="0"
+			onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('player_rank_hero_1'), Translate('player_rank_hero_tip'), libGeneral.HtoP(34))"
+			onmouseoutlua="simpleTipGrowYUpdate(false)"
+		/>
+	</template>
+
+	<template name="profile_content_tab_tabbuttonState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<frame texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="8s" color="{color=.8 .8 .8 1}" rendermode="grayscale"/>
+			<image group="{id}_image_group" width="{iconsize}@" height="{iconsize}%" texture="{icon}" y="{iconY}" x="{iconX}" align="center" />
+			<label y="-24s" textvalign="bottom" textalign="center" wrap="1" style="labelBase" color="1 1 1 1" font="maindyn_22" content="{label2}" group="{id}Label2Group" noclick="1" visible="0"/>
+			<label width="-10s" align="center" y="-12s" textvalign="bottom" textalign="center" wrap="1" lineheight="17s" style="labelBase" color="1 1 1 1" font="maindyn_22" content="{label}" noclick="1"/>
+		</widgetstate>
+	</template>
+	<template name="profile_content_tab">
+		<panel name="{id}Container" y="{y}" width="100%" height="82@" align="center" noclick="1" sticky="{sticky=true}" stickytoinvis="false" visible="{visible=true}" >
+			<button name="{id}" passivechildren="true" onloadlua="{onloadlua}" group="{group}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible" onclicklua="{onclicklua}">
+				<instance name="profile_content_tab_tabbuttonState" label="{label}" id="{id}" label2="{label2}" icon="{icon}" iconsize="{iconsize=74}" iconY="{iconY}" iconX="{iconX}" statename="up"/>
+				<instance name="profile_content_tab_tabbuttonState" label="{label}" id="{id}" label2="{label2}" icon="{icon}" iconsize="{iconsize=74}" iconY="{iconY}" iconX="{iconX}" color="1 1 1 1" statename="over"/>
+				<instance name="profile_content_tab_tabbuttonState" label="{label}" id="{id}" label2="{label2}" icon="{icon}" iconsize="{iconsize=74}" iconY="{iconY}" iconX="{iconX}" statename="down" x="1" y="1"/>
+
+				<instance
+					name="NumberValue"
+					id="{id}_count_label_parent" countShown="0"
+					labelId="{id}_count_label"
+					x="-4s" y="-6s" height="22s" width="24s" valign="top" align="left"
+					label="5"
+				/>
+
+				<widgetstate statename="disabled">
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="8s" color="1 1 1 1" />
+					<image x="31s" width="32s" height="64" align="right" valign="center" texture="/ui/main/shared/textures/submenu_arrow.tga" noclick="1" visible="{hasSubMenu=0}" />
+					<image width="{iconsize=74}@" height="{iconsize=74}%" texture="{icon}" y="{iconY}" x="{iconX}" align="center" />
+					<label y="-24s" textvalign="bottom" textalign="center" wrap="1" style="labelBase" color="1 1 1 1" font="maindyn_22" content="{label2}" group="{id}Label2Group" noclick="1" visible="0"/>
+					<label width="-10s" align="center" y="-12s" textvalign="bottom" textalign="center" wrap="1" lineheight="17" style="labelBase" color="1 1 1 1" font="maindyn_22" content="{label}" noclick="1"/>
+				</widgetstate>
+			</button>
+			<!-- Turn Off -->
+			<frame name="{id}_turnoff" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="8s" color=".2 .2 .2 .75" rendermode="grayscale" blockinput="1" visible="{turnOff=false}" />
+		</panel>
+
+	</template>
+
+	<template name="profile_content_tabShort_tabbuttonState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<frame texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="8s" color="{color=.8 .8 .8 1}" rendermode="grayscale"/>
+			<image group="{id}_image_group" width="{iconsize}@" height="{iconsize}%" texture="{icon}" y="{iconY}" x="{iconX}" valign="center" />			
+			<label width="-40s" x="-3s" align="right" textvalign="center" textalign="center" wrap="1" lineheight="18s" style="labelBase" color="1 1 1 1" font="subdyn_13" content="{label}" noclick="1"/>			
+		</widgetstate>
+	</template>
+	<template name="profile_content_tabShort">
+		<panel name="{id}Container" y="{y}" width="100%" height="78s" align="center" noclick="1" sticky="{sticky=true}" stickytoinvis="false" visible="{visible=true}" >
+			<button name="{id}" passivechildren="true" onloadlua="{onloadlua}" group="{group}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible" onclicklua="{onclicklua}">				
+				<instance name="profile_content_tabShort_tabbuttonState" label="{label}" id="{id}" label2="{label2}" icon="{icon}" iconsize="{iconsize=74}" iconY="{iconY}" iconX="{iconX=4s}" statename="up"/>
+				<instance name="profile_content_tabShort_tabbuttonState" label="{label}" id="{id}" label2="{label2}" icon="{icon}" iconsize="{iconsize=74}" iconY="{iconY}" iconX="{iconX=4s}" color="1 1 1 1" statename="over"/>
+				<instance name="profile_content_tabShort_tabbuttonState" label="{label}" id="{id}" label2="{label2}" icon="{icon}" iconsize="{iconsize=74}" iconY="{iconY}" iconX="{iconX=4s}" statename="down" x="1" y="1"/>
+				<instance
+					name="NumberValue"
+					id="{id}_count_label_parent" countShown="0"
+					labelId="{id}_count_label"
+					x="-4s" y="-6s" height="22s" width="24s" valign="top" align="left"
+					label="5"
+				/>
+				<widgetstate statename="disabled">
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="8s" color="1 1 1 1" />
+					<image x="31s" width="32s" height="64" align="right" valign="center" texture="/ui/main/shared/textures/submenu_arrow.tga" noclick="1" visible="{hasSubMenu=0}" />					
+					<image width="{iconsize=74}@" height="{iconsize=74}%" texture="{icon}" y="{iconY}" x="{iconX=4s}" valign="center" />					
+					<label y="-24s" textvalign="bottom" textalign="center" wrap="1" style="labelBase" color="1 1 1 1" font="maindyn_22" content="{label2}" group="{id}Label2Group" noclick="1" visible="0"/>
+					<label width="-40s" x="-3s" align="right" textvalign="center" textalign="center" wrap="1" lineheight="18s" style="labelBase" color="1 1 1 1" font="subdyn_13" content="{label}" noclick="1"/>
+				</widgetstate>
+			</button>
+			<!-- Turn Off -->
+			<frame name="{id}_turnoff" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="8s" color=".2 .2 .2 .75" rendermode="grayscale" blockinput="1" visible="{turnOff=false}" />
+		</panel>
+	</template>
+		
+	<template name="raf_objective_10">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="30s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_2.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="-20s" width="66s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="50" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="raf_objective_20">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="30s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_3.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="-20s" width="66s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="100" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="raf_objective_50">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="30s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_4.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="-20s" width="66s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="160" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="raf_objective_100">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="30s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_5.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="-20s" width="66s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="200" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="raf_objective_200">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="5s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_6.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="10s" width="66s" align="center">
+				<image texture="/ui/main/player_profile/textures/raf_shirt.tga" width="104%" height="104@" align="center" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" wrap="1" content="player_profile_referafriend_reward_tee" noclick="1" />
+			</panel>
+			<panel x="6s" width="66s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="250" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="raf_objective_500">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="30s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_7.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="-25s" width="72s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="500" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name='profile_achievement_icon'>
+		<panel name="profile_achievement_icon_{achievement}_container" noclick="1" width='{width=100@}' height='{height=100%}'>			
+			<panel name="profile_achievement_icon_{achievement}_owned" visible="0"><!-- Owned Indication -->
+				<frame texture="/ui/elements:squareglow" color=".4 .9 1 .5" borderthickness="8s" width="+6s" height="+6s" align="center" valign="center" rendermode="additive" />
+				<modelpanel height="+20s" width="+20s" align="center" valign="center" visible="1"
+					noclick="true"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/crafting/effects/alert.effect"
+					onshowlua="self:SetEffect('/ui/main/crafting/effects/alert.effect')"
+					onhidelua="self:SetEffect('')"
+					camerapos="0 0 0"
+					cameraangles="0 0 0"
+					camerafov="40"
+					depthclear="true"
+					depthcompress="true"
+				/>
+			</panel>			
+			<frame name="profile_achievement_icon_{achievement}_hoverBehind" texture="/ui/elements:squareglow" color="#971500" bordercolor="#971500" borderthickness="10s" width="+12s" height="+12s" align="center" valign="center" rendermode="additive" visible="0"/><!-- Back Hover -->						
+			<!-- The onmouseoutlua is overridden by player_profile.lua for icons we own, so the lock doesn't fade back in.-->
+			<panel name='profile_achievement_icon_{achievement}' texture="/ui/shared/textures/account_icons/{achievement}.tga"
+				onmouseoverlua="
+					simpleTipGrowYUpdate(true, nil, Translate('account_icon_{achievement}'), Translate('account_icon_desc_{achievement}'), 250)
+					self:GetWidget('profile_achievement_icon_{achievement}_hover'):FadeIn(200)
+					self:GetWidget('profile_achievement_icon_{achievement}_hoverBehind'):FadeIn(200)
+					self:GetWidget('profile_achievement_icon_{achievement}_lock'):FadeOut(200)
+					local container = self:GetWidget('profile_achievement_icon_{achievement}_container')
+					ScaleInPlace(container, '160@', '160%', 150)
+					container:BringToFront()
+					container:GetParent():BringToFront()
+				"
+				onmouseoutlua="
+					simpleTipGrowYUpdate(false)
+					self:GetWidget('profile_achievement_icon_{achievement}_hover'):FadeOut(200)
+					self:GetWidget('profile_achievement_icon_{achievement}_hoverBehind'):FadeOut(200)
+					self:GetWidget('profile_achievement_icon_{achievement}_lock'):FadeIn(200)
+					ScaleInPlace(self:GetWidget('profile_achievement_icon_{achievement}_container'), '{width=100@}', '{height=100%}', 150, false, true)
+				"
+				noclick="0"
+			/>			
+			<frame name='profile_achievement_icon_{achievement}_lock' noclick="1" texture="/ui/elements:rounded_bg_white" borderthickness="6s" color="0 0 0 0">
+				<image texture="/ui/shared/textures/account_icons/{achievement}.tga" noclick="1" rendermode="grayscale" color=".26 .26 .26 .84" />
+				<panel texture="/ui/main/shared/textures/lock2.tga" x="15%" y="-8%" width="52@" height="52%" align="right" valign="top" color=".8 .8 .8 1" noclick="1" visible="1" />
+			</frame>			
+			<frame name="profile_achievement_icon_{achievement}_hover" texture="/ui/shared/frames/border_double.tga" width="+4s" height="+4s" align="center" valign="center" bordercolor="#971500" borderthickness="12s" noclick="1" color="invisible" visible="0"/><!-- Hover Frame -->
+		</panel>
+	</template>
+	
+	<template name="playerProfileIconRow">
+		<panel name="playerProfileIconRow{row}" height="80s" float="right" padding="8s">
+			<instance name="playerProfileIcon" index="{row}_1" />
+			<instance name="playerProfileIcon" index="{row}_2" />
+			<instance name="playerProfileIcon" index="{row}_3" />
+			<instance name="playerProfileIcon" index="{row}_4" />
+			<instance name="playerProfileIcon" index="{row}_5" />
+		</panel>
+	</template>
+	
+	<template name="raf_objective_1000">
+		<panel y="46s" hmargin="12s" height="84s" noclick="1">
+			<panel x="5s" width="66s" align="left">
+				<image texture="/ui/shared/textures/account_icons/aol_8.tga" width="100%" height="100@" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+			</panel>
+			<panel x="10s" width="66s" align="center">
+				<image texture="/ui/main/player_profile/textures/raf_boc.tga" width="104%" height="104@" align="center" />
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" wrap="1" content="player_profile_referafriend_reward_bag" noclick="1" />
+			</panel>
+			<panel x="6s" width="66s" align="right">
+				<image texture="/ui/main/shared/textures/gem.tga" width="100%" height="100@" align="center"/>
+				<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="500" noclick="1" />
+			</panel>			
+		</panel>
+	</template>
+	
+	<template name="raf_objective_base">
+		<panel width="244s" height="100%">
+			<!-- Show When In Progress -->
+			<panel visible="0" noclick="1"
+				onloadlua="
+					self:RegisterWatchLua('AccountProgression', function(widget, trigger)
+						if (mainUI) and (mainUI.progression) and (mainUI.progression.stats) and (mainUI.progression.stats.referafriend) and (mainUI.progression.stats.referafriend.referrals) then
+							if (mainUI.progression.stats.referafriend.referrals >= tonumber({requirement=-1})) and (tonumber({id=-1}) > mainUI.progression.stats.referafriend.referrals) then
+								widget:SetVisible(1)
+							else
+								widget:SetVisible(0)
+							end
+						end
+					end)
+				"
+			>								
+				<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="10s" width="-16s" align="center" height="32s" y="-26s" color="#52edff" />
+				<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="10s" width="-16s" align="center" height="32s" y="-26s" color="#1ae7ff" rendermode="additive" />				
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".1 .1 .1 1"/>								
+				<panel grow="1" regrow="1" y="-25s" height="22s" align="center" float="right" padding="5s" noclick="1">
+					<label fitx="1" style="labelBase" font="maindyn_22" color="1 1 1 1" textalign="center" content="player_profile_referafriend_current" noclick="1" />
+					<label fitx="1" style="h1" font="maindyn_22" textalign="center" content="---" noclick="1"
+					onloadlua="
+						self:RegisterWatchLua('AccountProgression', function(widget, trigger)
+							if (mainUI) and (mainUI.progression) and (mainUI.progression.stats) and (mainUI.progression.stats.referafriend) and (mainUI.progression.stats.referafriend.referrals) then
+								widget:SetText(mainUI.progression.stats.referafriend.referrals)
+							end
+						end)
+					"
+					/>
+				</panel>
+			</panel>
+			
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".1 .1 .1 .6"/>
+			<frame texture="/ui/elements:thick" borderthickness="8s" color=".2 .2 .2 1"/>			
+			<panel grow="1" align="center" y="6s" float="right" padding="2s" noclick="1">
+				<label fitx="1" style="labelBase" font="maindyn_24" content="profile_referafriend_send_{id}" noclick="1"/>
+				<label fitx="1" style="labelBase" font="subdyn_11" content="AST" noclick="1"/>
+			</panel>
+			
+			<instance name="hr" y="36s" align="center" width="-30s" />
+			
+			<panel y="46s" hmargin="12s" height="84s" noclick="1">
+				<panel x="10s" width="66s" align="left">
+					<image texture="/ui/shared/textures/account_icons/aol_1.tga" width="100%" height="100@" />
+					<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" noclick="1" />
+				</panel>
+				<panel x="8s" width="66s" align="center">
+					<image texture="/ui/main/shared/textures/commodity_essence.tga" width="104%" height="104@" align="center" />
+					<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="40" noclick="1" />
+				</panel>
+				<panel x="0" width="66s" align="right">
+					<image texture="/ui/main/shared/textures/commodity_seal.tga" width="108%" height="108@" align="center"/>
+					<label style="labelBase" font="subdyn_12" color=".8 .8 .8 1" textalign="center" textvalign="bottom" content="80" noclick="1" />
+				</panel>
+			</panel>
+			
+			<!-- Show When Complete -->
+			<frame visible="0" x="20s" y="45s" width="70s" height="70s" texture="/ui/elements:rounded_bg_white" borderthickness="12s" color="0 0 0 .8"
+				onloadlua="
+					self:RegisterWatchLua('AccountProgression', function(widget, trigger)
+						if (mainUI) and (mainUI.progression) and (mainUI.progression.stats) and (mainUI.progression.stats.referafriend) and (mainUI.progression.stats.referafriend.referrals) then
+							if (mainUI.progression.stats.referafriend.referrals >= tonumber({id=-1})) then
+								widget:SetVisible(1)
+							else
+								widget:SetVisible(0)
+							end
+						end
+					end)
+				"
+			>
+				<image texture="/ui/main/shared/textures/stylized_check.tga" width="52s" height="52s" align="center" valign="center" noclick="1" />				
+			</frame>
+			
+		</panel>
+	</template>
+
+	
+	<template name="raf_objective">
+		<panel width="244s" height="100%">			
+			<!-- Show When In Progress -->
+			<panel visible="0" noclick="1"
+				onloadlua="
+					self:RegisterWatchLua('AccountProgression', function(widget, trigger)
+						if (mainUI) and (mainUI.progression) and (mainUI.progression.stats) and (mainUI.progression.stats.referafriend) and (mainUI.progression.stats.referafriend.referrals) then
+							if (mainUI.progression.stats.referafriend.referrals >= tonumber({requirement=-1})) and (tonumber({id=-1}) > mainUI.progression.stats.referafriend.referrals) then
+								widget:SetVisible(1)
+							else
+								widget:SetVisible(0)
+							end
+						end
+					end)
+				"
+			>								
+				<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="10s" width="-16s" align="center" height="32s" y="-26s" color="#52edff" />
+				<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="10s" width="-16s" align="center" height="32s" y="-26s" color="#1ae7ff" rendermode="additive" />				
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".1 .1 .1 1"/>								
+				<panel grow="1" regrow="1" y="-25s" height="22s" align="center" float="right" padding="5s" noclick="1">
+					<label fitx="1" style="labelBase" font="maindyn_22" color="1 1 1 1" textalign="center" content="player_profile_referafriend_current" noclick="1" />
+					<label fitx="1" style="h1" font="maindyn_22" textalign="center" content="---" noclick="1"
+					onloadlua="
+						self:RegisterWatchLua('AccountProgression', function(widget, trigger)
+							if (mainUI) and (mainUI.progression) and (mainUI.progression.stats) and (mainUI.progression.stats.referafriend) and (mainUI.progression.stats.referafriend.referrals) then
+								widget:SetText(mainUI.progression.stats.referafriend.referrals)
+							end
+						end)
+					"
+					/>
+				</panel>
+			</panel>
+			
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".1 .1 .1 .6"/>
+			<frame texture="/ui/elements:thick" borderthickness="8s" color=".2 .2 .2 1"/>			
+			<panel grow="1" align="center" y="6s" float="right" padding="2s" noclick="1">
+				<label fitx="1" style="labelBase" font="maindyn_24" content="profile_referafriend_send_{id}" noclick="1"/>
+				<label fitx="1" style="labelBase" font="subdyn_11" content="AST" noclick="1"/>
+			</panel>
+			
+			<instance name="hr" y="36s" align="center" width="-30s" />
+			<instance name="raf_objective_{id}" />
+			
+			<!-- Show When Complete -->
+			<frame visible="0" texture="/ui/elements:rounded_bg_white" borderthickness="8s" color="0 0 0 .6"
+				onloadlua="
+					self:RegisterWatchLua('AccountProgression', function(widget, trigger)
+						if (mainUI) and (mainUI.progression) and (mainUI.progression.stats) and (mainUI.progression.stats.referafriend) and (mainUI.progression.stats.referafriend.referrals) then
+							if (mainUI.progression.stats.referafriend.referrals >= tonumber({id=-1})) then
+								widget:SetVisible(1)
+							else
+								widget:SetVisible(0)
+							end
+						end
+					end)
+				"
+			>
+				<frame texture="/ui/elements:thick" borderthickness="8s" color=".2 .35 .2 1"/>
+				<image texture="/ui/main/shared/textures/stylized_check.tga" width="64s" height="64s" x="-14s" y="-17s" noclick="1" />				
+			</frame>
+			
+		</panel>
+	</template>
+
+	<panel name="playerProfile" visible="0" noclick="1" y="145s" height="605s" >
+
+		<!-- Content Area -->
+		<panel noclick="true" x="13%" width="84%">
+
+			<panel name="playerProfileBodyPrivate">
+				<label group="profile_animation_widgets" width="320s" align="center" valign="center" textalign="center" fity="true" wrap="true" font="maindyn_40" outline="true" color="white" noclick="true" content="player_profile_private"/>
+			</panel>
+
+			<panel name="playerProfileBodyPublic">
+			
+				
+				<panel name="playerProfileHeroMastery" noclick="1" float="bottom" visible="0" group="playerProfileSections">
+					
+					<instance name="hero_progress_body"/>
+					
+					<!-- The old hero mastery stuff, remove when no longer needed, currently hidden -->					
+					<label group="profile_animation_heroes_widgets" textalign="center" fity="1" style="h1" font="maindyn_40" content="player_profile_hero_mastery" noclick="1" visible="0" />
+					<label group="profile_animation_heroes_widgets" textalign="center" fity="1" fitypadding="14s" style="labelBase" wrap="1" font="maindyn_22" content="player_profile_hero_mastery_info" noclick="1" visible="0" />
+					<listbox 
+						name="playerProfileHeroMasteryListbox" group="profile_animation_heroes_widgets" style="simpleListbox" scrollbarplaceholder="false" scrollbaroffset="30s" wrap="row"
+						itemwidth="134s" itemheight="156s" select="false" highlightcolor="invisible" highlightbordercolor="invisible" visible="0"
+					/>
+					
+				</panel>				
+
+				<panel name="playerProfile_standing" visible="0" noclick="true" group="playerProfileSections">
+					<!--<instance name="standing_body"/>-->
+				</panel>
+				
+				<panel name="playerProfileIconList" visible="false" noclick="true" group="playerProfileSections">
+					<panel noclick="0" group="profile_animation_icon_list_widgets">
+						<label y="-5s" textalign="center" fity="1" style="h1" font="maindyn_40" content="player_profile_iconList_title" noclick="1" />
+						<label y="37s" textalign="center" fity="1" fitypadding="14s" style="labelBase" wrap="1" font="maindyn_22" content="player_profile_iconList_title_desc" noclick="1"  />
+						
+						<panel y="100s" noclick="0" float="bottom" padding="5s">
+						
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 1st row -->
+								<instance name="profile_achievement_icon" achievement="default"/>
+								<instance name="profile_achievement_icon" achievement="s2staff"/>
+								<instance name="profile_achievement_icon" achievement="spe_act1"/>
+								<instance name="profile_achievement_icon" achievement="collectorsedition"/>
+								<instance name="profile_achievement_icon" achievement="race_to_70"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="star_1"/>
+								<instance name="profile_achievement_icon" achievement="star_2"/>
+								<instance name="profile_achievement_icon" achievement="star_3"/>
+								<instance name="profile_achievement_icon" achievement="star_4"/>
+								<instance name="profile_achievement_icon" achievement="star_5"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<!--
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="closedbeta"/>
+								<instance name="profile_achievement_icon" achievement="closed10"/>
+								<instance name="profile_achievement_icon" achievement="closed50"/>
+								<instance name="profile_achievement_icon" achievement="closed100"/>
+								-->
+								<instance name="profile_achievement_icon" achievement="tourney_philippines"/>
+								<instance name="profile_achievement_icon" achievement="tourney_malaysia"/>
+								<instance name="profile_achievement_icon" achievement="tourney_singapore"/>
+								<instance name="profile_achievement_icon" achievement="tourney_thailand"/>
+								<instance name="profile_achievement_icon" achievement="tourney_vietnam"/>
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 2nd row -->
+								<instance name="profile_achievement_icon" achievement="plunder_happy"/>
+								<instance name="profile_achievement_icon" achievement="plunder_sad"/>
+								<instance name="profile_achievement_icon" achievement="tinker_happy"/>
+								<instance name="profile_achievement_icon" achievement="tinker_sad"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_1"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_2"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_3"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_4"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_5"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_6"/>
+								<instance name="profile_achievement_icon" achievement="ac_prog_7"/>
+								<!-- <instance name="profile_achievement_icon" achievement="nvidia2"/> -->
+								<panel width="100@" height="100%" noclick="1"/>								
+								<panel width="100@" height="100%" noclick="1"/>								
+								<instance name="profile_achievement_icon" achievement="beta_wins_10"/>
+								<instance name="profile_achievement_icon" achievement="beta_wins_50"/>
+								<instance name="profile_achievement_icon" achievement="beta_wins_100"/>
+								<instance name="profile_achievement_icon" achievement="beta_level_70"/>
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 3nd row -->
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="aol_1"/>
+								<instance name="profile_achievement_icon" achievement="aol_2"/>
+								<instance name="profile_achievement_icon" achievement="aol_3"/>
+								<instance name="profile_achievement_icon" achievement="aol_4"/>
+								<instance name="profile_achievement_icon" achievement="aol_5"/>
+								<instance name="profile_achievement_icon" achievement="aol_6"/>
+								<instance name="profile_achievement_icon" achievement="aol_7"/>
+								<instance name="profile_achievement_icon" achievement="aol_8"/>
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 4rd row -->
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Ace"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Bastion"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Bo"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Blazer"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Caprice"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Claudessa"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Ace"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Bastion"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Bo"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Blazer"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Caprice"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Claudessa"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_ace"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_bastion"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_bo"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_blazer"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_caprice"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_claudessa"/>								
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 5rd row -->
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Carter"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Chester"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Fetterstone"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Gokong"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Hale"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Harrower"/>								
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Carter"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Chester"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Fetterstone"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Gokong"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Hale"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Harrower"/>								
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_carter"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_chester"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_fetterstone"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_gokong"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_hale"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_harrower"/>								
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 6th row -->
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Iah"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Jinshe"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_LadyTinder"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Malady"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Minerva"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Moxie"/>								
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Iah"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Jinshe"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_LadyTinder"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Malady"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Minerva"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Moxie"/>								
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_iah"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_jinshe"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_ladyTinder"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_malady"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_minerva"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_moxie"/>								
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 7th row -->
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Nikolai"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Ray"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Rook"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Shank"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Trixie"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Vermillion"/>								
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Nikolai"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Ray"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Rook"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Shank"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Trixie"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Vermillion"/>								
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_nikolai"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_ray"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_rook"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_shank"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_trixie"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_vermillion"/>								
+							</panel>
+							
+							<panel height="52s" float="right" padding="3s" noclick="1"> <!-- 8th row -->
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Vex"/>
+								<instance name="profile_achievement_icon" achievement="div_2_Hero_Zaku"/>
+								<instance name="profile_achievement_icon" achievement="div_2_5_heroes"/>
+								<instance name="profile_achievement_icon" achievement="div_2_10_heroes"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Vex"/>
+								<instance name="profile_achievement_icon" achievement="div_1_Hero_Zaku"/>
+								<instance name="profile_achievement_icon" achievement="div_1_5_heroes"/>
+								<instance name="profile_achievement_icon" achievement="div_1_10_heroes"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<panel width="100@" height="100%" noclick="1"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_vex"/>
+								<instance name="profile_achievement_icon" achievement="master_hero_zaku"/>
+							</panel>
+							
+						</panel>
+					</panel>
+				</panel>
+				
+				<panel name="playerProfileQuests" visible="false" noclick="true" group="playerProfileSections">
+					<panel name="playerProfileQuestsBody" noclick="true">
+						<instance name="quests_body"/>
+					</panel>
+					<panel name="playerProfileQuestsPrivate" noclick="true">
+						<label width="500s" align="center" valign="center" fity="true" wrap="true" font="maindyn_26" outline="true" color="white" noclick="true" content="quests_private"/>
+					</panel>
+				</panel>
+
+				<panel name="playerProfileReferAFriend" visible="false" noclick="true" group="playerProfileSections">
+					<panel name="playerProfileReferAFriendBody" group="profile_animation_referafriend_widgets" noclick="true">					
+
+						<label y="-5s" textalign="center" fity="1" style="h1" font="maindyn_40" content="profile_referafriend_title" noclick="1" />
+						<label y="37s" textalign="center" fity="1" fitypadding="14s" style="labelBase" wrap="1" font="maindyn_22" content="profile_referafriend_desc" noclick="1"  />
+						
+						<panel y="100s" height="-310s" width="-60s" align="center">							
+							
+							<panel height="46%" valign="top" float="right" padding="12s">
+								<instance name="raf_objective_base" id="1" requirement="0" />
+								<instance name="raf_objective" id="10" requirement="1" />
+								<instance name="raf_objective" id="20" requirement="10" />
+								<instance name="raf_objective" id="50" requirement="20" />
+							</panel>
+							
+							<panel height="46%" valign="bottom" float="right" padding="12s">
+								<instance name="raf_objective" id="100" requirement="50" />
+								<instance name="raf_objective" id="200" requirement="100" />
+								<instance name="raf_objective" id="500" requirement="200" />
+								<instance name="raf_objective" id="1000" requirement="500" />
+							</panel>
+							
+						</panel>
+					
+						<panel name="playerProfileReferAFriend_email_signup_parent" x="-45s" y="-40s" width="460s" height="110s" align="right" valign="bottom" noclick="0" visible="1">
+							<instance name="dialogWrapper1" />
+							<label y="-35s" textalign="center" style="h1" font="maindyn_36" content="profile_referafriend_email_title" noclick="1"/>							
+							<panel grow="1" y="0" width="-20s" align="center" valign="center" float="bottom" padding="12s" noclick="1">
+								<label fity="1" textalign="center" style="labelBase" font="maindyn_20" lineheight="22s" wrap="1" color=".7 .7 .7 1" content="profile_referafriend_email_desc" noclick="1"/>								
+								<panel height="40s" noclick="1">									
+									<panel width="-130s">
+										<frame texture="/ui/shared/frames/text_input.tga" borderthickness="8s" noclick="1"/>										
+										<textbox name="playerProfileReferAFriend_email_signup_input" textcolor="0 0 0 .9" textshadow="1" textshadowcolor="black" shadow="1" shadowcolor="black" font="maindyn_20" color="invisible" y="8s" width="-16s" align="center"
+											onenter="Call('playerProfileReferAFriend_email_signup_parent', 'DoEvent()')"
+										/>										
+										<panel name="playerProfileReferAFriend_email_signup_reponse" noclick="1" visible="0">
+											<frame texture="/ui/elements:thick" borderthickness="8s" color=".4 1 .4 1"/>
+											<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".10 .17 .10 1"/>
+											<label name="playerProfileReferAFriend_email_signup_response_label" y="-1s" style="labelBase" textalign="center" textvalign="center" font="maindyn_22" content="profile_referafriend_email_success"/>				
+										</panel>									
+									</panel>									
+									<instance
+										id="playerProfileReferAFriend_email_signup_submit" 
+										width="120s" align="right" borderthickness="8s"	
+										name="standardButton"
+										label="general_submit"
+										font="maindyn_20"
+										enabled="false"
+									/>									
+								</panel>							
+							</panel>
+						</panel>
+						
+						<panel name="playerProfileReferAFriend_referral_link_parent" x="45s" y="-40s" width="460s" height="110s" align="left" valign="bottom" noclick="0" visible="1">
+							<instance name="dialogWrapper1" />
+							<label y="-35s" textalign="center" style="h1" font="maindyn_36" content="profile_referafriend_link_title" noclick="1"/>							
+							<panel grow="1" y="0" width="-20s" align="center" valign="center" float="bottom" padding="12s" noclick="1">
+								<label fity="1" textalign="center" style="labelBase" font="maindyn_20" lineheight="22s" wrap="1" color=".7 .7 .7 1" content="profile_referafriend_link_desc" noclick="1"/>								
+								<panel height="40s" noclick="1">								
+									<frame texture="/ui/shared/frames/text_input.tga" borderthickness="8s" noclick="1"/>
+									<label name="playerProfileReferAFriend_referral_link_label" y="8s" x="10s" wrap="true" font="maindyn_20" shadow="true" shadowcolor=".9 .9 .9 1" color="black" content="profile_referafriend_link_dummy" noclick="1" />	
+									<panel name="playerProfileReferAFriend_referral_link_reponse" noclick="1" visible="0">
+										<frame texture="/ui/elements:thick" borderthickness="8s" color=".4 1 .4 1"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".10 .17 .10 1"/>
+										<label y="-1s" style="labelBase" textalign="center" textvalign="center" font="maindyn_22" content="profile_referafriend_email_success"/>				
+									</panel>
+								</panel>							
+							</panel>
+						</panel>
+
+						<panel name="profile_referafriend_requirement2_clickable" y="590s" x="40s" height="18s" width="440s" visible="1" align="left"
+							onclicklua="mainUI.OpenURL(Strife_Region.regionTable[Strife_Region.activeRegion].rewardRulesURL or 'http://www.strife.com/reward-rules')"
+						>
+							<label fitx="true" style="labelClickable" font="subdyn_12" content="profile_referafriend_requirement2" noclick="1" />
+							<panel height="1" x="1" y="1" valign="bottom" color="#000000" noclick="1" />
+							<panel height="1" valign="bottom" color="#42D0F4" noclick="1" />							
+						</panel>						
+											
+						<label y="590s" x="-38s" textalign="right" style="labelBase" color=".7 .7 .7 1" font="subdyn_12" content="profile_referafriend_requirement" noclick="1"  />						
+						
+					</panel>
+				</panel>				
+				
+				<panel name="playerProfile_strifeapp" visible="false" noclick="true" group="playerProfileSections">
+					<panel name="playerProfile_strifeapp_body" group="profile_animation_strifeapp_widgets" noclick="true" >
+					
+						<label textalign="center" fity="1" style="h1" font="maindyn_40" content="profile_strifeapp_copy_1" noclick="1" />						
+						<image x="20s" y="110s" texture="/ui/main/player_profile/textures/mobile_app.tga" width="256s" height="256s" />						
+						<panel width="-280s" y="100s" align="right" noclick="1">							
+							<panel x="0" y="0" width="194s" noclick="1">
+								<image texture="/ui/main/player_profile/textures/app_wheel.tga" width="160s" height="160s" align="center" noclick="1" />
+								<label y="150s" style="h3" font="maindyn_30" textalign="center" content="profile_strifeapp_copy_3" noclick="1"/>
+								<label y="180s" style="labelBase" font="maindyn_22" textalign="center" content="profile_strifeapp_copy_3_info" wrap="1" lineheight="22s" noclick="1"/>
+							</panel>							
+							<panel x="190s" y="50s" width="194s" noclick="1">								
+								<image texture="/ui/main/shared/textures/commodity_essence.tga" width="160s" height="160s" align="center" noclick="1" />
+								<label y="150s" style="h3" font="maindyn_30" textalign="center" content="profile_strifeapp_copy_4" noclick="1"/>
+								<label y="180s" style="labelBase" font="maindyn_22" textalign="center" content="profile_strifeapp_copy_4_info" wrap="1" lineheight="22s" noclick="1"/>
+							</panel>							
+							<panel x="390s" y="-15s" width="194s" noclick="1">								
+								<image texture="/ui/main/shared/textures/commodity_seal.tga" width="160s" height="160s" align="center" noclick="1" />
+								<label y="150s" style="h3" font="maindyn_30" textalign="center" content="profile_strifeapp_copy_5" noclick="1"/>
+								<label y="180s" style="labelBase" font="maindyn_22" textalign="center" content="profile_strifeapp_copy_5_info" wrap="1" lineheight="22s" noclick="1"/>
+							</panel>							
+							<panel x="565s" y="45s" width="240s" noclick="1">								
+								<image texture="/ui/main/shared/textures/khanquest.tga" y="10s" width="138s" height="138s" align="center" noclick="1" />
+								<label y="150s" style="h3" font="maindyn_30" textalign="center" content="profile_strifeapp_copy_6" noclick="1"/>
+								<label y="180s" style="labelBase" font="maindyn_22" textalign="center" content="profile_strifeapp_copy_6_info" wrap="1" lineheight="22s" noclick="1"/>
+							</panel>
+						</panel>
+						
+						<panel name="playerProfile_strifeapp_authcode_parent" x="50s" y="-20s" width="500s" height="130s" align="left" valign="bottom" noclick="0" visible="0">
+							<instance name="dialogWrapper1" />
+							<label y="-35s" textalign="center" style="h1" font="maindyn_36" content="profile_strifeapp_authcode_link_title" noclick="1"/>							
+							<panel name="playerProfile_strifeapp_authcode_needcode" visible="1" grow="1" y="0" width="-20s" align="center" valign="center" float="bottom" padding="20s" noclick="1">
+								<label fity="1" textalign="center" style="labelBase" font="maindyn_20" wrap="1" color=".7 .7 .7 1" content="profile_strifeapp_authcode_gen_desc" noclick="1"/>								
+								<panel height="40s" noclick="1" valign="bottom" >								
+									<panel width="-130s" noclick="1" >
+										<frame texture="/ui/shared/frames/text_input.tga" borderthickness="8s" noclick="1"/>
+										<textbox name="playerProfile_strifeapp_authcode_input" textcolor="0 0 0 .9" textshadow="1" textshadowcolor="black" shadow="1" shadowcolor="black" font="maindyn_20" color="invisible" y="8s" width="-16s" align="center" />
+									</panel>
+									<instance
+										id="playerProfile_strifeapp_authcode_submit" 
+										width="120s" align="right" borderthickness="8s"	height="40s"
+										name="standardButton"
+										label="general_submit"
+										font="maindyn_20"
+										enabled="false"
+									/>										
+								</panel>									
+							</panel>							
+							<panel name="playerProfile_strifeapp_authcode_hascode" visible="0" grow="1" y="0" width="-20s" align="center" valign="center" float="bottom" padding="20s" noclick="1">
+								<label fity="1" textalign="center" style="labelBase" font="maindyn_20" wrap="1" color=".7 .7 .7 1" content="profile_strifeapp_authcode_link_desc" noclick="1"/>								
+								<panel height="40s" noclick="1">								
+									<frame texture="/ui/shared/frames/text_input.tga" borderthickness="8s" noclick="1"/>
+									<label name="playerProfile_strifeapp_authcode_label" y="8s" x="10s" wrap="true" font="maindyn_20" shadow="true" shadowcolor=".9 .9 .9 1" color="black" content="profile_referafriend_link_dummy" noclick="1" />	
+									<panel name="playerProfile_strifeapp_authcode_reponse" noclick="1" visible="0">
+										<frame texture="/ui/elements:thick" borderthickness="8s" color=".4 1 .4 1"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="8s" color=".10 .17 .10 1"/>
+										<label y="-1s" style="labelBase" textalign="center" textvalign="center" font="maindyn_22" content="profile_referafriend_email_success"/>				
+									</panel>
+								</panel>							
+							</panel>
+						</panel>
+						
+						<panel x="-30s" y="-20s" width="430s" height="130s" align="center" valign="bottom" noclick="1" visible="1">
+							<instance name="dialogWrapper1" />
+							<label y="-35s" textalign="center" style="h1" font="maindyn_36" content="profile_strifeapp_store_title" noclick="1"/>							
+							<panel grow="1" y="5s" width="-20s" align="center" valign="center" float="bottom" padding="15s" noclick="1" >
+								<label fity="1" textalign="center" style="labelBase" font="maindyn_20" wrap="1" color=".7 .7 .7 1" content="profile_strifeapp_store_desc" noclick="1"/>								
+								<panel height="55s" noclick="1" >
+									<panel name="playerProfile_strifeapp_storelink_btn_apple" x="35s" align="left" height="80s" width="160s">
+										<image texture="/ui/main/player_profile/textures/download_ios.tga" noclick="1" />
+									</panel>									
+									<panel name="playerProfile_strifeapp_storelink_btn_google" x="-35s" align="right" height="80s" width="160s">
+										<image texture="/ui/main/player_profile/textures/download_android.tga" noclick="1" />
+									</panel>
+								</panel>							
+							</panel>							
+						</panel>						
+					</panel>
+				</panel>					
+				
+				<panel name="playerProfile_khanquest" visible="0" noclick="true" group="playerProfileSections">
+					<instance name="khanquest_body"/>
+				</panel>
+
+				<panel name="playerProfileAchievements" visible="false" noclick="true" group="playerProfileSections">
+					<label group="profile_animation_achievements_widgets" style="h1" textalign="center" font="maindyn_40" noclick="1" content="player_profile_progression" />
+					<label group="profile_animation_achievements_widgets" y="45s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="player_profile_progression_info" />
+
+					<panel group="profile_animation_achievements_widgets" y="-8s" height="-240s" valign="bottom" noclick="true">
+						<panel name="player_profile_account_progress_info" height="100%" grow="1" regrow="1" growinvis="0" align="center" float="right" padding="25s" noclick="1">
+							<!-- Rank
+							<panel name="playerProfileRankInfo" width="240s" sticky="true" stickytoinvis="false" visible="0" noclick="0">
+								<instance name="playerProfileELO_1" visible="0" id="1" />
+								<instance name="playerProfileELO_2" visible="0" id="2" />
+								<instance name="playerProfileELO_3" visible="0" id="3" />
+								<instance name="playerProfileELO_4" visible="0" id="4" />
+								<instance name="playerProfileELO_5" visible="0" id="5" />
+								<instance name="playerProfileELO_0" visible="1" id="0" />
+
+								<panel noclick="1" float="bottom" y="-26s" grow="1" regrow="1" width="240s" align="center" valign="bottom">
+									<panel align="center" width="+10s" height="100%" noclick="1">
+										<image texture="/ui/main/shared/textures/rectangle_shadow.tga" y="-30s" height="130s" color="0 0 0 .5" noclick="1" />
+									</panel>
+									<label y="8s" name="playerProfileELO_label_1" fity="1" wrap="1" textalign="center" style="h1" font="maindyn_30" content="" noclick="1" />
+									<label name="playerProfileDivision" fity="1" fitypadding="10s" wrap="1" textalign="center" style="labelBase" color="white" font="subdyn_15" content="" noclick="1" />
+									<label name="playerProfileRank" fity="1" wrap="1" textalign="center" style="h3" font="maindyn_24" content="" noclick="1" />
+								</panel>
+							</panel>
+							 -->
+							 
+							<!-- Leaver Meter -->
+							<panel name="playerProfileLeaverInfo" width="230s" sticky="true" stickytoinvis="false" visible="1" noclick="1">
+								<panel name="playerProfileLeaverInfo_hover" width="158s" height="158s" passivechildren="1" noclick="0" align="center" valign="center" y="-16s">
+									<image texture="/ui/main/shared/round_meter/tri_color_base.tga" />
+									
+									<!-- Pie to darken "unearned" portions of color bar -->
+									<piegraph name="playerProfileLeaverInfoPie" end="-450" start="-90" square="0" color="0 0 0 0.7" noclick="true" value="1.0" align="center" valign="center" height="70%" width="70%" />
+									
+									<image texture="/ui/main/shared/round_meter/outer_ring.tga" noclick="1" />
+									<image texture="/ui/main/shared/round_meter/label_base.tga" noclick="1" />									
+									
+									<!-- Outer Marker, spin to show position -->
+									<image group="playerProfileLeaverInfoPie_markers" texture="/ui/main/shared/round_meter/meter_nubbin.tga" rotation="60" noclick="1" />
+									<image name="playerProfileLeaverInfoPie_nubbin" group="playerProfileLeaverInfoPie_markers" texture="/ui/main/shared/round_meter/meter_nubbin_color.tga" rotation="60" color="green" noclick="1" />
+									
+									<label  name="playerProfileLeaverInfoPie_label" y="-10s" font="maindyn_40" textalign="center" textvalign="center" style="labelBase" content="0" noclick="1" />
+									<label y="12s" font="subdyn_13" textalign="center" textvalign="center" style="labelBase" color=".7 .7 .7 1" content="profile_leaves" noclick="1" />									
+								</panel>								
+								<panel name="playerProfileLeaverInfo_hover2" float="bottom" grow="1" regrow="1" width="190s" align="center" valign="bottom" noclick="0">
+									<panel align="center" width="+44s" height="100%" noclick="1"><image texture="/ui/main/shared/textures/rectangle_shadow.tga" y="-30s" height="140s" color="0 0 0 .5" noclick="1" /></panel>
+									<label y="8s" fity="1" wrap="1" textalign="center" style="h1" font="maindyn_30" content="main_leaver_title" noclick="1" />
+									<label name="playerProfileLeaverStatus_label_1" fity="1" fitypadding="10s" wrap="1" textalign="center" style="labelBase" color="white" font="subdyn_15" content="" noclick="1" />
+								</panel>
+							</panel>
+							
+							<!-- Stats -->
+							<panel name="playerProfileStats" width="480s" sticky="true" stickytoinvis="false" noclick="1">
+								<panel y="25s" width="-40s" height="215s" align="center" valign="center" noclick="1">
+									<instance name="dialogWrapper1" />
+									<label y="-35s" textalign="center" style="h1" font="maindyn_40" content="player_profile_avg_stats" noclick="1"/>
+									<label y="10s" textalign="center" style="labelBase" font="maindyn_22" color=".7 .7 .7 1" content="player_profile_avg_stats_info" noclick="1"/>
+									<panel y="55s" noclick="1">
+										<panel width="50%" align="left" noclick="1">
+											<label y="0s" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_gold_per_min" noclick="1"/>
+											<label name="playerProfileStats_label_2" y="25s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>
+											<label y="85s" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_total_kills_and_assists" noclick="1"/>
+											<label name="playerProfileStats_label_1" y="110s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>
+										</panel>
+										<panel width="50%" align="right" noclick="1">
+											<label y="0" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_win_percentage" noclick="1"/>
+											<label name="playerProfileStats_label_3" y="25s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>
+											<label y="85s" textalign="center" style="labelClickable" font="maindyn_26" content="stat_name_deaths_per_game" noclick="1"/>
+											<label name="playerProfileStats_label_4" y="110s" textalign="center" style="labelBase" font="maindyn_40" content="--" noclick="1"/>
+										</panel>
+									</panel>
+								</panel>
+							</panel>
+							<!-- Hero Funzone -->
+							<panel name="playerProfileHeroFunzone" width="240s" sticky="true" stickytoinvis="false" visible="0" noclick="1">
+								<modelpanel
+									name="playerProfileHeroFunzone_Model" noclick="1" y="-10s"
+									width="200%" align="center" height="200%" valign="center"
+									depthclear="true" depthcompress="false"
+									lookat="0"
+
+									cameranear="1500.0"
+									camerafar="3000.0"
+									cameradistance="30"
+									camerapos="20 1720 1665"
+									cameraangles="-45 0 180"
+									camerafov="7"
+
+									modelpos="20 0 0" modelangles="30 25 -45" modelscale="1.0"
+									sunazimuth="120" sunaltitude="50" suncolor="0.9 0.9 0.9" ambientcolor="0.6 0.7 0.7"
+									resourcecontext="playerProfileHeroFunzone"
+									anim="idle"
+									model="/heroes/moxie/model.mdf"
+									color="1 1 1 1"
+								/>
+								<panel float="bottom" grow="1" regrow="1" width="240s" align="center" valign="bottom">
+									<panel align="center" width="+44s" height="100%" noclick="1"><image texture="/ui/main/shared/textures/rectangle_shadow.tga" y="-30s" height="140s" color="0 0 0 .5" /></panel>
+									<label y="8s" name="playerProfileHeroFunzone_label_1" fity="1" wrap="1" textalign="center" style="h1" font="maindyn_30" content="Label1" noclick="1" />
+									<label name="playerProfileHeroFunzone_label_2" fity="1" fitypadding="10s" wrap="1" textalign="center" style="labelBase" color="white" font="subdyn_15" content="Label2" noclick="1" />
+									<instance
+										name="standardButton"
+										id="playerProfileHeroFunzone_next_btn"
+										label="player_profile_show_another" align="center" height="34s" width="216s"
+									/>
+								</panel>
+							</panel>
+						</panel>
+					</panel>
+
+
+					<!-- Account Progression Bar -->
+					<panel name="player_profile_account_progression_parent" visible="0" y="95s" height="-100s" noclick="1"
+						onloadlua="
+							self:RegisterWatchLua('AccountInfo', function(widget, trigger)
+								if (trigger.accountLevel >= 70) then
+									widget:FadeIn(250)
+								end
+							end, false, nil, 'accountLevel')
+						"
+					>
+						<!-- Expanded List	-->
+						<panel name="playerProfileAchievementsList" group="profile_animation_achievements_widgets" x="5s" width="810s" height="120s" align="center" visible="1" noclick="1">
+							<instance name="dialogWrapper1" inneralpha="0 0 0 .9" />
+
+							<listbox name="player_profile_account_progress_quest_scrollbox" y="0h"
+								visible="1" valign="top" align="left" clip="0" color="invisible"
+								noclick="0" float="bottom" padding="0s"
+								vscrollboxstep="64s"
+								vscrollbarstep="32s"
+								scrollbarplaceholder="0"
+								scrolltexture="/ui/shared/textures/slider.tga"
+								handleheight="48s"
+								scrollbarsize="32s"
+								exteriorscrollbars="1"
+								vscrollbar="1"
+								hscrollbar="0"
+								horizontal="false"
+								clipx="0"
+								clipy="0"
+								clipwidth="0"
+								clipheight="0"
+								scrollbaroffset="-24s"
+								clipoffsetx="0"
+								clipoffsety="0"
+								onslide=""
+								itemheight="116s"
+								select="false"
+								highlightcolor="invisible"
+								highlightbordercolor="invisible"
+							>
+
+							</listbox>
+
+							<panel name="playerProfileAchievementsListCollapse" visible="0" y="58s" width="200s" height="50s" align="center" valign="bottom" texture="/ui/main/quests/textures/frame_minimize_up.tga" noclick="0"
+								onclicklua="
+									self:GetWidget('player_profile_account_progress_info'):FadeIn(500)
+
+
+									self:GetWidget('playerProfileAchievementsList'):SetHeight('465s')
+									self:GetWidget('playerProfileAchievementsList'):SetX('5s')
+									self:GetWidget('playerProfileAchievementsList'):SetY('0s')
+									self:GetWidget('playerProfileAchievementsList'):ScaleHeight('120s', 500)
+
+									self:Sleep(300, function(self)
+										self:GetWidget('playerProfileAchievementsListExpand'):FadeIn(200)
+										self:GetWidget('playerProfileAchievementsListCollapse'):FadeOut(200)
+										self:Sleep(200, function(self)
+											self:GetWidget('player_profile_account_progress_quest_scrollbox'):DoEvent()
+										end)
+									end)
+								"
+								onmouseoverlua="
+									self:SetTexture('/ui/main/quests/textures/frame_minimize_over.tga')
+								"
+								onmouseoutlua="
+									self:SetTexture('/ui/main/quests/textures/frame_minimize_up.tga')
+								"
+							/>
+
+							<panel name="playerProfileAchievementsListExpand" y="111s" visible="1" width="200s" height="50s" align="center" texture="/ui/main/quests/textures/frame_maximize_up.tga" noclick="0"
+								onclicklua="
+									self:GetWidget('playerProfileAchievementsList'):SetHeight('120s')
+									self:GetWidget('playerProfileAchievementsList'):SetX('5s')
+									self:GetWidget('playerProfileAchievementsList'):SetY('0s')
+									self:GetWidget('playerProfileAchievementsList'):ScaleHeight('465s', 500)
+
+									self:GetWidget('player_profile_account_progress_info'):FadeOut(500)
+									self:SetVisible(0)
+
+									self:GetWidget('playerProfileAchievementsListExpand'):FadeOut(125)
+									self:Sleep(200, function(self)
+										self:GetWidget('playerProfileAchievementsListCollapse'):FadeIn(300)
+									end)
+								"
+								onmouseoverlua="
+									self:SetTexture('/ui/main/quests/textures/frame_maximize_over.tga')
+								"
+								onmouseoutlua="
+									self:SetTexture('/ui/main/quests/textures/frame_maximize_up.tga')
+								"
+							/>
+						</panel>
+
+					</panel>
+
+				</panel>
+			</panel>
+
+		</panel>
+
+		<!-- Menu -->
+		<panel group="profile_animation_widgets" visible="0" align="left" width="165s" height="100%" noclick="1">		
+			<panel noclick="1" align="left" x="-10%" grow="1" regrow="true" valign="center" width="100%">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+
+				<panel grow="1" regrow="1" growinvis="0" y="16s" x="-12s" width="126s" align="right" float="bottom" padding="14s" noclick="1">
+				
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabAchievements"
+						icon="/ui/main/player_profile/textures/account_progress.tga" iconsize="58" iconY="2%" enabled="1" y="0" sticky="0"
+						label="player_profile_progression"
+						group="profile_menu_group"
+					/>
+					
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabHeros"
+						icon="/ui/main/shared/textures/ranked.tga" iconsize="60" iconY="4%" enabled="1"
+						label="player_profile_hero_progress" hasSubMenu="1"
+						group="profile_menu_group"
+					/>
+					
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabStanding"
+						icon="/ui/shared/textures/karma_goodguy.tga" iconsize="60" iconY="-5%" enabled="1"
+						label="karma_status_1"
+						group="profile_menu_group"
+						visible="0"
+					/>
+					
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabStanding2"
+						icon="/ui/shared/textures/karma_toxic.tga" iconsize="60" iconY="5%" enabled="1"
+						label="karma_status_2"
+						group="profile_menu_group"
+						visible="0"
+					/>
+
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabQuests"
+						icon="/ui/main/shared/textures/quest.tga" iconsize="74" iconX="2s" enabled="1"
+						label="achievements_gamequests" hasSubMenu="1"
+						group="profile_menu_group"
+					/>
+
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabReferAFriend"
+						icon="/ui/main/shared/textures/raf.tga" iconsize="60" iconY="2%" enabled="1"
+						label="player_profile_referafriend_title" hasSubMenu="0"
+						visible="1"
+						group="profile_menu_group"
+					/>					
+					
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabStrifeApp"
+						icon="/ui/main/player_profile/textures/mobile_app.tga" iconsize="64" iconX="1s" iconY="3%" enabled="1"
+						label="player_profile_strifeapp_title" hasSubMenu="0"
+						visible="1"
+						group="profile_menu_group"
+					/>					
+					
+					<instance
+						name="profile_content_tabShort"
+						id="playerProfileSectionTabKhanquest"
+						icon="/ui/main/shared/textures/khanquest.tga" iconsize="62" iconX="-1s" iconY="5%" enabled="1"
+						label="player_profile_khanquest_manager" hasSubMenu="1"
+						visible="0"
+						group="profile_menu_group"
+					/>					
+					
+					<panel height="2s" noclick="1" />
+				</panel>
+
+			</panel>
+		</panel>
+
+
+		<!-- Player Interaction Buttons Viewing Self: Privacy  Settings Viwing Others: Invite, Add as Friend, Send Message -->
+		<panel group="profile_animation_widgets" x="12s" y="-15s" height="38s" noclick="true" float="right" padding="10s">
+			<!--<instance name="standardButton" id="playerProfileInviteButton" rendermode="grayscale" width="11h" font="maindyn_18" label="player_profile_invite" visible="0"/>-->
+			<instance name="iconButton" id="playerProfileInviteButton" width="100@" height="100%" icon="/ui/main/friends/textures/icon_party.tga" iconsize="76%" borderthickness="4s" visible="false"/>
+			<!--<instance name="standardButton" id="playerProfileAddFriendButton" rendermode="grayscale" width="18h" font="maindyn_18" label="player_profile_addfriend" visible="0"/>-->
+			<instance name="iconButton" id="playerProfileAddFriendButton" width="100@" height="100%" icon="/ui/main/friends/textures/icon_friend_add.tga" iconsize="76%" borderthickness="4s" visible="false"/>
+			<instance name="iconButton" id="playerProfileSendMessageButton" width="100@" height="100%" icon="/ui/main/friends/textures/icon_message.tga" iconsize="76%" borderthickness="4s" visible="false"/>
+			<!--<instance name="standardButton" id="playerProfileSendMessageButton" rendermode="grayscale" width="18h" font="maindyn_18" label="player_profile_sendmessage" visible="0"/>-->
+			<instance name="standardButton" id="playerProfilePrivacySettingsButton" rendermode="grayscale" width="20h" font="maindyn_18" label="player_profile_privacysettings" x="0" visible="0" enabled="false" />
+			<instance name="standardButton" id="playerProfileAddStatButton" width="11h" label="player_profile_addstat" visible="0"/>
+			<instance name="standardButton" id="playerProfileAddReplayButton" width="14h" label="player_profile_addreplay" visible="0"/>
+			<instance name="standardButton" id="playerProfileAddQuestButton" width="13h" label="player_profile_addquest" visible="0"/>
+		</panel>
+
+		<!-- Unique ID -->
+		<panel x="12s" y="-48s" width="100%" visible="0" height="40s" float="right" padding="2s" noclick="1" group="profile_animation_widgets" >
+			<label name="playerProfilePlayerUniqueID" visible="1" width="100%" fity="true" fitypadding="5s" fitx="1" fitxpadding="20s" style="labelBase" font="maindyn_22" color=".8 .8 .8 1" content="" />
+			<button name="playerProfileEditUniqueIDButton" visible="0" width="28s" height="28s" valign="center" color="invisible" enabled="1" >
+				<image texture="/ui/shared/textures/edit.tga" rendermode="normal" />
+			</button>
+			<panel name="profile_uniqueid_input_parent" visible="0" height="40s" x="0" width="266s" noclick="1" sticky="1" stickytoinvis="0" >
+				<instance name="dialogWrapper1" parent_width="310s" align="left" outerpadding="+16s" innerpadding="+8s"/>
+				<panel width="218s" noclick="1" x="0" >
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="true"/>
+					<textbox
+						name="profile_uniqueid_input_textbox"
+						style="textBox1Input"
+						textcolor="0 0 0 1" font="maindyn_20" y="6s"
+						onesc="Cmd('Script Profile.UniqueID_InputOnEsc()')"
+						onenter="Cmd('Script Profile.UniqueID_InputOnEnter()')"
+					/>
+					<label name="profile_uniqueid_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_20" content="player_profile_new_uniqueid"/>
+				</panel>
+				<instance name="iconButton" id="profile_uniqueid_input_button"
+					icon="/ui/shared/textures/check_mark_white.tga" iconsize="72"
+					width="100@" height="100%" align="right" valign="center" borderthickness="4s"
+				/>
+				<instance name="iconButton" id="profile_uniqueid_input_close_button" x="105@"
+					icon="/ui/main/shared/textures/close.tga"
+					visible="0"
+					width="100@" height="100%" align="right" valign="center" borderthickness="4s" colorized="1"
+				/>
+			</panel>
+		</panel>
+
+		<!-- Privacy Dialog -->
+		<panel name="playerProfilePrivacySettings" noclick="true" width="390s" grow="true" regrow="true" x="180s" y="115s" visible="0">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			<panel grow="1" width="100%" float="bottom" padding="20s" reverse="true">
+				<panel height="28s" noclick="1">
+					<label textvalign="center" style="h1" content="player_profile_privacysettings"/>
+				</panel>
+				<panel height="32s">
+					<label x="0.25h" textvalign="center" style="labelBase" font="maindyn_22" content="Your stats visibility:"/>
+					<panel width="190s" align="right">
+						<instance name="simple_combobox_textured" id="playerProfilePrivacyDropdownStats"/>
+					</panel>
+				</panel>
+				<panel height="32s">
+					<label x="0.25h" textvalign="center" style="labelBase" font="maindyn_22" content="Replay visibility:"/>
+					<panel width="190s" align="right">
+						<instance name="simple_combobox_textured" id="playerProfilePrivacyDropdownReplays"/>
+					</panel>
+				</panel>
+				<panel height="32s">
+					<label x="0.25h" textvalign="center" style="labelBase" font="maindyn_22" content="Messages to me:"/>
+					<panel width="190s" align="right">
+						<instance name="simple_combobox_textured" id="playerProfilePrivacyDropdownMessages"/>
+					</panel>
+				</panel>
+				<panel height="38s">
+					<instance name="standardButton" id="playerProfileIgnoreListOpen" width="190s" align="right" borderthickness="0.5h" rendermode="grayscale" label="player_profile_ignorelist"/>
+				</panel>
+				<panel height="0" />
+				<panel height="38s">
+					<instance id="playerProfilePrivacySettingsCancel" name="standardButton" width="45%" align="left" rendermode="grayscale" label="player_profile_cancel"/>
+					<instance id="playerProfilePrivacySettingsSave" name="standardButton" width="45%" align="right" label="player_profile_save" font="maindyn_22"/>
+				</panel>
+			</panel>
+		</panel>
+
+		<!-- Hidden player edit stuff, not currently working outside of main, just hidden for now -->
+		<panel x="-14s" width="396s" height="-20s" noclick="1" visible="0">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+
+			<!-- Player -->
+			<panel x="-20s" y="18s" height="128s" width="-48s" align="right" noclick="true">
+
+				<button name="" height="100%" width="100@" passivechildren="true" color="invisible">
+					<!-- Account Icon -->
+					<image name="playerProfilePlayerIcon" texture="/ui/shared/textures/account_icons/default.tga" noclick="true" />
+
+					<!-- Icon Edit -->
+					<panel name="playerProfileIconEditOverlay" visible="false">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="12s" color="0 0 0 .9" noclick="true"/>
+						<panel hmargin="10s" vmargin="10s">
+							<image width="34s" height="34s" valign="bottom" texture="/ui/shared/textures/edit.tga" />
+							<label width="-46s" align="right" wrap="true" textvalign="bottom" textalign="right" style="labelBase" font="maindyn_18" content="player_profile_change_icon" />
+						</panel>
+					</panel>
+				</button>
+
+				<panel width="-110@" align="right" float="bottom" padding="4s" noclick="true">
+					<!-- Name -->
+					<panel width="100%" height="40s" float="right" padding="2s" >
+						<label name="playerProfilePlayerName" textvalign="center" fitx="1" fitxpadding="20s" style="labelBase" font="maindyn_30" color="1 1 1 1" content="" />
+						<button name="playerProfileEditNameButton" width="28s" height="28s" valign="center" color="invisible" enabled="1" visible="1">
+							<image texture="/ui/shared/textures/edit.tga" rendermode="normal" />
+						</button>
+						<panel name="profile_username_input_parent" visible="0" height="40s" x="0" width="266s" noclick="1" sticky="1" stickytoinvis="0" >
+							<instance name="dialogWrapper1" parent_width="310s" align="left" outerpadding="+16s" innerpadding="+8s"/>
+							<panel width="216s" noclick="1" x="-5s" >
+								<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="true"/>
+								<textbox
+									name="profile_username_input_textbox"
+									style="textBox1Input"
+									textcolor="0 0 0 1" font="maindyn_20" y="6s"
+									onesc="Cmd('Script Profile.UserName_InputOnEsc()')"
+									onenter="Cmd('Script Profile.UserName_InputOnEnter()')"
+								/>
+								<label name="profile_username_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_20" content="player_profile_new_nickname"/>
+							</panel>
+							<instance name="iconButton" id="profile_username_input_button" x="5@"
+								icon="/ui/shared/textures/check_mark_white.tga" iconsize="72"
+								width="100@" height="100%" align="right" valign="center" borderthickness="4s"
+							/>
+							<instance name="iconButton" id="profile_username_input_close_button" x="110@"
+								icon="/ui/main/shared/textures/close.tga"
+								visible="0"
+								width="100@" height="100%" align="right" valign="center" borderthickness="4s" colorized="1"
+							/>
+						</panel>
+					</panel>
+
+
+				</panel>
+			</panel>
+
+			<!-- OLd Menu -->
+			<panel x="-30s" y="166s" height="380s" width="-64s" align="right" float="bottom" padding="20s" noclick="true">
+				<panel name="playerProfileRankBarContainer" height="90s" visible="0" noclick="true">
+					<panel name="playerProfileRankBarPublic" noclick="true">
+						<panel name="playerProfileRankBarBody" passivechildren="true">
+							<panel name="playerProfileRankBarBodyContent">
+								<panel height="-30s" float="right" padding="6s" noclick="1" >
+									<instance name="playerProfileAccountRankStar" id="1" />
+									<instance name="playerProfileAccountRankStar" id="2" />
+									<instance name="playerProfileAccountRankStar" id="3" />
+									<instance name="playerProfileAccountRankStar" id="4" />
+									<instance name="playerProfileAccountRankStar" id="5" />
+								</panel>
+								<panel visible="1" noclick="1">
+									<panel height="26s" valign="bottom" width="-28s" noclick="1">
+										<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".6 .6 .6 1" color=".6 .6 .6 1" noclick="1">
+											<panel hmargin="2s" vmargin="3s" noclick="1" passivechildren="1">
+												<instance name="progress_bar" id="playerProfileAccountRankBar" width="64%" borderthickness="3s" barstyle="barCommon" noclick="1"  />
+											</panel>
+										</frame>
+									</panel>
+									<panel height="26s" width="26s" align="right" valign="bottom" noclick="1">
+										<image texture="/ui/shared/textures/star.tga" noclick="1" />
+										<label x="1s" y="1s" textalign="center" textvalign="center" font="subdyn_13" color="0 0 0 .7" content="+" noclick="1"/>
+									</panel>
+								</panel>
+							</panel>
+						</panel>
+
+						<label name="playerProfileRankBarMastered" x="1s" outline="1" textalign="center" textvalign="bottom" font="maindyn_20" color="white" content="stat_name_hero_mastered" visible="0" noclick="1"/>
+
+						<panel name="playerProfileRankBarHover" noclick="1" visible="0">
+							<frame texture="/ui/shared/frames/std_btn_inset.tga" y="2s" align="center" valign="center" width="+8s" height="+8s" borderthickness="8s" bordercolor=".1 .1 .1 0.85" color=".1 .1 .1 0.85" noclick="1">
+								<label name="playerProfileRankBarWinCount" x="1s" y="1s" height="65%" textalign="center" outline="1" textvalign="center" font="maindyn_30" color="white" content="stat_name_hero_wins_x" noclick="1"/>
+								<label name="playerProfileRankBarWinCount2" x="1s" y="-12s" height="35%" valign="bottom" outline="1" textalign="center" textvalign="center" font="maindyn_20" color="white" content="stat_name_hero_wins_next_star_x" noclick="1"/>
+							</frame>
+						</panel>
+					</panel>
+
+					<panel name="playerProfileRankBarPrivate" noclick="true" passivechildren="true" visible="false">
+						<panel height="-24s" float="right" padding="6s" noclick="1" >
+							<instance name="playerProfileAccountRankStar" id="1b" />
+							<instance name="playerProfileAccountRankStar" id="2b" />
+							<instance name="playerProfileAccountRankStar" id="3b" />
+							<instance name="playerProfileAccountRankStar" id="4b" />
+							<instance name="playerProfileAccountRankStar" id="5b" />
+						</panel>
+
+						<panel visible="1" noclick="1">
+							<panel height="18s" valign="bottom" width="-28s" noclick="1">
+								<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".6 .6 .6 1" color=".6 .6 .6 1" noclick="1">
+									<panel hmargin="2s" vmargin="3s" noclick="1" passivechildren="1">
+										<instance name="progress_bar" id="playerProfileAccountRankBarBB" width="0%" borderthickness="3s" barstyle="barCommon" noclick="1"  />
+									</panel>
+								</frame>
+							</panel>
+							<panel height="24s" width="24s" align="right" valign="bottom" noclick="1">
+								<image texture="/ui/shared/textures/star.tga" noclick="1" />
+								<label x="1s" y="1s" textalign="center" textvalign="center" font="subdyn_13" color="0 0 0 .7" content="+" noclick="1"/>
+							</panel>
+						</panel>
+					</panel>
+
+				</panel>
+
+			</panel>
+
+		</panel>
+
+		<instance name="close_template" buttonName="playerProfileCloseButton" x="80s" height="32s" width="32s" align="right"/>
+
+	</panel>
+
+</package>

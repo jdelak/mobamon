@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<modifier
+			expirelife="250"
+			name="modifier0"
+			startcolor="1"
+			endcolor="1"
+			alpha=".5"
+		/>
+
+		<particlesystem name="system0" space="world" scale="0.5">
+
+			<sound
+				volume="0.35"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_trail_%.wav"
+			/>	
+
+			<template name="">
+
+				<terrainemitter
+				life="2000"
+				bone="{zbone}"
+					delay="25"
+					spawnrate="1000"
+					minparticlelife="250"
+					maxparticlelife="750"
+					gravity="0"
+					minspeed="0"
+					maxspeed="250"
+					position="{zpos}"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					direction="0 0 0"
+					depthbias="25"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor=".25 .7 1"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".5"
+						startframe="0"
+						endframe="1"
+						startsize="75"
+						endsize="0"
+						turn="true"
+					/>
+				</terrainemitter>
+
+				<terrainemitter
+				life="1000"
+				bone="{zbone}"
+					delay="25"
+					spawnrate="100"
+					minparticlelife="200"
+					maxparticlelife="400"
+					gravity="0"
+					minspeed="0"
+					maxspeed="250"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"	
+					direction="0 0 0"
+					depthbias="-20"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor=".1"
+						endcolor="0 0 0"
+						midcolorpos=".3"
+						startframe="0"
+						endframe="1"
+						startsize="160"
+						endsize="100"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</terrainemitter>
+
+			</template>
+			
+			<instance name="" zpos="20 0 0" zbone="_bone_leftfoot"/>
+			<instance name="" zpos="-20 0 0" zbone="_bone_rightfoot"/>
+			
+
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

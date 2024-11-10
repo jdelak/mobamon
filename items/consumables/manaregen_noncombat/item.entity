@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item
+	name="Item_ManaElixir"
+	
+	statuseffecttooltip="State_ManaElixir"
+	icon="icon.tga"
+	category="consumable"
+	
+	cost="90"
+	initialcharges="1"
+	chargecost="1"
+	destroyonempty="true"
+	allowsharing="true"
+	
+	actiontype="target_self"
+	queue="front"
+	casttime="0"
+	castactiontime="0"
+	maxcharges="1"
+
+	itemtype="Consumable"
+	noentercombat="true"
+	responsetype="NoResponse"
+	casteffecttype="NoResponse"
+	botitem="ManaElixirItem"
+	filters="consumable"
+	hidefromall="true"
+	ignoredynamicactivation="true"
+>
+
+	<checkcost>
+		<compare a="source_mana_percent" b="1" op="ge" >
+			<invalidate/>
+		</compare>
+	</checkcost>
+	
+	<onimpact>
+		<applystate name="State_ManaElixir" duration="10000" />
+		<playanim name="item_1" target="source_entity" />
+	</onimpact>
+	
+	<ondamaged priority="1">
+		<currentdamageeffecttype effecttype="DOT">
+			<applystate name="State_ManaElixir_Disabled" target="source_entity" duration="100" />
+		</currentdamageeffecttype>
+	</ondamaged>
+	
+	<modifier key="mana_elixir_disabled" modpriority="100"
+		disabled="true"
+	/>
+</item>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<!-- Language Combobox -->
+	<template name="windowframe_combobox_lang_item">				
+		<image width="100@" height="100%" x="5s" valign="center" noclick="true" texture="{texture=$invis}"/>
+		<label y="-2s" x="140@" style="labelBase" font="maindyn_18" textvalign="center" noclick="1" content="{label}" />
+	</template>	
+	
+	<template name="windowframe_combobox_state">
+		<widgetstate statename="{state}" noclick="1">
+			<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color="{color}" />
+			<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color="{color}" />
+			<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color="{color}" />
+		</widgetstate>
+	</template>	
+
+	<panel noclick="1" name="main_windowframe"
+		onloadlua="
+			self:RegisterWatchLua('mainPanelStatus', function(widget, trigger)
+				widget:SetVisible(not (trigger.hideSecondaryElements and GetCvarBool('ui_PAXDemo')))
+			end, false, nil, 'hideSecondaryElements')
+		"
+	>
+		
+		<frame color="invisible" height="+30s" valign="center" width="+30s" align="center" borderthickness="17s" bordercolor="black" noclick="1" />
+		<frame color="invisible" borderthickness="2s" bordercolor="#2c3437" noclick="1" />
+		<frame color="invisible" borderthickness="1s" bordercolor="#314354" noclick="1" />
+		
+		<instance id="main_header_btn_quit" name="windowButtonSleek" buttontype="red" visible="1" x="-10s" y="0h" align="right"
+			onclicklua="PromptQuit()"
+			icon="/ui/main/windowframe/textures/top_close.tga" iconsize="16s"
+		/>	
+		
+		<instance id="main_header_btn_minimise" name="windowButtonSleek" visible="1" x="-48s" y="0" align="right"
+			onclicklua="
+				System.MinimizeWindow()
+				-- sound_minimizeWindow
+				-- PlaySound('/path_to/filename.wav')
+			"
+			icon="/ui/main/windowframe/textures/top_minimize.tga" iconsize="16s"
+		/>
+		
+		<instance id="main_header_btn_logout" name="windowButtonSleek" visible="0" x="-86s" y="0h" align="right"
+			onclicklua="Logout()"
+			icon="/ui/main/windowframe/textures/top_logout.tga" iconsize="20s"
+		/>
+		
+		<instance id="main_header_btn_help" name="windowButtonSleek" visible="1" x="-86s" y="0" align="right"
+			onclicklua="
+				if (Strife_Region.regionTable) and (Strife_Region.regionTable[Strife_Region.activeRegion]) and (not Strife_Region.regionTable[Strife_Region.activeRegion].hideDevWidgets) then 
+					self:GetWidget('main_dev_menu'):SetVisible(not self:GetWidget('main_dev_menu'):IsVisible())
+				else
+					mainUI.OpenSupportDialog()
+				end
+				"
+			onrightclicklua="
+				mainUI.OpenSupportDialog()
+				"			
+			icon="/ui/main/shared/textures/halp.tga" iconsize="13s" colorized="#a9d6e4"
+		/>	
+
+		<instance id="main_header_btn_options" name="windowButtonSleek" visible="1" x="-124s" y="0" align="right"
+			onclicklua="
+				if (mainUI) and  (mainUI.savedLocally) and  (mainUI.savedLocally.adaptiveTraining) and (mainUI.savedLocally.adaptiveTraining.featureList) and (mainUI.savedLocally.adaptiveTraining.featureList) then
+					mainUI.AdaptiveTraining.RecordUtilisationInstanceByFeatureName('options')
+				end
+				if ((mainUI.featureMaintenance) and (mainUI.featureMaintenance['options'])) then	
+					return
+				end				
+				local mainPanelStatus = LuaTrigger.GetTrigger('mainPanelStatus')
+				if (mainPanelStatus.main ~= 26) then
+					mainPanelStatus.main = 26
+					mainPanelStatus:Trigger(false)
+				elseif (mainPanelStatus.hasIdent) then
+					mainPanelStatus.main = 101
+					mainPanelStatus:Trigger(false)
+				else
+					mainPanelStatus.main = 0
+					mainPanelStatus:Trigger(false)				
+				end
+			"
+			icon="/ui/main/windowframe/textures/top_gear.tga" iconsize="16s" icony="-1s"
+			onloadlua="
+				self:SetVisible(1)
+				self:RegisterWatchLua('featureMaintenanceTrigger', function(widget, trigger)
+					if ((mainUI.featureMaintenance) and (mainUI.featureMaintenance['options'])) then	
+						widget:SetVisible(0)
+					else
+						widget:SetVisible(1)
+					end			
+				end)				
+			"		
+		/>	
+		
+		<instance id="main_header_btn_language" name="windowButtonSleek" visible="1" x="-162s" y="0" align="right"
+			onclicklua="
+				self:GetWidget('windowframe_language_combobox'):SetVisible(1)
+				self:GetWidget('windowframe_language_combobox_listbox'):SetVisible(1)
+			"
+			icon="$invis" iconsize="18s" icony="-1s"
+			onloadlua="
+				self:RegisterWatchLua('LoginStatus', function(widget, trigger)
+					widget:SetVisible(Strife_Region.regionTable[Strife_Region.activeRegion].showLangChoice)
+				end, false, nil, 'isLoggedIn', 'hasIdent')
+				
+				-- widget:SetVisible(not trigger.isLoggedIn and not trigger.hasIdent and 
+			"
+		/>		
+		
+		<instance id="main_header_btn_twitch" name="windowButtonSleek" visible="0" x="-200s" y="0" align="right"
+			onclicklua="
+				TwitchEdit.ToggleLoginPanel()
+				if (mainUI) and  (mainUI.savedLocally) and  (mainUI.savedLocally.adaptiveTraining) and (mainUI.savedLocally.adaptiveTraining.featureList) and (mainUI.savedLocally.adaptiveTraining.featureList) then
+					mainUI.AdaptiveTraining.RecordUtilisationInstanceByFeatureName('twitch')
+				end
+			"
+			icon="/ui/shared/twitch/textures/twitch_icon.tga" iconsize="18s" icony="-1s" color="white"
+			onloadlua="
+				self:RegisterWatchLua('LoginStatus', function(widget, trigger)
+					widget:SetVisible((trigger.isIdentPopulated) and ((GetCvarString('host_videoDriver') == 'vid_d9')) and ((mainUI.featureMaintenance) and (not mainUI.featureMaintenance['twitch'])) )
+				end, false, nil, 'isLoggedIn', 'hasIdent', 'isIdentPopulated')
+			"		
+		/>	
+
+		<instance id="main_header_btn_twitch_live" name="windowButtonLong" visible="0" x="-200s" y="0" align="right"
+			onclicklua="TwitchEdit.ToggleLoginPanel()"
+			icon="/ui/shared/twitch/textures/twitch_icon.tga" iconsize="18s" icony="-1s" color="white" label="twitch_status_steaming"
+			onloadlua="
+				self:RegisterWatchLua('TwitchStatus', function(widget, trigger)
+					widget:SetVisible((trigger.streamingActive))
+				end, false, nil)
+			"		
+		/>		
+
+		<combobox
+			name="windowframe_language_combobox" x="-160s" y="-1s" visible="0"
+			width="200s"
+			height="32s"
+			align="right"
+			valign="top"
+			color="invisible"
+			itemwidth="100%"
+			itemheight="32s"
+			cvar=""
+			maxlistheight="32s"
+			exteriorscrollbars="1"
+			scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+			handleheight="100@" handlewidth="100%"
+			highlight="under"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			onlosefocuslua="self:GetWidget('windowframe_language_combobox'):SetVisible(0) self:GetWidget('windowframe_language_combobox_listbox'):SetVisible(0)"
+			onselectlua="
+				local trigger = LuaTrigger.GetTrigger('LoginStatus')
+				if libLanguage.didIChangeLanguage(self:GetValue()) then
+					if libFeaturePacks.doIhaveThisLanguagePack(self:GetValue()) or (not IsFullyLoggedIn(GetIdentID())) or (trigger.launchedViaSteam) then
+						libLanguage.promptToRestartBecauseIChangedLanguages(self:GetValue())
+					elseif (not trigger.launchedViaSteam) then
+						libFeaturePacks.promptToRestartBecauseINeedALanguagePack(self:GetValue())
+					end
+				else
+					self:GetWidget('windowframe_language_combobox'):SetVisible(0)
+				end
+			"
+			onmouseover="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+			watch9="UIUpdateRegion"
+			ontrigger9="DoEvent(9);"
+			onevent9lua="UIManager.GetInterface('main'):StrifeRegionF('PopulateLanguageSelector', self)"
+			onshow="If(!StringEmpty(host_language) and StringEmpty(this), SetSelectedItemByValue(host_language, false));"
+			onloadlua="
+				self:RegisterWatchLua('LoginStatus', function(widget, trigger)
+					if (trigger.isLoggedIn and trigger.hasIdent) then
+						widget:SetVisible(0)
+						if (not libFeaturePacks.doIhaveThisLanguagePack(GetCvarString('host_language'))) and (IsFullyLoggedIn(GetIdentID())) and (not trigger.launchedViaSteam) then
+							libFeaturePacks.promptToRestartBecauseINeedALanguagePack(GetCvarString('host_language'))
+						end
+					end
+				end, false, nil, 'isLoggedIn', 'hasIdent')
+				self:GetWidget('windowframe_language_combobox_listbox'):SetCallback('onlosefocus', function()
+					self:GetWidget('windowframe_language_combobox'):SetVisible(0) self:GetWidget('windowframe_language_combobox_listbox'):SetVisible(0)
+				end)
+				self:GetWidget('windowframe_language_combobox_listbox'):SetCallback('onhide', function()
+					self:GetWidget('windowframe_language_combobox'):SetVisible(0) self:GetWidget('windowframe_language_combobox_listbox'):SetVisible(0)
+				end)				
+			"		
+			hscrollbar="0"
+			horizontal="false"		
+		>
+			<instance name="windowframe_combobox_state" state="up" color=".8 .8 .8 1" />
+			<instance name="windowframe_combobox_state" state="over" color="1 1 1 1" />
+			<instance name="windowframe_combobox_state" state="down" color=".4 .4 .4 1" />
+			<widgetstate statename="listbg">
+				<frame texture="/ui/elements:rounded_bg_white" height="+10s" valign="center" color=".1 .1 .1 .95" borderthickness="5s" />
+				<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+			</widgetstate>
+			<widgetstate statename="itembg">
+				
+			</widgetstate>
+			<widgetstate statename="itemhighlight">
+				<frame texture="/ui/elements:rounded_bg_white" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+			</widgetstate>
+		</combobox>	
+		
+		
+		
+	</panel>
+</package>

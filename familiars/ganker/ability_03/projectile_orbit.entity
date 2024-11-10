@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Ganker_Ult_1_Orbit"
+
+	lifetime="6500"
+	useexactlifetime="true"
+	
+	modelscale=".75"
+	model="/shared/models/invis.mdf"
+
+	effectscale="1.0"
+	impacteffect=""
+	
+	canturn="true"
+	flying="true"
+	flyheight="50"
+	
+	orbitclockwise="true"
+	orbit="true"
+	orbitradius="50"
+	orbitspeed="1"
+	orbitmaxspeed="1"
+	orbitmaxtouchespertarget="1"
+	orbitmodelangles="0"
+	
+	disjointable="false"
+	
+	
+>
+
+	<onexpired>
+		<unbind target="this_proxy_entity" />
+		<order command="wander" source="this_proxy_entity" target="source_entity" force="true" queue="front" />		
+		<setactivemodifierkey entity="this_proxy_entity" name="" />
+	</onexpired>
+	
+
+</projectile>

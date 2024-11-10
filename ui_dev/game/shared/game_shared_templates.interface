@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_shared_templates">
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<style name="thinSeparatorDark" color="0 0 0 0.4"/>
+	<style name="thinSeparatorLight" color="1 1 1 0.08"/>
+	
+	<template name="dialogWrapper1">
+		<panel name="{id}" visible="{visible=1}" width="{parent_width=100%}" height="{parent_height=100%}" align="{align=center}" valign="{valign=center}" noclick="true">
+			<frame width="{outerpadding=+40s}" height="{outerpadding=+40s}" align="center" valign="center" texture="/ui/elements:rounded_bg_solid" borderthickness="1.8h" color="0 0 0 .25" noclick="true" />			
+			<frame width="{innerpadding=+20s}" height="{innerpadding=+20s}" align="center" valign="center" texture="/ui/elements:rounded_bg_solid" borderthickness="0.8h" color="{inneralpha=0 0 0 .8}" noclick="true" />				
+		</panel>
+	</template>
+
+	<template name="simpleDropdownItem">
+		<label width="-2.5h" align="center" style="whiteTextColor" shadow="true" shadowoffset="2" font="maindyn_14" textvalign="center" content="{label}"/>
+	</template>	
+
+	<template name="horizRule1">
+		<panel width="{width=100%}" height="{height=0.75h}" align="{align}" valign="{valign}" noclick="true" passivechildren="true" name="{ruleName}" sticky="{sticky}" stickytoinvis="{stickytoinvis}" visible="{visible}" >
+			<panel style="thinSeparatorDark" valign="center" align="center" height="1" width="{lineWidth=-0.75h}"/>
+			<panel style="thinSeparatorLight" valign="center" align="center" height="1" width="{lineWidth=-0.75h}" y="1"/>
+		</panel>
+	</template>
+
+	<template name="closeXButton">
+		<button
+			name="{buttonName}"
+			visible="{visible=true}"
+			x="{x}" y="{y}"
+			width="{width=100%}" height="{height=100%}"
+			align="{align}" valign="{valign}"
+			enabled="{enabled=true}"
+			color="invisible"
+			interactive="{interactive}"
+			onclicklua="{onclicklua}"
+			onloadlua="libButton2.initializeButton(self, '{buttonName}', 'closeXButton')"
+		>
+			<panel name="{buttonName}Body" align="center" valign="center">
+				<frame name="{buttonName}Backer" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" color="1 1 1 1"/>
+				<panel width="58@" height="58%" align="center" valign="center">
+					<image color="0 0 0 1" texture="/ui/_textures/elements/closex2.tga" noclick="true" x="0.1h" y="0.1h" />
+					<image texture="/ui/_textures/elements/closex2.tga" noclick="true" />
+				</panel>
+			</panel>
+		</button>
+	</template>
+
+	<!-- Icon Button -->
+	<template name="iconButton">
+		<button name="{id}" width="{width=100@}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" 
+			stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" mouseoverdisabled="1" mouseoutdisabled="1" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" 
+			color="invisible" onclick="{onclick}" onclicklua="{onclicklua}"	
+			onmouseoverlua="{onmouseoverlua}" onmouseoutlua="{onmouseoutlua}"
+			cangrab="{cangrab}" dragexclusive="{dragexclusive}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoverdisabledlua="{onmouseoverdisabledlua}"
+			onmouseoutdisabled="{onmouseoutdisabled}"		
+			onmouseoutdisabledlua="{onmouseoutdisabledlua}"		
+			numstates="{numstates}"
+			group="{group}"
+			onloadlua="
+				if ({colorized=false}) then
+					libButton2.initializeButton(self, '{id}', 'iconButton', 'normal')
+				else
+					libButton2.initializeButton(self, '{id}', 'iconButton', 'grayscale')
+				end
+				{onloadlua}
+			"	
+			oninstantiatelua="
+				self:Sleep(1, function()
+					if ({colorized=false}) then
+						libButton2.initializeButton(self, '{id}', 'iconButton', 'normal')
+					else
+						libButton2.initializeButton(self, '{id}', 'iconButton', 'grayscale')
+					end
+					{oninstantiatelua}
+				end)
+			"			
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Backer" texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="{borderthickness=0.6h}" color="{color=.8 .8 .8 1}" rendermode="grayscale"/>
+				<frame texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="{borderthickness=0.6h}" visible="{colorized=false}" group="{id}BGGroup" />
+				<image align="center" valign="center" width="{iconsize=70}@" height="{iconsize=70}%" texture="{icon}" y="{iconY}" x="{iconX}" group="{id}IconGroup" />		
+			</panel>			
+		</button>
+	</template>	
+	
+	<template name="simpleButtonImage"><!-- Hopefully temp! -->
+		<button color="invisible" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" name="{id}Container" onloadlua="{onloadlua}" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}">
+			<panel align="center" valign="center" name="{id}Body">
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_button_bg_white" borderthickness="0.5h" color="#444444"/>
+				<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+				<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="#FFCC0088" visible="false" name="{id}HighlightFrame"/>
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" rendermode="additive" color="#FFCC0011" visible="false" name="{id}Highlight"/>
+				<image hmargin="{imageMargin=0.25h}" vmargin="{imageMargin=0.25h}" texture="{image}" name="{id}Image"/>
+			</panel>
+		</button>
+	</template>
+
+	<template name="simpleButtonKey">
+		<panel width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" visible="{visible=1}" align="{align}" valign="{valign}" onloadlua="{onloadlua}" noclick="true" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}">
+			<button color="invisible" visible="{visible=true}" name="{id}Container"/>
+			<panel align="center" valign="center" noclick="true" name="{id}Body">
+				<frame noclick="true" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+				<frame noclick="true" texture="/ui/elements:rounded_button_bg_white" borderthickness="0.5h" color="#444444"/>
+				<frame noclick="true" texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+				<frame noclick="true" texture="/ui/elements:roundframe" borderthickness="0.5h" color="#FFCC0088" visible="false" name="{id}HighlightFrame"/>
+				<frame noclick="true" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" rendermode="additive" color="#FFCC0011" visible="false" name="{id}Highlight"/>
+				<panel hmargin="0.35h" vmargin="0.35h" x="1h" y="1h" noclick="true"><!-- Hotkey stuff -->
+
+					<label width="-125@" height="100%" color="white" shadow="true" font="{font=maindyn_16}" textalign="center" textvalign="center" content="{label}" x="-1h" y="-1h" noclick="true" name="{id}Label"/>
+				</panel>
+			</panel>
+			<button align="right" width="90@" height="85%" valign="center" x="-0.35h" color="invisible" interactive="false" name="{id}KeyContainer">
+				<panel align="center" valign="center" name="{id}KeyBody">
+					<frame texture="/ui/elements:key" borderthickness="33@" align="center" valign="center" name="{id}KeyBacker"/>
+					<label color="black" outline="true" outlinecolor="#DDDDDD" textalign="center" textvalign="center" noclick="true" font="{keyFont=maindyn_14}" name="{id}Key" content="-" y="-8%" onshowlua="{onrefreshlua}" onrefreshlua="{onrefreshlua}"/>
+					<frame texture="/ui/elements:rounded_bg_white" rendermode="additive" color="#FFCC0011" name="{id}KeyHighlight"/>
+				</panel>
+			</button>
+		</panel>
+	</template>
+
+	<template name="pinButton">
+		<button color="invisible" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" name="{id}Button" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis}" interactive="{interactive=false}">
+			<panel align="center" valign="center" name="{id}Body">
+				<frame texture="/ui/elements:rounded_button_bg_white" borderthickness="0.35h" color="#444444"/>
+				<image name="{id}Image" align="center" valign="center" width="-25@" height="-25%" texture="/ui/elements:pin" color="#666666"/>
+			</panel>
+		</button>
+	</template>
+
+	<template name="simpleCheckboxState">
+		<widgetstate statename="{statename}" x="{x}" y="{y}">
+			<label textalign="center" textvalign="center" font="maindyn_12" color="{xColor=#CCCCCC}" visible="{xVisible=false}" content="X"/>
+		</widgetstate>
+	</template>
+
+	<template name="simpleCheckbox">
+		<panel width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}">
+			<button name="{buttonName}" noclick="{noclick=false}" enabled="{enabled=true}" color="invisible" numstates="2" cvar="{cvar}">
+				<instance name="simpleCheckboxState" statename="up"/>
+				<instance name="simpleCheckboxState" statename="over" xColor="white"/>
+				<instance name="simpleCheckboxState" statename="down" x="1" y="1"/>
+				<instance name="simpleCheckboxState" statename="disabled" xColor="gray"/>
+				<instance name="simpleCheckboxState" xVisible="true" statename="up2"/>
+				<instance name="simpleCheckboxState" xVisible="true" statename="over2" xColor="white"/>
+				<instance name="simpleCheckboxState" xVisible="true" statename="down2" x="1" y="1"/>
+				<instance name="simpleCheckboxState" xVisible="true" statename="disabled2" xColor="gray"/>
+			</button>
+			<frame color="invisible" bordercolor="white" borderthickness="1" noclick="true" visible="{showBorder=true}"/>
+		</panel>
+	</template>
+
+	<!-- =========================================================== -->
+	
+	<template name="inventoryManaTimerBars">
+		<frame name="gameInventory{id}ManaTimerContainer" style="heroInventoryManaTimerContainer">
+			<panel style="heroInventoryManaTimerInset">
+				<panel name="gameInventory{id}ManaTimerBar" style="heroInventoryManaTimerBar"/>
+				<frame style="heroInventoryManaTimerCorners"/>
+			</panel>
+		</frame>
+	</template>
+	
+	<!-- ======================================== -->
+	<!-- =========== Basic (inherent) =========== -->
+
+	<template name="gameInventoryBasicBackers">
+		<panel name="gameInventory{id}{suffix}Container" group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.4h" noclick="true"/>
+			<frame texture="/ui/elements:thick" color="black" borderthickness="0.4h" noclick="true"/>
+			<panel style="gameInventoryItemIconSpace" />
+		</panel>
+	</template>
+
+	<template name="gameInventoryBasicIcons">
+		<panel group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<panel style="gameInventoryItemIconSpace">
+				<panel name="gameInventory{id}{suffix}IconContainer" noclick="true" align="center" valign="center">
+					<image name="gameInventory{id}{suffix}Icon" noclick="true" align="center" valign="center"/>
+				</panel>
+
+				<button name="gameInventory{id}{suffix}Button" color="invisible" interactive="false" disabledmouseover="true" disabledmouseout="true"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameInventoryBasicCooldowns">
+		<panel group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<panel style="gameInventoryItemIconSpace">
+				<piegraph name="gameInventory{id}{suffix}CooldownPie" style="inventoryCooldownPie"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameInventoryBasicModels">
+		<panel group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<panel style="gameInventoryItemIconSpace">
+				<modelpanel name="gameInventory{id}{suffix}AutocastIndicator" style="abilityAutocastIndicator"/>
+				<modelpanel name="gameInventory{id}{suffix}TargetingIndicator" style="abilityTargetingIndicator"/>
+				<modelpanel name="gameInventory{id}{suffix}RefreshEffect" style="abilityReadyIndicator"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameInventoryBasicOverlays">
+		<panel group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<panel style="gameInventoryItemIconSpace">
+				<image name="gameInventory{id}{suffix}Gloss" style="abilityGloss"/>
+				<panel name="gameInventory{id}{suffix}Scroll" style="recipeScrollOverlay" visible="false"/>
+				<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.4h" noclick="true"/>
+				<frame texture="/ui/elements:thick" color="black" borderthickness="0.4h" noclick="true"/>
+				<instance name="inventoryManaTimerBars" id="{id}{suffix}"/>
+			</panel>
+			<frame name="gameInventory{id}{suffix}ChargeBacker" style="heroInventoryBackpackUsableChargeBacker"/>
+			<frame name="gameInventory{id}{suffix}TimerBacker" style="heroInventoryBackpackUsableTimerBacker">
+				<panel style="heroInventoryBackpackUsableTimerInset">
+					<panel name="gameInventory{id}{suffix}TimerBar" style="heroInventoryBackpackUsableTimerBar"/>
+					<frame style="heroInventoryBackpackUsableTimerBarCorners"/>
+				</panel>
+			</frame>
+			<image name="gameInventory{id}{suffix}PurchasedRecently" style="heroInventoryBackpackUsablePurchasedRecently"/>
+			<image name="gameInventory{id}{suffix}Crafted" style="heroInventoryBackpackUsableCrafted"/>
+			<button name="gameInventory{id}{suffix}HotkeyButtonTip" style="{keySpace=gameInventoryBasicKeySpace}" color="invisible" interactive="false"/>
+			<button name="gameInventory{id}{suffix}HotkeyButton" style="{keySpace=gameInventoryBasicKeySpace}" color="invisible" interactive="false">
+				<panel name="gameInventory{id}{suffix}HotkeyBody" align="center" valign="center">
+					<frame name="gameInventory{id}{suffix}HotkeyBacker" style="gameInventoryItemKey"/>
+					<frame name="gameInventory{id}{suffix}HotkeyHighlight" style="gameInventoryKeyHighlight"/>
+				</panel>
+			</button>
+		</panel>
+	</template>
+
+	<template name="gameInventoryBasicLabels">
+		<panel group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<panel style="gameInventoryItemIconSpace">
+				<label name="gameInventory{id}{suffix}Cooldown" style="inventoryCooldownLabel" content="0s"/>
+			</panel>
+			<panel style="{keySpace=gameInventoryBasicKeySpace}" noclick="true">
+				<label name="gameInventory{id}{suffix}Hotkey" style="{keyStyle=gameInventoryBasicHotkeyLabel}" content="-"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameInventoryBasicLabels12">
+		<panel group="gameInventory{id}{suffix}Containers" style="{containerStyle=gameInventoryItemContainer}" visible="true">
+			<panel style="gameInventoryItemIconSpace">
+				<label name="gameInventory{id}{suffix}ManaTimerLabel" style="heroInventoryPrimaryManaTimerLabel"/>
+			</panel>
+			<label name="gameInventory{id}{suffix}Charges" style="heroInventoryBackpackUsableCharges" content="8"/>
+		</panel>
+	</template>
+	
+</interface>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="1200"
+				volume="0.35" 
+				soundloop="true"
+				fadein="200"
+				fadeout="300"
+				sample="/shared/sounds/effects/torch.wav"
+			/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="1000"
+				startcolor=".06 .08 .1"
+				midcolor=".4 .45 .5"
+				endcolor=".06 .08 .1"
+				depthbias="-75"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="4"
+				loop="true"
+			/>
+
+			<model
+				expirelife="400"
+				parentmodel="true"
+				parentskeleton="true"
+				material="material.material"
+				scale="1"
+				color="1 1 1"
+				startalpha=".35"
+				endalpha="0"
+			/>
+
+			<template name="">
+				<simpleemitter
+					bone="{zbone}"
+					position="0 0 0"
+					spawnrate="20"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					gravity="0"
+					minspeed="50"
+					maxspeed="200"
+					drag=".02"
+					material="/shared/effects/smaterials/snowy_smoke.material"
+					offsetsphere="50"
+					minangle="160"
+					maxangle="160"
+					direction="0 0 -1"
+					directionalspace="world"
+				>
+					<particle 
+						color=".6 .7 .8"
+						startalpha=".25"
+						endalpha="0"
+						minangle="0"
+						maxangle="360"
+						minstartsize="25"
+						maxstartsize="50"
+						minendsize="140"
+						maxendsize="180"
+						minanglespeed="-60"
+						maxanglespeed="60"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="" zbone="_bone_centerofchest"/> 
+
+			<!-- sparks -->
+			<simpleemitter
+			bone="_bone_centerofchest"
+				position="0 0 -20"
+				spawnrate="200"
+				minparticlelife="250"
+				maxparticlelife="800"
+				gravity="-2"
+				speed="10"
+				drag=".01"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="35 35 35"
+				direction="0 0 0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 1"
+					midcolor="0 .35 1"
+					endcolor="0 0 0"
+					midcolorpos=".5"
+					minstartsize="5"
+					maxstartsize="5"
+					endsize="0"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

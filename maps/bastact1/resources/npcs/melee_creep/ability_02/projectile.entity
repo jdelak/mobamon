@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Guard_Ability2"
+
+	gravity="0"
+	lifetime="900"
+	useexactlifetime="true"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/bola_projectile.effect"
+	touchradius="90"
+	touchtargetscheme="enemy_heroes"
+
+>
+
+	<ontouch>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+		<applystate name="State_Guard_Ability2_SuperSlow" target="target_entity" duration="3000"/>
+		<kill target="this_entity"/>
+
+	</ontouch>
+	
+	<onimpact>
+		<spawnunit name="Gadget_Bastact1_WineCask_Blank" target="this_entity" lifetime="2500" pushentity="true" />
+		<playeffect effect="effects/impact_miss.effect" source="stack_entity" target="stack_entity"/>
+	</onimpact>	
+
+	
+</projectile>

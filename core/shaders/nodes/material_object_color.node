@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_object_color">
+	<parameter name="ObjectColor" type="float4" default="1.0 1.0 1.0 1.0" />
+	<dependency name="ObjectColor" type="float4" source="ObjectColor" />
+	<dependency name="Color" type="float4" source="vColor" />
+	<output name="Out" type="float4" solution="MaterialObjectColor" />
+	<?hlsl
+		Out = ObjectColor * Color;
+	?>
+	<?glsl
+		Out = ObjectColor * Color;
+	?>
+</node>

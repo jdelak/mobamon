@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="khanquest_menu_category_item_template" >
+		<button noclick="0" height="74s" width="160s" align="center" name="khanquest_menu_category_item_{categoryname}"  color="invisible"
+			onloadlua="
+				libButton2.initializeButton(self, 'khanquest_menu_category_item_{categoryname}', 'standardButton2', '{rendermode=normal}')
+			"
+		>
+			<panel name="khanquest_menu_category_item_{categoryname}Body" noclick="true" align="center" valign="center">
+				<panel width="-40s" height="80%" valign="center" align="right" noclick="1">
+					<frame name="khanquest_menu_category_item_{categoryname}Background" group="quests_menu_category_item_backers" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="6s" color=".8 .8 .8 1" noclick="1"/>
+				</panel>
+				<image name="icontype_{categoryname}" noclick="1" height="100%" width="100@" hflip="{hflip}" texture="{icon}" color="1 1 1 1" rendermode="normal"/>			
+			</panel>
+
+			<!-- New Labels -->
+			<panel x="-8s" height="-22s" width="-100@" align="right" valign="center" noclick="1" >e
+				<label name="khanquest_menu_category_item_{categoryname}Label" height="60%" valign="top" textalign="center" style="labelBase" font="maindyn_30" content="{valueLabel=---}" noclick="1" />
+				<label name="khanquest_menu_category_item_{categoryname}_prog_label" height="40%" valign="bottom" textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="{categoryname}" noclick="1" />
+			</panel>
+		</button>
+	</template>
+		
+	<template name="khanquest_entry">
+		<panel name="playerProfile_khanquest{prefix}{id}" width="256s" height="262s">
+			
+			<!-- Entry Frame
+				State / Default / Hover
+					Empty / 'active_empty_up.tga' / 'active_empty_up.tga'
+					Not Ready / 'active_normal_up.tga' / 'active_normal_over.tga'
+					Ready / 'active_ready_up.tga' / 'active_ready_over.tga'
+					Complete / 'complete_normal_up.tga' / 'complete_normal_over.tga'
+					Complete Champ / 'complete_champ_up.tga' / 'complete_champ_over.tga'
+					Complete Grand / 'complete_grand_up.tga' / 'complete_grand_over.tga'					
+			-->			
+			<image name="playerProfile_khanquest{prefix}{id}Background" texture="/ui/main/player_profile/textures/active_empty_up.tga" width="100%" height="200@" noclick="1" />
+				
+			
+			<!-- Status Label
+				Label content / styles:
+					'general_ready' / 'labelReady'
+					'party_not_ready' / 'labelNotReady'
+					'general_empty' / 'labelEmpty'
+					DATE / 'labelChampion'
+					DATE / 'labelGrandChampion'
+					
+			-->
+			<label name="playerProfile_khanquest{prefix}{id}Title" textalign="center" style="labelNotReady" font="maindyn_30" textvalign="center" y="2.5%" width="90%" height="11%" align="center" content="party_not_ready" noclick="1" />
+			
+			<!-- Team List -->
+			<panel x="-0.5%" y="18.2%" width="76%" height="54%" align="center" noclick="1" float="bottom" padding="2s">
+				<instance name="socialEntry" prefix="playerProfile_khanquest{prefix}{id}Player1" id="1" visible="true" actionBackerVis="false" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" statusLightTemplate="socialEntryUserStatusLight"/>
+				<instance name="socialEntry" prefix="playerProfile_khanquest{prefix}{id}Player2" id="2" visible="true" actionBackerVis="false" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" statusLightTemplate="socialEntryUserStatusLight"/>
+				<instance name="socialEntry" prefix="playerProfile_khanquest{prefix}{id}Player3" id="3" visible="true" actionBackerVis="false" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" statusLightTemplate="socialEntryUserStatusLight"/>
+				<instance name="socialEntry" prefix="playerProfile_khanquest{prefix}{id}Player4" id="4" visible="true" actionBackerVis="false" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" statusLightTemplate="socialEntryUserStatusLight"/>
+			</panel>
+			
+			<!-- Details -->
+			<panel name="playerProfile_khanquest{prefix}{id}ProgressContainer" y="82%" width="72%" height="15%" align="center" noclick="1">			
+				<!-- Wins/Lives -->
+				<panel grow="1" height="100%" align="center" float="right" noclick="1">
+					<label name="playerProfile_khanquest{prefix}{id}Wins" textvalign="center" fitx="1" style="labelBase" font="maindyn_36" content="0" noclick="1"/>
+					<panel width="100@" height="100%" noclick="1">
+						<image texture="/ui/main/postgame/khanquest/textures/win_mark_base.tga" noclick="1" />
+						<image texture="/ui/main/postgame/khanquest/textures/win_mark_glow.tga" noclick="1" />
+						<image texture="/ui/main/postgame/khanquest/textures/win_mark_fill.tga" noclick="1" />
+					</panel>
+				</panel>								
+			</panel>
+			
+			<!-- Hover Actions -->
+			<panel name="playerProfile_khanquest{prefix}{id}HoverActions" visible="0" noclick="1">
+			
+				<button name="playerProfile_khanquest{prefix}{id}Forfeit" width="64s" height="64s" valign="top" align="right" x="12s" y="-5s" visible="1" color="invisible"
+					onloadlua="
+						buttonInfo = libButton2.initializeButton(self, 'playerProfile_khanquest{prefix}{id}Forfeit', 'basicBounce')
+					"
+				>
+					<panel name="playerProfile_khanquest{prefix}{id}ForfeitBody" noclick="1">
+						<panel texture="/ui/main/player_profile/textures/white_flag.tga" noclick="1"/>
+					</panel>
+				</button>
+				
+				<!-- Continue Btn -->
+				<instance name="standardButton"
+					id="playerProfile_khanquest{prefix}{id}Continue" 
+					label="general_continue"
+					font="maindyn_22"
+					borderthickness="6s"
+					y="82.5%" width="72%" height="14%" align="center"
+					onclicklua=""
+					visible="1"
+				/>
+			
+			</panel>
+			
+			<!-- Create Btn -->
+			<instance name="standardButton"
+				id="playerProfile_khanquest{prefix}{id}Create" 
+				label="player_profile_khanquest_create"
+				font="maindyn_22"
+				borderthickness="6s"
+				y="82.5%" width="72%" height="14%" align="center"
+				onclicklua=""
+				visible="0"
+			/>
+			
+		
+		</panel>
+	</template>
+
+</package>

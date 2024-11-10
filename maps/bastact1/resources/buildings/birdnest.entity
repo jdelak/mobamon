@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Birdsnest"
+
+	model="/world/sprops/graveyard/crow/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="2.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="false"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="100"
+	deathtime="100"
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="999999"
+	canrotate="false"
+	ismobile="false"
+	infoheight="10000"
+	attacktype="none"
+	flyheight="200"
+	flying="true"
+	alwaysvisible="true"
+	drawonmap="false"
+	sightrangeday="0"
+	sightrangenight="0"
+	stealthtype="item"
+
+>
+
+	<oninflicted>
+		<spawnunit name="Gadget_Bastact1_GrantSight" count="1" target="this_position" lifetime="10000" team="1" />
+		<!-- <setactivemodifierkey name="invisible" entity="this_entity" /> -->
+		<playeffect effect="effects/bird_vision.effect" target="source_entity" />
+	</oninflicted>
+
+	<modifier key="invisible" modpriority="100"
+		model=""
+	>
+	</modifier>
+	
+</pet>

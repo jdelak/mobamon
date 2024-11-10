@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".75">
+
+      <sound
+        linearfalloff="true"
+        falloffstart="500"
+        falloffend="2400"
+        volume="0.55"
+        sample="../sounds/sfx_impact_%.wav"
+			/>
+      
+<!--
+			<simpleemitter
+			position="0 0 0"
+				bone="_bone_centerofchest"
+				count="1"
+				spawnrate="20"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+			>
+				<particle
+				>
+					<template name="">
+					
+						<billboard
+							bone="_bone_centerofchest"
+							life="150"
+							startcolor=".5 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							endscale="{zendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="180"
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="4.2" zendscale="6.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="4.2" zendscale="6.2" zcolor="0 .5 1"/>
+
+					<template name="">
+					
+						<billboard
+							bone="_bone_centerofchest"
+							position="-100 0 0"
+							life="150"
+							startcolor=".5 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							endscale="{zendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="110"
+
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="3.2" zendscale="5.2" zcolor="0 .5 1"/>
+
+					<template name="">
+					
+						<billboard
+							bone="_bone_centerofchest"
+							position="-50 -50 0"
+							life="150"
+							startcolor=".5 1 1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							endscale="{zendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="45"
+
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="1.2" zendscale="3.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="2.2" zendscale="4.2" zcolor="0 .5 1"/>
+				</particle>
+			</simpleemitter>
+-->
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="30"
+				spawnrate="6000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="400"
+				maxspeed="800"
+				gravity="75"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="_bone_centerofchest"
+						minlife="250"
+						maxlife="500"
+						startcolor="1 1 1"
+						midcolor="0 1 1"
+						endcolor="0 1 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="3"
+						midscale="1"
+						endscale=".35"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				life="500"
+				startcolor="1 1 1"
+				midcolor="0 .5 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				directionalspace="world"
+				scale="5"
+				depthbias="-50"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system1" space="entity" scale="1">
+<!--
+			<model
+				parentmodel="true"
+				parentskeleton="true"
+				position="0 0 0"
+				life="250"
+				startcolor=".25 0 .5"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				startscale="1"
+				endscale="1.075"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+			/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

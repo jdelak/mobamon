@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" persistent="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.15">
+		
+
+			<simpleemitter
+				life="600"
+				spawnrate="24"
+				delay="0"
+				offsetsphere="24"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="3200"
+			>
+				<particle
+				>
+					<groundsprite
+						material="/shared/effects/smaterials/ground_splash_blend.material"						
+						startsize="40"
+						midsize="75"
+						endsize="80"
+						midsizepos=".1"
+						
+						color="0.4 .3 .1"
+						life="2000"
+						
+						minyaw="0"
+						maxyaw="360"
+						
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						
+						minscale=".6"
+						maxscale=".6"						
+					/>
+					
+					<groundsprite
+						material="/shared/effects/smaterials/ground_whitewater_blend.material"						
+						startsize="40"
+						midsize="75"
+						endsize="80"
+						midsizepos=".1"
+						
+						color="0.4 .3 .1"
+						life="2000"
+						
+						minyaw="0"
+						maxyaw="360"
+						
+						minyawspeed="-10"
+						maxyawspeed="10"
+						
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						
+						minscale=".6"
+						maxscale=".6"						
+					/>					
+
+				</particle>
+			</simpleemitter>
+
+			
+		<!--	
+			<simpleemitter
+				
+				life="2000"
+				spawnrate="114"
+				offsetsphere="0"
+				count="1"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="5200"
+				speed="800"
+				gravity="68"
+				minangle="0"
+				maxangle="0"
+				direction="0 0.02 1"
+			>
+				<particle>
+		
+					
+					
+					
+					
+					<model					
+						model="jug.mdf"
+						anim="idle"
+						pitchspeed="259"
+						rollspeed="259"										
+						scale="0.5"
+						life="5000"								
+					>	
+
+
+						<billboard
+							position="0 0 2"
+							bone="_bone_1"
+							expirelife="500"
+							startcolor=".3 .1 0"
+							endcolor="0 0 0"
+							size="40"
+							material="/shared/effects/smaterials/whitedot.material"
+							
+						/>
+
+						<billboard
+							position="0 0 2"
+							bone="_bone_1"
+							expirelife="1500"
+							startcolor=".3 .2 0"
+							endcolor="0 0 0"
+							size="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							
+						/>
+
+						<simpleemitter	
+							bone="_bone_1"						
+							life="5000"
+							spawnrate="61"
+							minparticlelife="250"
+							maxparticlelife="300"						
+							material="/shared/effects/smaterials/firesprite_01.material"
+							
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-6"
+								maxanglespeed="6"
+								startcolor="0 0 0"
+								midcolor=".2 .1 .0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="28"
+								endsize="4"		
+								depthbias="-20"								
+							/>					
+						
+						</simpleemitter>
+
+						<simpleemitter	
+							bone="_bone_1"						
+							life="5000"
+							spawnrate="41"
+							minparticlelife="250"
+							maxparticlelife="300"						
+							material="/shared/effects/smaterials/whitedot.material"
+							
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								minanglespeed="-6"
+								maxanglespeed="6"
+								startcolor="0 0 0"
+								midcolor=".2 .1 .0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="125"
+								endsize="4"		
+								depthbias="-20"								
+							/>					
+						
+						</simpleemitter>			
+					</model>			
+			
+
+				</particle>
+			</simpleemitter>		
+			
+-->
+			
+
+			
+		
+	
+
+		</particlesystem>
+	</definitions>
+	
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>

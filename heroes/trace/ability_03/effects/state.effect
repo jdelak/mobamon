@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffetscale="1">
+
+	<definitions>
+
+		<modifier 
+			name="modifier0"
+			expirelife="100"
+			startalpha="1"
+			endalpha="1"
+		/>
+
+		<particlesystem name="system0" space="entity" scale=".75">
+		
+		
+		
+<!--
+			<groundsprite
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				bone="_bone_centerofchest"
+				expirelife="500"
+				startcolor="2 0 2"
+				alpha="0"
+				endcolor="0 0 0"
+				position="0 0 0"
+				size="50"
+				depthbias="-60"
+			/>
+-->
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				bone="_bone_centerofchest"
+				expirelife="500"
+				startcolor=".35 0 .35"
+				alpha="0"
+				endcolor="0 0 0"
+				position="0 0 0"
+				size="50"
+				height="350"
+				width="100"
+				depthbias="-60"
+			/>
+			
+			
+<!--
+			<light
+				position="0 20 50"
+				expirelife="250"
+				startcolor="6 0 6"
+				endcolor="0"
+				falloffstart="25"
+				falloffend="150"
+			/>
+-->
+			
+			
+			
+			
+			
+			
+			
+
+			<template name="flashes">
+			
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="35"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					position="0 0 -15"
+					offsetsphere="0 0 20"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="75"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						color=".5 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="25"
+						minendscale="125"
+						maxendscale="175"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					position="0 0 -15"
+					offsetsphere="0 0 20"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="50"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						startcolor="1 .3 0"
+						endcolor="0 0 0"
+						startscale="25"
+						minendscale="75"
+						maxendscale="125"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flashes" zbone="_bone_centerofchest" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_head" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			
+			<instance name="flashes" zbone="_bone_Bip01 R UpperArm" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 R Forearm" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Hand" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L UpperArm" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Forearm" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			
+			<instance name="flashes" zbone="_bone_Bip01 R Thigh" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Thigh" zstartscale="15" zendscale="50" zoffset="25" zdepthbias="50"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="flashes">
+
+				
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="20"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					position="0 0 8"
+					offsetsphere="10"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="20"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						startcolor=".5 .25 0"
+						endcolor="0 0 0"
+						scale="25"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flashes" zbone="_bone_centerofchest" zstartscale="15" zendscale="75" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_head" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+
+			
+			
+			<instance name="flashes" zbone="_bone_Bip01 R UpperArm" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 R Forearm" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Hand" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L UpperArm" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Forearm" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			
+			<instance name="flashes" zbone="_bone_Bip01 R Thigh" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Thigh" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 R Calf" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+			<instance name="flashes" zbone="_bone_Bip01 L Calf" zstartscale="15" zendscale="30" zoffset="25" zdepthbias="50"/>
+
+
+			
+			
+			
+			
+			
+			
+			
+				<simpleemitter
+					bone="_bone_center"
+					spawnrate="35"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					position="0 0 -15"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="60"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						color="1 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="25"
+						minendscale="75"
+						maxendscale="125"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="_bone_center"
+					spawnrate="50"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					position="0 0 -15"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="50"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						startcolor="1 .3 0"
+						endcolor="0 0 0"
+						startscale="25"
+						minendscale="50"
+						maxendscale="75"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+			
+
+				<simpleemitter
+					bone="_bone_center"
+					spawnrate="25"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					position="0 0 0"
+					offsetsphere="15"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="0"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						startcolor=".5 .25 0"
+						endcolor="0 0 0"
+						scale="50"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="entity" scale=".75">
+
+		
+		
+		
+<!--
+			<simpleemitter
+			position="0 0 5"
+				spawnrate="300"
+				minparticlelife="150"
+				maxparticlelife="500"
+				offsetsphere="40 40 0"
+			>
+				<particle
+				>
+					<billboard
+						material="/shared/effects/smaterials/cartoon_smack_white.material"
+						minlife="150"
+						maxlife="500"
+						color="1 0 1"
+						startalpha="0"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".15"
+						position="0 0 0"
+						lockup="true"
+						lockright="true"
+						startscale="1.5"
+						endscale="3"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-20"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+			position="0 0 5"
+				spawnrate="150"
+				minparticlelife="150"
+				maxparticlelife="500"
+				offsetsphere="25 25 0"
+			>
+				<particle
+				>
+					<billboard
+						material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+						minlife="150"
+						maxlife="500"
+						startcolor="1 .25 0"
+						endcolor="0 0 0"
+						position="0 0 0"
+						lockup="true"
+						lockright="true"
+						startscale=".5"
+						endscale="2.5"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-10"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+<!--
+			<simpleemitter
+			position="0 0 5"
+				spawnrate="50"
+				gravity="-25"
+				minparticlelife="300"
+				maxparticlelife="500"
+				offsetsphere="35 35 0"
+			>
+				<particle
+				>
+					<billboard
+						material="/shared/effects/smaterials/whitedot.material"
+						minlife="150"
+						maxlife="500"
+						startcolor=".5 .15 0"
+						endcolor="0 0 0"
+						lockup="true"
+						lockright="true"
+						startscale="1"
+						endscale="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-10"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+			
+			<template name="flashes">
+			
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="75"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					offsetsphere="25 50 20"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="0"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						color="1 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="25"
+						minendscale="125"
+						maxendscale="175"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					position="{zpos}"
+					spawnrate="75"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					offsetsphere="25 40 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="0"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						startcolor="1 .3 0"
+						endcolor="0 0 0"
+						startscale="25"
+						minendscale="75"
+						maxendscale="125"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+				
+
+			</template>
+
+			<instance name="flashes" zpos="0 0 0"/>
+			<instance name="flashes" zpos="0 0 10"/>
+			<instance name="flashes" zpos="0 0 20"/>
+			
+			
+			
+			
+				<simpleemitter
+					position="0 0 0"
+					spawnrate="100"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					offsetsphere="15 15 20"
+					material="/shared/effects/smaterials/cartoon_smack_white.material"
+					depthbias="-20"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						color="1 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="25"
+						minendscale="125"
+						maxendscale="175"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="0 0 0"
+					spawnrate="75"
+					minparticlelife="150"
+					maxparticlelife="500"
+					minspeed="0"
+					maxspeed="60"
+					offsetsphere="20 30 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+				>
+					<particle
+						anchor="1"
+						startcolor=".5 .15 0"
+						endcolor="0 0 0"
+						startscale="25"
+						minendscale="75"
+						maxendscale="125"
+						lockup="true"
+						lockright="true"
+					/>
+				</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

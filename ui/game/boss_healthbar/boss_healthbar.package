@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<!--
+	===========================	
+	Includes / Triggers
+	===========================
+	-->	
+	<trigger name="bossHealthbar_TurnOn"/>
+	<trigger name="bossHealthbar_TurnOff"/>
+	<trigger name="bossHealthbar_Update"/>
+	
+	<panel name="BossHeathbarContainer" y="0.5h" height="14h" align="center" grow="1" visible="0" noclick="1">
+		<panel height="100%" align="center" grow="1" float="right" noclick="1">
+			<image width="28h" height="100%" texture="/ui/game/boss_healthbar/textures/boss_basebar_left.tga" noclick="1"/>
+			<image width="50h" height="100%" texture="/ui/game/boss_healthbar/textures/boss_basebar_center.tga" noclick="1"/>
+			<image width="28h" height="100%" texture="/ui/game/boss_healthbar/textures/boss_basebar_right.tga" noclick="1"/>
+		</panel>
+		
+		<image name="BossHealthbarEyes" width="28h" height="100%" texture="/ui/game/boss_healthbar/textures/boss_eyes.tga" color="1 1 1 0" align="left" noclick="1"/>
+		<image name="BossHealthbarEyesLow" width="28h" height="100%" texture="/ui/game/boss_healthbar/textures/boss_eyes.tga" color="1 1 1 0" align="left" noclick="1"/>
+		
+		<panel x="15.7h" width="84h" noclick="1" >
+			<panel name="BossHeathbarBase" width="100%" clip="1" align="left" noclick="1">
+				<image width="84h" texture="/ui/game/boss_healthbar/textures/boss_healthbar_center.tga" align="left" noclick="1"/>
+			</panel>
+		</panel>
+	</panel>
+	
+	<lua file="/ui/game/boss_healthbar/boss_healthbar.lua"/>
+</package>

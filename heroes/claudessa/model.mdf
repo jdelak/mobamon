@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model">
+
+	<skin name="black">
+		<reference mesh="10k_claudessa"			material="material_black.material" />
+		<reference mesh="3k_claudessa"			material="material_black.material" />
+		<reference mesh="1k_claudessa"			material="material_black.material" />
+	</skin>		
+	
+	<skin name="gold">
+		<reference mesh="10k_claudessa"			material="material_gold.material" />
+		<reference mesh="3k_claudessa"			material="material_gold.material" />
+		<reference mesh="1k_claudessa"			material="material_gold.material" />
+	</skin>	
+	
+	<skin name="ice">
+		<reference mesh="10k_claudessa"			material="material_ice.material" />
+		<reference mesh="3k_claudessa"			material="material_ice.material" />
+		<reference mesh="1k_claudessa"			material="material_ice.material" />
+	</skin>	
+	
+	<skin name="green">
+		<reference mesh="10k_claudessa"			material="material_green.material" />
+		<reference mesh="3k_claudessa"			material="material_green.material" />
+		<reference mesh="1k_claudessa"			material="material_green.material" />
+	</skin>	
+	
+	<skin name="orange">
+		<reference mesh="10k_claudessa"			material="material_orange.material" />
+		<reference mesh="3k_claudessa"			material="material_orange.material" />
+		<reference mesh="1k_claudessa"			material="material_orange.material" />
+	</skin>	
+	
+	<skin name="purple">
+		<reference mesh="10k_claudessa"			material="material_purple.material" />
+		<reference mesh="3k_claudessa"			material="material_purple.material" />
+		<reference mesh="1k_claudessa"			material="material_purple.material" />
+	</skin>		
+	
+
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" />
+
+	<anim name="ability_2" clip="clips/ability_2.clip" />
+	
+	<anim name="ability_3" clip="clips/ability_3.clip" >
+		<frameevent frame="1" cmd="StartEffect ability_03/effects/hero_swoosh.effect 0"/>
+	</anim>
+
+	<anim name="ability_4" clip="clips/ability_4.clip" />
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" />
+
+	<anim name="attack_2" clip="clips/attack_2.clip" />
+	
+	<anim name="bored_1" clip="clips/bored_1.clip" />
+	
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/voice/vo_death_grunt_%.wav 500 2500 0.75" />
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_death_foley.wav 500 2500 0.55" />
+	</anim>
+	
+	<anim name="idle" clip="clips/default_1.clip" loop="true"/>
+	
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="30" loop="false">
+		<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_1.wav 500 2500 0.65"/>
+	</anim>
+
+	<anim name="item_1" clip="clips/item_1.clip"/>
+	
+	<anim name="item_channel_1" clip="clips/item_channel_1.clip" loop="true"/>
+
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+
+	<anim name="port_in" clip="clips/port_in.clip" blendtime="0"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip" />
+	
+	<anim name="select_1" clip="clips/select_1.clip" loop="true"/>
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+	
+	<anim name="upvote_1" clip="clips/upvote_1.clip"/>
+	
+	<anim name="slide_1" clip="clips/slide_1.clip"/>
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true">
+		<frameevent frame="3" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 1200 0.2"/>
+		<frameevent frame="6" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="17" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 1200 0.2"/>
+		<frameevent frame="20" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="34" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 1200 0.2"/>
+		<frameevent frame="37" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="47" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 1200 0.2"/>
+		<frameevent frame="50" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+	</anim>
+
+</model>

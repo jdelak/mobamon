@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2.15">
+
+			<sound
+				mindelay="0"
+				maxdelay="10"
+				falloffstart="0"
+				falloffend="750"
+				volume="0.4"
+				soundloop="true"
+				sample="/shared/sounds/ambience/amb_torch_%.wav"
+			/>
+			
+			<template name="flame">
+<!--
+				<billboard
+					position="0 0 98"
+					life="24000"
+					material="/shared/effects/smaterials/lava_overlay.material"
+					startsize="25"
+					midsize="30"
+					endsize="25"
+					color=".7"
+					startalpha="1"
+					midalpha=".5"
+					endalpha="1"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					loop="true"
+					rollspeed="15"
+				/>
+-->
+				
+
+				<light
+				bone="{bone}"
+					position="0 0 25"
+					life="4000"
+					startcolor=".6 .05 0"
+					midcolor="1.35 .1 0"
+					endcolor=".6 .05 0"
+					falloffstart="0"
+					falloffend="200"
+					loop="true"
+				/>
+
+				<billboard
+				bone="{bone}"
+					position="0 0 0"
+					life="4000"
+					startcolor=".35 0 0"
+					midcolor=".75 0 0"
+					endcolor=".35 0 0"
+					size="40"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-75"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-360"
+					loop="true"
+				/>
+
+				<billboard
+				bone="{bone}"
+					position="0 0 0"
+					expirelife="1500"
+					startcolor=".2 0 0"
+					endcolor="0 0 0"
+					size="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-75"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-360"
+					loop="true"
+				/>
+
+				<simpleemitter
+				bone="{bone}"
+					position="0 0 0"
+					spawnrate="56"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-15"
+					offsetsphere="3"
+					material="/shared/effects/smaterials/firesprite_01.material"
+					depthbias="-75"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 .5 .5"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+						anchor="1"
+					/>
+					
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 .6 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+						anchor="1"
+					/>
+					
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+						anchor="1"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="flame" bone="_bone_fx_01"/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="chain_lightning">
+	<definitions>
+	
+	
+	
+		<particlesystem name="system0" space="world">
+		
+			<sound
+				sample="../sounds/sfx_cast.wav"
+				volume="0.65"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2200"
+			/>
+
+			<billboard
+				bone="_bone_weapon3"
+				delay="250"
+				life="250"
+				size="200"
+				startcolor="0 .2 1"
+				midcolor="0 0 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-35"
+			/>
+		
+
+			<light
+				delay="250"
+			bone="_bone_Bip01 R Finger21"
+				life="75"
+				startcolor="0 1.5 5"
+				midcolor="0 1.5 5"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="50"
+				falloffend="150"	
+			/>
+			
+			<light
+				delay="325"
+			bone="_bone_Bip01 R Finger21"
+				life="75"
+				startcolor="0 1.5 5"
+				midcolor="0 1.5 5"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="50"
+				falloffend="150"	
+			/>
+
+			<billboard
+			bone="_bone_Bip01 R Finger21"
+				delay="250"
+				life="250"
+				size="235"
+				startcolor="0 .5 1"
+				midcolor="0 0 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-35"
+			/>
+<!--
+			<billboard
+				bone="_bone_weapon3"
+				delay="250"
+				life="250"
+				size="200"
+				startcolor="0 .2 1"
+				midcolor="0 0 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-35"
+			/>
+-->
+			
+			
+			<billboard
+			bone="_bone_Bip01 R Finger21"
+				delay="250"
+				life="250"
+				size="120"
+				startcolor=".5"
+				midcolor="0 0 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-35"
+			/>
+
+		</particlesystem>
+		
+			<modifier
+				life="400"
+				startcolor="2 3 4"
+				midcolor="0 1 4"
+				endcolor="1"
+				midcolorpos=".8"
+			/>
+
+   	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

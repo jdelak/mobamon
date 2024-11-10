@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Carter_Ability3_Attack"
+
+	icon=""
+	portrait=""
+	model="/shared/models/invis.mdf"
+	passiveeffect=""
+	deatheffect=""
+	
+	preglobalscale="1"
+	modelscale="1.8"
+	effectscale="1"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	canattack="false"
+
+	sightrangeday="400"
+	sightrangenight="400"
+
+	deathtime="0"
+	corpsetime="0"
+	
+	unittype="carter_projectile"
+	
+	invulnerable="true"
+	hidealtinfo="true"
+	clearvision="true"
+	drawonmap="false"
+>
+	<onkilled>
+		<compare a="accumulator" b="0" op="ne">
+			<pushability target="this_owner_entity" entity="this_owner_entity" name="Ability_Carter3" />
+			<getconstant name="damage_increase" entity="stack_entity" adjustmentsource="source_entity" />
+			<setvar1 a="result" b="100" op="div" />
+			<evaluate source="this_owner_entity" a="source_attackdamage" b="var1" op="mult" />
+			<setvar0 a="result" />
+			<applystate name="State_Carter_Ability3_Projectiles" stack="true" inflictor="this_owner_entity" source="this_owner_entity" target="this_proxy_entity" pushentity="true" duration="450"/>
+			<setaccumulator entity="stack_entity" value="var0" valueb="2" valueop="mult" />
+		</compare>
+	</onkilled>
+	
+	<modifier key="carter_flame_wall_active" modpriority="100"
+		passiveeffect="../projectile_blue/effects/trail.effect"
+	>
+	</modifier>
+</gadget>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+<!--
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".15 .5 0"
+				midcolor=".15 .5 0"
+				endcolor="0 0 0"
+				life="300"
+				size="120"
+				depthbias="-50"
+			/>
+-->
+			<simpleemitter
+			position="0 0 -25"
+				bone="_bone_fx_tip"
+				count="25"
+				life="500"
+				spawnrate="2000"
+				minparticlelife="150"
+				maxparticlelife="300"
+				gravity="25"
+				minspeed="150"
+				maxspeed="300"
+				drag=".008"
+				material="/shared/effects/smaterials/poison_05.material"
+				offsetsphere="0 25 0"
+				minangle="-10"
+				maxangle="40"
+				direction="0 0 1"
+				directionalspace="local"
+				depthbias="-25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor=".7 1 .25"
+					midcolor=".7 1 .25"
+					endcolor="0 0 0"
+					midcolorpos=".85"
+					minstartsize="25"
+					maxstartsize="50"
+					midsize="20"
+					endsize="10"
+					startalpha="0"
+					midalpha=".7"
+					endalpha="0"
+					midalphapos=".5"
+					turn="true"
+					scale="1"
+				/>
+			</simpleemitter>
+
+	</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+

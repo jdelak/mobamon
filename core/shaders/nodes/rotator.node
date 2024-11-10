@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="rotator">
+	<parameter name="Speed" type="float" default="0.0" />
+	<parameter name="Center" type="float2" default="0.5 0.5" />
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="Speed" type="float" source="Speed" />
+	<dependency name="Center" type="float2" source="Center" />
+	<dependency name="Time" type="float" source="fTime" />
+	<output name="Out" type="float2" />
+	<?hlsl
+		float fS, fC;
+		sincos(Speed * Time, fS, fC);
+		
+		float2x2 mTexRotate;
+		mTexRotate[0][0] = fC;
+		mTexRotate[1][0] = -fS;
+		mTexRotate[0][1] = fS;
+		mTexRotate[1][1] = fC;
+		float2 f2Texcoord = mul(mTexRotate, Texcoord - Center) + Center;
+		
+		Out = f2Texcoord;
+	?>
+	<?glsl
+		float f = Speed * Time;
+		float fS = sin(f);
+		float fC = cos(f);
+		
+		mat2 mTexRotate;
+		mTexRotate[0][0] = fC;
+		mTexRotate[1][0] = -fS;
+		mTexRotate[0][1] = fS;
+		mTexRotate[1][1] = fC;
+		vec2 f2Texcoord = mTexRotate * (Texcoord - Center) + Center;
+		
+		Out = f2Texcoord;
+	?>
+</node>

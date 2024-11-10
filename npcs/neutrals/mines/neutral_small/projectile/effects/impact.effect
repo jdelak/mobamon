@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+
+	<definitions>
+
+
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="0.3">
+			
+			<sound
+				volume="0.45"
+				falloffstart="500"
+				falloffend="1800"
+				sample="../../sounds/sfx_impact.wav"
+			/>
+			
+			
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				life="2300"
+				spawnrate="333"
+				particlelife="2500"
+				count="1"
+				minangle="0"
+				maxangle="10" 
+				minspeed="0"
+				maxspeed="1"
+				drag="0.008"
+				
+				position="0 0 -50"
+	
+				material="/shared/effects/materials/fireball_03.material"
+				offsetsphere="12 12 12"
+				
+			>
+			<particle>
+				<light
+					position="0 0 0"
+					life="400"
+					startcolor="10"
+					midcolor="10 3 1"
+					midcolorpos=".1"
+					endcolor="0"
+					falloffstart="0"
+					falloffend="400"
+				/>
+				
+				<billboard
+					delay="0"
+					life="300"
+					position="0 0 0"			
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="0"
+					startsize="50"
+					endsize="500"
+					depthbias="-100"
+					lockup="1"
+					pitch="90"
+					maxroll="360"
+					material="/shared/effects/materials/pulse.material"
+				/>	
+			
+	
+				<billboard
+					life="300"
+					position="0 0 50"
+					midalpha="1"			
+					startalpha="0"
+					endalpha="0"
+					startsize="10"
+					endsize="1100"
+					depthbias="-100"
+					startparam="0.25"
+					endparam="0"
+					lockup="1"
+					pitch="90"
+					material="/shared/effects/materials/refract_ring.material"
+				/>	
+			
+				
+		
+			
+			</particle>
+			
+		</simpleemitter>
+		
+	
+				
+				<simpleemitter
+					bone="_bone_muzzle"
+					life="80"
+					spawnrate="20"
+					particlelife="1500"
+					
+					minangle="0"
+					maxangle="10" 
+					minspeed="200"
+					maxspeed="300"
+					drag="0.008"
+					
+					position="0 30 -0"
+					directionalspace="world"
+					material="/shared/effects/materials/dust_smoke_02.material"
+					offsetsphere="12 12 12"
+					
+				>
+				<particle 
+						minangle="0"
+						maxangle="360"
+						
+						minanglespeed="-40"
+						maxanglespeed="40"
+						
+						startcolor=".3 .3 .3"
+						midcolor=".3 .3 .3"
+						endcolor="0 0 0" 
+						
+						startsize="35"
+						endsize="166"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"													
+					 />			
+
+				</simpleemitter>	
+		
+
+
+				
+
+
+		
+
+		</particlesystem>		
+		
+	</definitions>
+
+	<thread>
+		
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		 <spawnmodifier instance="instance2" modifier="modifier0"/>  
+		
+		  
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

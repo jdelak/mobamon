@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="terrain" novs="true">
+	<parameter name="Index0" type="TexcoordIndex" default="0" />
+	<parameter name="Index1" type="TexcoordIndex" default="1" />
+	
+	<dependency name="Texcoord0" type="float2" source="Index0" />
+	<dependency name="Texcoord1" type="float2" source="Index1" />
+	
+	<dependency name="diffuse0" type="sampler2D" source="diffuse0" />
+	<dependency name="diffuse1" type="sampler2D" source="diffuse1" />
+	<dependency name="diffuse2" type="sampler2D" source="diffuse2" />
+
+	<dependency name="alpha" type="sampler2D" source="alpha" />
+	<dependency name="color" type="sampler2D" source="color" />
+	
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	
+	<output name="Diffuse" type="float4" />
+	<output name="Specular" type="float3" />
+	<output name="Normal" type="float3" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+		
+		Diffuse = float4(tex2D(alpha, Texcoord1).rrr, 1.0f);
+		Normal = float3(0.0f, 0.0f, 1.0f);
+		Specular = float3(0.0f, 0.0f, 0.0f);
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+		
+		Diffuse = float4(alpha_texture.Sample(alpha_sampler, Texcoord1).rrr, 1.0f);
+		Normal = float3(0.0f, 0.0f, 1.0f);
+		Specular = float3(0.0f, 0.0f, 0.0f);
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+		
+		Diffuse = vec4(texture2D(alpha, Texcoord1).rrr, 1.0f);
+		Normal = vec3(0.0f, 0.0f, 1.0f);
+		Specular = vec3(0.0f, 0.0f, 0.0f);
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+		
+		Diffuse = vec4(texture(alpha, Texcoord1).rrr, 1.0f);
+		Normal = vec3(0.0f, 0.0f, 1.0f);
+		Specular = vec3(0.0f, 0.0f, 0.0f);
+		
+		?>
+	</case>
+</node>

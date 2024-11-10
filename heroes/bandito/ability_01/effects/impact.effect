@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+
+
+		<particlesystem name="system0" space="world" scale="2.5">
+		
+
+			<sound
+				volume=".45" 
+				sample="../sounds/sfx_impact.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+			/>
+			
+			
+			
+
+			
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="2000"
+				particlelife="750"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="25"
+			>
+				<particle
+					startcolor="0 .25 .5"
+					midcolor="0 .25 .5"
+					endcolor="0 0 0"
+					startscale="8"
+					midscale="12"
+					endscale="12"
+					turn="true"
+					minheight="6"
+					maxheight="15"
+					minwidth="1"
+					maxwidth="4"
+				/>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<!-- blue chips 
+			<simpleemitter
+				count="3"
+				bone="_bone_centerofchest"
+				life="500"
+				spawnrate="2000"
+				particlelife="2000"
+				position="0 0 0"
+				minspeed="75"
+				maxspeed="200"
+				offsetsphere="0"
+
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="250"
+						maxlife="500"
+						model="poker_chip/model.mdf"
+						material="poker_chip/material_blue.material"
+						anim="idle"
+						color=".75 1 1.25"
+						scale=".5"
+						startalpha="1"
+						endalpha="1"
+						minrollspeed="0"
+						maxrollspeed="-720"
+					>
+						<billboard
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="0 .06 .125"
+							endcolor="0 0 0"
+							expirelife="0"
+							scale="2"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							depthbias="-100"
+						/>
+					</model>
+				</particle>
+			</simpleemitter>
+-->
+			
+			<!-- green chips 
+			<simpleemitter
+				count="3"
+				bone="_bone_centerofchest"
+				life="500"
+				spawnrate="2000"
+				particlelife="2000"
+				position="0 0 0"
+				minspeed="75"
+				maxspeed="200"
+				offsetsphere="0"
+
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="250"
+						maxlife="500"
+						model="poker_chip/model.mdf"
+						material="poker_chip/material_green.material"
+						anim="idle"
+						color=".75 1 .5"
+						scale=".5"
+						startalpha="1"
+						endalpha="1"
+						minrollspeed="0"
+						maxrollspeed="-720"
+					>
+						<billboard
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="0 .06 .125"
+							endcolor="0 0 0"
+							expirelife="0"
+							scale="2"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							depthbias="-100"
+						/>
+					</model>
+				</particle>
+			</simpleemitter>
+-->
+
+			<!-- red chips 
+			<simpleemitter
+				count="3"
+				bone="_bone_centerofchest"
+				life="500"
+				spawnrate="2000"
+				particlelife="2000"
+				position="0 0 0"
+				minspeed="75"
+				maxspeed="200"
+				offsetsphere="0"
+
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="250"
+						maxlife="500"
+						model="poker_chip/model.mdf"
+						material="poker_chip/material_red.material"
+						anim="idle"
+						color="1.25 1 .75"
+						scale=".5"
+						startalpha="1"
+						endalpha="1"
+						minrollspeed="0"
+						maxrollspeed="-720"
+					>
+						<billboard
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="0 .06 .125"
+							endcolor="0 0 0"
+							expirelife="0"
+							scale="2"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							depthbias="-100"
+						/>
+					</model>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<controller
+				life="2000"
+				owner="target"
+				lookat="true"
+				lookatowner="source"
+			>
+				<model
+					life="400"
+					position="0 -50 -15"
+					anim="idle"
+					model="bone_rig/model.mdf"
+					scale=".6"
+					color="1 1 1"
+					startalpha="0"
+					midalpha="0"
+					endalpha="0"
+					midalphapos=".75"
+					pitch="45"
+					roll="180"
+				>
+
+					<simpleemitter
+						count="25"
+						bone="_bone_fx_03"
+						spawnrate="5000"
+						particlelife="1000"
+						gravity="0"
+						position="0 0 0"
+						offsetsphere="0 0 0"
+						direction="0 -1 0"
+						minspeed="0"
+						maxspeed="0"
+						minangle="0"
+						maxangle="30"
+						directionalspace="local"
+					>
+						<particle
+							turn="true"
+						> 
+							<billboard
+								bone="_bone_fx_03"
+								minlife="100"
+								maxlife="200"
+								startcolor="0 .5 1"
+								midcolor="0 .5 1"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/cartoon_smack_white_add_outline.material"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+								lockup="true"
+								lockright="true"
+								pitch="-90"
+								directionalspace="local"
+								startscale="2"
+								minendscale="4"
+								maxendscale="5"
+								depthbias="-25"
+							/>
+							
+							<billboard
+								bone="_bone_fx_03"
+								minlife="125"
+								maxlife="250"
+								startcolor=".1"
+								midcolor=".1"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+								lockup="true"
+								lockright="true"
+								pitch="-90"
+								directionalspace="local"
+								startscale="2"
+								minendscale="3.5"
+								maxendscale="4.5"
+								depthbias="-25"
+							/>
+						</particle>
+					</simpleemitter>
+<!--
+					<simpleemitter
+						count="25"
+						bone="_bone_fx_03"
+						spawnrate="500"
+						particlelife="1000"
+						gravity="20"
+						position="0 0 0"
+						offsetsphere="0 50 0"
+						direction="0 -1 0"
+						minspeed="200"
+						maxspeed="400"
+						minangle="0"
+						maxangle="45"
+						directionalspace="local"
+					>
+						<particle
+							turn="true"
+						> 
+							<billboard
+								bone="_bone_fx_03"
+								minlife="200"
+								maxlife="400"
+								startcolor="0 .125 .25"
+								midcolor="0 .125 .25"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								directionalspace="local"
+								minstartscale="1"
+								maxstartscale="1.5"
+								midscale=".75"
+								minendscale=".25"
+								maxendscale=".75"
+								depthbias="-25"
+							/>
+						</particle>
+					</simpleemitter>
+
+
+					<billboard
+						bone="_bone_fx_03"
+						minlife="150"
+						maxlife="150"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="1"
+						endscale="5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-25"
+					/>
+					
+					<billboard
+						bone="_bone_fx_03"
+						minlife="150"
+						maxlife="150"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="4"
+						endscale="8"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						depthbias="-25"
+					/>
+-->
+				</model>
+
+			</controller>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .25 .5"
+				midcolor="0 .25 .5"
+				endcolor="0 0 0"
+				life="500"
+				scale="2"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-100"
+			/>
+<!--
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				midcolor="0 .25 .5"
+				endcolor="0 0 0"
+				life="275"
+				scale="1"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-100"
+			/>
+-->
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

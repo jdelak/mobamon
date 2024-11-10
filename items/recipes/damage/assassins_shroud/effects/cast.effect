@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+	<definitions>
+
+		
+		
+		<particlesystem name="system0" space="entity" scale="1">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.85"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<light
+				position="0 0 35"
+				life="1000"
+				startcolor="2 0 5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="400"
+			/>
+<!--
+			<billboard
+				delay="000"
+				life="600"
+				startcolor="0 .25 .5"
+				endcolor="0 0 0"
+				midcolorpos=".6"
+				midalphapos="0.75"
+				startparam="0.05"
+				endparam="0.0"
+				startsize="000"
+				endsize="700"
+				midsizepos=".4"
+				depthbias="0"
+				position="0 0 50"
+				material="/shared/effects/materials/corona_06.material"
+				lockup="true"
+				pitch="90"
+			/>
+-->
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+				
+					<model
+					position="0 0 25"
+					bone="_bone_origin"
+						name="ring"
+						life="2000"
+						model="/items/recipes/utility/energizer/effects/circle_rig/circle.mdf"
+						anim="idle"
+						yawspeed="1400"
+						startscale=".8"
+						midscale="1.65"
+						endscale="1.65"
+						midscalepos=".2"
+						pitch="90"
+					>
+						<template name="trails">
+
+							<trailemitter
+								bone="{bone1}"
+								life="700"
+								spawnrate="100"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/black_spot_ground.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								startparticlealpha="1"
+								endparticlealpha="0"
+								inheritvelocity=".05"
+							>
+								<particle
+									color="0 0 0"
+									minstartsize="10"
+									maxstartsize="25"
+									midsize="0"
+									endsize="0"
+									startalpha=".75"
+									endalpha="0"
+								/>
+							</trailemitter>
+							
+						</template>
+
+						<instance name="trails" bone1="_bone_01" bone2="_bone_02"/>
+
+						<instance name="trails" bone1="_bone_03" bone2="_bone_04"/>
+
+						<instance name="trails" bone1="_bone_05" bone2="_bone_06"/>
+
+						<instance name="trails" bone1="_bone_07" bone2="_bone_08"/>
+
+						<instance name="trails" bone1="_bone_09" bone2="_bone_10"/>
+
+						<instance name="trails" bone1="_bone_12" bone2="_bone_13"/>
+
+						<instance name="trails" bone1="_bone_14" bone2="_bone_15"/>
+
+						<instance name="trails" bone1="_bone_16" bone2="_bone_17"/>
+
+						<instance name="trails" bone1="_bone_18" bone2="_bone_01"/>
+
+					</model>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				position="0 0 10"
+				delay="0"
+				count="100"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="500"
+				maxspeed="750"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					startheightdistort=".5"
+					endheightdistort="0"
+					minstartsize="10"
+					maxstartsize="50"
+					endsize="0"
+					startcolor="0 0 0"
+					midcolor="0 .2 1"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+-->
+      </particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

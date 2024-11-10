@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="1.85">
+
+			<simpleemitter
+				life="4000"
+				count="1"
+				spawnrate="10000000"
+				particlelife="10000"
+			> 
+				<particle
+				>
+					<billboard
+						delay="100"
+						life="1500"
+						startcolor="0 0 0"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".33"
+						material="/shared/effects/smaterials/whitedot.material"
+						position="-1 -10 16"
+						size="150"
+						depthbias="200"
+					/>
+
+					<!--still image that transitions to the animating model
+					<template name="">
+						<billboard
+							delay="200"
+							life="300"
+							startcolor="{zcolor}"
+							endcolor="0 0 0"
+							startalpha="1"
+							endalpha="1"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="1.25"
+							midscale="1.25"
+							endscale="1.25"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="175"
+						/>
+					</template>
+
+					<instance name="" zcolor="0 .75 0" zheight="104" zmaterial="/shared/effects/smaterials/cindara_red_add.material" zpos="10.5 -8 23"/>
+-->
+					
+					<!--still image that transitions to the animating model
+					<template name="">
+						<billboard
+							life="100"
+							color="{zcolor}"
+							startalpha="0"
+							endalpha="1"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="0"
+							endscale="1.25"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="150"
+						/>
+						
+						<billboard
+							delay="100"
+							life="100"
+							color="{zcolor}"
+							startalpha="1"
+							endalpha="1"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="1.25"
+							midscale="1.6"
+							endscale="1.25"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="150"
+						/>
+						
+						<billboard
+							delay="200"
+							life="200"
+							color="{zcolor}"
+							material="{zmaterial}"
+							position="{zpos}"
+							startscale="1.25"
+							midscale="1.25"
+							endscale="1.25"
+							startalpha="1"
+							endalpha="1"
+							lockup="true"
+							height="{zheight}"
+							width="{zheight}"
+							depthbias="150"
+						/>
+					</template>
+
+					<instance name="" zcolor="1 1 1" zheight="86" zmaterial="/shared/effects/smaterials/cindara_red.material" zpos="9 0 22"/>
+-->
+					
+					
+					
+					
+					
+					<simpleemitter
+					delay="400"
+						position="0 0 0"
+						count="1"
+						life="4000"
+						spawnrate="10000"
+						particlelife="4000"
+						speed="0"
+						direction="0 0 0"
+						minangle="0"
+						maxangle="0"
+					>
+						<particle
+						>
+							<!--Cindara Model-->
+							<model	
+								scale=".33"
+								position="-2 -25 -12"
+								life="2800"
+								model="/npcs/cindara/model.mdf"
+								material="/npcs/cindara/material_red.material"
+								anim="cindar_defeated"
+								color="1"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".75"
+								pitch="0"
+								yaw="-20"
+								roll="0"
+							>
+							</model>
+						</particle>
+					</simpleemitter>
+
+					<!--Green Flash-->
+					<billboard
+						delay="3350"
+						life="300"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 0 0"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						position="-2 0 5"
+						startheight="14"
+						midheight="14"
+						endheight="0"
+						width="100"
+						roll="0"
+						depthbias="-40"
+					/>
+					
+					<!--Second Flash-->
+					<billboard
+						delay="3350"
+						life="400"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 0 0"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						position="7 0 -5"
+						startheight="18"
+						midheight="18"
+						endheight="0"
+						width="80"
+						roll="0"
+						depthbias="-40"
+					/>
+					
+					<!--coin images
+					<simpleemitter
+						delay="350"
+						position="-15 10 -5"
+						life="3000"
+						minspeed="25"
+						maxspeed="50"
+						count="7"
+						spawnrate="10"
+						gravity="50"
+						direction="0 0 0"
+						offsetsphere="0 0 0"
+						particlelife="2000"
+						collide="true"
+					>
+						<particle
+						>
+							<model
+								model="/npcs/neutrals/rare/projectile/effects/coin/model.mdf"
+								color="1 1 1"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="150"
+								maxlife="300"
+								minpitch="-360"
+								maxpitch="360"
+								minanglespeed="-130"
+								maxanglespeed="130"
+								scale="1.5"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+							/>
+						</particle>
+					</simpleemitter>
+					
+					<billboard
+						delay="350"
+						position="-15 10 -5"
+						life="150"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						startheight="6"
+						midheight="6"
+						endheight="0"
+						width="40"
+						roll="0"
+						depthbias="-40"
+					/>
+					
+					<billboard
+						delay="350"
+						position="-15 10 -5"
+						life="300"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						
+						size="15"
+						depthbias="-40"
+					/>
+					
+					<billboard
+						delay="350"
+						position="-15 10 -5"
+						life="1450"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 .25 0"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						
+						size="15"
+						depthbias="-40"
+					/>-->
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

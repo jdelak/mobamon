@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Harrower_Ability2_Wait"
+	
+	icon="icon.tga"
+	effecttype=""
+	ishidden="true"
+	
+	
+>
+
+	<oninflict>
+		<playanim name="wait" target="this_owner_entity"/>
+		
+		<areaofeffect
+			radius="600"
+			targetselection="random"
+			targetscheme="non_idle_visible_enemy_units"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+			ignore="proxy_entity"
+		>
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="600"
+				targetselection="random"
+				targetscheme="non_idle_visible_enemy_units"
+				maxtotalimpacts="1"
+				effecttype="Magic"
+			>
+			</areaofeffect>
+			<else>
+				<kill target="this_owner_entity" source="" />
+			</else>
+		</else>
+
+	</oninflict>
+
+
+	<onexpired>
+
+		<areaofeffect
+			radius="600"
+			targetselection="random"
+			targetscheme="non_idle_visible_enemy_units"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+			ignore="proxy_entity"
+		>
+			<playanim name="idle" target="this_owner_entity"/>
+			<spawnprojectile name="Projectile_Harrower_Ability2" source="this_owner_entity" bind="this_owner_entity" bindturn="true" proxy="this_owner_entity" noresponse="true" />
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="600"
+				targetselection="random"
+				targetscheme="non_idle_visible_enemy_units"
+				maxtotalimpacts="1"
+				effecttype="Magic"
+			>
+				<playanim name="idle" target="this_owner_entity"/>
+				<spawnprojectile name="Projectile_Harrower_Ability2" source="this_owner_entity" bind="this_owner_entity" bindturn="true" proxy="this_owner_entity" noresponse="true" />
+			</areaofeffect>
+			<else>
+				<kill target="this_owner_entity" source="" />
+			</else>
+		</else>
+
+	</onexpired>
+
+
+</state>

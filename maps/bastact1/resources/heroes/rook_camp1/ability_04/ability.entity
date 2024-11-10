@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Rook4_Bastact1"
+
+	icon="icon.tga"
+	
+	anim="ability_4_start"
+	casttime="550"
+	castactiontime="550"
+
+	requiredlevel="13"
+	maxlevel="1"
+
+	actiontype="target_position"
+	targetradius="100"
+	casteffecttype="Magic"
+	targetscheme="enemy_units"
+	casteffect=""
+	ischanneling="true"
+  	channeltime="1000"
+	
+	cooldowntime="5000"
+
+	range="40000"
+	forcerange="40000"
+	allowoutofboundscast="true"
+	allowoutofrangecast="true"
+	
+	showlinecast="true"
+	dontshowhovercast="true"
+	linecastrange="20000"
+	linecastwidth="150"
+>
+	<constant name="damage" value="100" adjustment="ability" />
+	
+	<onimpact>
+		<playeffect effect="effects/cast.effect" />
+		<playanim name="ability_4_end" target="source_entity"/>
+		<spawnunit name="Gadget_Rook_Ability4_Reveal_Gauntlet" count="1" target="source_position" pushentity="true" />
+		<spawnprojectile name="Projectile_Rook_Ability4_Bastact1" source="source_entity" target="target_position" bind="stack_entity" proxy="stack_entity" offset="0 40 0" pushentity="true"/>
+		<playeffect effect="effects/projectile/trail_ally.effect" source="stack_entity" visibility="allies"/>
+   		<playeffect effect="effects/projectile/trail_enemy.effect" source="stack_entity" visibility="enemies"/>
+	</onimpact>
+	
+	<onstart>
+		<playeffect effect="effects/cast_start.effect" />
+	</onstart>
+
+	<modifier key="TowerMode" modpriority="100"
+		icon="icon_tower.tga"
+		casttime="500"
+		castactiontime="300"
+		manacost="0"
+		
+		areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+		targetradius="300"
+		targetmaterial="/shared/materials/area_cast_indicator.material"
+		
+		showlinecast="false"
+
+		forcerange=""
+
+		anim=""
+
+		disabled="true"
+	>
+		<onimpact>
+		</onimpact>
+
+		<onframe>
+		</onframe>
+
+		<ontimer>
+		</ontimer>
+	</modifier>
+
+	<modifier key="temp_invuln" modpriority="100"
+		>
+		<onstart>
+			<print text="!!!" />
+			<playeffect effect="effects/cast_start.effect" />
+			<applystate name="state_bastact1_invincible" source="source_entity" target="source_entity" duration="750" />
+		</onstart>
+	</modifier>
+	
+</ability>

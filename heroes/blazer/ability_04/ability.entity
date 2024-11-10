@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Blazer4"
+	
+	statuseffecttooltip=""
+
+	icon="icon.tga"
+	anim="ability_4"
+
+	casttime="0"
+	castactiontime="0"
+	maxlevel="3"
+	requiredlevel="6,11,15"
+	cooldowntime="60000,45000,30000"
+	casteffect="effects/cast.effect"
+	
+	inheritmovement="true"
+	frontqueue="true"
+	
+	actiontype="target_self"
+	alwaysshowtimer="true"
+	manacost="100"
+>
+
+	<!-- tooltip only -->
+	<constant name="duration" value="18,22,26" adjustment="none" />
+
+	<aura state="State_Blazer4_Effects" radius="10" notooltip="true" ignoreinvulnerable="true" targetscheme="self" /> 
+
+	<onimpact>
+		<applystate name="State_Blazer_Ability4" target="source_entity" duration="18000,22000,26000" />
+		<starttimer duration="18000,22000,26000" />
+	</onimpact>
+	
+	<modifier key="Blazer_Ability1_Charging" priority="100"	disabled="true"/>
+</ability>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="scale_bias">
+	<parameter name="ScaleBias" type="float2" />
+	<dependency name="Value" type="*" />
+	<dependency name="ScaleBias" type="float2" source="ScaleBias" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="Value" type="float" />
+		<output type="float" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = Value * ScaleBias.x + ScaleBias.y;
+	?>
+	<?glsl
+		Out = Value * ScaleBias.x + ScaleBias.y;
+	?>
+</node>

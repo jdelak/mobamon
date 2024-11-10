@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale=".2">
+		
+			<billboard
+				expirelife="250"
+				position="0 0 500"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				color="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				depthbias="50"
+				size="400"
+			>
+			</billboard>
+			
+			
+		
+		
+
+			<light
+				position="0 0 600"
+				expirelife="250"
+				startcolor=".75 2.5 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="700"	
+			/>
+
+			<light
+				position="0 0 450"
+				expirelife="250"
+				startcolor=".5 1.5 "
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="1500"	
+			/>
+			
+			
+			
+
+			<model
+				position="0 0 502"
+				expirelife="250"
+				model="glow_strip/model.mdf"
+				material="/buildings/neutral/spawner/krytos_boss_respawn_timers/effects_0/material_blue.material"
+				anim="idle"
+				color="0 1 0"
+				startalpha="1"
+				endalpha="0"
+				yaw="-180"
+				scale="2"
+			>
+			</model>
+			
+			<model
+				position="0 0 504"
+				expirelife="250"
+				model="glow_strip/model.mdf"
+				material="/buildings/neutral/spawner/krytos_boss_respawn_timers/effects_0/material_blue.material"
+				anim="idle"
+				color="0 1 0"
+				startalpha="1"
+				endalpha="0"
+				yaw="-185"
+				scale="2"
+			>
+			</model>
+			
+			<model
+				position="0 0 506"
+				expirelife="250"
+				model="glow_strip/model.mdf"
+				material="/buildings/neutral/spawner/krytos_boss_respawn_timers/effects_0/material_blue.material"
+				anim="idle"
+				color="0 1 0"
+				startalpha="1"
+				endalpha="0"
+				yaw="-190"
+				scale="2"
+			>
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			<model
+				position="0 0 500"
+				expirelife="250"
+				model="sun_model/model.mdf"
+				material="sun_model/material.material"
+				anim="idle"
+				color=".75 1 .75"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				yaw="-180"
+				scale=".85"
+			>
+			</model>
+			
+			
+			
+			
+			
+			
+			<model
+				position="0 0 500"
+				expirelife="250"
+				model="sun_model/model.mdf"
+				material="sun_model/material.material"
+				anim="idle"
+				color=".85 1 .85"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				yaw="-180"
+				scale="1.25"
+			>
+			</model>
+			
+<!--
+			<model
+				life="10000"
+				position="0 0 500"
+				model="sun_model/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				anim="idle"
+				startcolor="0 0 0"
+				midcolor="0 .25 .5"
+				endcolor="0 0 0"
+				yaw="-180"
+				scale="1.25"
+				loop="true"
+			>
+			</model>
+-->
+			
+
+			<billboard
+				expirelife="250"
+				position="0 0 502"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".25 .5 0"
+				endcolor="0 0 0"
+				depthbias="50"
+				size="800"
+			>
+			</billboard>
+			
+			<billboard
+				expirelife="250"
+				position="0 0 502"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".1 .2 0"
+				endcolor="0 0 0"
+				depthbias="-50"
+				size="400"
+			>
+			</billboard>
+			
+			
+			<billboard
+				life="5000"
+				position="0 0 450"
+				material="/shared/effects/smaterials/whitesquare.material"
+				startcolor=".06 .125 0"
+				midcolor=".25 .5 0"
+				endcolor=".06 .125 0"
+				depthbias="50"
+				height="1000"
+				width="100"
+				size="400"
+				lockup="1"
+				lockright="1"
+				loop="true"
+				
+				
+			>
+			</billboard>
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="5000"
+				maxparticlelife="7500"
+				position="0 0 450"
+				offsetsphere="30 30 250"
+				direction="0 0 -1"
+				minspeed="50"
+				maxspeed="200"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="250"
+						maxlife="500"
+						startcolor="0 0 0"
+						midcolor=".2 .5 0"
+						endcolor="0 0 0"
+						size="20"
+						material="/shared/effects/smaterials/whitedot.material"
+						depthbias="50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+
+		</particlesystem>
+
+
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale=".25">
+			
+			<sound
+				volume="0.2"
+				soundloop="true"
+				falloffstart="500"
+				falloffend="2200"
+				fadeout="1000"
+				sample="../sounds/sfx_groundspark_loop.wav"
+			/>
+
+			<light
+				position="0 0 50"
+				expirelife="250"
+				startcolor="10 2 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="600"
+			/>
+
+
+			<simpleemitter
+				spawnrate="150"
+				particlelife="1000"
+			>
+				<particle
+				>	
+					<groundsprite
+						bone="_bone_root"
+						life="500"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						size="125"
+						color="1 1 1"
+						startalpha=".8"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+					
+					<billboard
+						bone="_bone_root"
+						life="300"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".125 .05 0"
+						endcolor="0 0 0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-25"
+						minsize="500"
+						maxsize="750"
+
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				life="250"
+				spawnrate="150"
+				particlelife="200"
+				gravity="0"
+				minspeed="22"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-50"
+			>
+				<particle
+					anchor="1"
+					color="5 .25 0"
+					startscale="50"
+					minendscale="100"
+					maxendscale="300"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			<terrainemitter
+				position="0 0 0"
+				spawnrate="100"
+				particlelife="1500"
+				range="35"
+			>
+				<particle>
+
+					<simpleemitter
+					position="0 0 -25"
+						life="1000"
+						spawnrate="3300"
+						count="25"
+						minparticlelife="250"
+						maxparticlelife="500"			
+						gravity="25"
+						minspeed="1000"
+						maxspeed="2000"
+						drag=".01"
+						material="/shared/effects/materials/whitedot.material"
+						offsetsphere="50 50 0"
+						minangle="0"
+						maxangle="30"
+						direction="0 0 1"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							startcolor="1 .5 0"
+							midcolor="1 .5 0"
+							endcolor="0 0 0"
+							midcolorpos=".75"
+							minstartsize="10"
+							maxstartsize="20"
+							endsize="5"
+						/>
+					</simpleemitter>
+					
+					
+					<simpleemitter
+					position="0 0 -25"
+						life="1000"
+						spawnrate="3300"
+						count="5"
+						minparticlelife="250"
+						maxparticlelife="500"			
+						gravity="25"
+						minspeed="2250"
+						maxspeed="4000"
+						drag=".01"
+						material="/shared/effects/materials/whitedot.material"
+						offsetsphere="50 50 0"
+						minangle="0"
+						maxangle="30"
+						direction="0 0 1"
+					>
+						<particle 
+							minangle="0"
+							maxangle="360"
+							startcolor=".1 .05 0"
+							midcolor=".1 .05 0"
+							endcolor="0 0 0"
+							minstartscale="75"
+							maxstartscale="200"
+						/>
+					</simpleemitter>
+
+				</particle>
+			</terrainemitter>
+			
+			
+			
+
+
+
+			
+			
+			
+<!--
+			<billboard
+				life="2000"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="150"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				depthbias="-75"
+			/>
+-->
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

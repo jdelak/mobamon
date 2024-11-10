@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="local" scale=".75">
+		
+			<sound
+				delay="200"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="0.4"
+				sample="../sounds/cannon.wav"
+			/>
+
+			<sound
+		       delay="200"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume=".2"
+				sample="../sounds/cannon.wav"
+			/>
+			
+			<sound
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="1300"
+				volume="0.7"
+				sample="../sounds/casted.wav"
+			/>
+
+			<billboard
+				bone="_bone_fx_05"
+				delay="280"
+				life="150"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_pop1.material"
+				lockup="1"
+				lockright="1"
+				pitch="0"
+				yaw="90"
+				roll="90"
+				startsize="150" 
+				endsize="500"
+				directionalspace="local"
+				depthbias="-50"
+				color="1 .5 0"
+				startalpha="1"
+				endalpha="0"
+			/>
+
+			<billboard
+				bone="_bone_fx_05"
+				delay="280"
+				life="150"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_pop1.material"
+				lockup="1"
+				lockright="1"
+				pitch="0"
+				yaw="90"
+				roll="90"
+				startsize="100" 
+				endsize="360"
+				directionalspace="local"
+				depthbias="-50"
+				color="1 1 1"
+				startalpha="1"
+				endalpha="0"
+			/>
+
+			<light
+				delay="200"
+				position="0 0 75"
+				bone="_bone_Bip01 R Clavicle"
+				life="250"
+				startcolor="5 1.25 0"
+				midcolor="5 1.25 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+			
+			<light
+				delay="200"
+				position="0 0 75"
+				bone="_bone_Bip01 R Clavicle"
+				life="250"
+				startcolor="3 3 0"
+				midcolor="3 3 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="150"
+			/>
+			
+<!--
+			<billboard
+				bone="_bone_fx_02"
+				delay="280"
+				life="120"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_muzzle_flash.material"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				yaw="0"
+				roll="0"
+				startsize="50" 
+				midsize="90" 
+				endsize="100"
+				directionalspace="local"
+				depthbias="-100"
+				color="1 .5 .1"
+			/>
+-->
+			
+			<simpleemitter
+				delay="250"			
+				bone="_bone_fx_05"
+				life="2000"
+				position="0 0 0"
+				spawnrate="125"			
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="-5"
+				material="/shared/effects/smaterials/cartoon_cloud_single.material"
+				offsetsphere="10 10 25"
+				direction="0 0 1"
+				minangle="50"
+				maxangle="90"
+				drag="0.01"
+				minspeed="25"
+				maxspeed="100"		
+			>
+				<particle
+				minangle="0"
+				maxangle="360"
+					minscale="10"								
+					maxscale="40"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor="0 0 0"
+					midcolorpos=".4"
+					startalpha="0"
+					midalpha=".15"
+					endalpha="0"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+				/>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				bone="_bone_fx_01"
+				delay="350"
+				count="122"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="50"
+				minspeed="1000"
+				maxspeed="1800"
+				drag="0.03"
+				acceleration="0.0"
+				position="0 0 70"
+				minangle="0"
+				maxangle="5"
+				direction="0 -1 0"
+				offsetsphere="5 65 5"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					heightdistort="0.01"
+					startsize="8"
+					endsize="2"
+					startcolor="1 .5 .15"
+					midcolor="1 .4 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+-->
+			<billboard
+				bone="_bone_fx_05"
+				delay="280"
+				life="200"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				yaw="0"
+				roll="0"
+				startsize="100" 
+				endsize="25"
+				directionalspace="local"
+				depthbias="-100"
+				startcolor="1 .25 0"
+				midcolor="1 .25 0"
+				endcolor="0 0 0"
+			/>
+
+		</particlesystem>
+
+		<particlesystem name="system1" space="world" scale=".75">
+
+			<simpleemitter	
+				delay="500"
+				count="100"
+				position="0 -55 0"
+				spawnrate="5000"			
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="-10"
+				material="/shared/effects/smaterials/cartoon_cloud_single.material"
+				offsetsphere="0 0 0"
+				direction="0 0 1"
+				minangle="50"
+				maxangle="90"
+				drag="0.01"
+				minspeed="100"
+				maxspeed="300"		
+			>
+				<particle
+					minstartsize="15"				
+					maxstartsize="30"				
+					minendsize="100"
+					maxendsize="200"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor="0 0 0"
+					midcolorpos=".4"
+					startalpha=".2"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".25"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+					startanchor="1"
+					endanchor="1"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

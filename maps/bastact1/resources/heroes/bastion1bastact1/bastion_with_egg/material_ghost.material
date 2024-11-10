@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	
+	<parameters shader="/shared/shaders/standard_opacity.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1" fGlossiness="0" fOpacity="1" fReflect="0" />
+
+	<phase name="shadow" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="/maps/bastact1/resources/heroes/ben_bastion_clips/color.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	
+	<phase name="color" cull="none" blend="translucent">
+		<sampler name="diffuse" texture="/maps/bastact1/resources/heroes/ben_bastion_clips/color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="/maps/bastact1/resources/heroes/ben_bastion_clips/normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	
+	<phase name="fade" cull="none" blend="translucent">
+		<sampler name="diffuse" texture="/maps/bastact1/resources/heroes/ben_bastion_clips/color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="/maps/bastact1/resources/heroes/ben_bastion_clips/normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

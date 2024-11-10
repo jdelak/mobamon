@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Eanu_Ability2"
+
+	speed="2500"
+
+	gravity="2100"
+	life="1300"
+	flying="true"
+	flyheight="75"
+	canturn="0"
+	modelscale="3"
+	model="/shared/models/invis.mdf"
+
+	traileffect="effects/trail.effect"
+	deatheffect="effects/death.effect"
+	
+	touchradius="110"
+	touchradiusdiradjust="true"
+	touchpropradius="110"
+	touchpropanim="hit"
+	hazardradius="250"
+	hazardoffset="160"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+>
+	<onspawn>
+		<playeffect effect="effects/link.effect" source="source_entity" target="this_entity" />
+	</onspawn>
+
+	<ontouch>
+		<targettype type="building">
+			<applystate name="State_Eanu_Wet" target="target_entity" duration="5000"/>
+		</targettype>
+		<else>
+			<targettype type="boss">
+				<applystate name="State_Eanu_Wet" target="target_entity" duration="5000"/>
+			</targettype>
+			<else>
+		
+			<distance source="source_entity" />
+			<setvar0 a="result" b="1" op="mult" />
+			<setvar1 a="1000" b="var0" op="sub" />
+			<setvar1 a="var1" b="100" op="max" />
+			<setvar2 a="var1" b="0.75" op="mult" />
+			<setvar3 a="var2" b="1000" op="min" />
+			<setvar4 a="var3" b="100" op="max" />
+			<push force="var3" duration="800" source="source_entity" />
+			<applystate name="State_Eanu_Wet" target="target_entity" duration="5000"/>
+			
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult"/>
+			
+			<recordheroaggression  />
+				<aggression />
+			
+			<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+			</else>
+		</else>
+	</ontouch>
+	
+	
+</projectile>

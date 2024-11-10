@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="post_game_loop_nav_tab_template">  
+		<panel name="{id}" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" noclick="true" visible="{visible=true}" sticky="{sticky=true}" stickytoinvis="{stickytoinvis=false}"
+			onloadlua="
+				libButton2.initializeButton(self, '{id}', 'navButton', nil, true)
+			"
+			 group="postgame_animation_widgets_1"
+		>
+			<button name="{id}Button" passivechildren="true" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+				onclicklua="
+					local PostGameLoopStatus = LuaTrigger.GetTrigger('PostGameLoopStatus')
+					PostGameLoopStatus.screen = '{screen}'
+					PostGameLoopStatus:Trigger(false)
+					{onclicklua}
+				"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			>
+				<panel name="{id}Body" align="center" valign="center">					
+					<panel name="{id}PulseEffect" visible="false">
+						<frame name="{id}PulseEffectFrame" texture="/ui/shared/frames/button_glow.tga" y="-2s" borderthickness="12s" bordercolor="#33f5ffa3" color="#33f5ffa3"  width="+12s" height="+12s" align="center" valign="center" noclick="1" />
+					</panel>				
+					<image name="{id}Background" texture="/ui/main/navigation/textures/topmenubtn_off.tga" valign="bottom" />
+					<panel name="{id}BackgroundCurrent" visible="{currentHack=0}"
+						onloadlua="
+							self:RegisterWatchLua('PostGameLoopStatus', function(widget, trigger)
+								libGeneral.fade(widget, (trigger.screen == '{screen}'), 250)
+							end, false, nil, 'screen')
+							libGeneral.fade(self, (LuaTrigger.GetTrigger('PostGameLoopStatus').screen == '{screen}'), 250)
+						"
+					>
+						<image texture="{current_bg}" valign="bottom" />
+						<image texture="{icon}_glow.tga" visible="{countShown=1}" hflip="{hflip=0}" x="{iconx}" y="{icony}" width="{iconsize}" height="{iconsize}" align="center" valign="center" />
+					</panel>
+					<image name="{id}_texture" texture="{icon}.tga" hflip="{hflip=0}" x="{iconx}" y="{icony}" width="{iconsize}" height="{iconsize}" align="center" valign="center" />
+					<label name="{id}Label" x="{labelX}" y="{labelY=-7s}" textalign="center" textvalign="bottom" font="{font=maindyn_22}" color="{labelcolor=white}" outline="true" outlinecolor="0 0 0 .5" content="{label=temp_button}"/>				
+					<instance
+						name="NumberValue"
+						id="{id}_count_label_parent"
+						labelId="{id}_count_label"
+						x="4s" y="8s"
+						label="--"
+						countShown="{countShown}"
+					/>
+					<image name="{id}_texture_alert" visible="0" texture="/ui/main/navigation/textures/alert.tga" x="10s" y="1s" width="40s" height="40s" align="right" valign="top" />
+					<panel name="{id}_throb" noclick="1" visible="0" >
+						<animatedimage texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+							width="50s" height="50s" valign="center" align="left" x="53s" y="0s"
+						/>
+					</panel>					
+				</panel>
+			</button>
+		</panel>
+	</template>
+	
+	<template name="postgame_nav_template" >
+		<panel name="post_game_loop_nav_parent" noclick="1" height="-32s" >
+			
+			<panel name="post_game_loop_nav_parent_top" noclick="1" grow="1" regrow="1" growinvis="0" float="right" padding="10s" align="center" height="80s">
+				
+				<!--
+				<instance id="post_game_loop_nav_tab_3" name="post_game_loop_nav_tab_template"
+					font="maindyn_24" label="party_finder_game_khanquest" labelX="0" visible="0" current_bg="/ui/main/navigation/textures/topmenubtn_play.tga" icon="/ui/main/shared/textures/khanquest" 
+					iconx="0" icony="-10s" iconsize="70s" currentHack="0" height="90s" width="128s" countShown="0"
+					screen=""
+				/>	
+				-->
+				
+				<instance id="post_game_loop_nav_tab_1" name="post_game_loop_nav_tab_template"
+					font="maindyn_24" label="postgame_progress" labelX="0" visible="1" current_bg="/ui/main/navigation/textures/topmenubtn_play.tga" icon="/ui/main/shared/textures/progress" 
+					iconx="0" icony="-8s" iconsize="70s" currentHack="0" height="90s" width="120s" countShown="0"
+					screen="SUMMARY"
+				/>	
+				
+				<!--
+				<instance id="post_game_loop_nav_tab_4" name="post_game_loop_nav_tab_template"
+					font="maindyn_24" label="postgame_rewards" labelX="0" visible="0" current_bg="/ui/main/navigation/textures/topmenubtn_play.tga" icon="/ui/main/shared/textures/rewards_chest" 
+					iconx="0" icony="-12s" iconsize="74s" currentHack="0" height="90s" width="120s" countShown="0"
+					screen="REWARDS"			
+				/>				
+				-->
+				
+				<instance id="post_game_loop_nav_tab_2" name="post_game_loop_nav_tab_template"
+					font="maindyn_24" label="postgame_scoreboard" labelX="0" visible="1" current_bg="/ui/main/navigation/textures/topmenubtn_play.tga" icon="/ui/main/shared/textures/scoreboard" 
+					iconx="0" icony="-10s" iconsize="78s" currentHack="0" height="90s" width="140s" countShown="0"
+					screen="SCOREBOARD"					
+				/>							
+				
+				<!--
+				<instance id="post_game_loop_nav_tab_3" name="post_game_loop_nav_tab_template"
+					font="maindyn_24" label="postgame_progress" labelX="0" visible="0" current_bg="/ui/main/navigation/textures/topmenubtn_play.tga" icon="/ui/main/shared/textures/progress" 
+					iconx="0" icony="-12s" iconsize="84s" currentHack="0" height="90s" width="120s" countShown="0"
+					screen="PROGRESS"				
+				/>					
+				-->
+				
+				<instance id="post_game_loop_nav_tab_5" name="post_game_loop_nav_tab_template"
+					font="maindyn_24" label="postgame_close" labelX="10s" labelY="-16s" visible="1" current_bg="/ui/main/navigation/textures/topmenubtn_play.tga" icon="/ui/main/shared/textures/stylized_x" 
+					iconx="-22s" icony="0" iconsize="42s" currentHack="0" height="56s" width="100s" countShown="0"
+					screen=""
+					onclicklua="PostGame.RequestClose()"				
+				/>				
+
+			</panel>			
+			
+			<panel name="post_game_loop_nav_parent_bottom" noclick="1" >
+			
+				<!-- Close Postgame 
+				<instance
+					name="standardButton"
+					id="post_game_loop_nav_close_button" rendermode="grayscale"
+					x="-10s" y="-108s" width="180s" height="46s" align="right" valign="bottom"
+					borderthickness="8s"
+					label="postgame_close_postgame"
+					onclicklua="PostGame.RequestClose()"	
+				/>			
+				-->
+				
+				<!-- Continue -->
+				<panel name="post_game_loop_nav_continue_button_parent" visible="0" align="right" valign="bottom" y="-20s" x="-20s" height="90s" width="292s" noclick="1">
+					<frame name="selection_ribbons_primary_btn_glow_highlight" texture="/ui/elements:squareglow" color="1 1 0 1" borderthickness="33@" width="+3.9h" height="+3.9h" align="center" valign="center" visible="0" noclick="1" />
+					<instance
+						name="standardButton"
+						id="post_game_loop_nav_continue_button"
+						width="100%" align="right"
+						borderthickness="14s" enabled="1"
+						label=""
+						onclicklua="PostGame.RequestContinue()"
+					/>						
+					<panel align="center" y="-2s" grow="1" regrow="1" growinvis="0" width="100%" float="bottom" valign="center" noclick="1">
+						<label name="post_game_loop_nav_continue_button_label_1" textalign="center" fity="1" style="labelBase" font="maindyn_40" color="1 1 1 1" content="general_continue" noclick="1"/>
+						<panel grow="true" regrow="true" growinvis="0" align="center" float="right" padding="5s" noclick="1">
+							<label name="post_game_loop_nav_continue_button_label_2" fitx="1" fity="1" style="labelBase" font="maindyn_26" color="1 1 1 1" content="" noclick="true"/>
+						</panel>
+					</panel>				
+				</panel>			
+				
+				<panel align="right" valign="bottom" y="-20s" x="-20s" height="90s" width="292s" noclick="1">
+					<panel name="post_game_loop_nav_continue_button_throb" y="-10s" x="-4s" height="90s" width="292s" noclick="1" align="right" visible="1" >
+						<animatedimage texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+							width="64s" height="64s" valign="center" align="left" x="14s" y="0s"
+						/>
+					</panel>	
+				</panel>	
+			
+			</panel>
+			
+		</panel>
+	</template>	
+	
+</package>

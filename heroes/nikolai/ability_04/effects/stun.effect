@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.4">
+		
+			<billboard
+				expirelife="200"
+				bone="_bone_overhead"
+				position="0 0 -20"
+				material="/shared/effects/materials/stun_01.material"
+				roll="0"
+				rollspeed="-400"
+				color="0.4 0.4 0.4"
+				endcolor="0"
+				size="64"
+				lockup="true"
+				lockright="false"
+				pitch="90"
+				yaw="0"
+			/>
+			
+			<billboard
+				expirelife="200"
+				bone="_bone_overhead"
+				position="0 0 -28"
+				material="/shared/effects/materials/stun_01.material"
+				roll="30"
+				rollspeed="-500"
+				color="0.4 0.4 0.4"
+				endcolor="0"
+				size="44"
+				lockup="true"
+				lockright="false"
+				pitch="90"
+				yaw="0"
+			/>
+			
+			<billboard
+				expirelife="200"
+				bone="_bone_overhead"
+				position="0 0 -28"
+				material="/shared/effects/materials/stun_01.material"
+				roll="60"
+				rollspeed="-600"
+				color="0.4 0.4 0.4"
+				endcolor="0"
+				size="24"
+				lockup="true"
+				lockright="false"
+				pitch="90"
+				yaw="0"
+			/>
+			
+			
+			
+			
+			
+<!--
+			<model
+				bone="_bone_head"
+				position="0 0 0"
+				expirelife="250"
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				scale="1.725"
+				startcolor="0 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".4"
+				yawspeed="0"
+				pitchspeed="0"
+				directionalspace="world"
+			>
+				<template name="star">
+				
+					<billboard
+					life="400"
+						bone="{bone}"
+						position="0 0 0"
+						startscale="0"
+						midscale=".45"
+						endscale="{scale}"
+						material="/shared/effects/smaterials/star_blend.material"
+						expirelife="500"
+						minrollspeed="-100"
+						maxrollspeed="100"
+						color="1 .65 0"
+						startalpha=".5"
+						endalpha=".5"
+					/>
+				
+					<billboard
+					delay="400"
+						bone="{bone}"
+						position="0 0 0"
+						startscale="{scale}"
+						endscale="0"
+						material="/shared/effects/smaterials/star_blend.material"
+						expirelife="500"
+						minrollspeed="-100"
+						maxrollspeed="100"
+						color="1 .65 0"
+						startalpha=".5"
+						endalpha="0"
+					/>
+
+					<billboard
+						bone="{bone}"
+						position="0 0 0"
+						startscale="{scale}"
+						endscale="0"
+						material="/shared/effects/materials/whitedot.material"
+						expirelife="500"
+						minrollspeed="-100"
+						maxrollspeed="100"
+						startcolor=".35 .15 0"
+						endcolor="0 0 0"
+						depthbias="-20"
+					/>
+
+				</template>
+				
+				<instance name="star" bone="_bone_fx_09" scale=".3"/>
+				<instance name="star" bone="_bone_fx_05" scale=".25"/>
+				<instance name="star" bone="_bone_fx_06" scale=".2"/>
+				<instance name="star" bone="_bone_fx_02" scale=".35"/>
+
+			</model>
+-->
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

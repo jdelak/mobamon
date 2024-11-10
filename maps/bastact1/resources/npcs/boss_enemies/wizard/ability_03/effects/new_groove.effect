@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1.0">	
+			<simpleemitter
+				life="1000"
+				particlelife="1000"
+				count="1"
+				spawnrate="2"
+				position="0 0 0"
+			>
+				<particle 
+				>
+			
+					<!-- sparks -->
+					<simpleemitter
+						delay="300"
+						life="1000"
+						count="20"
+						spawnrate="11340"
+						minparticlelife="250"
+						maxparticlelife="500"
+						gravity="12.0"
+						minspeed="750"
+						maxspeed="1500"
+						drag="0.005"
+						acceleration="0.0"
+						offsetsphere="25"
+						material="/shared/effects/smaterials/whitedot.material"
+						particledirectionalspace="local"
+					>
+						<particle
+							delay="300"
+							startheightdistort="0.25"
+							endheightdistort="0"
+							startsize="8"
+							endsize="4"
+							startcolor="1 1 1"
+							midcolor="1 0.5 1"
+							endcolor="0 0 0"
+							midcolorpos=".75"
+							turn="1"
+						>
+						</particle>
+					</simpleemitter>
+					
+					<!-- wacks -->
+					<template name="wack">
+							
+						<simpleemitter
+							delay="300"
+							life="800"
+							position="0 0 5"
+							count="1"
+							spawnrate="1055"
+							particlelife="200"
+							gravity="0"
+							acceleration="0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+							depthbias="-50"
+						>
+							<particle
+								color="1 .5 1"
+								startalpha="1"
+								midalpha="1"
+								endalpha="1"
+								startscale="100"
+								endscale="{zscale}"
+								turn="true"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								yaw="{zyaw}"
+							/>
+						</simpleemitter>
+
+					</template>
+					
+					<instance name="wack" zscale="350"  zyaw="20"/>
+					<instance name="wack" zscale="250"  zyaw="10"/>
+					<instance name="wack" zscale="100"  zyaw="0"/>
+					<instance name="wack" zscale="250"  zyaw="180"/>
+					
+					<!-- dust ground -->
+					<simpleemitter
+						life="1000"
+						delay="300"
+						count="150"
+						spawnrate="2500"
+						minparticlelife="500"
+						maxparticlelife="1500"
+						gravity="-1.0"
+						minspeed="2500"
+						maxspeed="4800"
+						drag="0.02"
+						acceleration="0.0"
+						position="0 0 10"
+						minangle="90"
+						maxangle="90"
+						direction="0 0 1"
+						offsetsphere="8 8 8"
+						particledirectionalspace="local"
+						material="/shared/effects/smaterials/cartoon_dust.material"	
+						depthbias="0"
+					>
+						<particle
+							minangle="-180"
+							maxangle="180"
+							minanglespeed="-150"
+							maxanglespeed="150"
+							color=".3 0.15 .3"
+							startsize="100"
+							endsize="0"
+							startalpha="0"
+							midalpha=".65"
+							endalpha="0"
+							midalphapos=".2"
+						/>
+					</simpleemitter>
+					
+					<!-- impact -->
+					<billboard
+						delay="300"
+						life="400"
+						position="0 0 100"		
+						startcolor="0"
+						midcolor="1 0.5 1"
+						endcolor="0"
+						startsize="0"
+						endsize="900"
+						depthbias="10"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+					/>
+					
+					<!-- vortext -->
+					<model
+						delay="300"
+						life="800"
+						model="models/model.mdf"
+						anim="rise"
+						alpha="0"
+						color="1"
+						position="0 0 0"
+						scale="1"
+					>
+						<beam
+							life="500"
+							bone_a="_bone_bottom"
+							bone_b="_bone_top"
+							loop="0"
+							startsize="300"
+							midsize="200"
+							endsize="0"
+							startcolor=".5 0.2 .5"
+							endcolor=".5 0.2 .5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							material="/shared/effects/smaterials/wizard_vortex_white.material"
+							framespeed="1"
+							depthbias="-100"
+						/>
+
+						<!-- <template name="smoke">
+							<billboard
+								bone="_bone_top"
+								minlife="500"
+								maxlife="1000"
+								position="{newpos}"
+
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color=".3 0 .3"
+								startsize="150"
+								endsize="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".2"
+								material="/shared/effects/smaterials/cartoon_dust_depth.material"	
+								depthbias="0"
+							/>
+						</template> -->
+						
+						<!-- <instance name="smoke" newpos="0 0 0"/>
+						<instance name="smoke" newpos="0 0 20"/>
+						<instance name="smoke" newpos="0 0 -20"/>
+						<instance name="smoke" newpos="0 20 0"/>
+						<instance name="smoke" newpos="0 -20 0"/>
+						<instance name="smoke" newpos="20 0 0"/>
+						<instance name="smoke" newpos="-20 0 0"/>
+						
+						<instance name="smoke" newpos="0 0 60"/>
+						<instance name="smoke" newpos="0 0 -60"/>
+						<instance name="smoke" newpos="60 0 0"/>
+						<instance name="smoke" newpos="-60 0 0"/>
+						<instance name="smoke" newpos="0 60 0"/>
+						<instance name="smoke" newpos="0 -60 0"/>
+						
+						<instance name="smoke" newpos="-100 0 0"/>
+						<instance name="smoke" newpos="100 0 0"/>
+						<instance name="smoke" newpos="0 -100 0"/>
+						<instance name="smoke" newpos="0 100 0"/>
+						
+						<instance name="smoke" newpos="-150 0 0"/>
+						<instance name="smoke" newpos="150 0 0"/>
+						<instance name="smoke" newpos="0 -150 0"/>
+						<instance name="smoke" newpos="0 150 0"/>
+						
+						<instance name="smoke" newpos="-100 0 50"/>
+						<instance name="smoke" newpos="100 0 50"/>
+						<instance name="smoke" newpos="-100 0 -50"/>
+						<instance name="smoke" newpos="100 0 -50"/>
+						
+						<instance name="smoke" newpos="0 40 40"/>
+						<instance name="smoke" newpos="0 40 -40"/>
+						<instance name="smoke" newpos="0 -40 40"/>
+						<instance name="smoke" newpos="0 -40 -40"/>
+						
+						
+						<instance name="smoke" newpos="0 -100 50"/>
+						<instance name="smoke" newpos="0 100 50"/>
+						<instance name="smoke" newpos="0 -100 -50"/>
+						<instance name="smoke" newpos="0 100 -50"/>
+						
+						<instance name="smoke" newpos="-100 100 0"/>
+						<instance name="smoke" newpos="100 100 0"/>
+						<instance name="smoke" newpos="-100 -100 0"/>
+						<instance name="smoke" newpos="100 -100 0"/> -->
+						
+						<template name="bottomspot">
+							<billboard
+								life="500"
+								startcolor="0"
+								midcolor=".5 0.2 .5"
+								endcolor="0"
+								position="0 0 5"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								scale="1"
+								startsize="300"
+								midsize="200"
+								endsize="0"
+								material="/shared/effects/smaterials/whitecircleblurred.material"
+								depthbias="0"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+							/>
+						</template>
+						
+						<instance name="bottomspot"/>
+						<instance name="bottomspot"/>
+						
+						<simpleemitter
+							bone="_bone_top"
+							life="800"
+							count="300"
+							spawnrate="2500"
+							minparticlelife="500"
+							maxparticlelife="1000"
+							gravity="-50.0"
+							minspeed="1200"
+							maxspeed="2400"
+							drag="0.02"
+							acceleration="0.0"
+							position="0"
+							minangle="0"
+							maxangle="60"
+							direction="0 0 1"
+							offsetsphere="8 8 8"
+							material="/shared/effects/smaterials/cartoon_dust.material"	
+							particledirectionalspace="local"
+							depthbias="100"
+						>
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color=".3 0.15 .3"
+								startsize="100"
+								endsize="0"
+								startalpha="0"
+								midalpha=".65"
+								endalpha="0"
+								midalphapos=".2"
+							/>
+						</simpleemitter>
+					</model>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

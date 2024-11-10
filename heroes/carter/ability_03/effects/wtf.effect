@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="0.75">
+		
+			<light
+				life="400"
+				startcolor="0"
+				midcolor="10 5 3"
+				midcolorpos=".3"
+				endcolor="0"
+				falloffstart="50"
+				falloffend="75"
+			/>
+			
+
+			
+			<simpleemitter
+				expirelife="500"
+				spawnrate="30"
+									
+				gravity="10"
+				minspeed="1800"						
+				maxpeed="1800"						
+				drag=".02"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				material="/shared/effects/smaterials/firework_trail.material"
+				offsetsphere="4"		
+				minangle="0"
+				maxangle="7"
+			>
+				<particle 	
+					turn="1"
+					startheightdistort=".0"
+					midheightdistortpos=".02"
+					midheightdistort=".2"
+					endheightdistort="0"
+					startcolor="1 .4 .1 "
+					midcolor="1 .4 .1 "
+					endcolor="1 .4 .0"
+					startsize="10"
+					midsize="5"
+					endsize="0"
+				/>
+			</simpleemitter>	
+			
+			<simpleemitter
+				delay="400"
+				expirelife="500"
+				spawnrate="40"
+								
+				gravity="16"
+				minspeed="0"						
+				maxpeed="0"						
+				
+				minparticlelife="200"
+				maxparticlelife="200"
+				material="/shared/effects/smaterials/muzzle_flash_white.material"
+				offsetsphere="44"
+				position="0 0 250"
+			>
+				<particle 								
+					startcolor="4 .5 .13 "
+					midcolor="4 .5 .1 "
+					endcolor="1 .0 .3"
+					startsize="75"
+					midsize="15"
+					endsize="0"
+				/>
+			</simpleemitter>			
+			
+			<simpleemitter
+				delay="0"
+				expirelife="500"
+				spawnrate="7"
+								
+				gravity="16"
+				minspeed="0"						
+				maxpeed="0"						
+				depthbias="-33"
+				minparticlelife="200"
+				maxparticlelife="200"
+				material="/shared/effects/smaterials/muzzle_flash_white.material"
+				offsetsphere="5"
+				position="0 0 0"
+			>
+				<particle 								
+					startcolor="4 .5 .13 "
+					midcolor="4 .5 .1 "
+					endcolor="1 .0 .3"
+					startsize="135"
+					midsize="15"
+					endsize="0"
+					
+				/>
+			</simpleemitter>				
+			
+			
+			<simpleemitter
+				
+				life="150"
+				spawnrate="30"
+				particlelife="200"
+				minspeed="0"
+				maxspeed="3000"
+				drag="0.07"
+				offsetsphere="15"
+				material="/shared/effects/materials/refract_outsplash.material"
+			>
+				<particle
+					startalpha="1.0"
+					endalpha="0.0"
+					minangle="0"
+					maxangle="360"
+					anglespeed="-90"
+					startsize="50"
+					endsize="180"
+					param=".1"
+					depthbias="-130"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

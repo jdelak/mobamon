@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Eanu_Ability4_Wave"
+
+	speed="625"
+	gravity="500"
+
+	
+	modelscale="3"
+	model="/shared/models/invis.mdf"
+	canturn="false"
+	flying="false"
+	flyheight="0"
+	
+	touchradius="150"
+	touchradiusdiradjust="true"
+	touchpropradius="90"
+	touchpropanim="hit"
+	hazardradius="250"
+	hazardoffset="160"
+	maxtouchespertarget="1"
+	touchtargetscheme="self"
+	toucheffecttype="Magic"
+	
+>
+
+	<ontouch>
+		<push source="target_position" target="source_entity" force="750" duration="1500" />
+	</ontouch>
+
+
+	<onimpact>
+		<kill target="proxy_entity" source="" />
+	</onimpact>
+
+	<ondeath>
+		
+		<expirestate name="State_Eanu_Ability4" source="source_entity" target="source_entity" />
+	</ondeath>
+	
+</projectile>

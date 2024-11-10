@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+	<definitions>
+		<particlesystem name="system1" space="world" scale="1">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400" 
+				volume="0.95" 
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			
+			<simpleemitter
+			bone="_bone_lefthand"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				directionalspace="true"
+			>
+				<particle
+				turn="true"
+				>
+
+					<simpleemitter
+						bone="_bone_lefthand"
+						count="6"
+						spawnrate="1055"
+						particlelife="150"
+						gravity="0"
+						minspeed="22.0"
+						maxspeed="22"
+						acceleration="0.0"
+						timenudge="0"
+						position="0 0 0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/cartoon_smack_white_add_outline.material"
+						depthbias="-50"
+					>
+						<particle
+							startcolor="1 .5 0"
+							midcolor="1 .5 0"
+							endcolor="0 0 0"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							startscale="35"
+							minendscale="75"
+							maxendscale="200"
+							turn="true"
+						/>
+					</simpleemitter>
+
+					<model
+						life="500"
+						bone="_bone_lefthand"
+						model="shield_explosion/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						startscale="1"
+						endscale="1.25"
+						startalpha="1"
+						endalpha="1"
+						directionalspace="local"
+						yaw="-90"
+						roll="-30"
+						pitch="45"
+					>
+					
+						<template name="">
+
+							<billboard
+								bone="{zbone}"
+								position="0 0 0"
+								life="275"
+								material="/shared/effects/smaterials/whitedot.material"
+								startcolor="0 0 0"
+								midcolor=".25 .125 0"
+								endcolor="0 0 0"
+								minscale="1"
+								maxscale="2"
+								depthbias="-75"
+							/>
+							
+						</template>
+						
+						<instance name="" zbone="_bone_CTRL_01"/>
+						<instance name="" zbone="_bone_CTRL_02"/>
+						<instance name="" zbone="_bone_CTRL_03"/>
+						<instance name="" zbone="_bone_CTRL_04"/>
+						<instance name="" zbone="_bone_CTRL_05"/>
+						<instance name="" zbone="_bone_CTRL_06"/>
+						<instance name="" zbone="_bone_CTRL_07"/>
+						<instance name="" zbone="_bone_CTRL_08"/>
+						<instance name="" zbone="_bone_CTRL_09"/>
+						<instance name="" zbone="_bone_CTRL_10"/>
+						<instance name="" zbone="_bone_CTRL_11"/>
+						<instance name="" zbone="_bone_CTRL_12"/>
+						<instance name="" zbone="_bone_CTRL_13"/>
+						<instance name="" zbone="_bone_CTRL_14"/>
+						<instance name="" zbone="_bone_CTRL_15"/>
+
+					</model>
+
+					<model
+						life="500"
+						bone="_bone_lefthand"
+						model="shield_explosion/model.mdf"
+						material="/shared/effects/smaterials/shell_sludge.material"
+						anim="idle"
+						scale="1"
+						startcolor="1 .5 0"
+						endcolor="1 .5 0"
+						startalpha="1"
+						endalpha="1"
+						directionalspace="local"
+						yaw="-90"
+						roll="-30"
+						pitch="45"
+					>
+
+						<light
+							bone="_bone_fx_center"
+							life="250"
+							startcolor="4 2.5 0"
+							endcolor="0 0 0"
+							falloffstart="0"
+							startfalloffend="125"
+							endfalloffend="200"
+						/>
+					
+					</model>
+
+					<billboard
+						bone="_bone_lefthand"
+						position="0 0 0"
+						life="400"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="1 .5 0"
+						endcolor="0 0 0"
+						startsize="150"
+						endsize="200"
+						depthbias="-75"
+					/>
+
+					<billboard
+					bone="_bone_lefthand"
+						material="/shared/effects/smaterials/bulb_add.material"				
+						startcolor="0 0 0"				
+						midcolor=".15 .075 0"				
+						endcolor="0 0 0"
+						life="400"	
+						startsize="150"
+						endsize="200"
+						depthbias="-150"			
+					/>
+					
+					<billboard
+					delay="200"
+					bone="_bone_lefthand"
+						material="/shared/effects/smaterials/bulb_add.material"				
+						startcolor="0 0 0"				
+						midcolor=".15 .075 0"				
+						endcolor="0 0 0"
+						life="400"	
+						startsize="225"
+						endsize="250"
+						depthbias="-150"
+						roll="90"				
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />	
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+
+
+
+
+
+

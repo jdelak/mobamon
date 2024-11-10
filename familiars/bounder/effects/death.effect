@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="true">
+
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+
+		<particlesystem name="system0" space="world" scale=".65">
+
+			<template name="blast">
+			
+				<simpleemitter
+				position="{zpos}"
+					count="15"
+					spawnrate="1000"			
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					material="/shared/effects/smaterials/snowy_smoke.material"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="20"
+					minspeed="0"				
+					maxspeed="500"				
+				>
+					<particle
+						startsize="100"								
+						minendsize="400"
+						maxendsize="400"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor=".25 .75 1"
+						startalpha="0"
+						midalpha=".25"
+						endalpha="0"
+						lockup="true"
+						lockright="true"
+						pitch="-90"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				position="{zpos}"
+					count="3"
+					particlelife="2000"
+					spawnrate="1000"
+					offsetsphere="35 35 0"
+					depthbias="0"
+				>
+					<particle
+					>
+						<billboard
+							material="/shared/effects/smaterials/whitedot.material"
+							minlife="500"
+							maxlife="750"
+							midsizepos=".05"
+							minsize="250"
+							maxsize="500"
+							startcolor="0"
+							midcolor=".175"
+							endcolor="0"
+							midcolorpos=".1"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-50"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+				position="{zpos}"
+					count="5"
+					particlelife="2000"
+					spawnrate="100"
+					offsetsphere="35 35 0"
+					depthbias="0"
+				>
+					<particle
+					>
+						<billboard
+							material="/shared/effects/smaterials/snowy_cracks_slide.material"
+							minlife="500"
+							maxlife="750"
+							midsizepos=".05"
+							size="450"
+							minyaw="0"
+							maxyaw="360"
+							startcolor="1 1 1"
+							endcolor="0 .5 1"
+							startalpha=".65"
+							endalpha="0"
+							midalphapos=".35"
+							minscale=".25"
+							maxscale=".35"
+							directionalspace="local"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+				position="{zpos}"
+					count="5"
+					particlelife="2000"
+					spawnrate="2000"
+					offsetsphere="100 100 0"
+					depthbias="0"
+				>
+					<particle
+					>
+						<groundsprite
+							material="/shared/effects/smaterials/snowy_cracks_slide.material"
+							minlife="750"
+							maxlife="1250"
+							midsizepos=".05"
+							size="420"
+							minyaw="0"
+							maxyaw="360"
+							startcolor="1 1 1"
+							endcolor="0 .5 1"
+							startalpha="0"
+							midalpha=".75"
+							endalpha="0"
+							midalphapos=".35"
+							minscale=".25"
+							maxscale=".35"
+							directionalspace="local"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+				position="0 0 25"
+					count="2"
+					particlelife="2000"
+					spawnrate="100"
+					offsetsphere="20 20 0"
+					depthbias="0"
+				>
+					<particle
+					>
+						<model
+							minlife="750"
+							maxlife="1000"
+							anim="idle"
+							model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+							minscale=".4"
+							maxscale=".5"
+							color="10 10 10"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".8"
+							minyaw="0"
+							maxyaw="360"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+				
+				<simpleemitter
+					position="{zpos}"
+					count="35"
+					spawnrate="1000"			
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="90"
+					minspeed="500"				
+					maxspeed="500"				
+				>
+					<particle
+						turn="true"
+						minsize="175"								
+						maxsize="350"								
+						startcolor=".5 .5 .5"
+						midcolor="0 .25 .5"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						lockup="true"
+						lockright="true"
+						pitch="-90"
+						minwidth="3"
+						maxwidth="6"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					midspawnratepos=".99"
+					minparticlelife="150"
+					maxparticlelife="400"
+					mincount="50"
+					maxcount="65"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor="0 .25 1"
+						midcolor="0 .25 1"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						minwidth=".5"
+						maxwidth="1"
+						minheight="2"
+						maxheight="5"
+						turn="1"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				<simpleemitter
+				count="100"
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						turn="1"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				<billboard
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"
+					minlife="500"
+					maxlife="750"
+					midsizepos=".05"
+					size="450"
+					minyaw="0"
+					maxyaw="360"
+					startcolor="1 1 1"
+					endcolor="0 0 0"
+					startalpha=".65"
+					endalpha="0"
+					midalphapos=".35"
+					minscale=".25"
+					maxscale=".35"
+					directionalspace="local"
+				/>
+				
+				
+				
+
+			</template>
+
+			<instance name="blast" zpos="0 0 100"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

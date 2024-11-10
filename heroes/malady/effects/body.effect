@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<groundsprite
+				bone="_bone_leftankle"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				size="65"				
+				color="1 1 1"
+				startalpha=".65"
+				endalpha="0"
+			/>
+			
+			
+			
+			
+<!--
+			<billboard
+				bone="_bone_rightankle"
+				material="/shared/effects/smaterials/cloud2.material"
+				startcolor="1"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				size="85"
+				lockup="1"
+				lockupright="1"
+				depthbias="21"
+				alpha="1"
+				position="0 0 0"
+				pitch="90"
+				rollspeed="0"
+			/>
+
+			<billboard
+				bone="_bone_rightankle"
+				material="/shared/effects/smaterials/cloud2.material"
+				startcolor="1"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				size="65"
+				lockup="1"
+				lockupright="1"
+				pitch="90"
+				depthbias="21"
+				alpha="1"
+				position="0 0 0"
+				roll="-45"
+				rollspeed="0"
+			/>
+-->
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_leftankle"
+				spawnrate="50"
+				gravity="-1"
+				minparticlelife="500"
+				maxparticlelife="700"
+				minspeed="15"
+				maxspeed="30"
+				drag="0.075"			
+				material="/shared/effects/smaterials/cloud1.material"
+				offsetsphere="8"
+				inheritvelocity=".25"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-45"
+					maxanglespeed="45"
+					color="1"
+					startsize="50"
+					minendsize="15"
+					maxendsize="30"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".25"					
+				 />	
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_leftankle"
+				spawnrate="50"
+				gravity="-1"
+				minparticlelife="500"
+				maxparticlelife="700"
+				minspeed="25"
+				maxspeed="50"
+				drag="0.075"			
+				material="/shared/effects/smaterials/cloud2.material"
+				offsetsphere="8"
+				inheritvelocity=".25"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-45"
+					maxanglespeed="45"
+					color="1"
+					startsize="50"
+					minendsize="15"
+					maxendsize="30"
+					startalpha="0"
+					midalpha=".85"
+					endalpha="0"
+					midalphapos=".25"					
+				 />	
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<billboard
+				bone="_bone_leftankle"
+				material="/shared/effects/smaterials/cloud2.material"
+				startcolor="1"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				size="85"
+				lockup="1"
+				lockupright="1"
+				depthbias="25"
+				alpha="1"
+				position="8 0 0"
+				pitch="90"
+				rollspeed="0"
+			/>
+
+			<billboard
+				bone="_bone_leftankle"
+				material="/shared/effects/smaterials/cloud2.material"
+				startcolor="1"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				size="70"
+				lockup="1"
+				lockupright="1"
+				pitch="90"
+				depthbias="25"
+				alpha="1"
+				position="8 0 0"
+				roll="-45"
+				rollspeed="0"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

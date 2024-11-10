@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_EnvironmentTrigger_Boards2_Anim_Flyback"
+
+	
+	
+	ishidden="true"
+>
+	
+	<onexpired>
+		<condition test="hasstate State_EnvironmentTrigger_Boards2_FlownAway" target="source_entity">
+			<playanim name="return" target="source_entity"/>
+			<expirestate name="State_EnvironmentTrigger_Boards2_FlownAway" target="source_entity" />
+			<applystate name="State_EnvironmentTrigger_Boards2_Idle" target="source_entity" duration="3200" />
+		</condition>
+	</onexpired>
+
+</state>

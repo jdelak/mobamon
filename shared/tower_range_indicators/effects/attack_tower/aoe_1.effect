@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" showoutlines="true">
+
+	<definitions>
+	
+		<particlesystem name="system2" space="world" scale="2.45">			
+			<billboard
+				material="/shared/materials/area_cast_indicator_simple_nogradient.material"
+				color="1 1 1"
+				size="800"
+				life="750"
+				startalpha="0"
+				endalpha="0.2"
+				rollspeed="0"
+				pitch="-90"
+				depthbias="-10"
+				lockup="1"
+				lockright="1"
+			/>	
+			
+			<billboard
+				delay="750"
+				expirelife="750"
+				material="/shared/materials/area_cast_indicator_simple_nogradient.material"
+				color="1 1 1"
+				size="800"
+				startalpha=".2"
+				endalpha="0"
+				rollspeed="0"
+				pitch="-90"
+				depthbias="-10"
+				lockup="1"
+				lockright="1"
+			/>			
+		</particlesystem>
+
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance2" particlesystem="system2" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

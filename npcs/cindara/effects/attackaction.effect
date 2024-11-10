@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<model
+				life="200"
+				parentskeleton="true"
+				position="0 0 0"
+				model="spear/model.mdf"
+				material="/shared/effects/smaterials/shell_cindara.material"
+				color="5 2.5 1"
+				scale="1"
+			>
+			</model>
+<!--
+			<model
+				life="5000"
+				bone="_bone_back"
+				position="0 -9 25"
+				expirelife="250"
+				model="wings/model.mdf"
+				material="/shared/effects/smaterials/shell_cindara.material"
+				anim="idle"
+				color=".15 .1 .05"
+				startscale="1.1"
+				midscale="1.2"
+				endscale="1.1"
+				direcionalspace="local"
+				loop="true"
+				pitch="-21"
+			>
+			</model>
+-->
+		</particlesystem>
+
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

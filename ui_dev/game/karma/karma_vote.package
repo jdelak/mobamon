@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="standardButtonGreen">
+		<button name="{id}" width="{width=100%}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible" 
+			onloadlua="
+				{onloadlua}
+			"
+			oninstantiatelua="	
+				{oninstantiatelua}
+			"
+			onclicklua="{onclicklua}"
+			disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoutdisabled="{onmouseoutdisabled}"
+			onmouseoverlua="{onmouseoverlua}"
+			onmouseoutlua="{onmouseoutlua}"		
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/green_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />
+				<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="{labelWidth=100%}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign}" valign="{labelValign}" textalign="center" textvalign="center" font="{font=maindyn_20}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" content="{label=temp_button}"/>				
+			</panel>
+		</button>
+	</template>
+	
+	<template name="radioButtonDropdown">
+		<button name="{id}" noclick="0" width="95%" height="3h" align="center" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=0}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible" 
+			onloadlua="
+				libButton2.initializeButton(self, '{id}', 'standardButton2', {rendermode = 'grayscale'})
+			"
+		>	
+			<panel noclick="1" name="{id}Body">
+				<!-- rendermode=grayscale | isChecked: rendermode=normal -->
+				<frame noclick="1" name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=grayscale}" />
+
+				<image noclick="1" x="0.2h" align="left" height="90%" width="90@" onshowlua="self:SetTexture('/ui/game/karma/textures/radiobutton_unchecked.tga')" texture="" />
+				
+				<image name="{id}Check" noclick="1" x="0.6h" y="0.4h" align="left" height="65%" width="65@" onshowlua="self:SetTexture('/ui/game/karma/textures/radiobutton_checked.tga')" texture="" visible="0" />
+				<label name="{id}Label" noclick="1" x="3.5h" width="{labelWidth=100%}" height="{labelHeight=100%}" align="left" valign="center" textalign="left" textvalign="center" font="{font=maindyn_12}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" content="{label=temp_button}"/>
+			</panel>
+		</button>	
+	</template>
+	
+	<template name="endgame_karma_player_template">
+		<panel name="endgame_karma_player_parent_{index}" width="23%" height="40@" color="1 0 0 0" noclick="1" visible="{visible=0}" sticky="1" stickytoinvis="0"
+
+		>
+			<panel y="10.5h" noclick="1" width="105%" height="6h" align="center">
+				<image name="endgame_karma_player_parent_{index}_banner" y="0.5h" width="155%" height="170%" onshowlua="self:SetTexture('/ui/game/karma/textures/banner_normal.tga')" texture="" align="center" valign="center" />
+				<label y="1.1h" color="1 1 1 1" name="endgame_karma_player_parent_{index}_name" content="Player Name" outline="1" outlinecolor="0 0 0 .5" outlinethickness="0.4h" font="maindyn_16" textalign="center" textvalign="center" width="100%" height="3h" noclick="1"/>
+			</panel>
+			
+			<panel name="endgame_karma_player_parent_{index}_model_parent" noclick="1" width="75%" height="24h" valign="bottom" y="0h" align="center">
+				<image name="endgame_karma_player_parent_{index}_model_bg" width="110%" height="170%" onshowlua="self:SetTexture('/ui/game/karma/textures/golden_bgcolor.tga')" texture="" align="center" valign="center" color="0.24 0.94 0.15 1" />
+				
+				<image name="endgame_karma_player_parent_{index}_model_border" width="110%" height="170%" onshowlua="self:SetTexture('/ui/game/karma/textures/golden_border.tga')" texture="" align="center" valign="center" />
+				
+				<image name="endgame_karma_player_parent_{index}_model_glow" width="110%" height="170%" onshowlua="self:SetTexture('/ui/game/karma/textures/model_upvote_glow.tga')" texture="" align="center" valign="center" color="1 1 1 0.5" visible="0"/>
+			</panel>
+			
+			<panel width="400%" height="400@" valign="center" align="center" noclick="1">
+				<modelpanel
+					name="endgame_karma_player_heromodel_{index}" noclick="1"
+					depthclear="true" depthcompress="false"
+					lookat="true"
+					
+					cameranear="1500.0"
+					camerafar="3000.0"
+					cameradistance="2000"
+					camerapos="20 1940 2000"
+					cameraangles="-45 0 180"
+					camerafov="13"
+					
+					modelpos="0 0 0" modelangles="30 25 -45" modelscale="1.0"
+					sunazimuth="120" sunaltitude="50" suncolor="0.9 0.9 0.9" ambientcolor="0.6 0.7 0.7"
+					resourcecontext="endgame_karma_model_hero"
+					anim="idle"
+					model=""
+					color="1 1 1 1"					
+					
+				/> 
+			</panel>
+			
+			<panel name="endgame_karma_player_upvote_{index}" rendermode="grayscale" color="0.5 0.5 0.5 0.6" y="13h" noclick="1" width="84%" height="10.3h" valign="bottom" align="center" texture="" onshowlua="self:SetTexture('/ui/game/karma/textures/upvote_button_holder.tga')" >
+				<panel noclick="1" width="93%" height="50%" valign="bottom" y="-2h" align="center">
+					<instance id="endgame_karma_player_upvote_{index}_button" name="standardButtonGreen" align="center" valign="center" label=" "/>
+					
+					<image y="-1.5h" x="0.5h" noclick="1" texture="/ui/game/karma/textures/upvote_glow.tga" align="left" width="100@" height="130%" />
+					
+					<image name="endgame_karma_player_upvote_{index}_glow_darken" y="-1.5h" x="0.5h" noclick="1" rendermode="grayscale" color="0.5 0.5 0.5 0.6" align="left" width="100@" height="130%" visible="1" texture="" onshowlua="self:SetTexture('/ui/game/karma/textures/upvote_glow.tga')"  />
+					
+					<image y="-2.5h" x="0.5h" noclick="1" texture="/ui/game/karma/textures/upvote_icon.tga" align="left" width="75@" height="140%" />
+					
+					<image name="endgame_karma_player_upvote_{index}_icon_darken" y="-2.5h" x="0.5h" noclick="1" rendermode="grayscale" color="0.5 0.5 0.5 0.6" align="left" width="75@" height="140%" visible="1" texture="" onshowlua="self:SetTexture('/ui/game/karma/textures/upvote_icon.tga')"  />
+					
+					<panel noclick="1" align="right" width="75%" height="100%">
+						<label y="0h" color="1 1 1 1" content="endgame_karma_approve" outline="1" outlinecolor="0 0 0 .5" outlinethickness="0.4h" font="maindyn_22" textalign="center" width="100%" height="3h" noclick="1"/>
+						<label y="3h" color="0.8 0.8 0.8 1" content="Tendgame_karma_player" outline="1" outlinecolor="0 0 0 .5" outlinethickness="0.2h" font="subdyn_10" textalign="center" width="100%" height="3h" noclick="1"/>
+					</panel>
+				</panel>
+			</panel>
+			
+			<panel name="endgame_karma_player_downvote_{index}" width="55%" height="3.2h" valign="bottom" y="16h" align="center" >
+				<instance id="endgame_karma_player_downvote_{index}_button" name="standardButton" rendermode="grayscale" align="center" valign="center" label=" "/>
+				<frame name="endgame_karma_player_downvote_{index}_glow_darken" noclick="1" texture="/ui/shared/frames/stnd_btn_up.tga" rendermode="grayscale" color="0.3 0.3 0.3 0.5" visible="0"/>
+				
+				<image x="0.2h" noclick="1" texture="" onshowlua="self:SetTexture('/ui/game/karma/textures/downvote_icon.tga')" align="left" width="80@" height="90%" valign="center"/>
+				
+				<image name="endgame_karma_player_downvote_{index}_icon_darken" x="0.2h" noclick="1" texture="" onshowlua="self:SetTexture('/ui/game/karma/textures/downvote_icon.tga')" rendermode="grayscale" color="0.5 0.5 0.5 0.6" align="left" width="80@" height="90%" valign="center" visible="0"/>
+					
+				<panel noclick="1" align="right" width="80%" height="100%">
+					<label noclick="1" y="-0.2h" x="-0.4h" color="0.8 0.8 0.8 1" content="endgame_karma_disapprove" outline="1" outlinecolor="0 0 0 .5" outlinethickness="0.4h" font="maindyn_14" textalign="center" textvalign="center" width="100%" height="2h" valign="center"/>
+				</panel>
+			</panel>
+			
+			<panel name="endgame_karma_player_downvote_{index}_reason_parent" noclick="1" y="36h" valign="bottom" width="100%" grow="1" regrow="1" padding="1h" visible="0" >
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="0.1 0.1 0.1 1" noclick="1" borderthickness="0.4h"/>
+				
+				<panel grow="1" regrow="1" float="bottom" padding="0.5h" width="100%" noclick="1">
+					<panel height="0.1h" width="95%" align="center" noclick="1"/>
+					
+					<instance id="endgame_karma_disapproved_reason_{index}_1" name="radioButtonDropdown" label="endgame_karma_reason01" />
+					<instance id="endgame_karma_disapproved_reason_{index}_2" name="radioButtonDropdown" label="endgame_karma_reason02" />
+					<instance id="endgame_karma_disapproved_reason_{index}_3" name="radioButtonDropdown" label="endgame_karma_reason03" />
+					<instance id="endgame_karma_disapproved_reason_{index}_4" name="radioButtonDropdown" label="endgame_karma_reason04" />
+					<instance id="endgame_karma_disapproved_reason_{index}_5" name="radioButtonDropdown" label="endgame_karma_reason05" />
+					
+					<panel height="0.1h" width="95%" align="center" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<panel name="endgame_karma" noclick="1" x="0" y="0" width="100%" height="100%" color="0 0 0 .0" visible="0" >
+		<panel  x="0" y="-5h" width="104h" height="65h" align="center" valign="center" float="bottom" padding="0.4h" noclick="1" color="1 1 0 0">
+			<panel noclick="1" float="right" padding="2h" height="-4h" x="-2h">
+				<instance name="endgame_karma_player_template" index="0" visible="0" />
+				<instance name="endgame_karma_player_template" index="1" visible="0" />
+				<instance name="endgame_karma_player_template" index="2" visible="0" />
+				<instance name="endgame_karma_player_template" index="3" visible="0" />
+				<instance name="endgame_karma_player_template" index="4" />
+				<instance name="endgame_karma_player_template" index="5" />
+				<instance name="endgame_karma_player_template" index="6" />
+				<instance name="endgame_karma_player_template" index="7" />
+				<instance name="endgame_karma_player_template" index="8" />
+				<instance name="endgame_karma_player_template" index="9" />
+			</panel>
+			
+			<panel y="4h" height="4h" visible="1">
+				<instance name="standardButton" id="endgame_karma_leavegame" width="4h" font="maindyn_20" label="endgame_karma_close" align="right"/>
+			</panel>
+			
+		</panel>		
+	</panel>
+	<panel name="endgame_karma_leavegame_parent" x="0" y="12h" height="7h" visible="0" width="25h" align="center" valign="top" noclick="1" color="1 1 0 0">
+		<instance name="standardButton" id="endgame_karma_leavegame2" font="maindyn_24" label="game_scoreboard_leave_game" align="center"/>
+	</panel>	
+	
+</package>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.75">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.35"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="100"
+			>
+				<particle
+					startcolor="1 0 0"
+					endcolor="0 0 0"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="35"
+					endscale="85"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="100"
+			>
+				<particle
+					startcolor="1 0 0"
+					endcolor="0 0 0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					startscale="25"
+					endscale="50"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="250"
+				startcolor="1 0 0"
+				endcolor="0"
+				midcolorpos=".65"
+				size="125"
+				depthbias="-50"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.75">
+			<!-- <simpleemitter
+				
+				spawnrate="25"
+				offsetsphere="24"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 -1 0"
+				minangle="0"
+				maxangle="1"
+			   >
+				<particle
+				 turn="true"
+				>
+				 <billboard
+				  
+				  position="0 0 0"
+				 material="/shared/effects/smaterials/dashdust.material"    
+				  color="1 1 1"
+				  life="750"
+				  startscale="1"
+				  endscale="1" 
+				  directionalspace="local"
+				  lockup="1"
+				  lockright="1"
+				  pitch="90"
+				  roll="180"
+				 />
+
+				</particle>
+			  </simpleemitter> -->
+			
+			
+			
+			
+			<!-- big puffs -->
+			<simpleemitter
+				count="5"
+				spawnrate="2500"
+				minparticlelife="700"
+				maxparticlelife="1000"
+				gravity="0"
+				acceleration="0"
+				direction="0 -1 0"
+				offsetsphere="10"
+				material="/shared/effects/smaterials/rocket_smoke_blend_lit.material"
+				position="0 0 10"
+				depthbias="-50"
+			>
+				<particle
+					minstartscale="15"
+					maxstartscale="25"
+					minendscale="20"
+					maxendscale="40"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .5"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					startanchor="1"
+					midanchor="0.5"
+					endanchor=".3"
+				/>
+				
+				<!-- <particle
+					startscale="5"
+					endscale="20"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .5"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					startanchor="1"
+					midanchor="0.7"
+					endanchor="0.6"
+				/> -->
+			</simpleemitter>
+			
+			<simpleemitter
+				count="5"
+				spawnrate="2500"
+				minparticlelife="700"
+				maxparticlelife="1000"
+				gravity="0"
+				acceleration="0"
+				direction="0 -1 0"
+				offsetsphere="10"
+				material="/shared/effects/smaterials/rocket_smoke_blend_lit.material"
+				position="0 0 10"
+				depthbias="-50"
+			>
+				<particle
+					startscale="5"
+					endscale="20"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .5"
+					startalpha="0"
+					midalpha="0.25"
+					endalpha="0"
+					startanchor="1"
+					midanchor="0.8"
+					endanchor="0.5"
+				/>
+			</simpleemitter>
+			
+			<trailemitter
+				life="1000"
+				spawnrate="50"
+				particlelife="100"
+				offsetsphere="0"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 50"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="1 0.7 0.3"
+					endcolor="0 0 0"
+					startsize="60"
+					midsize="20"
+					endsize="0"
+					midsizepos="0.3"
+					midcolorpos=".05"
+				/>
+			</trailemitter>
+			
+		</particlesystem>
+		
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

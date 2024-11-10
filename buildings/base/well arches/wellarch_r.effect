@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="4">
+
+			<template name="flame">
+			
+				<sound
+					volume="0.4"
+					linearfalloff="true" 
+					falloffstart="0"
+					falloffend="1200"
+					soundloop="true"
+					sample="/shared/sounds/ambience/amb_obelisk_fire_2.wav"
+				/>
+			
+				<light
+					position="0 0 35"
+					bone="{bone}"
+					life="2000"
+					startcolor="0 2 4"
+					midcolor="0 .5 1.5"
+					endcolor="0 2 4"
+					falloffstart="0"
+					falloffend="80"
+					loop="true"
+				/>
+			
+				<billboard
+					position="0 0 2"
+					bone="{bone}"
+					expirelife="1500"
+					startcolor="0 .2 .4"
+					endcolor="0 0 0"
+					size="100"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-295"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-20"
+				/>
+
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="55"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-15"
+					offsetsphere="2"
+					material="/shared/effects/smaterials/firesprite_blue.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 1 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+					/>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="25"
+					minparticlelife="250"
+					maxparticlelife="500"
+					minspeed="50"
+					maxspeed="100"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="5"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize=".45"
+						maxsize=".55"
+						heightdistort=".005"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="750"
+					minspeed="50"
+					maxspeed="100"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="5"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize=".5"
+						maxsize=".75"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				<simpleemitter
+					bone="{bone}"
+					spawnrate=".5"
+					minparticlelife="500"
+					maxparticlelife="750"
+				>
+					<particle 
+					>
+						<simpleemitter
+						count="32"
+							position="0 0 20"
+							bone="{bone}"
+							spawnrate="2000"
+							minparticlelife="500"
+							maxparticlelife="500"
+							minspeed="10"
+							maxspeed="20"
+							gravity="-5"
+							offsetsphere="5 5 20"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-25"
+						>
+							<particle 
+								startcolor=".6 .85 1"
+								midcolor=".6 .85 1"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								minsize=".5"
+								maxsize=".75"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="{bone}"
+					spawnrate=".75"
+					minparticlelife="500"
+					maxparticlelife="750"
+				>
+					<particle 
+					>
+						<simpleemitter
+						count="32"
+							position="0 0 10"
+							bone="{bone}"
+							spawnrate="2000"
+							minparticlelife="500"
+							maxparticlelife="500"
+							minspeed="10"
+							maxspeed="20"
+							gravity="-5"
+							offsetsphere="5 5 20"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-25"
+						>
+							<particle 
+								startcolor=".6 .85 1"
+								midcolor=".6 .85 1"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								minsize=".5"
+								maxsize=".75"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+			</template>
+
+			<instance name="flame" bone="_bone_fx_01"/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="5">
+
+			<template name="flame">
+			
+				<sound
+					volume="0.4"
+					linearfalloff="true" 
+					falloffstart="0"
+					falloffend="1200"
+					soundloop="true"
+					sample="/shared/sounds/ambience/amb_obelisk_fire_2.wav"
+				/>
+			
+				<light
+					position="0 0 35"
+					bone="{bone}"
+					life="2000"
+					startcolor="0 2 4"
+					midcolor="0 .5 1.5"
+					endcolor="0 2 4"
+					falloffstart="0"
+					falloffend="80"
+					loop="true"
+				/>
+			
+				<billboard
+					position="0 0 2"
+					bone="{bone}"
+					expirelife="1500"
+					startcolor="0 .3 .6"
+					endcolor="0 0 0"
+					size="100"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-295"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-20"
+				/>
+
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="55"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-15"
+					offsetsphere="2"
+					material="/shared/effects/smaterials/firesprite_blue.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 1 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+					/>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="25"
+					minparticlelife="250"
+					maxparticlelife="500"
+					minspeed="50"
+					maxspeed="100"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="5"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize=".45"
+						maxsize=".55"
+						heightdistort=".005"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="750"
+					minspeed="50"
+					maxspeed="100"
+					offsetsphere="6 6 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="5"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor=".7 .85 1"
+						midcolor=".7 .85 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize=".5"
+						maxsize=".75"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				<simpleemitter
+					bone="{bone}"
+					spawnrate=".5"
+					minparticlelife="500"
+					maxparticlelife="750"
+				>
+					<particle 
+					>
+						<simpleemitter
+						count="32"
+							position="0 0 20"
+							bone="{bone}"
+							spawnrate="2000"
+							minparticlelife="500"
+							maxparticlelife="500"
+							minspeed="10"
+							maxspeed="20"
+							gravity="-5"
+							offsetsphere="5 5 20"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-25"
+						>
+							<particle 
+								startcolor=".6 .85 1"
+								midcolor=".6 .85 1"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								minsize=".5"
+								maxsize=".75"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="{bone}"
+					spawnrate=".75"
+					minparticlelife="500"
+					maxparticlelife="750"
+				>
+					<particle 
+					>
+						<simpleemitter
+						count="32"
+							position="0 0 10"
+							bone="{bone}"
+							spawnrate="2000"
+							minparticlelife="500"
+							maxparticlelife="500"
+							minspeed="10"
+							maxspeed="20"
+							gravity="-5"
+							offsetsphere="5 5 20"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-25"
+						>
+							<particle 
+								startcolor=".6 .85 1"
+								midcolor=".6 .85 1"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								minsize=".5"
+								maxsize=".75"
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+			</template>
+
+			<instance name="flame" bone="_bone_fx_02"/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

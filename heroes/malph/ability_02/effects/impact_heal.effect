@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+	
+
+		<modifier
+			name="modifier0"
+			life="200"
+			startcolor="1 10 0"
+			endcolor="1 1 1"
+		/>
+
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<light
+				life="500"
+				startcolor="1 4 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="150"
+				position="0 0 25"
+			/>
+
+			<simpleemitter
+				count="30"
+				bone="_bone_centerofchest"
+				spawnrate="1500"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="300"
+				gravity="15"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						bone="_bone_center"
+						minlife="300"
+						maxlife="600"
+						startcolor=".5 1 0"
+						midcolor=".05 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".75"
+						maxstartscale="1.25"
+						midscale=".75"
+						endscale="0"
+						depthbias="-75"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="10"
+				spawnrate="200"
+				particlelife="1000"
+				position="0 0 0"
+				offsetradial="50 0 0"
+				offsetsphere="15 15 0"
+			>
+				<particle
+				> 
+				
+					<billboard
+						position="0 0 0"
+						delay="250"
+						minlife="250"
+						maxlife="500"
+						startcolor=".15 1 0"
+						midcolor=".15 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".2"
+						maxscale=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+					
+					<billboard
+						position="0 15 0"
+						delay="250"
+						minlife="250"
+						maxlife="500"
+						startcolor=".15 1 0"
+						midcolor=".15 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".2"
+						maxscale=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+					
+				</particle>
+			</simpleemitter>
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

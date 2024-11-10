@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/water.shader" vDiffuseColor="0.0 0.0 0.0" fSpecularLevel="1.0" fGlossiness="1838.0" fBumpLevel="1.0" fOpacity="1.0">
+		<vec3 name="vAlphaParams" value="1 1 0" />
+		<vec3 name="vTextureParams" value=".2 .2 .02" />
+		<rotvec name="vRotation" value="180" />
+	</parameters>
+	<phase name="color" cull="back" alphawrite="false" vampire="true" depthwrite="false" depthsortbias="10.0" blend="composite">
+		<sampler name="waterdiffuse" texture="$black" repeat_u="true" repeat_v="true" />
+		<sampler name="waternormalmap1" texture="../textures/tar1_n.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="waternormalmap2" texture="../textures/tar2_n.tga" repeat_u="true" repeat_v="true" />
+		<samplercube name="cube" texture="$black" />
+	</phase>
+</material>

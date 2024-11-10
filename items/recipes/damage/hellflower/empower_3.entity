@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Hellflower_Empower_3"
+	
+	cost="1150"
+	modifierkey="empower_3"
+>
+	<!-- Tooltip only -->
+	<constant name="penetration_enchant" value="10" adjustment="none"  />
+	
+	<ondoubleactivate>
+		<areaofeffect
+			radius="650"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			maxtotalimpacts="1"
+			effecttype=""
+		>
+			<useitem source="this_entity" />
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<cancel />
+		</compare>
+	</ondoubleactivate>
+	
+	<onimpact effectdescription="true">
+		<spawnprojectile name="Projectile_Hellflower_Empower_3" offset="0 200 160" source="source_entity" target="target_entity" />
+	</onimpact>
+
+</qualityitem>

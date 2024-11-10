@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="sampler_2d_ref" novs="true">
+	<parameter name="Sampler" type="sampler2D" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="sampler2D" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = Sampler;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			Out_texture = Sampler_texture;
+			Out_sampler = Sampler_sampler;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			Out = Sampler;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			Out = Sampler;
+		?>
+	</case>
+</node>

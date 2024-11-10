@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="default_1.max" file="high.model" type="K2">
+
+	<anim name="idle" clip="clips/default_1.clip" loop="true"/>
+	
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" fps="30" />
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip" loop="false" fps="30" >
+	</anim>
+
+	<anim name="death_1" clip="clips/death_2.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="StartEffect effects/death_modifier.effect"/>
+		<frameevent frame="166" cmd="StartEffect effects/death.effect"/>
+	</anim>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="32" />
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="45" >
+		<frameevent frame="39" cmd="StartEffect effects/attack.effect"/>
+	</anim>
+	
+	
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="45" >
+		<frameevent frame="39" cmd="StartEffect effects/attack.effect"/>
+	</anim>
+	
+	
+	<anim name="cindara_defeated_still" clip="clips/death_2.clip" startframe="15" numframes="1" loop="true" loopbackframe="-1"/>
+	
+	<!--Announcment model. Loopback frame defines the frame the animation starts at on its second play through and continues to start at for the remainder of the models life-->
+	<anim name="cindar_defeated" clip="clips/death_announcement.clip" fps="25" loop="1" loopbackframe="-1">
+	</anim>
+	
+
+</model>

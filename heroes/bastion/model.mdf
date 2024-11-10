@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+
+	<skin name="blue">
+		<reference mesh="body_low"					material="material_blue.material" />
+		<reference mesh="dragon"					material="material_blue_b.material" />
+		<reference mesh="bastion_3k"				material="material_blue.material" />
+		<reference mesh="xander_3k"					material="material_blue_b.material" />
+		<reference mesh="bastion_1.5k"				material="material_blue.material" />
+		<reference mesh="xander_1.5k"		material="material_blue_b.material" />
+	</skin>	
+	
+	<skin name="black">
+		<reference mesh="body_low"					material="material_black.material" />
+		<reference mesh="dragon"					material="material_black_b.material" />
+		<reference mesh="bastion_3k"				material="material_black.material" />
+		<reference mesh="xander_3k"					material="material_black_b.material" />
+		<reference mesh="bastion_1.5k"				material="material_black.material" />
+		<reference mesh="xander_1.5k"		material="material_black_b.material" />
+	</skin>
+
+	
+	<skin name="gold">
+		<reference mesh="body_low"					material="material_gold.material" />
+		<reference mesh="dragon"					material="material_gold_b.material" />
+		<reference mesh="bastion_3k"				material="material_gold.material" />
+		<reference mesh="xander_3k"					material="material_gold_b.material" />
+		<reference mesh="bastion_1.5k"				material="material_gold.material" />
+		<reference mesh="xander_1.5k"		material="material_gold_b.material" />
+	</skin>
+	
+	<skin name="green">
+		<reference mesh="body_low"					material="material_green.material" />
+		<reference mesh="dragon"					material="material_green_b.material" />
+		<reference mesh="bastion_3k"				material="material_green.material" />
+		<reference mesh="xander_3k"					material="material_green_b.material" />
+		<reference mesh="bastion_1.5k"				material="material_green.material" />
+		<reference mesh="xander_1.5k"		material="material_green_b.material" />
+	</skin>
+	
+	<skin name="pink">
+		<reference mesh="body_low"					material="material_pink.material" />
+		<reference mesh="dragon"					material="material_pink_b.material" />
+		<reference mesh="bastion_3k"				material="material_pink.material" />
+		<reference mesh="xander_3k"					material="material_pink_b.material" />
+		<reference mesh="bastion_1.5k"				material="material_pink.material" />
+		<reference mesh="xander_1.5k"		material="material_pink_b.material" />
+	</skin>
+	
+	<skin name="red">
+		<reference mesh="body_low"					material="material_red.material" />
+		<reference mesh="dragon"					material="material_red_b.material" />
+		<reference mesh="bastion_3k"				material="material_red.material" />
+		<reference mesh="xander_3k"					material="material_red_b.material" />
+		<reference mesh="bastion_1.5k"				material="material_red.material" />
+		<reference mesh="xander_1.5k dragon"		material="material_red_b.material" />
+	</skin>
+
+	<anim name="idle"  clip="clips/default_1.clip" loop="true" blendtime="500"/>
+	
+	<anim name="portrait" clip="clips/portrait.clip" loop="true"/> 
+	 
+	<anim name="item_1" clip="clips/item_1.clip"/>
+
+	<anim name="bored_1" clip="clips/bored_1.clip"/> 
+
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" fps="25">
+		<frameevent frame="7" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="27" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="109" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="137" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.1"/>
+		<frameevent frame="159" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 2000 0.1"/>
+	</anim>	
+
+	<anim name="ability_3" clip="clips/walk_1.clip"  fps="80" loop="true"/>
+	
+	<anim name="taunt_1" clip="clips/taunt_1.clip"/>
+
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="2" cmd="PlaySoundLinear sounds/sfx_foley_death.wav 1500 3000 0.85"/>
+	</anim>	
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="30">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2000 0.2"/>
+	</anim>	
+ 
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="35">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2000 0.2"/>
+	</anim>	
+
+	<anim name="ability_1" fps="50" clip="clips/ability_1.clip"/>
+
+	<anim name="ability_2_up" clip="clips/ability_2_up.clip" fps="33" lerp="0"/>
+	
+	<anim name="ability_2_fly" clip="clips/ability_2_fly.clip" loop="true" fps="30" lerp="0"/>
+
+	<anim name="ability_4" clip="clips/ability_4.clip" fps="45" />
+
+	<anim name="knock_1" clip="clips/knock_1.clip" loop="true" loopbackframe="-1"/>
+
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="25" loop="false">
+		<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_default.wav 1500 3000 1"/>
+	</anim>
+	
+	<anim name="spawn_1" clip="clips/spawn_2.clip"/>
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip"/>
+	
+	<anim name="port_in" clip="clips/port_in.clip"/>
+	
+</model>

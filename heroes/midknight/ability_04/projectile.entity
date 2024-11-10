@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Midknight_Ability4"
+	
+	lifetime="200"
+	useexactlifetime="true"
+	gravity="0"
+	
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	
+	traileffect="effects/trail.effect"
+
+	flying="true"
+	flyheight="115"
+	canturn="false"
+
+
+
+>
+
+	<onspawn>
+	</onspawn>
+	
+	<onimpact>
+		<applystate name="State_Midknight_Ability4" duration="3000" />
+		<applystate name="State_Midknight_Ability4_Slow" duration="3000" />
+		<compare a="result" b="1" op="ge">
+			<playeffect effect="effects/sound_link.effect" source="target_entity" />
+		</compare>
+	</onimpact>
+	
+</projectile>

@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+<!--
+		<modifier
+			name="modifier0"
+			expirelife="0"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+			startalpha="0"
+			endalpha="0"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale=".8">
+
+
+      <sound
+        life="4000"
+        linearfalloff="true"
+        falloffstart="500"
+        falloffend="2400"
+        volume="0.55"
+        sample="../sounds/sfx_cast.wav"
+			/>
+
+			<template name="">
+			
+				<simpleemitter
+				bone="_bone_origin"
+				position="{zpos}"
+					count="1"
+					spawnrate="50"
+					particlelife="{zparticlelife}"
+					speed="{zspeed}"
+					direction="{zdirection}"
+					minangle="0"
+					maxangle="1"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+
+						<model
+							delay="{zdelay}"
+							position="{zpos}"
+							bone="_bone_origin"
+							life="{zlife}"
+							model="wave/model.mdf"
+							material="wave/material.material"
+							anim="default_1"
+							color="1"
+							startalpha=".45"
+							midalpha=".45"
+							endalpha="0"
+							midalphapos=".85"
+							directionalspace="local"
+							roll="0"
+							yaw="0"
+							scale="{zscale}"
+						>
+
+							<template name="blue">
+							
+								<simpleemitter
+								life="1200"
+									bone="{zbone}"
+									position="0 0 0"
+									spawnrate="50"
+									particlelife="1000"
+									offsetsphere="0 0 0"
+									direction="0 0 0"
+									minspeed="10"
+									maxspeed="25"
+									gravity="5"
+								>
+									<particle
+										turn="true"
+									>
+										<billboard
+											bone="{zbone}"
+											minlife="100"
+											maxlife="400"
+											color=".3"
+											material="/shared/effects/smaterials/water.material"
+											startalpha="0"
+											midalpha=".5"
+											endalpha="0"
+											lockup="true"
+											lockright="true"
+											pitch="90"
+											minroll="0"
+											maxroll="360"
+											directionalspace="local"
+											minscale=".35"
+											maxscale=".7"
+											depthbias="-25"
+										/>
+									</particle>
+								</simpleemitter>
+								
+								
+								
+								<simpleemitter
+								life="1200"
+									bone="{zbone}"
+									position="0 0 0"
+									spawnrate="10"
+									particlelife="1000"
+									offsetsphere="0 0 0"
+									direction="0 0 0"
+									minspeed="25"
+									maxspeed="100"
+								>
+									<particle
+									>
+										<billboard
+											bone="{zbone}"
+											minlife="100"
+											maxlife="200"
+											startcolor="0 .8 .9"
+											midcolor="0 .8 .9"
+											endcolor="0 0 0"
+											material="/shared/effects/smaterials/bubble_add.material"
+											directionalspace="world"
+											minscale=".075"
+											maxscale=".25"
+											depthbias="-30"
+										/>
+									</particle>
+								</simpleemitter>
+								
+							
+							</template>
+							
+							<instance name="blue" zbone="_bone_fx_01"/>
+							<instance name="blue" zbone="_bone_fx_02"/>
+							<instance name="blue" zbone="_bone_fx_03"/>
+							<instance name="blue" zbone="_bone_fx_04"/>
+							<instance name="blue" zbone="_bone_fx_05"/>
+							<instance name="blue" zbone="_bone_fx_06"/>
+							<instance name="blue" zbone="_bone_fx_07"/>
+							<instance name="blue" zbone="_bone_fx_08"/>
+							<instance name="blue" zbone="_bone_fx_09"/>
+							<instance name="blue" zbone="_bone_fx_10"/>
+
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<template name="white">
+							
+								<simpleemitter
+								life="1000"
+									bone="{zbone}"
+									position="0 0 0"
+									spawnrate="50"
+									particlelife="1000"
+									offsetsphere="0 0 0"
+									direction="0 0 0"
+									minspeed="10"
+									maxspeed="25"
+									gravity="5"
+								>
+									<particle
+										turn="true"
+									>
+										<billboard
+											bone="{zbone}"
+											minlife="100"
+											maxlife="100"
+											color=".8 .9 1"
+											material="/shared/effects/smaterials/water_white.material"
+											startalpha=".75"
+											endalpha="0"
+											lockup="true"
+											lockright="true"
+											pitch="90"
+											minroll="0"
+											maxroll="360"
+											directionalspace="local"
+											minscale=".15"
+											maxscale=".3"
+											depthbias="-25"
+										/>
+									</particle>
+								</simpleemitter>
+							</template>
+
+							<instance name="white" zbone="_bone_fx_whitecap_01"/>
+							<instance name="white" zbone="_bone_fx_whitecap_02"/>
+							<instance name="white" zbone="_bone_fx_whitecap_03"/>
+							<instance name="white" zbone="_bone_fx_whitecap_04"/>
+							<instance name="white" zbone="_bone_fx_whitecap_05"/>
+							<instance name="white" zbone="_bone_fx_whitecap_06"/>
+							<instance name="white" zbone="_bone_fx_whitecap_07"/>
+							<instance name="white" zbone="_bone_fx_whitecap_08"/>
+							<instance name="white" zbone="_bone_fx_whitecap_09"/>
+							<instance name="white" zbone="_bone_fx_whitecap_10"/>
+							<instance name="white" zbone="_bone_fx_whitecap_11"/>
+							<instance name="white" zbone="_bone_fx_whitecap_12"/>
+							
+							
+							
+							
+							<template name="white">
+							
+								<simpleemitter
+								delay="900"
+								life="360"
+									bone="{zbone}"
+									position="0 0 0"
+									spawnrate="50"
+									particlelife="1000"
+									offsetsphere="0 0 0"
+									direction="0 0 0"
+									minspeed="10"
+									maxspeed="25"
+									gravity="5"
+								>
+									<particle
+										turn="true"
+									>
+										<billboard
+											bone="{zbone}"
+											minlife="100"
+											maxlife="100"
+											color=".8 .9 1"
+											material="/shared/effects/smaterials/water_white.material"
+											startalpha=".75"
+											endalpha="0"
+											lockup="true"
+											lockright="true"
+											pitch="90"
+											minroll="0"
+											maxroll="360"
+											directionalspace="local"
+											minscale=".15"
+											maxscale=".25"
+											depthbias="-25"
+										/>
+									</particle>
+								</simpleemitter>
+							</template>
+
+							<instance name="white" zbone="_bone_fx_whitecap_01"/>
+							<instance name="white" zbone="_bone_fx_whitecap_02"/>
+							<instance name="white" zbone="_bone_fx_whitecap_03"/>
+							<instance name="white" zbone="_bone_fx_whitecap_04"/>
+							<instance name="white" zbone="_bone_fx_whitecap_05"/>
+							<instance name="white" zbone="_bone_fx_whitecap_06"/>
+							<instance name="white" zbone="_bone_fx_whitecap_07"/>
+							<instance name="white" zbone="_bone_fx_whitecap_08"/>
+							<instance name="white" zbone="_bone_fx_whitecap_09"/>
+							<instance name="white" zbone="_bone_fx_whitecap_10"/>
+							<instance name="white" zbone="_bone_fx_whitecap_11"/>
+							<instance name="white" zbone="_bone_fx_whitecap_12"/>
+							
+							
+						</model>
+
+
+
+						
+						
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zpos="0 -20 10" zdirection="-.2 -1 -.05" zspeed="385" zlife="1400" zparticlelife="1600" zscale="1.5" zdelay="100"/> 
+			
+			<instance name="" zpos="0 0 10" zdirection="0 -1 -.05" zspeed="385" zlife="1400" zparticlelife="1600" zscale="1.5" zdelay="100"/>  
+			
+			<instance name="" zpos="0 -20 10" zdirection=".15 -1 -.05" zspeed="385" zlife="1400" zparticlelife="1600" zscale="1.5" zdelay="100"/>  
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--big wave-->
+			<model
+				position="0 15 -35"
+				life="1400"
+				model="wave/model.mdf"
+				material="wave/material.material"
+				anim="default_1"
+				color="1"
+				startalpha=".45"
+				midalpha=".45"
+				endalpha="0"
+				midalphapos=".9"
+				directionalspace="local"
+				roll="0"
+				yaw="0"
+				scale="2.5"
+			>
+
+				<template name="">
+					<simpleemitter
+					life="1000"
+						bone="{zbone}"
+						position="0 0 0"
+						spawnrate="50"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						minspeed="10"
+						maxspeed="25"
+						gravity="5"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								bone="{zbone}"
+								minlife="100"
+								maxlife="100"
+								color=".8 .9 1"
+								material="/shared/effects/smaterials/water_white.material"
+								startalpha="1"
+								endalpha="0"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								minroll="0"
+								maxroll="360"
+								directionalspace="local"
+								minscale=".2"
+								maxscale=".4"
+								depthbias="0"
+							/>
+						</particle>
+					</simpleemitter>
+					
+					
+					<simpleemitter
+					delay="900"
+						bone="{zbone}"
+						position="0 0 0"
+						spawnrate="50"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						minspeed="10"
+						maxspeed="25"
+						gravity="5"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								bone="{zbone}"
+								minlife="100"
+								maxlife="100"
+								color=".8 .9 1"
+								material="/shared/effects/smaterials/water_white.material"
+								startalpha=".5"
+								endalpha="0"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								minroll="0"
+								maxroll="360"
+								directionalspace="local"
+								minscale=".15"
+								maxscale=".25"
+								depthbias="-50"
+							/>
+						</particle>
+					</simpleemitter>
+					
+				</template>
+
+				<instance name="" zbone="_bone_fx_whitecap_01"/>
+				<instance name="" zbone="_bone_fx_whitecap_02"/>
+				<instance name="" zbone="_bone_fx_whitecap_03"/>
+				<instance name="" zbone="_bone_fx_whitecap_04"/>
+				<instance name="" zbone="_bone_fx_whitecap_05"/>
+				<instance name="" zbone="_bone_fx_whitecap_06"/>
+				<instance name="" zbone="_bone_fx_whitecap_07"/>
+				<instance name="" zbone="_bone_fx_whitecap_08"/>
+				<instance name="" zbone="_bone_fx_whitecap_09"/>
+				<instance name="" zbone="_bone_fx_whitecap_10"/>
+				<instance name="" zbone="_bone_fx_whitecap_11"/>
+				<instance name="" zbone="_bone_fx_whitecap_12"/>
+
+			</model>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<terrainemitter
+			delay="750"
+				position="0 150 0"
+				spawnrate="50"
+				particlelife="5000"
+				offsetsphere="150 150 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="750"
+						maxlife="1250"
+						color="0 1 1"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						startalpha="0"
+						midalpha=".05"
+						endalpha="0"
+						midalphapos=".2"
+						minstartscale="4"
+						maxstartscale="5.5"
+						endscale="6"
+						depthbias="-5"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="world"
+						minroll="0"
+						maxroll="360"
+					/>
+
+				</particle>
+			</terrainemitter>
+			
+			
+			
+			<terrainemitter
+				position="0 -100 0"
+				spawnrate="50"
+				particlelife="5000"
+				offsetsphere="150 150 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				directionalspace="local"
+				inheritvelocity=".1"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="750"
+						maxlife="1250"
+						color="0 1 1"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						startalpha="0"
+						midalpha=".05"
+						endalpha="0"
+						midalphapos=".2"
+						minstartscale="4"
+						maxstartscale="5.5"
+						endscale="6"
+						depthbias="-5"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="world"
+						minroll="0"
+						maxroll="360"
+					/>
+
+				</particle>
+			</terrainemitter>
+			
+			
+			
+			
+		
+	
+			<terrainemitter
+				position="0 -100 0"
+				spawnrate="50"
+				particlelife="5000"
+				offsetsphere="100 50 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				directionalspace="local"
+				inheritvelocity=".35"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="400"
+						maxlife="600"
+						color="0 1 1"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						startalpha="0"
+						midalpha=".05"
+						endalpha="0"
+						midalphapos=".2"
+						minstartscale="4"
+						maxstartscale="5.5"
+						endscale="6"
+						depthbias="-5"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="world"
+						minroll="0"
+						maxroll="360"
+					/>
+
+				</particle>
+			</terrainemitter>
+
+			<terrainemitter
+				position="0 -100 0"
+				spawnrate="10"
+				particlelife="5000"
+				offsetsphere="125 0 0"
+				direction="0 0 0"
+				directionalspace="local"
+				inheritvelocity=".35"
+			>
+				<particle
+					turn="true"
+				> 
+				
+				
+
+					<billboard
+						minlife="500"
+						maxlife="800"
+						startcolor="0 .1 .1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						scale="6"
+						depthbias="-5"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="world"
+						minroll="0"
+						maxroll="360"
+					/>
+
+				</particle>
+			</terrainemitter>
+
+		
+		
+		
+		
+		
+		
+		
+			<terrainemitter
+				position="0 -100 0"
+				spawnrate="50"
+				particlelife="5000"
+				offsetsphere="200 200 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				directionalspace="local"
+				inheritvelocity=".35"
+			>
+				<particle
+					turn="true"
+				> 
+
+					<billboard
+						minlife="500"
+						maxlife="800"
+						color="0 1 1"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						startalpha="0"
+						midalpha=".07"
+						endalpha="0"
+						midalphapos=".2"
+						startscale="1"
+						minendscale="3"
+						maxendscale="4"
+						depthbias="-5"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="world"
+						minroll="0"
+						maxroll="360"
+					/>
+
+					
+				</particle>
+			</terrainemitter>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			<model
+				bone="_bone_rightfoot"
+				position="0 0 -10"
+				life="1500"
+				model="staff/model.mdf"
+				material="staff/material.material"
+				anim="default_1"
+				color="1.25"
+				directionalspace="local"
+				roll="0"
+				yaw="30"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<model
+				bone="_bone_rightfoot"
+				position="0 0 -10"
+				life="1600"
+				model="surfboard/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				anim="default_1"
+				startcolor="0 0 0"
+				midcolor="0 1.5 2"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				directionalspace="local"
+				roll="0"
+				yaw="180"
+			>
+
+				<template name="anchored">
+			
+					<simpleemitter
+					life="1250"
+						position="0 0 -5"
+						bone="{zbone}"
+						startspawnrate="200"
+						endspawnrate="50"
+						minparticlelife="250"
+						maxparticlelife="500"
+						direction="0 0 1"
+						material="/shared/effects/smaterials/water_white.material"
+						minspeed="0"
+						maxspeed="400"
+						minangle="0"
+						maxangle="1"
+						directionalspace="world"
+						offsetsphere="6 6 6"
+					>
+						<particle
+						startanchor="1"
+						endanchor="0"
+							color=".8 .9 1"
+							startalpha=".5"
+							endalpha="0"
+							
+							startscale="10"
+							endscale="0"
+							
+							minangle="0"
+							maxangle="360"
+						/>
+					</simpleemitter>
+					
+				</template>
+
+				<instance name="anchored" zbone="_bone_leftSide_05"/>
+				<instance name="anchored" zbone="_bone_leftSide_06"/>
+				<instance name="anchored" zbone="_bone_leftSide_07"/>
+				<instance name="anchored" zbone="_bone_leftSide_08"/>
+				<instance name="anchored" zbone="_bone_leftSide_09"/>
+				<instance name="anchored" zbone="_bone_leftSide_10"/>
+				<instance name="anchored" zbone="_bone_leftSide_11"/>
+				<instance name="anchored" zbone="_bone_leftSide_12"/>
+				<instance name="anchored" zbone="_bone_leftSide_13"/>
+
+				<instance name="anchored" zbone="_bone_rightSide_05"/>
+				<instance name="anchored" zbone="_bone_rightSide_06"/>
+				<instance name="anchored" zbone="_bone_rightSide_07"/>
+				<instance name="anchored" zbone="_bone_rightSide_08"/>
+				<instance name="anchored" zbone="_bone_rightSide_09"/>
+				<instance name="anchored" zbone="_bone_rightSide_10"/>
+				<instance name="anchored" zbone="_bone_rightSide_11"/>
+				<instance name="anchored" zbone="_bone_rightSide_12"/>
+				<instance name="anchored" zbone="_bone_rightSide_13"/>
+
+				<template name="white">
+				
+					<simpleemitter
+					life="750"
+						bone="{zbone}"
+						position="0 0 0"
+						startspawnrate="200"
+						endspawnrate="0"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						minspeed="0"
+						maxspeed="0"
+						gravity="0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								bone="{zbone}"
+								minlife="500"
+								maxlife="1000"
+								color=".8 .9 1"
+								material="/shared/effects/smaterials/water_white.material"
+								startalpha=".5"
+								endalpha="0"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								minroll="0"
+								maxroll="360"
+								directionalspace="local"
+								minscale=".2"
+								maxscale=".4"
+								depthbias="-10"
+							/>
+						</particle>
+					</simpleemitter>
+				</template>
+
+				<instance name="white" zbone="_bone_leftSide_05"/>
+				<instance name="white" zbone="_bone_leftSide_06"/>
+				<instance name="white" zbone="_bone_leftSide_07"/>
+				<instance name="white" zbone="_bone_leftSide_08"/>
+				<instance name="white" zbone="_bone_leftSide_09"/>
+				<instance name="white" zbone="_bone_leftSide_10"/>
+				<instance name="white" zbone="_bone_leftSide_11"/>
+				<instance name="white" zbone="_bone_leftSide_12"/>
+				<instance name="white" zbone="_bone_leftSide_13"/>
+
+				<template name="white">
+					<simpleemitter
+					delay="750"
+					life="550"
+						bone="{zbone}"
+						position="0 0 0"
+						startspawnrate="200"
+						endspawnrate="0"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						minspeed="0"
+						maxspeed="0"
+						gravity="0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								bone="{zbone}"
+								minlife="500"
+								maxlife="1000"
+								color=".8 .9 1"
+								material="/shared/effects/smaterials/water_white.material"
+								startalpha=".5"
+								endalpha="0"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								minroll="0"
+								maxroll="360"
+								directionalspace="local"
+								minscale=".2"
+								maxscale=".4"
+								depthbias="-10"
+							/>
+						</particle>
+					</simpleemitter>
+				</template>
+
+				<instance name="white" zbone="_bone_rightSide_05"/>
+				<instance name="white" zbone="_bone_rightSide_06"/>
+				<instance name="white" zbone="_bone_rightSide_07"/>
+				<instance name="white" zbone="_bone_rightSide_08"/>
+				<instance name="white" zbone="_bone_rightSide_09"/>
+				<instance name="white" zbone="_bone_rightSide_10"/>
+				<instance name="white" zbone="_bone_rightSide_11"/>
+				<instance name="white" zbone="_bone_rightSide_12"/>
+				<instance name="white" zbone="_bone_rightSide_13"/>
+				
+				
+				
+					<billboard
+					bone="_bone_fx_05"
+						expirelife="250"
+						startcolor="0 .5 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						scale="5"
+						depthbias="-10"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+					/>
+				
+
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+			life="1000"
+			position="0 -50 0"
+				spawnrate="40"
+				particlelife="5000"
+				offsetsphere="150 50 0"
+				direction="0 0 1"
+				minspeed="0"
+				maxspeed="0"
+				minangle="0"
+				maxangle="1"
+				directionalspace="world"
+			>
+				<particle
+				> 
+					<billboard
+						minlife="350"
+						maxlife="700"
+						startcolor="0 0 0"
+						midcolor="0 .4 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/materials/bubble_add.material"
+						minscale=".15"
+						maxscale=".4"
+						depthbias="-25"
+						directionalspace="world"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+			<sound delay="300" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="500" falloffend="2500" volume="0.45" channel="90008" />	
+
+
+		
+</particlesystem>
+
+<!-- 1 -->
+<particlesystem name="system1" space="entity" scale="1">
+	
+	
+	<sound delay="0" linearfalloff="true" falloffstart="750" falloffend="2400" volume="0.4" sample="sounds/enrage.wav" channel="90008" />	
+	<light bone="_bone_fx_02" position="0 0 0" expirelife="250" startcolor="4 1 0" endcolor="0" falloffstart="0" falloffend="140"/>
+	<template name="fire" parentmodel="true" parentskeleton="true" directionalspace="local" particledirectionalspace="local">
+		<simpleemitter delay="{zdelay}" position="{zpos}" bone="{zbone}" spawnrate="90" gravity="0" speed="0" drag="0" minparticlelife="200" maxparticlelife="400" material="/shared/effects/smaterials/firesprite_swirl.material" offsetsphere="6" depthbias="0" directionalspace="local" particledirectionalspace="local">
+			<particle startanchor="{zanchor}" endanchor="0" minangle="0" maxangle="360" startframe="0" endframe="1" framespeed="2" minsize="25" maxsize="45" startcolor="1 1 1" midcolor="1 1 1" endcolor="1 0 0" midcolorpos=".75" startalpha="0" midalpha=".8" endalpha="0" midalphapos=".1" turn="1"/>
+		</simpleemitter>
+		<simpleemitter bone="{zbone}" spawnrate="25" minparticlelife="200" maxparticlelife="400" gravity="-5" position="0 0 0" offsetsphere="10" material="/shared/effects/smaterials/whitedot.material" depthbias="-50" directionalspace="local" particledirectionalspace="local">
+			<particle minangle="0" maxangle="360" minanglespeed="-360" maxanglespeed="360" startcolor="0 0 0" midcolor=".2 .075 0" endcolor="0 0 0" minstartsize="75" maxstartsize="150" endsize="0" startanchor="1" endanchor="0"/>
+		</simpleemitter>
+		<billboard bone="{zbone}" expirelife="250" position="0 0 0" material="/shared/effects/smaterials/whitedot.material" size="45" depthbias="-50" startcolor=".5 .12 0" endcolor="0 0 0"/>
+	</template>
+	<instance name="fire" zbone="_bone_weapon1" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="60"/>
+	<instance name="fire" zbone="_bone_weapon2" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+	<instance name="fire" zbone="_bone_weapon3" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+	<instance name="fire" zbone="_bone_weaponattach" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+	<instance name="fire" zbone="_bone_fx_01" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+	<instance name="fire" zbone="_bone_fx_02" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+	<instance name="fire" zbone="_bone_fx_03" zdelay="0" zanchor="1" zpos="0 0 0" zminsize="25" zmaxsize="50"/>
+
+
+
+	<simpleemitter bone="_bone_centerofchest" position="0 0 0" count="250" spawnrate="2500" minparticlelife="250" maxparticlelife="500" gravity="-1.0" minspeed="1000" maxspeed="1400" drag="0.025" acceleration="0.0" minangle="80" maxangle="80" direction="0 0 1" offsetsphere="25 25 0" material="/shared/effects/smaterials/firesprite_swirl.material" directionalspace="local" particledirectionalspace="local">
+		<particle minangle="-180" maxangle="180" minanglespeed="-150" maxanglespeed="150" color="1 1 1" startsize="150" endsize="0" startalpha="0" midalpha="1" endalpha="0" midalphapos=".15"/>
+	</simpleemitter>
+	<simpleemitter bone="_bone_centerofchest" position="0 0 0" count="75" spawnrate="2500" minparticlelife="200" maxparticlelife="400" gravity="-1.0" minspeed="1000" maxspeed="1400" drag="0.025" acceleration="0.0" minangle="80" maxangle="80" direction="0 0 1" offsetsphere="25 25 0" material="/shared/effects/smaterials/whitedot.material" directionalspace="local" particledirectionalspace="local">
+		<particle minangle="-180" maxangle="180" minanglespeed="-150" maxanglespeed="150" startcolor="0" midcolor=".2 .1 0" endcolor="0" midcolorpos=".8" minstartsize="75" maxstartsize="125" endsize="20"/>
+	</simpleemitter>
+	
+</particlesystem>
+
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0" />
+<wait duration="2000"/>
+<spawnparticlesystem instance="instance1" particlesystem="system1" />
+<waitfordeath instance="instance0" />
+<waitfordeath instance="instance1" />
+</thread>
+</effect>

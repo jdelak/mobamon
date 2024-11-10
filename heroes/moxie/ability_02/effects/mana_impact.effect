@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.25">
+
+
+			<sound
+				falloffstart="0"
+				falloffend="2000"
+				volume="0.5"
+				sample="../sounds/ability_2_impact.wav"
+			/>
+			
+			<simpleemitter
+			count="6"
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="25 25 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						life="50"
+						color="0 0 1"
+						scale="5"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="0"
+					/>
+					
+					<billboard
+						bone="_bone_centerofchest"
+						life="50"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						color=".5 .5 .5"
+						scale="2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="0"
+					/>
+
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 0 0"
+						material="/shared/effects/smaterials/flare.material"
+						life="50"
+						color="0 .5 1"
+						scale="5"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="75"
+						width="10"
+						depthbias="0"
+					/>
+
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 0 0"
+						material="/shared/effects/smaterials/ring_half.material"
+						life="50"
+						color="0 .5 1"
+						startscale="5"
+						endscale="2.5"
+						midscalepos=".55"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="50"
+						width="10"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="duplos">
+				
+				<simpleemitter
+				count="1"
+					delay="{zdelay}"
+					spawnrate="3000"
+					particlelife="750"
+				>
+					<particle
+					>
+
+							<light
+								life="300"
+								startcolor="0 1 3"
+								endcolor="0 0 0"
+								midcolorpos=".2"
+								falloffstart="00"
+								startfalloffend="150"
+								endfalloffend="500"
+								position="0 0 15"
+							/>
+					
+					
+
+
+						<template name="waves">
+						
+<!--
+							<billboard
+								delay="{delay1}"
+								startsize="{endsize1}"
+								endsize="30"
+								position="0 0 0"
+								life="150"
+								material="/shared/effects/materials/waves.material"
+								startcolor="0 1 0"
+								endcolor="0 1 0"
+								startalpha=".1"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+								roll="{zroll1}"
+							/>
+							
+							<billboard
+								delay="{delay2}"
+								startsize="{endsize2}"
+								endsize="30"
+								position="0 0 0"
+								life="150"
+								material="/shared/effects/materials/waves.material"
+								startcolor="0 1 0"
+								endcolor="0 1 0"
+								startalpha=".25"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+								roll="{zroll1}"
+							/>
+
+							<billboard
+								delay="{delay3}"
+								startsize="{endsize3}"
+								endsize="30"
+								position="0 0 0"
+								life="150"
+								material="/shared/effects/materials/waves.material"
+								startcolor="0 1 0"
+								endcolor="0 1 0"
+								startalpha=".35"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+								roll="{zroll1}"
+							/>
+							
+							
+							
+							
+							
+							
+							
+							<billboard
+								delay="{delay4}"
+								startsize="{endsize1}"
+								endsize="30"
+								position="0 0 0"
+								life="150"
+								material="/shared/effects/materials/waves.material"
+								startcolor="0 1 0"
+								endcolor="0 1 0"
+								startalpha=".1"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+								roll="{zroll2}"
+							/>
+							
+							<billboard
+								delay="{delay5}"
+								startsize="{endsize2}"
+								endsize="30"
+								position="0 0 0"
+								life="150"
+								material="/shared/effects/materials/waves.material"
+								startcolor="0 1 0"
+								endcolor="0 1 0"
+								startalpha=".25"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+								roll="{zroll2}"
+							/>
+
+							<billboard
+								delay="{delay6}"
+								startsize="{endsize3}"
+								endsize="30"
+								position="0 0 0"
+								life="150"
+								material="/shared/effects/materials/waves.material"
+								startcolor="0 1 0"
+								endcolor="0 1 0"
+								startalpha=".35"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+								roll="{zroll2}"
+							/>
+-->
+
+							
+							
+
+							
+						</template>
+
+						<instance delay1="200" delay2="150" delay3="100" delay4="300" delay5="250" delay6="200" zroll1="45" zroll2="135"  name="waves" endsize1="250" endsize2="300" endsize3="450"/>
+					
+					</particle>
+				</simpleemitter>
+					
+			</template>
+			
+			<instance name="duplos" zdelay="100"/>
+			<instance name="duplos" zdelay="112"/>
+			<instance name="duplos" zdelay="125"/>
+			<instance name="duplos" zdelay="137"/>
+			<instance name="duplos" zdelay="150"/>
+			<instance name="duplos" zdelay="162"/>
+			<instance name="duplos" zdelay="175"/>
+			<instance name="duplos" zdelay="187"/>
+			<instance name="duplos" zdelay="200"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+		<modifier
+			life="500"
+			startcolor=".25"
+			endcolor="1"
+		/>
+
+   	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+</effect>

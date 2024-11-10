@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="body">
+	<definitions>
+		<particlesystem name="system0" space="entity">
+
+					<groundsprite
+					bone="_bone_root"
+						directionalspace="local"
+						size="70"
+						
+						
+						color=".0 .2 .2"
+							
+										
+						material="/shared/effects/materials/whitedot_ground.material"
+					/>	
+
+			<template name="light">
+				<billboard
+					loop="1"
+					life="1000"
+					bone="{bone}"	
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="1 .0 2.12"
+					endcolor="0 0 0"					
+					position="0 0 0"
+					size="5"
+					depthbias="-5"
+				/>
+			</template>	
+			<instance name="light" bone="_bone_fx001"/>
+			<instance name="light" bone="_bone_fx002"/>
+			<instance name="light" bone="_bone_fx003"/>
+			<instance name="light" bone="_bone_fx004"/>
+			<instance name="light" bone="_bone_fx005"/>
+			<instance name="light" bone="_bone_fx006"/>
+			<instance name="light" bone="_bone_fx007"/>
+			<instance name="light" bone="_bone_fx008"/>
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

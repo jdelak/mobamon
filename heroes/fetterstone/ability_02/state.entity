@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Fetterstone_Ability2"
+
+	icon="icon.tga"
+
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	
+	passiveeffect="effects/state_self.effect"
+	
+	displaylevel="true"
+
+>
+	<oninflict>
+		<getconstant name="shield_percent" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="100" op="div"/>
+		<setvar0 a="var0" b="source_maxhealth" op="mult"/>
+		<setvalue source="this_entity" name="source_max_shield" a="var0" />
+		<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+	</oninflict>
+	
+	<onexpired>
+		<compare a="accumulator" b="1" op="ne" >
+
+			<playeffect effect="effects/explosion_self.effect" target="source_entity" source="source_entity" />
+
+			<areaofeffect
+				radius="800"
+				targetselection="closest"
+				targetscheme="visible_enemy_heroes"
+				effecttype="Magic"
+				maxtotalimpacts="1"
+				maximpactspertarget="1"
+			>
+				<spawnprojectile name="Projectile_Fetterstone_Ability2"  source="source_entity" target="target_entity" offset="0 0 70" />
+			</areaofeffect>
+			
+			<else>
+				<areaofeffect
+					radius="800"
+					targetselection="closest"
+					targetscheme="non_idle_visible_enemy_units"
+					effecttype="Magic"
+					maxtotalimpacts="1"
+					maximpactspertarget="1"
+				>
+					<spawnprojectile name="Projectile_Fetterstone_Ability2"  source="source_entity" target="target_entity" offset="0 0 70" />
+				</areaofeffect>
+			</else>
+			
+		</compare>
+	</onexpired>
+	
+	<onattackeddamageevent>
+		<compare source="this_owner_entity" a="source_shield" b="damage_attempted" op="le">
+			<setaccumulator value="1" />
+			<expire />
+			<delete target="this_proxy_entity" />
+		</compare>
+	</onattackeddamageevent>
+	
+	
+</state>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_events">
+	<childinterface file="/ui/styles.interface"/>
+	<include file="/ui/dev_package/templates_elements_simple.package"/>
+	
+	<template name="gameEventEntryElements"><!-- Atlased stuff -->
+		<panel group="gameEventEntry{id}" style="gameEventEntry">
+			<frame name="gameEventEntry{id}Glow" texture="/ui/elements:squareglow" borderthickness="1.0h" color="#ffd83d" width="+1h" height="+1h" align="center" valign="center"/>
+			<frame name="gameEventEntry{id}Backer" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color=".1 .1 .1 1"/>
+			<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+			<frame name="gameEventEntry{id}Backer2" texture="/ui/elements:rounded_bg_white" align="right" width="50%" borderthickness="0.6h" bordercolor=".35 .35 .35 1" color=".35 .35 .35 1" visible="1"/>
+			<image name="gameEventEntry{id}Arrow" texture="/ui/dev_elements/game_temp/killevent_arrow.tga" width="120@" height="100%" align="center" valign="center" hflip="1" color=".1 .1 .1 1" />
+		</panel>
+	</template>
+
+	<template name="gameEventEntryLabels">
+		<panel group="gameEventEntry{id}" style="gameEventEntry">
+			<label name="gameEventEntry{id}Label1" style="gameEventEntryLabel"/>
+			<label name="gameEventEntry{id}Label2" style="gameEventEntryLabel" align="left" width="-4.5h" textalign="right"/>
+			<label name="gameEventEntry{id}Label3" style="gameEventEntryLabel" width="6h" x="-6.5h" content="350" color="#FFDD33"/>
+		</panel>
+	</template>
+
+	<template name="gameEventEntryIcons1">
+		<panel group="gameEventEntry{id}" style="gameEventEntry">
+			<image name="gameEventEntry{id}Icon1" texture="/ui/elements:crest_legion" width="3h" height="3h" valign="center"/>
+		</panel>
+	</template>
+	
+	<template name="gameEventEntryIcons2">
+		<panel group="gameEventEntry{id}" style="gameEventEntry">
+			<image name="gameEventEntry{id}Icon2" texture="/ui/elements:crest_legion" width="3h" height="3h" valign="center"/>
+			<image name="gameEventEntry{id}Icon3" texture="/ui/elements:crest_legion" width="3h" height="3h" valign="center"/>
+		</panel>
+	</template>
+	
+	<template name="gameEventEntryOverlays">
+		<panel group="gameEventEntry{id}" style="gameEventEntry">
+			<frame name="gameEventEntry{id}IconBorder1" x="0.5h" width="3h" height="3h" borderthickness="1" color="invisible" bordercolor="black" valign="center" visible="false"/>
+			<frame name="gameEventEntry{id}IconBorder2" x="0.5h" width="3h" height="3h" borderthickness="1" color="invisible" bordercolor="black" valign="center"/>
+			<frame name="gameEventEntry{id}IconBorder3" x="0.5h" width="3h" height="3h" borderthickness="1" color="invisible" bordercolor="black" valign="center"/>
+		</panel>
+	</template>
+
+	<panel name="gameEventsContainer" style="gameEventsContainer">
+		<panel name="gameEventsViewArea" height="-0.5h" noclick="true"><!-- Bring things up a tad so glows don't get clipped unnecessarily -->
+			<panel group="gameEventsBody" style="gameEventsBody">
+				<instance name="gameEventEntryElements" id="30"/>
+				<instance name="gameEventEntryElements" id="29"/>
+				<instance name="gameEventEntryElements" id="28"/>
+				<instance name="gameEventEntryElements" id="27"/>
+				<instance name="gameEventEntryElements" id="26"/>
+				<instance name="gameEventEntryElements" id="25"/>
+				<instance name="gameEventEntryElements" id="24"/>
+				<instance name="gameEventEntryElements" id="23"/>
+				<instance name="gameEventEntryElements" id="22"/>
+				<instance name="gameEventEntryElements" id="21"/>
+				<instance name="gameEventEntryElements" id="20"/>
+				<instance name="gameEventEntryElements" id="19"/>
+				<instance name="gameEventEntryElements" id="18"/>
+				<instance name="gameEventEntryElements" id="17"/>
+				<instance name="gameEventEntryElements" id="16"/>
+				<instance name="gameEventEntryElements" id="15"/>
+				<instance name="gameEventEntryElements" id="14"/>
+				<instance name="gameEventEntryElements" id="13"/>
+				<instance name="gameEventEntryElements" id="12"/>
+				<instance name="gameEventEntryElements" id="11"/>
+				<instance name="gameEventEntryElements" id="10"/>
+				<instance name="gameEventEntryElements" id="9"/>
+				<instance name="gameEventEntryElements" id="8"/>
+				<instance name="gameEventEntryElements" id="7"/>
+				<instance name="gameEventEntryElements" id="6"/>
+				<instance name="gameEventEntryElements" id="5"/>
+				<instance name="gameEventEntryElements" id="4"/>
+				<instance name="gameEventEntryElements" id="3"/>
+				<instance name="gameEventEntryElements" id="2"/>
+				<instance name="gameEventEntryElements" id="1"/>
+			</panel>
+
+			<panel hover="false" processonlyscroll="true" name="gameEventScrollPanel" visible="false"/>
+			<scrollbar
+				name="gameEventScrollBar"
+				texture="/ui/dev_elements/combobox.tga" handlewidth="2h" handleheight="2h" vertical="true" slotwidth="0.6h" slotheight="1"
+				width="2h" align="right" x="2.5h" valign="center" height="+0.35h"
+				step="1"
+				visible="false"
+			/>
+			
+			<panel group="gameEventsBody" style="gameEventsBody">
+				<instance name="gameEventEntryIcons1" id="30"/>
+				<instance name="gameEventEntryIcons1" id="29"/>
+				<instance name="gameEventEntryIcons1" id="28"/>
+				<instance name="gameEventEntryIcons1" id="27"/>
+				<instance name="gameEventEntryIcons1" id="26"/>
+				<instance name="gameEventEntryIcons1" id="25"/>
+				<instance name="gameEventEntryIcons1" id="24"/>
+				<instance name="gameEventEntryIcons1" id="23"/>
+				<instance name="gameEventEntryIcons1" id="22"/>
+				<instance name="gameEventEntryIcons1" id="21"/>
+				<instance name="gameEventEntryIcons1" id="20"/>
+				<instance name="gameEventEntryIcons1" id="19"/>
+				<instance name="gameEventEntryIcons1" id="18"/>
+				<instance name="gameEventEntryIcons1" id="17"/>
+				<instance name="gameEventEntryIcons1" id="16"/>
+				<instance name="gameEventEntryIcons1" id="15"/>
+				<instance name="gameEventEntryIcons1" id="14"/>
+				<instance name="gameEventEntryIcons1" id="13"/>
+				<instance name="gameEventEntryIcons1" id="12"/>
+				<instance name="gameEventEntryIcons1" id="11"/>
+				<instance name="gameEventEntryIcons1" id="10"/>
+				<instance name="gameEventEntryIcons1" id="9"/>
+				<instance name="gameEventEntryIcons1" id="8"/>
+				<instance name="gameEventEntryIcons1" id="7"/>
+				<instance name="gameEventEntryIcons1" id="6"/>
+				<instance name="gameEventEntryIcons1" id="5"/>
+				<instance name="gameEventEntryIcons1" id="4"/>
+				<instance name="gameEventEntryIcons1" id="3"/>
+				<instance name="gameEventEntryIcons1" id="2"/>
+				<instance name="gameEventEntryIcons1" id="1"/>
+			</panel>
+			
+			<panel group="gameEventsBody" style="gameEventsBody">
+				<instance name="gameEventEntryIcons2" id="30"/>
+				<instance name="gameEventEntryIcons2" id="29"/>
+				<instance name="gameEventEntryIcons2" id="28"/>
+				<instance name="gameEventEntryIcons2" id="27"/>
+				<instance name="gameEventEntryIcons2" id="26"/>
+				<instance name="gameEventEntryIcons2" id="25"/>
+				<instance name="gameEventEntryIcons2" id="24"/>
+				<instance name="gameEventEntryIcons2" id="23"/>
+				<instance name="gameEventEntryIcons2" id="22"/>
+				<instance name="gameEventEntryIcons2" id="21"/>
+				<instance name="gameEventEntryIcons2" id="20"/>
+				<instance name="gameEventEntryIcons2" id="19"/>
+				<instance name="gameEventEntryIcons2" id="18"/>
+				<instance name="gameEventEntryIcons2" id="17"/>
+				<instance name="gameEventEntryIcons2" id="16"/>
+				<instance name="gameEventEntryIcons2" id="15"/>
+				<instance name="gameEventEntryIcons2" id="14"/>
+				<instance name="gameEventEntryIcons2" id="13"/>
+				<instance name="gameEventEntryIcons2" id="12"/>
+				<instance name="gameEventEntryIcons2" id="11"/>
+				<instance name="gameEventEntryIcons2" id="10"/>
+				<instance name="gameEventEntryIcons2" id="9"/>
+				<instance name="gameEventEntryIcons2" id="8"/>
+				<instance name="gameEventEntryIcons2" id="7"/>
+				<instance name="gameEventEntryIcons2" id="6"/>
+				<instance name="gameEventEntryIcons2" id="5"/>
+				<instance name="gameEventEntryIcons2" id="4"/>
+				<instance name="gameEventEntryIcons2" id="3"/>
+				<instance name="gameEventEntryIcons2" id="2"/>
+				<instance name="gameEventEntryIcons2" id="1"/>
+			</panel>
+			
+			<panel group="gameEventsBody" style="gameEventsBody">
+				<instance name="gameEventEntryOverlays" id="30"/>
+				<instance name="gameEventEntryOverlays" id="29"/>
+				<instance name="gameEventEntryOverlays" id="28"/>
+				<instance name="gameEventEntryOverlays" id="27"/>
+				<instance name="gameEventEntryOverlays" id="26"/>
+				<instance name="gameEventEntryOverlays" id="25"/>
+				<instance name="gameEventEntryOverlays" id="24"/>
+				<instance name="gameEventEntryOverlays" id="23"/>
+				<instance name="gameEventEntryOverlays" id="22"/>
+				<instance name="gameEventEntryOverlays" id="21"/>
+				<instance name="gameEventEntryOverlays" id="20"/>
+				<instance name="gameEventEntryOverlays" id="19"/>
+				<instance name="gameEventEntryOverlays" id="18"/>
+				<instance name="gameEventEntryOverlays" id="17"/>
+				<instance name="gameEventEntryOverlays" id="16"/>
+				<instance name="gameEventEntryOverlays" id="15"/>
+				<instance name="gameEventEntryOverlays" id="14"/>
+				<instance name="gameEventEntryOverlays" id="13"/>
+				<instance name="gameEventEntryOverlays" id="12"/>
+				<instance name="gameEventEntryOverlays" id="11"/>
+				<instance name="gameEventEntryOverlays" id="10"/>
+				<instance name="gameEventEntryOverlays" id="9"/>
+				<instance name="gameEventEntryOverlays" id="8"/>
+				<instance name="gameEventEntryOverlays" id="7"/>
+				<instance name="gameEventEntryOverlays" id="6"/>
+				<instance name="gameEventEntryOverlays" id="5"/>
+				<instance name="gameEventEntryOverlays" id="4"/>
+				<instance name="gameEventEntryOverlays" id="3"/>
+				<instance name="gameEventEntryOverlays" id="2"/>
+				<instance name="gameEventEntryOverlays" id="1"/>
+			</panel>
+			
+			<panel group="gameEventsBody" style="gameEventsBody">
+				<instance name="gameEventEntryLabels" id="30"/>
+				<instance name="gameEventEntryLabels" id="29"/>
+				<instance name="gameEventEntryLabels" id="28"/>
+				<instance name="gameEventEntryLabels" id="27"/>
+				<instance name="gameEventEntryLabels" id="26"/>
+				<instance name="gameEventEntryLabels" id="25"/>
+				<instance name="gameEventEntryLabels" id="24"/>
+				<instance name="gameEventEntryLabels" id="23"/>
+				<instance name="gameEventEntryLabels" id="22"/>
+				<instance name="gameEventEntryLabels" id="21"/>
+				<instance name="gameEventEntryLabels" id="20"/>
+				<instance name="gameEventEntryLabels" id="19"/>
+				<instance name="gameEventEntryLabels" id="18"/>
+				<instance name="gameEventEntryLabels" id="17"/>
+				<instance name="gameEventEntryLabels" id="16"/>
+				<instance name="gameEventEntryLabels" id="15"/>
+				<instance name="gameEventEntryLabels" id="14"/>
+				<instance name="gameEventEntryLabels" id="13"/>
+				<instance name="gameEventEntryLabels" id="12"/>
+				<instance name="gameEventEntryLabels" id="11"/>
+				<instance name="gameEventEntryLabels" id="10"/>
+				<instance name="gameEventEntryLabels" id="9"/>
+				<instance name="gameEventEntryLabels" id="8"/>
+				<instance name="gameEventEntryLabels" id="7"/>
+				<instance name="gameEventEntryLabels" id="6"/>
+				<instance name="gameEventEntryLabels" id="5"/>
+				<instance name="gameEventEntryLabels" id="4"/>
+				<instance name="gameEventEntryLabels" id="3"/>
+				<instance name="gameEventEntryLabels" id="2"/>
+				<instance name="gameEventEntryLabels" id="1"/>
+			</panel>
+		</panel>
+	</panel>
+	
+	<!-- Updated Game Event Templtes -->
+	<panel name="" style="gameEventsContainer" visible="0" align="center">
+		
+		<!-- Item Purchase/Sale -->
+		<panel y="0.5h" x="-0.5h" align="right" height="4.2h" width="-9h">
+			<frame name="" texture="/ui/elements:squareglow" borderthickness="1.0h" color="#ffd83d" width="+1h" height="+1h" align="center" valign="center" visible="1"/>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" bordercolor="#47422c" color="#47422c"/>
+			<frame texture="/ui/elements:thick" borderthickness="0.6h" color="black"/>
+			<panel hmargin="0.5h" vmargin="0.5h">
+				<panel height="100%" width="100@">
+					<image texture="/items/recipes/defensive/elder_stone/icon.tga" />
+					<frame color="invisible" borderthickness="1" bordercolor="#7d6b1a" />
+				</panel>
+				<label width="-114@" align="right" textvalign="center" textalign="center" wrap="1" font="maindyn_13" color="white" outline="1" outlinecolor="0 0 0 .7" content="Icon of Destruction purchased"/>
+			</panel>			
+		</panel>
+		
+		<!-- Building Destruction -->
+		<panel y="6.0h" x="-0.5h" align="right" height="4.2h" width="-9h">
+			<frame name="" texture="/ui/elements:squareglow" borderthickness="1.0h" color="#ff1111" width="+1h" height="+1h" align="center" valign="center" visible="1"/>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" bordercolor="#4b2020" color="#4b2020"/>
+			<frame texture="/ui/elements:thick" borderthickness="0.6h" color="black"/>
+			<panel hmargin="0.5h" vmargin="0.5h">
+				<panel height="100%" width="100@">
+					<image texture="/ui/icons/mystery.tga" />
+					<frame color="invisible" borderthickness="1" bordercolor="#7d1d1d" />
+				</panel>
+				<label width="-114@" align="right" textvalign="center" textalign="center" wrap="1" font="maindyn_16" color="white" outline="1" outlinecolor="0 0 0 .7" content="Tower Destroyed"/>
+			</panel>			
+		</panel>
+		
+		<!-- Boss Man -->
+		<panel y="11.5h" x="-0.5h" align="right" height="4.2h" width="-9h">
+			<frame name="" texture="/ui/elements:squareglow" borderthickness="1.0h" color="#11ff17" width="+1h" height="+1h" align="center" valign="center" visible="1"/>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" bordercolor="#204b2c" color="#204b2c"/>
+			<frame texture="/ui/elements:thick" borderthickness="0.6h" color="black"/>
+			<panel hmargin="0.5h" vmargin="0.5h">
+				<panel height="100%" width="100@">
+					<image texture="/npcs/kongor/icon.tga" />
+					<frame color="invisible" borderthickness="1" bordercolor="#1f7d1d" />
+				</panel>
+				<label width="-114@" align="right" textvalign="center" textalign="center" wrap="1" font="maindyn_16" color="white" outline="1" outlinecolor="0 0 0 .7" content="Kongor Gettging Crazy"/>
+			</panel>			
+		</panel>
+				
+		<!-- Kill -->
+		<panel y="17h" x="-0.5h" align="right" height="4.2h" width="-9h">
+			<frame name="" texture="/ui/elements:squareglow" borderthickness="1.0h" color="1 1 1 .6" width="+1h" height="+1h" align="center" valign="center" visible="1"/>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" bordercolor=".1 .1 .1 1" color=".1 .1 .1 1"/>
+						
+				<!-- Player 1 -->
+				<panel width="50%" align="left">
+					<frame name="killer_color_left" texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" bordercolor=".35 .35 .35 1" color=".35 .35 .35 1" visible="0"/>
+					<panel height="3.4h" width="3.4h" x="0.5h" align="left" valign="center">
+						<image texture="/heroes/vex/icon.tga" />
+						<frame color="invisible" borderthickness="1" bordercolor="0 0 0 1" />
+					</panel>
+					<label width="-118@" align="right" textvalign="center" textalign="left" font="maindyn_13" color="0 1 0 1" outline="1" outlinecolor="0 0 0 .7" content="Player"/>
+				</panel>
+
+				<!-- Player 2 -->
+				<panel width="50%" align="right">
+					<frame name="killer_color_right" texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" bordercolor=".35 .35 .35 1" color=".35 .35 .35 1" visible="1"/>
+					<panel height="3.4h" width="3.4h" x="-0.5h" align="right" valign="center">
+						<image texture="/heroes/bastion/icon.tga"  />
+						<frame color="invisible" borderthickness="1" bordercolor="0 0 0 1" />
+					</panel>
+					<label width="-118@" align="left" textvalign="center" textalign="right" font="maindyn_13" color="1 0 0 1" outline="1" outlinecolor="0 0 0 .7" content="Bot4"/>
+				</panel>				
+				
+				<image name="killer_arrow" texture="/ui/dev_elements/game_temp/killevent_arrow.tga" width="120@" height="100%" align="center" valign="center" hflip="1" color=".1 .1 .1 1" />
+				<image texture="/ui/dev_elements/game_temp/death.tga" width="46@" height="46%" align="center" valign="center" color="1 0 0 1" />
+											
+			<frame texture="/ui/elements:thick" borderthickness="0.6h" color="black"/>
+		</panel>
+			
+			
+	</panel>
+	
+	<!-- Top Info -->
+	<panel align="center" width="35h" height="6h" y="1" noclick="true" passivechildren="0" name="game_top_events_section" visible="1" color="1 0 0 0.0" >	
+		<!-- team 1 announcements -->
+		<panel name="game_team_announcements_1_sleeper" noclick="true"/>
+		<panel visible="0" name="game_team_announcements_1" align="center" x="-36.5h" grow="1" width="40h" height="18h" y="8.6h" noclick="true" passivechildren="true" color="0 1 0 0.0" float="right" padding="1.0h" >		
+			<panel height="18h" float="bottom" >
+				
+				<!-- announcement title -->
+				<panel name="game_team_announcements_1_line_1" visible="0" align="center" height="6.8h" grow="1" float="right" padding="1.5h" sticky="0" stickytoinvis="0" >
+					<panel name="game_team_announcements_1_line_1_icon_parent_1" color="0 1 0 0.7" height="100%" width="100@" >
+						<image name="game_team_announcements_1_line_1_icon_1" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>				
+					<label name="game_team_announcements_1_line_1_label_1" textalign="left" textvalign="center" font="maindyn_30" color="white" content="" fitx="1" outline="1"/>
+					<panel name="game_team_announcements_1_line_1_icon_parent_2" color="1 0 0 0.7" height="100%" width="100@" >
+						<image name="game_team_announcements_1_line_1_icon_2" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>						
+				</panel>
+				
+				<!-- label -->
+				<panel name="game_team_announcements_1_line_3" visible="0" align="center" height="6h" width="45h" grow="1" regrow="1" float="right" padding="0.5h" sticky="0" stickytoinvis="0" >
+					<panel name="game_team_announcements_1_line_3_a" visible="0" align="left" grow="1" regrow="1" growinvis="1" sticky="0" stickytoinvis="0" float="right" >
+						<label name="game_team_announcements_1_line_3_label_1" align="left" textalign="center" textvalign="center" font="maindyn_48" color="white" content="" fitx="1" fity="1" outline="1" fitxpadding="2.0h" />
+					</panel>	
+					<panel name="game_team_announcements_1_line_3_b" visible="0" valign="center" align="center" grow="1" regrow="1" growinvis="1" sticky="0" stickytoinvis="0" float="right" >
+						<label name="game_team_announcements_1_line_3_label_2" align="left" textalign="center" textvalign="center" font="maindyn_40" color="0.9 0.85 0.2" content="" fitx="1" fity="1" outline="1" />
+						<image texture="/ui/dev_elements/designimages/endmatch_reward_upgraded.tga" height="100%" width="100@" valign="center" align="left" />
+					</panel>					
+				</panel>
+				
+			</panel>
+		</panel>
+		
+		<!-- team 2 announcements -->
+		<panel name="game_team_announcements_2_sleeper" noclick="true"/>
+		<panel visible="0" name="game_team_announcements_2" align="center" x="36.5h" grow="1" width="40h" height="18h" y="8.6h" noclick="true" passivechildren="true" color="0 1 0 0.0" float="right" padding="1.0h" >		
+			<panel height="18h" float="bottom" >
+				
+				<!-- announcement title -->
+				<panel name="game_team_announcements_2_line_1" visible="0" align="center" height="6.8h" grow="1" float="right" padding="1.5h" sticky="0" stickytoinvis="0" >
+					<panel name="game_team_announcements_2_line_1_icon_parent_1" color="0 1 0 0.7" height="100%" width="100@" >
+						<image name="game_team_announcements_2_line_1_icon_1" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>				
+					<label name="game_team_announcements_2_line_1_label_1" textalign="left" textvalign="center" font="maindyn_30" color="white" content="" fitx="1" outline="1"/>
+					<panel name="game_team_announcements_2_line_1_icon_parent_2" color="1 0 0 0.7" height="100%" width="100@" >
+						<image name="game_team_announcements_2_line_1_icon_2" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>						
+				</panel>
+
+				<!-- label -->
+				<panel name="game_team_announcements_2_line_3" visible="0" align="center" height="6h" width="45h" grow="1" regrow="1" float="right" padding="0.5h" sticky="0" stickytoinvis="0" >
+					<panel name="game_team_announcements_2_line_3_a" visible="0" align="left" grow="1" regrow="1" growinvis="1" sticky="0" stickytoinvis="0" float="right" >
+						<label name="game_team_announcements_2_line_3_label_1" align="left" textalign="center" textvalign="center" font="maindyn_48" color="white" content="" fitx="1" fity="1" outline="1" fitxpadding="2.0h" />
+					</panel>	
+					<panel name="game_team_announcements_2_line_3_b" visible="0" valign="center" align="center" grow="1" regrow="1" growinvis="1" sticky="0" stickytoinvis="0" float="right" >
+						<label name="game_team_announcements_2_line_3_label_2" align="left" textalign="center" textvalign="center" font="maindyn_40" color="0.9 0.85 0.2" content="" fitx="1" fity="1" outline="1" />
+						<image texture="/ui/dev_elements/designimages/endmatch_reward_upgraded.tga" height="100%" width="100@" valign="center" align="left" />
+					</panel>						
+				</panel>				
+				
+			</panel>
+		</panel>		
+		
+		<!-- self announcements -->
+		<panel name="self_center_announcements_0_sleeper" noclick="1" />
+		<panel visible="0" name="self_center_announcements_0" passivechildren="1" align="center" x="0" grow="1" regrow="1" growinvis="0" width="40h" height="18h" y="15.5h" noclick="true" color="0 1 0 0.0" float="right" padding="1.0h" >		
+			<panel height="18h" grow="1" regrow="1" growinvis="0" float="bottom" padding="1.0h" >
+				
+				<!-- announcement title -->
+				<panel name="self_center_announcements_0_line_1" visible="0" align="center" height="6.8h" grow="1" float="right" padding="1.5h" sticky="0" stickytoinvis="0" >
+					<panel name="self_center_announcements_0_line_1_parent_1" color="0 1 0 0.7" height="100%" width="100@" >
+						<image name="self_center_announcements_0_line_1_icon_1" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>				
+					<label name="self_center_announcements_0_line_1_label_1" textalign="left" textvalign="center" font="maindyn_36" color="white" content="" fitx="1" outline="1"/>
+					<panel name="self_center_announcements_0_line_1_parent_2" color="1 0 0 0.7" height="100%" width="100@" >
+						<image name="self_center_announcements_0_line_1_icon_2" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+						
+						<panel name="self_center_announcements_0_line_1_icon_2_x_1" width="0" height="0" valign="top" align="left" clip="1" >
+							<image texture="/ui/icons/cross_1.tga" color="1 1 1 1" height="100%" width="100%" valign="center" align="center" />
+						</panel>
+
+						<panel name="self_center_announcements_0_line_1_icon_2_x_2" width="0" height="0" valign="top" align="right" clip="1" >
+							<image texture="/ui/icons/cross_2.tga" hflip="1" color="1 1 1 1" height="100%" width="100%" valign="center" align="center" />
+						</panel>						
+						
+						<label name="self_center_announcements_0_line_1_label_2" visible="0" x="110%" y="0" textalign="left" textvalign="center" font="maindyn_36" color="red" content="" fitx="1" outline="1" />
+						
+					</panel>						
+				</panel>
+				
+				<!-- extra kills -->
+				<panel name="self_center_announcements_0_line_2" visible="0" align="center" height="5.5h" grow="1" float="right" padding="1.5h" sticky="0" stickytoinvis="0" >
+					
+					<panel name="self_center_announcements_0_line_2_icon_parent_1" color="1 0 0 0.6" height="5.5h" width="5.5h" >
+						<image name="self_center_announcements_0_line_2_icon_1" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>
+					<label name="self_center_announcements_0_line_2_spacer_1" align="left" textalign="center" textvalign="center" font="maindyn_24" color="white" content="+" fitx="1"/>
+					<panel name="self_center_announcements_0_line_2_icon_parent_2" color="1 0 0 0.6" height="5.5h" width="5.5h" >
+						<image name="self_center_announcements_0_line_2_icon_2" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>
+					<label name="self_center_announcements_0_line_2_spacer_2" align="left" textalign="center" textvalign="center" font="maindyn_24" color="white" content="+" fitx="1"/>
+					<panel name="self_center_announcements_0_line_2_icon_parent_3" color="1 0 0 0.6" height="5.5h" width="5.5h" >
+						<image name="self_center_announcements_0_line_2_icon_3" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>
+					<label name="self_center_announcements_0_line_2_spacer_3" align="left" textalign="center" textvalign="center" font="maindyn_24" color="white" content="+" fitx="1"/>
+					<panel name="self_center_announcements_0_line_2_icon_parent_4" color="1 0 0 0.6" height="5.5h" width="5.5h" >
+						<image name="self_center_announcements_0_line_2_icon_4" texture="/heroes/vermillion/icon.tga" height="-6" width="-6" valign="center" align="center" />
+					</panel>					
+				</panel>
+				
+				<!-- label -->
+				<panel name="self_center_announcements_0_line_3" visible="0" align="center" height="6h" width="45h" grow="1" regrow="1" float="right" padding="0.5h" sticky="0" stickytoinvis="0" >
+					<panel name="self_center_announcements_0_line_3_a" visible="0" align="left" grow="1" regrow="1" growinvis="1" sticky="0" stickytoinvis="0" float="right" >
+						<label name="self_center_announcements_0_line_3_label_1" align="left" textalign="center" textvalign="center" font="maindyn_48" color="white" content="" fitx="1" fity="1" outline="1" fitxpadding="2.0h" />
+					</panel>	
+					<panel name="self_center_announcements_0_line_3_b" visible="0" valign="center" align="center" grow="1" regrow="1" growinvis="1" sticky="0" stickytoinvis="0" float="right" >
+						<label name="self_center_announcements_0_line_3_label_2" align="left" textalign="center" textvalign="center" font="maindyn_40" color="0.9 0.85 0.2" content="" fitx="1" fity="1" outline="1" />
+						<image texture="/ui/dev_elements/designimages/endmatch_reward_upgraded.tga" height="100%" width="100@" valign="center" align="left" />
+					</panel>
+				</panel>
+				
+			</panel>
+		</panel>					
+		
+	</panel>
+	
+	<instance id="self_bottom_announcements_0_wrapper" name="dialogWrapper1" inneralpha="0 0 0 .9" outerpadding="+2h" innerpadding="+1h" noclick="1" visible="0" parent_height="5.5h" parent_width="45h" align="center" valign="bottom" y="-18.2h" />
+	
+	<panel name="self_bottom_announcements_0" noclick="1" visible="0" color="invisible" height="5.5h" width="45h" align="center" valign="bottom" y="-18.2h" >		
+		<panel name="self_bottom_announcements_item_0" noclick="1" height="100%" width="100%" y="0" visible="1" onclicklua="" onrightclicklua="" >
+
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="1"/>
+			<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="1"/>
+
+			<label name="self_bottom_announcements_label_0" textalign="center" textvalign="center" valign="center" fity="1" y="0.0h" shadow="true" shadowoffset="2" font="maindyn_15" color="white" outlinecolor="black" outline="1" content="" noclick="1" wrap="1" />
+
+		</panel>
+	</panel>	
+	
+	<lua file="scripts/events.lua"/>
+
+</interface>

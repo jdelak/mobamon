@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<beam	
+				life="20000"
+				expirelife="200"
+				owner_a="target"
+				owner_b="source"
+				size="18"
+				tile="3"
+				bone_b="_bone_main"
+				bone_a="_bone_righthand"
+				material="/shared/effects/materials/rope.material"
+			>						
+			</beam>	
+
+			<beam	
+				life="20000"
+				expirelife="200"
+				owner_a="target"
+				owner_b="source"
+				size="18"
+				tile="3"
+				bone_b="_bone_main"
+				bone_a="_bone_righthand"
+				material="/shared/effects/materials/rope.material"
+			>						
+			</beam>	
+		
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

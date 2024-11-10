@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="buildsBrowser_entry">
+		<panel name="buildsBrowser_entry_{index}" width="100%" height="30s">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>
+			<label x="6s" width="-20s" content="{name}" textvalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+		</panel>
+
+		<panel name="buildsBrowser_entry_{index}_selected" visible="0" noclick="1">
+			<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+		</panel>
+	</template>
+	<template name="buildsBrowser_itemEntry">
+		<panel width="{width=34s}" height="{height=34s}" align="{align}" x="{x}" y="{y}">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>
+			<panel color="{bgColor=invisible}"/>
+			<panel name="{id}" texture="{img}" color="{color}" valign="center" height="{imgHeight=100%}"/>
+
+			<frame texture="/ui/elements:rounded_corner_white" style="infoFrameCorners" noclick="1"  />
+			<frame texture="/ui/elements:thick" style="infoFrameBorder" noclick="1"  />
+
+		</panel>
+	</template>
+
+	<panel name="buildsBrowser_backing" width="100%" height="100%" visible="false" color="0 0 0 .3" onclicklua="
+		PlaySound('/ui/sounds/launcher/sfx_back.wav')
+		local mainBuildBrowser		= LuaTrigger.GetTrigger('mainBuildBrowser')
+		mainBuildBrowser.visible = false
+		mainBuildBrowser:Trigger()
+	"/>
+
+	<panel name="buildsBrowser_container" align="center" valign="center" width="540s" height="540s" visible="false">
+
+
+		<image texture="/ui/main/shared/textures/circular.tga" width="580s" height="400s" align="center" valign="center" y="-15s" color="#00d2ffb0" noclick="1" />
+		<modelpanel model="/shared/models/invis.mdf" noclick="true" y="-15s" camerapos="0 0 0"	cameraangles="0 0 0" camerafov="115" depthclear="true" depthcompress="true" onshowlua="self:SetEffect('/ui/main/shared/effects/generic_highlight_rays.effect', '0.18', '0.67', '0.84')" />
+		<frame texture="/ui/elements:rounded_bg_white" color="#0e232a" align="center" valign="center" y="-15s" borderthickness="8s" noclick="1">
+			<frame y="4s" height="30s" width="-8s" align="center" texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="4s" color=".6 .6 .6 1" sticky="1" stickytoinvis="0" noclick="1">
+				<instance buttonName="main_region_selection_close" name="closeXButton" onclicklua="
+				PlaySound('/ui/sounds/launcher/sfx_back.wav')
+				local mainBuildBrowser		= LuaTrigger.GetTrigger('mainBuildBrowser')
+				mainBuildBrowser.visible = false
+				mainBuildBrowser:Trigger()
+				" visible="1" height="25s" width="25s" x="-4s" valign="center" align="right"/>
+				<label x="6s" content="build_browser_title" textvalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+			</frame>
+
+			<panel name="buildsBrowser_content_container" noclick="1" visible="false">
+
+				<!-- Center -->
+				<panel y="34" height="-205s" noclick="1">
+
+					<!-- Left side: Builds -->
+					<panel x="6s" width="54%" noclick="1">
+						<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="0.8h" bordercolor=".8 .8 .8 1" color=".7 .7 .7 1" />
+						
+						<listbox
+							name="buildEntryList"						
+							x="4s" width="-42s" y="4s" height="-8s"
+							align="left"
+							color="invisible"
+							font="maindyn_24"
+							itemwidth="100%"
+							itemheight="30s"
+							select="true"
+							clearselection="false"
+							hoverselect="false"
+							hoverhighlight="true"
+							highlight="under"
+							highlightcolor="invisible"
+							highlightbordercolor="invisible"
+							selectedcolor="invisible"
+							selectedbordercolor="invisible"
+							backgroundimage="$invis"
+							backgroundimagecolor="#1d2f3b"
+							colortransition="true"
+							colortransitiontime="250"
+							exteriorscrollbars="true"
+							scrollbarplaceholder="true"
+							scrollbarsize="32s"
+							scrolltexture="/ui/shared/textures/slider.tga"
+							handleheight="64s"
+							hscrollbar="0"
+							horizontal="false"
+						/>
+
+
+					</panel>
+
+					<!-- Right side: Build info-->
+					<panel x="55%" width="44%" noclick="1" clip="1">
+						<label name="buildsBrowser_name" height="30s" content="" textvalign="center" textalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+						<label name="buildsBrowser_author" y="30s" height="30s" content="" textvalign="center" textalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+
+						<label x="6s" y="85s" height="30s" content="build_browser_Pet" textvalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+						<instance name="buildsBrowser_itemEntry" id="buildsBrowser_pet" x="-4s" align="right" y="75s" width="60s" height="60s" color="white"/>
+
+						<label x="6s" y="133" height="30s" content="build_browser_Rating" textvalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+						<label name="buildsBrowser_rating" x="-6s" y="133" height="30s" content="7.4" textvalign="center" textalign="right" style="labelBase" font="maindyn_20" noclick="1"/>
+
+						<label x="6s" y="161" height="30s" content="build_browser_Votes" textvalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+						<label name="buildsBrowser_votes" x="-6s" y="161" height="30s" content="750" textvalign="center" textalign="right" style="labelBase" font="maindyn_20" noclick="1"/>
+
+						<label x="6s" y="199" width="160s" height="60s" content="build_browser_VisitSite" wrap="1" style="labelBase" font="maindyn_14" noclick="1"/>
+
+						<instance name="buildsBrowser_itemEntry" img="/ui/main/buildBrowser/siteImages/strifeBuilds.png" bgColor="white" x="-4s" align="right" y="209s" width="65s" height="40s" imgHeight="26s" id="buildsBrowser_siteimg"/>
+
+						<instance name="standardButtonBlue"
+							id="buildsBrowser_savebtn"
+							y="270" height="36s" width="95%" align="center" borderthickness="4s"
+							label="build_browser_SaveBuild"
+							font="maindyn_26" outlinecolor="#194053"
+							onclicklua="
+								BuildBrowser.loadCurrent()
+							"
+						/>
+
+					</panel>
+				</panel>
+
+				<!-- Bottom: Abilties and items-->
+				<panel height="160s" valign="bottom" noclick="1">
+					<label x="6s" content="build_browser_abilities" textalign="center" style="labelBase" font="maindyn_16" noclick="1"/>
+					<panel name="buildsBrowser_abilityList" y="22s" grow="1" align="center" height="34" float="right" padding="1s" noclick="1"/>
+					<label x="6s" y="55s" content="build_browser_items" textalign="center" style="labelBase" font="maindyn_16" noclick="1"/>
+					<panel name="buildsBrowser_itemList" y="75s" grow="1" align="center" height="34" float="right" padding="1s" noclick="1"/>
+
+					<panel name="buildsBrowser_bottomText_container" y="-5" height="32s" valign="bottom" align="center" width="90%">
+						<label name="buildsBrowser_bottomText" textvalign="bottom" textalign="center" content="" wrap="1" style="labelBase" font="maindyn_14" noclick="1"/>
+					</panel>
+				</panel>
+			</panel>
+		</frame>
+		<!-- Throbber -->
+		<panel name="buildsBrowser_throb" width="100s" height="100s" align="center" valign="center" visible="false">
+			<animatedimage texture="/ui/shared/throb/throb.tga" noclick="true" loop="1" fps="30" onshow="StartAnim(1);"/>
+		</panel>
+		<label name="buildsBrowser_failed" content="build_browser_failed" style="labelBase" font="maindyn_26" noclick="1" textalign="center" textvalign="center" wrap="1" align="center" valign="center" width="90%" visible="false"/>
+		
+		
+	</panel>
+	
+	<lua file="buildBrowser.lua" />
+	
+</package>

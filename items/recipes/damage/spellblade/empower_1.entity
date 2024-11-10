@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Spellblade_Empower_1"
+	
+	cost="1155"
+	
+>
+	<!-- Tooltip only -->
+	<constant name="mana_enchant" value="10" adjustment="none"/>
+	
+	<onattack>
+		<compare a="accumulator" b="1" op="eq" >
+			<cantarget targetscheme="enemy_units">
+				<getconstant name="damage" entity="this_entity" />
+				<bonusdamageadd target="" a="result" />
+				<starttimer duration="0" />
+				<spawnprojectile name="Projectile_Spellblade" source="this_proxy_entity" target="target_entity" proxy="this_proxy_entity" noresponse="true" param="1"/>
+				<setaccumulator value="0" />
+			</cantarget >
+		</compare>
+	</onattack>
+
+</qualityitem>

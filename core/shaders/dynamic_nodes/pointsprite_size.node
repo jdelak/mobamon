@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="pointsprite_size">
+	<dependency name="HomogeneousPosition" type="float4" source="HomogeneousPosition" />
+	<dependency name="PointSpriteScale" type="float2" source="PointSpriteScale" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float" solution="PSize" />
+	<dependency name="mProj" type="float4x4" source="mProj" />
+	<dependency name="vTexelSize" type="float4" source="vTexelSize" />
+	<dependency name="fParticleSize" type="float" source="fParticleSize" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			// Scale particles up to engine size from PhysX scene size
+			Out = (mProj[0][0] / HomogeneousPosition.w) * (1.0f / vTexelSize.x) * (fParticleSize * PointSpriteScale.x) * 0.5f * 64.0f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			// Scale particles up to engine size from PhysX scene size
+			Out = fParticleSize * 64.0f * 0.75f;
+		?>
+	</case>
+</node>

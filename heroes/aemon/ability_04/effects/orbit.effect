@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2.5">
+
+			<light
+				life="1000"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="1 .5 0"
+				falloffstart="0"
+				falloffend="100"
+				position="0 0 0"
+				loop="true"
+			
+			/>
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				size="40"
+				expirelife="250"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<model
+				expirelife="0"
+				model="shard/model.mdf"
+				anim="idle"
+				scale=".08"
+				color="1 .5 0"
+				alpha=".55"
+				minyawspeed="-360"
+				maxyawspeed="360"
+				minrollspeed="-180"
+				maxrollspeed="180"
+				minpitchspeed="-180"
+				maxpitchspeed="180"
+			>
+			</model>
+
+		</particlesystem>
+   </definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	
+	<waitfordeath instance="instance0" />
+	
+	<!-- <die /> -->
+</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

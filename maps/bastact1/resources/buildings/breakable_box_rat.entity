@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_BreakableBox_Rat"
+
+	model="/world/sprops/speprops/crate/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	
+	isselectable="false"
+	iscontrollable="false"
+	preglobalscale="1.15"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="false"
+	canattack="false"
+
+	corpsetime="0"
+	corpsefadetime="100"
+	deathtime="50"
+	
+	immunity=""
+	nothreat="true"
+
+	hidealtinfo="false"
+	
+	maxhealth="1"
+	
+	canrotate="false"
+	ismobile="false"
+
+	infoheight="10000"
+	lifetime=""
+
+	attacktype="none"
+	combattype="Ranged"
+
+	unittype="breakable"
+	drawonmap="false"
+	alwaysvisible="true"
+
+
+>
+
+
+
+
+	<ondeath>	
+		<spawnunit name="Bastact1_Enemy_Rat" target="source_entity" />
+		
+	</ondeath>
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>	
+	
+</pet>

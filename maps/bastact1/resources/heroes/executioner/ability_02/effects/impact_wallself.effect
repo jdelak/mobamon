@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.35">
+<!--
+			<simpleemitter
+				position="0 25 35"
+				bone="_bone_centerofchest"
+				count="6"
+				spawnrate="10000"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack.material"
+			>
+				<particle
+					color="1 1 0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".25"
+					minscale="60"
+					maxscale="80"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+			
+<!--
+			<light
+				position="0 70 50"
+				life="200"
+				startcolor="10 2 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="150"	
+			/>
+			
+			
+			
+
+			<simpleemitter
+				position="0 25 35"
+				bone="_bone_centerofchest"
+				count="75"
+				spawnrate="11340"
+				particlelife="530"
+				gravity="12.0"
+				minspeed="200"
+				maxspeed="500"
+				drag="0.03"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					heightdistort="0.01"
+					startsize="35"
+					endsize="0"
+					startcolor="1 .5 0"
+					midcolor="1 .5 0"
+					endcolor="1 .5 0"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			
+
+
+
+
+			
+			
+
+			<simpleemitter
+				count="150"
+				spawnrate="2500"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="-1.0"
+				minspeed="300"
+				maxspeed="600"
+				drag="0.05"
+				acceleration="0.0"
+				position="0 75 70"
+				minangle="80"
+				maxangle="80"
+				direction="0 1 0"
+				offsetsphere="8 8 8"
+				particledirectionalspace="local"
+				material="/shared/effects/smaterials/cartoon_dust.material"	
+				depthbias="-15"
+			>
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					startcolor="1 .75 .5"
+					midcolor=".35 .25 .125"
+					endcolor=".35 .25 .125"
+					startsize="50"
+					startalpha="0"
+					midalpha=".65"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				count="25"
+				spawnrate="11340"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="8"
+				minspeed="0"
+				maxspeed="0"
+				drag=".03"
+				acceleration="0"
+				position="0 75 70"
+				minangle="0"
+				maxangle="25"
+				direction="0 1 0"
+				offsetsphere="15 15 15"
+				material="/shared/effects/smaterials/flare.material"
+				particledirectionalspace="local"
+				depthbias="-30"
+			>
+				<particle
+					heightdistort="0.01"
+					minsize="2"
+					maxsize="100"
+					startcolor=".5"
+					midcolor=".5 .125 0"
+					endcolor=".5 .125 0"
+					midcolorpos=".2"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+-->
+		</particlesystem>
+		
+<!--
+		<modifier
+			life="500"
+			startcolor="1 1 1"
+			midcolor="1 1 1"
+			endcolor="1 1 1"
+		/>
+-->
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

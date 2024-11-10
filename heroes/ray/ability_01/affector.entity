@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Ray_Ability1"
+
+	visibility="allies"	
+	radius="350"
+	lifetime="-1"
+	targetselection="closest"
+	targetscheme="visible_enemy_units"
+	effecttype=""
+>
+	<onimpact>
+		<compare a="param" b="0" op="eq">
+			<setparam a="1" />
+			<applystate name="State_Ray_Ability1_Iseeyou" duration="1400" target="this_owner_entity" proxy="target_entity" />
+			<expirestate name="State_Ray_Ability1_Stealth" target="this_owner_entity" />
+			<expire />
+		</compare>
+	</onimpact>
+</affector>

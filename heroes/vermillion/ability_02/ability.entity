@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Vermillion2"
+
+	icon="icon.tga"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="passive"
+	maxcharges="6,5,4,3"
+	
+	alwaysshowtimer="true"
+	
+	
+>
+
+
+	<!--Display Only-->
+	<constant name="damage_increase" value="40" adjustment="none" noshowintooltip="true" />
+	<constant name="attacksrequired" value="6,5,4,3" adjustment="none" />
+	
+	<onlearn>
+		<setcharges a="6" />
+		<starttimer duration="10000" />
+	</onlearn>
+	
+	<onupgrade>
+		<setvar0 a="6,5,4,3" />
+		<compare a="charges" b="var0" op="gt">
+			<setcharges a="var0" />
+		</compare>
+	</onupgrade>
+
+	<onattackstart >
+		<cantarget targetscheme="enemy_units">
+			<compare a="charges" b="1" op="eq">
+				<setattackprojectile name="Projectile_Vermillion_Ability2_MainTargetAttack" />
+				<playanim name="ability_2" speed="source_attackspeed" target="source_entity" />
+				<setattackactioneffect effect="effects/cast.effect" source="source_entity" target="source_entity" />
+			</compare>
+		</cantarget>
+	</onattackstart>
+	
+	<onattack>
+		<cantarget targetscheme="enemy_units">
+			<removecharge />
+			<compare a="charges" b="1" op="eq">
+				<resettimer />
+				<playeffect effect="effects/precast.effect" />
+			</compare>
+			<else>
+				<starttimer duration="10000" />
+			</else>		
+			<compare a="charges" b="0" op="eq">
+				<clearcriticals/>
+				<setvar0 a="source_attackdamage" b="1.4" op="mult" />
+				<popup name="critical" target="source_entity" a="var0" />
+				<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="1000" />
+				<spawnprojectile name="Projectile_Vermillion_Ability2" source="source_entity" target="pos0" proxy="target_entity" offset="-12 68 0" />
+				<setcharges target="this_entity" a="6,5,4,3" />
+				<spawnunit name="Gadget_Vermillion_Ability2" target="pos0" fixedposition="true" pushentity="true" />
+			</compare>
+		</cantarget>
+	</onattack>
+	
+	<ontimer>
+		<removecharge />
+		<compare a="charges" b="1" op="gt">
+			<starttimer duration="10000" />
+		</compare>
+	</ontimer>
+	
+	<ondeath>
+		<setcharges a="6,5,4,3" />
+		<starttimer duration="10000" />
+	</ondeath>
+
+</ability>

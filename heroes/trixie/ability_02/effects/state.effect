@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<model
+				delay="500"
+				bone="_bone_centerofchest"
+				life="1000"
+				startcolor=".125 .125 .125"
+				midcolor=".125 0 .125"
+				endcolor=".125 .125 .125"
+				startscale=".8"
+				midscale="1.1"
+				endscale=".8"
+				model="shield/shield.mdf"
+				material="shield/material.material"
+				loop="true"
+			/>
+
+			<model
+				delay="500"
+				bone="_bone_centerofchest"
+				life="1000"
+				startcolor=".5 .25 .25"
+				midcolor=".25 .25 .5"
+				endcolor=".5 .25 .25"
+				startscale=".8"
+				midscale="1.1"
+				endscale=".8"
+				model="shield/shield.mdf"
+				material="shield/shell_sludge.material"
+				loop="true"
+			/>
+
+			<simpleemitter	
+				delay="500"
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				speed="100"
+				spawnrate="40"
+				minparticlelife="100"					
+				maxparticlelife="300"					
+				offsetsphere="75 75 75"
+				material="/shared/effects/materials/bubble_add.material"
+			>
+				<particle	
+					color=".75 .25 1"
+					startsize="50"
+					endsize="0"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color="1 .5 .5"
+					startsize="50"
+					endsize="0"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color="0 0 1"
+					startsize="50"
+					endsize="0"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color="0 1 0"
+					startsize="50"
+					endsize="0"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color=".5"
+					startsize="50"
+					endsize="0"
+					depthbias="-160"
+				/>
+				
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

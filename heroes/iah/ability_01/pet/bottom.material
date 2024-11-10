@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="sand.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="0" fGlossiness="32.0" fOpacity="1.0" fReflect="1.0">		
+		<vec2 name="vUVScroll" value=".3 -.23" />
+	</parameters>
+
+	<phase name="color" cull="back" blend="translucent" alphawrite="true" depthwrite="true" >
+		<sampler name="diffuse" texture="sand.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />		
+		<sampler name="opacity" texture="grad.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="none" alphawrite="false" depthwrite="true" blend="translucent">
+		<sampler name="diffuse" texture="sand.tga" repeat_u="true" repeat_v="true" />
+		<multipass cull="back" blend="translucent">
+			<sampler name="diffuse" texture="sand.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+			<sampler name="opacity" texture="grad.tga" repeat_u="true" repeat_v="true" />			
+		</multipass>
+	</phase>
+</material>

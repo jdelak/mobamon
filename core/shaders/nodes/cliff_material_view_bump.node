@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="cliff_material_view_bump">
+	<dependency name="Normal" type="*" />
+	<dependency name="TerrainNormal" type="*" />
+	<dependency name="Blend" type="float" />
+	<output name="Out" type="float3" solution="ViewBump" />
+	<case>
+		<dependency name="Normal" type="float3" />
+		<dependency name="TerrainNormal" type="float3" />
+		<dependency name="ViewNormal" type="float3" source="ViewNormal" />
+		<dependency name="ViewTangent" type="float3" source="ViewTangent" />
+		<dependency name="ViewBinormal" type="float3" source="ViewBinormal" />
+		<dependency name="ViewTerrainTangent" type="float3" source="ViewTerrainTangent" />
+		<dependency name="ViewTerrainBinormal" type="float3" source="ViewTerrainBinormal" />
+		<?hlsl
+			float3x3 mRotation = float3x3(ViewTangent, ViewBinormal, ViewNormal);
+			float3 f3NormalCliff = mul(Normal, mRotation);
+			
+			float3x3 mTerrainRotation = float3x3(ViewTerrainTangent, ViewTerrainBinormal, ViewNormal);
+			float3 f3NormalTerrain = mul(TerrainNormal, mTerrainRotation);
+			
+			Out = normalize(lerp(f3NormalTerrain, f3NormalCliff, Blend));
+		?>
+		<?glsl
+			mat3 mRotation = mat3(ViewTangent, ViewBinormal, ViewNormal);
+			vec3 f3NormalCliff = mRotation * Normal;
+			
+			mat3 mTerrainRotation = mat3(ViewTerrainTangent, ViewTerrainBinormal, ViewNormal);
+			vec3 f3NormalTerrain = mTerrainRotation * TerrainNormal;
+			
+			Out = normalize(mix(f3NormalTerrain, f3NormalCliff, Blend));
+		?>
+	</case>
+	<case default="true">
+		<dependency name="Normal" type="skip" />
+		<dependency name="ViewNormal" type="float3" source="ViewNormal" />
+		<?hlsl
+			Out = ViewNormal;
+		?>
+		<?glsl
+			Out = ViewNormal;
+		?>
+	</case>
+</node>

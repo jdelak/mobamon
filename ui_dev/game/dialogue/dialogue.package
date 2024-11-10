@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<!--
+	===========================	
+	Includes / Triggers
+	===========================
+	-->
+	<include file="/ui/game/dialogue/dialogue_templates.package"/>
+	
+	<trigger name="campaign_startCinematicOverlay"/>
+	<trigger name="campaign_endCinematicOverlay"/>
+	<trigger name="act1_startCinematicOverlay"/>
+	<trigger name="act1_endCinematicOverlay"/>
+	<trigger name="cinematic_turnOn"/>
+	<trigger name="cinematic_fadeBlackIn"/>
+	<trigger name="cinematic_fadeBlackInSlow"/>
+	<trigger name="cinematic_fadeBlackOut"/>
+	<trigger name="cinematic_fadeBlackOutSlow"/>
+	
+	<!-- For Testing
+	<trigger name="test_cinematic_executioner1"/> -->
+	
+	<!--
+	===========================	
+	All Black Backgrounds (BOTTOM)
+	===========================
+	-->
+	<panel name="Dialogue_Message_BG" color="0 0 0 0.7" visible="0" noclick="1"/>
+	
+	<!-- 
+	===========================
+	Black Cinematic Bars 
+	===========================
+	-->
+	<panel name="Cinematic_Container" visible="0" noclick="1">
+		<panel name="Cinematic_TopBar" color="#060606" width="100%" height="11h" noclick="0"/>
+		<panel name="Cinematic_BottomBar" color="#060606" width="100%" height="11h" valign="bottom" noclick="0"/>
+	</panel>
+		
+	<!--
+	===========================	
+	Dialogue Messages
+	===========================
+	-->	
+	<panel y="-30h" name="Dialogue_Container" width="72h" height="20h" align="center" visible="0" noclick="1">
+		<panel name="Dialgoue_Message" noclick="1"> <!-- float="right" reverse="1" -->			
+			<!-- Text Area: Base, Title, Underline, Text -->
+			<panel x="24%" name="Dialogue_Message_Text" width="0%" height="90%" valign="center" noclick="1" visible="0">
+				<instance name="Dialogue_Message_Text_Base"/>
+				
+				<!-- Cracks, these are very specifically placed -->
+				<panel x="2.2h" y="2%" width="97%" height="95%" valign="center" noclick="1">
+					<instance name="Dialogue_Message_Text_Cracks" number="01" image="05" hflip="1" x="-0.1h" y="-12h" align="right" valign="bottom"/>
+					<instance name="Dialogue_Message_Text_Cracks" number="02" image="02" hflip="1" y="4h" align="right"/>
+					<instance name="Dialogue_Message_Text_Cracks" number="03" image="03" hflip="1" y="13.5h" align="right" valign="top"/>
+					<instance name="Dialogue_Message_Text_Cracks" number="04" image="04" x="-26h" y="0.1h" valign="top"/>
+					<instance name="Dialogue_Message_Text_Cracks" number="05" image="04" x="18h" y="0.1h" valign="top"/>
+					<instance name="Dialogue_Message_Text_Cracks" number="06" image="04" vflip="1" x="10h" y="-0.3h" valign="bottom"/>
+					<instance name="Dialogue_Message_Text_Cracks" number="07" image="04" vflip="1" x="12h" y="-0.3h" valign="bottom"/>
+				</panel>
+				
+				<panel name="Dialogue_Message_Text_Holder" x="2.2h" y="2%" width="94%" height="80%" valign="center" noclick="1" visible="0">
+					<label name="Dialogue_Message_Text_Title" font="maindyn_20" content="Executioner" color="#aa9d6b" noclick="1"/>
+					<image x="-1h" y="2.5h" name="Dialogue_Message_Text_Divider" texture="/ui/game/dialogue/textures/title_underline.tga" color="#aa9d6b" width="50%" height="1h" align="left" noclick="1"/>
+					<label y="3.5h" name="Dialogue_Message_Text_Body" font="maindyn_18" content="bastact1_cinematic_executioner1_body" color="1 1 1 0.78" wrap="1" noclick="1"/>
+				</panel>
+			</panel>
+			
+			<!-- Effects -->
+			<panel x="24%" name="Dialogue_Message_Effects" width="78%" height="90%" valign="center" noclick="1" visible="1">
+				<panel x="2.2h" y="2%" width="97%" height="95%" valign="center" noclick="1">
+					<!-- Smoke no longer needed
+					<instance name="Dialogue_Message_Text_SmokeHolder" number="01" direction="Verical"/>
+					<instance name="Dialogue_Message_Text_SmokeHolder" number="02" direction="Verical" y="-2h"/>
+					-->
+					
+					<instance name="Dialogue_Message_Text_Rubble" number="01" y="2.5h"/>
+					<instance name="Dialogue_Message_Text_Rubble" number="02" y="-1h"/>
+				</panel>
+			</panel>
+			
+			<!-- Model Area: Lower Frame, Model, Top Frame, Glow, Details -->
+			<panel name="Dialogue_Message_Model" width="24%" height="100%">
+				<frame x="0.2h" y="1h" texture="/ui/elements:squareglow" color="0 0 0 .9" width="+1.2h" height="+2h" align="center" valign="center" borderthickness="10s" noclick="1"/>
+				<image name="Dialogue_Message_Model_BottomFrame" texture="/ui/game/dialogue/textures/model_ally.tga" width="137%" height="120%" align="left" valign="top" noclick="1" />
+				
+				<!-- For SPE -->
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Bastion_01"
+					camerapos="0 100 88" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="100"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/heroes/bastion1BastAct1/bastion_face/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Rook_01"
+					camerapos="0 140 85" 
+					cameraangles="0 0 180"
+					modelangles="0 0 10"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/heroes/rook_camp1/rook_dialogue/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Executioner_01"
+					camerapos="3 145 120" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/heroes/executionerCinematic/dialogue/model.mdf"
+				/>
+
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Executioner_02"
+					camerapos="3 145 120" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/heroes/executionerCinematic/dialogue/mainhall/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Wizard_01"
+					camerapos="0 110 93" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/npcs/boss_enemies/wizard/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Guard_01"
+					camerapos="-3 125 95" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/npcs/melee_creep/vo.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Guard_02"
+					camerapos="3 125 95" 
+					cameraangles="0 0 180"
+					modelangles="0 0 -40"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/npcs/meleeStandard/vo.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Guard_03"
+					camerapos="-3 125 95" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/npcs/scared_guard/vo.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Guard_04"
+					camerapos="-3 115 95" 
+					cameraangles="0 0 180"
+					modelangles="0 0 30"			
+					carmerafar="180"
+					ambientcolor=".8 .8 .7"
+					model="/maps/bastact1/resources/npcs/bigShield/vo.mdf"
+				/>
+				
+				<!-- For Tutorials -->
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Caprice_01"
+					camerapos="0 90 105" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor=".8 .8 .7"
+					model="../heroes/caprice/portrait/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Alchemist_01"
+					camerapos="0 120 87" 
+					cameraangles="0 0 180"
+					modelangles="0 0 10"			
+					carmerafar="100"
+					ambientcolor=".8 .8 .7"
+					model="/maps/tutorial_2/resources/heroes/flaskblack/portrait/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Auros_01"
+					camerapos="-3 120 112" 
+					cameraangles="0 0 180"
+					modelangles="0 0 20"			
+					carmerafar="100"
+					ambientcolor=".8 .8 .7"
+					model="/maps/tutorial_2/resources/heroes/auros/portrait/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Cindara_01"
+					camerapos="0 90 100" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor=".8 .8 .7"
+					model="/maps/tutorial_2/resources/npcs/cindara/portrait/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Lexikhan_01"
+					camerapos="-5 90 107" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor=".8 .8 .7"
+					model="/maps/tutorial_2/resources/heroes/lexikhan/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Merchant_01"
+					camerapos="0 131 125" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor="1 1 1"
+					model="../heroes/merchant/portrait/model.mdf"
+					noclick="1"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Militia_01"
+					camerapos="7 111 125" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor="1 1 1"
+					model="../heroes/militia_leader/portrait/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Thief_01"
+					camerapos="23 141 95" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor="1 1 1"
+					model="../heroes/thief/portrait/model.mdf"
+				/>
+				
+				<instance
+					name="Dialogue_Message_Model_Panel"
+					id="Baldir_01"
+					camerapos="30 221 205" 
+					cameraangles="0 0 180"
+					modelangles="0 0 0"			
+					carmerafar="100"
+					ambientcolor="1 1 1"
+					model="../heroes/boss/portrait/model.mdf"
+					effect="../heroes/boss/effects/body.effect"
+				/>
+				
+				<instance name="Dialogue_Message_Model_TopFrame"/>
+				
+				<!-- Smoke no longer needed
+				<instance name="Dialogue_Message_Text_SmokeHolder" number="03" direction="Left" x="-12h" y="2h"/>
+				<instance name="Dialogue_Message_Text_SmokeHolder" number="04" direction="Right" x="0h" y="2h"/>
+				-->
+			</panel>
+		</panel>
+	</panel>
+	
+	<!-- Off effects for Dialogue Container -->
+	<panel y="-3.5h" width="72h" height="20h" align="center" noclick="1">
+		<!-- Smoke no longer needed
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="05" direction="LeftOff" x="-68h" y="-18h"/>
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="06" direction="LeftOff" x="-58h" y="-18h"/>
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="07" direction="LeftOff" x="-48h" y="-18h"/>
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="08" direction="LeftOff" x="-38h" y="-18h"/>
+
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="09" direction="RightOff" x="-28h" y="-18h"/>			
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="10" direction="RightOff" x="-18h" y="-18h"/>
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="11" direction="RightOff" x="-8h" y="-18h"/>
+		<instance name="Dialogue_Message_Text_SmokeHolder" number="12" direction="RightOff" x="2h" y="-18h"/>
+		-->
+		
+		<instance name="Dialogue_Message_Text_Rubble" number="03" group="Dialogue_Message_Text_Rubble_Off" x="0h" y="-16h"/>
+		<instance name="Dialogue_Message_Text_Rubble" number="04" group="Dialogue_Message_Text_Rubble_Off" x="-68h" y="-16h"/>
+		<instance name="Dialogue_Message_Text_Rubble" number="05" group="Dialogue_Message_Text_Rubble_Off" x="-45h" y="-16h"/>
+	</panel>
+	
+	<!--
+	===========================	
+	All Black Backgrounds (TOP)
+	===========================
+	-->
+	<panel name="Cinematic_BlackOverlay" color="black" visible="0" noclick="1"/>
+	
+	<!--
+	===========================	
+	Dialogue Messages
+	===========================
+	-->	
+	<panel name="Cinematic_Dialogue_Container" width="95h" height="10h" align="center" valign="top" visible="0" noclick="1">
+		<label name="Cinematic_Dialogue_Text" font="maindyn_16" content="bastact1_cinematic_executioner1_body_splitA" color="1 1 1 0.78" textalign="center" textvalign="center" wrap="1" noclick="1"/>
+	</panel>
+	
+	<!--
+	===========================	
+	End-Game Screen
+	===========================
+	-->	
+	<panel name="Cinematic_EndGame" noclick="0" visible="0" color="0 0 0 0.7">
+		<splashimage
+			name="Cinematic_EndGame_splash"
+			noclick="1"
+			visible="1"
+			bgcolor="black"
+			view="clip"
+			onhidelua="self:SetImage('')"
+			onshowlua="self:SetImage('/ui/game/loading/textures/bastact1_endscreen.jpg')"
+		/>
+
+		<!-- YAY YOU FINISHED SPE CONTENT -->
+		<label name="Cinematic_EndGame_act2" x="2h" y="1h" font="maindyn_48" content="origins_act2" color="#fec038" outline="1" outlinecolor="0.53 0.34 0.01 0.22" textalign="center" align="left" valign="top" fitx="1" grow="1" noclick="1" visible="0"/>
+		<label name="Cinematic_EndGame_comingsoon" x="2h" y="7h" font="maindyn_30" content="origins_comingSoon" color="1 1 1 1" outline="1" outlinecolor="#4c4c4c" textalign="center" align="left" valign="top" fitx="1" grow="1" noclick="1" visible="0"/>			
+		
+		<!-- QUEST AND REWARD CONTENT -->
+		<panel name="Cinematic_EndGame_questHolder" height="17.3@" width="45%" align="center" valign="center" noclick="1">
+			<panel align="center" valign="center" float="right" noclick="1">
+				<instance name="Cinematic_EndGame_quest_template" id="Cinematic_EndGame_quest_01" imagetype="resourcesImage" texture="commodity_essence" label="origins_resources" amount="120" imagecolor="0.93 0.58 0.12 0.5" color="#ffd06b" outlinecolor="#573105"/>
+				<instance name="Cinematic_EndGame_quest_template" id="Cinematic_EndGame_quest_02" imagetype="resourcesImage" texture="commodity_seal" label="origins_resources" amount="240" imagecolor="0.58 0.12 0.93 0.5" color="#e16bff" outlinecolor="#280557"/>
+				<instance name="Cinematic_EndGame_quest_template" id="Cinematic_EndGame_quest_03" imagetype="accountIconImage" texture="spe_act1" label="origins_accountIcon" amount="origins_new" imagecolor="0.12 0.71 0.93 0.7" color="#6bcdff" outlinecolor="#053d57"/>
+			</panel>
+
+			<label name="Cinematic_EndGame_questTitle" x="1h" y="-5h" font="maindyn_26" content="origins_questTitle" color="#ffe4f0" outline="1" outlinecolor="#3d2939" textalign="center" align="left" valign="top" fitx="1" grow="1" noclick="1" visible="0"/>
+			<label name="Cinematic_EndGame_questComplete" x="1h" y="-8h" font="maindyn_18" content="origins_questComplete" color="#eab8cd" outline="1" outlinecolor="#280822" textalign="center" align="left" valign="top" fitx="1" grow="1" noclick="1" visible="0"/>
+		</panel>
+		
+		<instance
+			name="standardButton_endGame" visible="1"
+			id="Cinematic_EndGame_survey" y="-12h" font="maindyn_36"
+			width="32h" height="8h" align="right" valign="bottom"
+			x="-2h" labelY="-1.7h"
+			borderthickness="1h"
+			label="origins_spe1_survey"
+			disabledmouseover="true"
+			disabledmouseout="true"
+			onclicklua="mainUI.OpenURL(Translate('origins_spe1_survey_url'))"
+		/>		
+		<label x="-4h" y="-12.8h" font="maindyn_22" content="origins_spe1_survey_desc" color="#ffe4f0" outline="1" outlinecolor="#3d2939" textalign="center" align="right" valign="bottom" width="28h" fity="1" noclick="1" visible="1"/>
+		
+		<instance
+			name="standardButton_endGame" visible="1"
+			id="Cinematic_EndGame_close" y="-2h" font="maindyn_36"
+			width="32h" height="8h" align="right" valign="bottom"
+			x="-2h" labelY="-1.7h"
+			borderthickness="1h"
+			label="general_close"
+			disabledmouseover="true"
+			disabledmouseout="true"
+			onclicklua="Client.FinishGame()"
+		/>
+		<label x="-4h" y="-2.8h" font="maindyn_22" content="origins_spe1_close_desc" color="#ffe4f0" outline="1" outlinecolor="#3d2939" textalign="center" align="right" valign="bottom" width="28h" fity="1"  noclick="1" visible="1"/>
+		
+	</panel>
+	
+	<lua file="/ui/game/dialogue/dialogue_animations.lua"/>
+	<lua file="/ui/game/dialogue/dialogue.lua"/>
+</package>

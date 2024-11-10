@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_Boss_Ability1"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="450"
+	stunned="true"
+
+>
+	<oninflict>
+		<playanim name="knock_1" target="source_entity"/>
+	</oninflict>
+
+	<onimpact>
+		<setpos0 position="source_position" positionend="this_proxy_entity" positionmodifier="pointpastline" positionvalue="600" />
+		<spawnprojectile name="Projectile_Tutorial_Boss_Ability1" source="source_entity" target="pos0" offset="0 10 120" />
+		
+		<condition test="hasstate State_Stunned" target="source_entity" >
+			<expire/>
+			<playanim name="idle" target="source_entity"/>
+		</condition>
+
+	</onimpact>
+	
+</state>

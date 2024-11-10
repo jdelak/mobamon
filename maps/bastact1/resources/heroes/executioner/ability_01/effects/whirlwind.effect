@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="ability_03" deferred="true" useentityeffectsscale="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".8">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../sounds/sfx_cast_1.wav"
+			/>
+
+			<simpleemitter
+				life="799"
+				spawnrate="5"
+				speed="0"
+				offsetsphere="0"
+				particlelife="2000"
+				depthbias="0"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle
+					turn="1"
+					anglespeed="-1000"
+				>
+					<model
+						life="500"
+						name="spin"
+						model="../../model.mdf"
+						anim="spin_2"
+						color="0 0 0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						scale="1"
+						pitch="-90"
+					/>
+
+					<model
+						life="500"
+						name="spin"
+						model="../../model.mdf"
+						anim="spin_2"
+						color="0 0 0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						scale="1"
+						pitch="-90"
+						
+					/>
+					
+					<template name="swoosh">
+						<billboard
+							position="0 0 75"
+							life="250"
+							material="/shared/effects/smaterials/swoosh_ring.material"
+							startcolor="0"
+							midcolor="3 0 0"
+							endcolor="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							startsize="420"
+							endsize="500"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="800"
+							roll="180"
+							directionalspace="world"
+						/>
+						
+						<billboard
+							position="0 0 75"
+							life="450"
+							material="/shared/effects/smaterials/swoosh_ring.material"
+							startcolor="0"
+							midcolor="1 0 0"
+							endcolor="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							startsize="420"
+							endsize="500"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="800"
+							roll="180"
+							directionalspace="world"
+						/>
+
+						<billboard
+							position="0 0 75"
+							life="400"
+							material="/shared/effects/smaterials/black_swoosh.material"
+							startcolor="0"
+							endcolor="0"
+							startsize="380"
+							endsize="400"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="800"
+							roll="180"
+							directionalspace="world"
+							
+						/>
+						
+						<billboard
+							position="0 0 75"
+							life="200"
+							material="/shared/effects/smaterials/black_swoosh.material"
+							startcolor="0"
+							endcolor="0"
+							startsize="380"
+							endsize="400"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="800"
+							roll="0"
+							directionalspace="world"
+							
+						/>
+						
+						<billboard
+							position="0 0 75"
+							life="400"
+							material="/shared/effects/smaterials/black_swoosh_ring.material"
+							color="0"
+							startalpha="0"
+							midalpha=".3"
+							endalpha="0"
+							startsize="480"
+							endsize="500"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="800"
+							roll="0"
+							directionalspace="world"
+							
+						/>
+						
+						<billboard
+							position="0 0 75"
+							life="400"
+							material="/shared/effects/smaterials/black_swoosh_ring.material"
+							color="0"
+							startalpha="0"
+							midalpha=".3"
+							endalpha="0"
+							startsize="480"
+							endsize="500"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="800"
+							roll="180"
+							directionalspace="world"
+							
+						/>
+					</template>
+					
+					<instance name="swoosh"/>
+					<instance name="swoosh"/>
+					
+					<!-- <simpleemitter
+						life="500"
+						spawnrate="500"
+						particlelife="500"
+						speed="100"
+						gravity="0"
+						drag="0"
+						acceleration="0"
+						position="0 0 0"
+						direction="0 0 1"
+						offsetsphere="20 20 20"
+						material="/shared/effects/smaterials/rocket_smoke_blend.material"
+						inheritvelocity="0.05"
+						minangle="0"
+						maxangle="0"
+					>
+						<particle
+							color="1 .8 .5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minscale="1"
+							maxscale="10"
+							starts="5"
+							endscale="10"
+							
+						/>
+
+					</simpleemitter>-->
+				</particle>	
+			</simpleemitter>
+		</particlesystem>
+		
+		<modifier 
+			life="799"
+			name="modifier0"
+			color="0 0 0"
+			alpha="1"
+		/>
+		
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_Goal"
+	
+	ishidden="true"
+	passiveeffect=""
+	deathpersist="true"
+
+
+>
+
+
+	<onkilled>
+		<setactivemodifierkey name="caprice_dead" />
+	</onkilled>
+	
+	<modifier key="caprice_dead" modpriority="100"
+	>
+		<onframe>
+			<targettype target="target_entity" source="target_entity" type="alive">
+				<playeffect effect="/maps/tutorial/resources/triggers/waypoint_anim/direction_timed6.effect" source="this_owner_entity" target="this_proxy_entity" />
+				<setactivemodifierkey name="" />
+			</targettype>
+		</onframe>
+	</modifier>
+	
+</state>

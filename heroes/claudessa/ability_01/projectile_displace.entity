@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Claudessa_Ability1_Displace"
+
+	speed="2400"
+	gravity="0"
+	lifetime="-1"
+
+	modelscale="8.0"
+	model="/shared/models/invis.mdf"
+	
+	flying="true"
+	flyheight="-250"
+	
+	touchradius="180"
+	touchcliffs="false"
+	touchpropradius="200"
+	touchpropanim="hit"
+
+	hazardradius="300"
+	hazardoffset="210"
+  
+	touchradiusdiradjust="true"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+>
+
+	<ontouch>
+		<cantarget targetscheme="enemy_units" >
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<cantarget effecttype="CrowdControl" >
+						<unbind target="target_entity" />
+						<setpos0 position="this_position" offsetspace="this_proxy_entity" offset="0 -400 0" />
+						<spawnprojectile name="Projectile_Claudessa_Ability1_Bind" source="this_position" target="pos0" pushentity="true" />
+						<bind entity="stack_entity" target="target_entity" position="false" unbindondeath="true" turn="false" verticaloverride="true" />
+					</cantarget>
+				</onimpact>
+			</combatevent>
+			<recordheroaggression  />
+			<aggression />
+		</cantarget>
+	</ontouch>
+	
+
+</projectile>

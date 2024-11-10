@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="world_terrain_tangent">
+	<dependency name="ObjectTangent" type="float3" source="ObjectTerrainTangent" />
+	<dependency name="mWorldRotate" type="float3x3" source="mWorldRotate" />
+	<output name="Out" type="float3" solution="WorldTerrainTangent" />
+	<?hlsl
+		Out = mul(ObjectTangent, mWorldRotate);
+	?>
+	<?glsl
+		Out = mWorldRotate * ObjectTangent;
+	?>
+</node>

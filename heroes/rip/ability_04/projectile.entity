@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rip_Ability4"
+
+	speed="3000"
+	gravity="0"
+
+	modelscale="1.0"
+	model=""
+		
+	canturn="true"
+	flying="true"
+	pathing="true"
+	flyheight="0"
+	range="500,650,800"
+	bindcountsformovement="true"
+	
+	touchradius="150"
+	touchpropradius="100"
+	touchpropanim="hit"
+	maxtouchespertarget="1"
+	hazardradius="200"
+	hazardoffset="100"
+	hazardthreat="extreme"
+	
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_units_and_buildings"
+
+>
+
+	<ontouch>
+		<attack targetscheme="enemy_units_and_buildings" source="this_owner_entity" />
+		<resetattackcooldown/>
+		<cantarget targetscheme="enemy_units_and_buildings" >
+			<hasmodifier entity="tool_entity" name="multi_hit" >
+				<starttimer duration="6000" entity="tool_entity" />
+			</hasmodifier>
+			<setparam a="1" />
+		</cantarget>
+	</ontouch>
+	
+	<onimpact>
+		<compare a="param" b="0" op="eq" >
+			<setactivemodifierkey entity="tool_entity" name="" />
+		</compare>
+	</onimpact>
+	
+	
+
+</projectile>
+

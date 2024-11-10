@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_HomecomingStone_Source"
+
+	icon="icon.tga"
+	passiveeffect="effects/source.effect"
+	
+	effecttype=""
+
+	ischanneling="true"
+	channeltime="3000"
+>
+	<onchannelstart>
+		<order command="forcechannel" source="this_owner_entity" target="this_owner_entity" />
+
+		<spawnaffector name="Affector_HomecomingStone_Target" ischannel="true" proxy="this_owner_entity" pushentity="true" target="proxy_position" />
+		
+		<playeffect effect="effects/source_start.effect" source="source_position" target="" occlude="true" />
+		
+		<ping name="teleport" position="proxy_position" />		
+		
+	</onchannelstart>
+
+	<onexpired>
+		<playanim name="port_in" target="source_entity" />
+	</onexpired>
+
+</state>

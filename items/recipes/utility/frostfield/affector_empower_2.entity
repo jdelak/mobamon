@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_FrostfieldPlate_Empower_2"
+
+	lifetime="500"
+	radius="500"
+	touchpropradius="450"
+	touchpropanim="flamehit"
+	
+	targetselection="all"
+	targetscheme="enemy_units"
+	effecttype=""
+	maximpactspertarget="1"
+	persist="true"
+	canturn="false"
+
+	impacteffect="effects/impact.effect"
+>
+	<onimpact>
+		<getconstant name="damage" adjustmentsource="tool_entity"/>
+		<damage effecttype="Magic" amount="1" b="result" op="mult" />
+		<recordheroaggression  />
+		<aggression />
+		<applystate name="State_FrostfieldPlate" duration="4500"/>
+	</onimpact>
+	
+	<onspawn>
+		<playeffect effect="effects/aoe.effect" source="this_position" target="this_position"/>
+	</onspawn>
+	
+</affector>
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Midknight_Ability4"
+	
+	icon="icon.tga"
+	passiveeffect="effects/link.effect"
+	
+	
+	impactinterval="2950"
+
+
+>
+
+	<onimpact>
+		<applystate name="State_Stunned" target="this_owner_entity" duration="1400,1700,2000" />
+		<playeffect effect="effects/impact.effect" source="this_owner_entity" target="this_owner_entity" />
+		
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic" amount="1" b="result" op="mult" />
+		<compare a="result" b="1" op="ge">
+			<playeffect effect="effects/sound_impact.effect" source="target_entity" />
+		</compare>				
+		<expire />
+	</onimpact>
+	
+	<onframe>
+		<distance target="this_owner_entity" source="source_entity" /> 
+		<compare a="result" b="1200" op="gt" >
+			<expire />
+		</compare>
+		<compare a="source_health_percent" b=".01" op="le" > 
+			<expire />
+		</compare>
+	</onframe>
+
+</state>

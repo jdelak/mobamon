@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/decal.shader" vDiffuseColor=".8 .6 .4" fSpecularLevel="1.0" fGlossiness="255.0" fOpacity="1.0" fReflect="1.0"  />
+	<phase name="color" cull="back" depthwrite="false" depthbias="true" depthslopebias="1" alphawrite="false" shadows="true" blend="translucent">
+		<sampler name="diffuse" texture="/world/decals/00rugtest.tga" repeat_u="false" repeat_v="false" />
+		<sampler name="normalmap" texture="color_rug_n" repeat_u="false" repeat_v="false" />
+	</phase>
+	<phase name="defer" cull="back" depthwrite="false" depthbias="true" depthslopebias="1" alphawrite="false" shadows="true" blend="translucent">
+		<sampler name="diffuse" texture="/world/decals/00rugtest.tga" repeat_u="false" repeat_v="false" />
+		<sampler name="normalmap" texture="color_rug_n" repeat_u="false" repeat_v="false" />
+	</phase>
+</material>

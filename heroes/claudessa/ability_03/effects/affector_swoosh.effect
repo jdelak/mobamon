@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="2.15">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.75"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			
+			<light
+				position="0 100 50"
+				life="500"
+				startcolor="10 5 0"
+				midcolor="10 5 0"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="300"
+				endfalloffend="300"
+				directionalspace="world"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+
+					<model
+						position="0 35 10"
+						life="240"
+						color="50 .5 .5"
+						model="animated_model/model.mdf"
+						anim="idle"
+						startalpha="0"
+						midalpha="0"
+						endalpha="0"
+					>
+
+						<controller bone="Salomon" life="3000" position="0 0 0">
+
+
+						
+						
+							<simpleemitter
+								life="200"
+								position="0 0 -50"
+								spawnrate="1000"
+								minparticlelife="200"
+								maxparticlelife="350"
+								gravity="-1"
+								offsetsphere="0"
+								minspeed="60"
+								maxspeed="125"
+								drag="0.01"
+								direction="0 -1 0"
+								minangle="30"
+								maxangle="90"
+								material="/shared/effects/smaterials/cartoon_smack_white.material"
+								depthbias="0"
+								inheritvelocity="-.2"
+								limitinheritvelocity="1000"
+							>
+								<template name="glow_particle">
+									<particle
+										turn="1"
+										height="12"
+										minwidth="2"
+										maxwidth="3"
+										minstartscale="2"
+										maxstartscale="4"
+										minmidscale="6"
+										maxmidscale="12"
+										minendscale="5"
+										maxendscale="8"
+										color=".5 0 .5"
+										startalpha="1"
+										midalpha="1"
+										endalpha="0"
+									/>
+								</template>
+								<instance name="glow_particle"/>
+								<instance name="glow_particle"/>
+							</simpleemitter>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+
+							<simpleemitter
+								life="200"
+								position="0 0 -50"
+								spawnrate="1000"
+								minparticlelife="200"
+								maxparticlelife="350"
+								gravity="-1"
+								offsetsphere="0"
+								minspeed="60"
+								maxspeed="125"
+								drag="0.01"
+								direction="0 -1 0"
+								minangle="30"
+								maxangle="90"
+								material="/shared/effects/materials/whitedot.material"
+								depthbias="-30"
+								inheritvelocity="-.2"
+								limitinheritvelocity="1000"
+							>
+								<template name="glow_particle">
+									<particle
+										turn="1"
+										height="12"
+										minwidth="2"
+										maxwidth="3"
+										minstartscale="2"
+										maxstartscale="4"
+										minmidscale="6"
+										maxmidscale="12"
+										minendscale="5"
+										maxendscale="8"
+										startcolor="0"
+										midcolor="{color}"
+										endcolor="0"
+										midcolorpos=".25"
+									/>
+								</template>
+								<instance name="glow_particle" color=".5 .2 0"/>
+								<instance name="glow_particle" color=".5 .2 0"/>
+							</simpleemitter>
+
+							
+							
+							<template name="purple_sparks" >
+								<simpleemitter
+									life="200"
+									position="40 0 -50"
+									spawnrate="400"
+									minparticlelife="350"
+									maxparticlelife="450"
+									gravity="-1"
+									offsetsphere="0"
+									minspeed="110"
+									maxspeed="175"
+									drag="0.015"
+									direction="{dir}"
+									minangle="0"
+									maxangle="10"
+									material="/shared/effects/smaterials/whitedot.material"
+									depthbias="-35"
+									inheritvelocity="-.5"
+									limitinheritvelocity="500"
+								>
+									<template name="glow_particle">
+										<particle
+											turn="1"
+											height="10"
+											minstartscale="1"
+											maxstartscale="8"
+											minmidscale="12"
+											maxmidscale="25"
+											minendscale="5"
+											maxendscale="8"
+											startcolor="0"
+											midcolor="{color}"
+											endcolor="0"
+											minwidth="1"
+											maxwidth="2"
+											midcolorpos=".25"
+										/>
+									</template>
+									<instance name="glow_particle" color="0 0 .2"/>
+									<instance name="glow_particle" color="0 0 .2"/>
+								</simpleemitter>
+							</template>
+							
+							<instance name="purple_sparks" dir="-1 0 -1" />
+							<instance name="purple_sparks" dir="0 0 1" />
+
+
+
+						</controller>
+						
+					</model>
+
+					
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

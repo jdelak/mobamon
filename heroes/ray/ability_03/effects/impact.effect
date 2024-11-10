@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="5">
+		
+			<sound
+				volume="0.35" 
+				falloffstart="500"
+				falloffend="1800"
+				sample="../sounds/sfx_impact.wav"
+			/>	
+		
+		
+			<simpleemitter
+				count="3"
+				spawnrate="2000"
+				particlelife="200"
+				offsetsphere="15 15 0"
+			>
+				<particle
+				>
+					<groundsprite
+						position="0 0 0"
+						life="600"
+						material="/shared/effects/smaterials/snowy_groundsprite.material"
+						size="25"
+						midsizepos=".05"
+						color=".75 .75 1"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+
+					/>
+
+					<groundsprite
+						position="0 0 0"
+						life="600"
+						material="/shared/effects/smaterials/snowy_cracks_reveal.material"
+						size="32"
+						midsizepos=".2"
+						color=".5 .75 1"
+						startframe="1"
+						endframe=".2"
+						startalpha=".25"
+						midalpha=".25"
+						endalpha="0"
+					/>
+				</particle>
+
+			</simpleemitter>
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<simpleemitter
+				bone="_bone_center"
+				count="3"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-20"
+			>
+				<particle
+					color="0 .03 .25"
+					startscale="15"
+					endscale="45"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_center"
+				count="3"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-20"
+			>
+				<particle
+					color="0 .03 .25"
+					startscale="10"
+					endscale="15"
+					turn="true"
+				/>
+			</simpleemitter>
+		
+		
+		
+		
+		
+			<billboard
+				bone="_bone_center"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="0 .25 1"
+				endcolor="0 0 0"
+				life="300"
+				size="100"
+				depthbias="0"
+			/>
+		
+			<billboard
+				bone="_bone_center"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				life="300"
+				size="25"
+				depthbias="0"
+			/>
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<model
+				life="200"
+				parentmodel="true"
+				parentskeleton="true"
+				startcolor="0 0 1"
+				midcolor="1 1 1"
+				endcolor="1 2 3"
+				midcolorpos=".2"
+				scale="1.025"
+				material="/heroes/ace/ability_04/effects/material.material"
+			/>
+<!--
+			<model
+				life="200"
+				parentmodel="true"
+				parentskeleton="true"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2 3"
+				startscale="1"
+				midscale="1"
+				endscale="1"
+				startalpha="1"
+				endalpha="1"
+				material="/heroes/bastion/ability_02/effects/dome/material.material"
+			/>
+
+			<debris
+				bone="_bone_lefthand"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale="0.8"
+				minlife="1000"
+				maxlife="1500"
+				model="../../ability_03/effects/icee_debris/debris.mdf"
+				material="../../ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+			
+			<debris
+				bone="_bone_righthand"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale=".8"
+				minlife="1000"
+				maxlife="1500"
+				model="../../ability_03/effects/icee_debris/debris.mdf"
+				material="../../ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+			
+			<debris
+				bone="_bone_centerofchest"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale="0.75"
+				minlife="1000"
+				maxlife="1500"
+				model="../../ability_03/effects/icee_debris/debris.mdf"
+				material="../../ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="100"
+				position="0 0 0"
+				spawnrate="1000"			
+				minparticlelife="150"
+				maxparticlelife="300"
+				gravity="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="90"
+				minspeed="0"				
+				maxspeed="175"				
+			>
+				<particle
+					turn="true"
+					minsize="175"								
+					maxsize="350"								
+					startcolor="1 1 1"
+					midcolor="0 .75 1"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+					minwidth="3"
+					maxwidth="10"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="20"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="750"
+				maxspeed="1500"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort="0.25"
+					endheightdistort="0"
+					startsize="8"
+					endsize="4"
+					startcolor="1 1 1"
+					midcolor="0 .75 1"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+<!--
+			<debris
+				bone="_bone_lefthand"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale="0.3"
+				minlife="1000"
+				maxlife="1500"
+				model="/heroes/ace/ability_03/effects/icee_debris/debris.mdf"
+				material="/heroes/ace/ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+
+			<debris
+				bone="_bone_righthand"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale=".2"
+				minlife="1000"
+				maxlife="1500"
+				model="/heroes/ace/ability_03/effects/icee_debris/debris.mdf"
+				material="/heroes/ace/ability_03/effects/icee_debris/debris.material"
+				minspeed="200"
+				maxspeed="400"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+				animpose="true"
+			/>
+-->
+			
+
+			<debris
+				bone="_bone_centerofchest"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale=".075"
+				minlife="1000"
+				maxlife="1500"
+				model="/heroes/ace/ability_03/effects/icee_debris/debris.mdf"
+				material="/heroes/ace/ability_03/effects/icee_debris/debris.material"
+				minspeed="150"
+				maxspeed="300"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+			/>
+			
+			<debris
+				bone="_bone_centerofchest"
+				startcolor="1 1 1"
+				midcolor="1 1 1"
+				endcolor="1 2.5 2"
+				midcolorpos=".2"
+				position="0 0 0"
+				scale=".15"
+				minlife="1000"
+				maxlife="1500"
+				model="/heroes/ace/ability_03/effects/icee_debris/debris.mdf"
+				material="/heroes/ace/ability_03/effects/icee_debris/debris.material"
+				minspeed="150"
+				maxspeed="300"
+				minrotationspeed="100.0"
+				maxrotationspeed="300.0"
+				gravity="41.0"
+				minangle="0"
+				maxangle="90"
+				direction="0 1 0"
+				collide="true"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos="0.5"
+				bounce="1"
+			/>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0"  particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+
+	</thread>
+</effect>
+

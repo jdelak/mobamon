@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="scoreboard_templates">
+
+	
+	<if condition="host_islauncher">	
+		<style name="scoreboard_font_14" font="maindyn_18" />
+		<style name="scoreboard_font_18" font="maindyn_22" />
+		<style name="teamCol" width="26%" />
+	</if>
+	<if condition="!host_islauncher" >
+		<style name="scoreboard_font_14" font="maindyn_14" />
+		<style name="scoreboard_font_18" font="maindyn_18" />
+		<style name="teamCol" width="27%" />
+	</if>
+
+	<template name="postgame_scoreboard_header">
+		<panel height="2.4h" float="right" padding="0" noclick="1">		
+			<panel style="teamCol" noclick="1"><label noclick="1" textvalign="center" color="#ffba00" outline="true" outlinecolor="0 0 0 .8" font="maindyn_24" content="{team}"/></panel>
+			<panel width="8%" noclick="1"><label noclick="1" textvalign="center" textalign="center" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .8" style="scoreboard_font_14" content="endstats_label_lvl"/></panel>
+			<panel width="8%" noclick="1"><label noclick="1" textvalign="center" textalign="center" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .8" style="scoreboard_font_14" content="endstats_label_hero_kills"/></panel>
+			<panel width="8%" noclick="1"><label noclick="1" textvalign="center" textalign="center" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .8" style="scoreboard_font_14" content="endstats_label_hero_assists"/></panel>
+			<panel width="10%" noclick="1"><label noclick="1" textvalign="center" textalign="center" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .8" style="scoreboard_font_14" content="endstats_label_deaths"/></panel>
+			<panel width="9%" noclick="1"><label noclick="1" textvalign="center" textalign="center" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .8" style="scoreboard_font_14" content="endstats_label_gpm"/></panel>		
+			<panel width="29%" noclick="1"><label noclick="1" textvalign="center" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .8" style="scoreboard_font_14" content="endstats_label_hero_info_inventory"/></panel>		
+		</panel>
+	</template>
+	
+	<template name="postgame_scoreboard_inventory">
+		<panel name="{prefix=postgame}_scoreboard_inventory_{index}_{itemindex}" width="100@" height="100%" noclick="0" sticky="1">
+			<image name="{prefix=postgame}_scoreboard_inventory_icon_{index}_{itemindex}" texture="$invis" noclick="1" />
+			<frame color="invisible" bordercolor=".2 .2 .2 1" borderthickness="1" noclick="1" />		
+		</panel>
+	</template>	
+	
+	<template name="postgame_scoreboard_row">
+		<panel name="{prefix=postgame}_scoreboard_row_{index}" height="{height=5.0h}" noclick="true">	
+			<frame name="{prefix=postgame}_scoreboard_row_{index}_bg_1" texture="/ui/elements:rounded_bg_solid" color="0 0 0 0.85" borderthickness="0.6h"/>
+			<frame name="{prefix=postgame}_scoreboard_row_{index}_bg_2" texture="/ui/elements:thick" color=".4 .4 .4 1" borderthickness="0.6h"/>
+			<panel float="right" padding="0" noclick="1">
+				<panel style="teamCol" noclick="1">					
+					<panel x="0.5h" height="83%" width="83@" valign="center" noclick="1">
+						<image name="{prefix=postgame}_scoreboard_row_{index}_hero_icon" texture="$invis" noclick="1" />
+						<frame color="invisible" bordercolor=".2 .2 .2 1" borderthickness="1" noclick="1" />
+					</panel>
+					<panel noclick="1" width="-106@" align="right">
+						<label name="{prefix=postgame}_scoreboard_row_{index}_player_name" noclick="1" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_18" content=""/>
+						<label name="{prefix=postgame}_scoreboard_row_{index}_pet_name" noclick="1" y="2.5h" color=".8 .8 .8 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_14" content=""/>
+					</panel>
+				</panel>			
+				<panel width="8%" noclick="1"><label  name="{prefix=postgame}_scoreboard_row_{index}_rowlabel_1" noclick="1" textvalign="center" textalign="center" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_18" content=""/></panel>
+				<panel width="8%" noclick="1"><label  name="{prefix=postgame}_scoreboard_row_{index}_rowlabel_2" noclick="1" textvalign="center" textalign="center" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_18" content=""/></panel>
+				<panel width="10%" noclick="1"><label name="{prefix=postgame}_scoreboard_row_{index}_rowlabel_3" noclick="1" textvalign="center" textalign="center" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_18" content=""/></panel>
+				<panel width="8%" noclick="1"><label  name="{prefix=postgame}_scoreboard_row_{index}_rowlabel_4" noclick="1" textvalign="center" textalign="center" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_18" content=""/></panel>
+				<panel width="9%" noclick="1"><label  name="{prefix=postgame}_scoreboard_row_{index}_rowlabel_5" noclick="1" textvalign="center" textalign="center" color="1 1 1 1" outline="true" outlinecolor="0 0 0 .6" style="scoreboard_font_18" content=""/></panel>		
+				<panel width="29%" noclick="1">
+					<panel height="78%" width="-0.5h" valign="center" float="right" padding="0.3h" noclick="1">
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="1" icon="/items/recipes/damage/bloodthirster/icon.tga" id="0"/>
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="2" icon="/items/recipes/damage/codex/icon.tga" id="1"/>
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="3" icon="/items/recipes/damage/fell_blade/icon.tga" id="2"/>
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="4" icon="/items/recipes/damage/frostbrand/icon.tga" id="3"/>
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="5" icon="/items/recipes/damage/gauntlet/icon.tga" id="4"/>
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="6" icon="/items/recipes/damage/shieldbreaker/icon.tga" id="5"/>
+						<instance name="postgame_scoreboard_inventory" prefix="{prefix=postgame}" index="{index}" itemindex="7" icon="/items/recipes/damage/hellflower/icon.tga" id="6"/>
+					</panel>
+				</panel>	
+			</panel>
+		</panel>
+	</template>
+
+</interface>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="pointsprite_normal">
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<output name="Out" type="float3" solution="ObjectNormal" />
+	<dependency name="vCameraPosition" type="float4" source="vCameraPosition" />
+	<?hlsl
+		Out = normalize(WorldPositionOffset - vCameraPosition.xyz);
+	?>
+	<?glsl
+		Out = normalize(WorldPositionOffset - vCameraPosition.xyz);
+	?>
+</node>

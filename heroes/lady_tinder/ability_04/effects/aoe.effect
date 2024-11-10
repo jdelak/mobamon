@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" showoutlines="true">
+
+	<definitions>
+	
+		<particlesystem name="system2" space="world" scale="1.5">			
+
+			
+			<groundsprite
+				material="/shared/effects/materials/ring_ground_thin.material"
+				startcolor=".25 0 0"
+				midcolor=".25 0 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+
+				expirelife="750"
+				startsize="700"
+				endsize="700"
+				
+			/>	
+		</particlesystem>
+
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance2" particlesystem="system2" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

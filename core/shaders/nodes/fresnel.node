@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="fresnel">
+	<parameter name="FresnelParams" type="float3" default="0.0 1.0 1.0" />
+	<dependency name="FresnelParams" type="float3" source="FresnelParams" />
+	<dependency name="Normal" type="float3" source="WorldNormal" />
+	<dependency name="CameraDirection" type="float3" source="WorldCameraDirection" />
+	<output type="float" name="Out" />
+	<?hlsl
+		Out = saturate(FresnelParams.x + FresnelParams.y * pow(saturate(1.0f + dot(-CameraDirection, normalize(Normal))), FresnelParams.z));
+	?>
+	<?glsl
+		Out = clamp(FresnelParams.x + FresnelParams.y * pow(clamp(1.0f + dot(-CameraDirection, normalize(Normal)), 0.0f, 1.0f), FresnelParams.z), 0.0f, 1.0f);
+	?>
+</node>

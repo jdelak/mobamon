@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Flak_Ability1"
+	
+	icon="icon.tga"
+	passiveeffect="effects/state.effect"
+	effecttype=""
+	
+	ishidden="true"
+	
+	movespeedslow="0.25"
+	attackspeed="0.05,0.1,0.15,0.2"
+
+	modifierkey="Flak_Ability1Active"
+>
+
+
+	<onexpired>
+		<setcharges a="0" entity="tool_entity" />
+		<setactivemodifierkey name="" entity="tool_entity" />
+	</onexpired>
+
+	<onattackeddamageevent>
+		<setvalue name="damage_attempted" a="damage_attempted" b="0.9,0.85,0.8,0.75" op="mult" />
+	</onattackeddamageevent>  
+	
+
+</state>

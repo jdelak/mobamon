@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+
+			<model
+				position="0 0 0"
+				life="10000"
+				model="../death_top.mdf"
+				material="../material.material"
+				anim="idle"
+				startcolor="1"
+				endcolor=".65"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".95"
+				scale="1"
+			>
+			
+			
+			
+			
+			
+				
+				<template name="">
+
+					<simpleemitter	
+						bone="{zbone}"
+						spawnrate="40"
+						life="1250"							
+						position="0 0 0"
+						minparticlelife="500"			
+						maxparticlelife="2000"	
+						depthbias="10"			
+						material="/shared/effects/smaterials/cartoon_dust.material"			
+						offsetsphere="15 15 15"
+						drag=".005"
+					>
+						<particle 
+							minangle="-25"
+							maxangle="25"
+							minanglespeed="-100"
+							maxanglespeed="100"
+							startcolor="1 .7 .3"
+							midcolor="1 .7 .3"
+							endcolor="0 0 0"
+							startsize="80"
+							endsize="25"
+							startalpha="0"
+							midalpha=".05"
+							endalpha="0"
+							midcolorpos=".25"
+						/>
+					</simpleemitter>
+				
+				</template>
+				
+				<instance name="" zbone="_bone_CTRLS_01"/>
+				<instance name="" zbone="_bone_CTRLS_15"/>
+				<instance name="" zbone="_bone_CTRLS_25"/>
+				<instance name="" zbone="_bone_CTRLS_26"/>
+				<instance name="" zbone="_bone_CTRLS_24"/>
+				<instance name="" zbone="_bone_CTRLS_28"/>
+				<instance name="" zbone="_bone_CTRLS_29"/>
+				<instance name="" zbone="_bone_CTRLS_26"/>
+				<instance name="" zbone="_bone_CTRLS_18"/>
+				<instance name="" zbone="_bone_CTRLS_05"/>
+				<instance name="" zbone="_bone_CTRLS_03"/>
+				<instance name="" zbone="_bone_CTRLS_12"/>
+				<instance name="" zbone="_bone_CTRLS_27"/>
+				<instance name="" zbone="_bone_CTRLS_16"/>
+				<instance name="" zbone="_bone_CTRLS_21"/>
+				<instance name="" zbone="_bone_CTRLS_14"/>
+				<instance name="" zbone="_bone_CTRLS_22"/>
+				<instance name="" zbone="_bone_CTRLS_10"/>
+				<instance name="" zbone="_bone_CTRLS_04"/>
+				
+				
+			
+			
+			</model>
+
+		</particlesystem>
+
+		<modifier
+			color="1 1 1"
+			alpha="0"
+		/>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

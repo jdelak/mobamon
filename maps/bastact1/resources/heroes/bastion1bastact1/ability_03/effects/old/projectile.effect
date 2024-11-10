@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+			<!-- Large Crows Forward-->
+			<trackeremitter
+				life="400"
+				delay="400"
+				spawnrate="2000"
+				particlelife="400"
+				count="1"
+				bone="_bone_centerofchest"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				tracktype="angular"
+				trackspeed="200"
+				speed="1000"
+				acceleration="3000"
+				distancelife="true"
+				offsetsphere="0 0 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+
+			>
+				<particle
+					turn="true"
+				>
+					<model
+						life="300"
+						scale="1.5"
+						model="models/model.mdf"
+						material="models/material_fresnel.material"
+						anim="dive_slow"
+						position="0 0 0"
+						yaw="-90"
+						directionalspace="local"
+						startalpha="1"
+						endalpha="1"
+					>
+						<!-- Middle -->
+						<billboard
+							life="400"
+							bone="_bone_root"
+							size="100"
+							color="0 0 0.5"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+						/>
+						
+						<light
+							life="400"
+							bone="_bone_spine1"
+							position="0 0 0"
+							startcolor="0 0 0"
+							midcolor="0 2 5"
+							endcolor="0 0 0"
+							falloffstart="0"
+							falloffend="300"
+						/>
+						
+						<!-- Left wing -->
+						<!-- <billboard
+							life="400"
+							bone="_bone_leftFinger3"
+							size="100"
+							color="0 0 0.5"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="200"
+							alpha="0"
+						/> -->
+						
+						<billboard
+							life="400"
+							bone="_bone_leftFinger3"
+							size="100"
+							color="0 0 0.5"								
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="250"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							roll="50"
+						/>
+						
+						<trailemitter
+							life="400"
+							bone="_bone_leftFinger01"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0.5"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="20"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<trailemitter
+							life="400"
+							bone="_bone_leftFinger01"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0 0 10"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="50"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<!-- Right wing -->
+						<!-- <billboard
+							life="400"
+							bone="_bone_rightFinger3"
+							size="100"
+							color="0 0 0.5"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="200"
+						/> -->
+						
+						
+						<billboard
+							life="400"
+							bone="_bone_rightFinger3"
+							size="100"
+							color="0 0 0.5"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="250"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							roll="-50"
+						/>
+						
+						<trailemitter
+							life="400"
+							bone="_bone_rightFinger31"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0.5"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="20"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<trailemitter
+							life="400"
+							bone="_bone_rightFinger31"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0 0 10"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="50"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<!-- tail -->
+						<simpleemitter
+							life="400"
+							bone="_bone_tail"
+							spawnrate="100"
+							particlelife="200"
+							position="0 0 0"
+							offsetsphere="50"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="10"
+								 endcolor="0"
+								 startsize="0"
+								 midsize="10"
+								 endsize="0"
+								 midsizepos="0.2"
+								 minscale="0.5"
+								 maxscale="1"
+							/>
+						</simpleemitter>
+					</model>
+				</particle>
+			</trackeremitter>
+
+			<!-- Swoop anim -->
+			<trackeremitter
+				life="500"
+				spawnrate="200000"
+				particlelife="500"
+				count="1"
+				position="0 0 0"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				tracktype="angular"
+				trackspeed="200"
+				speed="1"
+				acceleration="0"
+				distancelife="true"
+				offsetsphere="0 0 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle
+					turn="true"
+				>
+
+					<model
+						life="500"
+						scale="1"
+						model="models/model.mdf"
+						material="models/material_fresnel.material"
+						anim="swoop"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos="0.8"
+						color="1 1 1"
+						position="0 0 0"
+						yaw="-90"
+						directionalspace="local"
+					>
+						<!-- Middle -->
+						<billboard
+							life="500"
+							bone="_bone_root"
+							size="100"
+							color="0 0 0.5"								
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+						/>
+						
+						<light
+							life="500"
+							bone="_bone_spine1"
+							position="0 0 0"
+							expirelife="250"
+							startcolor="0 2 5"
+							endcolor="0 2 5"
+							falloffstart="0"
+							falloffend="300"
+						/>
+						
+						<!-- Left wing -->
+						<!-- <billboard
+							life="500"
+							bone="_bone_leftFinger3"
+							size="100"
+							color="0 0 1"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="200"
+							alpha="0"
+						/> -->
+						
+						<billboard
+							life="500"
+							bone="_bone_leftFinger3"
+							size="100"
+							color="0 0 0.5"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="250"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							roll="50"
+						/>
+						
+						<trailemitter
+							life="500"
+							bone="_bone_leftFinger01"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0.5"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="20"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<trailemitter
+							life="500"
+							bone="_bone_leftFinger01"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0 0 10"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="50"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<!-- Right wing -->
+						<!-- <billboard
+							life="500"
+							bone="_bone_rightFinger3"
+							size="100"
+							color="0 0 1"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="200"
+						/> -->
+						
+						
+						<billboard
+							life="500"
+							bone="_bone_rightFinger3"
+							size="100"
+							color="0 0 0.5"							
+							depthbias="20"
+							material="/shared/effects/smaterials/whitedot.material"
+							width="250"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							roll="-50"
+						/>
+						
+						<trailemitter
+							life="500"
+							bone="_bone_rightFinger31"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0.5"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="20"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<trailemitter
+							life="500"
+							bone="_bone_rightFinger31"
+							spawnrate="50"
+							particlelife="200"
+							texpostime="800"
+							texposscale="0.0"
+							texstretchscale=".4"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="0 0 10"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="50"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						<!-- tail -->
+						<simpleemitter
+							life="500"
+							bone="_bone_tail"
+							spawnrate="100"
+							particlelife="200"
+							position="0 0 0"
+							offsetsphere="50"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="10"
+								 endcolor="0"
+								 startsize="0"
+								 midsize="10"
+								 endsize="0"
+								 midsizepos="0.2"
+								 minscale="0.5"
+								 maxscale="1"
+							/>
+						</simpleemitter>
+					</model>	
+				</particle>
+			</trackeremitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Just Model -->
+			<!-- <model
+				scale="1.5"
+				model="models/model.mdf"
+				anim="idle"
+				material="models/material_fresnel.material"
+				position="0 0 0"
+				yaw="-90"
+				directionalspace="local"
+				startalpha="1"
+				endalpha="1"
+				color="1 1 1"
+			> -->
+			
+				<!-- Middle -->
+				<!-- <billboard
+					bone="_bone_root"
+					size="100"
+					color="0 0 1"							
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+				/>
+				
+				<light
+					bone="_bone_spine1"
+					position="0 0 0"
+					expirelife="250"
+					startcolor="0 2 5"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="300"
+				/> -->
+				
+				<!-- Left wing -->
+				<!-- <billboard
+					bone="_bone_leftFinger3"
+					size="100"
+					color="0 0 1"							
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					width="200"
+					alpha="0"
+				/>
+				
+				<billboard
+					bone="_bone_leftFinger3"
+					size="100"
+					color="0 0 1"							
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					width="250"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					roll="50"
+				/>
+				
+				<trailemitter
+					bone="_bone_leftFinger01"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0.5"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="20"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter>
+				
+				<trailemitter
+					bone="_bone_leftFinger01"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0 0 10"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="50"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter> -->
+				
+				<!-- Right wing -->
+				<!-- <billboard
+					bone="_bone_rightFinger3"
+					size="100"
+					color="0 0 1"							
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					width="200"
+				/>
+				
+				
+				<billboard
+					bone="_bone_rightFinger3"
+					size="100"
+					color="0 0 1"							
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					width="250"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					roll="-50"
+				/>
+				
+				<trailemitter
+					bone="_bone_rightFinger31"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0.5"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="20"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter>
+				
+				<trailemitter
+					bone="_bone_rightFinger31"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0 0 10"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="50"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter> -->
+				
+				<!-- tail -->
+				<!-- <simpleemitter
+					bone="_bone_tail"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					offsetsphere="50"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="10"
+						 endcolor="0"
+						 startsize="0"
+						 midsize="10"
+						 endsize="0"
+						 midsizepos="0.2"
+						 minscale="0.5"
+						 maxscale="1"
+					/>
+				</simpleemitter>
+				
+			</model> -->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Large Crows Off-screen noangle-->
+			<!-- <trackeremitter
+				delay="0"
+				spawnrate="2000"
+				particlelife="1000"
+				count="1"
+				position="500 1000 1000"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				tracktype="linear"
+				trackspeed="200"
+				speed="1200"
+				acceleration="5000"
+				distancelife="true"
+				offsetsphere="0 0 0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle
+					turn="true"
+				>
+
+					<model
+						life="600"
+						startscale="2"
+						endscale="1"
+						model="models/model.mdf"
+						material="models/material.material"
+						anim="dive"
+						startalpha="0"
+						midalpha="1"
+						endalpha="1"
+						midalphapos="0.75"
+						color="1 1 1"
+						position="0 0 0"
+						yaw="-90"
+						directionalspace="local"
+					>
+						<trailemitter
+						spawnrate="50"
+						particlelife="800"
+						texpostime="800"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								 startcolor="0"
+								 midcolor="10"
+								 endcolor="0"
+								 startsize="10"
+								 midsize="50"
+								 endsize="10"
+								 midsizepos="0.2"
+							/>
+						</trailemitter>
+						
+						
+					</model>
+				</particle>
+			</trackeremitter> -->
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

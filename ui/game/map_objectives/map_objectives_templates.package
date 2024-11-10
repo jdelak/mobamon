@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="Objective_Holder">
+		<!--
+		===========================	
+		Objective
+		===========================
+		-->
+		<panel width="80%" height="80@" align="center" valign="top" noclick="1">
+			<!-- Under Effects -->
+			<panel name="Objective_{number}_Glow" texture="/ui/game/map_objectives/textures/glow.tga" align="center" valign="center" color="1 1 1 0.5" visible="0" noclick="1"/>
+			<panel name="Objective_{number}_Particles" texture="/ui/game/map_objectives/textures/particles.tga" align="center" valign="center" color="1 1 1 0.5" visible="0" noclick="1"/>
+			
+			<panel x="0h" name="Objective_{number}_Scalable" texture="/ui/game/map_objectives/textures/objective_{icon}_progress.tga" align="center" valign="center" visible="0" noclick="1"/>
+			
+			<!-- Completed and Progress Icon -->
+			<panel name="Objective_{number}_Clip" width="110%" height="0%" align="center" valign="top" clip="1" noclick="1" >
+				<panel x="0h" width="90%" height="90@" name="Objective_{number}_Unlocked" texture="/ui/game/map_objectives/textures/objective_{icon}_progress.tga" align="center" valign="top" noclick="0"/>
+			</panel>
+			 
+			<!-- Locked Icon -->
+			<panel name="Objective_{number}_ReverseClip" width="110%" height="110%" align="center" valign="bottom" clip="1" noclick="1" >
+				<panel x="0h" width="90%" height="90@" name="Objective_{number}" texture="/ui/game/map_objectives/textures/objective_{icon}_{status}.tga" align="center" valign="bottom" visible="0" noclick="0"/>
+			</panel>
+			
+			<!-- Top Effects -->
+			<instance name="Objective_Holder_Effects" number="{number}"/>
+			
+			<!--
+			===========================	
+			Objective MouseOver
+			===========================
+			-->
+			<panel name="Objective_{number}_Hover" x="7.5h" y="-1.5h" width="23h" height="9.5h" noclick="1" visible="0">
+				<image texture="/ui/game/map_objectives/textures/objectives_hoverBG.tga" align="center" valign="center" noclick="1"/>
+				<label name="Objective_{number}_Title" y="13%" font="maindyn_13" color="#ffa800" content="spe_objective0" textalign="center" align="center" noclick="1"/>
+				<label name="Objective_{number}_Description" y="35%" width="80%" height="5h" font="maindyn_10" color="#f0f0f0" content="spe_objective0MoreInfo" wrap="1" textalign="center" align="center" noclick="1"/>
+			</panel>
+		</panel>
+	</template>
+ 
+	<template name="Objective_Holder_Effects">
+		<!-- Unlock Effects -->
+		<panel y="-78%" name="Objective_{number}_UnlockGlow" texture="/ui/game/map_objectives/textures/objective_activeGlow.tga" align="center" valign="center" visible="0" noclick="1" />
+		<panel y="13%" name="Objective_{number}_UnlockGlow2" texture="/ui/game/map_objectives/textures/objective_activeGlow.tga" align="center" valign="center" width="200%" height="0%" vflip="1" visible="0" noclick="1" />
+		<panel y="-75%" name="Objective_{number}_UnlockLine" texture="/ui/game/map_objectives/textures/objective_activeLine.tga" align="center" valign="center" visible="0" noclick="1">
+			<panel texture="/ui/game/map_objectives/textures/objective_activeParticles.tga" align="center" valign="center" noclick="1" />
+		</panel>
+		
+		<!-- Smoke Effects
+		<panel name="Objective_Holder_Smoke01" texture="/ui/game/dialogue/textures/smoke_effect.tga" align="center" valign="center" color="#201e1d" noclick="1" />
+		<panel name="Objective_Holder_Smoke02" texture="/ui/game/dialogue/textures/smoke_effect.tga" align="center" valign="center" color="#201e1d" noclick="1" />
+		<panel name="Objective_Holder_Smoke03" texture="/ui/game/dialogue/textures/smoke_effect.tga" align="center" valign="center" color="#201e1d" noclick="1" /> -->
+		
+		<!-- Rubble Effect
+		<panel y="25%" name="Objective_Holder_Rubble" texture="/ui/game/dialogue/textures/rubble.tga" width="50%" height="50@" align="center" valign="top" noclick="1" /> -->
+	</template>
+</package>

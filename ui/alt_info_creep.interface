@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="alt_info_creep" luatable="true">
+
+	<childinterface file="/ui/game/shared/game_shared_templates.interface"/>
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<panel width="1" height="1"><!-- Center Point -->
+		<panel width="7h" height="0.84h" align="center" valign="bottom">
+		
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="-0.7h" name="AltInfoCreepLevelShadow"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="0.15h"/>
+		
+			<panel color="invisible" name="AltInfoCreepLevelGlowContainer" width="+0.4h" height="+0.4h" y="-0.85h" align="center" valign="center">
+				<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" rendermode="additive" name="AltInfoCreepLevelGlow"/>
+			</panel>
+
+			<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" width="+0.4h" height="+0.4h" align="center" valign="center" rendermode="additive" name="AltInfoCreepHealthGlow"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h" name="AltInfoCreepLevelBacker" y="-0.85h"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="-0.85h" name="AltInfoCreepLevelInset"/>
+			<panel name="AltInfoCreepLevelBar" x="0.25h" y="-0.6h" width="-0.5h" height="-0.5h" color="#FFCC00" texture="/ui/elements:rounded_bg_white_vert"/>
+			<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="-0.85h" name="AltInfoCreepLevelCorners"/>
+			
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" style="healthBackerColor" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" name="AltInfoCreepHealthBarBacker"/>
+			<panel name="AltInfoCreepHealthBar" x="0.25h" y="0.25h" width="-0.5h" height="-0.5h" color="#22EE33" texture="/ui/elements:rounded_bg_white_vert"/>
+			<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="0.25h"/>
+			<image visible="false" texture="/ui/elements:exp_diamond" align="right" valign="center" x="1.65h" y="0.15h" width="1.5h" height="1.5h" color="0 0 0 0.5" name="AltInfoCreepExpShadow"/>
+			<image visible="false" texture="/ui/elements:exp_diamond" align="right" valign="center" x="1.5h" width="1.5h" height="1.5h" name="AltInfoCreepExp"/>
+			
+			<frame name="AltInfoCreepShieldShadow" texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="0.85h"/>
+			<panel color="invisible" name="AltInfoCreepShieldGlowContainer" width="+0.4h" height="+0.4h" y="0.85h" align="center" valign="center">
+				<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" rendermode="additive" name="AltInfoCreepShieldGlow"/>
+			</panel>
+			<frame name="AltInfoCreepShieldBacker" texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h" y="0.85h"/>
+			<frame name="AltInfoCreepShieldInset" texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="0.85h"/>
+			<panel name="AltInfoCreepShieldBar" x="0.25h" y="1h" width="-0.5h" height="-0.5h" color="#f5f2e2" texture="/ui/elements:rounded_bg_white_vert"/>
+			<panel name="AltInfoCreepShieldPipContainer" x="0.25h" y="0.5h" width="-0.5h" height="-0.5h" texture="$invis" uscale="64p" utile="true" valign="bottom"/>
+			<frame name="AltInfoCreepShieldCorners" texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="0.85h"/>
+			
+		</panel>
+	</panel>
+	
+	<!--<lua file="/ui/shared/styles.lua"/>-->
+	<lua file="/ui/game/alt_info/alt_info_creep.lua"/>
+	
+</interface>

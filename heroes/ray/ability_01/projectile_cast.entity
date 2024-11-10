@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Ray_Ability1_Cast"
+
+	lifetime="500"
+	useexactlifetime="true"
+	gravity="0"
+	
+	canturn="false"
+	flying="true"
+	flyheight="2.5"
+
+
+
+
+	modelscale="1.6"
+	model="effects/spider_mine_projectile/model.mdf"
+
+	effectscale="2.0"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact_enemy.effect"
+>
+	<onimpact>
+		<spawnunit name="Gadget_Ray_Ability1" count="1" target="target_position" pushentity="true" proxy="tool_entity" maxactive="3" />
+		<applystate name="State_Ray_Ability1_Burrow" duration="50" proxy="this_proxy_entity" target="stack_entity" />
+		<playeffect effect="effects/burrow.effect" source="stack_entity" occlude="true" />
+	</onimpact>
+</projectile>

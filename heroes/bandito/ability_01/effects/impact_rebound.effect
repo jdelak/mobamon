@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+
+
+		<modifier
+			name="modifier0"
+			life="500"
+			startcolor="1 2.5 5"
+			endcolor="1 1 1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale=".75">
+		
+			<sound
+				volume=".45" 
+				sample="../sounds/sfx_bonus.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+			/>
+
+			
+			
+<!--
+			<model
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/shell_glass.material"
+				startcolor="0 2.5 5"
+				midcolor="0 2.5 5"
+				endcolor="0 0 0"
+				life="300"
+				scale="2"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-100"
+			/>
+-->
+			
+			
+			
+			
+			
+			
+			
+<!--
+					<simpleemitter
+					source="target"
+						count="25"
+						bone="_bone_centerofchest"
+						spawnrate="5000"
+						particlelife="1000"
+						gravity="0"
+						position="0 0 0"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						directionalspace="local"
+					>
+						<particle
+							turn="true"
+						> 
+							<billboard
+								bone="_bone_centerofchest"
+								minlife="150"
+								maxlife="150"
+								startcolor="0 .5 1"
+								midcolor="0 .5 1"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/cartoon_smack_white_add_outline.material"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+								lockup="true"
+								lockright="true"
+								pitch="-90"
+								directionalspace="local"
+								startscale="2"
+								endscale="5"
+								depthbias="-25"
+							/>
+							
+							<billboard
+								bone="_bone_centerofchest"
+								minlife="150"
+								maxlife="150"
+								startcolor=".15"
+								midcolor=".15"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+								lockup="true"
+								lockright="true"
+								pitch="-90"
+								directionalspace="local"
+								startscale="2"
+								endscale="4.5"
+								depthbias="-25"
+							/>
+						</particle>
+					</simpleemitter>	
+-->
+			
+
+			
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel name="game_menu_parent" y="-30h" align="right" valign="bottom" width="24.4h" grow="1" noclick="true" visible="0" >	
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.2h" height="+2h" x="1.0h" color=".06 .06 .06 1"/>
+		<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="1.2h" height="+2h" x="1.0h" color="invisible"/>		
+		
+		<panel grow="1" x="2.0h" y="2.0h" width="-3.5h" float="bottom" padding="1.0h" noclick="1">
+			<instance name="standardButton"
+				id="game_menu_pause" 
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_pause"
+				font="maindyn_20"
+				onclicklua="
+					RequestPause()
+				"
+			/>			
+			
+			<instance name="standardButton"
+				id="game_menu_options" 
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_options_button"
+				font="maindyn_20"
+				onclicklua="
+					Cmd('ShowWidget game_options')
+					PlaySound('/ui/sounds/ui_options_open.wav')						
+				"
+			/>			
+			
+			<instance name="standardButton"
+				id="game_menu_disconnect" 
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_leave_game"
+				font="maindyn_20"
+				onclicklua="
+					GenericDialogGameSpec(
+						'main_disconnect_confirm', 'main_disconnect_confirm_spec', '', 'general_quit', 'general_cancel', 
+							function()
+								FinishMatch()
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)
+					PlaySound('/ui/sounds/sfx_ui_back.wav')					
+				"
+			/>			
+			
+			<instance name="standardButton"
+				id="game_menu_quit" 
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_quit_strife"
+				font="maindyn_20"
+				onclicklua="
+					GenericDialogGameSpec(
+						'main_quit_confirm', 'main_quit_confirm2', '', 'general_quit', 'general_cancel', 
+							function()
+								Cmd('Quit')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)
+					SaveState()
+					SetSave('cg_cloudSynced', 'false', 'bool')	
+					PlaySound('/ui/sounds/sfx_ui_back.wav')		
+				"
+			/>			
+			
+			<instance name="standardButton"
+				id="game_menu_close" 
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_close_menu"
+				font="maindyn_20"
+				onclicklua="
+					self:GetWidget('game_menu_parent'):SetVisible(not self:GetWidget('game_menu_parent'):IsVisible() )
+				"
+			/>
+			
+			<panel height="0.5h" noclick="1" />
+		</panel>
+
+	</panel>
+	
+	<lua file="game_menu.lua"/>
+	
+</package>

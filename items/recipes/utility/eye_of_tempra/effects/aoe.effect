@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2.5">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.75"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+<!--
+			<light
+				expirelife="250"
+				startcolor="1 2.5 5"
+				endcolor="0 0 0"
+				falloffstart="00"
+				falloffend="100"
+				position="0 0 0"
+				loop="true"
+			
+			/>
+-->
+
+
+			<debris
+				position="0 0 10"
+				scale=".175"
+				minlife="300"
+				maxlife="350"
+				model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf"
+				anim="idle"
+				minspeed="1250"
+				maxspeed="2500"
+				direction="0 0 0"
+				minrotationspeed="-90"
+				maxrotationspeed="90"
+				gravity="200"
+				acceleration="0"
+				drag="0"
+				color="5 7.5 10"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				animpose="false"
+				offsetsphere="125 125 250"
+				directionalspace="world"
+			>
+			</debris>
+
+			<template name="">
+			
+				<groundsprite
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					size="{zfirstsize}"
+					expirelife="250"
+					startcolor="{zcolor}"
+					endcolor="0 0 0"
+				/>
+
+			</template>
+			
+			<instance zpos="20 0 0" zsize="10" zalpha="0" zcolor=".15 .25 .3" zfirstsize="28"/>
+			<instance zpos="-22 0 0" zsize="16" zalpha="0" zcolor=".15 .25 .3" zfirstsize="20"/>
+			<instance zpos="0 22 0" zsize="14" zalpha="0" zcolor=".15 .25 .3" zfirstsize="36"/>
+			
+			<template name="">
+			
+				<groundsprite
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					size="{zfirstsize}"
+					expirelife="250"
+					startcolor="{zcolor}"
+					endcolor="0 0 0"
+				/>
+			
+				<groundsprite
+					position="{zpos}"
+					material="/shared/effects/smaterials/black_hole_overlay.material"
+					size="{zsize}"
+					expirelife="500"
+					color="1 1 1"
+					startalpha="{zalpha}"
+					endalpha="0"
+					startframe="1"
+					endframe=".01"
+					yaw="20"
+				/>
+			</template>
+			
+			<instance zpos="0 0 0" zsize="32" zalpha=".2" zcolor=".1 .35 .5" zfirstsize="100"/>
+
+			<model
+				life="100"
+				startcolor="0 0 0"
+				endcolor=".3 .4 .5"
+				lockup="1"
+				lockright="1"
+				directionalspace="world"
+				startscale=".5"
+				endscale="1"
+				model="shield/shield.mdf"
+			/>
+			
+			<model
+				delay="100"
+				expirelife="1000"
+				startcolor=".3 .4 .5"
+				endcolor="0 0 0"
+				lockup="1"
+				lockright="1"
+				directionalspace="world"
+				startscale="1"
+				endscale="1"
+				model="shield/shield.mdf"
+			/>
+
+			<simpleemitter
+				delay="0"
+				spawnrate="2"
+				particlelife="2000"
+				timenudge="1000"
+			>
+				<particle
+				>
+					<template name="">
+						<billboard
+							delay="{zdelay}"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor=".05 .075 .1"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							life="1500"
+							position="0 0 0"
+							startsize="200"
+							endsize="310"
+							depthbias="-100"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+						
+						<billboard
+							delay="{zdelay}"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .035 .07"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							life="1500"
+							position="0 0 0"
+							startsize="200"
+							endsize="310"
+							depthbias="-100"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+						/>
+					</template>
+					
+					<instance name="" zdelay="0"/>
+					<instance name="" zdelay="100"/>
+					<instance name="" zdelay="200"/>
+
+				</particle>
+			</simpleemitter>
+
+			<template name="green">
+				<simpleemitter
+					count="100"
+					position="0 0 0"
+					delay="{zdelay}"
+					spawnrate="{zspawnrate}"
+					minparticlelife="250"
+					maxparticlelife="500"
+					material="/shared/effects/smaterials/powersteal.material"
+					depthbias="-75"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor=".025"
+						midcolor="0 .05 .1"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startscale="0"
+						midscale="60"
+						minendscale="60"
+						maxendscale="65"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+						flare="true"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					count="100"
+					position="0 0 0"
+					delay="{zdelay}"
+					spawnrate="{zspawnrate}"
+					minparticlelife="250"
+					maxparticlelife="500"
+					material="/shared/effects/smaterials/powersteal.material"
+					depthbias="-75"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor=".05"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startscale="0"
+						midscale="40"
+						minendscale="40"
+						maxendscale="43"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+						flare="true"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="green" zdelay="0" zstartscale="65" zspawnrate="2000"/>
+			
+			<billboard
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startsize="400"
+				endsize="400"
+				life="400"
+				startcolor=".1 .25 .4"
+				midcolor=".1 .25 .4"
+				endcolor="0"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<simpleemitter
+				position="0 0 0"
+				spawnrate="150"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="0"
+				minspeed="0"
+				maxspeed="250"
+				drag=".08"
+				material="/shared/effects/smaterials/snowy_smoke.material"
+				offsetsphere="0 0 0"
+				offsetradial="90 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="-50"
+			>
+				<particle 
+					startcolor="1"
+					endcolor="1"
+					startalpha="0"
+					midalpha=".1"
+					endalpha="0"
+					midalphapos=".2"
+					minangle="0"
+					maxangle="360"
+					minstartscale="25"
+					maxstartscale="75"
+					minendscale="0"
+					maxendscale="75"
+					minanglespeed="-60"
+					maxanglespeed="60"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				position="0 0 30"
+				count="25"
+				spawnrate="6000"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="500"
+				gravity="50"
+			>
+				<particle
+				>
+					<billboard
+						minlife="150"
+						maxlife="300"
+						startcolor="1 1 1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".5"
+						maxstartscale="1"
+						minendscale="0"
+						maxendscale="0"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

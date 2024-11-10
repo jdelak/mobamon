@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Follow_Logic"
+	
+	icon="icon.tga"
+	
+	impactinterval="500"
+	unitwalking="true"
+>
+	<onimpact>
+		<distance source="target_entity" target="this_proxy_entity" usepathing="true"/>
+		<setvar0 a="result" />
+		<compare a="var0" b="100" op="lt"> 
+			<setpos0 position="this_proxy_position" offsetspace="this_proxy_entity" offset="0 -200 0" />
+			<order command="move" source="target_entity" target="pos0" />
+		</compare>
+		<else>
+			<compare a="var0" b="250" op="lt">
+				<order command="hold" source="target_entity" target="this_proxy_entity" />
+			</compare>
+			<else>
+				<order command="follow" source="target_entity" target="this_proxy_entity" />
+			</else>
+		</else>
+		<condition test="not_hasorder" target="target_entity" source="target_entity">
+			<order command="follow" source="target_entity" target="this_proxy_entity" />
+		</condition>
+	</onimpact>
+
+	<modifier key="no_tele" modpriority="100"
+	>
+		<onimpact />
+	</modifier>
+</state>

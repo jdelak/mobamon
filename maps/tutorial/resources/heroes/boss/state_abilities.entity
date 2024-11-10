@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_Abilities"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="5000"
+	ishidden="true"
+
+>
+	<onattackeddamageevent>
+		<compare a="accumulator" b="6" op="lt" >
+			<setvar0 a="accumulator" b="0.08" op="mult" />
+			<setvar0 a="var0" b="0.5" op="add" />
+			<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+		</compare>
+	</onattackeddamageevent>
+
+	<onimpact>
+		<compare a="accumulator" b="6" op="lt" >
+
+			<areaofeffect
+				radius="2500"
+				center="source_entity"
+				targetselection="all"
+				targetscheme="enemy_heroes"
+				effecttype="Magic"
+				maxtotalimpacts="1"
+			>
+				<compare a="accumulator" b="0" op="eq" >
+					<useability source="source_entity" target="target_entity" slot="1"/>
+				</compare>
+				<compare a="accumulator" b="1" op="eq" >
+					<useability source="source_entity" target="target_entity" slot="1"/>
+				</compare>
+				<compare a="accumulator" b="2" op="eq" >
+					<useability source="source_entity" target="target_position" slot="2"/>
+				</compare>
+				<compare a="accumulator" b="3" op="eq" >
+					<useability source="source_entity" target="target_position" slot="2"/>
+				</compare>
+				<compare a="accumulator" b="4" op="eq" >
+					<useability source="source_entity" target="target_entity" slot="0"/>
+				</compare>
+				<compare a="accumulator" b="5" op="eq" >
+					<useability source="source_entity" target="target_entity" slot="0"/>
+				</compare>
+				<changeaccumulator b="1" op="add" />
+			</areaofeffect>
+		</compare>
+		<else>
+			<areaofeffect
+				radius="2500"
+				center="source_entity"
+				targetselection="all"
+				targetscheme="enemy_heroes"
+				effecttype="Magic"
+				maxtotalimpacts="1"
+			>
+				<chance threshold="0.33" >
+					<useability source="source_entity" target="target_entity" slot="0"/>
+				</chance>
+				<else>
+					<chance threshold="0.5" >
+						<useability source="source_entity" target="target_entity" slot="1"/>
+					</chance>
+					<else>
+						<useability source="source_entity" target="target_position" slot="2"/>
+					</else>
+				</else>
+			</areaofeffect>
+		</else>
+	</onimpact>
+	
+	
+</state>

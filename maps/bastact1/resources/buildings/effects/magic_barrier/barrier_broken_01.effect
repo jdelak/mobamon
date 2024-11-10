@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system2" space="entity" scale="1">
+			
+			<model
+				life="1000"
+				model="crystal_spire/model.mdf"
+				anim="idle"
+				startalpha="0"
+				endalpha="0"
+				color="1"
+				position="0 0 0"
+				scale="1"
+			>
+				<template name="holes">
+				
+					<groundsprite
+						bone="{newbone}"
+						delay="0"
+						life="1000"							
+						material="/shared/effects/smaterials/torch_hole_overlay_nodepth.material"
+						color="1"				
+						scale="{newscale}"				
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+					/>
+				</template>
+				
+				<template name="breaks">
+				
+						<simpleemitter
+						life="1000"	
+							delay="0"
+							count="1"
+							spawnrate="100"
+							particlelife="5000"
+							position="0 0 0"
+							offsetsphere="20 20 100"
+							
+						>
+							<particle
+							>
+								
+								<debris
+									life="1000"
+									minscale=".3"
+									maxscale=".5"
+									startcolor="1"
+									endcolor="1"
+									startalpha="1"
+									midalpha="0"
+									endalpha="0"
+									minlife="2000"
+									maxlife="5000"
+									model="spire_break/model.mdf"
+									material="spire_break/material.material"
+									minspeed="100.0"
+									maxspeed="800.0"
+									minrotationspeed="100.0"
+									maxrotationspeed="300.0"
+									gravity="-20.0"
+									minangle="0"
+									maxangle="0"
+									direction="0 0 1"
+									collide="0"
+									bounce="0.7"
+									reflect="0.6"
+									animpose="true"
+									directionalspace="global"
+								/>
+
+							</particle>
+						</simpleemitter>
+						
+						<billboard
+							delay="0"
+							position="0 0 300"
+							material="/shared/effects/smaterials/bulb_add.material"				
+							startcolor=".5"				
+							endcolor="0 0 0"
+							life="150"	
+							startsize="100"
+							endsize="500"
+							depthbias="-150"			
+						/>
+					
+				</template>
+				
+				<!-- <instance name="holes" newbone="_bone_spire" newscale="2"/>
+				<instance name="holes" newbone="_bone_spire001" newscale="1.7"/>
+				<instance name="holes" newbone="_bone_spire002" newscale="1.5"/>
+				<instance name="holes" newbone="_bone_spire003" newscale="2"/>
+				<instance name="holes" newbone="_bone_spire004" newscale="2.5"/>
+				<instance name="holes" newbone="_bone_spire005" newscale="2"/>
+				<instance name="holes" newbone="_bone_spire006" newscale="1.7"/>
+				<instance name="holes" newbone="_bone_spire007" newscale="1"/>
+				<instance name="holes" newbone="_bone_spire008" newscale=".7"/>
+				<instance name="holes" newbone="_bone_spire009" newscale="1"/>
+				<instance name="holes" newbone="_bone_spire010" newscale="1"/> -->
+				
+				
+				
+				
+				<instance name="breaks"/>
+				<!-- <instance name="breaks" newbone="_bone_spire001" newscale=".4"/>
+				<instance name="breaks" newbone="_bone_spire002" newscale=".4"/>
+				<instance name="breaks" newbone="_bone_spire003" newscale=".6"/>
+				<instance name="breaks" newbone="_bone_spire004" newscale=".6"/>
+				<instance name="breaks" newbone="_bone_spire005" newscale=".55"/>
+				<instance name="breaks" newbone="_bone_spire006" newscale=".55"/>
+				<instance name="breaks" newbone="_bone_spire007" newscale=".5"/>
+				<instance name="breaks" newbone="_bone_spire008" newscale=".3"/>
+				<instance name="breaks" newbone="_bone_spire009" newscale=".4"/>
+				<instance name="breaks" newbone="_bone_spire010" newscale=".4"/> -->
+				
+				<template name="blinks">
+					<controller bone="{newbone}" scale="{newscale}">
+						<simpleemitter
+							bone="{newbone}"
+							delay="0"
+							count="{newcount}"
+							spawnrate="{newrate}"
+							position="{newpos}"
+							minparticlelife="1000"			
+							maxparticlelife="1500"	
+							depthbias="0"			
+							material="/shared/effects/smaterials/blink.material"			
+							offsetsphere="{newoffset}"
+							minspeed="20"
+							maxspeed="1000"
+							angle="10"
+							direction="0 0 1"
+							drag="{newdrag}"
+							gravity="-5"
+						>
+							<particle 
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								startcolor="0"
+								midcolor="1 .5 1"
+								endcolor="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								minscale="2"
+								maxscale="8"
+							/>
+						</simpleemitter>
+					</controller>
+				</template>
+				
+				<!-- <instance name="blinks" newbone="_bone_spire" newscale=".7" newdrag="0.05" newcount="500" newrate="1000" newoffset="50" newpos="0 0 10"/>
+				<instance name="blinks" newbone="_bone_spire001" newscale=".7" newdrag="0.1" newcount="500" newrate="1000" newoffset="50" newpos="0 0 10"/>
+				<instance name="blinks" newbone="_bone_spire002" newscale=".7" newdrag="0.1" newcount="500" newrate="1000" newoffset="50" newpos="0"/>
+				<instance name="blinks" newbone="_bone_spire003" newscale=".8" newdrag="0.05" newcount="1000" newrate="2000" newoffset="30" newpos="0 0 10"/>
+				<instance name="blinks" newbone="_bone_spire004" newscale=".8" newdrag="0.05" newcount="1000" newrate="2000" newoffset="30" newpos="0 0 10"/>
+				<instance name="blinks" newbone="_bone_spire005" newscale=".7" newdrag="0.05" newcount="500" newrate="1000" newoffset="50" newpos="0 0 10"/>
+				<instance name="blinks" newbone="_bone_spire006" newscale=".7" newdrag="0.05" newcount="500" newrate="1000" newoffset="50" newpos="0 0 10"/>
+				<instance name="blinks" newbone="_bone_spire007" newscale=".7" newdrag="0.05" newcount="250" newrate="500" newoffset="50" newpos="0"/>
+				<instance name="blinks" newbone="_bone_spire008" newscale=".6" newdrag="0.1" newcount="100" newrate="200" newoffset="50" newpos="0"/>
+				<instance name="blinks" newbone="_bone_spire009" newscale=".6" newdrag="0.1" newcount="250" newrate="500" newoffset="50" newpos="0"/>
+				<instance name="blinks" newbone="_bone_spire010" newscale=".7" newdrag="0.1" newcount="150" newrate="300" newoffset="50" newpos="0"/> -->
+				
+			</model>
+
+			<!--<simpleemitter
+				delay="0"
+				expirelife="800"
+				spawnrate="50"					
+				position="300 -250 0"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="200 150 0"
+				minspeed="200"
+				maxspeed="620"
+				angle="10"
+				direction="0 0 1"
+				drag=".1"
+				gravity="15"
+			>
+				<particle 
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color=".3 0.15 .3"
+					minstartsize="100"
+					maxstartsize="300"
+					endsize="300"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter	
+				delay="0"
+				expirelife="800"
+				spawnrate="50"					
+				position="-300 -250 0"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="200 150 0"
+				minspeed="200"
+				maxspeed="620"
+				angle="10"
+				direction="0 0 1"
+				drag=".1"
+				gravity="15"
+			>
+				<particle 
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color=".3 0.15 .3"
+					minstartsize="100"
+					maxstartsize="300"
+					endsize="300"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter	
+				delay="0"
+				expirelife="800"
+				spawnrate="115"					
+				position="0"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="200 150 0"
+				minspeed="200"
+				maxspeed="620"
+				angle="10"
+				direction="0 0 1"
+				drag=".1"
+				gravity="15"
+			>
+				<particle 
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color=".3 0.15 .3"
+					minstartsize="100"
+					maxstartsize="300"
+					endsize="300"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+
+			<light
+				position="0 -200 0"
+				life="1000"
+				startcolor="0"
+				endcolor="2 0 2"
+				falloffstart="100"
+				falloffend="300"
+			/>
+			
+			<light
+				position="-300 -300 0"
+				life="1000"
+				startcolor="0"
+				endcolor="2 0 2"
+				falloffstart="100"
+				falloffend="300"
+			/>
+			
+			<light
+				position="300 -300 0"
+				life="1000"
+				startcolor="0"
+				endcolor="2 0 2"
+				falloffstart="100"
+				falloffend="300"
+			/>
+
+			<light
+				delay="1000"
+				position="0 -200 0"
+				expirelife="1650"
+				startcolor="2 0 2"
+				midcolor="2 0 2"
+				endcolor="0"
+				falloffstart="100"
+				startfalloffend="300"
+				endfalloffend="500"
+			/>
+			
+			<light
+				delay="1000"
+				position="-300 -300 0"
+				expirelife="1650"
+				startcolor="2 0 2"
+				midcolor="2 0 2"
+				endcolor="0"
+				falloffstart="100"
+				startfalloffend="300"
+				endfalloffend="500"
+			/>
+			
+			<light
+				delay="1000"
+				position="300 -300 0"
+				expirelife="1650"
+				startcolor="2 0 2"
+				midcolor="2 0 2"
+				endcolor="0"
+				falloffstart="100"
+				startfalloffend="300"
+				endfalloffend="500"
+			/> -->
+		
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance2" particlesystem="system2" />
+		<waitfordeath instance="instance2" />
+		<camerashake2 scale="100" radius="1200" duration="600" frequency="22" />
+	</thread>
+</effect>

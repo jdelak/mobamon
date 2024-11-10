@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+<!--
+		<modifier
+			expirelife="250"
+			startcolor="3 1 1"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1.25">
+
+			<sound
+				falloffstart="500"
+				falloffend="2000"
+				volume=".55"
+				sample="../sounds/sfx_trail_%.wav"
+			/>
+			
+			<!-- light -->
+			<simpleemitter
+				count="1"
+				spawnrate="50000"
+				minparticlelife="200"
+				maxparticlelife="500"
+				minspeed="0"
+				maxspeed="0"
+				position="0 0 0"
+				direction="0 0 0"
+				depthbias="-25"
+				directionalspace="local"
+			>
+				<particle>
+					<light
+						position="0 0 50"
+						life="500"
+						startcolor="0 5 10"
+						endcolor="0 0 0"
+						falloffstart="0"
+						falloffend="500"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			<simpleemitter
+				count="75"
+				delay="{zdelay}"
+				spawnrate="50000"
+				minparticlelife="200"
+				maxparticlelife="500"
+				gravity="{zgravity}"
+				drag="{zdrag}"
+				minspeed="0"
+				maxspeed="400"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"	
+				direction="1 1 0"
+				offsetradial="100 0 0"
+				offsetsphere="12 12 0"
+				depthbias="-75"
+				directionalspace="local"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1"
+					endscale="1"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor=".25 .7 1"
+					midcolorpos=".35"
+					startalpha="0"
+					midalpha=".75"
+					endalpha="0"
+					startframe="0"
+					endframe="1"
+					minstartsize="100"
+					maxstartsize="140"
+					minendsize="0"
+					maxendsize="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				count="45"
+				delay="{zdelay}"
+				spawnrate="50000"
+				life="50"
+				minparticlelife="150"
+				maxparticlelife="600"
+				minspeed="0"
+				maxspeed="200"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				offsetradial="80 0 0"
+				offsetsphere="10 10 0"
+				depthbias="-75"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1"
+					endscale="1"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor=".25 .7 1"
+					midcolorpos=".35"
+					startalpha="0"
+					midalpha=".75"
+					endalpha="0"
+					midalphapos=".2"
+					minstartsize="75"
+					maxstartsize="100"
+					endsize="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+			<template name="">
+
+				<terrainemitter
+
+				delay="25"
+					spawnrate="1000"
+					minparticlelife="250"
+					maxparticlelife="750"
+					gravity="0"
+					minspeed="0"
+					maxspeed="250"
+					position="{zpos}"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="35"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor=".25 .7 1"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".2"
+						startframe="0"
+						endframe="1"
+						startsize="75"
+						endsize="0"
+						turn="true"
+					/>
+				</terrainemitter>
+
+				<terrainemitter
+
+				delay="25"
+					spawnrate="500"
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					minspeed="0"
+					maxspeed="250"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="35"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor=".5"
+						endcolor="0 0 0"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha=".75"
+						endalpha="0"
+						midalphapos=".2"
+						startframe="0"
+						endframe="1"
+						startsize="90"
+						endsize="30"
+						turn="true"
+					/>
+				</terrainemitter>
+
+			</template>
+			
+			<instance name="" zpos="20 0 0"/>
+			<instance name="" zpos="-20 0 0"/>
+-
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/> 
+	</thread>
+
+</effect>

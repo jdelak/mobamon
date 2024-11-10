@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Observatory_ObservingHero"
+	
+	ishidden="true"
+>
+
+	<oninflict>
+		<condition test="not_hasstate State_Observatory_Team2_Controlled" target="source_entity">
+			<condition test="not_hasstate State_Observatory_Team1_Controlled" target="source_entity">
+				<compare a="target_team" b="1" op="eq">
+					<areaofeffect
+						radius="350"
+						targetselection="all"
+						targetscheme="all_heroes"
+						center="source_entity"
+					>
+						<compare a="target_team" b="2" op="eq">
+							<setaccumulator value="1" />
+						</compare>
+					</areaofeffect>
+					<compare a="accumulator" b="0" op="eq" >
+						<applystate name="State_Observatory_Team1_Controlled" target="source_entity" inflictor="target_entity" continuous="true" />
+					</compare>
+					<else>
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+					</else>
+				</compare>
+				<compare a="target_team" b="2" op="eq">
+					<areaofeffect
+						radius="350"
+						targetselection="all"
+						targetscheme="all_heroes"
+						center="source_entity"
+					>
+						<compare a="target_team" b="1" op="eq">
+							<setaccumulator value="1" />
+						</compare>
+					</areaofeffect>
+					<compare a="accumulator" b="0" op="eq" >
+						<applystate name="State_Observatory_Team2_Controlled" target="source_entity" inflictor="target_entity" continuous="true" />
+					</compare>
+					<else>
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+					</else>
+				</compare>
+			</condition>
+		</condition>
+		<setaccumulator value="0" />
+	</oninflict>
+
+	<onframe>
+		<compare a="accumulator" b="1" op="eq" >
+			<setaccumulator value="0" />
+			<condition test="not_hasstate State_Observatory_Team2_Controlled" target="source_entity">
+				<condition test="not_hasstate State_Observatory_Team1_Controlled" target="source_entity">
+					<compare a="target_team" b="1" op="eq">
+						<areaofeffect
+							radius="350"
+							targetselection="all"
+							targetscheme="all_heroes"
+							center="source_entity"
+						>
+							<compare a="target_team" b="2" op="eq">
+								<setaccumulator value="1" />
+							</compare>
+						</areaofeffect>
+						<compare a="accumulator" b="0" op="eq" >
+							<applystate name="State_Observatory_Team1_Controlled" target="source_entity" inflictor="target_entity" continuous="true" />
+						</compare>
+					</compare>
+					<compare a="target_team" b="2" op="eq">
+						<areaofeffect
+							radius="350"
+							targetselection="all"
+							targetscheme="all_heroes"
+							center="source_entity"
+						>
+							<compare a="target_team" b="1" op="eq">
+								<setaccumulator value="1" />
+							</compare>
+						</areaofeffect>
+						<compare a="accumulator" b="0" op="eq" >
+							<applystate name="State_Observatory_Team2_Controlled" target="source_entity" inflictor="target_entity" continuous="true" />
+						</compare>
+					</compare>
+				</condition>
+			</condition>
+		</compare>
+		<setaccumulator value="0" />
+	</onframe>
+
+	<modifier key="observatory_contested" modpriority="120">
+		<onframe>
+			<setaccumulator value="1" />
+		</onframe>
+	</modifier>
+</state>

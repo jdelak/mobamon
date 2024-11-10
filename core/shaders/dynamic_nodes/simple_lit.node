@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="simple_lit">
+	<!--<dependency name="Emissive" type="float3" source="MaterialEmissive" />-->
+	<!--<dependency name="Light" type="float3" source="MaterialLight" />-->
+	<!--<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />-->
+	<!--<dependency name="Specular" type="float3" source="MaterialSpecular" />-->
+	<!--<dependency name="Opacity" type="float" source="MaterialOpacity" />-->
+	<!--<dependency name="Color" type="float4" source="MaterialObjectColor" />-->
+	<dependency name="Shadowed" type="float" source="MaterialShadowed" />
+	<dependency name="GroundAmbient" type="bool" source="MaterialGroundAmbient" />
+	<dependency name="SelfOcclusionScaleBias" type="float2" source="MaterialSelfOcclusionScaleBias" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	<!--<dependency name="DynamicDiffuse" type="float3" source="MaterialDynamicDiffuse" />-->
+	
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<!--<dependency name="WorldBump" type="float3" source="WorldBump" />-->
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="WorldSunPosition" type="float3" source="vSunPositionWorld" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	<!--<dependency name="SpecParams" type="float3" source="vSpec" />-->
+	<dependency name="PointLightPositionOffset" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightPositionOffset" />
+	<dependency name="PointLightColor" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightColor" />
+	<dependency name="PointLightFalloff" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightFalloff" />
+
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+		float3 f3Normal = WorldNormal;
+		
+		float fShadow = Shadowed;
+		
+		float3 f3CamDirection = -normalize(WorldPositionOffset);
+		float3 f3Light = WorldSunPosition;
+		float fSelfOcclude = saturate(dot(WorldNormal, f3Light) * SelfOcclusionScaleBias.x + SelfOcclusionScaleBias.y);
+		
+		float2 f2Lit; // x = diffuse, y = specular
+		f2Lit.x = saturate(dot(f3Normal, f3Light));
+		f2Lit.y = 0.0f;
+		f2Lit *= fShadow * fSelfOcclude;
+		
+		float3 f3DynamicSpecularColor = float3(0.1f, 0.1f, 0.1f);
+		float fDynamicSpecPower = 8.0f;
+
+		float3 f3Diffuse = WorldAmbient;
+		float3 f3DynamicSpecular = float3(0.0f, 0.0f, 0.0f);
+
+		if (GROUND_AMBIENT && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, float3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f);
+			
+		f3Diffuse += SunColor * f2Lit.x;
+		
+		#if (NUM_POINT_LIGHTS > 0)
+		// Point Lights
+		[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+		{
+			float3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+			float fDistance = length(f3DeltaPosition);
+		
+			float3 f3Light = normalize(f3DeltaPosition);
+
+			float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+			
+			float2 f2Lit; // x = diffuse, y = specular
+			f2Lit.x = saturate(dot(f3Normal, f3Light));
+			f2Lit.y = 0.0f;
+			f2Lit *= fAttenuation;
+			
+			f3Diffuse += PointLightColor[i] * f2Lit.x;
+			f3DynamicSpecular += PointLightColor[i] * f2Lit.y;
+		}
+		#endif
+		
+		float4 f4DiffuseColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
+		
+		float3 f3FinalColor = f4DiffuseColor.rgb * f3Diffuse;
+		
+		f3FinalColor *= Fogofwar;
+		
+		Out.rgb = lerp(f3FinalColor, FogColor, Fog);
+		Out.a = f4DiffuseColor.a;
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+		
+		vec3 f3Normal = WorldNormal;
+			
+		float fShadow = Shadowed;
+			
+		vec3 f3CamDirection = -normalize(WorldPositionOffset);
+		vec3 f3Light = WorldSunPosition;
+		float fSelfOcclude = clamp(dot(WorldNormal, f3Light) * SelfOcclusionScaleBias.x + SelfOcclusionScaleBias.y, 0.0f, 1.0f);
+			
+		vec2 f2Lit; // x = diffuse, y = specular
+		f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+		f2Lit.y = 0.0f;
+		f2Lit *= fShadow * fSelfOcclude;
+			
+		vec3 f3DynamicSpecularColor = vec3(0.1f, 0.1f, 0.1f);
+		float fDynamicSpecPower = 8.0f;
+
+		vec3 f3Diffuse = WorldAmbient;
+		vec3 f3DynamicSpecular = vec3(0.0f, 0.0f, 0.0f);
+
+		if (GROUND_AMBIENT != 0 && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, vec3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f);
+				
+		f3Diffuse += SunColor * f2Lit.x;
+			
+		#if (NUM_POINT_LIGHTS > 0)
+		// Point Lights
+		for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+		{
+			vec3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+			float fDistance = length(f3DeltaPosition);
+			
+			vec3 f3Light = normalize(f3DeltaPosition);
+			vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+			float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+				
+			vec2 f2Lit; // x = diffuse, y = specular
+			f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+			f2Lit.y = 0.0f;
+			f2Lit *= fAttenuation;
+				
+			f3Diffuse += PointLightColor[i] * f2Lit.x;
+			f3DynamicSpecular += PointLightColor[i] * f2Lit.y;
+		}
+		#endif
+			
+		vec4 f4DiffuseColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+			
+		vec3 f3FinalColor = f4DiffuseColor.rgb * f3Diffuse;
+			
+		f3FinalColor *= Fogofwar;
+			
+		Out.rgb = mix(f3FinalColor, FogColor, Fog);
+		Out.a = f4DiffuseColor.a;
+	?>
+</node>

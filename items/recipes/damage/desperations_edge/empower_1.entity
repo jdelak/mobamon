@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_DesperationsEdge_Empower_1"
+	legendaryoverride="true"
+	cost="895"
+
+>
+	<!-- Tooltip only -->
+	<constant name="power_poke_enchant" value="10" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onframe>
+		<getconstant name="power" />
+		<setcharges a="result" b="source_health_percent" op="mult" />
+		
+		<compare a="source_health_percent" b="1" op="ge" >
+			<setactivemodifierkey entity="this_entity" name="ninja_legendary" />
+		</compare>
+		<else>
+			<setactivemodifierkey entity="this_entity" name="" />
+		</else>
+	</onframe>
+
+</qualityitem>

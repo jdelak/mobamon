@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+
+	<definitions>
+	
+	
+<!--
+		<modifier
+			name="modifier0"
+			life="650"
+			startcolor="7 2.5 1"
+			endcolor="1 1 1"
+		/>
+-->
+
+		<particlesystem name="system0" space="world">
+
+			<sound
+				volume=".75" 
+				sample="../sounds/sfx_cast.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+			/>
+
+			<simpleemitter
+				position="0 0 50"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				directionalspace="local"
+			>
+				<particle
+				>
+
+					<light
+						position="0 0 50"
+						life="750"
+						startcolor="0 0 0"
+						midcolor="6 2.5 0"
+						endcolor="0"
+						falloffstart="0"
+						startfalloffend="175"
+						endfalloffend="175"
+						directionalspace="world"
+					/>
+
+				</particle>
+			</simpleemitter>
+<!--
+			<billboard
+			bone="_bone_lefthand"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0 0 0"
+				life="275"
+				scale="2"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-100"
+			/>
+			
+			<billboard
+			bone="_bone_righthand"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0 0 0"
+				life="275"
+				scale="2"
+				lockup="1"
+				lockright="1"
+				pitch="-90"
+				depthbias="-100"
+			/>
+
+			
+			
+			
+			
+			<billboard
+				position="0 0 50"
+				life="400"
+				material="/shared/effects/smaterials/swoosh_ring_red.material"
+				startcolor=".25 .125 0"
+				endcolor="0 0 0"
+				size="200"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				rollspeed="700"
+				roll="90"
+			/>
+			
+			
+			<template name="">
+
+				<billboard
+					position="{zpos}"
+					life="400"
+					material="/shared/effects/smaterials/swoosh_ring_red.material"
+					startcolor=".25 .125 0"
+					endcolor="0 0 0"
+					size="{zsize}"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					rollspeed="700"
+					roll="90"
+				/>
+
+			</template>
+			
+			<instance zsize="75" zpos="0 0 25"/>
+			<instance zsize="100" zpos="0 0 50"/>
+			<instance zsize="125" zpos="0 0 75"/>
+			<instance zsize="150" zpos="0 0 100"/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

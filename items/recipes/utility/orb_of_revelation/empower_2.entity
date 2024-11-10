@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Orb_Of_Revelation_Empower_2"
+	
+	cost="950"
+
+>
+	<!-- Tooltip only -->
+	<constant name="charges_enchant" value="2" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<oncreate>
+		<setcharges a="2" />
+	</oncreate>
+
+	<ontimer>
+		<addcharges entity="this_entity" count="1" />
+		<compare a="charges" b="2" op="lt">
+			<starttimer duration="30000" applycooldownreduction="true" />
+		</compare>
+	</ontimer>
+
+	<onimpact>
+		<compare a="charges" b="2" op="eq">
+			<starttimer duration="30000" applycooldownreduction="true" />
+		</compare>
+
+		<compare a="charges" b="2" op="lt" >
+			<compare a="source_team" b="1" op="eq" >
+				<spawnunit name="Gadget_Orb_Of_Revelation" target="target_position" team="1" pushentity="true" lifetime="8000" />
+				<playeffect effect="effects/aoe.effect" target="stack_entity" source="stack_entity" occlude="true" visibility="allies"/>
+
+				<spawnunit name="Gadget_Orb_Of_Revelation" target="target_position" team="2" pushentity="true" lifetime="8000" />
+				<setactivemodifierkey name="red" entity="stack_entity"/>
+				<playeffect effect="effects/aoe_red.effect" target="stack_entity" source="stack_entity" occlude="true" visibility="enemies"/>
+			</compare>
+			<else>
+				<spawnunit name="Gadget_Orb_Of_Revelation" target="target_position" team="2" pushentity="true" lifetime="8000" />
+				<playeffect effect="effects/aoe.effect" target="stack_entity" source="stack_entity" occlude="true" visibility="allies"/>
+
+				<spawnunit name="Gadget_Orb_Of_Revelation" target="target_position" team="1" pushentity="true" lifetime="8000" />
+				<setactivemodifierkey name="red" entity="stack_entity"/>
+				<playeffect effect="effects/aoe_red.effect" target="stack_entity" source="stack_entity" occlude="true" visibility="enemies"/>
+			</else>
+		</compare>
+
+		<removecharge />
+
+		<compare a="charges" b="0" op="eq">
+			<setactivemodifierkey name="seerseyedisabled" />
+		</compare>
+
+	</onimpact>
+
+</qualityitem>

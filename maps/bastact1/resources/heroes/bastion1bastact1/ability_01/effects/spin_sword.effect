@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system1" space="entity" scale=".8">
+    
+
+			<light
+				position="0 0 50"
+				life="350"
+				startcolor="0"
+				midcolor="7 3 0"
+				endcolor="0"
+				falloffstart="50"
+				falloffend="300"
+			/>
+			
+			
+
+			<simpleemitter
+			
+				spawnrate="100"
+				count="1"
+				particlelife="1000"
+				direction="0 1 0"
+				angle="0"
+				speed="1"
+			>
+				<particle
+					turn="1"
+				>
+					<model
+						life="500"
+						model="models/bastion_swordswing.mdf"
+						anim="swing_01"
+						scale="2"
+						startcolor="10 2 0"
+						midcolor="10 2 0"
+						endcolor="1 1 1"
+						midcolorpos=".25"
+						startalpha=".75"
+						midalpha="1"
+						endalpha="0"
+					>
+						<!--Green sparkles-->
+						<!-- <simpleemitter
+							life="300"
+							bone="_bone_torchtop"
+							spawnrate="500"
+							particlelife="500"
+							speed="0"
+							gravity="0"
+							drag="0"
+							acceleration="0"
+							position="0 0 0"
+							direction="0 0 1"
+							offsetsphere="20 20 20"
+							material="/shared/effects/smaterials/star_add_orange.material"
+							inheritvelocity="0.05"
+						>
+							<particle
+								startcolor="1"
+								endcolor="0 0 0"
+								minanglespeed="-200"
+								maxanglespeed="200"
+								startsize="10"
+								
+								endsize="0"
+								minscale=".2"
+								maxscale="1"
+							/>
+
+							<particle
+								startcolor="1"
+								endcolor="0 0 0"
+								minanglespeed="-200"
+								maxanglespeed="200"
+								startsize="0"
+								
+								endsize="10"
+								minscale=".2"
+								maxscale="1"
+							/>
+
+						</simpleemitter> -->
+					</model>
+					
+					<controller scale="1.5" delay="100" >
+
+						<billboard
+							position="0 0 75"
+							life="150"
+							material="/shared/effects/smaterials/yellow_swoosh_ring_add_short_01.material"
+							startcolor="0"
+							midcolor="1"
+							endcolor="0"
+							midcolorpos=".7"
+							size="400"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							rollspeed="1600"
+							roll="220"
+							directionalspace="local"
+						/>
+
+						<billboard
+							position="0 0 75"
+							life="150"
+							material="/shared/effects/smaterials/yellow_swoosh_ring_add_short_01.material"
+							startcolor="1 0.5 0"
+							midcolor="1 0.5 0"
+							endcolor="0 0 0"
+							midcolorpos="0.7"
+							size="400"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							rollspeed="1600"
+							roll="220"
+							depthbias="-25"
+							directionalspace="local"
+						/>
+						
+						<billboard
+							position="0 0 75"
+							life="150"
+							material="/shared/effects/smaterials/yellow_swoosh_ring_add_short_01.material"
+							startcolor="1 0.5 0"
+							midcolor="1 0.5 0"
+							endcolor="0"
+							midcolorpos="0.7"
+							size="400"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							rollspeed="1600"
+							roll="220"
+							depthbias="-25"
+							directionalspace="local"
+						/>
+
+					</controller>
+					
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+		<particlesystem name="system2" space="entity" scale="1.5">			
+			<simpleemitter
+				delay="50"
+				life="400"
+				count="1"
+				position="0"
+				spawnrate="1000000"
+				offsetsphere="0"
+				particlelife="1000"	
+				gravity="0"
+				speed="0"
+				drag="0"
+			>
+				<particle
+					yawspeed="200"
+					scale="1.1"
+				>
+					<model
+						position="0 0 100"
+						life="1000"
+						color="50 .5 .5"
+						model="models/blade.mdf"
+						anim="cleave_near_slow"
+						startalpha="0"
+						midalpha="0"
+						endalpha="0"
+						pitch="180"
+						yaw="140"
+					>
+						<controller bone="Salomon" life="1000" position="0 0 20">
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="70"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -15"
+								material="/shared/effects/smaterials/whitecircleblurred_additive.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="50"
+								midsize="50"
+								endsize="50"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="250"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -15"
+								material="/shared/effects/smaterials/colored_swoosh_trail.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="250"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -5"
+								material="/shared/effects/smaterials/colored_swoosh_trail.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="250"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -30"
+								material="/shared/effects/smaterials/colored_swoosh_trail.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+								
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="200"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -5"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="250"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -30"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+								
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="175"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 -15"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+								
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+							
+							<trailemitter
+								life="200"
+								startspawnrate="200"
+								endspawnrate="0"
+								particlelife="175"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="0 0 0"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								midparticlecolorpos="0.2"
+								
+							>
+								<particle
+								startcolor="0 0 0"
+								midcolor="1 0.3 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="0"
+								midsize="30"
+								endsize="0"
+								midsizepos=".1"
+							/>
+							</trailemitter>
+						</controller>
+					</model>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+		
+		<particlesystem name="system3" space="world" scale="3">
+	
+			<simpleemitter
+				life="400"
+				count="1"
+				spawnrate="1000000"
+				particlelife="1000"
+				speed="0"
+				gravity="0"
+				drag="0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+			>
+				<particle
+					anglespeed="1800"
+					angle="60"
+					turn="true"
+				>
+					<!-- Bone moves to center animation -->
+					<model
+						life="1000"
+						model="twirl/model.mdf"
+						anim="idle"
+						position="0 0 0"
+						pitch="90"
+						startscale="1"
+						endscale="1"
+						
+					>
+						<!--Green sparkles-->
+						<simpleemitter
+							life="300"
+							bone="_bone_emissionpoint"
+							spawnrate="100"
+							particlelife="500"
+							speed="0"
+							gravity="0"
+							drag="0"
+							acceleration="0"
+							position="0 0 0"
+							direction="0 0 1"
+							offsetsphere="20 20 20"
+							material="/shared/effects/smaterials/star_add_orange.material"
+							inheritvelocity="0.025"
+						>
+							<particle
+								startcolor="1"
+								endcolor="0 0 0"
+								minanglespeed="-200"
+								maxanglespeed="200"
+								startsize="10"
+								
+								endsize="0"
+								minscale=".2"
+								maxscale="1"
+							/>
+
+							<particle
+								startcolor="1"
+								endcolor="0 0 0"
+								minanglespeed="-200"
+								maxanglespeed="200"
+								startsize="0"
+								
+								endsize="10"
+								minscale=".2"
+								maxscale="1"
+							/>
+
+						</simpleemitter>
+					</model>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+		
+		<!-- <modifier
+			name="modifier0"
+			life="700"
+			startalpha="0"
+			midalpha="0"
+			endalpha="1"
+		/> -->
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnparticlesystem instance="instance2" particlesystem="system2" />
+		<!-- <spawnparticlesystem instance="instance3" particlesystem="system3" /> -->
+		<spawnmodifier instance="instance4" modifier="modifier0" />
+		<camerashake2 scale="6" radius="1200" duration="250" frequency="22"/>
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+		<!-- <waitfordeath instance="instance3" /> -->
+		<waitfordeath instance="instance4" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

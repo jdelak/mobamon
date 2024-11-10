@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Codex_Empower_1"
+	
+	cost="1275"
+
+>
+	<!-- Tooltip only -->
+	<constant name="heal_enchant" value="50" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onimpact effectdescription="true">
+		<startcooldown/>
+		<printdebuginfo/>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="1" op="div" />
+		<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+		<heal target="source_entity" a="var0" b="0.5" op="mult" />
+		<recordheroaggression  />
+		<aggression />
+		<playeffect effect="effects/cast.effect"/>
+		<entitytype type="Hero_Carter" target="source_entity" source="source_entity">
+			<playeffect effect="effects/cast_carter.effect"/>
+		</entitytype>
+		
+		<spawnprojectile name="Projectile_Codex_Art" source="source_entity" target="target_entity" offset="0 100 0" />
+
+	</onimpact>
+
+	
+	
+</qualityitem>

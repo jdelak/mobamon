@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="2200"
+				volume="1"
+				sample="/heroes/artesia/ability_01/sounds/impact_%.wav"
+			/>
+			
+			<model
+				life="250"
+				model="sphere/orb2.mdf"
+				startcolor="0 0 0"
+				midcolor=".5 .25 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				expirelife="500"
+				startscale="2.5"
+				midscale="2.5"
+				endscale="1"
+				midscalepos=".6"
+				yawspeed="180"
+			/>
+			
+			<model
+				life="250"
+				model="sphere/orb2.mdf"
+				startcolor="0 0 0"
+				midcolor=".2"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				expirelife="500"
+				startscale="2.5"
+				midscale="2.5"
+				endscale="1"
+				midscalepos=".6"
+				yawspeed="-180"
+			/>
+			
+			<billboard
+				delay="100"
+				life="500"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".35"
+				param=".25"
+				startsize="0"
+				endsize="750"
+				depthbias="-100"
+				position="0 0 20"
+				material="/shared/effects/materials/refract_ring.material"
+				lockup="true"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

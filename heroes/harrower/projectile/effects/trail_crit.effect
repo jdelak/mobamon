@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.35"
+				sample="../sounds/sfx_trail_%.wav"
+			/>
+
+			<trailemitter
+				spawnrate="50"
+				particlelife="750"
+				texpostime="750"
+			 	texposscale="0.0"
+			 	texstretchscale=".4"
+				position="0 0 2"
+				material="/shared/effects/smaterials/arrow_trail.material"
+				startparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle
+					startcolor="0 .5 1"
+					midcolor="0 .25 1"
+					endcolor="0 0 0"
+					startsize="0"
+					midsize="30"
+					endsize="30"
+					midsizepos="0.2"
+			 />
+			</trailemitter>
+
+			<trailemitter
+				spawnrate="50"
+				particlelife="750"
+				texpostime="750"
+			 	texposscale="0.0"
+			 	texstretchscale=".4"
+				position="0 0 2"
+				material="/shared/effects/smaterials/arrow_trail.material"
+				startparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle
+					startcolor="0 .5 1"
+					midcolor="0 .25 1"
+					endcolor="0 0 0"
+					startsize="0"
+					midsize="30"
+					endsize="30"
+					midsizepos="0.2"
+			 />
+			</trailemitter>
+			
+			<billboard
+			bone="_bone_fx_01"
+				life="200"
+				startcolor="0 .5 1"
+				midcolor="0 .5 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="1"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-35"
+			/>
+			
+			<billboard
+			bone="_bone_fx_01"
+				life="200"
+				startcolor="0 .5 1"
+				midcolor="0 .5 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale=".4"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-35"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="1"
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="5000"
+				offsetsphere="0"
+			>
+				<particle
+					turn="1"
+				>
+
+					<simpleemitter
+						count="5"
+						position="0 0 0"
+						particlelife="1000"
+						spawnrate="250"
+						offsetsphere="0"
+					>
+						<particle
+							turn="1"
+						>
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								life="50"
+								color="0 .1 .5"
+								scale="2.5"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								depthbias="-50"
+							/>
+							
+							<billboard
+								life="50"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								color=".5"
+								scale="1.25"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								depthbias="-50"
+							/>
+
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/flare.material"
+								life="50"
+								color="0 .25 1"
+								scale="2.5"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								height="75"
+								width="10"
+								depthbias="-50"
+							/>
+
+							<billboard
+								position="0 0 0"
+								material="/shared/effects/smaterials/ring_half.material"
+								life="50"
+								color="0 .25 1"
+								startscale="2.5"
+								endscale="1.5"
+								directionalspace="local"
+								lockright="1"
+								lockup="1"
+								pitch="90"
+								roll="90"
+								height="50"
+								width="10"
+								depthbias="-50"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--			
+			<simpleemitter
+				spawnrate="100"
+				particlelife="500"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						life="300"
+						position="0 0 0"
+						material="/shared/effects/materials/corona_07.material"
+						directionalspace="local"
+						startcolor="1 1 1"
+						midcolor="0 0 1"
+						endcolor="0 0 0"
+						size="15"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath  instance="instance0"/>
+	</thread>
+</effect>

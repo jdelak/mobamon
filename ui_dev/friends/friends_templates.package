@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+
+	<template name="friends_select_label_template" >
+		<panel name="friends_edit_info_parent" color="0 0.03 0.03 0.96" height="-24s" visible="0" noclick="1" >
+		
+			<panel height="68s">
+				<image texture="/ui_dev/friends/textures/topbar_mid.tga" height="128s" width="-16s" align="center" noclick="1"/><!-- Texture needs to be added to precache once moved out of ui_dev -->
+				<image texture="/ui_dev/friends/textures/topbar_left.tga" height="128s" width="8s" noclick="1"/><!-- Texture needs to be added to precache once moved out of ui_dev -->
+				<image texture="/ui_dev/friends/textures/topbar_right.tga" height="128s" width="8s" align="right" noclick="1"/><!-- Texture needs to be added to precache once moved out of ui_dev -->
+				<panel y="34s" height="1s" width="-6s" align="center" color="1 1 1 0.08" noclick="1"/>				
+				<panel y="4s" width="-18s" align="center" noclick="1">
+					<label height="100%" style="labelBase" font="maindyn_20" content="social_action_bar_contact_info" noclick="true"  />	
+					<panel name="friends_label_close_button" visible="1" sticky="1" stickytoinvis="0" x="6s" height="20s" width="20s" align="right" noclick="0" onclicklua="Friends.ToggleFriendsList()">	
+						<image noclick="1" texture="/ui/main/shared/textures/close.tga" color="#da3f3f" align="center" valign="center" height="75%" width="75%" />
+					</panel>					
+					<label name="friends_edit_info_label_1" y="35s" fity="1" style="h3" font="maindyn_24" content="Name: MrFriend" noclick="true"  />
+					<label name="friends_edit_info_label_2" y="62s" fity="1" style="labelBase" color=".7 .7 .7 1" font="maindyn_16" content="UniqueID: 12345" noclick="true"  />						
+				</panel>
+			</panel>
+			
+			<panel y="105s" width="-18s" height="-110s" align="center" noclick="1" float="bottom" padding="8s">
+			
+				<panel height="30s" noclick="true">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.4h" noclick="true"/>
+					<textbox 
+						name="friends_edit_info_rename_textbox"
+						style="textBox1Input"
+						textcolor="0 0 0 1" y="2s"
+						onesc="Cmd('Script Friends.RenameInputOnEsc()')"
+						onenter="Cmd('Script Friends.RenameInputOnEnter()')"
+						maxlength="20"
+					/>
+					<label name="friends_edit_info_rename_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="social_action_bar_rename_cover"/>
+					<instance name="iconButton" id="friends_edit_info_rename_close"
+						icon="/ui/main/shared/textures/close.tga"
+						visible="0"
+						align="right" valign="center" borderthickness="4s" colorized="1"
+					/>
+				</panel>
+				<instance name="hr" />
+				
+				<!-- notes -->			
+				<panel height="20s" valign="top" noclick="true">								
+					<label height="100%" textvalign="center" style="labelBase" font="maindyn_20" color="#cfd3e7" content="social_action_bar_user_notes" noclick="true"  />	
+				</panel>			
+				
+				<panel height="30s" noclick="true">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.4h" noclick="true"/>
+					<textbox 
+						name="friends_edit_info_notes_textbox"
+						style="textBox1Input"
+						textcolor="0 0 0 1" y="2s"
+						onesc="Cmd('Script Friends.NotesInputOnEsc()')"
+						onenter="Cmd('Script Friends.NotesInputOnEnter()')"
+						maxlength="20"
+					/>
+					<label name="friends_edit_info_notes_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="social_action_bar_notes_cover"/>
+					<instance name="iconButton" id="friends_edit_info_notes_close"
+						icon="/ui/main/shared/textures/close.tga"
+						visible="0"
+						align="right" valign="center" borderthickness="4s" colorized="1"
+					/>
+				</panel>
+				
+				<instance name="hr" />
+				
+				<!-- Friend Labels -->
+				<panel height="20s" valign="top" noclick="true">								
+					<label height="100%" textvalign="center" style="labelBase" font="maindyn_20" color="#cfd3e7" content="social_action_bar_assign_label" noclick="true"  />	
+				</panel>
+				
+				<panel name="friends_label_listbox_parent" height="180s" align="center" valign="top">
+					<frame texture="/ui/shared/frames/border_double.tga" borderthickness="8s" bordercolor=".2 .2 .2 1" color="invisible"/>
+					<listbox
+						name="friends_label_listbox"
+						x="4s"
+						width="-32s" height="-20s"
+						valign="center"
+						color="invisible"
+						font="maindyn_24"
+						itemwidth="100%"
+						itemheight="24s"
+						select="true"
+						clearselection="true"
+						hoverselect="false"
+						hoverhighlight="true"
+						highlight="under"
+						highlightcolor="#0cb5e03f"
+						highlightbordercolor="invisible"
+						selectedcolor="#0cb5e076"
+						selectedbordercolor="invisible"
+						backgroundimage="$invis"
+						backgroundimagecolor="#1d2f3b"
+						colortransition="true"
+						colortransitiontime="250"
+						exteriorscrollbars="true"
+						scrollbarplaceholder="true"
+						scrollbarsize="16s"
+						scrolltexture="/ui/shared/textures/new_slider.tga"
+						handleheight="128s"				
+						onclick=""
+						ondoubleclick=""
+						onselectlua="Friends.SetSelectedLabelInput(self:GetValue())"
+						hscrollbar="0"
+						horizontal="false"					
+					/>
+				</panel>
+
+				<instance name="hr" />				
+			
+				<panel height="30s" noclick="true">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.4h" noclick="true"/>
+					<textbox 
+						name="friends_label_input_textbox"
+						style="textBox1Input"  
+						textcolor="0 0 0 1" y="2s"
+						onesc="Cmd('Script Friends.LabelInputOnEsc()')"
+						onenter="Cmd('Script Friends.LabelInputOnEnter()')"
+						maxlength="20"
+					/>
+					<label name="friends_label_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="social_action_bar_or_enter"/>
+					<instance name="iconButton" id="friends_label_input_close_button"
+						icon="/ui/main/shared/textures/close.tga"
+						visible="0"
+						align="right" valign="center" borderthickness="4s" colorized="1"
+					/>
+				</panel>		
+			
+				<panel noclick="1" height="30s">
+					<button
+						name="friends_label_input_textbox_btn_1"
+						width="112s"
+						align="right"
+						color="invisible"
+					>
+						<widgetstate statename="up">
+							<frame texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="4s" blockinput="0" noclick="1"/>
+							<label content="general_ok" font="maindyn_14" color="white" fitx="1" fity="1" align="center" valign="center" />
+						</widgetstate>
+						<widgetstate statename="over">
+							<frame texture="/ui/shared/frames/blue_btn_over.tga" borderthickness="4s" blockinput="0" noclick="1"/>
+							<label content="general_ok" font="maindyn_14" color="white" fitx="1" fity="1" align="center" valign="center" />
+						</widgetstate>
+						<widgetstate statename="down">
+							<frame texture="/ui/shared/frames/blue_btn_up.tga" color="#CCCCCC" bordercolor="#CCCCCC" borderthickness="4s" blockinput="0" noclick="1"/>
+							<label content="general_ok" font="maindyn_14" color="white" fitx="1" fity="1" align="center" valign="center" />
+						</widgetstate>
+					</button>					
+					<button
+						name="friends_label_input_textbox_btn_2"
+						width="112s"
+						align="left"
+						color="invisible"
+					>
+						<widgetstate statename="up">
+							<frame texture="/ui/shared/frames/blue_btn_up.tga" rendermode="grayscale" borderthickness="4s" blockinput="0" noclick="1"/>
+							<label content="general_cancel" font="maindyn_14" color="white" fitx="1" fity="1" align="center" valign="center" />
+						</widgetstate>
+						<widgetstate statename="over">
+							<frame texture="/ui/shared/frames/blue_btn_over.tga" rendermode="grayscale" borderthickness="4s" blockinput="0" noclick="1"/>
+							<label content="general_cancel" font="maindyn_14" color="white" fitx="1" fity="1" align="center" valign="center" />
+						</widgetstate>
+						<widgetstate statename="down">
+							<frame texture="/ui/shared/frames/blue_btn_up.tga" rendermode="grayscale" color="#CCCCCC" bordercolor="#CCCCCC" borderthickness="4s" blockinput="0" noclick="1"/>
+							<label content="general_cancel" font="maindyn_14" color="white" fitx="1" fity="1" align="center" valign="center" />
+						</widgetstate>
+					</button>
+				</panel>			
+			</panel>
+			
+
+		
+		</panel>
+	</template>
+
+	<template name="socialclient_friend_longmode_template">
+		<panel height="40s" noclick="1" width="264s" sticky="1" stickytoinvis="0">
+			<button name="socialclient_friend_longmode_template{index}" customdraghandler="1" cangrab="1" color="invisible" height="40s" noclick="0" width="100%" oninstantiatelua="" sticky="1" stickytoinvis="0">
+				<frame name="socialclient_friend_longmode_template{index}_bg" width="264s" texture="/ui/elements:rounded_bg_solid" color="0.02 0.07 0.09 0.98" bordercolor="0.02 0.07 0.09 0.98" borderthickness="3s" noclick="1"/>
+				<frame name="socialclient_friend_longmode_template{index}_hover" width="264s" texture="/ui/elements:rounded_bg_solid" color="#094953" bordercolor="#094953" borderthickness="4s" noclick="1" visible="0"/>
+				<frame name="socialclient_friend_longmode_template{index}_hoverOutline" width="264s" texture="/ui/shared/frames/border_double.tga" color="invisible" bordercolor="#00d9f9" borderthickness="4s" noclick="1" visible="0"/>
+				<panel name="socialclient_friend_longmode_template{index}_profile" x="5s" height="80%" valign="center" float="right" padding="3s" noclick="1" >
+					<panel name="socialclient_friend_longmode_template{index}_profile_id" x="0" height="100%" width="100@" noclick="1" color="white" texture="{accountIcon=/ui/shared/textures/account_icons/default.tga}" />
+					<panel name="socialclient_friend_longmode_template{index}_voip" x="0" height="100%" width="100@" noclick="1" color="white" texture="/ui/shared/textures/megaphone.tga" visible="0" />
+					<panel width="150s" noclick="1" >
+						<label name="socialclient_friend_longmode_template{index}_profile_name" content="{userName=???}" x="5s" y="-2s" fity="1" fitx="1" font="maindyn_18" align="left" textalign="left" valign="top" noclick="1" color="{userNameColor=white}" />
+						<label name="socialclient_friend_longmode_template{index}_profile_groupname" content="{secondaryLabel=?_?_?}" x="5s" fity="1" font="subdyn_10" align="left" textalign="left" valign="bottom" noclick="1" color=".5 .5 .5 1" />
+					</panel>
+					<panel width="58s" noclick="1" align="left" >
+						<panel name="socialclient_friend_longmode_template{index}_profile_status_icon" y="4s" align="right" height="25%" width="25@" valign="top" texture="/ui/main/shared/textures/user_status_light.tga"  color="{statusColor=#2385ea}" noclick="1"/>
+						<panel name="socialclient_friend_longmode_template{index}_profile_status_icon_glow" y="-1s" x="5s" align="right" height="60%" width="60@" valign="top" rendermode="additive" texture="/ui/main/shared/textures/circular.tga"  color="{statusColor=#2385ea}" noclick="1"/>
+						<label name="socialclient_friend_longmode_template{index}_profile_status" content="{statusText=?_?_?}" fity="1" font="subdyn_9" align="right" textalign="right" valign="bottom" noclick="1" color="{statusColor=#2385ea}" />				
+					</panel>
+				</panel>
+			</button>
+			<panel height="40s" noclick="1" width="100%" sticky="1" stickytoinvis="0">
+				<panel x="5s" height="80%" valign="center" noclick="1" >
+					<panel name="socialclient_friend_longmode_template{index}_profile_id_hover" height="100%" width="100@" noclick="0" color="invisible" >	
+						
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<!--
+	<template name="socialclient_friend_longmode_template" >
+		<button name="socialclient_friend_longmode_template{index}" blockinput="1" interactive="1" noclick="0" height="98s" color="invisible" cangrab="1"  >
+			<panel height="64s" width="64s" borderthickness="4s" noclick="1" align="center" valign="top" >
+				<image height="100%" width="100@" valign="center" align="center" visible="1" texture="{accountIcon=/ui/shared/textures/account_icons/default.tga}" noclick="1" />
+			</panel>
+			<panel noclick="1" width="100%" height="32s" valign="bottom" y="-2s" >
+				<label hmargin="6s" noclick="1" textalign="center" font="subdyn_13" wrap="1" style="labelBase" color="1 1 1 1" content="{userName=User Name User Name User Name}"/>
+			</panel>				
+		</button> 
+	</template>	
+	-->
+	
+	<!--
+	<template name="socialclient_friend_iconmode_template" >
+		<button name="socialclient_friend_iconmode_{index}" blockinput="1" interactive="1" noclick="0" height="98s" color="invisible" cangrab="1" width="98s" oninstantiatelua="Friends['{interfaceName}'].RegisterFriend(self, '{identID}')" sticky="1" stickytoinvis="0" >
+			<panel height="64s" width="64s" borderthickness="4s" noclick="1" align="center" valign="top" >
+				<image height="100%" width="100@" valign="center" align="center" visible="1" texture="{accountIcon=/ui/shared/textures/account_icons/default.tga}" noclick="1" />
+			</panel>
+			<panel noclick="1" width="100%" height="32s" valign="bottom" y="-2s" >
+				<label hmargin="6s" noclick="1" textalign="center" font="subdyn_13" wrap="1" style="labelBase" color="1 1 1 1" content="{userName=User Name User Name User Name}"/>
+			</panel>				
+		</button> 
+	</template>
+	-->
+	
+	<template name="socialclient_im_header_row_template" >
+		<panel name="socialclient_im_header_row_template{index}" height="28s" width="100%" float="right" padding="5s" noclick="0" oninstantiatelua="Friends['{interfaceName}'].RegisterHeader(self, '{index}', '{displayGroup}')" sticky="1" stickytoinvis="0" clip="1" >
+			<panel name="socialclient_im_header_row_template{index}_arrow" rotation="{rotation=0}" x="5s" height="18s" width="18s" noclick="1" color="#cfd3e7" texture="/ui/main/shared/textures/drop_arrow.tga" valign="center"/>
+			<label name="socialclient_im_header_row_template{index}_label" content="{label=Header Name Is Missing}" font="maindyn_18" color="#cfd3e7" fitx="1" fity="1" align="left" valign="center" noclick="1" />
+			<label name="socialclient_im_header_row_template{index}_count_label" content="- {countLabel=?/?}" font="maindyn_14" color="0.81 0.83 0.91 0.3" fitx="1" fity="1" align="left" valign="center" noclick="1" />
+			<panel height="2s" width="120s" align="center" valign="center" color="1 1 1 0.21" texture="/ui/main/shared/textures/grad_horz.tga" noclick="1"/> <!-- This line will need to be calculated based on the width of the arrow, the width of the group name, the width of the users within the group, and the remaining list width -->
+		</panel>
+	</template>
+	
+	<!--
+	<template name="socialclient_im_header_row_template" >
+		<panel name="socialclient_im_header_row_{index}" group="socialclient_im_friendlist_row_group" float="right" padding="0s" sticky="1" stickytoinvis="0" height="28s" width="100%" >
+			<label hmargin="12s" noclick="1" textalign="left" textvalign="left" font="maindyn_20" style="labelBase" color="1 1 1 1" content="{label=Header Name Is Missing}"/>
+		</panel>
+	</template>	
+	-->	
+	
+	<template name="socialclient_im_friendlist_row_template" >
+		<panel name="socialclient_im_friendlist_row_{index}" group="socialclient_im_friendlist_row_group" noclick="1" float="right" padding="0s" sticky="1" stickytoinvis="0" grow="1" regrow="1" growinvis="0" />
+	</template>
+
+	<template name="socialclient_im_friendlist_droptarget_template" >
+		<panel height="40s" noclick="1" width="258s" sticky="1" stickytoinvis="0">
+			<panel name="socialclient_im_friendlist_droptarget_{index}" color="invisible" height="40s" noclick="0" width="100%" oninstantiatelua="" sticky="1" stickytoinvis="0">
+
+				<frame width="254s" texture="/ui/elements:rounded_bg_solid" color="0.02 0.07 0.09 0.98" bordercolor="0.02 0.07 0.09 0.98" borderthickness="3s" noclick="1"/>
+				<panel x="5s" height="80%" valign="center" float="right" padding="3s" noclick="1" >
+					<panel width="150s" noclick="1" >
+						<label content="{label=???}" x="5s" y="-2s" fity="1" fitx="1" font="maindyn_18" align="left" textalign="left" valign="center" noclick="1" color="#0cb9e5" />
+					</panel>
+				</panel>			
+				
+				<instance name="DropTarget" index="socialclient_im_friendlist_droptarget_{index}" width="100%" height="100%" visible="1"/>
+				
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="socialclient_friendlist_template" >
+		<panel name="socialclient_im_friendlist_parent" noclick="1" height="-106s" valign="top" y="69s" sticky="0" stickytoinvis="0" width="-30s" clip="0" style="simpleListbox"
+		>
+			<panel name="socialclient_im_friendlist" noclick="1" valign="top" sticky="0" stickytoinvis="0" style="simpleListbox" float="bottom" padding="4s"
+			>
+			<!-- 15s space should be between each group, but not each friend in the list -->
+			</panel>
+		</panel>
+		<scrollbar name="socialclient_im_friendlist_scrollbar" visible="0"
+			texture="/ui/shared/textures/new_slider.tga"
+			vertical="true"					
+			width="16s" align="right" valign="top" height="-106s" step="1" minvalue="0" maxvalue="6"
+			hscrollbar="0"
+			horizontal="false"	
+			handleheight="50%" y="69s" x="-2s"			
+		/>		
+		<panel noclick="0" blockinput="0" processonlyscroll="1" hover="false" group="social_client_scroll_catchers"
+			onmousewheeldownlua=""
+			onmousewheeluplua=""										
+		/>
+	</template>
+
+
+</package>

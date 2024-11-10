@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Flak3"
+
+	icon="icon.tga"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="passive"
+
+	modifierkey="Flak_Ability3_1,Flak_Ability3_2,Flak_Ability3_3,Flak_Ability3_4"
+>
+
+	<constant name="shield_percent" value="12" adjustment="none" noshowintooltip="true" />
+	
+	
+	
+	<modifier key="Flak_Ability3_1" modpriority="101" 
+	>
+		<aura state="State_Flak_Ability3_ShieldLogic" radius="0" targetscheme="self" ignoreinvulnerable="true" />
+	</modifier>
+	
+	<modifier key="Flak_Ability3_2" modpriority="101"
+		passiveeffect="effects/state_2.effect"
+	>
+		<aura state="State_Flak_Ability3_ShieldLogic" radius="0" targetscheme="self" ignoreinvulnerable="true" />
+	
+		<onattackingdamageevent>
+			<damageeffecttype effecttype="Indirect" />
+			<else>
+				<damagesupertype supertype="attack">
+					<distance />
+					<setvar0 a="result" b="200" op="max" />
+					<setvar0 a="var0" b="200" op="sub" />
+
+					<setvar0 a="var0" b="700" op="div" />
+					<setvar0 a="1" b="var0" op="min" />
+
+					<setvar0 a="var0" b="0.25" op="mult" />
+					<setvar0 a="1" b="var0" op="add" />
+
+					<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+				</damagesupertype>
+			</else>
+		</onattackingdamageevent>
+
+	</modifier>
+	
+	<modifier key="Flak_Ability3_3" modpriority="101" manacost="25" actiontype="target_self" cooldowntime="45000"
+		passiveeffect="effects/state_3.effect"
+	>	
+		<aura state="State_Flak_Ability3_ShieldLogic" radius="0" targetscheme="self" ignoreinvulnerable="true" />
+		
+		<onimpact>
+			<applystate name="State_Flak_Ability3_Reveal" target="source_entity" duration="5000" />
+		</onimpact>
+		
+		<onattackingdamageevent>
+			<damageeffecttype effecttype="Indirect" />
+			<else>
+				<damagesupertype supertype="attack">
+					<distance />
+					<setvar0 a="result" b="200" op="max" />
+					<setvar0 a="var0" b="200" op="sub" />
+
+					<setvar0 a="var0" b="700" op="div" />
+					<setvar0 a="1" b="var0" op="min" />
+
+					<setvar0 a="var0" b="0.25" op="mult" />
+					<setvar0 a="1" b="var0" op="add" />
+
+					<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+				</damagesupertype>
+			</else>
+		</onattackingdamageevent>
+
+	</modifier>
+	
+	<modifier key="Flak_Ability3_4" modpriority="101" manacost="25" actiontype="target_self" cooldowntime="45000"
+		passiveeffect="effects/state_4.effect"
+	>	
+		<aura state="State_Flak_Ability3_ShieldLogic" radius="0" targetscheme="self" ignoreinvulnerable="true" />
+		
+		<onimpact>
+			<applystate name="State_Flak_Ability3_Reveal" target="source_entity" duration="5000" />
+		</onimpact>
+		
+		<onattackingdamageevent>
+			<damageeffecttype effecttype="Indirect" />
+			<else>
+				<damagesupertype supertype="attack">
+					<distance />
+					<setvar0 a="result" b="200" op="max" />
+					<setvar0 a="var0" b="200" op="sub" />
+
+					<setvar0 a="var0" b="700" op="div" />
+					<setvar0 a="1" b="var0" op="min" />
+
+					<setvar0 a="var0" b="0.25" op="mult" />
+					<setvar0 a="1" b="var0" op="add" />
+
+					<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+				</damagesupertype>
+			</else>
+		</onattackingdamageevent>
+		
+		<onattackimpact
+			priority="999"
+		>
+			<bounce count="1" range="250" damagemult="0.5" targetscheme="enemy_units" seek="closest" maxbouncespertarget="1"/>
+		</onattackimpact>
+
+	</modifier>
+	
+</ability>

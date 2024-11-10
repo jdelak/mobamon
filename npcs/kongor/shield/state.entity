@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_Kongor_Shield"
+
+	icon="icon.tga"
+	passiveeffect=""
+	effecttype=""
+	allowtransfer="true"
+	displaylevel="true"
+>
+	
+	<oninflict>
+		<setvar0 a="source_maxhealth" b="0.04" op="mult" />
+		<setvalue source="this_entity" name="source_max_shield" a="var0" />
+		<setvalue source="this_owner_entity" name="source_shield" a="var0" />
+	</oninflict>
+
+	<onframe>
+		<!--Shield Value-->
+		<setvar0 a="source_maxhealth" b="0.04" op="mult" />
+	
+		<setaccumulator value="var0" valueb="5" valueop="div" />		
+		<setvalue source="this_entity" name="source_max_shield" a="var0" />
+	
+		<compare source="this_owner_entity" a="source_shield" b="source_max_shield" op="lt">
+			<setvar0 a="frametime" b="accumulator" op="mult" />
+			<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+			<expirestate name="State_Kongor_Shield_NoRegen_Empty" target="source_entity" />
+		</compare>
+		
+	</onframe>
+	
+	<onattackeddamageevent>
+		<startcooldown />
+		<compare a="damage_attempted" b="source_shield" op="ge">
+			<applystate name="State_Kongor_Shield_NoRegen_Empty" target="source_entity" duration="-1" />
+		</compare>
+
+		<targettype type="enemy"/>
+		<else>
+			<setvalue source="this_owner_entity" name="source_shield" a="0" />
+			<applystate name="State_Kongor_Shield_NoRegen_Empty" target="source_entity" duration="-1" />
+		</else>
+
+		<applystate name="State_Kongor_Shield_NoRegen" duration="7000" target="source_entity" />
+	</onattackeddamageevent>
+	
+	<modifier key="KongorShield_noregen" modpriority="102"
+	>
+		<onframe>
+
+		</onframe>
+	</modifier>
+	
+	<modifier key="KongorShieldDisabled" modpriority="101"
+		passiveeffect="" 
+	>
+		<onattackedpostimpact />
+		
+	</modifier>
+	
+	
+</statenetaccum>

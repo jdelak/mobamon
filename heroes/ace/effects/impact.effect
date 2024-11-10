@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<sound
+				volume=".85"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="10"
+				position="0 0 0"
+				spawnrate="1000"			
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				material="/shared/effects/smaterials/snowy_smoke.material"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				minspeed="0"				
+				maxspeed="175"				
+			>
+				<particle
+					startsize="100"								
+					minendsize="400"
+					maxendsize="400"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor=".25 .75 1"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

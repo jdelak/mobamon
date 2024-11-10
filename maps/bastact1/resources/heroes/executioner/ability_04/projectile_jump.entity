@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Executioner_Ability4_Jump"
+
+	lifetime="1150"
+	useexactlifetime="true"
+	gravity="4000"
+	
+	canturn="true"
+	
+
+	effectscale="2.0"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact_enemy.effect"
+	touchcliffs="true"
+	
+	touchradius="150"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+	ignoreinvulnerable="true"
+
+>	
+	<onimpact>
+		<print text="LANDED" />
+		<expirestate name="Bastact1_State_Executioner_Jumping" target="source_entity"/>
+		<playeffect effect="effects/camshake.effect" target="source_entity" source="source_entity" />
+		<playeffect effect="effects/impact_enemy.effect" target="source_entity" source="source_entity" />
+		<!-- <playanim source="source_entity" target="source_entity" name="laugh_1" /> -->
+		<areaofeffect
+			radius="1500"
+			targetselection="all"
+			targetscheme="visible_enemy_heroes"
+			center="source_entity"
+			maxtotalimpacts="1"
+		>
+			<!-- If Bastion is close enough to landing spot, damage him -->
+			<distance />
+			<compare a="result" b="200" op="le" >
+				<damage amount="100" effecttype="Magic Splash" />
+			</compare>
+
+			<!-- Rotate Executioner to face Bastion -->
+			<teleport source="source_entity" target="target_entity" facetarget="true" interpolate="true" positionmodifier="minonline" />
+		</areaofeffect>	
+	</onimpact>
+</projectile>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_HealthBoost"
+	effect="key.effect"
+	radius="100"
+	targetselection="all"
+	targetscheme="player_controlled_units"
+	lifetime="-1"
+	maximpactspertarget="1"
+	diewithowner="false"
+	impactinterval="100"
+>
+
+	<onimpact>
+		<setent0 name="Hero_Bastion1Bastact1"/>
+		<setowner target="ent0" entity="this_entity"/>
+		<entitytype type="Hero_Bastion1Bastact1">
+			<print text="Bastion has picked up a Health Boost" />
+			<applystate name="State_Bastact1_HealthBoost" duration="2000" target="target_entity"/> 
+			<delete target="this_entity" />
+		</entitytype>
+	</onimpact>
+
+</affector>

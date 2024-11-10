@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Topps_TriggeredPassive_1_Self"
+
+	icon="icon.tga"
+	
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	impactinterval="2000"
+>
+
+	<oninflict>
+		<playeffect effect="effects/state_self.effect" source="this_proxy_entity" target="" />
+	</oninflict>
+	
+	<onframe>
+		<areaofeffect radius="350" targetselection="closest" targetscheme="enemy_heroes" maximpactspertarget="1" effecttype="Magic">
+			<applystate name="State_Topps_TriggeredPassive_1_Burn" target="target_entity" duration="200" />
+		</areaofeffect>
+	</onframe>
+	
+</state>

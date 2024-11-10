@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="Bastact1_State_Executioner_Ability1"
+
+	icon="icon.tga"
+	
+	passiveeffect=""
+	
+	ishidden="true"
+
+	disarmed="true"
+	
+	effecttype=""
+	allowtransfer="true"
+
+	impactinterval="250"
+	invulnerable="true"
+	movespeedslow="0.3"
+>
+
+	<oninflict>
+		<activatemodifierkey entity="source_entity" name="disableabilities" />
+		<activatemodifierkey entity="source_entity" name="spin_axe" />
+		<playeffect effect="effects/whirlwind.effect" target="source_entity"/>
+		<playanim name="ability_1_windup" target="source_entity"/>
+		<setaccumulator value="1" />
+		<propareaeffect center="source_entity" radius="300" anim="flamehit" />
+		<areaofeffect
+			radius="350"
+			targetselection="all"
+			targetscheme="Rook_Bastact1_Ult"
+			effecttype="Magic Splash"
+			ignore="source_entity"
+			ignoreinvulnerable="false"
+		>
+			<recordheroaggression  />
+			<aggression />
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<setvar0 a="result" b="4" op="div" />
+					<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+		<compare a="result" b="0" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<compare a="result" b="2" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+
+	</oninflict>
+
+	<onimpact>
+		
+		<propareaeffect center="source_entity" radius="300" anim="flamehit" />
+		<playanim name="ability_1_spin" target="source_entity"/>
+				<areaofeffect
+			radius="350"
+			targetselection="all"
+			targetscheme="Rook_Bastact1_Ult"
+			effecttype="Magic Splash"
+			ignoreinvulnerable="false"
+			ignore="source_entity"
+		>
+			<recordheroaggression  />
+			<aggression />
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<setvar0 a="result" b="4" op="div" />
+					<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+					<setproxy entity="this_entity" target="target_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+		<compare a="result" b="0" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+		<compare a="result" b="2" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+
+		<setaccumulator value="1" valueb="accumulator" valueop="add" />
+		<compare a="accumulator" b="4" op="eq">
+			<playanim name="idle" target="source_entity" />
+		</compare>
+	
+	</onimpact>
+
+	<onexpired>
+		<deactivatemodifierkey entity="source_entity" name="disableabilities" />
+		<deactivatemodifierkey entity="source_entity" name="spin_axe" />
+		<applystate target="source_entity" name="State_Stunned" duration="2500" />
+		<playanim name="stunned_1" />
+		<order command="attack" source="source_entity" target="proxy_entity" queue="back" />
+	</onexpired>
+</state>

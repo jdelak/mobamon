@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="water_directional_ps" novs="true">
+	<dependency name="Ambient" type="float3" source="vAmbient" />
+	<dependency name="Shadowed" type="float" source="Shadowed" />
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<dependency name="WorldTangent" type="float3" source="WorldTangent" />
+	<dependency name="WorldBinormal" type="float3" source="WorldBinormal" />
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="WorldSunPosition" type="float3" source="vSunPositionWorld" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="Fog" type="float" source="Fog" />
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	<dependency name="Fogofwar" type="float" source="Fogofwar" />
+	<dependency name="SpecParams" type="float3" source="vSpec" />
+	<dependency name="PointLightPositionOffset" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightPositionOffset" />
+	<dependency name="PointLightColor" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightColor" />
+	<dependency name="PointLightFalloff" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightFalloff" />
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+
+	<dependency name="waterflowmap" type="sampler2D" source="waterflowmap" />
+	<dependency name="waternormalmap1" type="sampler2D" />
+	<dependency name="waternormalmap2" type="sampler2D" />
+	<dependency name="cube" type="samplerCUBE" />
+	<dependency name="reflection" type="sampler2D" source="reflection" />
+	<dependency name="waterdistortion" type="sampler2D" source="waterdistortion" />
+	<dependency name="Texcoord0" type="float4" source="WaterTexcoord0" />
+	<dependency name="ReflectionPow" type="float" source="WaterReflectionPow" />
+	<dependency name="DiffuseColor" type="float3" source="vDiffuseColor" />
+	<dependency name="SpecularLevel" type="float" source="fSpecularLevel" />
+	<dependency name="WatermapSize" type="float" source="fWatermapSize" />
+	<dependency name="TextureParams" type="float3" />
+	<dependency name="AlphaParams" type="float3" />
+	<dependency name="Time" type="float" source="fTime" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+	float3 f3CamDirection = -normalize(WorldPositionOffset);
+
+	//
+	// Flowmap Texture
+	//
+	
+	// f3Flowmap.z is diffuse xy is direction
+	float3 f3Flowmap = tex2D(waterflowmap, (Texcoord0.zw + 0.5f) * WatermapSize).rgb;
+
+	float fHalfPhase = TextureParams.z * 0.5f;
+	
+	f3Flowmap.xy = (f3Flowmap.xy - 0.5f) * 5.0f; // This changes max speed
+	
+	float fScaledTime = Time * fHalfPhase;
+	
+	float fSTime1 = fmod(fScaledTime, TextureParams.z);
+	float fSTime2 = fmod(fScaledTime + fHalfPhase, TextureParams.z);
+	
+	float2 vTexcoord0 = fSTime1 * f3Flowmap.xy;
+	float2 vTexcoord1 = fSTime2 * f3Flowmap.xy;
+	
+	float fTextureLerp = abs(fHalfPhase - fSTime1) / fHalfPhase;
+
+	float3 f4DiffuseColor = DiffuseColor.rgb;
+
+	//
+	// Lighting
+	//
+	
+#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+	float fMapMoveScale = fScaledTime * 0.25f;
+		
+	// Normal Map
+	float2 vTextureWorldCoordsA = (Texcoord0.xy * TextureParams.x);
+	float3 f3NormalmapPhase1 = tex2D(waternormalmap1, vTexcoord0.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	float3 f3NormalmapPhase2 = tex2D(waternormalmap1, vTexcoord1.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	f3NormalmapPhase1 = f3NormalmapPhase1 - 0.5f;
+	f3NormalmapPhase2 = f3NormalmapPhase2 - 0.5f;
+		
+	float3 f3Normalmap = lerp(f3NormalmapPhase1, f3NormalmapPhase2, fTextureLerp) ;
+	
+	// Normal Map 2
+	float2 vTextureWorldCoordsB = (Texcoord0.xy * TextureParams.y);
+	vTextureWorldCoordsB.xy += f3Normalmap.xy * TextureParams.x * 5.0f + fMapMoveScale;
+	float3 vStaticNormalmap = tex2D(waternormalmap2, vTextureWorldCoordsB).rgb;
+	vStaticNormalmap = vStaticNormalmap - 0.5f;
+	
+	// Mix both normal maps
+	float3 f3TexNormal = normalize(vStaticNormalmap + f3Normalmap);
+	
+#elif (WATER_QUALITY == 2)
+	float3 f3TexNormal1 = tex2D(waternormalmap1, Time * 0.025f - Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	float3 f3TexNormal2 = tex2D(waternormalmap2, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	float3 f3TexNormal = normalize(f3TexNormal1 + f3TexNormal2);
+#else
+	float3 f3TexNormal = tex2D(waternormalmap1, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+#endif
+
+	// Diffuse color
+	// Average
+	float3 cTexColor = f3TexNormal * 0.5f + 0.5f;
+	f4DiffuseColor.rgb *= (cTexColor.x + cTexColor.y + cTexColor.z) / 3.0f;
+	
+	float3x3 mRotation = float3x3(WorldTangent, WorldBinormal, WorldNormal);
+	float3 f3Normal = normalize(mul(f3TexNormal, mRotation));
+	
+	float3 vDiffuse = Ambient;
+	float3 vSpecular = float3(0.0f, 0.0f, 0.0f);
+	float fSpecular = SpecParams.x;
+		
+	// Sun
+	float3 f3Light = WorldSunPosition.xyz;		
+	float3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+#ifdef SMOOTH_SELF_OCCLUDE
+	float fSelfOcclude = saturate(dot(WorldNormal, f3Light) * 5.0f - 1.0f);
+#else
+	float fSelfOcclude = 1.0f;
+#endif
+		
+	float2 f2Lit; // x = diffuse, y = specular
+	
+	f2Lit.x = saturate(dot(f3Normal, f3Light));
+	f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+
+	f2Lit *= fSelfOcclude * Shadowed;
+
+	vDiffuse += SunColor * f2Lit.x;
+	vSpecular += SunColor * f2Lit.y;
+
+#if (NUM_POINT_LIGHTS > 0 && LIGHTING_QUALITY == 0)
+	// Point Lights
+	[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+	{
+		float3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+		float fDistance = length(f3DeltaPosition);
+	
+		float3 f3Light = normalize(f3DeltaPosition);
+		float3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+		float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+		
+		float2 f2Lit; // x = diffuse, y = specular
+		
+		f2Lit.x = saturate(dot(f3Normal, f3Light));
+		f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+		
+		f2Lit *= fAttenuation;
+		
+		vDiffuse += PointLightColor[i] * f2Lit.x;
+		vSpecular += PointLightColor[i] * f2Lit.y;
+	}
+#endif // POINT_LIGHTS
+	
+	//
+	// Environment
+	//
+	
+	float3 cEnviroColor = texCUBE(cube, reflect(WorldPositionOffset, f3Normal)).rgb;
+
+	//
+	// Reflection
+	//
+		
+	float2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+
+	#if (LIGHTING != 0)
+		#if (WATER_QUALITY == 0)	
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.015f;
+		#elif (LIGHTING_QUALITY != 2)
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.03f;
+		#endif
+	#endif
+
+#ifdef REFLECTIONS	
+	float4 f4ReflectionColor = tex2D(reflection, f2SceneTexcoord);
+	f4ReflectionColor *= ReflectionPow * AlphaParams.y * f3Flowmap.z;
+	f4ReflectionColor.a = 1.0f - f4ReflectionColor.a * ReflectionPow;
+#endif
+
+	//
+	// Final
+	//
+	
+	float3 f3FinalColor = lerp(f4DiffuseColor.rgb * vDiffuse, cEnviroColor, AlphaParams.z);
+
+	f3FinalColor = lerp(f3FinalColor, FogColor, Fog);
+
+	float fAlpha = AlphaParams.x * f3Flowmap.z;
+	
+#ifdef REFLECTIONS
+	float fFinalAlpha = 1.0f - (1.0f - fAlpha) * f4ReflectionColor.a;
+#else
+	float fFinalAlpha = fAlpha;
+#endif
+
+#if (WATER_QUALITY == 0)	
+	float3 cWaterDistortionColor = tex2D(waterdistortion, f2SceneTexcoord.xy).rgb;
+
+	#ifdef REFLECTIONS
+	f3FinalColor *= fAlpha * f4ReflectionColor.a;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+	
+	f3FinalColor = lerp(f3FinalColor + cWaterDistortionColor.rgb * f3Flowmap.z, f3FinalColor, fFinalAlpha);
+	
+	#ifdef REFLECTIONS
+	f3FinalColor += f4ReflectionColor.rgb;
+	#endif
+	
+	fFinalAlpha = f3Flowmap.z;
+#else
+	#ifdef REFLECTIONS
+	f3FinalColor = f3FinalColor * fAlpha * f4ReflectionColor.a + f4ReflectionColor.rgb;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+#endif
+
+	f3FinalColor += vSpecular * f3Flowmap.z * (1.0f - Fog);
+	
+	f3FinalColor *= Fogofwar;
+
+	Out.rgb = f3FinalColor;
+	Out.a = fFinalAlpha;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			//Out = Sampler_texture.Sample(Sampler_sampler, Texcoord);
+			
+	float3 f3CamDirection = -normalize(WorldPositionOffset);
+
+	//
+	// Flowmap Texture
+	//
+	
+	// f3Flowmap.z is diffuse xy is direction
+	float3 f3Flowmap = waterflowmap_texture.Sample(waterflowmap_sampler, (Texcoord0.zw + 0.5f) * WatermapSize).rgb;
+
+	float fHalfPhase = TextureParams.z * 0.5f;
+	
+	f3Flowmap.xy = (f3Flowmap.xy - 0.5f) * 5.0f; // This changes max speed
+	
+	float fScaledTime = Time * fHalfPhase;
+	
+	float fSTime1 = fmod(fScaledTime, TextureParams.z);
+	float fSTime2 = fmod(fScaledTime + fHalfPhase, TextureParams.z);
+	
+	float2 vTexcoord0 = fSTime1 * f3Flowmap.xy;
+	float2 vTexcoord1 = fSTime2 * f3Flowmap.xy;
+	
+	float fTextureLerp = abs(fHalfPhase - fSTime1) / fHalfPhase;
+
+	float3 f4DiffuseColor = DiffuseColor.rgb;
+
+	//
+	// Lighting
+	//
+	
+#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+	float fMapMoveScale = fScaledTime * 0.25f;
+		
+	// Normal Map
+	float2 vTextureWorldCoordsA = (Texcoord0.xy * TextureParams.x);
+	float3 f3NormalmapPhase1 = waternormalmap1_texture.Sample(waternormalmap1_sampler, vTexcoord0.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	float3 f3NormalmapPhase2 = waternormalmap1_texture.Sample(waternormalmap1_sampler, vTexcoord1.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	f3NormalmapPhase1 = f3NormalmapPhase1 - 0.5f;
+	f3NormalmapPhase2 = f3NormalmapPhase2 - 0.5f;
+		
+	float3 f3Normalmap = lerp(f3NormalmapPhase1, f3NormalmapPhase2, fTextureLerp) ;
+	
+	// Normal Map 2
+	float2 vTextureWorldCoordsB = (Texcoord0.xy * TextureParams.y);
+	vTextureWorldCoordsB.xy += f3Normalmap.xy * TextureParams.x * 5.0f + fMapMoveScale;
+	float3 vStaticNormalmap = waternormalmap2_texture.Sample(waternormalmap2_sampler, vTextureWorldCoordsB).rgb;
+	vStaticNormalmap = vStaticNormalmap - 0.5f;
+	
+	// Mix both normal maps
+	float3 f3TexNormal = normalize(vStaticNormalmap + f3Normalmap);
+	
+#elif (WATER_QUALITY == 2)
+	float3 f3TexNormal1 = waternormalmap1_texture.Sample(waternormalmap1_sampler, Time * 0.025f - Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	float3 f3TexNormal2 = waternormalmap2_texture.Sample(waternormalmap2_sampler, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	float3 f3TexNormal = normalize(f3TexNormal1 + f3TexNormal2);
+#else
+	float3 f3TexNormal = waternormalmap1_texture.Sample(waternormalmap1_sampler, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+#endif
+
+	// Diffuse color
+	// Average
+	float3 cTexColor = f3TexNormal * 0.5f + 0.5f;
+	f4DiffuseColor.rgb *= (cTexColor.x + cTexColor.y + cTexColor.z) / 3.0f;
+	
+	float3x3 mRotation = float3x3(WorldTangent, WorldBinormal, WorldNormal);
+	float3 f3Normal = normalize(mul(f3TexNormal, mRotation));
+	
+	float3 vDiffuse = Ambient;
+	float3 vSpecular = float3(0.0f, 0.0f, 0.0f);
+	float fSpecular = SpecParams.x;
+		
+	// Sun
+	float3 f3Light = WorldSunPosition.xyz;		
+	float3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+#ifdef SMOOTH_SELF_OCCLUDE
+	float fSelfOcclude = saturate(dot(WorldNormal, f3Light) * 5.0f - 1.0f);
+#else
+	float fSelfOcclude = 1.0f;
+#endif
+		
+	float2 f2Lit; // x = diffuse, y = specular
+	
+	f2Lit.x = saturate(dot(f3Normal, f3Light));
+	f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+
+	f2Lit *= fSelfOcclude * Shadowed;
+
+	vDiffuse += SunColor * f2Lit.x;
+	vSpecular += SunColor * f2Lit.y;
+
+#if (NUM_POINT_LIGHTS > 0 && LIGHTING_QUALITY == 0)
+	// Point Lights
+	[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+	{
+		float3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+		float fDistance = length(f3DeltaPosition);
+	
+		float3 f3Light = normalize(f3DeltaPosition);
+		float3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+		float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+		
+		float2 f2Lit; // x = diffuse, y = specular
+		
+		f2Lit.x = saturate(dot(f3Normal, f3Light));
+		f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+		
+		f2Lit *= fAttenuation;
+		
+		vDiffuse += PointLightColor[i] * f2Lit.x;
+		vSpecular += PointLightColor[i] * f2Lit.y;
+	}
+#endif // POINT_LIGHTS
+	
+	//
+	// Environment
+	//
+	
+	float3 cEnviroColor = cube_texture.Sample(cube_sampler, reflect(WorldPositionOffset, f3Normal)).rgb;
+
+	//
+	// Reflection
+	//
+		
+	float2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+
+	#if (LIGHTING != 0)
+		#if (WATER_QUALITY == 0)	
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.015f;
+		#elif (LIGHTING_QUALITY != 2)
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.03f;
+		#endif
+	#endif
+
+#ifdef REFLECTIONS	
+	float4 f4ReflectionColor = reflection_texture.Sample(reflection_sampler, f2SceneTexcoord);
+	f4ReflectionColor *= ReflectionPow * AlphaParams.y * f3Flowmap.z;
+	f4ReflectionColor.a = 1.0f - f4ReflectionColor.a * ReflectionPow;
+#endif
+
+	//
+	// Final
+	//
+	
+	float3 f3FinalColor = lerp(f4DiffuseColor.rgb * vDiffuse, cEnviroColor, AlphaParams.z);
+
+	f3FinalColor = lerp(f3FinalColor, FogColor, Fog);
+
+	float fAlpha = AlphaParams.x * f3Flowmap.z;
+	
+#ifdef REFLECTIONS
+	float fFinalAlpha = 1.0f - (1.0f - fAlpha) * f4ReflectionColor.a;
+#else
+	float fFinalAlpha = fAlpha;
+#endif
+
+#if (WATER_QUALITY == 0)	
+	float3 cWaterDistortionColor = tex2D(waterdistortion, f2SceneTexcoord.xy).rgb;
+
+	#ifdef REFLECTIONS
+	f3FinalColor *= fAlpha * f4ReflectionColor.a;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+	
+	f3FinalColor = lerp(f3FinalColor + cWaterDistortionColor.rgb * f3Flowmap.z, f3FinalColor, fFinalAlpha);
+	
+	#ifdef REFLECTIONS
+	f3FinalColor += f4ReflectionColor.rgb;
+	#endif
+	
+	fFinalAlpha = f3Flowmap.z;
+#else
+	#ifdef REFLECTIONS
+	f3FinalColor = f3FinalColor * fAlpha * f4ReflectionColor.a + f4ReflectionColor.rgb;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+#endif
+
+	f3FinalColor += vSpecular * f3Flowmap.z * (1.0f - Fog);
+	
+	f3FinalColor *= Fogofwar;
+
+	Out.rgb = f3FinalColor;
+	Out.a = fFinalAlpha;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+	vec3 f3CamDirection = -normalize(WorldPositionOffset);
+
+	//
+	// Flowmap Texture
+	//
+	
+	// f3Flowmap.z is diffuse xy is direction
+	vec3 f3Flowmap = texture2D(waterflowmap, (Texcoord0.zw + 0.5f) * WatermapSize).rgb;
+
+	float fHalfPhase = TextureParams.z * 0.5f;
+	
+	f3Flowmap.xy = (f3Flowmap.xy - 0.5f) * 5.0f; // This changes max speed
+	
+	float fScaledTime = Time * fHalfPhase;
+	
+	float fSTime1 = mod(fScaledTime, TextureParams.z);
+	float fSTime2 = mod(fScaledTime + fHalfPhase, TextureParams.z);
+	
+	vec2 vTexcoord0 = fSTime1 * f3Flowmap.xy;
+	vec2 vTexcoord1 = fSTime2 * f3Flowmap.xy;
+	
+	float fTextureLerp = abs(fHalfPhase - fSTime1) / fHalfPhase;
+
+	vec3 f4DiffuseColor = DiffuseColor.rgb;
+
+	//
+	// Lighting
+	//
+	
+#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+	float fMapMoveScale = fScaledTime * 0.25f;
+		
+	// Normal Map
+	vec2 vTextureWorldCoordsA = (Texcoord0.xy * TextureParams.x);
+	vec3 f3NormalmapPhase1 = texture2D(waternormalmap1, vTexcoord0.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	vec3 f3NormalmapPhase2 = texture2D(waternormalmap1, vTexcoord1.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	f3NormalmapPhase1 = f3NormalmapPhase1 - 0.5f;
+	f3NormalmapPhase2 = f3NormalmapPhase2 - 0.5f;
+		
+	vec3 f3Normalmap = mix(f3NormalmapPhase1, f3NormalmapPhase2, fTextureLerp) ;
+	
+	// Normal Map 2
+	vec2 vTextureWorldCoordsB = (Texcoord0.xy * TextureParams.y);
+	vTextureWorldCoordsB.xy += f3Normalmap.xy * TextureParams.x * 5.0f + fMapMoveScale;
+	vec3 vStaticNormalmap = texture2D(waternormalmap2, vTextureWorldCoordsB).rgb;
+	vStaticNormalmap = vStaticNormalmap - 0.5f;
+	
+	// Mix both normal maps
+	vec3 f3TexNormal = normalize(vStaticNormalmap + f3Normalmap);
+	
+#elif (WATER_QUALITY == 2)
+	vec3 f3TexNormal1 = texture2D(waternormalmap1, Time * 0.025f - Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	vec3 f3TexNormal2 = texture2D(waternormalmap2, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	vec3 f3TexNormal = normalize(f3TexNormal1 + f3TexNormal2);
+#else
+	vec3 f3TexNormal = texture2D(waternormalmap1, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+#endif
+
+	// Diffuse color
+	// Average
+	vec3 cTexColor = f3TexNormal * 0.5f + 0.5f;
+	f4DiffuseColor.rgb *= (cTexColor.x + cTexColor.y + cTexColor.z) / 3.0f;
+	
+	mat3 mRotation = mat3(WorldTangent, WorldBinormal, WorldNormal);
+	vec3 f3Normal = normalize(mRotation * f3TexNormal);
+	
+	vec3 vDiffuse = Ambient;
+	vec3 vSpecular = vec3(0.0f, 0.0f, 0.0f);
+	float fSpecular = SpecParams.x;
+		
+	// Sun
+	vec3 f3Light = WorldSunPosition.xyz;		
+	vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+#ifdef SMOOTH_SELF_OCCLUDE
+	float fSelfOcclude = clamp(dot(WorldNormal, f3Light) * 5.0f - 1.0f, 0.0f, 1.0f);
+#else
+	float fSelfOcclude = 1.0f;
+#endif
+		
+	vec2 f2Lit; // x = diffuse, y = specular
+	
+	f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+	f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+
+	f2Lit *= fSelfOcclude * Shadowed;
+
+	vDiffuse += SunColor * f2Lit.x;
+	vSpecular += SunColor * f2Lit.y;
+
+#if (NUM_POINT_LIGHTS > 0 && LIGHTING_QUALITY == 0)
+	// Point Lights
+	for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+	{
+		vec3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+		float fDistance = length(f3DeltaPosition);
+	
+		vec3 f3Light = normalize(f3DeltaPosition);
+		vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+		float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+		
+		vec2 f2Lit; // x = diffuse, y = specular
+		
+		f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+		f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+		
+		f2Lit *= fAttenuation;
+		
+		vDiffuse += PointLightColor[i] * f2Lit.x;
+		vSpecular += PointLightColor[i] * f2Lit.y;
+	}
+#endif // POINT_LIGHTS
+	
+	//
+	// Environment
+	//
+	
+	vec3 cEnviroColor = textureCube(cube, reflect(WorldPositionOffset, f3Normal)).rgb;
+
+	//
+	// Reflection
+	//
+		
+	vec2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+
+	#if (LIGHTING != 0)
+		#if (WATER_QUALITY == 0)	
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.015f;
+		#elif (LIGHTING_QUALITY != 2)
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.03f;
+		#endif
+	#endif
+
+#ifdef REFLECTIONS	
+	vec4 f4ReflectionColor = texture2D(reflection, f2SceneTexcoord);
+	f4ReflectionColor *= ReflectionPow * AlphaParams.y * f3Flowmap.z;
+	f4ReflectionColor.a = 1.0f - f4ReflectionColor.a * ReflectionPow;
+#endif
+
+	//
+	// Final
+	//
+	
+	vec3 f3FinalColor = mix(f4DiffuseColor.rgb * vDiffuse, cEnviroColor, AlphaParams.z);
+
+	f3FinalColor = mix(f3FinalColor, FogColor, Fog);
+
+	float fAlpha = AlphaParams.x * f3Flowmap.z;
+	
+#ifdef REFLECTIONS
+	float fFinalAlpha = 1.0f - (1.0f - fAlpha) * f4ReflectionColor.a;
+#else
+	float fFinalAlpha = fAlpha;
+#endif
+
+#if (WATER_QUALITY == 0)	
+	vec3 cWaterDistortionColor = texture2D(waterdistortion, f2SceneTexcoord.xy).rgb;
+
+	#ifdef REFLECTIONS
+	f3FinalColor *= fAlpha * f4ReflectionColor.a;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+	
+	f3FinalColor = mix(f3FinalColor + cWaterDistortionColor.rgb * f3Flowmap.z, f3FinalColor, fFinalAlpha);
+	
+	#ifdef REFLECTIONS
+	f3FinalColor += f4ReflectionColor.rgb;
+	#endif
+	
+	fFinalAlpha = f3Flowmap.z;
+#else
+	#ifdef REFLECTIONS
+	f3FinalColor = f3FinalColor * fAlpha * f4ReflectionColor.a + f4ReflectionColor.rgb;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+#endif
+
+	f3FinalColor += vSpecular * f3Flowmap.z * (1.0f - Fog);
+	
+	f3FinalColor *= Fogofwar;
+
+	Out.rgb = f3FinalColor;
+	Out.a = fFinalAlpha;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+	vec3 f3CamDirection = -normalize(WorldPositionOffset);
+
+	//
+	// Flowmap Texture
+	//
+	
+	// f3Flowmap.z is diffuse xy is direction
+	vec3 f3Flowmap = texture(waterflowmap, (Texcoord0.zw + 0.5f) * WatermapSize).rgb;
+
+	float fHalfPhase = TextureParams.z * 0.5f;
+	
+	f3Flowmap.xy = (f3Flowmap.xy - 0.5f) * 5.0f; // This changes max speed
+	
+	float fScaledTime = Time * fHalfPhase;
+	
+	float fSTime1 = mod(fScaledTime, TextureParams.z);
+	float fSTime2 = mod(fScaledTime + fHalfPhase, TextureParams.z);
+	
+	vec2 vTexcoord0 = fSTime1 * f3Flowmap.xy;
+	vec2 vTexcoord1 = fSTime2 * f3Flowmap.xy;
+	
+	float fTextureLerp = abs(fHalfPhase - fSTime1) / fHalfPhase;
+
+	vec3 f4DiffuseColor = DiffuseColor.rgb;
+
+	//
+	// Lighting
+	//
+	
+#if (WATER_QUALITY == 0 || WATER_QUALITY == 1)
+	float fMapMoveScale = fScaledTime * 0.25f;
+		
+	// Normal Map
+	vec2 vTextureWorldCoordsA = (Texcoord0.xy * TextureParams.x);
+	vec3 f3NormalmapPhase1 = texture(waternormalmap1, vTexcoord0.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	vec3 f3NormalmapPhase2 = texture(waternormalmap1, vTexcoord1.xy - fMapMoveScale + vTextureWorldCoordsA).rgb;
+	f3NormalmapPhase1 = f3NormalmapPhase1 - 0.5f;
+	f3NormalmapPhase2 = f3NormalmapPhase2 - 0.5f;
+		
+	vec3 f3Normalmap = mix(f3NormalmapPhase1, f3NormalmapPhase2, fTextureLerp) ;
+	
+	// Normal Map 2
+	vec2 vTextureWorldCoordsB = (Texcoord0.xy * TextureParams.y);
+	vTextureWorldCoordsB.xy += f3Normalmap.xy * TextureParams.x * 5.0f + fMapMoveScale;
+	vec3 vStaticNormalmap = texture(waternormalmap2, vTextureWorldCoordsB).rgb;
+	vStaticNormalmap = vStaticNormalmap - 0.5f;
+	
+	// Mix both normal maps
+	vec3 f3TexNormal = normalize(vStaticNormalmap + f3Normalmap);
+	
+#elif (WATER_QUALITY == 2)
+	vec3 f3TexNormal1 = texture(waternormalmap1, Time * 0.025f - Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	vec3 f3TexNormal2 = texture(waternormalmap2, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+	vec3 f3TexNormal = normalize(f3TexNormal1 + f3TexNormal2);
+#else
+	vec3 f3TexNormal = texture(waternormalmap1, Time * 0.025f + Texcoord0.xy * TextureParams.x).rgb - 0.5f;
+#endif
+
+	// Diffuse color
+	// Average
+	vec3 cTexColor = f3TexNormal * 0.5f + 0.5f;
+	f4DiffuseColor.rgb *= (cTexColor.x + cTexColor.y + cTexColor.z) / 3.0f;
+	
+	mat3 mRotation = mat3(WorldTangent, WorldBinormal, WorldNormal);
+	vec3 f3Normal = normalize(mRotation * f3TexNormal);
+	
+	vec3 vDiffuse = Ambient;
+	vec3 vSpecular = vec3(0.0f, 0.0f, 0.0f);
+	float fSpecular = SpecParams.x;
+		
+	// Sun
+	vec3 f3Light = WorldSunPosition.xyz;		
+	vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+#ifdef SMOOTH_SELF_OCCLUDE
+	float fSelfOcclude = clamp(dot(WorldNormal, f3Light) * 5.0f - 1.0f, 0.0f, 1.0f);
+#else
+	float fSelfOcclude = 1.0f;
+#endif
+		
+	vec2 f2Lit; // x = diffuse, y = specular
+	
+	f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+	f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+
+	f2Lit *= fSelfOcclude * Shadowed;
+
+	vDiffuse += SunColor * f2Lit.x;
+	vSpecular += SunColor * f2Lit.y;
+
+#if (NUM_POINT_LIGHTS > 0 && LIGHTING_QUALITY == 0)
+	// Point Lights
+	for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+	{
+		vec3 f3DeltaPosition = PointLightPositionOffset[i] - WorldPositionOffset;
+		float fDistance = length(f3DeltaPosition);
+	
+		vec3 f3Light = normalize(f3DeltaPosition);
+		vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+
+		float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+		
+		vec2 f2Lit; // x = diffuse, y = specular
+		
+		f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+		f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+		
+		f2Lit *= fAttenuation;
+		
+		vDiffuse += PointLightColor[i] * f2Lit.x;
+		vSpecular += PointLightColor[i] * f2Lit.y;
+	}
+#endif // POINT_LIGHTS
+	
+	//
+	// Environment
+	//
+	
+	vec3 cEnviroColor = texture(cube, reflect(WorldPositionOffset, f3Normal)).rgb;
+
+	//
+	// Reflection
+	//
+		
+	vec2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+
+	#if (LIGHTING != 0)
+		#if (WATER_QUALITY == 0)	
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.015f;
+		#elif (LIGHTING_QUALITY != 2)
+	f2SceneTexcoord.xy += f3TexNormal.xy * 0.03f;
+		#endif
+	#endif
+
+#ifdef REFLECTIONS	
+	vec4 f4ReflectionColor = texture(reflection, f2SceneTexcoord);
+	f4ReflectionColor *= ReflectionPow * AlphaParams.y * f3Flowmap.z;
+	f4ReflectionColor.a = 1.0f - f4ReflectionColor.a * ReflectionPow;
+#endif
+
+	//
+	// Final
+	//
+	
+	vec3 f3FinalColor = mix(f4DiffuseColor.rgb * vDiffuse, cEnviroColor, AlphaParams.z);
+
+	f3FinalColor = mix(f3FinalColor, FogColor, Fog);
+
+	float fAlpha = AlphaParams.x * f3Flowmap.z;
+	
+#ifdef REFLECTIONS
+	float fFinalAlpha = 1.0f - (1.0f - fAlpha) * f4ReflectionColor.a;
+#else
+	float fFinalAlpha = fAlpha;
+#endif
+
+#if (WATER_QUALITY == 0)	
+	vec3 cWaterDistortionColor = texture(waterdistortion, f2SceneTexcoord.xy).rgb;
+
+	#ifdef REFLECTIONS
+	f3FinalColor *= fAlpha * f4ReflectionColor.a;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+	
+	f3FinalColor = mix(f3FinalColor + cWaterDistortionColor.rgb * f3Flowmap.z, f3FinalColor, fFinalAlpha);
+	
+	#ifdef REFLECTIONS
+	f3FinalColor += f4ReflectionColor.rgb;
+	#endif
+	
+	fFinalAlpha = f3Flowmap.z;
+#else
+	#ifdef REFLECTIONS
+	f3FinalColor = f3FinalColor * fAlpha * f4ReflectionColor.a + f4ReflectionColor.rgb;
+	#else
+	f3FinalColor *= fAlpha;
+	#endif
+#endif
+
+	f3FinalColor += vSpecular * f3Flowmap.z * (1.0f - Fog);
+	
+	f3FinalColor *= Fogofwar;
+
+	Out.rgb = f3FinalColor;
+	Out.a = fFinalAlpha;
+		?>
+	</case>
+</node>

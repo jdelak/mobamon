@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Nikolai2"
+
+	icon="icon.tga"
+	anim="ability_2" 
+
+	casttime="400"
+	castactiontime="400"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+	targetscheme="enemy_units_and_buildings"
+	
+	casteffecttype="Magic"
+	casteffect="effects/cast.effect"
+	
+	manacost="95"
+	cooldowntime="10000"
+	range="950"
+
+	forcerange="950"
+	allowoutofboundscast="true"
+	allowoutofrangecast="true"
+
+	conecastmaterial="/shared/materials/nikolai_cast.material"
+	showconecast="true"
+	conecastwidth="650"
+	conecastrange="1200"
+	
+	hoverareacastrange="1050"
+
+>
+	<constant name="damage" value="75,100,125,150" adjustment="ability" />
+	
+	<onimpact>
+		<spawnprojectile name="Projectile_Nikolai_Ability2" target="target_position" bind="stack_entity" pushentity="true" offset="0 140 0" />
+		
+		<setpos0 position="target_position" offsetspace="source_entity" offset="900 0 0" />
+		<spawnprojectile name="Projectile_Nikolai_Ability2" target="pos0" bind="stack_entity"  pushentity="true" offset="-40 100 0" />
+		
+		<setpos0 position="target_position" offsetspace="source_entity" offset="-900 0 0" />
+		<spawnprojectile name="Projectile_Nikolai_Ability2" target="pos0" bind="stack_entity"  pushentity="true" offset="40 100 0" />
+		
+		<setpos0 position="source_entity" offsetspace="source_entity" offset="0 200 0" />
+		<playeffect effect="effects/impact.effect" target="pos0" source="pos0" occlude="true"/>
+	</onimpact>
+
+	<modifier key="Nikolai_flying" modpriority="100" disabled="true"
+	/>
+
+</ability>

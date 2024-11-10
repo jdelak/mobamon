@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial2_Knockaway"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+
+>
+
+	<onframe>
+		<haseffecttype name="CrowdControl StatusDisable" />
+		<else>
+			<areaofeffect
+				targetscheme="enemy_heroes"
+				effecttype=""
+				targetselection="all"
+				radius="200"
+				maximpactspertarget="1"
+			>
+				<condition test="not_hasstate State_Stunned" target="target_entity" >
+					<damage amount="125" effecttype="Magic" />
+					<setpos0 position="source_entity" offsetspace="source_entity" offset="0 100 0" />
+					<push direction="pos0" force="700" duration="175" perpendicular="true" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+					<applystate name="State_Stunned" duration="1000" />
+				</condition>
+			</areaofeffect>
+		</else>
+	</onframe>
+
+	<onabilityimpact>
+		<expire/>
+	</onabilityimpact>
+	
+	
+</state>

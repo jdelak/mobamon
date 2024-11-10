@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+
+		<particlesystem name="system1" space="world" scale="3.5">
+
+			
+			<billboard
+				material="/shared/effects/materials/fresnel_blend.material"
+				position="0 0 40"
+				color=".2 .2 1.2"
+				loop="1"
+				life="1000"
+				startalpha=".2"
+				midalpha=".7"
+				endalpha=".2"
+				endsize="150"
+				depthbias="-150"			
+			/>
+			<billboard
+				material="/shared/effects/materials/corona_07.material"
+				position="0 0 40"
+				color=".2 .2 1.2"
+				loop="1"
+				life="5000"
+				startalpha=".2"
+				midalpha=".7"
+				endalpha=".2"
+				startsize="130"
+				midsize="150"
+				endsize="130"
+				depthbias="-150"			
+			/>			
+			<billboard
+				material="/shared/effects/materials/fresnel.material"
+				position="0 0 40"
+				startcolor=".2 .2 1.2"
+				endcolor="0 0 0"
+				
+				life="300"
+
+				size="150"
+				depthbias="-150"			
+			/>			
+		
+		</particlesystem>
+	</definitions>
+
+   <thread>
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance1" />
+   </thread>
+
+</effect>

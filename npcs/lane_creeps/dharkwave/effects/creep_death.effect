@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+<!--
+		<modifier
+			name="modifier0"
+			color="1.5 1 3"
+			startalpha="1"
+			midalpha="1"
+			endalpha="1"		
+		/>
+-->
+	
+		<particlesystem name="system0" space="world" scale=".85">
+
+			<simpleemitter
+			count="50"
+				position="0 0 0"
+				spawnrate="75"
+				particlelife="2000"
+				offsetsphere="75 75 0"
+			>
+				<particle
+				>
+
+					<billboard
+						minlife="700"
+						maxlife="800"
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						startscale="1"
+						minendscale="1.25"
+						maxendscale="1.75"
+						color="0 0 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+						minroll="0"
+						maxroll="360"
+					/>
+
+					<billboard
+						minlife="700"
+						maxlife="800"
+						material="/shared/effects/smaterials/goop_blend_ground.material"
+						minscale="1.5"
+						maxscale="2.5"
+						color="0 0 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+						minroll="0"
+						maxroll="360"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			<template name="">
+
+				<simpleemitter
+				life="100"
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="22"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="0"
+					depthbias="0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".05 0 .1"
+						endcolor="0 0 0"
+						startscale=".4"
+						minendscale="1"
+						maxendscale="1.2"
+						minwidth="100"
+						maxwidth="100"
+						height="100"
+					/>
+				</simpleemitter>
+				
+			</template>
+
+			<instance name="" zbone="_bone_lefteye"/>
+			<instance name="" zbone="_bone_righteye"/>
+
+			<simpleemitter
+				position="0 0 50"
+				count="50"
+				spawnrate="5000"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="250"
+				maxspeed="600"
+				gravity="0"
+			>
+				<particle
+					turn="true"
+				> 
+				
+					<billboard
+						minlife="250"
+						maxlife="500"
+						color="0 0 0"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="3"
+						endscale=".25"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+      </particlesystem>
+   </definitions>
+   <thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+      	<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

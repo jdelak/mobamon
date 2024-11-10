@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" >
+	<definitions>
+	
+<!--
+		<modifier
+			name="modifier0"
+			life="500"
+			startcolor="1 0 0"
+			endcolor="1 1 1"
+		/>
+-->
+		
+		<particlesystem name="system0" space="world" scale="1.75">
+
+			<sound
+				life="5000"
+				volume="1"
+				falloffstart="800" 
+				falloffend="2400"
+				sample="../sounds/sfx_alarm.wav"
+			/>
+<!--
+			<light
+				position="0 0 50"
+				life="400"
+				startcolor="5 5 0"
+				midcolor="0 5 0"
+				endcolor="0"
+				midcolorpos=".1"
+				falloffstart="0"
+				falloffend="200"
+			/>
+-->
+<!--
+			<simpleemitter	
+				spawnrate="11500"
+				life="1200"				
+				count="15"			
+				position="0 0 100"
+				minparticlelife="500"			
+				maxparticlelife="1000"			
+				material="/shared/effects/smaterials/clouds.material"			
+				offsetsphere="0 0 50"
+				minspeed="0"
+				maxspeed="0"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				drag=".01"
+				gravity="15"
+				depthbias="50"
+			>
+				<particle
+					color=".9 .75 .5"
+					startalpha="0"
+					midalpha=".05"
+					endalpha="0"
+					height="250"
+					minwidth="25"
+					maxwidth="50"
+				/>
+			</simpleemitter>
+-->
+			
+			
+			<simpleemitter	
+				spawnrate="11500"
+				life="1200"				
+				count="50"			
+				position="0 0 0"
+				minparticlelife="500"			
+				maxparticlelife="1000"				
+				material="/shared/effects/smaterials/clouds.material"			
+				offsetsphere="12"
+				minspeed="0"
+				maxspeed="500"
+				angle="10"
+				direction="0 0 1"
+				drag=".01"
+				gravity="15"
+				depthbias="-25"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					color=".9 .75 .5"
+					minsize="25"
+					maxsize="75"
+					startalpha="0"
+					midalpha=".125"
+					endalpha="0"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="5"
+				position="0 0 0"
+				spawnrate="30"
+				particlelife="2000"
+				offsetsphere="15 15 0"
+				minspeed="0"
+				maxspeed="200"
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="500"
+						maxlife="1000"
+						name="emitter0" 
+						anim="idle"
+						model="rocks/model.mdf"
+						minscale=".15"
+						maxscale=".185"
+						color="2 1.5 1.25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance2" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

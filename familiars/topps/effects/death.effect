@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+	
+		<particlesystem name="system0" space="world" scale=".7">
+
+			<light
+				life="1000"			
+				startcolor="10 2 0"			
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="25"
+				falloffend="500"
+				position="0 0 50"	
+			/>	
+
+			<template name="flashes">
+			
+				<simpleemitter
+					position="{zpos}"
+					life="250"
+					spawnrate="350"
+					minparticlelife="300"
+					maxparticlelife="500"
+					gravity="-5"
+					offsetsphere="55"
+					material="/shared/effects/smaterials/firesprite_01.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="1 1 1"
+						midcolor=".25 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startsize="25"
+						midsize="75"
+						endsize="75"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					position="{zpos}"
+					life="250"
+					spawnrate="350"
+					minparticlelife="300"
+					maxparticlelife="500"
+					gravity="-5"
+					offsetsphere="55"
+					material="/shared/effects/smaterials/firesprite_01.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="1 1 1"
+						midcolor=".25 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startsize="25"
+						midsize="75"
+						endsize="75"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="{zpos}"
+					life="250"
+					spawnrate="200"
+					minparticlelife="400"
+					maxparticlelife="800"
+					gravity="6"
+					offsetsphere="100"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="-25"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="1 .25 0"
+						midcolor="1 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						minscale="1"
+						maxscale="5"
+						endscale="0"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="flashes" zpos="0 0 25"/>
+
+		</particlesystem>
+
+	</definitions>
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>
+
+
+
+
+

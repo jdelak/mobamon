@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		
+		<particlesystem name="system0" space="world" scale="1">
+	
+			<sound
+				volume="0.6" 
+				sample="../sounds/baldir_zone_fire_%.wav"
+				linearfalloff="true"
+				falloffstart="200"
+				falloffend="1400"
+			/>
+			
+			<billboard
+				
+				life="1000"
+				material="/shared/effects/materials/whitedot.material"
+				color=".15 .3 .05"
+				size="320"
+				directionalspace="local"
+				depthbias="-25"
+				lockup="1"
+				lockright="1"
+				loop="1"
+				pitch="90"
+			/>
+
+			<light
+				
+				expirelife="400"			
+				startcolor="2 4 5"			
+				endcolor="0 0 0"
+				
+				falloffstart="000"
+				falloffend="200"
+				position="0 0 50"	
+			/>
+
+			
+		
+			
+			<simpleemitter
+				spawnrate="40"
+				particlelife="3400"
+				
+				offsetsphere="5 5 5"
+			>
+				<particle>
+					<groundsprite						
+						life="2500"
+						material="/shared/effects/materials/whitedot_blend.material"
+						size="34"
+						color=".041 .041 .0"	
+						startalpha="1"
+						endalpha="0"
+					/>								
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="110"
+				particlelife="1400"
+						
+			>
+				<particle>
+					<groundsprite						
+						life="200"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						startsize="14"
+						endsize="12"
+						startcolor="1 1 .2"	
+						midcolor="1 .4"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+					/>						
+				</particle>
+			</simpleemitter>			
+			
+			<simpleemitter
+				bone="_bone_check"
+				
+				spawnrate="800"
+				gravity="-40"
+				particlelife="200"			
+		
+				minspeed="111"
+				maxspeed="111"
+				drag=".01"
+				material="/shared/effects/materials/spark_10.material"
+				offsetsphere="2"
+				inheritvelocity="0.0"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 1 "
+					midcolor="1 1 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					size="20"
+					endsize="0"
+
+				/>
+			</simpleemitter>				
+	
+			<simpleemitter
+				
+				
+				spawnrate="800"
+				gravity="-40"
+				particlelife="200"			
+		
+				minspeed="211"
+				maxspeed="211"
+				drag=".01"
+				material="/shared/effects/materials/spark_10.material"
+				offsetsphere="2"
+				inheritvelocity="0.0"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 1 "
+					midcolor="0 .3 1"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					size="40"
+					endsize="0"
+
+				/>
+			</simpleemitter>	
+			
+			<billboard
+				
+				expirelife="400"
+				material="/shared/effects/materials/whitedot.material"
+				color=".15 .7 1"
+				size="220"
+				directionalspace="local"
+				depthbias="-25"
+				lockup="1"
+				lockright="1"
+				loop="1"
+				pitch="90"
+			/>	
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		
+	</thread> 
+</effect>

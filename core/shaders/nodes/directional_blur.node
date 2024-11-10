@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="directional_blur" novs="true">
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Sampler" type="sampler2D" />
+	<dependency name="Blur" type="float2" />
+	<dependency name="TexelSize" type="float2" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			const int KERNEL_SIZE = 13;
+		
+			Out = 0.0f;
+		
+			[unroll(KERNEL_SIZE)] for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				float fLerp = float(float(i) / (KERNEL_SIZE - 1.0f));
+			
+				Out.rgb += tex2D(Sampler, Texcoord + lerp(-TexelSize.xy, TexelSize.xy, fLerp) * Blur.xy).rgb;
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			const int KERNEL_SIZE = 13;
+		
+			Out = 0.0f;
+		
+			[unroll(KERNEL_SIZE)] for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				float fLerp = float(float(i) / (KERNEL_SIZE - 1.0f));
+			
+				Out.rgb += Sampler_texture.Sample(Sampler_sampler, Texcoord + lerp(-TexelSize.xy, TexelSize.xy, fLerp) * Blur.xy).rgb;
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			const int KERNEL_SIZE = 13;
+		
+			Out = 0.0f;
+		
+			for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				float fLerp = float(float(i) / (KERNEL_SIZE - 1.0f));
+			
+				Out.rgb += texture2D(Sampler, Texcoord + mix(-TexelSize.xy, TexelSize.xy, fLerp) * Blur.xy).rgb;
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			const int KERNEL_SIZE = 13;
+		
+			Out = 0.0f;
+		
+			for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				float fLerp = float(float(i) / (KERNEL_SIZE - 1.0f));
+			
+				Out.rgb += texture(Sampler, Texcoord + mix(-TexelSize.xy, TexelSize.xy, fLerp) * Blur.xy).rgb;
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+</node>

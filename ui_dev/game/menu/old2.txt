@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="gameMenuEntry">
+		<panel height="3.5h" y="{y}" passivechildren="true" name="gameMenu{id}Container">
+			<panel align="center" valign="center" name="gameMenu{id}Body">
+				<frame color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame color="#444444" texture="/ui/elements:rounded_button_bg_white" bordercolor="#444444" borderthickness="0.5h"/>
+				<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				<frame texture="/ui/elements:roundframe" color="#FFCC0088" borderthickness="0.5h" visible="false" name="gameMenu{id}HighlightFrame"/>
+				<frame color="#FFCC0011" texture="/ui/elements:rounded_bg_white" bordercolor="#FFCC0011" borderthickness="0.5h" rendermode="additive" visible="false" name="gameMenu{id}Highlight"/>
+				<panel hmargin="0.35h" vmargin="0.35h" x="1h" y="1h">
+					<label height="100%" color="white" shadow="true" font="maindyn_16" textalign="center" textvalign="center" content="{label}" x="-1h" y="-1h" name="gameMenu{id}Label"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="genericPopup">
+		<panel color="0 0 0 0.45" visible="false" name="{id}BG"/><!-- Separate so its fade occurs alongside the bounce for the container -->
+		<panel align="center" valign="center" width="{width=18h}" height="{height=27h}" noclick="true" visible="false" name="{id}Container">
+			<frame color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h" noclick="true"/>
+			<frame color="#151515" texture="/ui/elements:rounded_bg_white" bordercolor="#151515" borderthickness="1h" noclick="true"/>
+			<panel width="-1h" height="-1h" align="center" valign="center" y="0.5h" noclick="true">
+				<panel height="3.5h" noclick="true">
+					<frame color="0 0 0 0.25" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h" noclick="true"/>
+					<frame color="#333333" texture="/ui/elements:rounded_bg_white" bordercolor="#333333" borderthickness="0.5h" noclick="true"/>
+					<label textvalign="center" hmargin="1h" shadow="true" color="#FFDD33" font="maindyn_18" content="{title}" noclick="true"/>
+					<instance name="closeXButton" buttonName="{id}Close" width="70@" height="70%" align="right" x="-15@" valign="center"/>
+				</panel>
+				<panel width="-1h" height="-5h" y="-1h" align="center" valign="bottom">
+					<frame color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h" noclick="true"/>
+					<frame color="#222222" texture="/ui/elements:rounded_bg_white" bordercolor="#222222" borderthickness="0.5h" noclick="true"/>
+					<panel width="-1h" height="-1h" align="center" valign="center">
+						<instance name="{body}"/>
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="quitConfirmBody">
+		<panel noclick="true">
+			<label font="maindyn_16" color="white" shadow="true" wrap="true" width="-1.5h" height="-4h" align="center" content="main_quit_confirm2"/>
+			<instance name="standardButton" width="10h" height="3.5h" x="0.5h" y="-0.5h" align="left" valign="bottom" id="quitNo" label="general_cancel" />
+			<instance name="standardButton" width="10h" height="3.5h" x="-0.5h" y="-0.5h" align="right" valign="bottom" id="quitYes" label="general_quit" />
+		</panel>
+	</template>
+	
+	<template name="disconnectConfirmBody">
+		<panel noclick="true">
+			<label font="maindyn_16" color="white" shadow="true" wrap="true" width="-1.5h" height="-4h" align="center" content="confirm_disconnect_msg"/>
+			<instance name="standardButton" width="10h" height="3.5h" x="0.5h" y="-0.5h" align="left" valign="bottom" id="disconnectNo" label="general_cancel" />
+			<instance name="standardButton" width="12h" height="3.5h" x="-0.5h" y="-0.5h" align="right" valign="bottom" id="disconnectYes" label="general_disconnect" />
+		</panel>
+	</template>
+	
+	<template name="gameMenuBody">
+		<instance name="standardButton" height="3.5h" y="0" id="gameMenuOptions" label="game_menu_options_button" iconPath="/ui/_textures/elements/options_icon_controls.tga"/>
+		<instance name="standardButton" height="3.5h" y="4h" id="gameMenuConcede" label="game_menu_concede_button" iconPath="/ui/_textures/elements/vote_concede.tga" visible="0" />
+		<instance name="standardButton" height="3.5h" y="8h" id="gameMenuPause" label="Pause" iconPath="/ui/_textures/elements/vote_pause.tga"/>
+		<instance name="standardButton" height="3.5h" y="12h" id="gameMenuDisconnect" label="game_menu_disconnect_button" iconPath="/ui/_textures/elements/disconnect.tga"/>
+		<instance name="standardButton" height="3.5h" y="16h" id="gameMenuQuit" label="general_quit" iconPath="/ui/_textures/elements/disconnect.tga"/>
+	</template>
+	
+	<instance name="genericPopup" id="gameMenu" body="gameMenuBody" title="game_button_menu"/>
+	<instance name="genericPopup" id="quitConfirm" body="quitConfirmBody" width="30h" height="18h" title="main_quit_confirm"/>
+	<instance name="genericPopup" id="disconnectConfirm" body="disconnectConfirmBody" width="34h" height="19h" title="confirm_disconnect_title"/>
+	
+	<lua file="game_menu.lua"/>
+	
+</package>

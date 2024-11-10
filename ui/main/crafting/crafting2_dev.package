@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<panel name="mainCrafting" noclick="true" visible="false">
+
+		<panel align="right" width="510s" y="165s" x="-20s" grow="true" float="bottom" noclick="true">
+			<instance name="mainCraftingDraggableComponentRow" type1="power_comp" type2="attack_speed_comp"/>
+			<panel height="18s"/>
+			<instance name="mainCraftingDraggableComponentRow" type1="health_comp" type2="health_regen_comp"/>
+			<panel height="18s"/>
+			<instance name="mainCraftingDraggableComponentRow" type1="mana_comp" type2="mana_regen_comp"/>
+		</panel>
+		
+		<panel valign="bottom" x="459s" height="96s" width="768s" y="-70s" group="crafting_animation_widgets">			
+			<image texture="/ui/main/crafting/textures/bar_bg.tga" noclick="1" />
+			<image name="craftPanelGlow" texture="/ui/main/crafting/textures/bar_upperglow.tga" visible="1" noclick="1" />			
+			<panel width="-20s" x="-15s" align="right" noclick="1">			
+				<!-- Hidden progress bar - Can remove when new lua is done -->
+				<panel height="-10s" valign="center" visible="0">
+					<instance name="progress_bar" id="craftPanelCostProgressBar" barstyle="barTemper" />
+					<!--<label name="mainCraftingCurrentComponentValue" y="-2s" width="3h" align="center" textalign="center" textvalign="center" font="maindyn_30" outline="true" outlinecolor="0 0 0 0.8" color="white" content="-"/>-->
+				</panel>
+				
+				<!-- The Colors
+					Set width of each color to proper size. (X pips * 6.667%)
+				-->
+				<panel height="48%" valign="center" float="right" reverse="1" noclick="1">				
+					<!-- Insufficient -->
+					<panel name="mainCraftingComponentMeterInsufficeint" width="40.002%" noclick="1">
+						<panel align="left" color="#c20000" noclick="1" />
+					</panel>					
+					<!-- Optimal (Always One Slot -->
+					<panel name="mainCraftingComponentMeterOptimal" width="6.667%" noclick="1">
+						<panel align="left" color="#1ac605" noclick="1" />
+						<image texture="/ui/main/crafting/textures/meter_grad.tga" x="60@" width="80@" height="100%" align="right" color="#1ac605" noclick="1" />
+					</panel>					
+					<!-- Efficient -->
+					<panel name="mainCraftingComponentMeterEfficient" width="13.334%" noclick="1">
+						<panel align="left" color="#ccde0a" noclick="1" />
+						<image texture="/ui/main/crafting/textures/meter_grad.tga" x="60@" width="80@" height="100%" align="right" color="#ccde0a" noclick="1" />
+					</panel>					
+					<!-- InEfficient -->
+					<panel name="mainCraftingComponentMeterInefficient" width="40.002%" noclick="1">
+						<panel color="#de8c0a" noclick="1" />
+					</panel>
+				</panel>
+			
+				<!-- The Colors
+					Works pretty much the same as before. Using a new template 'mainCraftingComponentCostPipSimple', so as not to break the current stuff. Changes are that only the optimal/min value should show
+				-->
+				<panel float="right" noclick="true">
+					<instance name="mainCraftingComponentCostPipSimple" id="1"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="2"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="3"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="4"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="5"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="6"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="7" showValue="1" />
+					<instance name="mainCraftingComponentCostPipSimple" id="8"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="9"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="10"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="11"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="12"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="13"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="14"/>
+					<instance name="mainCraftingComponentCostPipSimple" id="15" showSep="0"/>
+				</panel>				
+				<image texture="/ui/main/crafting/textures/bar_colordarken.tga" height="48%" valign="center" color="0 0 0 .7" noclick="1" />
+				<image texture="/ui/main/crafting/textures/meter_grad.tga" width="30@" height="48%" valign="center" align="right" hflip="1" color="0 0 0 .5" noclick="1" />				
+				
+				<!-- Slider - Replaces progress bar, slides to indicate current total (X pips * 6.667%)-->
+				<panel name="craftPanelCurrentMarker" x="46.669%" width="100@" height="100%" noclick="1">
+					<image texture="/ui/main/shared/textures/spotlight.tga" x="-51@" rendermode="overlay" width="50%" valign="center" visible="0" />
+					<image texture="/ui/main/crafting/textures/bar_nubbin.tga" x="-56@" />
+					<!-- Item Cost -->
+					<panel y="104%" x="-74@" align="center" grow="true" regrow="true" height="20s" float="right" padding="3s">
+						<label name="craftPanelCurrentIngameCost" fitx="true" textvalign="center" style="labelBase" color=".7 .7 .7 1" font="maindyn_18" content="---"/>
+						<image texture="/ui/shared/textures/goldcoins2.tga" width="100@" height="100%" />
+					</panel>
+					<!--
+					Labels/Color, changes both content and color as it slides between sections
+						Insufficient: crafting_insufficient | #c20000
+						Optimal: crafting_optimal | #1ac605
+						Sufficient: crafting_sufficient | #ccde0a
+						Inefficient: crafting_inefficient | #de8c0a
+					-->
+					<label x="-76@" y="-25%" fitx="1" align="center" style="labelBase" color="#1ac605" font="maindyn_20" content="crafting_optimal" noclick="1" />
+				</panel>
+				
+				
+			</panel>			
+			
+			
+
+			
+			<!-- Hidden in this dev version -->
+			<panel name="craftPanelCostProgressBarMinMarker" vmargin="0.75h" y="-0.25h" width="66%" visible="0">
+				<panel align="right" width="0.5h" color="invisible" noclick="true">
+					<label name="craftPanelCostMinimumLabel" y="54s" x="-19s" align="center" fitx="true" textalign="center" textvalign="center" height="4h" font="maindyn_18" outline="true" color="#CCCCCC" noclick="true" content="general_minimum"/>
+					<!--
+					<panel grow="true" align="center" height="3.5h" y="155%" float="right" padding="0.5h">
+						<label name="craftPanelCostProgressBarMinLabel" fitx="true" textvalign="center" font="maindyn_26" color="white" outline="true" content="4,500"/>
+						<panel width="100@" height="100%" color="1 1 1 0.1"/>
+					</panel>
+					-->
+				</panel>
+			</panel>
+			
+			<panel width="200s" height="82s" x="-190s" y="6s" noclick="true" ><!-- Craft Button -->
+				<instance name="standardButton" id="craftItemButton" font="maindyn_40" labelY="-18s" borderthickness="10s" label="general_craft"/>			
+				<panel valign="bottom" y="-4s" noclick="true" height="38s" grow="true" regrow="true" align="center" float="right" padding="5s" passivechildren="true">
+					<label name="mainCraftingOreCost" fitx="true" textvalign="center" color="#CCCCCC" outline="true" outlinecolor="0 0 0 0.5" font="maindyn_30" content="--"/>
+					<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" heihgt="100%" noclick="1" />
+				</panel>
+			</panel>				
+			
+		</panel>
+
+		<instance name="mainCraftingNewItemComponent" id="1" valign="center" x="436s" y="-164s"/>
+		<instance name="mainCraftingNewItemComponent" id="2" valign="center" x="264s" y="110s"/>
+		<instance name="mainCraftingNewItemComponent" id="3" valign="center" x="590s" y="110s"/>
+		
+		<button name="craftPanelSelectRecipeButton2" width="160s" height="160s" valign="center" x="410s" color="invisible" group="crafting_animation_widgets"><!-- Recipe Selection -->
+			<frame noclick="true" texture="/ui/elements:squareglow" color="0 0 0 .7" width="+20s" height="+20s" align="center" valign="center" borderthickness="20s" />
+			<panel width="80%" height="80%" align="center" valign="center" color=".09 .09 .09 1" noclick="1" />
+			<panel y="1s" x="-1s" width="68.8@" height="68.8%" align="center" valign="center" noclick="1">
+				<image name="craftingNewItemIcon" texture="/ui/main/crafting/textures/recipe_blank.tga"/>
+				<image name="craftPanelSelectRecipeNotice" texture="/ui/main/crafting/textures/recipe_blank.tga"/>
+			</panel>
+			<image texture="/ui/main/shared/textures/iconframe_displayinfo.tga" />			
+		</button>
+		<instance name="standardButton" id="craftPanelSelectRecipeButton" valign="center" height="34s" borderthickness="8s" width="156s" x="412s" y="84s" font="maindyn_22" label="crafting_select_recipe" group="crafting_animation_widgets"/>
+	</panel>
+	
+	<panel name="mainCraftSelectRecipeTarget" passivechildren="true" visible="0">
+		<image texture="/ui/main/shared/textures/corner_grad.tga" width="620s" height="340s" align="right" valign="bottom" color="0 0 0 .95" noclick="1"/>
+		<panel width="300s" height="110s" noclick="1" x="-20s" y="-40s" align="right" valign="bottom">
+			<image texture="/ui/main/shared/textures/commodity_essence.tga" width="100@" height="100%" color="1 1 1 .9" />
+			<label x="110@" width="-110@" height="100%" wrap="1" textvalign="center" style="labelBase" color=".8 .8 .8 1" font="maindyn_36" content="crafting_drag_out_to_select_recipe" noclick="1" />
+		</panel>			
+		<panel name="mainCraftSelectRecipeTargetBody"/>
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+		<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>			
+	</panel>
+</package>

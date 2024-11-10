@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Unstable_Shard_Empower_2"
+	
+	cost="2015"
+
+>
+	<constant name="refresh_enchant" value="100" adjustment="none" qualityvalue="1" qualityadjustment="common" op="add"/>
+	
+	<onimpact>
+		<resetcooldown/>
+		<startcooldown />
+		<getconstant name="mana"/>
+			<setvar0 a="result" b="1" op="mult" />
+			<givemana amount="var0"/>
+			<applystate name="State_Unstable_Shard_Enchant2_Mana" duration="9250" />
+			<applystate name="State_Unstable_Apply_Enchant2" duration="9500" />
+	</onimpact>
+	
+</qualityitem>

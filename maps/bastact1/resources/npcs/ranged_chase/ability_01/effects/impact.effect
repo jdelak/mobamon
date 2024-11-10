@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+				
+			<simpleemitter
+				bone="_bone_centerofchest"
+				delay="200"
+				count="6"
+				spawnrate="300"
+				offsetsphere="0"
+				position="0 100 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 -20 10"
+						material="/shared/effects/smaterials/whitedot.material"						
+						startcolor="0 0 0"
+						midcolor="1 0.7 0"
+						endcolor="0 0 0"
+						minlife="100"
+						maxlife="100"
+						startscale="1"
+						endscale="1"	
+						minheight="20"
+						maxheight="30"
+						minwidth="300"
+						maxwidth="600"
+						directionalspace="local"	
+						lockright="1"
+						lockup="1"	
+						pitch="90"	
+						minroll="0"						
+						maxroll="180"
+						depthbias="-50"						
+					/>
+
+				</particle>
+			</simpleemitter>
+				
+				<!--Rings-->		
+			<simpleemitter
+				life="500"
+				count="1"
+				spawnrate="1000"
+				particlelife="300"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 0"
+				offsetsphere="0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+				particledirectionalspace="local"
+				depthbias="-100"
+			>
+				<particle
+					turn="1"
+					startcolor="0"
+					midcolor="1 0.7 0"
+					endcolor="0"
+					startanchor="1"
+					endanchor="0.9"
+					startscale="0"
+					endscale="350"
+					midscalepos=".3"
+					lockup="1"
+					lockright="1"
+					
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				life="500"
+				count="1"
+				spawnrate="1000"
+				particlelife="300"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 0"
+				offsetsphere="0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+				particledirectionalspace="local"
+				depthbias="-100"
+			>
+				<particle
+					turn="1"
+					startcolor="0"
+					midcolor="1 0.7 0"
+					endcolor="0"
+					startanchor="1"
+					endanchor="0.9"
+					startscale="0"
+					endscale="350"
+					midscalepos=".3"
+					lockup="1"
+					lockright="1"
+					
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				life="500"
+				count="1"
+				spawnrate="1000"
+				particlelife="300"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 0"
+				offsetsphere="0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+				particledirectionalspace="local"
+				depthbias="-100"
+			>
+				<particle
+					turn="1"
+					startcolor="0"
+					midcolor="1 0.7 0"
+					endcolor="0"
+					startscale="0"
+					endscale="200"
+					startanchor="0"
+					endanchor="0"
+					lockup="1"
+					lockright="1"
+					
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				life="500"
+				count="1"
+				spawnrate="1000"
+				particlelife="300"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 0"
+				offsetsphere="0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+				particledirectionalspace="local"
+				depthbias="-100"
+			>
+				<particle
+					turn="1"
+					startcolor="0"
+					midcolor="1 0.7 0"
+					endcolor="0"
+					startscale="0"
+					endscale="200"
+					startanchor="0"
+					endanchor="0"
+					lockup="1"
+					lockright="1"
+					
+				/>
+			</simpleemitter>
+			
+			<!-- Refraction -->
+			<simpleemitter
+				life="500"
+				count="1"
+				spawnrate="1000"
+				particlelife="300"
+				gravity="0"
+				acceleration="0"
+				param=".1"	
+				speed="0"
+				position="0 0 0"
+				offsetsphere="0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				material="/shared/effects/materials/refract_ring.material"
+				particledirectionalspace="local"
+				depthbias="-100"
+			>
+				<particle
+					turn="1"
+					param=".1"
+					color="1"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos="0.5"
+					scale="200"
+					startanchor="0"
+					endanchor="0"
+					
+				/>
+			</simpleemitter>
+			
+			
+				<!-- Short streaks -->
+			<simpleemitter
+				life="500"
+				spawnrate="5000"
+				count="10"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="300"
+				maxspeed="1000"
+				direction="0 0 1"
+				drag="0"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1"
+				endparticlecolor="0"
+				minangle="0"
+				maxangle="360"
+			>
+				<particle
+					height="5"
+					width="1"
+					scale="6"
+					startcolor="1 1 1"
+					endcolor="1 0.7 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+				<!-- Long streaks -->
+			<simpleemitter
+				life="500"
+				spawnrate="5000"
+				count="10"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="300"
+				maxspeed="1000"
+				direction="0 0 1"
+				drag="0"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1"
+				endparticlecolor="0"
+				minangle="0"
+				maxangle="360"
+			>
+				<particle
+					height="20"
+					width="1"
+					scale="6"
+					startcolor="1 1 1"
+					endcolor="1 0.7 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				life="500"
+				spawnrate="5000"
+				count="3"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="200"
+				maxspeed="400"
+				direction="0 0 1"
+				drag="0"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1"
+				endparticlecolor="0"
+				minangle="0"
+				maxangle="360"
+				depthbias="100"
+			>
+				<particle
+					height="20"
+					width="2"
+					scale="10"
+					startcolor="1 0.7 0"
+					endcolor="1 0.7 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+				<!-- Normal dots -->
+			<simpleemitter
+				life="500"
+				spawnrate="5000"
+				count="5"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="300"
+				maxspeed="1000"
+				direction="0 0 1"
+				drag="0"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1"
+				endparticlecolor="0"
+				minangle="0"
+				maxangle="360"
+			>
+				<particle
+					scale="6"
+					startcolor="1 1 1"
+					endcolor="1 0.7 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+				<!--Stars out -->
+				<simpleemitter
+					
+					delay="0"
+					life="500"
+					count="1"
+					spawnrate="100"
+					particlelife="2000"
+					position="0 0 0"
+					minangle="0"
+					maxangle="0"
+					directionalspace="world"
+					depthbias="-25"
+				>
+					<particle
+						turn="1"
+						pitch="0"
+						minangle="0"
+						maxangle="360"
+					>
+						
+						<simpleemitter
+							
+							life="500"
+							count="3"
+							spawnrate="1000"
+							particlelife="200"
+							gravity="0"
+							acceleration="0"
+							position="0 0 0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/star_additive.material"
+							particledirectionalspace="local"
+							depthbias="-25"
+							startparticlecolor="0.5"
+							endparticlecolor="0"
+						>
+							<particle
+								minangle="0"
+								maxangle="360"
+								startcolor="1 0.7 0"
+								endcolor="0 0 0"
+								startsize="50"
+								midsize="400"
+								endsize="0"
+								lockup="1"
+								lockright="1"
+								
+							/>
+						</simpleemitter>
+						
+						<simpleemitter
+							
+							life="500"
+							count="3"
+							spawnrate="1000"
+							particlelife="200"
+							gravity="0"
+							acceleration="0"
+							position="0 0 0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/star_additive.material"
+							particledirectionalspace="local"
+							depthbias="-25"
+							startparticlecolor="0.5"
+							endparticlecolor="0"
+						>
+							<particle
+								minangle="0"
+								maxangle="360"
+								startcolor="1 0.7 0"
+								endcolor="0 0 0"
+								startsize="50"
+								midsize="600"
+								endsize="0"
+								lockup="1"
+								lockright="1"
+								
+							/>
+						</simpleemitter>
+						
+						<simpleemitter
+							
+							life="500"
+							count="3"
+							spawnrate="1000"
+							particlelife="200"
+							gravity="0"
+							acceleration="0"
+							position="0 0 0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/whitecircleblurred_add_unlit.material"
+							particledirectionalspace="local"
+							depthbias="-10"
+						>
+							<particle
+								
+								startcolor="1 0.7 0"
+								endcolor="0 0 0"
+								startsize="50"
+								midsize="200"
+								endsize="0"
+								lockup="1"
+								lockright="1"
+								
+							/>
+						</simpleemitter>
+						
+											
+						<simpleemitter
+							
+							life="500"
+							count="1"
+							spawnrate="1000"
+							particlelife="200"
+							gravity="0"
+							acceleration="0"
+							position="0 0 0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/star_additive.material"
+							particledirectionalspace="local"
+							depthbias="-25"
+						>
+							<particle
+								
+								startcolor="1"
+								endcolor="0 0 0"
+								startsize="40"
+								midsize="300"
+								endsize="0"
+								lockup="1"
+								lockright="1"
+								
+							/>
+						</simpleemitter>
+						
+						<simpleemitter
+							
+							life="500"
+							count="1"
+							spawnrate="1000"
+							particlelife="200"
+							gravity="0"
+							acceleration="0"
+							position="0 0 0"
+							offsetsphere="0 0 0"
+							material="/shared/effects/smaterials/star_additive.material"
+							particledirectionalspace="local"
+							depthbias="-25"
+						>
+							<particle
+								minangle="0"
+								maxangle="360"
+								startcolor="1"
+								endcolor="0 0 0"
+								startsize="40"
+								midsize="300"
+								endsize="0"
+								lockup="1"
+								lockright="1"
+								
+							/>
+						</simpleemitter>
+					</particle>
+				</simpleemitter>
+			
+		<!-- 	<simpleemitter
+				life="500"
+				count="1"
+				spawnrate="100"
+				particlelife="500"
+				position="0 0 0"
+				minangle="0"
+				maxangle="360"
+				direction="0 1 0"
+				directionalspace="local"
+			>
+				<particle
+					turn="1"
+					pitch="180"
+					angle="-2790"
+				>
+					<simpleemitter
+						spawnrate="5000"
+						count="20"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="300"
+						maxspeed="1000"
+						direction="0 0 1"
+						drag="0"
+						acceleration="0.0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1"
+						endparticlecolor="0"
+						minangle="0"
+						maxangle="10"
+					>
+						<particle
+							height="5"
+							width="1"
+							scale="6"
+							startcolor="1 1 1"
+							endcolor="1 0.7 0"
+							startalpha="1"
+							endalpha="0"
+							flare="true"
+							turn="true"	
+						/>
+					</simpleemitter>
+				</particle>
+			</simpleemitter> -->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

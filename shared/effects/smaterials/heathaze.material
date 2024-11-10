@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/effect_refract_mask_anim.shader">
+		<vec2 name="vTexOffset" value="0.0 0.0" valuespeed="0.0031 -0.1" />
+	</parameters>
+	<phase name="color" cull="none" refractive="true" alphawrite="false" blend="translucent">
+		<sampler name="refraction" texture="../stextures/heat_n.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="mask" texture="../stextures/heat_m.tga" repeat_u="false" repeat_v="false" />
+	</phase>
+</material>

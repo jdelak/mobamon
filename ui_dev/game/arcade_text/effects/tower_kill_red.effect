@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale=".965">
+
+			<simpleemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="5000"
+			> 
+				<particle
+				>
+
+					<billboard
+						delay="600"
+						life="2800"
+						startcolor="0 0 0"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".33"
+						material="/shared/effects/smaterials/whitedot.material"
+						position="-1 -10 16"
+						size="200"
+						depthbias="200"
+					/>
+
+						<model
+						delay="750"
+							position="0 -25 -5"
+							life="250"
+							color="1 1 1"
+							model="tower_red/model.mdf"
+							anim="idle"
+							scale=".14"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".55"
+							pitch="-40"
+							yaw="0"
+						>
+
+
+						</model>
+						
+						
+						
+						
+						
+					
+						<simpleemitter
+							delay="1000"
+							position="0 0 0"
+							count="1"
+							life="3000"
+							spawnrate="10000"
+							particlelife="2500"
+							speed="0"
+							direction="0 0 0"
+							minangle="0"
+							maxangle="0"
+						>
+							<particle
+							>
+								<model
+									position="0 -25 -5"
+									life="1250"
+									startcolor="1"
+									midcolor="1"
+									endcolor="1"
+									midcolorpos=".25"
+									model="tower_red/model.mdf"
+									anim="death_1"
+									scale=".14"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".65"
+									pitch="-40"
+									yaw="0"
+								>
+
+									<simpleemitter
+										count="100"
+										spawnrate="2000"
+										minparticlelife="300"
+										maxparticlelife="400"
+										drag=".01"
+										offsetphere="140 140 20"
+										gravity="-3"
+										minspeed="650"
+										maxspeed="3250"								
+										direction="0 0 1"
+										position="0 0 175"
+										depthbias="-30"
+										material="/shared/effects/smaterials/whitedot.material"
+									>			
+										<particle
+											startcolor="1 .15 0"
+											endcolor="0"
+											startsize="3"
+											endsize="0"
+											minscale="1"
+											maxscale="3"
+										/>
+										<particle
+											startcolor="1 .15 0"
+											endcolor="0"
+											startsize="10"
+											endsize="0"
+											minscale="1"
+											maxscale="3"
+											endstickiness=".4"
+											startheightdistort=".05"
+											endheightdistortion="0"
+											turn="1"
+										/>
+									</simpleemitter>
+
+									<simpleemitter	
+										life="400"				
+										spawnrate="2000"
+										count="4"
+										position="0 0 175"
+										minparticlelife="200"			
+										maxparticlelife="350"				
+										material="/shared/effects/smaterials/toon_explosion.material"			
+										depthbias="-50"
+										offsetsphere="5"
+									>
+										<particle 
+											startcolor=".25 .05 .05"
+											endcolor="0 0 0"
+											startsize="0"
+											endsize="500"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+										/>
+									</simpleemitter>
+
+									<simpleemitter	
+										life="300"				
+										spawnrate="1000"
+										count="35"
+										position="0 0 175"
+										minparticlelife="200"			
+										maxparticlelife="500"				
+										material="/shared/effects/smaterials/fire_arc_white.material"			
+										depthbias="-25"
+										offsetsphere="50 50 0"
+										minangle="-90"
+										maxangle="90"
+										direction="0 0 1"
+										minspeed="250"
+										maxspeed="500"
+
+									>
+										<particle 
+											startcolor="2"
+											midcolor="1 .25 0"
+											endcolor="0 0 0"
+											size="40"
+											midsizepos=".75"
+											endsize="70"
+											startscale="1"
+											endscale="2"
+											endstickiness="1"
+											lockup="1"
+											lockright="1"
+										/>
+									</simpleemitter>
+
+
+
+									<simpleemitter	
+										spawnrate="11500"
+										life="1200"				
+										count="50"			
+										position="0 0 175"
+										minparticlelife="1000"			
+										maxparticlelife="1500"	
+										depthbias="-25"			
+										material="/shared/effects/smaterials/clouds.material"			
+										offsetsphere="125 125 100"
+										minspeed="0"
+										maxspeed="620"
+										angle="10"
+										direction="0 0 1"
+										drag=".01"
+										gravity="15"
+									>
+										<particle 
+											minangle="-10"
+											maxangle="10"
+											minanglespeed="-100"
+											maxanglespeed="100"
+											startcolor="1 .25 0"
+											midcolor=".1 0 0"
+											endcolor=".1 0 0"
+											startsize="100"
+											midsize="100"
+											endsize="200"
+											startalpha="0"
+											midalpha=".25"
+											endalpha="0"
+											midalphapos=".2"
+										/>
+									</simpleemitter>
+
+									<simpleemitter	
+										spawnrate="11500"
+										life="1200"				
+										count="20"			
+										position="0 0 175"
+										minparticlelife="500"			
+										maxparticlelife="1000"	
+										depthbias="-25"			
+										material="/shared/effects/smaterials/cartoon_dust.material"			
+										offsetsphere="100 100 50"
+										minspeed="0"
+										maxspeed="720"
+										minangle="0"
+										maxangle="12"
+										direction="0 0 1"
+										gravity="12"
+										drag=".005"
+									>
+										<particle 
+											minangle="-25"
+											maxangle="25"
+											minanglespeed="-100"
+											maxanglespeed="100"
+											startcolor="1 .6 .15"
+											midcolor="1 .6 .15"
+											endcolor=".6 .3 .3"
+											startsize="150"
+											endsize="50"
+											startalpha="0"
+											midalpha=".35"
+											endalpha="0"
+										/>
+									</simpleemitter>
+
+									<simpleemitter	
+										spawnrate="11500"
+										life="1200"				
+										count="12"			
+										position="0 0 175"
+										minparticlelife="500"			
+										maxparticlelife="1000"	
+										depthbias="-25"			
+										material="/shared/effects/smaterials/dust_puff.material"			
+										offsetsphere="75 75 50"
+										minspeed="0"
+										maxspeed="720"
+										minangle="0"
+										maxangle="12"
+										direction="0 0 1"
+										gravity="12"
+										drag=".005"
+									>
+										<particle 
+											minangle="-25"
+											maxangle="25"
+											minanglespeed="-100"
+											maxanglespeed="100"
+											color=".15 .1 .1"
+											startsize="150"
+											endsize="200"
+											startalpha="0"
+											midalpha="1"
+											endalpha="0"
+										/>
+									</simpleemitter>
+									
+									
+									
+									<billboard
+										life="500"
+										position="0 0 175"			
+										startcolor=".5 .05 0"
+										endcolor="0"
+										startalpha="1"
+										endalpha="0"
+										size="300"
+										depthbias="-100"
+										material="/shared/effects/smaterials/scorch_ground.material"
+									/>
+
+									<billboard
+										life="1000"
+										position="0 0 175"			
+										startcolor=".5 .15 0"
+										endcolor="0"
+										size="300"
+										depthbias="-100"
+										material="/shared/effects/smaterials/whitedot.material"
+									/>
+									
+									
+									
+									
+									
+									
+									
+									
+
+
+
+
+
+									
+									
+									
+									
+									
+									
+									<simpleemitter
+										count="7"
+										spawnrate="1055"
+										particlelife="200"
+										gravity="0"
+										minspeed="22.0"
+										maxspeed="22"
+										acceleration="0.0"
+										timenudge="0"
+										position="0 0 180"
+										offsetsphere="10"
+										material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+										depthbias="-20"
+									>
+										<particle
+											color=".2 0 0"
+											startalpha=".5"
+											midalpha=".5"
+											endalpha="0"
+											startscale="75"
+											endscale="225"
+											turn="true"
+										/>
+									</simpleemitter>
+
+									<simpleemitter
+										count="7"
+										spawnrate="1055"
+										particlelife="200"
+										gravity="0"
+										minspeed="22.0"
+										maxspeed="22"
+										acceleration="0.0"
+										timenudge="0"
+										position="0 0 180"
+										offsetsphere="10"
+										material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+										depthbias="-20"
+									>
+										<particle
+											color=".2 .05 0"
+											startalpha="1"
+											midalpha="1"
+											endalpha="0"
+											startscale="50"
+											endscale="100"
+											turn="true"
+										/>
+									</simpleemitter>
+<!--
+									<simpleemitter
+									delay="100"
+										count="7"
+										spawnrate="1055"
+										particlelife="160"
+										gravity="0"
+										minspeed="22.0"
+										maxspeed="22"
+										acceleration="0.0"
+										timenudge="0"
+										position="0 0 180"
+										offsetsphere="10"
+										material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+										depthbias="-20"
+									>
+										<particle
+											color=".06 .25 0"
+											startalpha=".5"
+											midalpha=".5"
+											endalpha="0"
+											startscale="75"
+											endscale="225"
+											turn="true"
+										/>
+									</simpleemitter>
+
+									<simpleemitter
+									delay="100" 
+										count="7"
+										spawnrate="1055"
+										particlelife="160"
+										gravity="0"
+										minspeed="22.0"
+										maxspeed="22"
+										acceleration="0.0"
+										timenudge="0"
+										position="0 0 180"
+										offsetsphere="10"
+										material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+										depthbias="-20"
+									>
+										<particle
+											color=".12 .25 0"
+											startalpha="1"
+											midalpha="1"
+											endalpha="0"
+											startscale="50"
+											endscale="100"
+											turn="true"
+										/>
+									</simpleemitter>
+-->
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+
+								</model>
+
+
+							</particle>
+						</simpleemitter>
+
+					<billboard
+						position="20 0 -5"
+						delay="3500"
+						life="300"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 0 0"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						startheight="14"
+						midheight="14"
+						endheight="0"
+						width="100"
+						roll="0"
+						depthbias="-50"
+					/>
+
+					<billboard
+						position="0 0 -15"
+						delay="3500"
+						life="400"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="1 0 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						startheight="14"
+						midheight="14"
+						endheight="0"
+						width="125"
+						roll="0"
+						depthbias="-50"
+					/>
+					
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_EnemyHeroCheck"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	deathpersist="true"
+	
+	maxcharges="4"
+	
+	impactinterval="1000"
+	
+>
+	<onimpact>
+		<condition test="not_hasstate State_Tutorial_TipBusy" target="this_owner_entity">
+			<areaofeffect
+				radius="1700"
+				targetselection="all"
+				targetscheme="enemy_heroes"
+				source="this_owner_entity"
+				ignoreinvulnerable="true"
+			>
+				<setscriptvalue name="enemy_hero_arrived" value="1" />
+				<applystate name="State_Tutorial_TipBusy" target="this_owner_entity" duration="9000" />
+				<expire />
+			</areaofeffect>
+		</condition>
+	</onimpact>
+
+</state>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="mesh_normal_animated">
+	<dependency name="Normal" type="float3" source="Normal" />
+	<dependency name="BlendedMatrix" type="float4x3" source="BlendedMatrix" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" solution="ObjectNormal" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float3 vInNormal = (Normal / 255.0f) * 2.0f - 1.0f;
+			Out = normalize(mul(float4(vInNormal, 0.0f), BlendedMatrix).xyz);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float3 vInNormal = Normal;
+			Out = normalize(mul(float4(vInNormal, 0.0f), BlendedMatrix).xyz);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec3 vInNormal = Normal;
+			Out = normalize((vec4(vInNormal, 0.0f) * BlendedMatrix).xyz);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec3 vInNormal = Normal;
+			Out = normalize((vec4(vInNormal, 0.0f) * BlendedMatrix).xyz);
+		?>
+	</case>
+</node>

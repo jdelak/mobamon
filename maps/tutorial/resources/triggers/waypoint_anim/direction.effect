@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.0">
+		
+		
+			<controller
+			life="2000"
+				position="0 0 0"
+				lookat="true"
+				lookatowner="target"
+				lookatposition="0 0 0"
+				loop="true"
+				startscale="1"
+				midscale="1.05"
+				endscale="1"
+			>
+			
+				<billboard
+				expirelife="250"
+					position="0 140 35"
+					color="1 1 1"
+					startalpha="1"
+					endalpha="0"
+					midalphapos=".95"
+					size="65"
+					material="/shared/effects/smaterials/arrow_center.material"
+					loop="false"
+					directionalspace="local"
+					lockup="true"
+					lockright="true"
+					flare="true"
+					pitch="90"
+					depthbias="-135"
+				/>
+
+				<billboard
+				expirelife="250"
+					position="0 140 35"
+					startcolor="0 1 0"
+					endcolor="0 0 0"
+					midalphapos=".95"
+					size="65"
+					material="/shared/effects/smaterials/arrow_outline.material"
+					loop="false"
+					directionalspace="local"
+					lockup="true"
+					lockright="true"
+					flare="true"
+					pitch="90"
+					depthbias="-135"
+				/>
+
+			</controller>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

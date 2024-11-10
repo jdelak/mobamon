@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+	
+
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor=".5"
+			endcolor="1"
+		/>
+
+	
+		<particlesystem name="system0" space="world" scale="1.5">
+            
+            <sound
+                linearfalloff="true"
+                falloffstart="500"
+                falloffend="2400"
+                volume="0.55"
+                sample="../sounds/sfx_impact_%.wav"
+            />
+            
+
+			<simpleemitter
+                position="0 0 10"
+				bone="_bone_center"
+				spawnrate="250"
+				minparticlelife="300"
+				maxparticlelife="750"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/firesprite_swirl.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="30"
+				directionalspace="world"
+				offsetsphere="25"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					color="1 1 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".1"
+					startframe="0"
+					endframe="1"
+					minstartscale="25"
+					maxstartscale="40"
+					minmidscale="0"
+					maxmidscale="25"
+					endscale="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+			position="0 0 10"
+				bone="_bone_center"
+				spawnrate="250"
+				minparticlelife="300"
+				maxparticlelife="750"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/firesprite_swirl_add.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="30"
+				directionalspace="world"
+				offsetsphere="25"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					color=".125 .06 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".1"
+					startframe="0"
+					endframe="1"
+					minstartscale="25"
+					maxstartscale="40"
+					minmidscale="0"
+					maxmidscale="25"
+					endscale="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			position="0 0 10"
+				bone="_bone_center"
+				spawnrate="50"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				material="/shared/effects/smaterials/whitedot.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="-75"
+				directionalspace="world"
+				offsetsphere="26"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					startcolor=".25 .125 0"
+					midcolor=".125 .06 0"
+					endcolor="0 0 0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".1"
+					startframe="0"
+					endframe="1"
+					minstartscale="20"
+					maxstartscale="40"
+					minmidscale="0"
+					maxmidscale="20"
+					endscale="0"
+					turn="true"
+				/>
+			</simpleemitter>
+
+		
+<!--
+			<simpleemitter
+			position="0 0 0"
+			bone="_bone_centerofchest"
+				spawnrate="75"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="0"
+				maxspeed="150"
+				
+				material="/shared/effects/smaterials/firesprite_swirl_add.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				depthbias="30"
+				directionalspace="world"
+				offsetsphere="25"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1.5"
+					endscale="1"
+					startcolor=".5 .25 0"
+					midcolor=".5 .25 0"
+					endcolor="0 0 0"
+					startsize="80"
+					midsize="80"
+					endsize="0"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+			<billboard
+				position="0 0 0"
+				expirelife="250"
+				startcolor="1 .5 0"
+				endcolor="0"
+				size="160"
+				material="/shared/effects/materials/whitedot.material"
+				depthbias="-75"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Ray_Ability2"
+
+	radius="300"
+	
+	lifetime="3000"
+	targetselection="all"
+	targetscheme="enemy_units_and_buildings"
+	ignoreinvulnerable="false"
+	effecttype=""
+	innerradiusoffset="60"
+	effect=""
+	hazardradius="300"
+>
+
+	<onspawn>
+		<playeffect effect="effects/ring.effect" source="this_entity" occlude="true" visibility="enemies"/>
+		<playeffect effect="effects/ring_ally.effect" source="this_entity" occlude="true" visibility="allies"/>
+		<propareaeffect center="this_position" radius="300" anim="hit" />
+	</onspawn>
+	
+	<onframeimpact>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<targettype type="hero" >
+					<applystate name="State_Ray_Ability2_Zap_Linger" proxy="this_entity" continuous="true" timeout="3000" />
+				</targettype>
+				<else>
+					<applystate name="State_Ray_Ability2_Zap_Linger_Creeps" proxy="this_entity" continuous="true" timeout="3000" />
+				</else>
+			</onimpact>
+		</combatevent>
+	</onframeimpact>
+
+</affector>

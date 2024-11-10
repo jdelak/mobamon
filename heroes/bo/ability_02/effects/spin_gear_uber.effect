@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.0">
+    
+			<sound
+				sample="../sounds/sfx_cast_end.wav"
+				volume="0.85"
+				falloffstart="500"
+				falloffend="2200"
+			/>
+			
+			
+			<light
+				position="0 0 50"
+				life="350"
+				startcolor="10 2.5 0"
+				midcolor="10 2.5 0"
+				endcolor="0"
+				falloffstart="50"
+				falloffend="500"
+			/>
+			
+			
+
+			<simpleemitter
+				spawnrate="100"
+				count="1"
+				particlelife="1000"
+				direction="0 1 0"
+				angle="0"
+				speed="1"
+			>
+				<particle
+					turn="1"
+				>
+					<model
+						life="500"
+						model="../../gear_3/model.mdf"
+						anim="ability_2"
+						scale="1.8"
+						startcolor="1.5 0 0"
+						midcolor="1.5 0 0"
+						endcolor="1 1 1"
+						midcolorpos=".25"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+					>
+					
+					
+					
+
+
+						<billboard
+							position="0 0 75"
+							life="350"
+							material="/shared/effects/smaterials/fire_swoosh_blend.material"
+							startcolor="1 1 0"
+							midcolor="1 0 0"
+							endcolor="1 0 0"
+							midcolorpos=".75"
+							startalpha="1"
+							endalpha="0"
+							size="400"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="1600"
+							roll="180"
+						/>
+
+					
+					
+					
+						<billboard
+							position="0 0 75"
+							life="350"
+							material="/shared/effects/smaterials/swoosh_ring_red.material"
+							startcolor=".5 0 0"
+							endcolor="0 0 0"
+							size="400"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="1600"
+							roll="180"
+							depthbias="-25"
+						/>
+						
+						<billboard
+							position="0 0 75"
+							life="350"
+							material="/shared/effects/smaterials/swoosh_ring_red.material"
+							startcolor=".125"
+							endcolor="0"
+							size="400"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							rollspeed="1600"
+							roll="180"
+							depthbias="-25"
+						/>
+
+					</model>
+					
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="12" radius="1200" duration="250" frequency="22"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

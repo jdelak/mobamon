@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor="2"
+			endcolor="1 1 1"
+		/>
+			
+		<particlesystem name="system0" space="world">
+
+			<model
+				parentmodel="true"
+				parentskeleton="true"
+				startcolor=".3 .4 .5"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/shell_glass.material"
+				startalpha="1"
+				endalpha="0"
+				expirelife="500"
+			/>
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume="0"
+				sample="../sounds/item_frostfield_impact_%.wav"
+			/>
+
+			<simpleemitter
+				position="0 0 0"
+				spawnrate="50"
+				bone="_bone_centerofchest"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="25"
+				minspeed="250"
+				maxspeed="500"
+				drag=".02"
+				material="/shared/effects/smaterials/snowy_smoke.material"
+				offsetsphere="30 30 50"
+				minangle="160"
+				maxangle="160"
+				direction="0 0 -1"
+			>
+				<particle 
+					startcolor="1"
+					endcolor="1"
+					startalpha=".2"
+					endalpha="0"
+					minangle="0"
+					maxangle="360"
+					startsize="25"
+					minendsize="80"
+					maxendsize="120"
+					minanglespeed="-60"
+					maxanglespeed="60"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="defer">
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Light" type="float3" source="MaterialLight" />
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Specular" type="float3" source="MaterialSpecular" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<dependency name="Shadowed" type="float" source="MaterialShadowed" />
+	<dependency name="GroundAmbient" type="bool" source="MaterialGroundAmbient" />
+	<dependency name="SelfOcclusionScaleBias" type="float2" source="MaterialSelfOcclusionScaleBias" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	<dependency name="DynamicDiffuse" type="float3" source="MaterialDynamicDiffuse" />
+	
+	<dependency name="ViewNormal" type="float3" source="ViewNormal" />
+	<dependency name="ViewBump" type="float3" source="ViewBump" />
+	<dependency name="ViewPosition" type="float3" source="ViewPosition" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="ViewSunPosition" type="float3" source="vSunPositionView" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	<dependency name="SpecParams" type="float3" source="vSpec" />
+	
+	<dependency name="ViewUp" type="float3" source="vViewUp" />
+	<dependency name="FarClipInv" type="float" source="fCameraFarClipInv" />
+
+	<output name="Out0" type="float4" solution="PSOutColor0" />
+	<output name="Out1" type="float4" solution="PSOutColor1" />
+	<output name="Out2" type="float4" solution="PSOutColor2" />
+	<output name="Out3" type="float4" solution="PSOutColor3" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+		
+		float3 f3Normal = ViewBump;
+		
+		float fShadow = Shadowed;
+		float fSpecular = SpecParams.x;
+		
+		float3 f3CamDirection = -normalize(ViewPosition);
+		float3 f3Light = ViewSunPosition;
+		float3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+		float fSelfOcclude = saturate(dot(ViewNormal, f3Light) * SelfOcclusionScaleBias.x + SelfOcclusionScaleBias.y);
+		
+		float2 f2Lit; // x = diffuse, y = specular
+		f2Lit.x = saturate(dot(f3Normal, f3Light));
+		f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), SpecParams.y) * fSpecular;
+		f2Lit *= fShadow * fSelfOcclude;
+
+		float3 f3Diffuse = WorldAmbient;
+		float3 f3Specular = float3(0.0f, 0.0f, 0.0f);
+
+		if (GROUND_AMBIENT && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, ViewUp) * 0.375f + 0.625f);
+		
+		f3Diffuse += Light;
+
+		f3Diffuse += SunColor * f2Lit.x;
+		f3Specular += SunColor * f2Lit.y;
+		
+		float3 f3DiffuseColor = Diffuse * Color.rgb;
+		
+		float3 f3FinalColor = Emissive + f3DiffuseColor * f3Diffuse + Specular * f3Specular;
+		f3FinalColor *= Fogofwar;
+		f3FinalColor = lerp(f3FinalColor, FogColor, Fog);
+		
+		float fAlpha = Opacity * Color.a;
+		
+		Out0.rgb = f3FinalColor;
+		Out0.a = fAlpha;
+		
+		Out1.rgb = f3DiffuseColor * Fogofwar * (1.0f - Fog) * DynamicDiffuse;
+		Out1.a = fAlpha;
+	
+		Out2.rgb = ViewBump * 0.5f + 0.5f;
+		Out2.a = fAlpha;
+		
+		Out3.r = ViewPosition.z * FarClipInv;
+		Out3.gba = 0.0f;    
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+		
+		vec3 f3Normal = ViewBump;
+		
+		float fShadow = Shadowed;
+		float fSpecular = SpecParams.x;
+		
+		vec3 f3CamDirection = -normalize(ViewPosition);
+		vec3 f3Light = ViewSunPosition;
+		vec3 f3HalfAngle = normalize(f3Light + f3CamDirection);
+		float fSelfOcclude = clamp(dot(ViewNormal, f3Light) * SelfOcclusionScaleBias.x + SelfOcclusionScaleBias.y, 0.0f, 1.0f);
+		
+		vec2 f2Lit; // x = diffuse, y = specular
+		f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+		f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), SpecParams.y) * fSpecular;
+		f2Lit *= fShadow * fSelfOcclude;
+
+		vec3 f3Diffuse = WorldAmbient;
+		vec3 f3Specular = vec3(0.0f, 0.0f, 0.0f);
+
+		if (GROUND_AMBIENT != 0 && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, ViewUp) * 0.375f + 0.625f);
+		
+		f3Diffuse += Light;
+
+		f3Diffuse += SunColor * f2Lit.x;
+		f3Specular += SunColor * f2Lit.y;
+		
+		vec3 f3DiffuseColor = Diffuse * Color.rgb;
+		
+		vec3 f3FinalColor = Emissive + f3DiffuseColor * f3Diffuse + Specular * f3Specular;
+		f3FinalColor *= Fogofwar;
+		f3FinalColor = mix(f3FinalColor, FogColor, Fog);
+		
+		float fAlpha = Opacity * Color.a;
+		
+		Out0.rgb = f3FinalColor;
+		Out0.a = fAlpha;
+		
+		Out1.rgb = f3DiffuseColor * Fogofwar * (1.0f - Fog) * DynamicDiffuse;
+		Out1.a = fAlpha;
+	
+		Out2.rgb = ViewBump * 0.5f + 0.5f;
+		Out2.a = fAlpha;
+		
+		Out3.r = ViewPosition.z * FarClipInv;
+		Out3.gba = vec3(0.0f);
+	?>
+</node>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="simpletip_nofloat" luatable="true">
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<childinterface file="/ui/game/shared/game_shared_templates.interface"/>
+
+	<template name="iconFrame">
+		<frame name="{id2}" color="invisible" borderthickness="2" bordercolor="0 0 0 1" noclick="true"/>
+		<frame name="{id}" color="invisible" borderthickness="1" bordercolor=".2 .2 .2 1" noclick="true"/>
+	</template>		
+	
+	<panel width="30h" noclick="true" grow="true" regrow="true" visible="false" name="simpleTipNoFloatContainer">
+		<panel>
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="12s" color="#0a1112f4"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="12s" bordercolor="#1a383e" color="invisible"/>
+		</panel>
+		
+		<panel height="2h"/><!-- Minimum height -->
+		<panel width="-3.0h" align="center" grow="true" regrow="true" growinvis="false" float="bottom" padding="0.5h">
+			<panel height="0.8h"/><!-- Header pad -->
+			<panel height="3h" name="simpleTipNoFloatTitleContainer" sticky="true" stickytoinvis="false">
+				<label style="h2" font="maindyn_22" textvalign="center" name="simpleTipNoFloatTitle"/>
+				<panel width="100@" height="100%" align="right" name="simpleTipNoFloatIconContainer" visible="false">
+					<image name="simpleTipNoFloatIcon"/>
+					<instance name="iconFrame" />
+				</panel>
+			</panel>
+			<instance name="horizRule1" height="0.1h" ruleName="simpleTipNoFloatBodySeparator" sticky="true" stickytoinvis="false"/>
+			<panel width="100%" grow="true" regrow="true" sticky="true" stickytoinvis="false">
+				<panel height="2h"/>
+				<panel width="100%" grow="true" regrow="true">
+					<label wrap="true" fity="true" fitypadding="1h" style="whiteTextColor" font="subdyn_12" textvalign="center" name="simpleTipNoFloatBody"/>
+				</panel>
+			</panel>
+			<panel height="0.8h"/><!-- Footer pad -->
+		</panel>
+	</panel>
+
+	<lua file="simpletip_nofloat.lua"/>
+</interface>

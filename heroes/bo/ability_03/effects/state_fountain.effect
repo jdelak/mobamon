@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="1"
+				sample="/heroes/artesia/ability_04/sounds/cast.wav"
+				linearfalloff="true"
+				falloffstart="200"
+				falloffend="1300"
+			/>
+			
+			<billboard
+			delay="500"
+				expirelife="250"
+				bone="_bone_fx_07"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="125"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				startcolor="0 .1 .2"
+				endcolor="0 0 0"
+				depthbias="-75"
+			/>
+			
+
+			<!--dummie-->
+			<billboard
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="5"
+				color="0 0 0"
+			/>
+			
+			<model
+				delay="500"
+				life="1500"
+				model="fountain/model.mdf"
+				parentskeleton="1"
+				material="/shared/effects/smaterials/shell_falling_water.material"
+				startcolor="0 0 0"
+				endcolor="0 .5 .5"
+			/>
+
+			<model
+			delay="2000"
+				expirelife="250"
+				model="fountain/model.mdf"
+				parentskeleton="1"
+				material="/shared/effects/smaterials/shell_falling_water.material"
+				startcolor="0 .5 .5"
+				endcolor="0 0 0"
+			/>
+
+			<groundsprite
+				delay="450"
+				expirelife="250"
+				material="/shared/effects/smaterials/earth_cracks.material"
+				size="65"
+				color="1 1 1"
+				startalpha=".5"
+				endalpha="0"
+			/>
+			
+			<groundsprite
+				delay="450"
+				expirelife="250"
+				material="/shared/effects/smaterials/torch_hole_overlay.material"
+				directionalspace="local"
+				scale=".7"
+				startalpha=".75"
+				endalpha="0"
+			/>
+
+			<light
+				position="0 0 50"
+				expirelife="250"
+				startcolor="0 1.5 2.5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+
+			<billboard
+				life="250"
+				bone="model_high"
+				spawnrate="50"
+				particlelife="400"
+				material="/shared/effects/smaterials/flare.material"
+				size="400"
+				midheightpos=".75"
+				width="40"
+				lockup="1"
+				color="0 1 1"
+				depthbias="-75"
+			/>
+			
+			<billboard
+				life="250"
+				bone="model_high"
+				spawnrate="50"
+				particlelife="400"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="300"
+				lockup="1"
+				color="0 .25 .35"
+				depthbias="-75"
+			/>
+
+			<billboard
+				life="250"
+				bone="model_high"
+				spawnrate="50"
+				particlelife="400"
+				material="/shared/effects/smaterials/flare.material"
+				startheight="0"
+				endheight="1000"
+				width="20"
+				roll="90"
+				midheightpos=".75"
+				lockup="1"
+				color="0 .75 .75"
+				depthbias="-75"
+			/>
+
+			<billboard
+				delay="450"
+				life="250"
+				startcolor="0 .5 1"
+				endcolor="0 0 0"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".75"
+				startparam=".05"
+				endparam="0"
+				startsize="200"
+				endsize="0"
+				midsizepos=".4"
+				position="0 0 25"
+				material="/shared/effects/materials/flare.material"
+				lockup="true"
+				pitch="90"
+				rollspeed="-10"
+				depthbias="-75"
+			/>
+
+			<billboard
+				delay="250"
+				position="0 0 20"
+				life="250"
+				startsize="75"
+				endsize="300"
+				startalpha="1"
+				endalpha="0"
+				startparam=".1"
+				endparam="0"
+				depthbias="-100"
+				material="/shared/effects/smaterials/refract_waterring.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<billboard
+				delay="250"
+				position="0 0 20"
+				life="250"
+				startsize="0"
+				endsize="750"
+				startalpha="1"
+				endalpha="0"
+				startparam=".1"
+				endparam="0"
+				depthbias="-100"
+				material="/shared/effects/smaterials/refract_waterring.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				delay="250"
+				position="0 0 20"
+				life="250"
+				startsize="0"
+				endsize="750"
+				startcolor="0 .65 .65"
+				endcolor="0 0 0"
+				depthbias="-100"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1.25">
+
+			<light
+				delay="400"
+				expirelife="250"
+				startcolor="0 2.5 5"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="150"
+			/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="puddle">
+
+				<terrainemitter
+					position="0 0 0"
+					spawnrate="15"
+					particlelife="1500"
+					range="200"
+				>
+					<particle>
+					
+
+						<billboard
+							minlife="1000"
+							maxlife="1500"
+							material="/shared/effects/smaterials/water_overlay.material"
+							minstartsize="100"
+							maxstartsize="100"
+							minendsize="200"
+							maxendsize="300"
+							midsizepos=".25"
+							color="0 1 1"
+							startalpha=".05"
+							endalpha="0"
+							depthbias="-50"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+
+						<simpleemitter
+						delay="500"
+							life="1000"
+							spawnrate="3300"
+							count="25"
+							minparticlelife="1000"
+							maxparticlelife="1250"			
+							gravity="15"
+							minspeed="100"
+							maxspeed="100"
+							drag=".01"
+							material="/shared/effects/materials/whitedot.material"
+							offsetsphere="5"
+							minangle="0"
+							maxangle="35"
+							direction="0 0 1"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								startcolor=".25"
+								midcolor="0 .1 .1"
+								endcolor="0 0 0"
+								midcolorpos=".2"
+								minstartsize="2"
+								maxstartsize="5"
+								midsize="5"
+								endsize="2"
+								startalpha="0"
+								midalpha=".7"
+								endalpha="0"
+								midalphapos=".5"
+							/>
+						</simpleemitter>
+
+					</particle>
+				</terrainemitter>
+
+				<simpleemitter
+				delay="500"
+				life="10500"
+					spawnrate="10"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					offsetsphere="50 50 0"
+					acceleration="0"
+					material="/shared/effects/smaterials/water_outsplash.material"
+					depthbias="-10"
+				>
+					<particle
+						startcolor="1"
+						midcolor="0 .75 .75"
+						endcolor=".125 .5 .65"
+						startalpha="0"
+						midalpha=".25"
+						endalpha="0"
+						midalphapos=".25"
+						minstartscale="25"
+						maxstartscale="50"
+						endscale="75"
+						position="0 0 4"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="puddle"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			<template name="puddles">
+
+				<simpleemitter
+					bone="{bone}"
+					spawnrate="5"
+					particlelife="2500"
+					speed="10"
+					drag="0"
+					offsetsphere="50 50 0"
+					acceleration="0"
+					depthbias="0"
+				>
+					<particle
+					>
+						<billboard
+							delay="500"
+							minlife="500"
+							maxlife="1500"
+							bone="{bone}"
+							startcolor="0 0 0"
+							midcolor="0 .05 .05"
+							endcolor="0 0 0"
+							startsize="25"
+							minmidsize="75"
+							maxmidsize="100"
+							endsize="50"
+							depthbias="-25"
+							position="0 0 5"
+							material="/shared/effects/smaterials/whitedot_ground.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					delay="250"
+					bone="{bone}"
+					spawnrate="2"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					speed="0"
+					drag="0"
+					offsetsphere="40 40 0"
+					acceleration="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+				>
+					<particle
+						color="0 .08 .1"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						startparam=".05"
+						endparam="0"
+						startsize="0"
+						endsize="25"
+						position="0 0 4"
+						lockup="true"
+						pitch="90"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="puddles" bone="_bone_fx_aoe_01"/>
+			<instance name="puddles" bone="_bone_fx_aoe_02"/>
+			<instance name="puddles" bone="_bone_fx_aoe_03"/>
+			<instance name="puddles" bone="_bone_fx_aoe_04"/>
+			<instance name="puddles" bone="_bone_fx_aoe_05"/>
+			<instance name="puddles" bone="_bone_fx_aoe_06"/>
+			<instance name="puddles" bone="_bone_fx_aoe_07"/>
+			<instance name="puddles" bone="_bone_fx_aoe_08"/>
+			<instance name="puddles" bone="_bone_fx_aoe_09"/>
+			<instance name="puddles" bone="_bone_fx_aoe_10"/>
+			<instance name="puddles" bone="_bone_fx_aoe_11"/>
+			<instance name="puddles" bone="_bone_fx_aoe_12"/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system2" space="entity" scale=".55">
+
+		
+			<simpleemitter
+			delay="200"
+				bone="_bone_fx_01"
+				spawnrate="100"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="0"
+				speed="250"
+				offsetsphere="5 5 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				minangle="0"
+				maxangle="1"
+				direction="0 -1 0"
+				depthbias="0"
+				directionalspace="local"
+			>
+				<particle
+					anchor="1"
+					startcolor="1 1 1"
+					midcolor="0 1 1"
+					endcolor="0 0 0"
+					midcolorpos=".8"
+					startsize="15"
+					endsize="5"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					minheightdistort="0"
+					maxheightdistort=".5"
+					startalpha=".25"
+					midalpha=".25"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			delay="200"
+				bone="_bone_fx_01"
+				spawnrate="100"
+				minparticlelife="250"
+				maxparticlelife="750"
+				gravity="0"
+				speed="250"
+				offsetsphere="5 5 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="1"
+				direction="0 -1 0"
+				depthbias="0"
+				directionalspace="local"
+			>
+				<particle
+					anchor="1"
+					startcolor=".1 .2 .3"
+					midcolor="0 .25 .25"
+					endcolor="0 0 0"
+					midcolorpos=".8"
+					startsize="15"
+					endsize="5"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					minheightdistort="0"
+					maxheightdistort=".5"
+				/>
+			</simpleemitter>
+
+
+			
+
+			<template name="ella">
+
+				<simpleemitter
+				delay="500"
+					bone="{zbone}"
+					spawnrate="10"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					gravity="5"
+					speed="60"
+					offsetsphere="15 15 0"
+					material="/shared/effects/smaterials/cartoon_dust.material"
+					minangle="-45"
+					maxangle="45"
+					direction="{zdir}"
+					depthbias="0"
+					directionalspace="local"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 1 1"
+						midcolor="0 1 1"
+						endcolor="0 1 1"
+						startsize="15"
+						endsize="0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						startalpha=".25"
+						endalpha="0"
+						midalphapos=".2"
+						minheightdistort="0"
+						maxheightdistort=".5"
+					/>
+					
+					<particle
+						anchor="1"
+						startcolor="1 1 1"
+						midcolor="0 1 1"
+						endcolor="0 1 1"
+						startsize="15"
+						endsize="0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						startalpha=".75"
+						endalpha="0"
+						midalphapos=".2"
+						minheightdistort="0"
+						maxheightdistort=".25"
+					/>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+					delay="500"
+					bone="{zbone}"
+					spawnrate="10"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					gravity="5"
+					speed="60"
+					offsetsphere="15 15 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					minangle="-45"
+					maxangle="45"
+					direction="{zdir}"
+					depthbias="-50"
+					directionalspace="local"
+				>
+					<particle
+						anchor="1"
+						startcolor=".25"
+						midcolor="0 .25 .25"
+						endcolor="0 0 0"
+						startsize="15"
+						endsize="0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						startalpha=".25"
+						endalpha="0"
+						midalphapos=".2"
+						minheightdistort="0"
+						maxheightdistort=".25"
+					>
+					</particle>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+
+
+			</template>
+
+			<instance name="ella" zbone="_bone_fx_06" zdir="0 0 1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_06" zdir="0 0 -1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_06" zdir="1 0 0" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_06" zdir="-1 0 0" zdelay="800"/>
+		
+			<instance name="ella" zbone="_bone_fx_07" zdir="0 0 1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_07" zdir="0 0 -1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_07" zdir="1 0 0" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_07" zdir="-1 0 0" zdelay="800"/>
+
+			<instance name="ella" zbone="_bone_fx_06" zdir="0 0 1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_06" zdir="0 0 -1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_06" zdir="1 0 0" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_06" zdir="-1 0 0" zdelay="800"/>
+		
+			<instance name="ella" zbone="_bone_fx_07" zdir="0 0 1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_07" zdir="0 0 -1" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_07" zdir="1 0 0" zdelay="800"/>
+			<instance name="ella" zbone="_bone_fx_07" zdir="-1 0 0" zdelay="800"/>
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				delay="500"
+				bone="_bone_fx_07"
+				spawnrate="5"
+				minparticlelife="1000"
+				maxparticlelife="1000"
+				gravity="10"
+				offsetsphere="10 10 0"
+				material="/shared/effects/smaterials/water_outsplash.material"
+				minangle="-45"
+				maxangle="45"
+				depthbias="-50"
+				directionalspace="local"
+			>
+				<particle
+					anchor="1"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor="0 1 1"
+					midcolorpos=".25"
+					startsize="50"
+					minendsize="150"
+					maxendsize="250"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					startalpha=".25"
+					midalpha=".125"
+					endalpha="0"
+					midalphapos=".1"
+					minheightdistort="0"
+					maxheightdistort=".25"
+				>
+				</particle>
+			</simpleemitter>
+			
+
+					
+
+
+
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		<spawnparticlesystem instance="instance2" particlesystem="system2"/>
+		<camerashake2 scale="12" radius="1200" duration="750" frequency="11"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+		<waitfordeath instance="instance2"/>
+
+	</thread>
+</effect>

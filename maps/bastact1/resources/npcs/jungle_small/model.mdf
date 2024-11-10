@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="shitty_spider_03.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model">
+
+	<skin name="red">
+		<reference mesh="Box001"			material="material_red.material" />
+		<reference mesh="Box001"			material="material_red.material"  />
+		<reference mesh="Box001"			material="material_red.material"  />
+	</skin>
+
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_move_%.wav 500 2400 0.35"/>
+		<frameevent frame="25" cmd="PlaySoundLinear sounds/sfx_move_%.wav 500 2400 0.35"/>
+		<frameevent frame="50" cmd="PlaySoundLinear sounds/sfx_move_%.wav 500 2400 0.35"/>
+		<frameevent frame="75" cmd="PlaySoundLinear sounds/sfx_move_%.wav 500 2400 0.35"/>
+	</anim>
+	
+	<anim name="idle" clip="clips/default_1.clip" loop="true"/>
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="30" loop="false" >
+		<frameevent frame="10" cmd="PlaySoundLinear sounds/sfx_squeak_%.wav 500 2400 0.05"/>
+		<frameevent frame="10" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2400 0.25"/>
+	</anim>
+
+	<anim name="attack_2" clip="clips/attack_1.clip" fps="30" loop="false" >
+		<frameevent frame="10" cmd="PlaySoundLinear sounds/sfx_squeak_%.wav 500 2400 0.05"/>
+		<frameevent frame="10" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2400 0.25"/>
+	</anim>
+	
+	<anim name="death_1" clip="clips/death_1.clip" fps="30" loop="false" >
+	</anim>
+
+	<anim name="death_2" clip="clips/death_1.clip" fps="30" loop="false" >
+	</anim>
+	
+	<anim name="splode" clip="clips/splode.clip" fps="30" loop="true" loopbackframe="35" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_death_1.wav 500 2400 0.55"/>
+	</anim>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="40" loop="false"/>
+</model>

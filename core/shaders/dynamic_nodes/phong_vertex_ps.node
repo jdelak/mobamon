@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="phong_vertex_ps">
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Light" type="float3" source="MaterialLight" />
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Specular" type="float3" source="MaterialSpecular" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<dependency name="Shadowed" type="float" source="MaterialShadowed" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	
+	<dependency name="PhongVertexLightColor" type="float3" source="PhongVertexLightColor" />
+	<dependency name="PhongVertexShadowColor" type="float3" source="PhongVertexShadowColor" />
+
+	<output name="Out" type="float4" solution="PSOutColor" />
+	<?hlsl
+	
+	if (TEXKILL)
+	{
+		clip(Opacity - 91.0f / 255.0f);
+	}
+
+	float3 f3Diffuse = lerp(PhongVertexShadowColor, PhongVertexLightColor, Shadowed);
+	
+	f3Diffuse += Light;
+
+	float4 f4DiffuseColor = float4(Diffuse, Opacity) * Color;
+	
+	float3 f3FinalColor = Emissive + f4DiffuseColor.rgb * f3Diffuse;
+	
+	f3FinalColor *= Fogofwar;
+	
+	Out.rgb = lerp(f3FinalColor, FogColor, Fog);
+	Out.a = f4DiffuseColor.a;
+	
+	?>
+	<?glsl
+	
+	if (TEXKILL != 0)
+	{
+		if (Opacity < 91.0f / 255.0f)
+			discard;
+	}
+
+	vec3 f3Diffuse = mix(PhongVertexShadowColor, PhongVertexLightColor, Shadowed);
+	
+	f3Diffuse += Light;
+
+	vec4 f4DiffuseColor = vec4(Diffuse, Opacity) * Color;
+	
+	vec3 f3FinalColor = Emissive + f4DiffuseColor.rgb * f3Diffuse;
+	
+	f3FinalColor *= Fogofwar;
+	
+	Out.rgb = mix(f3FinalColor, FogColor, Fog);
+	Out.a = f4DiffuseColor.a;
+	
+	?>
+</node>

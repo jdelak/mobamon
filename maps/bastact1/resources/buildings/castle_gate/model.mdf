@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="" file="model.model" type="K2">
+	<anim name="idle" clip="clips/default_1.clip" loop="true">
+		<startevent frame="1" cmd="StartEffect effects/gate_fx.effect"/>
+	</anim>
+	
+	<anim name="open" clip="clips/open.clip" loop="true" loopbackframe="15" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_open.wav 1000 3500 0.25"/>
+	</anim>
+
+	<anim name="close" clip="clips/close.clip" loop="true" loopbackframe="30" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_close.wav 1000 3500 0.25"/>
+	</anim>
+
+	<anim name="close_explode" clip="clips/close.clip" loop="false" >
+		<startevent cmd="PlaySoundLinear sounds/sfx_explode_furnace.wav"/>
+	</anim>
+	
+</model>

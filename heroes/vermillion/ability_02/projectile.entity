@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Vermillion_Ability2"
+
+	speed="10000"
+	gravity="0"
+	modelscale=".45"
+	model="effects/bullets/model.mdf"
+
+
+	
+	touchradius="68"
+	touchpropradius="60"
+	touchpropanim="hit"
+	touchradiusdiradjust="true"
+	touchtargetscheme="enemy_units"
+	maxtouchespertarget="1"
+	toucheffecttype=""
+	
+	flying="true"
+	flyheight="115"
+	canturn="0"
+>
+	<onspawn>
+		<setparam a="1.4" /> 
+	</onspawn>
+	<ontouch>
+		<compare a="target_entity" b="proxy_entity" op="eq">
+			<combatevent effecttype="Counterable" >
+				<onimpact>
+					<setvar2 a="param" b="1" op="sub" />
+					<setvar0 a="var2" b="source_attackdamage" op="mult" />
+					<damage effecttype="AttackDamage Splash Indirect" significant="true" amount="1" b="var0" op="mult" />
+				</onimpact>
+			</combatevent>
+			<playeffect effect="effects/impact.effect" target="" source="target_entity"/>
+		</compare>
+		<else>
+			<combatevent effecttype="Counterable" >
+				<onimpact>
+					<setvar0 a="source_attackdamage" b="param" op="mult" />
+					<damage effecttype="AttackDamage Splash" significant="true" amount="1" b="var0" op="mult" />
+				</onimpact>
+			</combatevent>
+			<playeffect effect="effects/impact.effect" target="" source="target_entity"/>
+		</else>
+		<compare a="param" b="1" op="gt">
+				<setvar1 a="0.4" b="3" op="div" />
+				<setparam a="param" b="var1" op="sub" />
+		</compare>
+	</ontouch>
+
+</projectile>

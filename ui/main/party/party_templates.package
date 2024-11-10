@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="party_button">
+		<button name="{id}" width="{width=100%}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onclicklua="{onclicklua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=4s}" rendermode="{rendermode=grayscale}" />
+				<label name="{id}Label" style="labelBase" x="{labelX}" y="{labelY=-0.2h}" width="-10s" align="right" textalign="center" textvalign="center" font="{font=maindyn_20}" color="{labelcolor=white}" content="{label}"/>
+				<image name="{id}Icon" texture="{icon=/ui/main/shared/textures/party2.tga}" y="-2s" x="-17s" width="36s" height="36s" valign="center" />
+				<panel name="{id}Throb" noclick="1" visible="0" y="-2s" x="-17s" width="36s" height="36s" valign="center" >
+					<animatedimage texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+						width="100%" height="100%"
+					/>
+				</panel>				
+			</panel>
+		</button>
+		<panel name="{id}_droptarget" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" color="#00CCFF44" rendermode="additive" visible="false"/>
+	</template>
+	
+</package>

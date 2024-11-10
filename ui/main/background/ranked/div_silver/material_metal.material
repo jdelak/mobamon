@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="0" fGlossiness="1.0" fOpacity="2.0" fReflect="0" />
+	
+	<phase name="color" cull="back" blend="none">
+		<sampler name="diffuse" texture="textures/diffuse.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="textures/normals.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" depthwrite="true" colorwrite="false" alphawrite="false" blend="none">
+		<multipass cull="back" depthread="true" blend="translucent">
+			<sampler name="diffuse" texture="textures/diffuse.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="textures/normals.tga" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+</material>

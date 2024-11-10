@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Zaku_Ability1_DOT"
+
+	icon=""
+	passiveeffect=""
+	ishidden="true"
+	impactinterval="200"
+>
+	<onframe>
+		<cantarget targetscheme="enemy_units" >
+		<getconstant name="damage_per_second" />
+		<setvar0 a="result" b="frametime" op="mult" />
+		<damage effecttype="Magic Splash DOT" amount="1" b="var0" op="mult"/>
+		</cantarget>
+			<cantarget targetscheme="enemy_buildings" >
+			<getconstant name="damage_per_second" />
+			<setvar0 a="result" b="frametime" op="mult" />
+			<damage effecttype="Magic Splash DOT" amount=".5" b="var0" op="mult"/>
+			</cantarget>
+		<recordheroaggression  />
+		<aggression />
+	</onframe>
+
+	<oninflict>
+		<playeffect effect="effects/impact.effect" source="target_entity"  target="target_entity" />
+	</oninflict>
+
+	<onimpact>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+	</onimpact>
+
+</state>

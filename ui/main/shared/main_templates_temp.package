@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="shared_account_icon_template">
+		<panel name="{id}_parent" noclick="1" height="{height=100%}" width="{width=100@}" align="{align=left}" valign="{valign=top}" x="{x}" y="{y}" >
+			<image name="{id}_icon" valign="center" align="center" visible="1" texture="/ui/shared/textures/account_icons/default.tga" noclick="1" />
+			<image name="{id}_icon_anim" valign="center" align="center" visible="0" texture="/ui/shared/textures/account_icons/default.tga" noclick="1" />
+			<image name="{id}_iconframe" visible="0" texture="/ui/shared/textures/account_icon_frames/default.tga" noclick="1" />
+			<animatedimage name="{id}_iconframe_animated" visible="0" texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);" />
+			<panel visible="{showaccountlevel=0}" x="{accountlevelX=-13%}" y="{accountlevelY=-10%}" width="{accountlevelSize=48}@" height="{accountlevelSize=48}%" noclick="1">
+				<image name="{id}_accountlevelframe" texture="/ui/shared/textures/lvl_frame.tga" noclick="1" color="1 1 1 1" />
+				<label name="{id}_accountlevel" x="-1%" y="{accountlevellabelY=-11%}" textalign="center" textvalign="center" font="{accountlevelfont=maindyn_20}" color="#ebebeb" outline="true" outlinecolor="#8a34e1" content="" />
+			</panel>
+			<panel name="{id}_iconframe_effect_parent" noclick="1" visible="0">
+				<modelpanel name="{id}_iconframe_effect" noclick="1" visible="0"
+					camerapos="0 0 0"
+					cameraangles="0 0 0"
+					camerafov="40"
+					depthclear="true" 
+					depthcompress="true"
+					model="/shared/models/invis.mdf"
+				/>	
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="iconFrame">
+		<frame name="{id2}" color="invisible" borderthickness="2" bordercolor="0 0 0 1" noclick="true"/>
+		<frame name="{id}" color="invisible" borderthickness="1" bordercolor=".2 .2 .2 1" noclick="true"/>
+	</template>
+
+	<template name="tempChatHeader">
+		<image noclick="1" width="100@" height="{height=100%}" texture="/ui/main/chat/textures/chat_header_l.tga" color="{barcolor=#ca8d57}"/>
+		<image noclick="1" hmargin="100@" height="{height=100%}" texture="/ui/main/chat/textures/chat_header_c.tga" color="{barcolor=#ca8d57}"/>
+		<image noclick="1" width="100@" height="{height=100%}" align="right" texture="/ui/main/chat/textures/chat_header_r.tga" color="{barcolor=#ca8d57}"/>
+	</template>
+	
+	<template name="progress_bar" >
+		<panel name="{id}" height="{height=100%}" width="{width=100%}" align="{align}" valign="{valign}" y="{y}" visible="{visible=1}" 
+			onshowlua="
+				if ('{startwidth}' and (not Empty('{startwidth}'))) then
+					self:SetWidth('{startwidth}')
+					self:ScaleWidth('{width=100%}', 2000)
+				end
+			"
+		>
+			<frame name="{id}Body" texture="/ui/shared/frames/progress_bar.tga" borderthickness="{borderthickness=10s}" style="{barstyle}" color="{color=#3fd149}" noclick="1" clip="1">
+				<image texture="/ui/shared/textures/progress_bar_effect.tga" name="{id}Effect" onshow="SetUScale(GetHeight() # 'p');" width="-4s" height="-4s" align="center" valign="center" uscroll="1" uspeed="-.03" utile="1" uscale="300p" rendermode="overlay" noclick="1" 
+					onshowlua="
+						self:SetUScale(self:GetHeight()..'s')
+						self:Sleep(2000, function()
+							self:SetUScale(self:GetHeight()..'s')
+						end)
+					"				
+				/>
+			</frame>
+		</panel>
+	</template>
+	
+	<template name="progress_bar_vert" >
+		<panel name="{id}" height="{height=100%}" width="{width=100%}" align="{align}" valign="{valign}" y="{y}" group="{group}" >
+			<frame texture="/ui/shared/frames/progress_bar.tga" borderthickness="{borderthickness=10s}" style="{barstyle}" noclick="1" />
+			<panel width="-4s" height="-4s" align="center" valign="center" noclick="1">
+				<image texture="/ui/shared/textures/progress_bar_effect_vert.tga" name="{id}Effect" vscroll="1" vspeed="0.03" vtile="1" vscale="300p" rendermode="overlay" noclick="1" />				
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="mainMatchFinderOptionSlider">
+		<panel height="12h" color="0 0 0 0.5">
+		</panel>
+	</template>
+
+	<template name="mainCallToAction">
+		<panel name="mainCallToAction{id=1}" width="30.0h" noclick="true" sticky="true" stickytoinvis="false">
+			<image align="center" valign="center" width="656@" height="164%" texture="/ui/_textures/elements/{background=cta_bg1.tga}"/>
+			<panel hmargin="0.5h" vmargin="0.5h" noclick="true" passivechildren="true">
+				<panel width="100@" height="100%">
+					<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.55" borderthickness="0.35h"/>
+					<panel hmargin="0.25h" vmargin="0.25h" color="1 1 1 0.2">
+						<!-- Image -->
+						<image texture="{icon=/ui/_textures/elements/mainmenu_crafting.tga}" />
+					</panel>
+				</panel>
+
+				<panel align="right" width="-110@" noclick="true">
+					<label name="mainCallToAction{id=1}Title" height="2h" y="0.15h" textvalign="center" font="maindyn_16" color="white" outline="true" outlinecolor="0 0 0 0.4" content="temp_templates_cta_title" />
+					<label name="mainCallToAction{id=1}Subtitle" height="2h" y="1.9h" textvalign="center" font="maindyn_14" color="#e53927" outline="true" outlinecolor="0 0 0 0.4" content="{challengelabel=temp_templates_cta_subtitle}" />
+					<panel height="2h" grow="true" valign="bottom" y="0" x="-0.25h">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" color="#888888"/>
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" color="#869b3a" hmargin="0.2h" vmargin="0.2h"/>
+						<label name="mainCallToAction{id=1}Reward" y="-0.1h" textalign="center" textvalign="center" fitx="true" fitxpadding="1.5h" color="white" font="maindyn_11" shadow="true" shadowcolor="0 0 0 0.25" content="{rewardlabel=temp_templates_cta_body}"/>
+					</panel>
+				</panel>
+				<label name="mainCallToAction{id=1}Next" height="1.75h" valign="bottom" textalign="right" color="white" font="maindyn_12" outline="true" outlinecolor="0 0 0 0.4" content="{actionlabel=temp_templates_cta_go}" noclick="true"/>
+			</panel>
+			<button name="mainCallToAction{id=1}Button" color="invisible"/>
+			<instance name="mainSimpleMoreButton" id="mainCallToAction{id=1}MoreInfo" align="right" x="-0.5h" y="0.5h"/>
+		</panel>
+	</template>
+
+	<template name="mainSliderAdPip">
+		<button name="mainSliderAdPip{id=1}" color="invisible" width="100@" height="100%">
+			<panel name="mainSliderAdPip{id=1}Body" align="center" valign="center" width="60%" height="60%">
+				<frame texture="/ui/elements:circle" borderthickness="33@" color="0 0 0 0.4" x="1" y="1"/>
+				<frame texture="/ui/elements:circle" borderthickness="33@" color="#f1c7948f"/>
+			</panel>
+		</button>
+	</template>
+
+	<template name="mainSliderAdEntry">
+		<button name="mainSliderAdEntry{id=1}" width="100%" height="100%" color="invisible" visible="{visible=false}">
+			<image texture="/ui/_textures/elements/slider_ad{id=1}.tga" onshowlua="--GetSliderPicture(self, {id=1})" />
+			<frame color="invisible" borderthickness="2" bordercolor="#42280d" />
+		</button>
+	</template>
+
+	<template name="mainSliderAdEntry_featuredGames">
+		<button name="mainSliderAdEntry{id=1}" width="100%" height="100%" color="invisible" visible="{visible=false}">
+			<image texture="/ui/_textures/elements/slider_ad{id=1}.tga" onshowlua="--GetSliderPicture(self, {id=1})" />
+			<frame color="invisible" borderthickness="2" bordercolor="#42280d" />
+		</button>
+	</template>
+
+	<template name="mainSimpleMoreButton">
+		<button name="{id}" x="{x}" y="{y}" align="{align}" valign="{valign}" width="{width=2.25h}" height="{height=2.25h}" visible="{visible=true}" color="invisible" group="{group}" >
+			<widgetstate statename="up">
+				<image texture="/ui/shared/textures/button_more.tga"/>
+			</widgetstate>
+			<widgetstate statename="over">
+				<image texture="/ui/shared/textures/button_more.tga" />
+				<panel noclick="1" color="1 1 1 0.1" />
+			</widgetstate>
+			<widgetstate statename="down" x="1" y="1" >
+				<image texture="/ui/shared/textures/button_more.tga" />
+				<panel noclick="1" color="1 1 1 0.1" />
+			</widgetstate>
+		</button>
+	</template>
+
+	<template name="mainActivityFeedEntry"><!-- News/player events for the activity feed -->
+		<listitem>
+			<panel vmargin="0.4h">
+				<panel texture="$invis" valign="center" width="100%" height="60@" noclick="true" />
+				<panel x="0.25h" y="-0.1h" width="92%" vmargin="0.6h" noclick="true">
+					<panel width="7.6h" vmargin="0.25h">
+						<panel width="76@" height="76%" align="center" y="0.25h">
+							<image texture="{icon}" />
+						</panel>
+						<label height="1.5h" valign="bottom" textalign="center" textvalign="center" color="0 0 0 0.65" font="maindyn_9" content="{timestamp=2 hours ago}"/>
+					</panel>
+					<panel width="-7.8h" align="right">
+						<label y="0.3h" wrap="true" color="0 0 0 0.75" font="maindyn_11" content=""
+							onloadlua="self:SetText(Translate('{content}'))"
+						/>
+					</panel>
+					<label height="1.5h" y="0" align="right" valign="bottom" textalign="right" textvalign="center" color="0 0 0 0.65" font="maindyn_9" content="{actionlabel=}"/>
+				</panel>
+
+			</panel>
+		</listitem>
+	</template>
+
+	<template name="mainMenuTab"><!-- Large buttons to navigate around all of the major sections of main (crafting, corral, etc.) -->
+		<button name="mainMenuTab{id}" width="100@" height="100%" color="invisible" visible="{visible=1}" >
+			<panel name="mainMenuTab{id}Backer"/>
+			<image name="mainMenuTab{id}Image" texture="{texture}"/>
+			<image name="mainMenuTab{id}Image_hover" texture="{texture_hover}" visible="0"/>
+			<label name="mainMenuTab{id}Label" textalign="center" textvalign="center" color="1 1 1 1" height="2h" valign="bottom" y="-2h" font="maindyn_16" shadow="true" shadowoffset="2" content="{content}" visible="{showlabel=false}"/>
+		</button>
+	</template>
+
+
+	<template name="close_template">
+		<button
+			name="{buttonName}"
+			visible="{visible=true}"
+			x="{x}" y="{y}"
+			width="{width=100%}" height="{height=100%}"
+			align="{align}" valign="{valign}"
+			enabled="{enabled=true}"
+			color="invisible"
+			interactive="{interactive=false}"
+			onclicklua="{onclicklua}"
+		>
+			<widgetstate statename="up">
+				<frame noclick="1" texture="/ui/elements:squareglow" borderthickness="0.5h" width="+0.5h" height="+0.5h" align="center" valign="center" color="0 0 0 0.5" />
+				<frame noclick="1" texture="/ui/elements:rounded_button_bg_white" borderthickness="0.5h" color="#b0392e" />
+				<image noclick="1" width="70@" height="70%" align="center" valign="center" texture="/ui/_textures/elements/close.tga"/>
+			</widgetstate>
+			<widgetstate statename="over">
+				<frame noclick="1" texture="/ui/elements:squareglow" borderthickness="0.5h" width="+0.5h" height="+0.5h" align="center" valign="center" color="0 0 0 0.5" />
+				<frame noclick="1" texture="/ui/elements:rounded_button_bg_white" borderthickness="0.5h" color="#d1664e" />
+				<image noclick="1" width="70@" height="70%" align="center" valign="center" texture="/ui/_textures/elements/close.tga"/>
+			</widgetstate>
+			<widgetstate statename="down" x="1" y="1">
+				<frame noclick="1" texture="/ui/elements:squareglow" borderthickness="0.5h" width="+0.5h" height="+0.5h" align="center" valign="center" color="0 0 0 0.5" />
+				<frame noclick="1" texture="/ui/elements:rounded_button_bg_white" borderthickness="0.5h" color="#b0392e" />
+				<image noclick="1" width="70@" height="70%" align="center" valign="center" texture="/ui/_textures/elements/close.tga"/>
+			</widgetstate>
+		</button>
+	</template>
+
+	
+
+	<template name="general_context_menu_item">
+		<listitem name="context_menu_listitem_{index=0}" value="{index=0}" visible="1" onmouseover="PlaySound('/shared/sounds/ui/ccpanel/button_over_02.wav');" onselect="" onselectlua="" command="true">
+			<label x="5s" style="labelClickable" font="maindyn_18" textvalign="center" noclick="1" content="{label}" />
+		</listitem>
+	</template>
+
+	<template name="socialpanel_context_menu_item">
+		<panel name="rightclick_menu_item3_{index}" group="{group}" oneventlua="self:SetVisible({conditionlua=true})" disabled="{disabled=0}" noclick="0"
+			height="2.8h" width="20h" grow="1" regrow="1" growinvis="1" align="left" color="1 0 0 0.0"
+			sticky="0" stickytoinvis="0"
+			onclicklua="{commandlua} self:GetParent():GetParent():DoEventN(1)"
+			onrightclicklua="{commandlua} self:GetParent():GetParent():DoEventN(1)"
+			onmouseoverlua="PlaySound('/shared/sounds/ui/ccpanel/button_over_02.wav'); self:GetWidget('user_left_menu_item_{index}_highlight'):FadeIn(150)"
+			onmouseoutlua="self:GetWidget('user_left_menu_item_{index}_highlight'):FadeOut(75)"
+		>
+			<!--
+			<panel width="-0.4h" height="100%" hmargin="1.0h" align="center" valign="top" name="user_left_menu_item_{index}_highlight" visible="0" noclick="1" >
+				<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="0.8h" color="1 1 1 1" noclick="1" />
+				<frame texture="/ui/shared/frames/roundframe.tga" color="#0a4880" borderthickness="0.6h" noclick="1" />
+			</panel>
+			-->
+
+			<label fitx="1" fitxpadding="0.0h" align="center" color="{textcolor=white}" font="maindyn_12" outline="true" textalign="center" textvalign="center" noclick="1" content="{label}" />
+			<label name="user_left_menu_item_{index}_highlight" fitx="1" visible="0" fitxpadding="0.0h" align="center" color="0 0 0 1" font="maindyn_12" outline="true" outlinethickness="1" outlinecolor="1 1 1 0.7" textalign="center" textvalign="center" noclick="1" content="{label}" />
+
+		</panel>
+	</template>
+
+	<template name="general_context_menu_player">
+		<menu name="general_context_menu_player" visible="0"
+			width="0" height="0"
+			color="invisible"
+			listwidth="200s"
+			listpaddingy="10s"
+			itemoffsetx="5s"
+			itemoffsety="4s"
+			itemheight="26s"
+			itemwidth="-10s"
+			highlight="under"
+			highlightcolor="invisible"
+			highlightbordercolor="invisible"
+			exteriorscrollbars="false"
+			onshowlua="ContextMenuTrigger:Trigger(true)"
+			onloadlua="mainUI.contextMenu.InitialiseMainPlayerContextMenu(self)"
+			onmouseover="PlaySound('/shared/sounds/ui/ccpanel/button_over_02.wav');"
+			luatable="1"
+		>
+
+			<widgetstate statename="listbg">
+				<!--
+				<frame texture="{texture=/ui/elements:rounded_bg_white}" height="+10s" valign="center" color=".05 .05 .05 .95" borderthickness="5s" />
+				<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+				-->
+				<panel noclick="1" color="0 0 0 1" >
+					<frame texture="/ui/shared/frames/context.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="3s" noclick="true"/>
+				</panel>				
+			</widgetstate>
+			<widgetstate statename="itemhighlight">
+				<frame texture="/ui/elements:rounded_bg_solid" color="#094953" bordercolor="#094953" borderthickness="3s" noclick="1" />
+				<frame texture="/ui/shared/frames/border_double.tga" color="invisible" bordercolor="#00d9f9" borderthickness="3s" noclick="1" />
+			</widgetstate>
+
+			<instance name="general_context_menu_item" index="0" label="general_send_message" />
+			<instance name="general_context_menu_item" index="22" label="general_form_party" />
+			<instance name="general_context_menu_item" index="1" label="general_view_profile" />
+			<instance name="general_context_menu_item" index="12" label="general_view_profile" />
+			<instance name="general_context_menu_item" index="9" label="context_approve_friend" />
+			<instance name="general_context_menu_item" index="10" label="context_reject_friend" />
+			<instance name="general_context_menu_item" index="2" label="context_invite_to_party" />
+			<instance name="general_context_menu_item" index="13" label="context_invite_to_lobby" />
+			<instance name="general_context_menu_item" index="17" label="social_action_bar_spectate" />
+			<instance name="general_context_menu_item" index="18" label="social_action_bar_join_lobby" />
+			<instance name="general_context_menu_item" index="19" label="social_action_bar_join_party" />	
+			<instance name="general_context_menu_item" index="20" label="social_action_bar_challenge_issue" />
+			<instance name="general_context_menu_item" index="3" label="general_add_friend" />
+			<instance name="general_context_menu_item" index="21" label="social_action_bar_edit_group" />
+			<instance name="general_context_menu_item" index="5" label="Customise Account" />
+			<instance name="general_context_menu_item" index="6" label="general_view_options" />
+			<instance name="general_context_menu_item" index="7" label="general_log_out" />
+			<instance name="general_context_menu_item" index="8" label="general_quit" />
+			<instance name="general_context_menu_item" index="11" label="context_leave_channel" />
+			<instance name="general_context_menu_item" index="14" label="context_leave_party" />
+			<instance name="general_context_menu_item" index="23" label="social_action_bar_kick_player" />
+			<instance name="general_context_menu_item" index="4" label="general_remove_friend" />
+			<instance name="general_context_menu_item" index="15" label="general_add_ignore" />
+			<instance name="general_context_menu_item" index="16" label="general_remove_ignore" />
+			
+			<instance name="general_context_menu_item" index="25" label="social_action_bar_promote" />	
+			<instance name="general_context_menu_item" index="26" label="social_action_bar_demote" />	
+			<instance name="general_context_menu_item" index="27" label="social_action_bar_clankick" />	
+			<instance name="general_context_menu_item" index="28" label="social_action_bar_claninvite" />	
+			<instance name="general_context_menu_item" index="29" label="social_action_bar_claninvite_accept" />	
+			<instance name="general_context_menu_item" index="30" label="social_action_bar_claninvite_reject" />	
+			<instance name="general_context_menu_item" index="31" label="social_action_bar_promotetoowner" />	
+			<instance name="general_context_menu_item" index="32" label="social_action_bar_leaveclan" />		
+			
+		</menu>
+	</template>
+
+	<!--
+	<template name="lua_trigger_list_item">
+		<label x="5s" style="labelClickable" font="maindyn_18" textvalign="center" noclick="1" content="{label}" />
+	</template>
+	
+
+	<menu name="context_menu_triggers" visible="false"
+		
+		width="0" height="0"
+		color="invisible"
+		listwidth="200s"
+		listpaddingy="10s"
+		itemoffsetx="5s"
+		itemoffsety="4s"
+		itemheight="26s"
+		itemwidth="-10s"
+		highlight="under"
+		highlightcolor="invisible"
+		highlightbordercolor="invisible"
+		exteriorscrollbars="false"
+		watch="LuaTriggerList"
+		ontriggerlua="if param == '*clear' then 
+							self:OpenMenu(true);
+							self:MoveToCursor(); 
+							self:SetVisible(true); 
+							self:BringToFront();
+						else 
+							self:AddTemplateListItem('lua_trigger_list_item', param, 'label', param);
+						end"
+		onselectlua="Cmd('LuaTriggerShowParams ' .. param);
+					 UIManager.GetActiveInterface():Instantiate('lua_trigger_watch_window', 'name', param)"
+		onmouseluplua="self:ClearItems();"
+		onmouseruplua="self:ClearItems();"
+		luatable="1"
+		>
+		<widgetstate statename="listbg">
+			<frame texture="/ui/elements:rounded_bg_white" height="+10s" valign="center" color=".05 .05 .05 .95" borderthickness="5s" />
+			<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+		</widgetstate>
+		<widgetstate statename="itemhighlight">
+			<frame texture="/ui/elements:rounded_bg_white" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+		</widgetstate>
+	</menu>
+	-->
+	
+	<!--TODO make a watch window-->
+	<!--<template name="lua_trigger_watch_window">
+		<panel name="triggerParamsPanel_{name=blahblah}" x="0" y="0" visible="true" color="0 0 0 1" width="340" height="250" cangrab="true" oninstantiatelua="self:MoveToCursor(); self:BringToFront(); self:SetVisible(true)" >
+			<textbox
+				name="triggerParamsTextBox_{name=blahblah}"
+				style="textBox1Input"
+				font="maindyn_20"
+				color="0 0 0 1"
+				textcolor="1 1 1 1"
+				oninstantiatelua="printr(LuaTrigger.GetTrigger('{name=blahblah}'));"
+		/>
+		</panel>
+	</template>-->
+
+	<!--<textbox
+				name="triggerParamsTextBox_{name=blahblah}"
+				style="textBox1Input"
+				font="maindyn_20"
+				color="0 0 0 1"
+				textcolor="1 1 1 1"
+				oninstantiatelua="self:SetInputLine(printr(LuaTrigger.GetTrigger('{name=blahblah}'), true));
+								self:RegisterWatchLua('{name=blahblah}', function (widget, trigger) widget:SetInputLine(printr(trigger, true)) end)"
+		/>-->
+
+</package>

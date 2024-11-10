@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+ 
+	<template name="navigation_game_template">
+		<panel noclick="0" hmargin="8s" vmargin="8s"  height="400s" width="600s"
+			onclicklua="{onclicklua} "
+			onmouseoverlua="{onmouseoverlua} self:GetWidget('navigation_game_{index}_mouseover'):FadeIn(125) self:GetWidget('navigation_game_{index}_mouseover2'):FadeOut(125)"
+			onmouseoutlua="{onmouseoutlua} self:GetWidget('navigation_game_{index}_mouseover'):FadeOut(125) self:GetWidget('navigation_game_{index}_mouseover2'):FadeIn(250)"
+		>
+			<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color=".1 .1 .1 1" noclick="1"/>			
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible" noclick="1"/>	
+			<panel noclick="1"  hmargin="12s" vmargin="12s" >
+				<splashimage width="100%" height="100%" view="clip" bgcolor="black" align="left" valign="bottom" noclick="1" 
+					image="{bannerPath}"
+				/>
+				<splashimage name="navigation_game_{index}_mouseover2" width="100%" height="100%" view="clip" bgcolor="black" align="left" valign="bottom" noclick="1" 
+					image="{bannerPath}" rendermode="grayscale" color="1 1 1 0.7"
+				/>						
+				<panel grow="1" width="100%" noclick="1">
+					<image texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" />	
+					<label x="10s" y="3s" textvalign="center" width="-20s" fity="1" wrap="1" style="labelBase" outline="1" outlinecolor="0 0 0 .5" color="white"  outlinethickness="4s" font="maindyn_26" content="{label}" noclick="1" />				
+				</panel>
+				<image width="100%" height="34s" texture="/ui/shared/textures/meter_grad.tga" color=".07 .07 .07 1" noclick="1" hflip="1" align="right" valign="bottom"/>
+			</panel>
+			<panel x="-14s" y="-10s" align="right" valign="bottom" width="126s" height="34s" noclick="1">
+				<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="8s" bordercolor="0 0 0 .8" width="+6s" height="+6s" align="center" valign="center" noclick="1" />
+				<instance name="standardButton"					
+					label="Play Now!"
+					font="maindyn_20"
+					onclicklua="{onclicklua} "
+					onmouseoverlua="{onmouseoverlua} self:GetWidget('navigation_game_{index}_mouseover'):FadeIn(125) self:GetWidget('navigation_game_{index}_mouseover2'):FadeOut(125)"
+					onmouseoutlua="{onmouseoutlua} self:GetWidget('navigation_game_{index}_mouseover'):FadeOut(125) self:GetWidget('navigation_game_{index}_mouseover2'):FadeIn(250)"
+					visible="1"
+					noclick="0"
+				/>
+			</panel>
+			<panel name="navigation_game_{index}_mouseover" visible="0" noclick="1">
+				<frame texture="/ui/shared/frames/framehighlight.tga" bordercolor="1 1 1 .15" color="1 1 1 .15" borderthickness="8s" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" bordercolor="0.07 0.89 0.88 1" color="1 1 1 0" borderthickness="8s" noclick="1"/>
+			</panel>			
+		</panel>
+	</template>	
+	
+</package>

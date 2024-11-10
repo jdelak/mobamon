@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Kongor_Timeoutspawn"
+
+	
+	
+	icon="icon.tga"
+	ishidden="true"
+	impactinterval="45000"
+	modifierkey="kongor_available"
+>	 
+	<onimpact>
+		<compare a="target_team" b="1" op="eq" target="target_entity">
+			<condition test="hasstate State_Kongor_LaneWasManuallySelected_Bottom" >
+				<pushentitybyname name="good_creep3" />
+				<spawnlanepusher name="Creep_Kongor" team="1" lane="bottom"/>
+			</condition>
+			<else>
+				<condition test="hasstate State_Kongor_LaneWasManuallySelected_Mid" >
+					<pushentitybyname name="good_creep2" />
+					<spawnlanepusher name="Creep_Kongor" team="1" lane="middle"/>
+				</condition>
+				<else>
+					<condition test="hasstate State_Kongor_LaneWasManuallySelected_Top" >
+						<pushentitybyname name="good_creep1" />
+						<spawnlanepusher name="Creep_Kongor"  team="1" lane="top"/>
+					</condition>
+				</else>
+			</else>
+		</compare>
+		<compare a="target_team" b="2" op="eq" target="target_entity">
+			<condition test="hasstate State_Kongor_LaneWasManuallySelected_Bottom" >
+				<pushentitybyname name="bad_creep3" />
+				<spawnlanepusher name="Creep_Kongor"  team="2" lane="bottom"/>
+			</condition>
+			<else>
+				<condition test="hasstate State_Kongor_LaneWasManuallySelected_Mid" >
+					<pushentitybyname name="bad_creep2" />
+					<spawnlanepusher name="Creep_Kongor"  team="2" lane="middle"/>
+				</condition>
+				<else>
+					<condition test="hasstate State_Kongor_LaneWasManuallySelected_Top" >
+						<pushentitybyname name="bad_creep1" />
+						<spawnlanepusher name="Creep_Kongor"  team="2" lane="top"/>
+					</condition>
+				</else>
+			</else>
+		</compare>
+	</onimpact>
+	
+</state>

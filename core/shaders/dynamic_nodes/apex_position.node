@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="apex_position">
+	<dependency name="Position" type="float3" source="Position" />
+	<output name="Out" type="float3" solution="ObjectPosition" />
+	<?hlsl
+		// Scale PhysX scene coordinates back up to engine coordinates
+		Out = Position * 64.0f;
+	?>
+	<?glsl
+		// Scale PhysX scene coordinates back up to engine coordinates
+		Out = Position * 64.0f;
+	?>
+</node>

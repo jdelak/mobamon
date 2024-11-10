@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale=".35">
+		
+
+			<!-- black god beams... -->
+			<simpleemitter
+				count="25"
+				bone="_bone_centerofchest"
+				spawnrate="2000"
+				minparticlelife="300"
+				maxparticlelife="500"
+				minspeed="0"
+				maxspeed="0"
+				gravity="0"
+				drag="0"
+				minangle="0"
+				maxangle="0"
+				acceleration="0"
+				position="0 0 150"
+				direction="0 0 1"
+				offsetsphere="100"
+				depthbias="0"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				directionalspace="world"
+			>
+				<particle
+					turn="true"
+					lockup="true"
+					startcolor="0 0 0"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startscale="10"
+					midscale="10"
+					endscale="0"
+					minheight="5"
+					maxheight="10"
+					minstartwidth="1000"
+					maxstartwidth="1500"
+					minendwidth="0"
+					maxendwidth="500"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+				>	
+				</particle>
+			</simpleemitter>
+
+			
+			
+			<!-- beams -->
+			<template name="">
+
+				<billboard
+					position="0 0 150"
+					life="150"
+					startscale="3"
+					midscale="3"
+					endscale="3"
+					startcolor=".25 .075 0"
+					midcolor=".25 .075 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_128.material"
+					lockup="1"
+					lockright="1"
+					depthbias="0"
+					directionalspace="world"
+					height="4000"
+					width="100"
+				/>
+				
+				<billboard
+					position="0 0 150"
+					life="150"
+					startscale="3"
+					midscale="3"
+					endscale="3"
+					startcolor=".5 .25 0"
+					midcolor=".5 .25 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_128.material"
+					lockup="1"
+					lockright="1"
+					depthbias="0"
+					directionalspace="world"
+					height="2000"
+					width="100"
+				/>
+				
+			</template>
+			
+			<instance name="" />
+
+				
+				
+				
+				
+				
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="10"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="0"
+			>
+				<particle
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					startscale="50"
+					midscale="100"
+					endscale="100"
+					turn="true"
+					minheight="6"
+					maxheight="12"
+					width="5"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="10"
+				spawnrate="1055"
+				particlelife="250"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-25"
+			>
+				<particle
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					scale="200"
+					turn="true"
+					minheight="6"
+					maxheight="12"
+					width="1"
+				/>
+			</simpleemitter>	
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			<!-- sparks -->
+			<simpleemitter
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				life="1000"
+				spawnrate="3300"
+				count="50"
+				minparticlelife="450"
+				maxparticlelife="650"
+				gravity="25"
+				minspeed="1000"
+				maxspeed="5000"
+				drag=".01"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="50 50 0"
+				minangle="0"
+				maxangle="45"
+				direction="0 0 1"
+				depthbias="-100"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="1 1 0"
+					midcolor="1 .5 0"
+					endcolor="1 .5 0"
+					midcolorpos=".75"
+					startscale="15"
+					midscale="15"
+					endscale="0"
+					midscalepos=".75"
+
+				/>
+			</simpleemitter>
+
+			
+			
+
+			
+			
+
+		</particlesystem>
+
+		<modifier
+			name="modifier0"
+			life="1000"
+			startcolor="0 0 0"
+			endcolor="1 1 1"
+		/>
+
+	</definitions>
+	
+	
+	
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

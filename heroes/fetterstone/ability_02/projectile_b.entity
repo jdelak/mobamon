@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Fetterstone_Ability2_b"
+
+	speed="700"
+	gravity="3000"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+
+
+	effectscale="1"
+	curve="-4000"
+>
+
+	<onimpact>
+
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" significant="true" amount="1" b="var0" op="mult" />
+			</onimpact>
+		</combatevent>
+	</onimpact>
+
+</projectile>

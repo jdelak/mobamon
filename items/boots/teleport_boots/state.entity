@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_TeleportBoots"
+
+	icon="icon.tga"
+	passiveeffect="effects/source.effect"
+	
+	effecttype=""
+
+	ischanneling="true"
+	channeltime="3500"
+>
+	<onchannelstart>
+		<order command="forcechannel" source="this_owner_entity" target="this_owner_entity" />
+
+		<spawnaffector name="Affector_TeleportBoots_Target" ischannel="true" proxy="this_owner_entity" pushentity="true" target="proxy_position" />
+		
+		<playeffect effect="effects/source_start.effect" source="source_position" target="" occlude="true" />
+		<ping name="teleport_green" position="proxy_position" />		
+		
+	</onchannelstart>
+
+	<onchannelbreak>
+		<setscriptvalue name="teleport_break" value="1" />
+		<playanim name="idle" target="source_entity" />
+		<resetcooldown entity="tool_entity" />
+		<startcooldown entity="tool_entity" duration="45000" />
+	</onchannelbreak>
+		
+	<onexpired>
+		<playanim name="port_in" target="source_entity" />
+	</onexpired>
+
+	<ondamaged>
+		<condition test="target_type player_controlled">
+			<condition test="not_target_type self">
+				<order target="this_owner_entity" command="stop" queue="front" />
+			</condition>
+		</condition>
+	</ondamaged>
+
+	<modifier key="tutorialmod" modpriority="80" nosell="true"
+	>
+		<onchannelbreak>
+			<setscriptvalue name="teleport_break" value="1" />
+			<resetcooldown entity="tool_entity"/>
+		</onchannelbreak>
+	</modifier>
+</state>

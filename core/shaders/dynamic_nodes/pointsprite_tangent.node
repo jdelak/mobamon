@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="pointsprite_tangent">
+	<dependency name="ObjectNormal" type="float3" source="ObjectNormal" />
+	<output name="Out" type="float3" solution="ObjectTangent" />
+	<output name="OutSign" type="float" solution="ObjectTangentSign" />
+	<?hlsl
+		Out = cross(float3(0.0f, 0.0f, 1.0f), ObjectNormal);
+		OutSign = 1.0f; //TODO is this correct?
+	?>
+	<?glsl
+		Out = cross(vec3(0.0f, 0.0f, 1.0f), ObjectNormal);
+		OutSign = 1.0f;
+	?>
+</node>

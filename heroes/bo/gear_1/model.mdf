@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model" >
+	
+	<skin name="black">
+		<reference mesh="Bo_Mesh"		material="material_black.material" />
+		<reference mesh="Bo_Mesh_3k"		material="material_black.material" />
+		<reference mesh="Bo_Mesh_1k"		material="material_black.material" />
+		
+	</skin>
+	
+	<skin name="blue">
+		<reference mesh="Bo_Mesh"		material="material_blue.material" />
+		<reference mesh="Bo_Mesh_3k"		material="material_blue.material" />
+		<reference mesh="Bo_Mesh_1k"		material="material_blue.material" />
+		
+	</skin>	
+	
+	<skin name="orange">
+		<reference mesh="Bo_Mesh"		material="material_orange.material" />
+		<reference mesh="Bo_Mesh_3k"		material="material_orange.material" />
+		<reference mesh="Bo_Mesh_1k"		material="material_orange.material" />
+		
+	</skin>
+	
+	<skin name="green">
+		<reference mesh="Bo_Mesh"		material="material_green.material" />
+		<reference mesh="Bo_Mesh_3k"		material="material_green.material" />
+		<reference mesh="Bo_Mesh_1k"		material="material_green.material" />
+		
+	</skin>
+
+	<skin name="red">
+		<reference mesh="Bo_Mesh"		material="material_red.material" />
+		<reference mesh="Bo_Mesh_3k"		material="material_red.material" />
+		<reference mesh="Bo_Mesh_1k"		material="material_red.material" />
+		
+	</skin>
+	
+	<skin name="purple">
+		<reference mesh="Bo_Mesh"		material="material_purple.material" />
+		<reference mesh="Bo_Mesh_3k"		material="material_purple.material" />
+		<reference mesh="Bo_Mesh_1k"		material="material_purple.material" />
+		
+	</skin>
+	
+	
+	<anim name="idle" clip="clips/default_1.clip" fps="30" loop="true"/>
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="42" loop="false">
+	</anim>
+	
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="18" loop="false">
+		<frameevent frame="8" cmd="PlaySoundLinear sounds/attack_grunt_%.wav 400 1300 1"/>
+	</anim>
+	
+	<anim name="walk_1" clip="clips/walk_1.clip" fps="30" loop="true">
+		<frameevent frame="3" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="10" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		<frameevent frame="20" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="30" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		<frameevent frame="40" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="50" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		<frameevent frame="60" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="70" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		<frameevent frame="80" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="90" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		<frameevent frame="100" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="110" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		<frameevent frame="120" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0.15"/>
+		<frameevent frame="130" cmd="PlaySoundLinear ../sounds/sfx_foley_%.wav 500 1800 0"/>
+		
+		<frameevent frame="4" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="12" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="20" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="30" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="39" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="48" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="58" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="67" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="75" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="85" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="93" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="102" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="110" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="120" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="129" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="139" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+	</anim>
+	
+	<anim name="death_1" clip="clips/death_1.clip" fps="30" loop="true" loopbackframe="-1">
+	    <frameevent frame="1" cmd="PlaySoundLinear sounds/death_grunt.wav 400 1300 1"/>
+	    <frameevent frame="19" cmd="PlaySoundLinear sounds/death_foley.wav 0 1300 .70"/>
+		<frameevent frame="1" cmd="StartEffect effects/death.effect"/>
+		<frameevent frame="8" cmd="StartEffect effects/staff_drop.effect"/>
+	</anim>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="36" loop="false">
+		<frameevent frame="10" cmd="PlaySoundLinear ../sounds/attack_%.wav 400 2000 .65"/>
+	</anim>
+	
+	<anim name="ability_2" clip="clips/ability_2.clip" fps="30" loop="false">
+		<frameevent frame="8" cmd="PlaySoundLinear ability_01/sounds/ability_1_cast.wav 400 2000 1"/>
+		<frameevent frame="8" cmd="PlaySoundLinear sounds/ability_grunt_%.wav 400 2000 1"/>
+		<frameevent frame="10" cmd="PlaySoundLinear ../ability_02/sounds/cast.wav 400 2000 .45"/>
+	</anim>
+		
+	<anim name="ability_3" clip="clips/ability_3.clip" fps="30" loop="false">
+		<frameevent frame="11" cmd="PlaySoundLinear sounds/jump_%.wav 400 2000 .75"/>
+		<frameevent frame="1" cmd="PlaySoundLinear ../ability_03/sounds/cast.wav 400 2000 .8"/>
+	</anim>
+	
+	<anim name="ability_4" clip="clips/ability_4.clip" fps="60" loop="true">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/ult_%.wav 400 1300 .60"/>
+		<frameevent frame="8" cmd="PlaySoundLinear sounds/ability_grunt_%.wav 400 2000 1"/>
+		<frameevent frame="10" cmd="PlaySoundLinear ../sounds/attack_%.wav 400 2000 .45"/>
+		<frameevent frame="15" cmd="PlaySoundLinear ability_04/sounds/startimpact.wav 400 2000 .50"/>
+		<frameevent frame="37" cmd="PlaySoundLinear sounds/ability_grunt_%.wav 400 2000 1"/>
+		<frameevent frame="39" cmd="PlaySoundLinear ../sounds/attack_%.wav 400 2000 .45"/>
+		<frameevent frame="69" cmd="PlaySoundLinear sounds/ability_grunt_%.wav 400 2000 1"/>
+		<frameevent frame="71" cmd="PlaySoundLinear /shared/sounds/attacks/attack_medium_%.wav 400 2000 .45"/>
+		<frameevent frame="103" cmd="PlaySoundLinear ../sounds/attack_%.wav 400 2000 .45 1"/>
+		<frameevent frame="101" cmd="PlaySoundLinear sounds/ability_grunt_%.wav 400 2000 1"/>
+		<frameevent frame="105" cmd="PlaySoundLinear sounds/ability_grunt_%.wav 400 2000 1"/>
+		<frameevent frame="132" cmd="PlaySoundLinear ../sounds/attack_%.wav 400 2000 .45"/>
+	</anim>
+
+	<anim name="bored_1" clip="clips/bored_1.clip" fps="30" loop="false"/>
+	
+	<anim name="item_1" clip="clips/item_1.clip" fps="30" loop="false"/>
+
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+	
+	<anim name="item_channel_1" clip="clips/item_channel_1.clip" loop="true"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip" />
+	
+	<anim name="port_in" clip="clips/port_in.clip" />
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip" />
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="30" loop="false">
+		<frameevent frame="1" cmd="PlayStreamLinear ../sounds/voice/vo_emote_%.wav 1500 3000 0.7"/>
+	</anim>
+	
+</model>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_HomecomingStone_Tutorial2"
+	
+	icon="/shared/homecoming_stone/icon.tga"
+	
+	actiontype="target_self"
+	casttime="0"
+	castactiontime="0"
+	cooldowntime="1000"
+	
+	range="99999"
+	nosilence="true"
+	doubleactivate="true"
+	noentercombat="true"
+	responsetype="NoResponse"
+	casteffecttype="NoResponse"
+
+	queue="none"
+>	
+	<onimpact>
+		<pushentitysearch global="true" targetscheme="ally_well" ignoreinvulnerable="true" />
+		<setproxy entity="this_entity" target="stack_entity" />	
+		<playanim name="port_out" target="source_entity" />
+
+		<spawnunit name="Gadget_HomecomingStone_Base" count="1" target="stack_position" pushentity="true" proxy="stack_entity" />
+		<applystate name="State_HomecomingStone_Tutorial2" target="source_entity" proxy="stack_entity" duration="8000"/>
+
+	</onimpact>
+
+	<modifier key="disable_teleport" modpriority="100" disabled="true" />
+	
+</ability>

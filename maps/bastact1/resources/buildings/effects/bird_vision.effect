@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".7">
+
+			<sound
+				volume="0.65"
+				sample="../../sounds/sfx_acquirebird.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+			/>
+			
+			<!-- Landing -->
+			<model
+				life="2750"
+				scale="1"
+				model="../../heroes/bastion1Bastact1/ability_03/effects/models/model.mdf"
+				material="../../heroes/bastion1Bastact1/ability_03/effects/models/material_fresnel.material"
+				anim="drop"
+				position="0 0 20"
+				startalpha="1"
+				midalpha=".7"
+				endalpha="0"
+				yaw="-90"
+			>
+				<!-- Left wing -->
+				<billboard
+					life="4000"
+					bone="_bone_leftFinger3"
+					size="100"
+					color="0 0 0.5"								
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					width="250"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					roll="50"
+				/>
+				
+				<trailemitter
+					life="4000"
+					bone="_bone_leftFinger01"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0.5"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="20"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter>
+				
+				<trailemitter
+					life="4000"
+					bone="_bone_leftFinger01"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0 0 10"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="50"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter>
+				
+				<!-- Right wing -->
+				<billboard
+					life="4000"
+					bone="_bone_rightFinger3"
+					size="100"
+					color="0 0 0.5"							
+					depthbias="20"
+					material="/shared/effects/smaterials/whitedot.material"
+					width="250"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					roll="-50"
+				/>
+				
+				<trailemitter
+					life="4000"
+					bone="_bone_rightFinger31"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0.5"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="20"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter>
+				
+				<trailemitter
+					life="4000"
+					bone="_bone_rightFinger31"
+					spawnrate="50"
+					particlelife="200"
+					texpostime="800"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="0 0 10"
+						 endcolor="0"
+						 startsize="10"
+						 midsize="50"
+						 endsize="10"
+						 midsizepos="0.2"
+					/>
+				</trailemitter>
+			
+				<!-- tail -->
+				<light
+					life="4000"
+					position="0 0 10"
+					startcolor="0 2 5"
+					endcolor="0 0 0"
+					falloffstart="50"
+					falloffend="300"
+				/>
+				
+				<!-- <simpleemitter
+					life="3000"
+					bone="_bone_tail"
+					spawnrate="100"
+					particlelife="200"
+					position="0 0 0"
+					offsetsphere="50"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						 startcolor="0"
+						 midcolor="10"
+						 endcolor="0"
+						 startsize="0"
+						 midsize="10"
+						 endsize="0"
+						 midsizepos="0.2"
+						 minscale="0.5"
+						 maxscale="1"
+					/>
+				</simpleemitter> -->
+				
+				<simpleemitter
+					life="2000"						
+					spawnrate="50"
+					bone="_bone_tail"
+					minparticlelife="800"
+					maxparticlelife="1100"
+					gravity="10"
+					speed="300"
+					offsetsphere="5 5 5"
+					drag="0.04"
+					inheritvelocity=".4"
+					direction="0 0 0"
+					material="/shared/effects/smaterials/feather.material"
+					position="0 0 0"
+				>
+					<particle 
+						color=".1 .1 1"
+						startalpha="1"
+						endalpha="0"
+						midcolorpos=".2"				
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-30"
+						maxanglespeed="30"
+						size="16"						
+					/>			
+				</simpleemitter>
+			</model>
+			
+			
+			
+			<!-- center beam-->
+			<simpleemitter
+				life="4000"
+				delay="0"
+				spawnrate="10"
+				particlelife="1000"			
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 50"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+				depthbias="20"
+				startparticlecolor=".2"
+				endparticlecolor="0"
+			>
+
+				<particle
+					scale="1.5"
+					startcolor="0 0 0"
+					midcolor="0 0.5 1.25"
+					endcolor="0 0 0"
+					width="100"
+					height="3000"
+					lockup="true"
+					lockright="false"
+				/>
+			</simpleemitter>
+			
+			
+			
+			<!-- center beam ground-->
+			<simpleemitter
+				life="2750"
+				spawnrate="5"
+				particlelife="1000"			
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 1"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+				offsetradial="0"
+				depthbias="-10"
+			>
+
+				<particle
+					startscale="70"
+					endscale="140"
+					startcolor="0 0 0"
+					midcolor="0 0.5 1.25"
+					endcolor="0 0 0"
+					lockup="true"
+					pitch="90"
+					lockright="false"
+				/>
+			</simpleemitter>
+			
+			<!-- start center beam ground -->
+			<simpleemitter
+				
+				count="5"
+				spawnrate="200000"
+				particlelife="1000"			
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 1"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+				offsetradial="0"
+				depthbias="-10"
+			>
+				<particle
+					startscale="50"
+					endscale="50"
+					startcolor="0 0 0"
+					midcolor="0 0.5 1.25"
+					endcolor="0 0 0"
+					lockup="true"
+					pitch="90"
+					lockright="false"
+				/>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				life="3000"
+				count="1"
+				spawnrate="1000"
+				particlelife="4000"			
+				gravity="0"
+				speed="-400"
+				drag="0"
+				acceleration="0"
+				position="0 0 1000"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+			>
+
+				<particle>
+				
+					<model
+						life="3000"
+						model="shared/models/invis.mdf"
+						alpha="0"
+						color="1"
+						position="0 0 0"
+						scale="1"
+						yawspeed="900"
+					>
+						<model
+							life="3000"
+							model="shared/models/invis.mdf"
+							alpha="0"
+							color="1"
+							position="0 100 0"
+							scale="1"
+						>
+							<!-- <billboard
+								life="3000"
+								position="0 0 0"
+								startcolor="0"
+								midcolor="0 2 5"
+								endcolor="0"
+								startsize="0"
+								midsize="100"
+								endsize="0"
+								depthbias="-50"
+								material="/shared/effects/smaterials/flare.material"
+							/> -->
+							
+							<simpleemitter
+								life="3000"
+								spawnrate="300"
+								particlelife="1000"			
+								gravity="0"
+								speed="0"
+								drag="0"
+								acceleration="0"
+								position="0 0 1"
+								material="/shared/effects/smaterials/whitedot.material"
+								minangle="0"
+								maxangle="0"
+								direction="0 0 1"
+								offsetradial="0"
+								depthbias="-10"
+							>
+
+								<particle
+									startscale="0"
+									midscale="10"
+									endscale="0"
+									startcolor="0 0 0"
+									midcolor="0 0.5 1.25"
+									endcolor="0 0 0"
+								/>
+							</simpleemitter>
+							
+							<simpleemitter
+								life="3000"
+								spawnrate="100"
+								particlelife="1000"			
+								gravity="0"
+								speed="0"
+								drag="0"
+								acceleration="0"
+								position="0 0 1"
+								material="/shared/effects/smaterials/blink.material"
+								minangle="0"
+								maxangle="0"
+								direction="0 0 1"
+								offsetsphere="50"
+								depthbias="-10"
+								inheritvelocity=".1"
+							>
+
+								<particle
+									startscale="0"
+									midscale="10"
+									endscale="0"
+									startcolor="0 0 0"
+									midcolor="0 0.5 1.25"
+									endcolor="0 0 0"
+								/>
+							</simpleemitter>
+							
+							<trailemitter
+								life="3000"
+								bone="_bone_rightFinger31"
+								spawnrate="500"
+								particlelife="2000"
+								texpostime="800"
+								texposscale="0.0"
+								texstretchscale=".4"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+							>
+								<particle
+									 startcolor="0"
+									 midcolor="0 0 10"
+									 endcolor="0"
+									 startsize="10"
+									 midsize="50"
+									 endsize="10"
+									 midsizepos="0.2"
+								/>
+							</trailemitter>
+							
+						</model>
+					
+					</model>
+					
+				</particle>
+			
+			</simpleemitter>
+			
+			<billboard
+				delay="2500"
+				life="300"
+				position="0 0 200"
+				startcolor="0"
+				midcolor="0 1 2.5"
+				endcolor="0"
+				startsize="0"
+				midsize="1000"
+				endsize="0"
+				depthbias="-50"
+				material="/shared/effects/materials/blink.material"
+			/>
+			
+			<!-- vortext -->
+			<!-- <model
+		
+				life="4000"
+				model="rise_models/model.mdf"
+				anim="rise"
+				alpha="1"
+				color="1"
+				position="0 0 0"
+				scale="1"
+			>
+				<beam
+					life="4000"
+					bone_a="_bone_bottom"
+					bone_b="_bone_top"
+					loop="1"
+					size="100"
+					startcolor="1 0.7 0.3"
+					endcolor="0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					framespeed="1"
+					depthbias="-100"
+				/>
+			</model>
+			
+			<model
+		
+				life="4000"
+				model="rise_models/model.mdf"
+				anim="rise"
+				alpha="1"
+				color="1"
+				position="0 0 -200"
+				scale="1"
+			>
+				<beam
+					life="4000"
+					bone_a="_bone_bottom"
+					bone_b="_bone_top"
+					loop="1"
+					size="100"
+					startcolor="1 0.7 0.3"
+					endcolor="0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					framespeed="1"
+					depthbias="-100"
+				/>
+			</model> -->
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+
+	</thread>
+</effect>

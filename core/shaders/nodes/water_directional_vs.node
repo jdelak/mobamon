@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="water_directional_vs" nops="true">
+	<dependency name="WorldPosition" type="float3" source="WorldPosition" />
+	<dependency name="ReflectionHeight" type="float" source="fReflectionHeight" />
+	<output name="OutTexcoord" type="float4" solution="WaterTexcoord0" />
+	<output name="OutReflectionPow" type="float" solution="WaterReflectionPow" />
+	<?hlsl
+		OutTexcoord.xy = WorldPosition.xy * 0.1f;
+		OutTexcoord.zw = WorldPosition.xy;
+		
+		OutReflectionPow = clamp(50.0f - abs(WorldPosition.z - ReflectionHeight), 0.0f, 50.0f) / 50.0f;
+	?>
+	<?glsl
+		OutTexcoord.xy = WorldPosition.xy * 0.1f;
+		OutTexcoord.zw = WorldPosition.xy;
+		
+		OutReflectionPow = clamp(50.0f - abs(WorldPosition.z - ReflectionHeight), 0.0f, 50.0f) / 50.0f;
+	?>
+</node>

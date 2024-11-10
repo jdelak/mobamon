@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard.shader" vDiffuseColor="0.3 0.4 0.6" fSpecularLevel="1.0" fGlossiness="32.0" fOpacity="1.0" fReflect="1.0" />
+	<phase name="shadow" cull="back" blend="none" />
+	<phase name="color" cull="back" blend="none">
+		<sampler name="diffuse" texture="/world/terrain/textures/los_cavefloor_11_d.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="/world/terrain/textures/los_cavefloor_11_n.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="/world/terrain/textures/los_cavefloor_11_d.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="/world/terrain/textures/los_cavefloor_11_n.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

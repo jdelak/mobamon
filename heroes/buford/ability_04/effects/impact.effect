@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentiteffectscale="1">
+
+
+	<definitions>
+<!--
+		<modifier
+			name="modifier0"
+			life="750"
+			startcolor="0 2 0"
+			endcolor="1.0 1.0 1.0"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale=".5">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_impact.wav"
+			/>
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="6"
+				spawnrate="2000"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<simpleemitter
+						bone="_bone_centerofchest"
+						count="1"
+						spawnrate="2000"
+						minspeed="500"
+						maxspeed="1000"
+						offsetsphere="50"
+						particlelife="2000"
+						collide="true"
+					>
+						<particle
+						>
+							<model
+								bone="_bone_centerofchest"
+								model="boards/model.mdf"
+								color="1.25"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="250"
+								maxlife="500"
+								minpitch="-360"
+								maxpitch="360"
+								minstartscale="6"
+								maxstartscale="8"
+								midscale="6"
+								endscale="0"
+								startalpha="1"
+								midalpha="1"
+								endalpha="1"
+								minyawspeed="-360"
+								maxyawspeed="360"
+							/>
+							
+
+							
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				life="500"
+				position="0 0 0"
+				scale="6"
+				depthbias="-150"			
+			/>
+
+	</particlesystem>
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+

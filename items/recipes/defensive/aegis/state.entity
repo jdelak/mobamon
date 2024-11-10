@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_Aegis"
+
+	icon="icon.tga"
+	passiveeffect="effects/state.effect"
+	
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	
+>
+	<oninflict>
+		
+		<getconstant name="shield" adjustmentsource="tool_entity" />
+		<setaccumulator value="result" />
+		
+		<setvalue source="this_entity" name="source_max_shield" a="result" />
+		<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="result" op="add" />
+	</oninflict>
+	
+	<onrefresh>
+		<getconstant name="shield" adjustmentsource="tool_entity" />
+		<setvar0 a="result" />
+		<compare a="var0" b="accumulator" op="gt">
+			<setaccumulator value="var0" />
+			<setvalue source="this_entity" name="source_max_shield" a="result" />
+			<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="result" op="add" />
+		</compare>
+	</onrefresh>
+	
+</statenetaccum>

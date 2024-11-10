@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Tutorial_Thief"
+
+	radius="5000"
+	innerradiusoffset="4500"
+	
+	lifetime="500"
+	impactinterval="100"
+	targetselection="random"
+	targetscheme="Gadget_Tutorial_Thief"
+	maximpactsperinterval="1"
+	maximpactspertarget="1"
+	ignoreinvulnerable="true"
+	effecttype=""
+	effect=""
+>
+
+	
+	<onimpact>		
+		<applystate name="State_Tutorial_Thief_Blink" target="this_owner_entity" duration="-1" proxy="target_entity" />
+		
+		
+		<delete target="this_entity" />
+	</onimpact>
+
+</affector>

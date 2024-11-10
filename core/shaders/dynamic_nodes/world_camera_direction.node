@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="world_camera_direction">
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<output name="Out" type="float3" solution="WorldCameraDirection" />
+	<?hlsl
+		Out = -normalize(WorldPositionOffset);
+	?>
+	<?glsl
+		Out = -normalize(WorldPositionOffset);
+	?>
+</node>

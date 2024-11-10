@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="deferred_point_light_ps" novs="true">
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+	<dependency name="deferred0" type="sampler2D" source="deferred0" />
+	<dependency name="deferred1" type="sampler2D" source="deferred1" />
+		
+	<dependency name="PointLightPosition" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightPositionView" />
+	<dependency name="PointLightColor" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightColor" />
+	<dependency name="PointLightFalloff" type="float3[]" size="NUM_POINT_LIGHTS" source="vPointLightFalloff" />
+	
+	<dependency name="DeferredPosition" type="float3" source="DeferredPosition" />
+	
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			#if LIGHTING_QUALITY == 2
+			{			
+				float4 f4Deferred0 = tex2Dproj(deferred0, ScreenPosition);
+				float4 f4Deferred1 = tex2Dproj(deferred1, ScreenPosition);
+			
+				float3 f3Normal = f4Deferred1.rgb * 2.0f - 1.0f;
+				
+				float3 f3Position = DeferredPosition;
+				float3 f3ViewRay = normalize(f3Position);
+				
+				float3 f3DiffuseColor = f4Deferred0.rgb;
+				
+				float3 f3Diffuse = 0.0f;
+				
+				#if (NUM_POINT_LIGHTS > 0)
+				// Point Lights
+				[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+				{
+					float3 f3DeltaPosition = PointLightPosition[i] - f3Position;
+					float fDistance = length(f3DeltaPosition);
+				
+					float3 f3Light = normalize(f3DeltaPosition);
+
+					float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+					
+					float fLit; // diffuse
+					fLit = saturate(dot(f3Normal, f3Light));
+					fLit *= fAttenuation;
+					
+					f3Diffuse += PointLightColor[i] * fLit;
+				}
+				#endif
+			
+				Out.rgb = f3Diffuse * f3DiffuseColor;
+				Out.a = 0.0f;
+			}
+			#else
+			{
+				float4 f4Deferred0 = tex2Dproj(deferred0, ScreenPosition);
+				float4 f4Deferred1 = tex2Dproj(deferred1, ScreenPosition);
+			
+				float3 f3Normal = f4Deferred1.rgb * 2.0f - 1.0f;
+				
+				float3 f3Position = DeferredPosition;
+				float3 f3ViewRay = normalize(f3Position);
+				
+				float3 f3DiffuseColor = f4Deferred0.rgb;
+				float3 f3SpecularColor = float3(0.1f, 0.1f, 0.1f);
+				float fSpecPower = 8.0f;
+				
+				float3 f3Diffuse = 0.0f;
+				float3 f3Specular = 0.0f;
+				
+				#if (NUM_POINT_LIGHTS > 0)
+				// Point Lights
+				[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+				{
+					float3 f3DeltaPosition = PointLightPosition[i] - f3Position;
+					float fDistance = length(f3DeltaPosition);
+				
+					float3 f3Light = normalize(f3DeltaPosition);
+					float3 f3HalfAngle = normalize(f3Light - f3ViewRay);
+
+					float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+					
+					float2 f2Lit; // x = diffuse, y = specular
+					f2Lit.x = saturate(dot(f3Normal, f3Light));
+					f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), fSpecPower);
+					f2Lit *= fAttenuation;
+					
+					f3Diffuse += PointLightColor[i] * f2Lit.x;
+					f3Specular += PointLightColor[i] * f2Lit.y;
+				}
+				#endif
+				
+				Out.rgb = f3Diffuse * f3DiffuseColor + f3Specular * f3SpecularColor;
+				Out.a = 0.0f;
+			}
+			#endif
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float2 f2ScreenPositionTexcoord = float2(ScreenPosition.xy / ScreenPosition.w);
+			
+			float4 f4Deferred0 = deferred0_texture.Sample(deferred0_sampler, f2ScreenPositionTexcoord);
+			float4 f4Deferred1 = deferred1_texture.Sample(deferred1_sampler, f2ScreenPositionTexcoord);
+		
+			float3 f3Normal = f4Deferred1.rgb * 2.0f - 1.0f;
+			
+			float3 f3Position = DeferredPosition;
+			float3 f3ViewRay = normalize(f3Position);
+			
+			float3 f3DiffuseColor = f4Deferred0.rgb;
+			float3 f3SpecularColor = float3(0.1f, 0.1f, 0.1f);
+			float fSpecPower = 8.0f;
+			
+			float3 f3Diffuse = 0.0f;
+			float3 f3Specular = 0.0f;
+			
+			#if (NUM_POINT_LIGHTS > 0)
+			// Point Lights
+			[unroll(NUM_POINT_LIGHTS)] for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+			{
+				float3 f3DeltaPosition = PointLightPosition[i] - f3Position;
+				float fDistance = length(f3DeltaPosition);
+			
+				float3 f3Light = normalize(f3DeltaPosition);
+				float3 f3HalfAngle = normalize(f3Light - f3ViewRay);
+
+				float fAttenuation = 1.0f - saturate(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y);
+				
+				float2 f2Lit; // x = diffuse, y = specular
+				f2Lit.x = saturate(dot(f3Normal, f3Light));
+				f2Lit.y = pow(saturate(dot(f3Normal, f3HalfAngle)), fSpecPower);
+				f2Lit *= fAttenuation;
+				
+				f3Diffuse += PointLightColor[i] * f2Lit.x;
+				f3Specular += PointLightColor[i] * f2Lit.y;
+			}
+			#endif
+			
+			Out.rgb = f3Diffuse * f3DiffuseColor + f3Specular * f3SpecularColor;
+			Out.a = 0.0f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec4 f4Deferred0 = texture2DProj(deferred0, ScreenPosition);
+			vec4 f4Deferred1 = texture2DProj(deferred1, ScreenPosition);
+		
+			vec3 f3Normal = f4Deferred1.rgb * 2.0f - 1.0f;
+			
+			vec3 f3Position = DeferredPosition;
+			vec3 f3ViewRay = normalize(f3Position);
+			
+			vec3 f3DiffuseColor = f4Deferred0.rgb;
+			vec3 f3SpecularColor = vec3(0.1f, 0.1f, 0.1f);
+			float fSpecPower = 8.0f;
+			
+			vec3 f3Diffuse = vec3(0.0f);
+			vec3 f3Specular = vec3(0.0f);
+			
+			#if (NUM_POINT_LIGHTS > 0)
+			// Point Lights
+			for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+			{
+				vec3 f3DeltaPosition = PointLightPosition[i] - f3Position;
+				float fDistance = length(f3DeltaPosition);
+			
+				vec3 f3Light = normalize(f3DeltaPosition);
+				vec3 f3HalfAngle = normalize(f3Light - f3ViewRay);
+
+				float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+				
+				vec2 f2Lit; // x = diffuse, y = specular
+				f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+				f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), fSpecPower);
+				f2Lit *= fAttenuation;
+				
+				f3Diffuse += PointLightColor[i] * f2Lit.x;
+				f3Specular += PointLightColor[i] * f2Lit.y;
+			}
+			#endif
+			
+			Out.rgb = f3Diffuse * f3DiffuseColor + f3Specular * f3SpecularColor;
+			Out.a = 0.0f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec4 f4Deferred0 = textureProj(deferred0, ScreenPosition);
+			vec4 f4Deferred1 = textureProj(deferred1, ScreenPosition);
+		
+			vec3 f3Normal = f4Deferred1.rgb * 2.0f - 1.0f;
+			
+			vec3 f3Position = DeferredPosition;
+			vec3 f3ViewRay = normalize(f3Position);
+			
+			vec3 f3DiffuseColor = f4Deferred0.rgb;
+			vec3 f3SpecularColor = vec3(0.1f, 0.1f, 0.1f);
+			float fSpecPower = 8.0f;
+			
+			vec3 f3Diffuse = vec3(0.0f);
+			vec3 f3Specular = vec3(0.0f);
+			
+			#if (NUM_POINT_LIGHTS > 0)
+			// Point Lights
+			for (int i = 0; i < NUM_POINT_LIGHTS; ++i)
+			{
+				vec3 f3DeltaPosition = PointLightPosition[i] - f3Position;
+				float fDistance = length(f3DeltaPosition);
+			
+				vec3 f3Light = normalize(f3DeltaPosition);
+				vec3 f3HalfAngle = normalize(f3Light - f3ViewRay);
+
+				float fAttenuation = 1.0f - clamp(fDistance * PointLightFalloff[i].x + PointLightFalloff[i].y, 0.0f, 1.0f);
+				
+				vec2 f2Lit; // x = diffuse, y = specular
+				f2Lit.x = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+				f2Lit.y = pow(clamp(dot(f3Normal, f3HalfAngle), 0.0f, 1.0f), fSpecPower);
+				f2Lit *= fAttenuation;
+				
+				f3Diffuse += PointLightColor[i] * f2Lit.x;
+				f3Specular += PointLightColor[i] * f2Lit.y;
+			}
+			#endif
+			
+			Out.rgb = f3Diffuse * f3DiffuseColor + f3Specular * f3SpecularColor;
+			Out.a = 0.0f;
+		?>
+	</case>
+</node>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="vines">
+			
+				<beam
+					life="250"
+					owner_a="source"
+					owner_b="target"
+					bone_a="{zbone}"
+					bone_b="{zboneb}"
+					minsize="30"
+					maxsize="60"
+					color="1 1 1"
+					startalpha="0"
+					endalpha=".65"
+					material="/shared/effects/smaterials/web_1.material"
+					depthbias="-25"
+				/>
+			
+			
+				<beam
+				delay="250"
+					expirelife="500"
+					owner_a="source"
+					owner_b="target"
+					bone_a="{zbone}"
+					bone_b="{zboneb}"
+					minsize="30"
+					maxsize="60"
+					color="1 1 1"
+					startalpha=".65"
+					endalpha="0"
+					material="/shared/effects/smaterials/web_1.material"
+					depthbias="-25"
+				/>
+			</template>
+			
+			<instance name="vines" zbone="_bone_righthand" zboneb="_bone_fx_tip_01"/>
+			<instance name="vines" zbone="_bone_righthand" zboneb="_bone_fx_tip_02"/>
+			<instance name="vines" zbone="_bone_righthand" zboneb="_bone_fx_tip_03"/>
+			<instance name="vines" zbone="_bone_righthand" zboneb="_bone_fx_tip_04"/>
+			<instance name="vines" zbone="_bone_righthand" zboneb="_bone_fx_tip_05"/>
+
+			<instance name="vines" zbone="_bone_lefthand" zboneb="_bone_fx_tip_01"/>
+			<instance name="vines" zbone="_bone_lefthand" zboneb="_bone_fx_tip_02"/>
+			<instance name="vines" zbone="_bone_lefthand" zboneb="_bone_fx_tip_03"/>
+			<instance name="vines" zbone="_bone_lefthand" zboneb="_bone_fx_tip_04"/>
+			<instance name="vines" zbone="_bone_lefthand" zboneb="_bone_fx_tip_05"/>
+
+			
+<!--
+			<model
+				bone="_bone_leftfoot"
+				model="vine/model.mdf"
+				material="vine/material.material"
+				anim="idle"
+				expirelife="250"
+				yawspeed="45"
+				scale=".65"
+				startalpha=".75"
+				endalpha="0"
+				directionalspace="local"
+			/>
+
+			<model
+				bone="_bone_rightfoot"
+				model="vine/model.mdf"
+				material="vine/material.material"
+				anim="idle"
+				expirelife="250"
+				yawspeed="45"
+				scale=".65"
+				startalpha=".75"
+				endalpha="0"
+				directionalspace="local"
+			/>
+
+			<model
+				bone="_bone_righthand"
+				model="vine/model.mdf"
+				material="vine/material.material"
+				anim="idle"
+				expirelife="250"
+				yawspeed="45"
+				scale=".75"
+				startalpha=".75"
+				endalpha="0"
+				directionalspace="local"
+			/>
+
+			<model
+				bone="_bone_lefthand"
+				model="vine/model.mdf"
+				material="vine/material.material"
+				anim="idle"
+				expirelife="250"
+				yawspeed="45"
+				scale=".75"
+				startalpha=".75"
+				endalpha="0"
+				directionalspace="local"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				minparticlelife="750"
+				maxparticlelife="1000"
+				spawnrate="15"
+				gravity="-5"
+				speed="65"
+				drag="0"
+				position="0 0 -10"
+				material="/shared/effects/materials/leaf_01.material"
+				offsetsphere="30 30 0"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					color="0 .65 1"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".4"
+					startsize="40"
+					endsize="20"
+					mindsizepos=".1"
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<camerashake scale="1" radius="300" duration="800" frequency="0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

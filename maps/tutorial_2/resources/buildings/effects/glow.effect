@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.25"
+				falloffstart="1000"
+				falloffend="2400"
+				soundloop="true"
+				sample="/world/sprops/well/sounds/amb_well_team_1.wav"
+			/>
+				
+			<light
+				position="0 0 100"
+				life="3000"
+				startcolor="0 .25 1.25"
+				midcolor="0 2 10"
+				endcolor="0 .25 1.25"
+				falloffstart="0"
+				falloffend="500"
+				loop="true"
+			/>
+
+			<simpleemitter
+			timenudge="2000"
+				spawnrate="5"
+				particlelife="4400"
+				gravity="-1.5"
+				minspeed="0"
+				maxspeed="100"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="100 100 50"
+				position="0 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				depthbias="-500"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .1 .4"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					startheight="110"
+					endheight="600"
+					width="20"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			timenudge="2000"
+				spawnrate="5"
+				particlelife="4400"
+				gravity="-1.5"
+				speed="4"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="100 100 0"
+				position="0 0 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .1 .2"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					minstartheight="1500"
+					maxstartheight="2000"
+					endheight="750"
+					width="50"
+					depthbias="-75"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".525">
+<!--
+			<billboard
+				expirelife="250"
+				position="0 0 0"
+				material="/shared/effects/materials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				startcolor=".5"
+				endcolor="0 0 0"
+				size="750"
+				depthbias="-50"
+			>
+			</billboard>
+-->
+			
+			<simpleemitter
+				spawnrate="500"
+				particlelife="1000"
+				gravity="0"
+				minspeed="250"
+				maxspeed="1000"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="0"
+				offsetradial="210 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					startcolor=".05 .125 .25"
+					endcolor="0 .05 .25"
+					startsize="35"
+					endsize="0"
+					turn="1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 25"
+				spawnrate="500"
+				particlelife="1000"
+				gravity="0"
+				minspeed="500"
+				maxspeed="1000"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="0"
+				offsetradial="150 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					startcolor="0 .05 .25"
+					endcolor="0 .125 .25"
+					startsize="35"
+					endsize="0"
+					turn="1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="75"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 1"
+				minspeed="0"
+				maxspeed="1000"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						life="750"
+						material="/shared/effects/smaterials/swoosh_ring.material"
+						startcolor="0 0 0"
+						midcolor="0 .06 .25"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="500"
+						endsize="600"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

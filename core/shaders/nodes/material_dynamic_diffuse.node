@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_dynamic_diffuse">
+	<parameter name="DynamicDiffuse" type="float3" default="1.0 1.0 1.0" />
+	<dependency name="DynamicDiffuse" type="*" source="DynamicDiffuse" />
+	<output name="MaterialDynamicDiffuse" type="*" solution="MaterialDynamicDiffuse" />
+	<case>
+		<dependency name="DynamicDiffuse" type="float" source="DynamicDiffuse" />
+		<output name="MaterialDynamicDiffuse" type="float3" solution="MaterialDynamicDiffuse" />
+		<?hlsl
+			MaterialDynamicDiffuse = float3(DynamicDiffuse, DynamicDiffuse, DynamicDiffuse);
+		?>
+		<?glsl
+			MaterialDynamicDiffuse = vec3(DynamicDiffuse);
+		?>
+	</case>
+	<case>
+		<dependency name="DynamicDiffuse" type="float3" source="DynamicDiffuse" />
+		<output name="MaterialDynamicDiffuse" type="float3" solution="MaterialDynamicDiffuse" />
+		<?hlsl
+			MaterialDynamicDiffuse = DynamicDiffuse;
+		?>
+		<?glsl
+			MaterialDynamicDiffuse = DynamicDiffuse;
+		?>
+	</case>
+	<case>
+		<dependency name="DynamicDiffuse" type="float4" source="DynamicDiffuse" />
+		<output name="MaterialDynamicDiffuse" type="float3" solution="MaterialDynamicDiffuse" />
+		<?hlsl
+			MaterialDynamicDiffuse = DynamicDiffuse.xyz;
+		?>
+		<?glsl
+			MaterialDynamicDiffuse = DynamicDiffuse.xyz;
+		?>
+	</case>
+</node>

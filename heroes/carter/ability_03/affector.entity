@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Carter_Ability3"
+	
+	radius="325"
+	innerradiusoffset="125"
+	lifetime="4000"
+	
+	targetselection="all"
+	targetscheme="all_units_and_own_gadgets"
+	ignoreinvulnerable="true"
+	
+	effecttype=""
+>
+	<onframeimpact>
+		<cantarget targetscheme="enemy_units">
+			<applystate name="State_Carter_Ability3" proxy="this_entity" continuous="true" timeout="500" />
+		</cantarget>
+		<cantarget targetscheme="carter_projectile" ignoreinvulnerable="true" >
+			<setaccumulator entity="target_entity" value="1" />
+			<setactivemodifierkey entity="target_entity" name="carter_flame_wall_active" />
+		</cantarget>
+	</onframeimpact>
+
+</affector>

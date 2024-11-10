@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="entity" scale=".2">
+			
+			<simpleemitter
+				delay="900"
+				spawnrate=".1"
+				particlelife="5000"
+				gravity="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+			>
+				<particle>	
+			
+					<!-- <simpleemitter
+						count="1"
+						spawnrate="100"
+						particlelife="5000"
+						gravity="50"
+						drag="0"
+						acceleration="0"
+						position="0 0 200"
+						material="/shared/effects/smaterials/whitedot.material"
+						direction="0 0 1"
+						offsetsphere="5"
+						depthbias="0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						
+					>
+
+						<particle 
+							startcolor="1"
+							midcolor="1"
+							endcolor="0 0 0"
+							midcolorpos=".3"
+							startsize="0"
+							midsize="100"
+							endsize="0"
+							midsizepos=".7"
+							minscale=".05"
+							maxscale=".15"
+							
+						/>	
+					</simpleemitter> -->
+
+					<billboard
+						delay="300"
+						life="500"
+						color="1"
+						startsize="50"
+						endsize="300"
+						scale=".5"
+						depthbias="0"
+						position="0 0 10"
+						param="0.01"	
+						startalpha="0"	
+						midalpha="1"	
+						endalpha="0"	
+						material="/shared/effects/materials/refract_ripples.material"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+					
+					<simpleemitter
+						delay="300"
+						count="20"
+						spawnrate="100"
+						minparticlelife="100"
+						maxparticlelife="500"
+						gravity="200"
+						drag="0"
+						minspeed="500"
+						maxspeed="1000"
+						acceleration="0"
+						position="0 0 10"
+						material="/shared/effects/smaterials/whitedot.material"
+						direction="0 0 1"
+						offsetsphere="5"
+						depthbias="0"
+						minangle="0"
+						maxangle="10"
+						directionalspace="world"
+						
+					>
+
+						<particle 
+							startcolor="0"
+							midcolor="1"
+							endcolor="0 0 0"
+							midcolorpos=".3"
+							startsize="0"
+							midsize="100"
+							endsize="0"
+							midsizepos=".2"
+							minscale=".05"
+							maxscale=".1"
+							
+						/>	
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate=".1"
+				particlelife="5000"
+				gravity="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+			>
+				<particle>	
+			
+					<simpleemitter
+						count="1"
+						spawnrate="100"
+						particlelife="5000"
+						gravity="50"
+						drag="0"
+						acceleration="0"
+						position="0 0 200"
+						material="/shared/effects/smaterials/whitedot.material"
+						direction="0 0 1"
+						offsetsphere="5"
+						depthbias="0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						
+					>
+
+						<particle
+							startcolor="1"
+							midcolor="1"
+							endcolor="0 0 0"
+							midcolorpos=".3"
+							startsize="0"
+							midsize="100"
+							endsize="0"
+							midsizepos=".7"
+							minscale=".05"
+							maxscale=".15"
+							
+						/>	
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+			
+			<!-- <billboard
+				color=".5 .5 .7"
+				size="175"
+				depthbias="0"
+				position="0 0 10"
+				material="/shared/effects/materials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/> -->
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

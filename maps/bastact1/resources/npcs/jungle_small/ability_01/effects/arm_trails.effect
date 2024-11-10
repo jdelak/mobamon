@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+		<definitions>
+
+		<particlesystem name="system0" space="world" scale="5">
+		
+			<sound
+				volume="0.55"
+				falloffstart="500"
+				falloffend="2200"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<trailemitter
+				delay="300"
+				bone="_bone_Bip01 R arm3"
+				life="500"
+				spawnrate="50"
+				particlelife="1000"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					startcolor="1 0 0"
+					midcolor="1 0 0"
+					endcolor="0 0 0"
+					startsize="10"
+					endsize="0"
+					midcolorpos=".05"
+					midsizepos=".1"
+				/>
+			</trailemitter>
+			
+			<trailemitter
+				delay="300"
+				bone="_bone_Bip01 L arm3"
+				life="500"
+				spawnrate="50"
+				particlelife="1000"
+				texpostime="1000"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					startcolor="1 0 0"
+					midcolor="1 0 0"
+					endcolor="0 0 0"
+					startsize="10"
+					endsize="0"
+					midcolorpos=".05"
+					midsizepos=".1"
+				/>
+			</trailemitter>
+			
+			<billboard
+				delay="300"
+				bone="_bone_Bip01 R arm3"
+				position="0 10 0"
+				startcolor="1 0 0"
+				midcolor="1 0 0"
+				endcolor="1 0 0"
+				life="300"
+				startscale="2"
+				endscale="0"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+			
+			<billboard
+				delay="300"
+				bone="_bone_Bip01 L arm3"
+				position="0 10 0"
+				startcolor="1 0 0"
+				midcolor="1 0 0"
+				endcolor="1 0 0"
+				life="300"
+				startscale="2"
+				endscale="0"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Gadget_Tutorial_Observatory"
+
+	icon="observatory_icon.tga"
+	portrait=""
+	model="/world/sprops/vision_blue/model.mdf"
+	skin=""
+	
+	passiveeffect="/buildings/neutral/wardspots/effects/passive.effect"
+	destroyedsound=""
+	lowhealtheffect=""
+	lowhealthsound=""
+	selectsound=""
+	isselectable="false"
+	
+	preglobalscale="1.0"
+	modelscale="3.5"
+	effectscale="1.0"
+	boundsheight="128"
+	radiusheight="128"
+	boundsradius="86"
+	selectionradius="128"
+	targetoffset="0 0 0"
+
+	maxhealth="900"
+	healthregen="0"
+
+	drawonmap="true"
+	sightrangeday="0"
+	sightrangenight="0"
+	clearvision2="true"
+	deathtime="0"
+	corpsetime="0"
+	corpsefadetime="0"
+	buildingwalking="true"
+	unitwalking="true"
+	cliffwalking="true"
+
+	mapicon="/shared/icons/minimap_ward.tga"
+	mapiconsize="0.04" 
+	mapiconcolor="0.5 0.5 0.5 1"
+
+	unittype="Observatory"
+	invulnerable="true"
+	nothreat="true"
+	hidealtinfo="true"
+	nointerpolateposition="true"
+	
+	prefertouch="true"
+	touchrange="500"
+	isphysical="true"
+
+>
+
+	<aura state="State_Observatory_ObservingHero" radius="350" notooltip="true" ignoreinvulnerable="true" targetscheme="all_heroes" reflexivestate="State_Observatory_On" /> 
+
+
+	<modifier key="observatory_on" modpriority="100"
+		sightrangeday="1700"
+		sightrangenight="1700"
+
+		model="/world/sprops/vision_blue/model.mdf"
+	>
+
+	</modifier>
+	
+	<modifier key="observatory_off" modpriority="101"
+		sightrangeday="0"
+		sightrangenight="0"
+		passiveeffect=""
+	>
+
+	</modifier>
+	
+	<modifier key="team1control" modpriority="100"
+		sightrangeday="1700"
+		sightrangenight="1700"
+		passiveeffect=""
+		model="/world/sprops/vision_blue/model.mdf"
+	>
+		<onframe>
+			<setaccumulator value="0" />
+			<areaofeffect
+				radius="350"
+				targetselection="all"
+				targetscheme="all_heroes"
+			>
+				<compare a="target_team" b="1" op="eq">
+					<setaccumulator value="1" />
+				</compare>
+			</areaofeffect>
+
+			<compare a="accumulator" b="1" op="eq" >
+				<areaofeffect
+					radius="550"
+					targetselection="all"
+					targetscheme="all_heroes"
+				>
+					<compare a="target_team" b="2" op="eq">
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+						<playanim name="deactivate" target="source_entity"/>
+						<expirestate name="State_Observatory_Team1_Controlled" target="source_entity" />
+						<delete target="this_proxy_entity" />
+					</compare>
+				</areaofeffect>
+			</compare>
+			<else>
+				<areaofeffect
+					radius="350"
+					targetselection="all"
+					targetscheme="all_heroes"
+				>
+					<compare a="target_team" b="2" op="eq">
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+						<playanim name="deactivate" target="source_entity"/>
+						<expirestate name="State_Observatory_Team1_Controlled" target="source_entity" />
+						<delete target="this_proxy_entity" />
+					</compare>
+				</areaofeffect>
+			</else>
+		</onframe>
+	</modifier>
+
+
+	<modifier key="team2control" modpriority="100"
+		sightrangeday="1700"
+		sightrangenight="1700"
+		passiveeffect=""
+		model="/world/sprops/vision_blue/model.mdf"
+	>
+		<onframe>
+			<setaccumulator value="0" />
+			<areaofeffect
+				radius="350"
+				targetselection="all"
+				targetscheme="all_heroes"
+			>
+				<compare a="target_team" b="2" op="eq">
+					<setaccumulator value="1" />
+				</compare>
+			</areaofeffect>
+
+			<compare a="accumulator" b="1" op="eq" >
+				<areaofeffect
+					radius="550"
+					targetselection="all"
+					targetscheme="all_heroes"
+				>
+					<compare a="target_team" b="1" op="eq">
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+						<playanim name="deactivate" target="source_entity"/>
+						<expirestate name="State_Observatory_Team2_Controlled" target="source_entity" />
+						<delete target="this_proxy_entity" />
+					</compare>
+				</areaofeffect>
+			</compare>
+			<else>
+				<areaofeffect
+					radius="350"
+					targetselection="all"
+					targetscheme="all_heroes"
+				>
+					<compare a="target_team" b="1" op="eq">
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+						<playanim name="deactivate" target="source_entity"/>
+						<expirestate name="State_Observatory_Team2_Controlled" target="source_entity" />
+						<delete target="this_proxy_entity" />
+					</compare>
+				</areaofeffect>
+			</else>
+		</onframe>
+	</modifier>
+
+	<modifier key="observatory_contested" modpriority="120"
+		sightrangeday="0"
+		sightrangenight="0"
+		passiveeffect=""
+		model="/world/sprops/vision_blue/model.mdf"
+	>
+		<onframe>
+
+			<setaccumulator value="0" />
+			<areaofeffect
+				radius="350"
+				targetselection="all"
+				targetscheme="all_heroes"
+			>
+				<compare a="accumulator" b="0" op="eq" >
+					<setaccumulator value="target_team" />
+				</compare>
+			</areaofeffect>
+			<compare a="result" b="1" op="ge" >
+				<areaofeffect
+					radius="550"
+					targetselection="all"
+					targetscheme="all_heroes"
+				>
+					<compare a="target_team" b="accumulator" op="ne">
+						<applystate name="State_Observatory_Contested" target="source_entity" duration="100" />
+						<applystate name="State_Observatory_Contested" target="this_proxy_entity" duration="100" />
+					</compare>
+				</areaofeffect>
+			</compare>
+		</onframe>
+	</modifier>
+
+</building>

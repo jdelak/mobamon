@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+	
+		<modifier
+			expirelife="500"
+			name="modifier0"
+			startalpha="0.4"
+			endalpha="0.4"
+			startcolor=".5 .25 1"
+			endcolor="0 0 0"
+		/>
+
+		<particlesystem name="system0" space="world">
+		
+			
+	
+	
+	
+			<!--
+			<model
+				life="1000"
+				parentmodel="true"
+				parentskeleton="true"
+				alpha="1"
+				startcolor="1 .2 0"
+				midcolor="1 .2 0"
+				endcolor="1 .2 0"
+				material="/shared/effects/materials/shell4.material"
+				expirelife="300"
+				startscale="1.15"
+				midscale="1.15"
+				endscale="1.15"
+				loop="true"
+			/>
+			-->
+
+			<!--
+			<model
+				life="1000"
+				parentmodel="true"
+				parentskeleton="true"
+				alpha="1"
+				startcolor="1 .2 0"
+				midcolor="1 .2 0"
+				endcolor="1 .2 0"
+				material="/shared/effects/materials/shell4.material"
+				expirelife="300"
+				scale="1"
+				loop="true"
+			/>
+			-->
+			
+			<!--
+			<model
+				position="0 0 -5"
+				life="1000"
+				parentmodel="true"
+				parentskeleton="true"
+				alpha=".75"
+				startcolor="1 .2 0"
+				endcolor="1 .2 0"
+				expirelife="300"
+				scale="1"
+				loop="true"
+			/>
+			-->
+			
+			<billboard
+				bone="Box001"
+				position="0 0 0"
+				expirelife="250"
+				startcolor=".125 0 .125"
+				endcolor="0 0 0"
+				size="150"
+				rollspeed="-1250"
+				depthbias="-7"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+      		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="high.max" file="high_1.model" type="K2" >
+
+	<anim name="idle" clip="clips/idle.clip" startframe="0" numframes="1" loop="true">
+
+	</anim>
+	
+	<!--<anim name="hit" clip="clips/hit.clip" loop="true" loopbackframe="-1"/>-->
+	
+	<anim name="flamehit" clip="clips/flamehit.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear /shared/sounds/reactive/sfx_crumble_%.wav 500 2000 0.5"/>
+		
+		<frameevent frame="1" cmd="StartEffect effects/dust.effect"/>
+		<frameevent frame="1" cmd="StartEffect effects/apex_dust.effect"/>
+		<frameevent frame="30" cmd="StartEffect effects/apex_dust_delay.effect"/>
+		
+		
+		<physicalshape
+			bone="_bone_stones01"
+			type="box"
+			bounds="10 10 10"
+			offset="0 0 0"
+			density="250"
+			endkinematictime="250"
+			expiretime="10000"
+			expiretype="freeze"
+		/>
+		
+		<physicalshape
+			bone="_bone_stones02"
+			type="box"
+			bounds="10 10 10"
+			offset="0 0 0"
+			density="250"
+			endkinematictime="250"
+			expiretime="10000"
+			expiretype="freeze"
+		/>
+		
+		<physicalshape
+			bone="_bone_stones03"
+			type="box"
+			bounds="7 7 7"
+			offset="0 0 0"
+			density="250"
+			endkinematictime="250"
+			expiretime="10000"
+			expiretype="freeze"
+		/>
+		
+		
+		
+		
+		<physicalshape
+			bone="_bone_stones04"
+			type="box"
+			bounds="50 55 50"
+			offset="0 0 30"
+			density="10000"
+		/>
+		<physicalshape
+			bone="_bone_stones05"
+			type="box"
+			bounds="40 40 10"
+			offset="0 0 75"
+			density="10000"
+		/>
+		<physicalshape
+			bone="_bone_rubble06"
+			type="box"
+			bounds="50 50 50"
+			offset="0 0 30"
+		/>
+	</anim>
+	
+</model>

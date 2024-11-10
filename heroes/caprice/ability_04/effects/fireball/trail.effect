@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.0">
+		
+			
+					
+			<billboard
+				life="60"				
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 .25 0"
+				midcolor="1 .8 .1"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startsize="50"
+				endsize="150"
+				depthbias="-50"
+			/>
+
+
+
+			<simpleemitter				
+				spawnrate="5000"
+				count="1"
+				particlelife="5000"
+				minangle="0"
+				maxangle="0"				
+				direction="1 0 0"
+			>
+				<particle
+					turn="true"
+				>
+					<model						
+						life="400"
+						position="0 0 0"
+						startscale="2.165"
+						midscale="3.365"
+						endscale="4.565"
+						model="../puff/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".8"
+						midalpha=".8"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						yaw="90"
+					>
+					</model>
+					<model						
+						life="400"
+						position="0 0 0"
+						startscale="2.165"
+						midscale="3.365"
+						endscale="4.565"
+						model="../puff/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".8"
+						midalpha=".8"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						yaw="90"
+					>
+					</model>
+					<model						
+						life="100"
+						position="5 0 0"
+						startscale="3.165"
+						midscale="3.365"
+						endscale="3.565"
+						model="../model/bang.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						pitch="90"
+						roll="-90"
+					>
+					</model>
+					<model
+						life="300"
+						position="5 0 0"
+						startscale="3.165"
+						midscale="3.365"
+						endscale="3.265"
+						model="../model/bang.mdf"
+						anim="idle"
+						color="1 1 1"
+						startalpha=".65"
+						midalpha=".65"
+						endalpha="0"
+						midalphapos=".35"
+						directionalspace="local"
+						pitch="90"
+						roll="-90"
+					>
+					</model>					
+					
+				</particle>
+			</simpleemitter>
+
+						
+			
+
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

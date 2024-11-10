@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Minerva_Ability1_Charges"
+	
+	ishidden="true"
+	impactinterval="5000"
+	maxcharges="2"
+
+>
+	<oninflict>
+		<starttimer entity="proxy_entity" duration="5000" applycooldownreduction="true"/>
+	</oninflict>
+	
+	<onimpact>
+		<addcharges entity="proxy_entity" count="1" />
+		<compare a="charges" b="1" op="gt">
+			<starttimer entity="proxy_entity" duration="5000" applycooldownreduction="true"/>
+			<changeduration b="5000" op="max" />
+		</compare>
+		<removecharge />
+	</onimpact>
+</state>

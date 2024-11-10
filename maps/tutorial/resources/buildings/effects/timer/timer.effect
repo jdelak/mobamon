@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="0.4">
+		
+		<model
+			scale="1"
+			
+			model="timer.mdf"
+			anim="idle"
+			pitch="90"
+			yaw="5"
+			position="0 0 500"
+			
+				
+			
+			
+		>
+			<billboard		
+				material="/shared/effects/smaterials/whitedot.material"
+				bone="_bone_tip"				
+				size="100"
+				color="0 1 1"
+				depthbias="100"
+				
+			
+			/>	
+
+			<billboard		
+				material="/shared/effects/smaterials/whitedot.material"
+							
+				size="200"
+				color="0 1 1"
+				depthbias="-100"
+				
+				position="0 0 0"
+			/>				
+		</model>
+		
+		
+
+	
+	</particlesystem>
+
+
+</definitions>
+
+<thread>
+
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/> 	
+	<waitfordeath instance="instance0" />
+	<!-- <die /> -->
+</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

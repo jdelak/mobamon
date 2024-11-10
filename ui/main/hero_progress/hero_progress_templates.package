@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="playerProfileHeroProgressFrame">
+		<panel name="{id}" visible="0" y="{y}" x="{x}" width="100s" height="100s" align="center" noclick="1">
+			<image name="{id}Hero" texture="/heroes/ace/icon.tga" hmargin="10s" vmargin="10s" noclick="1" />
+			<!-- Earned Marker -->
+			<panel name="{id}Earned" hmargin="10s" vmargin="10s" color="0 0 0 .6" visible="{isEarned=0}">
+				<image texture="/ui/main/shared/textures/stylized_check.tga" hmargin="14s" vmargin="14s" noclick="1" />
+			</panel>
+			<image texture="/ui/shared/textures/account_icons/{frame}.tga" />
+			<label y="99%" style="labelBase" textalign="center" font="subdyn_13" color=".7 .7 .7 1" content="player_profile_hero_progress_earned" noclick="1" />
+			<label y="113%" style="labelBase" textalign="center" wrap="1" lineheight="13" font="subdyn_13" color="1 1 1 1" content="{earnedLabel}" noclick="1" />
+		</panel>
+	</template>
+
+	<template name="playerProfileHeroProgressEntry_level_star">
+		<panel width="100@" height="100%" noclick="1" >
+			<image name="playerProfileHeroProgressEntry_level_star_{index}_1" texture="/ui/shared/textures/star.tga" noclick="1"  />
+			<panel name="playerProfileHeroProgressEntry_level_star_{index}_2" align="right" clip="1" noclick="1" color="invisible"  >
+				<image texture="/ui/shared/textures/star.tga" align="right" width="100@" rendermode="grayscale" color=".3 .3 .3 .9" noclick="1"  />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="playerProfileHeroProgressEntry">
+		<button name="playerProfileHeroProgressEntry{id}" color="invisible" passivechildren="true">			
+			<frame name="playerProfileHeroProgressEntry{id}hoverGlow" texture="/ui/shared/frames/frameglow.tga" y="-2.4%" width="+5%" height="70%" borderthickness="12s" color=".4 .9 1 .6" align="center" valign="top" rendermode="additive" noclick="1" visible="0" />			
+			<image name="playerProfileHeroProgressEntry{id}Icon" width="66@" height="66%" align="center" y="9s" noclick="1" texture="{icon}"/>			
+			<frame texture="/ui/shared/frames/inner_glow.tga" width="66@" height="66%" borderthickness="10s" bordercolor="0 0 0 .7" align="center" y="9s" noclick="1"  />
+			<image name="playerProfileHeroProgressEntry{id}Frame" group="playerProfileHeroProgressEntryFrames" texture="/ui/main/shared/textures/iconframe_interactive_txt2.tga" width="100@" height="100%" align="center" color="1 1 1 1" noclick="1" />			
+			<!-- HOVER state -->
+			<panel name="playerProfileHeroProgressEntry{id}Hover" visible="0" noclick="1">
+				<image texture="/ui/main/shared/textures/iconframe_interactive_txt2_hover.tga" width="100@" height="100%" align="center" noclick="1" />
+			</panel>			
+			<!-- Mastered Hero -->
+			<panel name="playerProfileHeroProgressEntry{id}Mastered" visible="0" noclick="1">
+				<modelpanel visible="1" height="100%" width="120%" align="center"
+					noclick="true"
+					y="-2" x="2s"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/shared/effects/mastery_flames.effect"
+					camerapos="26 0 50"
+					cameraangles="0 0 0"
+					camerafov="84"
+					depthclear="true"
+					depthcompress="true"
+				/>
+				<image name="playerProfileHeroProgressEntry{id}Star_1" y="-21s" width="20s" height="20s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image name="playerProfileHeroProgressEntry{id}Star_2" y="-20s" x="-16s" width="18s" height="18s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image name="playerProfileHeroProgressEntry{id}Star_3" y="-20s" x="16s" width="18s" height="18s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image name="playerProfileHeroProgressEntry{id}Star_4" y="-18s" x="-30s" width="16s" height="16s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image name="playerProfileHeroProgressEntry{id}Star_5" y="-18s" x="30s" width="16s" height="16s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+			</panel>
+			<!-- Hero Name -->		
+			<label name="playerProfileHeroProgressEntry{id}Name" y="-5s" valign="bottom" textvalign="bottom" textalign="center" font="subdyn_13" style="labelBase" color="1 1 1 1" content="{heroName}" noclick="1"/>		
+		</button>
+		<!-- ELO/Rank -->
+		<image
+			name="playerProfileHeroProgressEntry{id}RankIcon"
+			texture="/ui/main/shared/textures/elo_rank_1.tga" width="52s" height="52s" x="-5s" y="-6s" visible="0"
+			onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('player_rank_hero_1'), Translate('player_rank_hero_tip'), libGeneral.HtoP(34))"
+			onmouseoutlua="simpleTipGrowYUpdate(false)"
+		/>
+	</template>
+	
+	
+</package>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_EnvironmentTrigger_Snake_Red_Anim"
+
+	
+	
+	ishidden="true"
+>
+	<oninflict>
+		<condition test="hasstate State_EnvironmentTrigger_Snake_Red_RunAway" target="source_entity" />
+		<else>
+			<playanim name="Run" target="source_entity"/>
+			<playeffect effect="/world/sprops/jungle/snake/trigger_effect/trigger_red.effect" target="source_entity"/>
+			<applystate name="State_EnvironmentTrigger_Snake_Red_RunAway" target="source_entity" continuous="true" />
+		</else>
+	</oninflict>
+
+</state>

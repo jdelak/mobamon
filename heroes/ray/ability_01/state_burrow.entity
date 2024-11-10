@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Ray_Ability1_Burrow"
+	
+	icon=""
+	passiveeffect=""
+	
+	
+	effecttype=""
+	impactinterval="50"
+>
+	<oninflict>
+		<spawnaffector name="Affector_Ray_Ability1_Hazard" owner="this_owner_entity" source="this_owner_entity" target="this_owner_entity" />
+		<setaccumulator value="0" />
+	</oninflict>
+	<onimpact>
+		<compare a="accumulator" b="1" op="ne">
+			<removecharge entity="proxy_entity" />
+			<setaccumulator value="1" />
+		</compare>
+	</onimpact>
+	<onexpired>
+		<areaofeffect
+			radius="350"
+			targetselection="closest"
+			targetscheme="enemy_units"
+			effecttype="Magic"
+			source="target_entity"
+			center="target_entity"
+			maxtotalimpacts="1"
+		>
+			<applystate name="State_Ray_Ability1_Iseeyou" duration="600" target="this_owner_entity" proxy="target_entity" />
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<applystate name="State_Ray_Ability1_Stealth" continuous="true" target="this_owner_entity" />
+		</compare>
+	</onexpired>
+</state>

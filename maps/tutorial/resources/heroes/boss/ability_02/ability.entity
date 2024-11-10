@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Tutorial_Boss2"
+
+	icon="icon.tga"
+	
+	anim="tutorial_ability_2"
+	casttime="400"
+	castactiontime="400"
+
+	actiontype="target_position"
+	targetradius="70"
+	casteffecttype="Magic"
+	targetscheme="enemy_units"
+	casteffect="effects/cast.effect"
+	
+	manacost="0"
+	cooldowntime="0"
+
+	range="1200"
+
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+	
+>
+	
+	<onimpact>
+		<spawnprojectile name="Projectile_Tutorial_Boss_Ability2" source="source_entity" target="target_position" proxy="target_entity" bind="source_entity" bindstate="State_Tutorial_Baldir_Bind"/>
+		<playeffect effect="effects/ring.effect" target="target_position" source="target_position" />
+	</onimpact>
+	
+	
+</ability>

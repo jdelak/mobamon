@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="">
+
+				<simpleemitter	
+					position="0 0 150"
+					speed="100"
+					spawnrate="40"
+					minparticlelife="300"					
+					maxparticlelife="600"					
+					offsetsphere="35 35 0"
+					material="/shared/effects/materials/bubble_add.material"
+				>
+					<particle	
+						color="{zcolor}"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startsize="50"
+						endsize="0"
+						depthbias="-160"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zcolor=".75 .25 1"/>
+			<instance name="" zcolor="1 .5 .5"/>
+			<instance name="" zcolor="0 0 1"/>
+			<instance name="" zcolor="0 1 0"/>
+
+			<simpleemitter	
+				position="0 0 150"
+				speed="100"
+				spawnrate="15"
+				minparticlelife="300"					
+				maxparticlelife="600"					
+				offsetsphere="12 12 0"
+				material="/shared/effects/materials/bubble_add.material"
+			>
+				<particle	
+					color=".75 .25 1"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startsize="100"	
+					endsize="100"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color="1 .5 .5"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startsize="100"	
+					endsize="100"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color="0 0 1"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startsize="100"	
+					endsize="100"
+					depthbias="-160"
+				/>
+				
+				<particle	
+					color="0 1 0"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startsize="100"	
+					endsize="100"
+					depthbias="-160"
+				/>
+
+			</simpleemitter>
+
+			<simpleemitter	
+				count="6"
+				position="0 0 150"
+				speed="100"
+				spawnrate="15"
+				minparticlelife="300"					
+				maxparticlelife="600"					
+				offsetsphere="20 20 0"
+				material="/shared/effects/materials/bubble_add.material"
+			>
+				<particle	
+				>
+					<model
+						bone="_bone_centerofchest"
+						life="500"
+						startcolor=".125 .125 .125"
+						endcolor="0 0 0"
+						startscale=".6"
+						endscale=".2"
+						model="shield/shield.mdf"
+						minrollspeed="-180"
+						maxrollspeed="180"
+						minyawspeed="-360"
+						maxyawspeed="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

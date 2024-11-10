@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" useentityeffectsscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.85" 
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<billboard
+				position="0 0 0"
+				bone="_bone_weapon3"
+				life="360"
+				material="/shared/effects/smaterials/flare.material"
+				size="150"
+				startcolor="1 .75 .5"
+				endcolor="0 0 0"
+				width="300"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				bone="_bone_weapon3"
+				life="360"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="150"
+				startcolor=".5 .35 .2"
+				endcolor="0 0 0"
+			/>
+
+<!--
+			<simpleemitter
+				bone="_bone_weaponattach"
+				life="3000"
+				count="1"
+				spawnrate="250"
+				particlelife="1000"
+				direction="0 1 0"
+				speed="0"
+				minangle="0"
+				maxangle="0" 
+				position="0 0 0"
+			>
+				<particle
+				turn="true"
+				>
+					<billboard
+						position="0 0 0"
+						bone="_bone_weaponattach"
+						life="150"
+						material="/shared/effects/materials/flare2.material"
+						startsize="125"
+						endsize="0"
+						midheightpos=".75"
+						width="40"
+						lockup="1"
+						lockright="1"
+						startcolor="1 1 1"
+						endcolor="0 0 0"
+						depthbias="25"
+						directionalspace="local"
+					/>
+
+					<billboard
+						position="0 0 0"
+						bone="_bone_weaponattach"
+						life="150"
+						material="/shared/effects/materials/blink.material"
+						size="90"
+						lockup="1"
+						lockright="1"
+						startcolor="1 1 1"
+						midcolor=".5 0 .75"
+						endcolor="0 0 0"
+						depthbias="-100"
+						directionalspace="local"
+					/>
+					
+					<billboard
+						position="0 0 0"
+						bone="_bone_weaponattach"
+						life="150"
+						param="0.02"
+						startsize="15"
+						endsize="125"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						material="/shared/effects/materials/refract_pinch.material"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="250"
+				bone="_bone_center"
+				life="600"
+				count="10"
+				position="0 0 0"
+				spawnrate="50"				
+				particlelife="1000"
+				gravity="-3.0"
+				offsetsphere="15"
+				direction="0 0 1"
+				depthbias="-40"
+         	>
+				<particle>
+					<billboard
+						position="0 0 20"
+						delay="250"
+						life="250"
+						color="1 1 1"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos="0.75"
+						startparam=".5"
+						endparam="0"
+						startsize="40"
+						endsize="65"
+						material="/shared/effects/materials/refract_ring.material"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="250"
+				bone="_bone_center"
+				life="600"
+				count="5"
+				position="0 0 20"
+				spawnrate="500"				
+				particlelife="1000"
+				gravity="-3.0"
+				offsetsphere="15"
+				direction="0 0 1"	
+          		material="/shared/effects/materials/dust.material"
+				depthbias="-40"
+         	>
+				<particle
+					color=".2 0 .3"
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="0"
+					midcolorpos=".1"
+					maxanglespeed="0"
+					startsize="50"			
+					endsize="100"			
+					startalpha=".5"
+					endalpha="0"
+					
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				delay="350"
+				bone="_bone_center"
+				life="350"
+				count="2"
+				position="0 0 20"
+				spawnrate="500"				
+				particlelife="1000"
+				gravity="-1"
+				offsetsphere="15 15 0"
+				direction="0 0 1"	
+          		material="/shared/effects/materials/whitedot.material"
+				depthbias="-40"
+         	>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".2 .15 .25"
+					endcolor="0 0 0"
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="0"
+					midcolorpos=".1"
+					maxanglespeed="0"
+					startsize="50"			
+					endsize="100"			
+					startalpha=".5"
+					endalpha="0"
+				/>
+			</simpleemitter>
+-->
+      </particlesystem>
+   </definitions>
+   <thread>
+		<spawnparticlesystem instance="instance0"  particlesystem="system0" />	
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<camerashake2 scale="15" radius="3000" duration="250" frequency="15" />
+		<spawnmodifier instance="instance2" modifier="modifier1"/> 
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />	  
+		<!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

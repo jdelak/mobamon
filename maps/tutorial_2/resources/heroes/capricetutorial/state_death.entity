@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial2_Death"
+
+	modifierkey="require_level"
+
+	ishidden="true"
+	deathpersist="true"
+	maxcharges="3"
+	movementspeedpercharge="20"
+>
+
+	<ondeath>
+		<addcharges/>
+	</ondeath>
+
+	<onattackeddamageevent>
+		<setvar0 a="charges" b="0.2" op="mult" />
+		<setvar0 a="1" b="var0" op="sub" />
+		<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+	</onattackeddamageevent>
+
+	<ondamage>
+		<compare a="charges" b="1" op="eq" >
+			<scaledamage scale="1.25" />
+		</compare>
+
+		<compare a="charges" b="2" op="ge" >
+			<scaledamage scale="1.5" />
+		</compare>
+	</ondamage>
+
+</state>

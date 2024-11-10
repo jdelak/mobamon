@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hero
+	name="Bastact1_Enemy_Executioner"
+
+	level="1"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+	gibanim=""
+	deniedanim=""
+
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	rewardsoundself=""
+	rewardsoundteam=""
+	rewardsoundenemy=""
+	
+	aggrosound=""
+	showaggropopup="false"
+	alwaysvisible="true"
+  
+	preglobalscale="1.4"
+	modelscale="1.5"
+	effectscale="1"
+	boundsheight="64"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="16"
+	selectionradius="50"
+	targetoffset="0 0 54"
+
+	movespeed="250"
+	turnrate="320"
+	turnsmoothing="0.05"
+	
+
+	maxhealth="2000"
+	healthregen="0"
+	healthproportionregen="0"
+	maxmana="0"
+	manaregen="0"
+
+	armor="75"
+	magicarmor="75"
+
+	largeunit="true"
+	
+	inventory0="Ability_Executioner3_Enemy1"
+	inventory1="Ability_Executioner3_Enemy2"
+	inventory2="Ability_Executioner3_Enemy3"
+	inventory3="Ability_Executioner3_Enemy4"
+	inventory4="Ability_Executioner3_Enemy5"
+	inventory5="Ability_Executioner3_Enemy6"
+	inventory6="Ability_Executioner3_Enemy7"
+	inventory7=""
+  
+	walknumanims="1"
+	attackactiontime="350" 
+	attackduration="1100"  
+	attackcooldown="2000" 
+	attackdamagemin="50"
+	attackdamagemax="100"
+	deathnumanims="1"
+	attacknumanims="2"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="180"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep1/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="visible_enemy_heroes"
+	leashaggroscheme="visible_enemy_heroes"
+	attackdamagetype="AttackDamage"
+
+	pathing="true"
+	canattack="true"
+	ismobile="true"
+	aggrorange="0"
+	proximityrange="500"
+	sightrangeday="5000"
+	sightrangenight="5000"
+	
+
+	experiencebounty=""
+  
+	maxdivisiblebountyperplayer=""
+	totaldivisiblebounty=""
+	
+	corpsetime="0"
+	corpsefadetime="1500"
+	deathanim="death_1"
+	deathtime="90000"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+	
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+>
+	<onspawn>
+		<applystate name="Bastact1_State_Executioner2_Stage1" target="this_entity" duration="-1" />
+		<expirestate name="State_NonCombatRegenTutorial" target="this_entity"/>
+		<!-- <applystate name="Bastact1_State_Executioner2_KeepInCombat" target="source_entity" duration="-1" /> -->
+		<!-- <applystate name="Bastact1_State_Executioner2_Stage2" target="source_entity" duration="-1" /> -->
+	</onspawn>
+	
+	<ondamaged>
+		<setvar0 a="source_health" b="source_maxhealth" op="div" />
+		<clientuitrigger name="bossHealthbar_Update" value="var0"/>
+ 	</ondamaged>
+
+	<onkill>
+		<entitytype type="Hero_Bastion1Bastact1">
+			<playeffect effect="effects/death_taunts.effect" source="this_entity" target="this_entity"/>
+		</entitytype>
+	</onkill>	
+
+	<onkilled>
+		<clientuitrigger name="bossHealthbar_TurnOff" />
+		<setscriptvalue name="Executioner_dead" value="1" />
+		<playanim source="this_entity" target="this_entity" name="death_1" />
+	</onkilled>	
+
+	<onrespawn>
+		<delete target="this_entity" />
+	</onrespawn>
+
+	<modifier key="invuln" modpriority="100"
+		invulnerable="true"
+		canattack="false"
+		ismobile="false"
+		hidealtinfo="true"
+		stunned="true"
+	>
+	</modifier>
+
+	<modifier key="no_bag" modpriority="100"
+		model="executioner_w_axe_no_bag/model.mdf"
+		/>
+
+	<modifier key="spin_axe" modpriority="100"
+		model="model_spin_axe.mdf"
+	>
+	</modifier>
+
+	<modifier key="cinematic_mode" modpriority="100"
+		hidealtinfo="true">
+	</modifier>
+
+	<modifier key="no_boundingbox" modpriority="98"
+		boundsheight="0"
+		boundsradius="0"
+		targetoffset="0 0 0"
+	>
+	</modifier>
+
+	<modifier key="fast" modpriority="100"
+		movespeed="350"/>
+
+
+</hero>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="state_bastact1_invincible"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+
+	ishidden="true"
+>
+
+	<ondamaged priority="1">
+    	<setvar0 a="source_health" b="damage_applied" op="sub" />
+		<setvar1 a="var0" b="source_maxhealth" op="div" />
+  		<compare a="var1" b=".35" op="le">
+ 			<heal target="source_entity" a="source_damage" />
+			<scaledamage scale="0.0" />
+  		</compare>
+	</ondamaged>			
+	
+</state>

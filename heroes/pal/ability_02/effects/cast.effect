@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+<definitions>
+
+<!-- M -->
+<modifier name="modifier0" life="800" startcolor="10 10 10" midcolor="1 1 1" endcolor="1 1 1" midcolorpos=".8" alpha="0"/>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="2.15">
+
+		<sound volume=".35" sample="../sounds/sfx_cast.wav" linearfalloff="true" falloffstart="500" falloffend="2400"/>
+		<simpleemitter position="0 50 0" count="1" spawnrate="5000" particlelife="2000" directionalspace="local" particledirectionalspace="local">
+			<particle>
+				<light position="0 0 200" life="500" startcolor="0 2 10" endcolor="0" falloffstart="0" startfalloffend="300" endfalloffend="300" directionalspace="local"/>
+			</particle>
+		</simpleemitter>
+		<model life="1000" parentmodel="true" parentskeleton="true" parentskin="true" startalpha="1" endalpha="1" scale="1"/>
+
+</particlesystem>
+
+<!-- 1 -->
+<particlesystem name="system1" space="world" scale="3.7">
+
+		<simpleemitter count="10" position="0 0 0" spawnrate="25" particlelife="1000" minangle="0" maxangle="1" direction="0 1 0" offsetsphere="25 25 0">
+			<particle turn="1">	
+				<billboard position="0 0 0" bone="_bone_root" life="2000" material="/shared/effects/smaterials/tornado_crack.material" minscale="1" maxscale="1.25" color="1 1 1" startalpha=".35" endalpha="0" directionalspace="local" minroll="0" maxroll="360" lockup="1" lockright="1" pitch="90" depthbias="-12"/>
+			</particle>
+		</simpleemitter>
+		<template name="wheelDust">
+			<simpleemitter count="25" position="0 0 0" delay="{zdelay}" spawnrate="5000" life="50" minparticlelife="350" maxparticlelife="700" minspeed="0" maxspeed="200" material="/shared/effects/smaterials/cartoon_dust_brown_desaturated.material" minangle="0" maxangle="1" direction="0 0 1" offsetradial="30 0 0" offsetsphere="10 10 0" depthbias="-75" directionalspace="local">
+				<particle minangle="0" maxangle="360" minanglespeed="-55" maxanglespeed="55" startcolor="1" endcolor=".25" startsize="10" endsize="15" startalpha=".6" endalpha="0" midalphapos=".5" turn="true"/>
+				<particle minangle="0" maxangle="360" minanglespeed="-55" maxanglespeed="55" startcolor="1" endcolor=".25" startsize="20" endsize="25" startalpha=".6" endalpha="0" midalphapos=".5" turn="true"/>
+			</simpleemitter>
+		</template>
+		<instance name="wheelDust" zdelay="100"/> <instance name="wheelDust" zdelay="200"/> <instance name="wheelDust" zdelay="300"/> <instance name="wheelDust" zdelay="400"/> <instance name="wheelDust" zdelay="500"/>
+		<instance name="wheelDust" zdelay="600"/> <instance name="wheelDust" zdelay="700"/> <instance name="wheelDust" zdelay="800"/> <instance name="wheelDust" zdelay="900"/> <instance name="wheelDust" zdelay="1000"/> <instance name="wheelDust" zdelay="1100"/>
+	
+		<template name="">
+			<simpleemitter delay="0" bone="_bone_center" count="3" position="{zpos}" spawnrate="50" particlelife="2000" offsetsphere="0 0 0">
+				<particle>
+					<debris minscale=".12" maxscale=".2" minlife="500" maxlife="1000" model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf" anim="idle" minspeed="200" maxspeed="1800" minangle="0" maxangle="45" direction="0 0 1" gravity="250" acceleration="0" drag="0" color="1.2 1.1 1" startalpha="1" midalpha="1" endalpha="0" midalphapos=".8" bounce=".1" reflect=".8" collide="false" animpose="false" offsetsphere="75 75 0" directionalspace="local"/>
+				</particle>
+			</simpleemitter>
+		</template>
+		<instance name="" zpos="0 0 -25"/>
+
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+<spawnmodifier instance="instance2" modifier="modifier0"/>  
+<waitfordeath instance="instance0"/>
+<waitfordeath instance="instance1"/>
+<waitfordeath instance="instance2"/>
+</thread>
+</effect>

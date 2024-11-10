@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<familiar
+	name="Familiar_Razer"
+	
+	icon="model_2\icon.tga"
+	portrait="model_2\icon.tga"
+	model="model_2\model.mdf"
+	skin=""
+	
+	enabled="true"
+	
+	passiveeffect="effects/body_ready.effect"
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	petselectannouncement="sounds/sfx_selectpet.wav"
+	
+	preglobalscale="1.2"
+	modelscale="2.5"
+	effectscale="1.0"
+	boundsheight="64"
+	radiusheight="64"
+	boundsradius="16"
+	selectionradius="32"
+	targetoffset="0 0 0"
+	iscontrollable="false"
+	invulnerable="true"
+	hidealtinfo="true"
+	isselectable="false"
+	nothreat="true"
+	inheritvisibilityfromowner="true"
+	matchownermovespeed="true"
+
+	movespeed="300"
+	turnrate="450"
+	turnsmoothing="0.05"
+	
+	unitwalking="true"
+
+	maxmana="0"
+	manaregen="0"
+
+	resistance="0"
+	immunity="GadgetImmunity"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	
+	canattack="false"
+	attacktargetscheme="nothing"
+	attacktype="none"
+	combattype="Melee"
+
+	aggrorange="0"
+	sightrangeday="0"
+	sightrangenight="0"
+	
+	flying="false"
+	flyheight="200"
+	diewithowner="true"
+	unittype="EmeraldWardenpet AntiTP"
+	
+	corpsetime="0"
+	corpsefadetime="0"
+	
+	corralmodelscale="0.75"
+	corralmodelposition="5 350 -7"
+	corralmodelorient="0 0 150"
+	
+	heroselectmodelscale=".75"
+	heroselectmodelposition="0 350 0"
+	heroselectmodelorient="0 0 220"
+
+	combinevisibilitywithowner="true"
+	
+	abilitypassive=""
+	abilitytriggered="Ability_Razer_TriggeredPassive_1,Ability_Razer_TriggeredPassive_2,Ability_Razer_TriggeredPassive_3"
+	abilityactive="Ability_Razer_Ult_1,Ability_Razer_Ult_2,Ability_Razer_Ult_3"
+>
+
+	<onframe>
+		<applystate name="State_Familiar_Follow_Logic" continuous="true" target="this_entity" />
+		<getlevel entity="this_owner_entity" />
+		<setvar0 a="result" />
+		<pushability entity="this_owner_entity" slot="16" />
+		<setlevel entity="stack_entity" value="var0" />
+		<pushability entity="this_owner_entity" slot="17" />
+		<setlevel entity="stack_entity" value="var0" />
+		<pushability entity="this_owner_entity" slot="18" />
+		<setlevel entity="stack_entity" value="var0" />
+	</onframe>
+
+	<modifier key="familiar_razer_notready" modpriority="100" passiveeffect="effects/body.effect"/>
+	<modifier key="passive_1" 	modpriority="1" abilitypassive="Ability_Razer_Passive2_1,Ability_Razer_Passive2_2,Ability_Razer_Passive2_3"/>
+	<modifier key="baby" 		modpriority="1" altavatar="true" icon="model_1\icon.tga" portrait="model_1\icon.tga" model="model_1\model.mdf" corralmodelscale="0.65" corralmodelposition="5 350 -7" corralmodelorient="0 0 150" heroselectmodelscale=".65" heroselectmodelposition="0 350 0" heroselectmodelorient="0 0 220" modelscale="2" />
+	<modifier key="adult" 	  	modpriority="1" altavatar="true" icon="model_3\icon.tga" portrait="model_3\icon.tga" model="model_3\model.mdf" corralmodelscale="0.75" corralmodelposition="8 350 -7" corralmodelorient="0 0 150"  heroselectmodelscale=".75" heroselectmodelposition="5 350 0" heroselectmodelorient="0 0 220" preglobalscale="1" />
+	
+</familiar>

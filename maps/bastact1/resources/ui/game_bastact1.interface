@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_bastact1" reverse="false">
+
+<moviepanel group="videowidgets" name="videowidget" bgcolor="black" valign="bottom" visible="false" noclick="1"
+		onmoviefinished="
+			println('onmoviefinished')
+			
+			local optionsButton = self:GetWidget('speMenuButton')
+			
+			self:GetWidget('movieBackerBG'):SetVisible(false)
+			self:GetWidget('movieEscTextbox'):SetVisible(false)
+			self:UICmd('SendScriptMessage(\'video_finished\', 1)')
+			SetMoviePlaying(false)
+			self:SetVisible(false)
+			
+			if optionsButton then
+				optionsButton:FadeIn(1000)
+			end
+			
+			UnMuteSound()
+			
+		"
+	/>
+
+<moviepanel group="videowidgets" name="videowidget2" bgcolor="black" valign="bottom" visible="false" noclick="1"
+		onmoviefinished="
+			println('onmoviefinished')
+			
+			local optionsButton = self:GetWidget('speMenuButton')
+			
+			self:GetWidget('movieBackerBG'):SetVisible(false)
+			self:GetWidget('movieEscTextbox'):SetVisible(false)
+			self:UICmd('SendScriptMessage(\'video_finished\', 1)')
+			SetMoviePlaying(false)
+			self:SetVisible(false)
+			
+			if optionsButton then
+				optionsButton:FadeIn(1000)
+			end
+			
+			UnMuteSound()
+			
+		"
+	/>
+
+<panel noclick="true">
+	<panel name="movieBackerBG" onshowlua="self:Sleep(1000, function(self) self:FadeOut(500) end)" color="black" noclick="1"/>
+
+	
+	
+	
+	<panel name="movieInstantiationTarget" color="invisible" noclick="1"/>
+
+	<textbox name="movieEscTextbox" onshowlua="self:SetFocus(true)" font="maindyn_10" color="invisible" textcolor="invisible" noclick="1"/>			
+		
+	<!--
+	===========================	
+	Includes
+	===========================
+	-->
+	<include file="/ui/game/boss_healthbar/boss_healthbar.package"/>
+	<childinterface file="/ui/shared/options/options.interface"/>
+	
+	<!-- Needed for progress tracking -->
+	<panel name="spe_widget" noclick="true" color="invisible"/>
+	<panel name="spe_scriptWidget" noclick="true" color="invisible"/>
+
+
+</panel>
+	
+	<!--
+	===========================	
+	Event Triggers
+	===========================
+	-->	
+	<trigger name="video_start"/>
+	<trigger name="bastact1_opening_sound" />
+	
+	<!-- Map specific Triggers -->
+	<trigger name="mapTriggerAbilityHide" />
+	<trigger name="mapTriggerAbilityShow" />
+	<trigger name="genericMapTriggerHide" />
+	<trigger name="genericMapTriggerShow" />
+	<trigger name="altInfoSelfMapTriggerHide" />
+	<trigger name="altInfoSelfMapTriggerShow" />
+	<trigger name="altInfoHeroMapTriggerShow" />
+	<trigger name="altInfoHeroMapTriggerHide" />
+	<trigger name="mapTriggerActObjectives" />
+	<trigger name="mapTriggerActObjectivesHide" />
+
+	<trigger name="tutorial_darkenWidgetShop_Item_Gauntlet"/>
+	<trigger name="tutorial_spotlightWidgetShop_Item_Gauntlet"/>
+	<trigger name="tutorial_pointWidgetShop_Item_Gauntlet"/>	
+	<trigger name="tutorial_forceSelect_Item_Gauntlet"/>
+	
+	<trigger name="objectives_turnOn" />
+	<trigger name="objectives_turnOff" />
+	
+	<trigger name="interface_turnOn"/>
+	<trigger name="interface_turnOff"/>
+	
+	<trigger name="tutorial2_dialogue0"/>
+	<trigger name="bastact1_dialogue1"/> <!-- Rook -->
+	<trigger name="bastact1_dialogue2"/> <!-- Bastion -->
+	<trigger name="bastact1_dialogue3"/> <!-- Rook -->
+	<trigger name="bastact1_dialogue4"/> <!-- Rook -->
+	<trigger name="bastact1_dialogue5"/> <!-- Executioner enters Hall -->
+	<trigger name="bastact1_dialogue6"/> <!-- Bastion -->
+	<trigger name="bastact1_dialogue7"/> <!-- Bastion -->
+	<trigger name="bastact1_dialogue8"/> <!-- Bastion -->
+	<trigger name="bastact1_dialogue9"/> <!-- Bastion -->
+	<trigger name="bastact1_dialogue10"/> <!-- Bastion -->
+	<trigger name="bastact1_dialogue11a"/> <!-- Arachnophobic Guard -->
+	<trigger name="bastact1_dialogue11b"/> <!-- Arachnophobic Guard -->
+	<trigger name="bastact1_dialogue12"/> <!-- Bastion -->
+	<trigger name="bastact1_bossbattle_interlude1"/>
+	<trigger name="bastact1_bossbattle_interlude2"/>
+	<trigger name="bastact1_dialogue13"/> <!--Wizard intro -->
+	<trigger name="bastact1_dialogue14"/> <!--Wizard dying-->
+	<trigger name="bastact1_warning1" /> 
+	<trigger name="bastact1_warning2" />
+	<trigger name="bastact1_warning3" />
+	<trigger name="bastact1_gauntlet_intro1" />
+	<trigger name="bastact1_gauntlet_intro2" />
+	<trigger name="bastact1_gauntlet_throughWindow" />
+	<trigger name="bastact1_gauntlet_guardRunningForDoor" />
+	<trigger name="bastact1_gauntlet_RookShootDoor" />
+	<trigger name="bastact1_Executioner_Chase" />
+	<trigger name="bastact1_Bastion_Chase" />
+	<trigger name="bastact1_guards1" /> <!--Guards talking about spiders -->
+	<trigger name="bastact1_guards2" /> <!--Guards talking about spiders -->
+	<trigger name="bastact1_guards3" /> <!--Guards talking about spiders -->
+	<trigger name="bastact1_tip1"/>
+	<trigger name="bastact1_tip1Hide" />
+	<trigger name="bastact1_spiderguard1" /> <!-- Spider guard taking damage -->
+	<trigger name="bastact1_spiderguard2" />
+	
+	<trigger name="bastact1_cinematic_blackOverlay" /> <!--Executioner Cinematic Black Overlay Intro-->
+
+	<trigger name="bastact1_cinematic_executioner1" /> <!--Executioner-->
+	<trigger name="bastact1_cinematic_executioner2" /> <!--Executioner-->
+	<trigger name="bastact1_cinematic_executioner3" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner4" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner5" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner6" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner7" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner8" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner9" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner10" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner11" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner12" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner13" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner14" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner15" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner16" /> <!--Bastion-->
+	<trigger name="bastact1_cinematic_executioner17" /> <!--Bastion-->
+
+	<trigger name="bastact1_cinematic_sewer1" />
+	<trigger name="bastact1_cinematic_sewer2"/>
+	<trigger name="bastact1_cinematic_nothing" />
+
+	<trigger name="bastact1_cinematic_wineceller1"/>
+	<trigger name="bastact1_cinematic_wineceller2"/>
+	<trigger name="bastact1_cinematic_wineceller3"/>
+	<trigger name="bastact1_cinematic_wineceller4"/>
+	<trigger name="bastact1_cinematic_wineceller5"/>
+	<trigger name="bastact1_cinematic_wineceller6"/>
+	<trigger name="bastact1_cinematic_wineceller7"/>
+	<trigger name="bastact1_cinematic_wineceller8"/>
+	<trigger name="bastact1_cinematic_wineceller9"/>
+	<trigger name="bastact1_cinematic_wineceller10"/>
+	<trigger name="bastact1_cinematic_wineceller11"/>
+	<trigger name="bastact1_cinematic_wineceller12"/>
+	<trigger name="bastact1_cinematic_wineceller13"/>
+	<trigger name="bastact1_cinematic_wineceller14"/>
+
+	<trigger name="bastact1_cinematic_courtyard1"/>
+	<trigger name="bastact1_cinematic_courtyard2"/>
+	<trigger name="bastact1_cinematic_courtyard3"/>
+	<trigger name="bastact1_cinematic_courtyard4"/>
+	<trigger name="bastact1_cinematic_courtyard5"/>
+	<trigger name="bastact1_cinematic_courtyard6"/>
+	<trigger name="bastact1_cinematic_courtyard7"/>
+	<trigger name="bastact1_cinematic_courtyard8"/>
+	<trigger name="bastact1_cinematic_courtyard9"/>
+	<trigger name="bastact1_cinematic_courtyard10"/>
+	<trigger name="bastact1_cinematic_courtyard11"/>
+	<trigger name="bastact1_cinematic_courtyard12"/>
+	<trigger name="bastact1_cinematic_courtyard13"/>
+	<trigger name="bastact1_cinematic_courtyard14"/>
+	<trigger name="bastact1_cinematic_courtyard15"/>
+
+	<trigger name="bastact1_cinematic_guardhouse1"/>
+	<trigger name="bastact1_cinematic_guardhouse2"/>
+	<trigger name="bastact1_cinematic_guardhouse3"/>
+	<trigger name="bastact1_cinematic_guardhouse4"/>
+	<trigger name="bastact1_cinematic_guardhouse5"/>
+	<trigger name="bastact1_cinematic_guardhouse6"/>
+	<trigger name="bastact1_cinematic_guardhouse7"/>
+	<trigger name="bastact1_cinematic_guardhouse8"/>
+	<trigger name="bastact1_cinematic_guardhouse9"/>
+	<trigger name="bastact1_cinematic_guardhouse10"/>
+	<trigger name="bastact1_cinematic_guardhouse11"/>
+	<trigger name="bastact1_cinematic_guardhouse12"/>
+	<trigger name="bastact1_cinematic_guardhouse13"/>
+	<trigger name="bastact1_cinematic_guardhouse14"/>
+	<trigger name="bastact1_cinematic_guardhouse15"/>
+
+	<trigger name="bastact1_cinematic_guantlet1"/>
+	<trigger name="bastact1_cinematic_guantlet2"/>
+	<trigger name="bastact1_cinematic_guantlet3"/>
+	<trigger name="bastact1_cinematic_guantlet4"/>
+	<trigger name="bastact1_cinematic_guantlet5"/>
+	<trigger name="bastact1_cinematic_guantlet6"/>
+	<trigger name="bastact1_cinematic_guantlet7"/>
+	<trigger name="bastact1_cinematic_guantlet8"/>
+	<trigger name="bastact1_cinematic_guantlet9"/>
+
+	<trigger name="bastact1_cinematic_greathall1"/>
+	<trigger name="bastact1_cinematic_greathall2"/>
+	<trigger name="bastact1_cinematic_greathall3"/>
+	<trigger name="bastact1_cinematic_greathall4"/>
+	<trigger name="bastact1_cinematic_greathall5"/>
+	<trigger name="bastact1_cinematic_greathall6"/>
+	<trigger name="bastact1_cinematic_greathall7"/>
+	<trigger name="bastact1_cinematic_greathall8"/>
+	<trigger name="bastact1_cinematic_greathall9"/>
+	<trigger name="bastact1_cinematic_greathall10"/>
+	<trigger name="bastact1_cinematic_greathall11"/>
+	<trigger name="bastact1_cinematic_greathall12"/>
+	<trigger name="bastact1_cinematic_greathall13"/>
+	<trigger name="bastact1_cinematic_greathall14"/>
+	<trigger name="bastact1_cinematic_greathall15"/>
+	
+	<trigger name="bastact1_cinematic_final1"/>
+	<trigger name="bastact1_cinematic_final2"/>
+	<trigger name="bastact1_cinematic_final3"/>
+	<trigger name="bastact1_cinematic_final4"/>
+	<trigger name="bastact1_cinematic_final5"/>
+	<trigger name="bastact1_cinematic_final6"/>
+	<trigger name="bastact1_cinematic_final7"/>
+	<trigger name="bastact1_cinematic_final8"/>
+	<trigger name="bastact1_cinematic_final9"/>
+	<trigger name="bastact1_cinematic_final10"/>
+	<trigger name="bastact1_cinematic_final11"/>
+	<trigger name="bastact1_cinematic_final12"/>
+	<trigger name="bastact1_cinematic_final13"/>
+	<trigger name="bastact1_cinematic_final14"/>
+	<trigger name="bastact1_cinematic_final15"/>
+	<trigger name="bastact1_cinematic_final16"/>
+	<trigger name="bastact1_cinematic_final17"/>
+	<trigger name="bastact1_cinematic_final18"/>
+	<trigger name="bastact1_cinematic_final19"/>
+	<trigger name="bastact1_cinematic_final20"/>
+	<trigger name="bastact1_cinematic_final21"/>
+	<trigger name="bastact1_cinematic_final22"/>
+	<trigger name="bastact1_cinematic_final23"/>
+	<trigger name="bastact1_cinematic_final24"/>
+	<trigger name="bastact1_cinematic_final25"/>
+	<trigger name="bastact1_cinematic_final26"/>
+
+	<!-- Analytics -->
+	<trigger name="bastact1_initializeDeaths" />
+	<trigger name="bastact1_initializeRespawns" />
+	<trigger name="bastact1_playerDied" />
+	<trigger name="bastact1_playerDied_inSewer" />
+	<trigger name="bastact1_playerDied_inWineCellar"/>
+	<trigger name="bastact1_playerDied_inGauntlet" />
+	<trigger name="bastact1_playerDied_inChaseScene"/>
+	<trigger name="bastact1_playerDied_inHeroDefense" />
+	<trigger name="bastact1_playerDied_inWizardBoss" />
+	<trigger name="bastact1_playerDied_inExecutionerBoss" />
+	<trigger name="bastact1_playerDied_inExecutionerBoss_stage2" />
+	<trigger name="bastact1_playerDied_inExecutionerBoss_stage3" />
+	<trigger name="bastact1_playerRespawned" />
+
+	<trigger name="bastact1_startCampaign" />
+	<trigger name="bastact1_checkpoint_sewer" />
+	<trigger name="bastact1_checkpoint_wineCellar1" />
+	<trigger name="bastact1_checkpoint_wineCellar2_start" />
+	<trigger name="bastact1_checkpoint_wineCellar2_complete" />	
+	<trigger name="bastact1_checkpoint_captured" />
+	<trigger name="bastact1_checkpoint_guardTower_start" />
+	<trigger name="bastact1_checkpoint_guardTower_complete" />
+	<trigger name="bastact1_checkpoint_deathDoor" />
+	<trigger name="bastact1_checkpoint_chaseScene" />
+	<trigger name="bastact1_checkpoint_chaseScene_complete" />
+	<trigger name="bastact1_checkpoint_greatHall" />
+	<trigger name="bastact1_checkpoint_wizard" />
+	<trigger name="bastact1_killedWizard" />
+	<trigger name="bastact1_checkpoint_executioner_start" />
+	<trigger name="bastact1_executioner_startStage2" />
+	<trigger name="bastact1_executioner_startStage3" />
+	<trigger name="bastact1_killedExecutioner" />
+	<trigger name="bastact1_finishedAct1" />
+
+	<!-- End Game trigger -->
+	<trigger name="bastact1_endGame" />
+
+	<include file="/ui/game/map_optionsButton/map_optionsButton.package"/>
+	<include file="/ui/game/dialogue/dialogue.package"/>
+	<include file="/ui/game/map_objectives/map_objectives.package"/>
+	
+
+	<lua file="/maps/bastact1/resources/ui/scripts/spe.lua"/>
+	<lua file="/maps/bastact1/resources/ui/scripts/tutorial_config.lua"/>
+
+</interface>

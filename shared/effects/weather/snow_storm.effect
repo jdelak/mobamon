@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="snow" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world"  scale="1">
+
+			<sound
+				volume=".65" 
+				soundloop="true"
+				sample="/shared/sounds/ambiance/environment/weather/wind_6.wav"
+				linearfalloff="true"
+				falloffstart="2500"
+				falloffend="2500"
+				fadein="3000"
+				fadeout="1000"
+			/>
+
+			<sound
+				volume=".5" 
+				soundloop="true"
+				sample="/shared/sounds/ambiance/environment/weather/wind_5.wav"
+				linearfalloff="true"
+				falloffstart="2500"
+				falloffend="2500"
+				fadein="3000"
+				fadeout="1000"
+			/>
+
+			<precipemitter 
+				count="8000" 
+				minspeed="20"                                         
+				maxspeed="220"
+				direction="-.2 -.20 -1.0" 
+				angle="50" 
+				material="/shared/effects/materials/snowflake.material" 
+				drawdistance="550.0" 
+				offsetsphere="250"
+				
+		  	> 
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-120"
+					maxanglespeed="120"
+					size="2"
+					minscale="1"
+					maxscale="1.33"
+					alpha="0.68"
+					midalphapos="0.9"
+				/> 
+		  	</precipemitter> 
+
+			<terrainemitter
+				timenudge="50000"
+				spawnrate="30"
+				range="2500"
+				position="0 -20 0"
+				depthbias="-300"
+			>
+				<particle 
+					startalpha="0" midalpha="1" endalpha="0"
+				>	
+					<simpleemitter	
+						maxspeed="100"
+						direction="1 0 0" 
+						angle="25"	
+						count="1"
+						particlelife="3100"			
+						position="0 0 650"
+						material="/shared/effects/materials/dust_smoke_03.material" 
+					>
+						<particle
+							startalpha="0"
+							midalpha=".2"
+							endalpha="0"
+							size="557"
+							minscale="1"
+							maxscale="3"
+							minanglespeed="0"
+							maxanglespeed="30"
+							color=".4 .66 .9"
+						/>
+					</simpleemitter>
+					
+				</particle>
+			</terrainemitter>			 
+			
+			<terrainemitter
+				spawnrate="1000"
+				startrange="1500"
+				endrange="1500"
+				particlelife="2000"
+				position="0 -20 0"
+			>
+				<particle>
+					<simpleemitter		
+						count="1"
+						particlelife="1000"			
+						position="0 0 20"
+						material="/shared/effects/materials/snowflake.material" 
+					>
+						<particle
+							startalpha=".7"
+							endalpha="0"
+							size="7"
+							minscale="1"
+							maxscale="2"
+							position="0 0 5"
+							lockup="true"
+							pitch="90"
+						/>
+					</simpleemitter>
+					
+				</particle>
+			</terrainemitter>		
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

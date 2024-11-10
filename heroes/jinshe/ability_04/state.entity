@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_JinShe_Ability4"
+
+	icon="icon.tga"
+	displaylevel="true"
+	passiveeffect="effects/state_enemy.effect"
+	ishidden="true"
+	
+	effecttype=""
+>
+	<onframe>
+		<pushability target="source_owner_entity" entity="source_owner_entity" name="Ability_JinShe4" />
+		<getconstant name="damage_per_second" adjustmentsource="source_owner_entity" entity="stack_entity" />
+		<setvar0 a="result" b="frametime" op="mult" />
+
+		<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+	</onframe>
+</state>

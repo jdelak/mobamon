@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="lobbyRightClickMenuColor">
+		<button name="lobbyRightClickMenuColor{id}" passivechildren="true" color="invisible"
+			onloadlua="libButton2.initializeButton(self, 'lobbyRightClickMenuColor{id}', 'basicBounce')"
+		>
+			<panel name="lobbyRightClickMenuColor{id}Body" align="center" valign="center">
+				<frame color="0 0 0 0.25" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h" noclick="true"/>
+				<frame color="{color}" texture="/ui/elements:rounded_bg_white" bordercolor="{color}" borderthickness="0.5h" noclick="true" name="lobbyRightClickMenuColor{id}Image"/>
+			</panel>
+		</button>
+	</template>
+	
+	<template name="lobbyRightClickMenuOption">
+		<button width="100@" passivechildren="true" name="{buttonName}" color="invisible"
+			onloadlua="libButton2.initializeButton(self, '{buttonName}', 'basicBounce')"
+		>
+			<panel name="{buttonName}Body" align="center" valign="center">
+				<frame color="0 0 0 0.25" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h" noclick="true"/>
+				<frame color="#333333" texture="/ui/elements:rounded_bg_white" bordercolor="#333333" borderthickness="0.5h" noclick="true"/>
+				<panel hmargin="0.5h" vmargin="0.5h">
+					<image texture="{icon}" color="0 0 0 0.6" x="0.2h" y="0.2h"/>
+					<image texture="{icon}"/>
+				</panel>
+			</panel>
+		</button>
+	</template>
+
+	<panel width="21h" x="0.5h" y="0.5h" grow="true" regrow="true" name="lobbyRightClickMenu" visible="false"><!-- Mousing over this area should result in the menu disappearing -->
+		<frame color="1 1 1 0.02" texture="/ui/elements:rounded_bg_white" bordercolor="1 1 1 0.02" borderthickness="0.5h" x="0.15h" y="0.15h" noclick="true"/>
+		<panel float="bottom" padding="2h" width="-4h" grow="true" align="center" noclick="true" regrow="true">
+			<panel height="0" noclick="true"/>
+			<panel grow="true" width="100%" name="lobbyRightClickMenuBody" regrow="true">
+				<frame color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h" noclick="true"/>
+				<frame color="#101010" texture="/ui/elements:rounded_bg_white" bordercolor="#101010" borderthickness="1h" noclick="true"/>
+				<panel grow="true" width="-1.5h" align="center" float="bottom" padding="0.5h" noclick="true" regrow="true" growinvis="false">
+					<panel height="0.5h" noclick="true"/>
+					<panel height="3h" noclick="true">
+						<frame color="0 0 0 0.25" texture="/ui/elements:rounded_bg_white" bordercolor="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h" noclick="true"/>
+						<frame color="#333333" texture="/ui/elements:rounded_bg_white" bordercolor="#333333" borderthickness="0.5h" noclick="true"/>
+						<label textvalign="center" hmargin="1h" shadow="true" color="#FFDD33" font="maindyn_14" content="lobbyrightclick_playeroptions" noclick="true"/>
+						<instance name="closeXButton" width="70@" height="70%" align="right" x="-15@" valign="center" buttonName="lobbyRightClickMenuClose"/>
+					</panel>
+
+					<panel height="2.75h" noclick="true" passivechildren="true">
+						<frame color="#0B0B0B" texture="/ui/elements:rounded_button_bg_white" bordercolor="#0B0B0B" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						<label color="#f5f2e2" textalign="center" shadow="true" shadowoffset="2" font="maindyn_14" textvalign="center" content="lobbyrightclick_moveplayer"/>
+					</panel>
+
+					<panel height="2.75h" noclick="true" name="lobbyRightClickMenuColorIndex0" sticky="true" stickytoinvis="false">
+						<panel width="50%" noclick="true">
+							<panel width="-0.25h" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcblue" id="0"/>
+							</panel>
+						</panel>
+						<panel width="50%" align="right" noclick="true">
+							<panel width="-0.25h" align="right" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcpink" id="5"/>
+							</panel>
+						</panel>
+					</panel>
+
+					<panel height="2.75h" noclick="true" name="lobbyRightClickMenuColorIndex1" sticky="true" stickytoinvis="false">
+						<panel width="50%" noclick="true">
+							<panel width="-0.25h" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcteal" id="1"/>
+							</panel>
+						</panel>
+						<panel width="50%" align="right" noclick="true">
+							<panel width="-0.25h" align="right" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcgray" id="6"/>
+							</panel>
+						</panel>
+					</panel>
+
+					<panel height="2.75h" noclick="true" name="lobbyRightClickMenuColorIndex2" sticky="true" stickytoinvis="false">
+						<panel width="50%" noclick="true">
+							<panel width="-0.25h" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcpurple" id="2"/>
+							</panel>
+						</panel>
+						<panel width="50%" align="right" noclick="true">
+							<panel width="-0.25h" align="right" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pclightblue" id="7"/>
+							</panel>
+						</panel>
+					</panel>
+
+					<panel height="2.75h" noclick="true" name="lobbyRightClickMenuColorIndex3" sticky="true" stickytoinvis="false">
+						<panel width="50%" noclick="true">
+							<panel width="-0.25h" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcyellow" id="3"/>
+							</panel>
+						</panel>
+						<panel width="50%" align="right" noclick="true">
+							<panel width="-0.25h" align="right" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcdarkgreen" id="8"/>
+							</panel>
+						</panel>
+					</panel>
+
+					<panel height="2.75h" noclick="true" name="lobbyRightClickMenuColorIndex4" sticky="true" stickytoinvis="false">
+						<panel width="50%" noclick="true">
+							<panel width="-0.25h" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcorange" id="4"/>
+							</panel>
+						</panel>
+						<panel width="50%" align="right">
+							<panel width="-0.25h" align="right" noclick="true">
+								<instance name="lobbyRightClickMenuColor" color="pcbrown" id="9"/>
+							</panel>
+						</panel>
+					</panel>
+
+					<panel height="2.75h" noclick="true" passivechildren="true" sticky="true" stickytoinvis="false">
+						<frame color="#0B0B0B" texture="/ui/elements:rounded_button_bg_white" bordercolor="#0B0B0B" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						<label color="#f5f2e2" textalign="center" shadow="true" shadowoffset="2" font="maindyn_14" textvalign="center" content="lobbyrightclick_playercontrols"/>
+					</panel>
+
+					<panel height="3.5h" noclick="true" sticky="true" stickytoinvis="false">
+						<panel grow="true" height="100%" float="right" padding="0.5h" align="center" noclick="true">
+							<instance name="lobbyRightClickMenuOption" icon="/ui/shared/textures/icon_host.tga" buttonName="lobbyRightClickHost"/>
+							<!-- <instance name="lobbyRightClickMenuOption" icon="/ui/_textures/icons/icon_referee.tga" buttonName="lobbyRightClickReferee"/> -->
+							<instance name="lobbyRightClickMenuOption" icon="/ui/elements:icon_spectator" buttonName="lobbyRightClickSpectator"/>
+							<instance name="lobbyRightClickMenuOption" icon="/ui/shared/textures/kick_up.tga" buttonName="lobbyRightClickKick"/>
+						</panel>
+					</panel>
+					<panel height="0.5h" noclick="true"/>
+				</panel>
+			</panel>
+			<panel height="0" noclick="true"/>
+		</panel>
+	</panel>
+
+</package>

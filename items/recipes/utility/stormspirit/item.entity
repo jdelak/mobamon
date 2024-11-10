@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_Stormspirit"
+
+	icon="icon.tga"
+	
+	cost="700"
+	components="Item_Healthstone Item_Manastone Item_Manaregen2"
+	
+	statuseffecttooltip="State_Item2I"
+	
+	actiontype="target_self"
+	targetscheme="all_heroes"
+
+	casttime="0"
+	castactiontime="0"
+	anim="idle"
+	cooldowntime="35000"
+	cooldowntype="intelligence6"
+	manacost="0"
+
+	filters="utility,activatable"
+
+	empoweredeffects="Item_Stormspirit_Empower_2,Item_Stormspirit_Empower_3"
+	
+	showinpractice="true"
+>
+	<constant name="cooldown_analog" value="0" adjustment="none" qualityvalue="6" qualityadjustment="common" op="add"/>
+	<constant name="mana" value="14" adjustment="none" qualityvalue="14" qualityadjustment="legendary" op="add"/>
+	
+	<onimpact>
+		<breakchannel entity="target_entity" />
+		<unbind />
+		<setpos0 position="source_position" offsetspace="source_entity" offset="0 50 0" />
+		<spawnunit name="Gadget_Item2I" target="target_position" mount="target_entity" facing="pos0" pushentity="true" />
+		<applystate name="State_Item2I" duration="2000" proxy="stack_entity" />
+		<popup name="invulnerable" source="source_entity" target="source_entity" />
+
+		<startcooldown/>
+		<getconstant name="cooldown_analog" />
+		<setvar0 a="result" b="1000" op="mult" />
+		<reducecooldown duration="var0" />
+	</onimpact>
+</crafteditem>

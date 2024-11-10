@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Kongor4"
+	
+	icon="icon.tga"
+	
+	anim="rock_attack"
+	casttime="1000"
+	castactiontime="800"
+	casteffect=""
+
+
+
+	actiontype="target_entity"
+	targetscheme="enemy_units"
+	casteffecttype="Magic"
+	
+	manacost="0"
+	cooldowntime="5000"
+	
+	range="800"
+	showareacast="true"
+	areacastmaterial=""
+	hoverareacastrange="525,575,625,675"
+	
+	allowautocast="true"
+	doubleactivate="true"
+	doubleactivatenoninterrupting="true"
+>
+	<aura state="State_Krytos_Aggro" radius="800" notooltip="true" proxy="this_entity" ignoreinvulnerable="true" targetscheme="enemy_heroes" /> 
+
+	<onattackimpact>
+		<setaccumulator value="0" />
+	</onattackimpact>
+
+	<onimpact>
+		<setaccumulator value="0" />
+		<setvar0 a="source_attackdamage" b="1.1" op="mult" />
+		<spawnprojectile name="Projectile_Kongor_Ability4" param="var0" offset="0 200 70" source="source_entity" target="target_entity" noresponse="true" />
+	</onimpact>
+
+	<modifier key="rock_enabled" modpriority="90"
+	>
+		<onframe>
+			<compare a="accumulator" b="5" op="ne">
+				<canactivate>
+					<distance target="source_entity" source="this_proxy_entity" />
+					<compare a="result" b="800" op="le">
+						<useability source="source_entity" target="this_proxy_entity" slot="3"/>
+						<setaccumulator value="5" />
+					</compare>
+				</canactivate>
+			</compare>
+		</onframe>
+	</modifier>
+
+	<modifier key="lanepusher_aggrotower" modpriority="100"
+	>
+		<onframe />
+	</modifier>
+</ability>

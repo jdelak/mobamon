@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Spider_Ability1_Close_1"
+
+	radius="250"
+	
+	
+	lifetime="200"
+	impactdelay="100"
+	maximpactspertarget="1"
+	targetselection="all"
+	targetscheme="enemy_heroes"
+	effecttype=""
+	persist="true"
+	
+>
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<damage effecttype="Magic Splash" amount="200" />
+				<!-- <playeffect  effect="effects/impact.effect" target="target_entity" source="target_entity"/> -->
+			</onimpact>
+		</combatevent>
+	</onimpact>
+	
+</affector>

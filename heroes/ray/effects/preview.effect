@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+	
+			
+			
+			<simpleemitter count="1" spawnrate="2500" particlelife="3000" material="/shared/effects/materials/spark_10.material" minangle="0" maxangle="1" direction="0 1 0">
+				<particle turn="1">
+					<model life="2500" position="0 0 0" model="../ability_01/effects/spider_mine/model.mdf" anim="bored_anim" scale="1" color="1 1 1" startalpha="1" midalpha="1" endalpha="1">
+						<billboard bone="_bone_bombfx" position="0 0 0" expirelife="250" material="/shared/effects/materials/whitedot.material" startcolor=".5 0 0" midcolor="0 0 0" endcolor="0 0 0" midcolorpos=".25" depthbias="-25" lockup="1" pitch="90" size="25"/>
+						<billboard delay="250" bone="Box014" position="0 0 0" expirelife="250" material="/shared/effects/materials/whitedot.material" startcolor=".25 .1 0" midcolor="0 0 0" endcolor="0 0 0" midcolorpos=".25" depthbias="-25" lockup="1" pitch="90" size="100"/>
+					</model>
+				</particle>
+			</simpleemitter>
+	
+
+			
+			
+
+
+			<!-- Spiders -->
+			<template name="ray_spider1" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<controller delay="400" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<sound delay="0" sample="sounds/spidermine_cast.wav" volume="0.35" linearfalloff="true" falloffstart="1000" falloffend="2500" channel="90406"/>	
+					<sound delay="1200" sample="sounds/spidermine_chase.wav" volume="0.25" linearfalloff="true" falloffstart="500" falloffend="2000"  channel="90406"/>	
+					<sound delay="500" sample="sounds/spidermine_alarm.wav" volume="0.35" linearfalloff="true" falloffstart="500" falloffend="2000" channel="90406"/>	
+					<simpleemitter count="1" spawnrate="2500" particlelife="3000" material="/shared/effects/materials/spark_10.material" minangle="0" maxangle="1" direction="12 3 0" directionalspace="local" particledirectionalspace="local">
+						<particle turn="1">
+							<model life="1800" position="30 0 0" model="spidermine/spider_mine/preview.mdf" anim="bored_anim" scale="1" directionalspace="local" loop="false">
+								<billboard bone="_bone_bombfx" position="0 0 0" expirelife="250" material="/shared/effects/materials/whitedot.material" startcolor=".5 0 0" midcolor="0 0 0" endcolor="0 0 0" midcolorpos=".25" depthbias="-25" lockup="1" pitch="80" size="25"/>
+								<billboard delay="250" bone="Box014" position="0 0 0" expirelife="250" material="/shared/effects/materials/whitedot.material" startcolor=".25 .1 0" midcolor="0 0 0" endcolor="0 0 0" midcolorpos=".25" depthbias="-25" lockup="1" pitch="80" size="100"/>
+							</model>
+						</particle>
+					</simpleemitter>
+				</controller>
+			</template>	
+			<template name="ray_spider2" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<controller delay="1000" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<sound delay="300" sample="sounds/spidermine_cast.wav" volume="0.35" linearfalloff="true" falloffstart="1000" falloffend="2500" channel="90406"/>	
+					<sound delay="800" sample="sounds/spidermine_chase.wav" volume="0.25" linearfalloff="true" falloffstart="500" falloffend="2000" channel="90406"/>	
+					<sound delay="700" sample="sounds/spidermine_alarm.wav" volume="0.35" linearfalloff="true" falloffstart="500" falloffend="2000"  channel="90406"/>	
+					<simpleemitter count="1" spawnrate="2500" particlelife="3000" material="/shared/effects/materials/spark_10.material" minangle="0" maxangle="1" direction="-4 -10 0" directionalspace="local" particledirectionalspace="local">
+						<particle turn="1">
+							<model life="1700" position="-30 -50 0" model="spidermine/spider_mine/preview.mdf" anim="bored_anim" scale="1" directionalspace="local" loop="false">
+								<billboard bone="_bone_bombfx" position="0 0 0" expirelife="250" material="/shared/effects/materials/whitedot.material" startcolor=".5 0 0" midcolor="0 0 0" endcolor="0 0 0" midcolorpos=".25" depthbias="-25" lockup="1" pitch="80" size="25"/>
+								<billboard delay="250" bone="Box014" position="0 0 0" expirelife="250" material="/shared/effects/materials/whitedot.material" startcolor=".25 .1 0" midcolor="0 0 0" endcolor="0 0 0" midcolorpos=".25" depthbias="-25" lockup="1" pitch="80" size="100"/>
+							</model>
+						</particle>
+					</simpleemitter>
+				</controller>
+			</template>
+			
+			<instance name="ray_spider1"/>			
+			<instance name="ray_spider2"/>		
+
+			<sound delay="300" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="2505" falloffend="4501" volume="0.50" channel="90046"/>				
+				
+			
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+	
+			
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor="1 2 2.5"
+			endcolor="1 1 1"
+		/>
+		
+		<particlesystem name="system0" space="world" scale="1">
+		
+		
+			<simpleemitter
+				bone="_bone_origin"
+				position="0 0 50"
+				spawnrate="10"			
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				material="/shared/effects/smaterials/snowy_smoke.material"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="20"
+				minspeed="0"				
+				maxspeed="200"				
+			>
+				<particle
+					startsize="100"								
+					minendsize="400"
+					maxendsize="400"
+					startcolor="1 1 1"
+					midcolor="1 1 1"
+					endcolor=".25 .75 1"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+				/>
+			</simpleemitter>
+		
+		
+		
+		
+		
+		
+		
+		
+
+			<simpleemitter
+				spawnrate="10"
+				particlelife="2000"
+				offsetsphere="35 35 0"
+				position="0 0 0"
+				depthbias="0"
+			>
+				<particle
+				>
+					<groundsprite
+						material="/shared/effects/smaterials/snowy_cracks_slide.material"
+						minlife="500"
+						maxlife="750"
+						midsizepos=".05"
+						size="450"
+						minyaw="0"
+						maxyaw="360"
+						startcolor="1 1 1"
+						endcolor="0 .5 1"
+						startalpha="0"
+						midalpha=".15"
+						endalpha="0"
+						midalphapos=".2"
+						minscale=".2"
+						maxscale=".3"
+						directionalspace="local"
+					/>
+					
+					<billboard
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minlife="500"
+						maxlife="750"
+						midsizepos=".05"
+						size="450"
+						startcolor="0"
+						midcolor=".1"
+						endcolor="0 0 0"
+						startalpha="0"
+						midalpha=".1"
+						endalpha="0"
+						midalphapos=".2"
+						minscale=".5"
+						maxscale="1"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+		
+		
+		
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

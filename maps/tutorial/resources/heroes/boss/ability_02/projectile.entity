@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Tutorial_Boss_Ability2"
+
+	gravity="20000"
+	lifetime="2000"
+	useexactlifetime="true"
+
+	model="/shared/models/invis.mdf"
+	canturn="false"
+	flying="false"
+	flyheight="0"
+	
+	touchprojectileblockers="true"
+	touchradius="1"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+>
+
+	<onimpact>
+		<playeffect effect="effects/impact.effect" source="this_position" target="this_position" />
+		<setpos0 position="source_position" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="10" />
+		<order command="move" source="source_entity" target="pos0" />
+		<areaofeffect
+			radius="350"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			effecttype="Magic"
+		>
+			<damage amount="170" effecttype="Magic" />
+			<setscriptvalue name="damaged_by_baldir" value="1" />
+		</areaofeffect>
+	</onimpact>
+
+  
+</projectile>

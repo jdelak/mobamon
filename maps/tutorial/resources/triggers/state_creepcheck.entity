@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_CreepCheck"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	deathpersist="true"
+
+	maxcharges="5"
+	impactinterval="2000"
+>
+
+	
+	<onimpact>
+		<addcharges />
+		
+		<compare a="charges" b="4" op="ge" >
+			<condition test="not_hasstate State_Tutorial_TipBusy" target="this_owner_entity">
+				<areaofeffect
+					radius="700"
+					targetselection="all"
+					targetscheme="enemy_units"
+					source="this_owner_entity"
+				>
+					<setscriptvalue name="last_hitting" value="1" />
+					<applystate name="State_Tutorial_TipBusy" target="this_owner_entity" duration="8000" />
+					<expire />
+				</areaofeffect>
+			</condition>
+		</compare>
+	</onimpact>
+
+</state>

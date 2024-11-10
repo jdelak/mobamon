@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Kongor_Shield"
+
+	icon="icon.tga"
+	
+	actiontype="passive"
+	cooldowntime="20000"
+
+	casteffect="effects/cast.effect"
+	
+>	
+	<aura state="State_Kongor_Shield" radius="0" targetscheme="self" ignoreinvulnerable="true" />
+	
+	<onimpact>
+		<applystate name="State_Kongor_Shield_Active" target="source_entity" duration="3000" />
+	</onimpact>
+	
+	<onattackeddamageevent>
+		<startcooldown />
+	</onattackeddamageevent>
+
+	<modifier key="KongorShieldDisabled" modpriority="101"
+	>
+
+	</modifier>
+	
+</ability>

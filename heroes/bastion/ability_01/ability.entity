@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Bastion1"
+
+	statuseffecttooltip=""
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="250"
+	castactiontime="150"
+	casteffect="effects/cast.effect"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+	casteffecttype="Magic"
+	targetscheme="all_units"
+	
+	showconecast="true"
+	conecastmaterial="/shared/materials/cone_cast_wide3.material"
+	conecastwidth="450"
+	conecastrange="600"
+	allowoutofrangecast="true"
+	
+
+	manacost="70,80,90,100"
+	cooldowntime="9000,8500,8000,7500"
+	
+	range="550"
+	novoiceresponse="true"
+	
+>
+	<constant name="damage" value="90,120,150,180" adjustment="ability" />
+	<!-- tooltip only -->
+
+	<onimpact>
+		<spawnaffector name="Affector_Bastion_Ability1" target="source_position" distance="0" proxy="this_entity" />
+		<spawnaffector name="Affector_Bastion_Ability1_Close_1" target="source_position" distance="-200" proxy="this_entity" />
+		<setpos0 position="source_entity" offsetspace="source_entity" offset="0 200 0" />
+		<propareaeffect center="pos0" radius="200" anim="flamehit" />
+		<setaccumulator value="0" />
+	</onimpact>
+
+</ability>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+	
+		<modifier 
+			name="modifier0"
+			life="400"
+			startcolor="2 0 2"
+			endcolor="1 1 1"
+			startalpha="1"
+			endalpha="1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale=".85">
+
+			<sound
+				volume="0.6"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			
+			<light
+				life="500"
+				startcolor="1.5 0 10"
+				midcolor="1.5 0 10"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="150"
+				endfalloffend="400"
+				position="0 0 50"
+			/>
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="6"
+				spawnrate="1055"
+				particlelife="250"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-25"
+			>
+				<particle
+					color=".5 0 .5"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="125"
+					endscale="200"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="6"
+				spawnrate="1055"
+				particlelife="250"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-25"
+			>
+				<particle
+					color=".75 0 1"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					startscale="75"
+					endscale="125"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			<template name="wack">
+			
+				<simpleemitter
+				bone="_bone_center"
+					delay="{zdelay}"
+					position="0 0 0"
+					count="1"
+					spawnrate="2000"
+					particlelife="200"
+					gravity="0"
+					acceleration="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+					depthbias="-50"
+				>
+					<particle
+					anchor="1"
+						color=".5 0 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						scale="{zscale}"
+						turn="true"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						yaw="{zyaw}"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="wack" zscale="300" zdelay="50" zyaw="20"/>
+			<instance name="wack" zscale="200" zdelay="25" zyaw="10"/>
+			<instance name="wack" zscale="100" zdelay="0" zyaw="0"/>
+			<instance name="wack" zscale="200" zdelay="125" zyaw="180"/>
+			
+			
+			<template name="wack">
+			
+				<simpleemitter
+				bone="_bone_center"
+					delay="{zdelay}"
+					position="0 0 0"
+					count="1"
+					spawnrate="2000"
+					particlelife="200"
+					gravity="0"
+					acceleration="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+					depthbias="-50"
+				>
+					<particle
+					anchor="1"
+						color="1 .25 1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						scale="{zscale}"
+						turn="true"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						yaw="{zyaw}"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="wack" zscale="200" zdelay="50" zyaw="20"/>
+			<instance name="wack" zscale="100" zdelay="25" zyaw="10"/>
+			<instance name="wack" zscale="100" zdelay="0" zyaw="0"/>
+			<instance name="wack" zscale="100" zdelay="125" zyaw="180"/>
+			
+			
+			
+			
+			
+
+<!--
+			<debris
+				bone="_bone_center"
+				startcolor="7"
+				midcolor="2 1 3"
+				endcolor="2 1 3"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				position="0 0 0"
+				scale=".3"
+				life="300"
+				model="../../ability_01/effects/projectile/gem_debris/model.mdf"
+				material="../../ability_01/effects/projectile/gem_debris/material_purple.material"
+				offsetsphere="0"
+				minspeed="1500"
+				maxspeed="2000"
+				minrotationspeed="100"
+				maxrotationspeed="300"
+				gravity="65"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				bounce=".7"
+				reflect=".6"
+				animpose="false"
+				directionalspace="world"
+			/>
+-->
+
+			
+			
+			<debris
+				bone="_bone_centerofchest"
+				startalpha="1"
+				endalpha="0"
+				scale=".4"
+				minlife="800"
+				maxlife="1000"
+				startcolor="7 7 7"
+				midcolor="7 7 7"
+				endcolor="2 1 3"
+				model="../../ability_01/effects/projectile/gem_debris/model.mdf"
+				material="../../ability_01/effects/projectile/gem_debris/material_purple.material"
+				offsetsphere="50 50 50"
+				minspeed="600"
+				maxspeed="900"
+				minrotationspeed="100"
+				maxrotationspeed="300"
+				gravity="200"
+
+				direction="0 0 1"
+				collide="true"
+				bounce=".7"
+				reflect=".5"
+				animpose="false"
+			/>
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+			delay="100"
+				position="0 0 10"
+				count="10"
+				bone="_bone_centerofchest"
+				spawnrate="2000"
+				particlelife="150"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-100"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					startcolor=".5 0 1"
+					endcolor="0 0 0"
+					startscale="75"
+					endscale="250"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			
+
+			<simpleemitter
+				count="5"
+				bone="_bone_centerofchest"
+				spawnrate="2000"
+				minparticlelife="150"
+				maxparticlelife="300"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="0"
+			>
+				<particle
+					anchor="1"
+					minangle="0"
+					maxangle="360"
+					startsize="8"
+					endsize="4"
+					startcolor=".25 0 .25"
+					midcolor=".15 0 .25"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+					minheight="500"
+					maxheight="1300"
+					minwidth="50"
+					maxwidth="100"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+				bone="_bone_centerofchest"
+				life="500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".1 0 .25"
+				endcolor="0 0 0"
+				scale="5"
+				depthbias="-75"
+			/>
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

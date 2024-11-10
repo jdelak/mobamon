@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="post_outline_d3_v_vs" nops="true">
+	<dependency name="Texcoord" type="float2" source="Texcoord0" />
+	<dependency name="TexelSize" type="float2" source="vTexelSize" />
+	<output name="OutTexcoord0" type="float2" solution="PostTexcoord0" />
+	<output name="OutTexcoord1" type="float4" solution="PostTexcoord1" />
+	<output name="OutTexcoord2" type="float4" solution="PostTexcoord2" />
+	<output name="OutTexcoord3" type="float4" solution="PostTexcoord3" />
+	<?hlsl
+	
+	OutTexcoord0 = Texcoord;
+	OutTexcoord1.xy = Texcoord + float2(TexelSize.x, 0.0f);
+	OutTexcoord1.zw = Texcoord + float2(-TexelSize.x, 0.0f);
+	OutTexcoord2.xy = Texcoord + float2(TexelSize.x, 0.0f) * 2.0f;
+	OutTexcoord2.zw = Texcoord + float2(-TexelSize.x, 0.0f) * 2.0f;
+	OutTexcoord3.xy = Texcoord + float2(TexelSize.x, 0.0f) * 3.0f;
+	OutTexcoord3.zw = Texcoord + float2(-TexelSize.x, 0.0f) * 3.0f;
+	
+	?>
+	<?glsl
+	
+	OutTexcoord0 = Texcoord;
+	OutTexcoord1.xy = Texcoord + vec2(TexelSize.x, 0.0f);
+	OutTexcoord1.zw = Texcoord + vec2(-TexelSize.x, 0.0f);
+	OutTexcoord2.xy = Texcoord + vec2(TexelSize.x, 0.0f) * 2.0f;
+	OutTexcoord2.zw = Texcoord + vec2(-TexelSize.x, 0.0f) * 2.0f;
+	OutTexcoord3.xy = Texcoord + vec2(TexelSize.x, 0.0f) * 3.0f;
+	OutTexcoord3.zw = Texcoord + vec2(-TexelSize.x, 0.0f) * 3.0f;
+	
+	?>
+</node>

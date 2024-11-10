@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="terrain_texcoord0">
+	<dependency name="Data0" type="float4" source="Data0" />
+	<dependency name="Data1" type="float4" source="Data1" />
+	<dependency name="WorldTex" type="float4" source="vWorldTex" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float2" solution="Texcoord0" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float2 f2Tile = float2(Data0.w, Data1.w);
+			Out = f2Tile * WorldTex.xy + WorldTex.zw;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float2 f2Tile = float2(Data0.w, Data1.w) * 255.0f;
+			Out = f2Tile * WorldTex.xy + WorldTex.zw;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec2 f2Tile = vec2(Data0.w, Data1.w);
+			Out = f2Tile * WorldTex.xy + WorldTex.zw;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec2 f2Tile = vec2(Data0.w, Data1.w);
+			Out = f2Tile * WorldTex.xy + WorldTex.zw;
+		?>
+	</case>
+</node>

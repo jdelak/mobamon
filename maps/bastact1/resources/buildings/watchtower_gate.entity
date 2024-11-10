@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Building_Bastact1_LockedDoor_OpensToAll_RookUlt_Door"
+
+	model="/world/sprops/speprops/gate/model.mdf"
+
+	mapiconsize="0"
+	drawonmap="false"
+	
+	isselectable="false"
+	noaltclickping="true"
+	
+	preglobalscale="1.0"
+	modelscale="1"
+	effectscale="1.8"
+	boundsheight="300"
+	radiusheight="300"
+	boundsradius="150"
+	selectionradius="50"
+	targetoffset="0 0 0"
+
+	canattack="false"
+
+	aggrorange="0"
+	sightrangeday="0"
+	sightrangenight="0"
+	isshop="false"
+	invulnerable="false"
+	hidealtinfo="true"
+>
+
+<ondamaged>
+	
+</ondamaged>
+
+<modifier key="unlocked" modpriority="99"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	>
+
+	<onframe>
+		<areaofeffect
+			radius="200"
+			targetselection="all"
+			targetscheme="all_units"
+			source="this_entity"
+			center="this_entity"
+			maxtotalimpacts="1"
+			maximpactspertarget="1"
+			ignoreinvulnerable="true"
+		>
+			<playanim name="open_doors" target="this_entity" />
+			<activatemodifierkey name="inactive" entity="this_entity" />
+			<deactivatemodiferkey name="unlocked" entity="this_entity" />
+			<setscriptvalue name="door_open" value="1"/>
+		</areaofeffect>
+	</onframe>
+
+</modifier>
+
+<modifier key="inactive" modpriority="99"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	>
+
+	<onframe>
+	</onframe>
+
+</modifier>
+
+</building>

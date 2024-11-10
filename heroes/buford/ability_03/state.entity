@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Buford_Drain"
+
+	icon="icon.tga"
+
+	modifierkey="no_tele"
+	passiveeffect="effects/state_enemy.effect"
+	
+	impactinterval="1000"
+	revealed="true"
+	sighted="true"
+	
+	effecttype="StatusDebuff DOT"
+>
+
+	<onimpact>
+		<playanim name="attack_1" target="this_proxy_entity" />
+		<playeffect effect="effects/link.effect" target="source_entity" source="target_entity"/>
+		<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity"/>
+		
+		<getconstant name="damage" adjustmentsource="tool_entity" />
+		<setvar0 a="result" b="3" op="div" />
+		<damage effecttype="Magic" significant="true" amount="1" b="var0" op="mult" target="target_entity" />
+		<heal target="source_entity" a="result" />
+	</onimpact>
+	
+
+
+</state>

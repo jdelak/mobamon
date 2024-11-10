@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="post_outline_ps" novs="true">
+	<parameter name="Sampler" type="sampler2D" default="image" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="Texcoord" type="float2" source="Texcoord0" />
+	<dependency name="TexelSize" type="float2" source="vTexelSize" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+		
+		float4 f4Color = Sampler_texture.Sample(Sampler_sampler, Texcoord);
+		
+		float fMask = step(128.0f / 255.0f, f4Color.a);
+		
+		f4Color *= 1.0f - fMask;
+		f4Color.a *= 2.0f;
+		
+		Out = f4Color;
+		Out.a = 1.0f - Out.a;
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+		
+		float4 f4Color = tex2D(Sampler, Texcoord);
+		
+		float fMask = step(128.0f / 255.0f, f4Color.a);
+		
+		f4Color *= 1.0f - fMask;
+		f4Color.a *= 2.0f;
+		
+		Out = f4Color;
+		Out.a = 1.0f - Out.a;
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+		
+		vec4 f4Color = texture2D(Sampler, Texcoord);
+		
+		float fMask = step(128.0f / 255.0f, f4Color.a);
+		
+		f4Color *= 1.0f - fMask;
+		f4Color.a *= 2.0f;
+		
+		Out = f4Color;
+		Out.a = 1.0f - Out.a;
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+		
+		vec4 f4Color = texture(Sampler, Texcoord);
+		
+		float fMask = step(128.0f / 255.0f, f4Color.a);
+		
+		f4Color *= 1.0f - fMask;
+		f4Color.a *= 2.0f;
+		
+		Out = f4Color;
+		Out.a = 1.0f - Out.a;
+		
+		?>
+	</case>
+</node>

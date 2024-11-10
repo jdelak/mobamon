@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_RingOfSorcery_Empower_1"
+	
+	cost="935"
+
+>
+	<!-- Tooltip only -->
+	<constant name="maxmana_restore_enchant" value="24" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onimpact>
+		<playeffect effect="effects/cast.effect" source="source_position" target="" occlude="true" />
+		
+		<areaofeffect
+			radius="600"
+			targetselection="all"
+			targetscheme="ally_mana_units"
+			effecttype=""
+			ignoreinvulnerable="true"
+		>			
+			<getconstant name="maxmana_restore_enchant"/>
+			<setvar0 a="result" b="0.01" op="mult" />
+			<setvar0 a="source_maxmana" b="var0" op="mult" />
+
+			<givemana amount="var0"/>
+			
+			<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" occlude="true" />
+		</areaofeffect>
+	</onimpact>
+
+</qualityitem>

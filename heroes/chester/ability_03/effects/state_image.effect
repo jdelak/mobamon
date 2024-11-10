@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<light
+				position="0 0 35"
+				bone="_bone_overhead"
+				expirelife="250"
+				startcolor="2 0 5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+		
+
+			<model
+				position="0 0 15"
+				bone="_bone_overhead"
+				expirelife="250"
+				model="pawn/model.mdf"
+				anim="idle"
+				scale="1.45"
+				color="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".35"
+				directionalspace="world"
+				pitchspeed="-360"
+				yawspeed="180"
+			>
+				<billboard
+					life="200"
+					position="0 0 0"
+					startcolor=".5 0 1"
+					endcolor="0 0 0"
+					size="200"
+					depthbias="-50"
+					material="/shared/effects/smaterials/streak_flare.material"
+				/>
+				
+				<billboard
+					life="400"
+					position="0 0 0"
+					startcolor=".25 0 .5"
+					endcolor="0 0 0"
+					size="350"
+					depthbias="-75"
+					material="/shared/effects/smaterials/whitedot.material"
+				/>
+				
+				<billboard
+					expirelife="250"
+					position="0 0 0"
+					startcolor=".25 0 .5"
+					endcolor="0 0 0"
+					size="100"
+					depthbias="-75"
+					material="/shared/effects/smaterials/whitedot.material"
+				/>
+				
+			</model>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

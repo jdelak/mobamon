@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="defer_no_lighting">
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	
+	<dependency name="ViewBump" type="float3" source="ViewBump" />
+	<dependency name="ViewPosition" type="float3" source="ViewPosition" />
+	
+	<dependency name="ViewUp" type="float3" source="vViewUp" />
+	<dependency name="FarClipInv" type="float" source="fCameraFarClipInv" />
+
+	<output name="Out0" type="float4" solution="PSOutColor0" />
+	<output name="Out1" type="float4" solution="PSOutColor1" />
+	<output name="Out2" type="float4" solution="PSOutColor2" />
+	<output name="Out3" type="float4" solution="PSOutColor3" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+		
+		float fAlpha = Opacity * Color.a;
+		
+		Out0.rgb = Diffuse * Color.rgb + Emissive;
+		Out0.a = Opacity;
+		
+		Out1.rgb = float3(0.0f, 0.0f, 0.0f);
+		Out1.a = Opacity;
+	
+		Out2.rgb = ViewBump * 0.5f + 0.5f;
+		Out2.a = Opacity;
+		
+		Out3.r = ViewPosition.z * FarClipInv;
+		Out3.gba = 0.0f;    
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+
+		float fAlpha = Opacity * Color.a;
+		
+		Out0.rgb = Diffuse * Color.rgb + Emissive
+		Out0.a = Opacity;
+		
+		Out1.rgb = vec3(0.0f);
+		Out1.a = Opacity;
+	
+		Out2.rgb = ViewBump * 0.5f + 0.5f;
+		Out2.a = Opacity;
+		
+		Out3.r = ViewPosition.z * FarClipInv;
+		Out3.gba = vec3(0.0f);
+	?>
+</node>

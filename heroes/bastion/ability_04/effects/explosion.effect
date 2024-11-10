@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect >
+	<definitions>
+	
+
+		<particlesystem name="system0" space="world" scale="2.7">
+		
+			<sound 
+				falloffstart="1500"
+				falloffend="2500"
+				volume="0.7"
+				sample="../sounds/sfx_explosion.wav"
+			/>
+
+			<light
+				position="0 0 50"
+				life="350"
+				startcolor="5 1.25 0"
+				endcolor="0"
+				falloffstart="35"
+				falloffend="180"
+			/>
+
+			<simpleemitter
+				position="0 0 25"
+				count="500"
+				spawnrate="2500"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="-1.0"
+				minspeed="625"
+				maxspeed="700"
+				drag="0.025"
+				acceleration="0.0"
+				minangle="80"
+				maxangle="80"
+				direction="0 0 1"
+				offsetsphere="15 15 0"
+				particledirectionalspace="local"
+				material="/shared/effects/smaterials/firesprite_swirl.material"
+			>
+				<particle
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					startcolor="1 1 1"
+					endcolor="1 0 0"
+					startsize="0"
+					midsize="35"
+					endsize="0"
+					midsizepos=".075"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				count="10"
+				particlelife="2000"
+				spawnrate="100"
+				speed="2.0"
+				position="0 0 25"
+				direction="0 0 1"
+				minangle="90"
+				maxangle="90"
+				offsetsphere="25 25 0"
+			>
+				<particle
+					directionalspace="local"
+					turn="1"
+				>
+					<simpleemitter
+						count="1"
+						spawnrate="25"
+						particlelife="450"
+						particledirectionalspace="local"
+						material="/shared/effects/materials/whitedot.material"
+						inheritvelocity="1"
+						speed="200"
+						direction="0 1 0"
+						minangle="0"
+						maxangle="1"
+						depthbias="-100"
+					>
+						<particle
+							size="77"
+							startscale="4"
+							endscale="0"
+							startcolor=".125 .06 0"
+							endcolor="0"
+							turn="0"
+							lockup="1"
+							lockright="1"
+							pitch="-90" 
+						/>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 25"
+				count="500"
+				spawnrate="2500"
+				minparticlelife="150"
+				maxparticlelife="350"
+				gravity="-1.0"
+				minspeed="500"
+				maxspeed="700"
+				drag="0.025"
+				acceleration="0.0"
+				minangle="80"
+				maxangle="80"
+				direction="0 0 1"
+				offsetsphere="15 15 0"
+				particledirectionalspace="local"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					startcolor=".125 .06 0"
+					midcolor=".125 .06 0"
+					endcolor="0 0 0"
+					startsize="0"
+					midsize="35"
+					endsize="0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".1"
+				/>
+			</simpleemitter>
+
+			
+			
+<!--
+			<simpleemitter
+				position="0 5 60"
+				count="75"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				minspeed="150"
+				maxspeed="300"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort=".05"
+					endheightdistort="0"
+					startsize="3"
+					endsize="2"
+					startcolor="1 .75 .25"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="12.0" radius="1000" duration="450" frequency="20" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

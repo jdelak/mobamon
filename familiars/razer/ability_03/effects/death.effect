@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" persistent="true" useentityeffectscale="1">
+	<definitions>
+<!--
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+-->
+		<particlesystem name="system0" space="world" scale=".9">
+
+			<template name="smoke">
+<!--
+				<light
+					position="{zpos}"
+					life="600"			
+					startcolor="5 0 10"			
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					falloffstart="25"
+					falloffend="300"
+				/>
+-->
+				
+				
+
+				<simpleemitter
+					count="25"
+					spawnrate="250"
+					minparticlelife="500"
+					maxparticlelife="750"
+					gravity="0"
+					speed="20"
+					drag=".01"
+					material="/shared/effects/materials/neb_blend.material"
+					offsetsphere="12 12 0"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						scale="5"
+						startcolor=".15 0 .3"
+						midcolor=".02 0 .07"
+						endcolor=".125 0 .25"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="25"
+						endsize="100"
+						startheight="225"
+						endheight="0"
+						lockup="1"
+					/>
+				</simpleemitter>
+
+
+				<simpleemitter
+					count="50"
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="350"
+					maxparticlelife="700"
+					gravity=".25"
+					speed="40"
+					drag=".01"
+					material="/shared/effects/materials/cartoon_dust.material"
+					offsetsphere="75"
+					direction="0 0 0"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						color=".15 0 .3"
+						startalpha="0"
+						midalpha=".15"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="20"
+						endsize="40"
+					/>
+				</simpleemitter>
+
+				
+				<simpleemitter
+					count="50"
+					position="{zpos}"
+					spawnrate="75"
+					minparticlelife="500"
+					maxparticlelife="750"
+					gravity="0"
+					speed="20"
+					drag=".01"
+					material="/shared/effects/materials/neb_blend.material"
+					offsetsphere="12"
+					direction="0 0 0"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						startcolor=".02 0 .07"
+						midcolor=".02 0 .07"
+						endcolor=".125 0 .25"
+						midcolorpos=".2"
+						startalpha="0"
+						midalpha=".125"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="50"
+						endsize="125"
+					/>
+					<particle
+						maxangle="360"
+						minanglespeed="-25"
+						maxanglespeed="25"
+						scale="5"
+						color="0 0 0"
+						startalpha="0"
+						midalpha=".25"
+						endalpha="0"
+						midalphapos=".2"
+						startsize="25"
+						endsize="100"
+					/>
+				</simpleemitter>
+
+				
+				
+				
+				
+
+				<billboard
+					position="{zpos}"
+					depthbias="-50"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".3 0 .8"
+					endcolor="0 0 0"
+					scale="4"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+
+				<billboard
+					position="{zpos}"
+					depthbias="-50"
+					life="1500"
+					material="/shared/effects/smaterials/black_spot_ground.material"
+					startcolor="0 0 0"
+					endcolor="0 0 0"
+					startalpha="1"
+					endalpha="0"
+					scale="4"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			<simpleemitter
+				spawnrate="250"
+				life="250"
+				particlelife="550"
+				gravity="0"
+				drag="0.05"
+				minspeed="750"
+				maxspeed="1500"
+				acceleration="0"
+				position="0 0 15"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				minangle="90"
+				maxangle="90"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					startcolor=".2 0 .3"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					minscale=".5"
+					maxscale=".9"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="50"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					midalphapos=".2"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="250"
+				life="250"
+				particlelife="550"
+				gravity="0"
+				drag="0.05"
+				minspeed="1500"
+				maxspeed="3000"
+				acceleration="0"
+				position="0 0 15"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				minangle="90"
+				maxangle="90"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					startcolor=".2 0 .3"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					minscale=".8"
+					maxscale="1.2"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="75"
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					midalphapos=".2"
+					turn="true"
+				/>
+			</simpleemitter>
+				
+
+			</template>
+
+			<instance name="smoke" zpos="0 0 0" />
+
+		</particlesystem>
+
+	</definitions>
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>
+
+
+
+
+

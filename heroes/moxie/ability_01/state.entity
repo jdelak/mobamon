@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Moxie_Ability1"
+
+	icon="icon.tga"
+	maxcharges="4"
+	passiveeffect="effects/state1.effect"
+>
+
+	<oninflict>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic" amount="1" b="result" op="mult" />
+	</oninflict>
+	
+	<onrefresh>
+		<setcharges a="charges" b="1" op="add" /> 
+		<setactivemodifierkey name="two" />
+		
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" />
+		<getconstant name="damage_increase" adjustmentsource="this_entity" />
+		
+		<setvar1 a="charges" b="result" op="mult" />
+		<setvar1 a="var1" b="1" op="add" />
+		<setvar0 a="var0" b="var1" op="mult" />
+		
+		<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+		
+		<areaofeffect
+			radius="400"
+			targetselection="random"
+			targetscheme="enemy_units_and_buildings"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+			ignore="target_entity"
+		>
+			<damage effecttype="Magic" amount=".25" b="var0" op="mult" />
+			<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity"/>
+		</areaofeffect>
+	</onrefresh>
+
+	<modifier key="two" modpriority="100" passiveeffect="effects/state2.effect">
+		<onrefresh>
+			<setcharges a="charges" b="1" op="add" /> 
+			<setactivemodifierkey name="three" />
+			
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<setvar0 a="result" />
+			<getconstant name="damage_increase" adjustmentsource="this_entity" />
+			
+			<setvar1 a="charges" b="result" op="mult" />
+			<setvar1 a="var1" b="1" op="add" />
+			<setvar0 a="var0" b="var1" op="mult" />
+			
+			<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+			
+			<areaofeffect
+				radius="400"
+				targetselection="random"
+				targetscheme="enemy_units_and_buildings"
+				maxtotalimpacts="2"
+				effecttype="Magic"
+				ignore="target_entity"
+			>
+				<damage effecttype="Magic" amount=".25" b="var0" op="mult" />
+				<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity"/>
+			</areaofeffect>
+		</onrefresh>
+	</modifier>
+
+	<modifier key="three" modpriority="100" passiveeffect="effects/state3.effect">
+		<onrefresh>
+			<setcharges a="charges" b="1" op="add" /> 
+			<setactivemodifierkey name="four" />
+			
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<setvar0 a="result" />
+			<getconstant name="damage_increase" adjustmentsource="this_entity" />
+			
+			<setvar1 a="charges" b="result" op="mult" />
+			<setvar1 a="var1" b="1" op="add" />
+			<setvar0 a="var0" b="var1" op="mult" />
+			
+			<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+				<areaofeffect
+					radius="400"
+					targetselection="random"
+					targetscheme="enemy_units_and_buildings"
+					maxtotalimpacts="3"
+					effecttype="Magic"
+					ignore="target_entity"
+				>
+					<damage effecttype="Magic" amount=".25" b="var0" op="mult" />
+					<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity"/>
+				</areaofeffect>
+		</onrefresh>
+	</modifier>
+
+	<modifier key="four" modpriority="100" passiveeffect="effects/state4.effect">
+		<onrefresh>
+			<setcharges a="charges" b="1" op="add" /> 
+			
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<setvar0 a="result" />
+			<getconstant name="damage_increase" adjustmentsource="this_entity" />
+			
+			<setvar1 a="charges" b="result" op="mult" />
+			<setvar1 a="var1" b="1" op="add" />
+			<setvar0 a="var0" b="var1" op="mult" />
+			
+			<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+			
+				<areaofeffect
+					radius="400"
+					targetselection="random"
+					targetscheme="enemy_units_and_buildings"
+					maxtotalimpacts="4"
+					effecttype="Magic"
+					ignore="target_entity"
+				>
+					
+					<damage effecttype="Magic" amount=".25" b="var0" op="mult" />
+					<playeffect effect="effects/impact_enemy.effect" target="target_entity" source="target_entity"/>
+				</areaofeffect>
+		</onrefresh>
+	</modifier>
+
+</state>

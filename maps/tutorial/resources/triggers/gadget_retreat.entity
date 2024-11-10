@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Tutorial_Retreat"
+	
+	icon=""
+	portrait=""
+	model="/core/null/null.mdf"
+	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="64"
+	boundsradius="64"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+
+	sightrangeday="0"
+	sightrangenight="0"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	
+	invulnerable="true"
+	flying="false"
+	drawonmap="false"
+
+>
+	<onspawn>
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="ally_units"
+		>
+			<setent3 name="lane_end_position" />
+			<order command="move" source="target_entity" target="ent3" />
+		</areaofeffect>
+		
+		
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="enemy_creeps"
+		>
+		
+			<setent3 name="lane_end_position" />
+			<order command="move" source="target_entity" target="ent3" />
+		</areaofeffect>
+	</onspawn>
+
+</gadget>

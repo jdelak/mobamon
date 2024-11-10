@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_TeleportBoots_Target"
+	
+	destroytrees="false"
+	radius="150"
+	impactinterval="250"
+	maxintervals="17"
+	
+	
+>
+	<onchannelend>
+		<playeffect effect="effects/source_impact.effect" source="proxy_position" target="" occlude="true" />
+		<applystate name="State_TeleportBoots_Speed" target="this_proxy_entity" duration="3000" />
+		<starttimer duration="3000" entity="tool_entity" />
+		<teleport source="proxy_entity" target="this_position"/>
+		<disjoint target="proxy_entity" />
+		<playeffect effect="effects/target_impact.effect" source="proxy_position" target="" occlude="true" />
+		<playanim name="idle" target="proxy_entity" />
+	</onchannelend>
+</affector>

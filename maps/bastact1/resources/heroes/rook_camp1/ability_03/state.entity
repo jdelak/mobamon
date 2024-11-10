@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Rook_Ability3_Buff_Bastact1"
+	
+	icon="icon.tga"
+	passiveeffect="effects/state_buff.effect"
+	maxcharges="1"
+	attackspeed="1.2,1.8,2.4,3"
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	ishidden="true"
+>
+	
+	<onattack>
+		<compare a="charges" b="1" op="eq" >
+			<expire />
+		</compare>
+		<addcharges />
+	</onattack>
+
+	<onexpired>
+		<starttimer entity="this_proxy_entity" duration="0" />
+	</onexpired>
+	
+	<onframe/>
+
+</state>

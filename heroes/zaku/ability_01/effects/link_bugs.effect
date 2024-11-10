@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+<!--
+		<modifier
+			owner="owner"
+			name="modifier0"
+			life="750"
+			startcolor="0"
+			endcolor="1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1.5">
+		
+		
+		
+		
+		
+		
+		
+		
+
+			<template name="">
+
+				<simpleemitter
+				owner="source"
+					bone="{zbone}"
+					spawnrate="20"
+					minparticlelife="100"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="10 10 25"
+					depthbias="35"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".1 .05 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startscale=".25"
+						minendscale=".5"
+						maxendscale="3"
+						minwidth="140"
+						maxwidth="140"
+						height="140"
+					/>
+				</simpleemitter>
+
+				<trackeremitter	
+					spawnrate="30"
+					owner="source"
+					bone="{zbone}"
+					targetowner="target"
+					minparticlelife="750"
+					maxparticlelife="2000"
+					inheritvelocity="0.5"
+					tracktype="linear"
+					trackspeed="10" 
+					offsetsphere="0 0 0"
+					minspeed="200"
+					maxspeed="400"
+					direction="0 0 0"
+					material="/shared/effects/smaterials/lightbug_offset.material"
+					distancelife="true"
+				>
+					<particle 
+						minangle="-45"
+						maxangle="45"
+						maxanglespeed="360"
+						minanglespeed="-360"
+						minstartscale=".06"
+						maxstartscale=".12"
+						minmidscale=".25"
+						maxmidscale=".6"
+						endscale="0"					
+						startcolor=".75 .5 0"
+						midcolor=".75 .5 0"
+						endcolor="0 0 0"
+						framespeed="10"
+						startframe="0"
+						endframe="1"
+						height="32"
+						width="128"
+					/>
+				</trackeremitter>
+
+				<trackeremitter	
+					spawnrate="20"
+					owner="source"
+					bone="{zbone}"
+					targetowner="target"
+					minparticlelife="750"
+					maxparticlelife="2000"
+					inheritvelocity="0.5"
+					tracktype="linear"
+					trackspeed="10" 
+					offsetsphere="0 0 0"
+					minspeed="200"
+					maxspeed="400"
+					direction="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					distancelife="true"
+				>
+					<particle 
+						minangle="-45"
+						maxangle="45"
+						maxanglespeed="360"
+						minanglespeed="-360"
+						minstartscale="5"
+						maxstartscale="10"
+						minmidscale="25"
+						maxmidscale="50"
+						endscale="0"					
+						startcolor=".045 .035 0"
+						endcolor="0 0 0"
+					/>
+				</trackeremitter>
+
+			</template>
+			
+			<instance name="" zbone="_bone_righthand"/>
+			<instance name="" zbone="_bone_Buggaboo_RArm_rearPalm"/>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>
+

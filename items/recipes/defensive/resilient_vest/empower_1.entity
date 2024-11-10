@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_ResilientVest_Empower_1"
+	cost="890"
+
+>
+	<constant name="heal_enchant" value="4" adjustment="none" />
+	<onattackedpredamage>
+		<targettype type="Tower"/>
+		<else>
+			<targettype type="player_controlled"/>
+			<else>
+				<combateffecttype effecttype="Attack">
+					<getconstant name="block" />
+					<setvalue name="combat_deflection" a="combat_deflection" b="result" op="add" />
+					<getconstant name="heal_enchant" />
+					<heal target="source_entity" a="result" b="1" op="mult" />
+				</combateffecttype>
+			</else>
+		</else>
+	</onattackedpredamage>
+</qualityitem>

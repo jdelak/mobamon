@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Midknight_Ability3"
+	
+	icon="icon.tga"
+	passiveeffect="effects/shield.effect"
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	modifierkey="Midknight_shield"
+
+>
+
+	<onframe>
+		<haseffecttype name="CrowdControl StatusDisable">
+			<playeffect effect="effects/shield_explosion.effect" target="source_entity" source="source_entity" />
+			<applystate name="State_Midknight_Ability3_Buff" target="source_entity" duration="5000" />
+			
+			<setvalue name="damage_attempted" a="0" />
+			<applystate name="State_Midknight_Ability3_Clear" target="source_entity" duration="150" />
+			
+			<expire />
+		</haseffecttype>
+	</onframe>
+
+
+</state>

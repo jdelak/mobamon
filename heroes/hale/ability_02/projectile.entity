@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Hale_Ability2"
+	speed="1800"
+	gravity="0"
+	model="/shared/models/invis.mdf"
+	modelscale="2"
+	traileffect="effects/trail.effect"
+	
+
+
+	touchradius="135"
+	touchpropradius="135"
+	touchpropanim="hit"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+>
+
+	<ontouch>
+		<compare a="target_entity" b="proxy_entity" op="eq">
+		</compare>
+		<else>
+			<combatevent effecttype="Counterable" >
+				<onimpact>
+					<getconstant name="damage_increase" />
+					<setvar0 a="result" b="0.01" op="mult" />
+					<setvar0 a="var0" b="1" op="add" />
+					<setvar0 a="source_attackdamage" b="var0" op="mult" />
+					<damage effecttype="AttackDamage Splash" significant="true" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact_low.effect" target="target_entity" source="target_entity"/>
+					<recordheroaggression  />
+					<aggression />
+				</onimpact>
+			</combatevent>
+		</else>
+	</ontouch>
+</projectile>

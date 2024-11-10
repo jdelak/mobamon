@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_EffectPlay"
+
+	passiveeffect=""  
+	icon="icon.tga"
+	ishidden="true"
+	duration="-1"
+	impactinterval="2000"
+>
+
+	<onimpact>
+		<condition test="hasstate State_Bastion1Bastact1_BombIsHeld">
+		</condition>
+		<else>
+		<areaofeffect
+				radius="800"
+				targetselection="all"
+				targetscheme="player_controlled_units"
+				maximpacts="-1"
+				source="source_entity"
+			>
+			
+			<playeffect effect="effects/item_flash.effect" source="this_proxy_entity" target="this_proxy_entity"/>
+		</areaofeffect>
+		</else>
+	</onimpact>	
+
+
+</state>

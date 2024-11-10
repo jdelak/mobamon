@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="electricdeath" deferred="true">
+	<definitions>
+
+		<modifier
+			life="2500"
+			name="modifier0"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+			startalpha="1"
+			midalpha=".5"
+			endalpha=".5"
+			midalphapos=".8"
+		/>
+
+		<particlesystem name="system1" space="world" scale="1">
+<!--
+			<model
+			parentskeleton="true"
+			parentmodel="true"
+				life="2500"
+				model="krytos/model.mdf"
+				anim="death_1"
+				startcolor="1 1 1"
+				endcolor="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+				midalphapos=".8"
+			/>
+-->
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance0" modifier="modifier0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>

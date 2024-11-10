@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Trace_Ability3"
+	
+	icon="icon.tga"
+	
+	allowtransfer="true"
+	ishidden="true"
+	
+	unitwalking="true"
+	movespeedpercharge="2.5"
+	maxcharges="80"
+	impactinterval="100"
+	passiveeffect="effects/sound_loop.effect"
+
+	modifierkey="port_ready"
+>
+	<oninflict>
+		<setcharges a="80" />
+	</oninflict>
+
+	<onframe>
+		<compare a="charges" b="10" op="gt" >
+			<removecharge/>
+		</compare>
+	</onframe>
+
+	
+
+</state>

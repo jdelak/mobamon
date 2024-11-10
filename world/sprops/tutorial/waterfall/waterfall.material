@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="water.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="1511.0" fOpacity="0.6" fReflect="1.0" />
+	
+	<phase name="color" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="water.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="diffuse2" texture="whitewash.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="diffuse3" texture="mask.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" colorwrite="false" alphawrite="true" depthwrite="true" blend="none">
+		<multipass cull="back" blend="translucent">
+			<sampler name="diffuse" texture="d_auros.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="normal.tga" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+</material>

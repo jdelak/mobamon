@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Mask_of_Madman"
+
+	icon="icon.tga"
+
+	passiveeffect="effects/state.effect"
+	
+	incomingdamagemultiplier="0.15"
+	attackspeed="0.45" 
+	attackspeedpercharge="0.0045"
+	movespeed="40"
+	movespeedpercharge="0.4"
+
+	allowtransfer="true"
+	ishidden="true"
+>
+	<oninflict>
+		<setcharges a="item_quality" b="10" op="mult" />
+	</oninflict>
+
+	<modifier key="empower_1" modpriority="100" incomingdamagemultiplier="0.15"/>
+
+	<modifier key="empower_2" modpriority="100" >
+		<onattackdamageevent>
+			<targettype type="tower">
+				<setvalue name="damage_attempted" a="damage_attempted" b="1.15" op="mult" />
+			</targettype>
+		</onattackdamageevent>
+	</modifier>
+
+</state>

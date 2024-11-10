@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability2_Guard_Enemy"
+
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="1200"
+	castactiontime="1050"
+
+	
+	casteffecttype="Magic"
+
+	actiontype="target_entity"
+	targetscheme="enemy_heroes"
+	targetradius="500"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	manacost="0"
+	cooldowntime="5000"
+
+
+	
+	range="1000"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	
+>
+	
+<!-- 
+	<onchannelstart>
+		<print text="CHannel Start!" />
+	    <showchannelbar duration="1500"/>
+	    <order command="forcechannel" force="true" queue="front" />
+  	</onchannelstart> -->
+
+  	<onimpact>
+  		<areaofeffect
+			radius="500"
+			targetselection="all"
+			targetscheme="player_and_mobs"
+			maxtotalimpacts="1"
+			
+		>
+		<setpos0 position="target_position" offsetspace="target_entity" offset="0 375 0" />
+		<spawnprojectile name="Projectile_Guard_Ability2" source="source_entity" target="pos0" />
+		
+		
+		
+		</areaofeffect>
+
+		<else>
+		
+		<applystate name="State_Guard_Enemy" duration="-1" target="source_entity" />
+			
+		</else>	
+
+		
+	</onimpact>
+	
+	
+	
+	
+</ability>

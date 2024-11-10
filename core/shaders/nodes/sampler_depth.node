@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="sampler_depth" novs="true">
+	<parameter name="Sampler" type="sampler2D" />
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="CameraFarClip" type="float" source="fCameraFarClip" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = tex2D(Sampler, Texcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			Out = Sampler_texture.Sample(Sampler_sampler, Texcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			float n = 501.0f;
+			//float f = CameraFarClip;
+			float f = 3500.0f;
+			float z = texture2D(Sampler, Texcoord).r;
+			Out.rgb = vec3((n * z) / (f - z * (f - n)));
+			Out.a = 1.0f;
+		?>
+	</case>
+		<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			float n = 501.0f;
+			//float f = CameraFarClip;
+			float f = 3500.0f;
+			float z = texture(Sampler, Texcoord).r;
+			Out.rgb = vec3((n * z) / (f - z * (f - n)));
+			Out.a = 1.0f;
+		?>
+	</case>
+</node>

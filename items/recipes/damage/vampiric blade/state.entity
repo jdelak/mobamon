@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_VampiricBlade"
+
+	icon="icon.tga"
+	passiveeffect=""
+	ishidden="true"
+
+>
+
+	<ondeath>
+		<getconstant name="healthrestore_creep_enchant" adjustmentsource="tool_entity"/>
+		<setvar0 a="result" b="100" op="div" />
+		<setvar0 target="source_entity" a="var0" b="target_maxhealth" op="mult" />
+		<heal a="var0" />
+	</ondeath>
+	
+</state>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="heroInventoryStashOverlays">
+		<panel group="heroInventoryStashSlots{id}" style="heroInventoryStashSlot">
+			<panel style="heroInventoryStashInset">
+				<panel name="gameInventory{id}Drop" texture="/ui/elements:drop" rendermode="additive"/>
+				<panel name="gameInventory{id}DragTarget" texture="/ui/elements:drop" rendermode="additive" visible="false"/>
+				<panel name="gameInventory{id}ScrollOverlay" style="recipeScrollOverlay" visible="false"/>
+			</panel>
+			<image texture="/ui/elements:hero_backpack_overlay" noclick="true"/>
+			<image name="gameInventory{id}Crafted" style="heroInventoryBackpackUsableCrafted"/>
+			<image name="gameInventory{id}PurchasedRecently" style="heroInventoryBackpackUsablePurchasedRecently"/>
+			<image name="gameInventory{id}OnCourier" style="gameInventoryOnCourier"/>
+			<panel style="heroInventoryStashChargeSpace">
+				<frame name="gameInventory{id}ChargeShadow" texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame name="gameInventory{id}ChargeBacker" texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+			</panel>
+		</panel>
+	</template>
+
+	<panel group="heroInventoryStashContainers" style="heroInventoryStashContainer">
+		<instance name="heroInventoryStashOverlays" id="128"/>
+		<instance name="heroInventoryStashOverlays" id="129"/>
+		<instance name="heroInventoryStashOverlays" id="130"/>
+		<instance name="heroInventoryStashOverlays" id="131"/>
+		<instance name="heroInventoryStashOverlays" id="132"/>
+		<instance name="heroInventoryStashOverlays" id="133"/>
+	</panel>
+</package>

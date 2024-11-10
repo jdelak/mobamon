@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="snow" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world"  scale="1">
+
+			<sound
+				volume=".5" 
+				soundloop="true"
+				sample="/shared/sounds/ambiance/environment/weather/wind_6.wav"
+				linearfalloff="true"
+				falloffstart="2500"
+				falloffend="2500"
+				fadein="3000"
+				fadeout="1000"
+			/>
+
+			<sound
+				volume=".3" 
+				soundloop="true"
+				sample="/shared/sounds/ambiance/environment/weather/wind_5.wav"
+				linearfalloff="true"
+				falloffstart="2500"
+				falloffend="2500"
+				fadein="3000"
+				fadeout="1000"
+			/>
+
+			<precipemitter 
+				count="6000" 
+				minspeed="20"                                         
+				maxspeed="60"
+				direction="-.2 -.20 -1.0" 
+				angle="50" 
+				material="/shared/effects/materials/snowflake.material" 
+				drawdistance="550.0" 
+		  	> 
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-120"
+					maxanglespeed="120"
+					size="3"
+					minscale="1"
+					maxscale="1.33"
+					alpha="0.68"
+					midalphapos="0.9"
+				/> 
+		  	</precipemitter> 			 
+			
+			<terrainemitter
+				spawnrate="1101"
+				startrange="1500"
+				endrange="1500"
+				particlelife="2000"
+				position="0 -20 0"
+			>
+				<particle>
+					<simpleemitter		
+						count="1"
+						particlelife="1000"			
+						position="0 0 20"
+						material="/shared/effects/materials/snowflake.material" 
+					>
+						<particle
+							startalpha=".7"
+							endalpha="0"
+							size="10"
+							minscale="1"
+							maxscale="2"
+							position="0 0 5"
+							lockup="true"
+							pitch="90"
+						/>
+					</simpleemitter>
+					
+				</particle>
+			</terrainemitter>		
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

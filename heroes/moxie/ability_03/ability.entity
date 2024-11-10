@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Moxie3"
+	
+	icon="icon.tga"
+
+	maxlevel="4"
+	requiredlevel="2,3,5,7"
+
+	actiontype="passive"
+	powerratiomultiplier="0.03,0.07,0.11,0.15"
+	
+
+>
+	<!--Display Only-->
+	<constant name="movespeed" value="150,185,220,255" adjustment="none" />
+	<constant name="damage_increase" value="3,7,11,15" adjustment="none" />
+
+	<onabilityimpact ignoreresponsetype="NoResponse">
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" />
+		<else>
+			<expirestate name="State_Moxie_Ability3" target="source_entity" />
+			<applystate name="State_Moxie_Ability3" target="source_entity" duration="3000" stack="false" />
+		</else>
+	</onabilityimpact>
+</ability>

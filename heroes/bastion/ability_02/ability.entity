@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Bastion2"
+
+	icon="icon.tga"
+	
+	anim="ability_2_up"
+	casttime="450"
+	castactiontime="450"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_position"
+
+	targetscheme="target_position"
+	casteffecttype="Magic"
+
+	activatescheme="movement"
+	
+	manacost="90"
+	range="760"
+	
+	cooldowntime="16000"
+	noturntotarget="false"
+	novoiceresponse="true"
+	casteffect="effects/sound.effect"
+	
+	showlinecast="true"
+	linecastrange="-1"
+	linecastmaxrange="900"
+	linecastwidth="160"
+
+	queue="dropmovement"
+
+	showareacast="true"
+
+	allowoutofrangecast="true"
+	
+	usepathforrange="true"
+	
+>
+
+	<constant name="damage" value="90,115,140,165" adjustment="ability" />
+	
+	<!-- tooltip only -->
+	<constant name="stun" value="0.9,1.2,1.5,1.8" adjustment="none" floatprecision="1" />
+	
+	<onimpact>
+		<spawnprojectile name="Projectile_Bastion_Ability2" source="source_entity" target="target_position" bind="source_entity" bindturn="true" offset="0 140 0" unbindondeath="true" bindpriority="1" pushentity="true" />
+		<applystate name="State_Bastion_Ability2" target="source_entity" proxy="stack_entity" duration="-1" />
+		<applystate name="State_Bastion_Ability2_Unitwalk" target="source_entity" duration="1500" />
+	</onimpact>
+	
+
+	
+</ability>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system1" space="entity" scale=".15">
+<!--
+			<groundsprite
+				bone="_bone_weaponattach"
+				position="0 0 0"
+				life="500"
+				material="/shared/effects/materials/whitedot_ground.material"
+				startcolor="1 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				loop="true"
+				size="125"
+			/>
+-->
+			<billboard
+				bone="_bone_fx02"
+				position="0 0 0"
+				life="500"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="1 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				lockup="1"
+				pitch="90"
+				size="200"
+				loop="true"
+			/>
+
+			<billboard
+				bone="_bone_fx02"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".25 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				lockup="1"
+				pitch="90"
+				size="200"
+			/>
+			
+			<billboard
+				bone="_bone_fx02"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".25 .1 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				lockup="1"
+				pitch="90"
+				size="100"
+			/>
+			
+			
+
+			<billboard
+				bone="_bone_Bip01 Antenna 4"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				size="150"
+			/>
+
+			<billboard
+				bone="_bone_Bip01 Antenna 4"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .25 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				size="75"
+			/>
+
+			<billboard
+				bone="_bone_Bip01 Smiley"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 .15 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				lockup="1"
+				pitch="90"
+				size="500"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

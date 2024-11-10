@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastact1_Enemy_Ranged_Ability1"
+
+	speed="1000"
+	gravity="0"
+
+	modelscale="1.5"
+	model="/shared/models/invis.mdf"
+
+	traileffect="effects/trail.effect"
+	deatheffect=""
+	canturn="0"
+	
+	flying="true"
+	flyheight="90"
+	
+	touchradius="90"
+	touchradiusdiradjust="true"
+	touchpropradius="90"
+	touchpropanim="hit"
+	hazardradius="250"
+	hazardoffset="160"
+	maxtouches="1"
+	touchtargetscheme="enemy_heroes"
+	toucheffecttype="Magic"
+
+	touchprojectileblockers="true"
+
+>
+
+
+	<ontouch>
+		<cantarget targetscheme="enemy_units" >
+			<spawnprojectile name="Projectile_Bastact1_Enemy_Ranged_Ability1_Impact" source="target_entity" target="source_entity" />
+			<kill target="this_entity" />
+			<damage effecttype="Magic" amount="45" />
+		</cantarget>
+		<else>
+			<kill target="this_entity" />
+			<spawnprojectile name="Projectile_Bastact1_Enemy_Ranged_Ability1_Impact" source="this_entity" target="source_entity" />
+		</else>
+	</ontouch>
+	
+</projectile>
+

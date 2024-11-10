@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<panel name="mainLogoContainer" width="170s" height="85s" y="8s" x="1063s" noclick="true">	
+		<button name="mainLogoButton" color="invisible" width="100%" height="100%" noclick="0">
+			<panel name="mainLogo" texture="/ui/main/shared/textures/logo.tga" noclick="1"
+				onloadlua="
+					if (Strife_Region.activeRegion) and (Strife_Region.regionTable[Strife_Region.activeRegion]) and (Strife_Region.regionTable[Strife_Region.activeRegion].logoOverride) then
+						self:SetTexture(Strife_Region.regionTable[Strife_Region.activeRegion].logoOverride)
+						self:SetY('5%')
+					end
+				"
+				onshowlua="
+					if (Strife_Region.activeRegion) and (Strife_Region.regionTable[Strife_Region.activeRegion]) and (Strife_Region.regionTable[Strife_Region.activeRegion].logoOverride) then
+						self:SetTexture(Strife_Region.regionTable[Strife_Region.activeRegion].logoOverride)
+						self:SetY('5%')
+					end
+				"				
+			/><!-- The image itself -->
+			<label name="mainLogo_label" font="subdyn_13" style="labelBase" color="#b9f9ff99" textalign="center" fity="1" fitx="1" valign="top" align="right" x="-2%" y="63%" content="" noclick="1" visible="0" />
+		</button>
+	</panel>
+</package>

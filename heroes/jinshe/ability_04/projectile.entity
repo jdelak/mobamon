@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_JinShe_Ability4"
+
+	lifetime="400"
+	useexactlifetime="true"
+	
+	gravity="0"
+	modelscale=".9"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+
+	impacteffect="effects/impact_self.effect"
+	
+	flying="true"
+	flyheight="135"
+
+	touchradius="120"
+	touchpropradius="120"
+	touchpropanim="hit"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+>
+
+	<onspawn>
+		<playanim name="item_1" target="source_entity" source="source_entity" />
+	</onspawn>
+
+
+	<ontouch>
+		<combatevent effecttype="Counterable" >
+			<onimpact>
+				<applystate name="State_JinShe_Ability4_Damage" duration="2000" />
+				<recordheroaggression  />
+				<aggression />
+				<playeffect effect="effects/impact_enemy.effect" source="target_entity" target="target_entity" occlude="true" />
+
+			</onimpact>
+		</combatevent>
+	</ontouch>
+	
+	<onimpact>
+		<condition test="not_hasstate State_JinShe_Ability4_Healed" target="source_entity" >
+		
+			<getconstant name="percent_hp" />
+			<setvar2 a="result" b="100" op="div" />
+			
+			<setvar0 source="target_entity" a="target_maxhealth" b="var2" op="mult" />
+			<setvar0 source="target_entity" a="var0" b="param" op="mult" />
+			<heal target="target_entity" a="var0" />
+			<applystate name="State_JinShe_Ability4_Healed" duration="2000" />
+		</condition>
+	</onimpact>
+</projectile>

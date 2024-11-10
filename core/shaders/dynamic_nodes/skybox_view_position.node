@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="skybox_view_position">
+	<dependency name="HomogeneousPosition" type="float4" source="Position" />
+	<dependency name="mProjInv" type="float4x4" source="mProjInv" />
+	<output name="Out" type="float4" solution="ViewPosition" />
+	<?hlsl
+		Out = mul(HomogeneousPosition, mProjInv).xyz;
+	?>
+	<?glsl
+		Out = (mProjInv * HomogeneousPosition).xyz;
+	?>
+</node>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="mainEnchantBonusRerollIconTemplate">
+		<panel noclick="1" group="mainEnchantBonusRerollIconTemplates" align="center" visible="0">
+			<image texture="{icon}" noclick="true"/>
+			<instance name="iconFrame" />		
+		</panel>
+	</template>	
+	
+	<template name="mainEnchantBonus">
+		<panel noclick="true" color="invisible" name="enchantItemQuality{id}BonusContainer" visible="{showBonus=true}" width="230s" align="left" group="{group=enchanting_animation_widgets}">
+			<panel name="enchantItemQuality{id}" color="1 1 1 .3" noclick="true">
+				<frame noclick="true" texture="/ui/elements:squareglow" color="0 0 0 .8" width="+30s" height="+30s" align="center" valign="center" borderthickness="20s" />
+				<frame name="enchantItemQuality{id}BackerGlow" texture="/ui/shared/frames/frameglow.tga" y="-22s" width="+32s" height="70%" borderthickness="18s" color=".4 .9 1 .4" align="center" valign="top" rendermode="additive" noclick="1" visible="1" />
+				<image name="enchantItemQuality{id}Backer" texture="/ui/main/shared/textures/item_bonus_backer.tga" width="168%" height="114%" align="center" valign="center" noclick="1" color="1 1 1 1" />			
+				<label group="enchantItemQuality{id}RollAnim1" y="12s" textalign="center" style="{lableStyle}" font="maindyn_26" noclick="true" content="game_itemtip_bonus_{id}"/>			
+				<label group="enchantItemQuality{id}RollAnim1" name="enchantItemQuality{id}BonusName" height="18s" y="44s" textalign="center" textvalign="center" style="labelBase" color=".8 .8 .8 1" font="maindyn_24" content="enchanting_analog"/>						
+				<panel name="enchantItemQuality{id}IconContainer" group="enchantItemQuality{id}RollAnim1" align="center" y="78s" width="106s" height="106s" noclick="true">
+					<image name="enchantItemQuality{id}Icon" texture="/ui/main/enchanting/textures/common_bonus.tga" noclick="true"/>
+					<instance name="iconFrame" />
+				</panel>
+				<panel name="enchantItemQuality{id}IconAnimContainer" visible="0" align="center" y="78s" width="106s" height="106s" noclick="true">
+					<panel noclick="1" name="enchantItemQuality{id}IconAnimInsertion" />
+				</panel>				
+				<image name="enchantItemQuality{id}Locked" texture="/ui/main/shared/textures/lock2.tga" align="center" y="78s" width="106s" height="106s" noclick="true" visible="{showLock=true}"/>			
+				<label name="enchantItemQuality{id}BonusDescription" group="enchantItemQuality{id}RollAnim1" y="194s" align="center" width="-50s" wrap="true" textalign="center" style="labelBase" color="white" font="maindyn_18" noclick="true" content="Bonus Txt"/>				
+				<panel name="enchantItemQuality{id}ActionBar" width="168%" align="center" visible="{hasActionBar=false}" noclick="1">
+					<image texture="/ui/main/shared/textures/item_bonus_backer_actionframe.tga" y="29s" width="100%" height="25@" valign="bottom" noclick="1" />
+					<panel y="5.6%" x="0.4%" width="51.4%" height="11%" align="center" valign="bottom" noclick="1">
+						<instance name="standardButton" id="enchantRareReroll{id}" font="maindyn_22" labelX="17s" borderthickness="4s" rendermode="grayscale" label="enchanting_reroll" />
+						<image texture="/ui/main/shared/textures/reroll.tga" x="8s" y="1s" width="98@" height="98%" noclick="1" />
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="mainEnchantItemListTab">
+		<button name="mainEnchantItemListTab{id}" width="100@" height="100%" color="invisible">
+			<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="1.0h" color=".6 .6 .6 1" rendermode="grayscale"/>
+			<image texture="/ui/shared/shop/filters/{icon}_0.tga" visible="0"/>
+			<image texture="/ui/shared/shop/filters/{icon}_1.tga" color=".8 .8 .8 1"/>			
+			<panel name="mainEnchantItemListTab{id}Selected" visible="0">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="1.0h" color=".7 .7 .7 1" rendermode="grayscale"/>
+				<image texture="/ui/shared/shop/filters/{icon}_1.tga"  /><!-- Hover: Quick FadeIn/FadeOut -->
+			</panel>
+			<image name="mainEnchantItemListTab{id}Backer" texture="/ui/shared/shop/filters/{icon}_2.tga" color="1 1 1 1" visible="0"/>
+			<image name="mainEnchantItemListTab{id}Glow" texture="/ui/shared/shop/filters/{icon}_3.tga" color="1 1 1 1" visible="0"/>			
+		</button>
+	</template>
+	
+	<template name="mainEnchantItemListComponent">
+		<panel name="craftedItemEntry{itemID}Component{id}" width="100@" height="100%">
+			<image name="craftedItemEntry{itemID}Component{id}Icon" texture="/ui/shared/textures/pack2.tga"/>
+			<instance name="iconFrame" />
+		</panel>
+	</template>
+	
+	<template name="craftedItemEntry2">
+		<button name="craftedItem{id}" cangrab="true" dragexclusive="false" color="invisible">
+			<frame name="craftedItem{id}Backer" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="#4e453b"/>
+			<frame texture="/ui/shared/frames/border_double.tga" bordercolor="0 0 0 1" color="invisible"/>			
+			<panel hmargin="8s" vmargin="8s">
+			
+				<panel width="64s">
+					<panel width="100%" height="100@" color="1 1 1 0.1">
+						<image name="craftedItem{id}Icon" texture="/ui/shared/textures/pack2.tga"/>
+						<instance name="iconFrame" />
+					</panel>
+					<panel name="craftedItem{id}Duration" y="68s" height="14s" visible="0" >
+						<image texture="/ui/main/enchanting/textures/book_timer_base.tga" />
+						<panel hmargin="3s" vmargin="3s">
+							<panel name="craftedItem{id}DurationBar" color="#FFDD33" sticky="true"/>
+						</panel>
+					</panel>
+				</panel>				
+				<panel align="right" height="30s" float="right" padding="5s" grow="true" regrow="true" growinvis="false">
+					<instance name="mainEnchantItemListComponent" itemID="{id}" id="1"/>
+					<instance name="mainEnchantItemListComponent" itemID="{id}" id="2"/>
+					<instance name="mainEnchantItemListComponent" itemID="{id}" id="3"/>
+				</panel>
+				<panel align="left" x="68s" height="38s" width="-166s" clip="1">
+					<label name="craftedItem{id}Name" style="labelCommon" font="maindyn_16" content="" />
+				</panel>
+				<panel align="right" height="-38s" valign="bottom" width="-72s" clip="1">
+					<label name="craftedItem{id}Description" wrap="true" style="labelBase" font="maindyn_15" color="1 1 1 1" content="Item Description"/>
+				</panel>
+				
+			</panel>
+			
+		</button>
+	</template>
+	
+	<template name="mainEnchantBarPips">
+		<panel name="{id}" x="8.8%" float="right" padding="8.4%" noclick="1" visible="{isvisible=0}">
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+			<image texture="/ui/main/shared/textures/progress_bar_pip.tga" align="left" valign="center" width="5s" height="-10s" color="0 0 0 .25" />
+		</panel>
+	</template>
+	
+</package>

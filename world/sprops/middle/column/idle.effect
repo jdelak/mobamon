@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.8">
+
+			<sound
+				volume="0.25"
+				falloffstart="100"
+				falloffend="1000"
+				soundloop="true"
+				sample="/shared/sounds/ambience/amb_obelisk_fire_%.wav"
+			/>
+
+			<template name="flame">
+			
+				<light
+					position="0 0 35"
+					bone="{bone}"
+					expirelife="400"
+					startcolor="2.5 0 1.25"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="75"
+				/>
+			
+				<billboard
+					position="0 0 2"
+					bone="{bone}"
+					expirelife="1500"
+					startcolor=".5 0 .25"
+					endcolor="0 0 0"
+					size="40"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-60"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-360"
+					loop="true"
+				/>
+
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="56"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-15"
+					offsetsphere="3"
+					material="/shared/effects/smaterials/firesprite_pinkish.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 1 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flame" bone="_bone_fx_02"/>
+			
+		</particlesystem>
+
+		<particlesystem name="system1" space="world" scale="1.35">
+
+			<template name="flame">
+				<billboard
+					position="0 0 2"
+					bone="{bone}"
+					expirelife="1500"
+					startcolor=".5 0 .25"
+					endcolor="0 0 0"
+					size="40"
+					material="/shared/effects/smaterials/whitedot.material"
+					directionalspace="local"
+					depthbias="-60"
+					minroll="-180"
+					maxroll="180"
+					rollspeed="-360"
+					loop="true"
+				/>
+
+				<simpleemitter
+					position="0 0 2"
+					bone="{bone}"
+					spawnrate="56"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-15"
+					offsetsphere="3"
+					material="/shared/effects/smaterials/firesprite_pinkish.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-6"
+						maxanglespeed="6"
+						startcolor="0 0 0"
+						midcolor="1 1 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startsize="10"
+						endsize="4"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flame" bone="_bone_fx_01"/>
+			<instance name="flame" bone="_bone_fx_03"/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

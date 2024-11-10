@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Indestructible_Empower_3"
+	
+	cost="1575"
+
+	
+>
+
+	<constant name="movespeed" value="25" adjustment="none"  />
+	
+	<onframe>
+		<compare a="source_health_percent" b="1" op="eq" >
+			<applystate name="State_Indestructible_Speed" target="source_entity" duration="-1" />
+		</compare>
+		<else>
+			<expirestate name="State_Indestructible_Speed" target="source_entity" />
+		</else>
+	</onframe>
+</qualityitem>

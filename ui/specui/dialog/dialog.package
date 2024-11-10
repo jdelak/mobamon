@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- no server blackout overlay - this must be behind the generic dialog -->
+	<panel name="game_no_connection_overlay" noclick="0" blockinput="1" visible="0" >
+		<panel name="game_no_connection_overlay_dimmer" noclick="1" visible="0" color="0 0 0 0.85" />	
+		<animatedimage name="game_no_connection_overlay_wheel" texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+			y="-64s" height="128s" width="128s" align="center" valign="center" 
+		/>		
+		<label name="game_no_connection_overlay_label" fitx="1" align="left" x="27%" valign="center" fity="1" font="maindyn_48" content="main_chat_connecting" y="34s" color=".7 .7 .7 1" shadow="1" outline="1" />
+	</panel>
+
+	<instance id="generic_dialog_box_wrapper" y="0" name="dialogWrapper1" inneralpha="0 0 0 .9" valign="center" align="center" visible="0" />
+	
+	<panel name="generic_dialog_box" width="100w" height="100h" color="invisible" visible="0"
+		onevent2lua="ClickButton(self, 'generic_dialog_button_2')"
+		onevent1lua="ClickButton(self, 'generic_dialog_button_1')"
+	>
+		<textbox visible="1" color="invisible" height="0" width="0" font="maindyn_14"
+			maxlength="0"
+			onesc="CallEventParamsX('generic_dialog_box', 2)"
+			onenter="CallEventParamsX('generic_dialog_box', 1)"
+			onshow="SetFocus(true); SetDefaultFocus(true)"			
+		/>		
+		<panel name="generic_dialog_box_bg" color="0 0 0 0.3" visible="0" />
+		<panel name="generic_dialog_box_insert" noclick="1" align="center" valign="center" width="40h" height="6h" grow="1" regrow="1" growinvis="0" float="bottom" padding="0.75h" >
+			<instance y="0" name="dialogWrapper1" inneralpha="0 0 0 .9" />
+			<panel y="0" width="-1.5h" align="center" float="bottom" padding="0.75h" grow="1" regrow="1" growinvis="0" >
+				<panel height="0"/>
+				<panel height="4.0h">
+					<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+					<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+					<label name="generic_dialog_header_1" textvalign="center" x="0.75h" font="maindyn_22" style="goldColor" outline="true" outlinecolor="0 0 0 .7" content=""/>
+					<panel align="right" grow="1" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h">
+						<panel width="100@">
+							<instance name="closeXButton" buttonName="generic_dialog_box_closex" onclicklua="
+								self:GetWidget('generic_dialog_box'):SetVisible(false)
+							" align="center" valign="center"/>
+						</panel>
+					</panel>
+				</panel>
+			</panel>
+			
+			<panel grow="1" regrow="1" growinvis="0" width="100%" align="center" valign="top" float="bottom" >
+				<label name="generic_dialog_label_1" fity="true" fitymin="10h" fitypadding="2.0h" wrap="true" valign="top" textvalign="center" textalign="center" font="maindyn_22" color="white" outline="true" outlinecolor="0 0 0 .7" content="" noclick="1" sticky="0" stickytoinvis="0"/>
+				<label name="generic_dialog_label_2" fity="true" fitypadding="2.0h" wrap="true" valign="top" textvalign="center" textalign="center" font="maindyn_22" color="white" outline="true" outlinecolor="0 0 0 .7" content="" noclick="1" sticky="0" stickytoinvis="0"/>
+			</panel>
+
+			<panel name="generic_dialog_dontaskagain" visible="0" noclick="1" grow="1" regrow="1" growinvis="0" width="100%" align="center" valign="top" sticky="1" stickytoinvis="0" >
+				<panel noclick="1" align="center" valign="top" height="4.5h" width="50%" float="right" padding="14s" >
+					<instance name="tempSimpleCheckbox" id="generic_dialog_dontaskagain_checkbox" bg_color="0 0 0 .2" width="3.5h" height="3.5h"/>		
+					<label content="general_dontaskagain" fitx="1" valign="center" wrap="false" textvalign="center" textalign="left" font="maindyn_16" color="white" outline="true" outlinecolor="0 0 0 .7" noclick="1" sticky="0" stickytoinvis="0"/>
+				</panel>	
+			</panel>			
+			
+			<panel noclick="1" height="4.5h" >
+				<panel noclick="1" align="right" valign="top" width="55%" >
+					<instance id="generic_dialog_button_1" x="-0.75h" labelX="0"
+						name="standardButton"
+						label="general_ok"
+						font="maindyn_30"
+					/>					
+				</panel>		
+				<panel noclick="1" align="left" valign="top" width="38%" >
+					<instance id="generic_dialog_button_2" x="0.75h" labelX="0"
+						name="standardButton"
+						rendermode="grayscale"
+						label="general_cancel"
+						font="maindyn_24"
+					/>					
+				</panel>		
+			</panel>
+		</panel>
+	</panel>	
+	
+	<lua file="dialog.lua"/>
+	
+</package>

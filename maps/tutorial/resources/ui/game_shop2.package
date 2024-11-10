@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- ==================================================== -->
+
+	<template name="itemPurchasedAnimEntry">
+		<panel name="itemPurchasedAnimEntry{id}" x="{x}" y="{y}" width="{width=6h}" height="{height=6h}">
+			<image name="itemPurchasedAnimEntry{id}Icon" texture="{icon}"/>
+		</panel>
+	</template>
+	
+	<template name="gameShopItemListRowItemScroll">
+		<image name="{prefix=gameShopItemListRow}{rowID}Item{id}ScrollOverlay" texture="/ui/elements:scroll_overlay" noclick="true" hmargin="5@" vmargin="5%"/>
+	</template>
+
+	<template name="gameShopItemListRowItem"><!-- Grid view (or expanded components dropdown) entries (multiple per row) -->
+		<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}" width="75@" height="100%" sticky="{sticky=true}" stickytoinvis="{stickytoinvis=false}" noclick="true" visible="{visible=false}">
+			<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}Body" noclick="true" y="{y=0}">
+				<button name="{prefix=gameShopItemListRow}{rowID}Item{id}Button" color="invisible" interactive="false" cangrab="true" dragexclusive="false">
+				<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}SelectedBacker" width="+1.5h" align="center" height="15.5h" y="-0.75h" noclick="true" passivechildren="true" visible="false">
+					<image width="100%" height="200@" texture="/ui/elements:shop_item_simple_tab" noclick="true"/>
+				</panel>
+				<panel width="100%" height="100@" noclick="true">
+					<panel hmargin="5@" vmargin="5%" noclick="true" texture="/ui/elements:rounded_bg_white_vert" color="#0B0B0B">
+						<image name="{prefix=gameShopItemListRow}{rowID}Item{id}Icon" texture="/ui/icons/empty_pack.tga" align="center" valign="center" noclick="true" width="{iconWidth=100@}" height="{iconHeight=100%}"/>
+					</panel>
+					<instance name="{scrollTemplate}" prefix="{prefix=gameShopItemListRow}" rowID="{rowID}" id="{id}"/>
+					<image name="{prefix=gameShopItemListRow}{rowID}Item{id}InnerGlow" texture="/ui/dev_elements/shop_item_iglow.tga" color="#5fc85135" visible="0"/>
+					<frame name="{prefix=gameShopItemListRow}{rowID}Item{id}OuterFrame" texture="/ui/frames/button_stroke.tga"  bordercolor=".75 .75 .75 1" borderthickness="33@" visible="1"/>
+					<image name="{prefix=gameShopItemListRow}{rowID}Item{id}ShoppingIcon" x="14@" y="-14%" width="44@" height="44%" align="right" visible="0" />
+					<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}Crafted" x="-0.75h" y="-0.75h" width="2.5h" height="2.5h" noclick="true" passivechildren="true" visible="false">
+						<image texture="/ui/elements:itemtype_crafted"/>
+					</panel>
+						<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}MoreInfo" x="0.75h" y="0.75h" width="2.5h" height="2.5h" align="right" valign="bottom" noclick="true" passivechildren="true" visible="false" texture="/ui/elements/magnifying_glass.tga"/>
+					
+					<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}CanActivate" x="-0.75h" y="0.75h" valign="bottom" width="2.5h" height="2.5h" noclick="true" passivechildren="true" visible="false">
+						<image texture="/ui/icons/activatable.tga"/><!-- rmm new icon -->
+					</panel>
+				</panel>
+				<panel valign="bottom" height="-105@" align="center" grow="true" regrow="true" growinvis="false" float="right" padding="0.25h" x="0.25h" noclick="true">
+					<label name="{prefix=gameShopItemListRow}{rowID}Item{id}Cost" fitx="true" textalign="center" textvalign="center" font="{costFont=maindyn_12}" outline="true" color="white" content="-" noclick="true"/>
+					<panel name="{prefix=gameShopItemListRow}{rowID}Item{id}CostIconContainer" width="80@" height="100%" noclick="true" passivechildren="true" sticky="true" stickytoinvis="false">
+						<image name="{prefix=gameShopItemListRow}{rowID}Item{id}CostIcon" texture="/ui/elements:gold_coins" width="100%" height="100@" valign="center" sticky="true" stickytoinvis="false"/>
+					</panel>
+				</panel>
+				</button>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameShopItemListItem"><!-- list view entries (one per row) -->
+		<panel name="gameShopItemListItem{id}" height="8h" noclick="true">
+			<button name="gameShopItemListItem{id}Button" color="invisible" interactive="false" cangrab="true" dragexclusive="false">
+			<frame name="gameShopItemListItem{id}ListBG" texture="/ui/elements:rounded_bg_white" color="#342218" borderthickness="0.75h" noclick="true"/>
+				<frame name="gameShopItemListItem{id}ListBGGray" texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.75h" noclick="true" visible="false"/>
+			<frame texture="/ui/elements:thick" color="#333333" borderthickness="0.75h" hmargin="0.15h" vmargin="0.15h" noclick="true"/>
+			<frame name="gameShopItemListItem{id}ListBGFrame" texture="/ui/elements:thick" color="black" borderthickness="0.75h" noclick="true"/>
+			<panel hmargin="1h" vmargin="1h" noclick="true" passivechildren="true">
+				<panel width="100@" height="100%" noclick="true">
+					<frame texture="/ui/elements:rounded_bg_solid" color="#333333" borderthickness="0.75h" noclick="true"/>
+					<frame texture="/ui/elements:thick" color="black" borderthickness="0.75h" noclick="true"/>
+					<panel hmargin="0.45h" vmargin="0.45h" noclick="true">
+						<image name="gameShopItemListItem{id}Icon" texture="/items/basic/power_1/icon.tga" noclick="true"/>
+						<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.5h" noclick="true"/>
+						<frame texture="/ui/elements:thick" color="black" borderthickness="0.5h" noclick="true"/>
+
+						<image name="gameShopItemListItem{id}InnerGlow" texture="/ui/dev_elements/shop_item_iglow.tga" color="#5fc85135" visible="0"/>
+						<frame name="gameShopItemListItem{id}OuterFrame" texture="/ui/frames/button_stroke.tga"  bordercolor=".75 .75 .75 1" borderthickness="33@" visible="1"/>
+						<image name="gameShopItemListItem{id}ShoppingIcon" x="14@" y="-14%" width="44@" height="44%" align="right" visible="0" />
+
+						<panel name="gameShopItemListItem{id}Crafted" x="-0.75h" y="-0.75h" width="2.5h" height="2.5h" noclick="true" passivechildren="true" visible="false">
+							<image texture="/ui/elements:itemtype_crafted" noclick="true"/>
+						</panel>
+
+						<panel name="gameShopItemListItem{id}CanActivate" x="-0.75h" y="0.75h" valign="bottom" width="2.5h" height="2.5h" noclick="true" passivechildren="true" visible="false">
+							<image texture="/ui/shared/shop/textures/activatable.tga"/><!-- rmm new icon -->
+						</panel>
+
+					</panel>
+
+				</panel>
+				<label name="gameShopItemListItem{id}Name" height="1.5h" x="110@" textvalign="center" color="#22EE33" font="maindyn_14" outline="true" content="-"/>
+
+				<panel height="2.35h" align="right" grow="true" regrow="true" growinvis="false" float="right" padding="0.25h" y="-0.25h" noclick="true">
+					<label name="gameShopItemListItem{id}Cost" fitx="true" textalign="center" textvalign="center" font="maindyn_14" outline="true" color="white" content="-" noclick="true" sticky="true" stickytoinvis="false"/>
+					<panel name="gameShopItemListItem{id}CostIconContainer" width="80@" height="100%" noclick="true" passivechildren="true" sticky="true" stickytoinvis="false">
+						<image name="gameShopItemListItem{id}CostIcon" texture="/ui/elements:gold_coins" width="100%" height="100@" valign="center"/>
+					</panel>
+				</panel>
+				<label name="gameShopItemListItem{id}Description" height="-2.25h" valign="bottom" x="110@" width="-110@" color="white" font="maindyn_12" outline="true" wrap="true" content="-"/>
+			</panel>
+			</button>
+		</panel>
+	</template>
+
+	<template name="gameShopItemListItemRow"><!-- Row of items rather than a single-item row.  This template will only be used in the first 20 rows -->
+		<panel name="{rowName}" height="{height=100%}" align="center" noclick="true"><!--  padding="{itemPadding=2.75h}" x="-{itemPadding=2.75h}" -->
+			<instance name="gameShopItemListRowItem" rowID="{id}" id="{item1ID=1}" prefix="{prefix=gameShopItemListRow}" costFont="{costFont=maindyn_16}"/>
+			<instance name="gameShopItemListRowItem" rowID="{id}" id="{item2ID=2}" prefix="{prefix=gameShopItemListRow}" costFont="{costFont=maindyn_16}"/>
+			<instance name="gameShopItemListRowItem" rowID="{id}" id="{item3ID=3}" prefix="{prefix=gameShopItemListRow}" costFont="{costFont=maindyn_16}"/>
+			<instance name="gameShopItemListRowItem" rowID="{id}" id="{item4ID=4}" prefix="{prefix=gameShopItemListRow}" costFont="{costFont=maindyn_16}"/>
+		</panel>
+	</template>
+
+	<template name="gameShopItemSelectedRowItemDivider">
+		<panel name="gameShopItemSelectedRow{rowID}Item{id}Divider" noclick="true" passivechildren="true" width="1.5h" visible="{visible=false}">
+			<panel name="gameShopItemSelectedRow{rowID}Item{id}DividerBody" noclick="true" y="-100%">
+				<label height="70%" textalign="center" textvalign="center" font="maindyn_20" content="+" color="white" outline="true"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="gameShopItemListRow">
+		<panel name="gameShopItemRow{id}" width="100%" height="{height=8h}" noclick="true">
+			<panel name="gameShopItemRow{id}SelectedBackerList" visible="false" noclick="true" height="+0.75h" y="-0.75h" width="+1.5h" align="center"><!-- Expanded Item border for full item -->
+				<image width="100@" texture="/ui/elements:shop_item_list_contents_l" noclick="true"/>
+				<image hmargin="100@" texture="/ui/elements:shop_item_list_contents_c" noclick="true"/>
+				<image width="100@" texture="/ui/elements:shop_item_list_contents_r" noclick="true" align="right"/>
+			</panel>
+			<panel name="gameShopItemRow{id}SelectedBackerSimple" y="12.75h" height="11.5h" width="+1h" align="center" noclick="true" passivechildren="true" visible="false">
+				<image width="100@" texture="/ui/elements:shop_item_simple_contents_l"/>
+				<image hmargin="100@" texture="/ui/elements:shop_item_simple_contents_c"/>
+				<image width="100@" texture="/ui/elements:shop_item_simple_contents_r" align="right"/>
+			</panel>
+
+			<panel name="gameShopItemRow{id}SelectedContainer" align="center" height="7h" y="8.5h" noclick="true" visible="false"><!-- Expanded Item area -->
+				<instance name="gameShopItemListRowItem" rowID="{id}" id="1" prefix="gameShopItemSelectedRow" costFont="maindyn_12" sticky="false" stickytoinvis="false" y="-100%"/>
+				<instance name="gameShopItemSelectedRowItemDivider" rowID="{id}" id="2"/>
+				<instance name="gameShopItemListRowItem" rowID="{id}" id="2" prefix="gameShopItemSelectedRow" costFont="maindyn_12" sticky="false" stickytoinvis="false" y="-100%"/>
+				<instance name="gameShopItemSelectedRowItemDivider" rowID="{id}" id="3"/>
+				<instance name="gameShopItemListRowItem" rowID="{id}" id="3" prefix="gameShopItemSelectedRow" costFont="maindyn_12" sticky="false" stickytoinvis="false" y="-100%"/>
+
+				<instance name="gameShopItemSelectedRowItemDivider" rowID="{id}" id="Scroll"/>
+				<instance name="gameShopItemListRowItem" rowID="{id}" id="Scroll" prefix="gameShopItemSelectedRow" costFont="maindyn_12" sticky="false" stickytoinvis="false" scrollTemplate="gameShopItemListRowItemScroll" iconWidth="75@" iconHeight="75%" y="-100%"/>
+
+			</panel>
+
+			<instance name="gameShopItemListItem" id="{id}"/>
+			<instance name="{itemRowTemplate}" id="{id}" height="11h" rowName="gameShopItemRow{id}SubContainer"/>
+		</panel>
+	</template>
+
+	<!-- ==================================================== -->
+
+	
+	<template name="ListButton"><!-- RMM REPLACE ME WITH IMAGE! NO PANEL-HEAVY JUNK -->
+		<button name="{id}" width="100@" height="100%" valign="center" color="invisible" interactive="false">
+			<frame name="{id}Backer" texture="/ui/frames/stnd_btn_up.tga" borderthickness="0.4h"/>
+			<panel hmargin="0.35h" vmargin="0.35h">
+				<panel width="25@" height="20%" color="white"/>
+				<panel width="25@" height="20%" color="white" valign="center"/>
+				<panel width="25@" height="20%" color="white" valign="bottom"/>
+
+				<panel width="-40@" height="20%" color="white" align="right"/>
+				<panel width="-40@" height="20%" color="white" align="right" valign="center"/>
+				<panel width="-40@" height="20%" color="white" align="right" valign="bottom"/>
+			</panel>
+		</button>
+	</template>
+
+	<template name="GridButton"><!-- RMM REPLACE ME WITH IMAGE! NO PANEL-HEAVY JUNK -->
+		<button name="{id}" width="100@" height="100%" color="invisible" interactive="false">
+			<frame name="{id}Backer" texture="/ui/frames/stnd_btn_up.tga" borderthickness="0.4h" rendermode="grayscale"/>
+			<panel hmargin="0.35h" vmargin="0.35h">
+				<panel width="40@" height="40%" color="white"/>
+				<panel width="40@" height="40%" color="white" valign="bottom"/>
+				<panel width="40@" height="40%" color="white" align="right"/>
+				<panel width="40@" height="40%" color="white" align="right" valign="bottom"/>
+			</panel>
+		</button>
+	</template>
+
+	<template name="FilterButton">
+		<button name="{id}" width="100@" height="100%" color="invisible" interactive="false">
+			<frame name="{id}Backer" texture="/ui/frames/stnd_btn_up.tga" borderthickness="0.4h" rendermode="grayscale"/>
+			<panel hmargin="0.35h" vmargin="0.35h">
+				<image texture="/ui/icons/filter.tga" />
+			</panel>
+		</button>
+	</template>
+
+	<!-- ================================================= -->
+
+	<template name="levelUpPanelEntrySimpleLevelPip">
+		<panel name="abilityLevelUpEntry{abilID}Level{id}Pip" height="1h" texture="/ui/elements:hero_primary_levelpip"/>
+	</template>
+
+	<template name="levelUpPanelEntrySimple">
+		<panel width="100%" grow="true" regrow="true">
+			<panel noclick="true" passivechildren="true">
+				<frame name="abilityLevelUpEntry{id}_simple_frame_1" texture="/ui/elements:rounded_bg_white" color="#342218" borderthickness="0.75h"/>
+				<frame name="abilityLevelUpEntry{id}_simple_frame_2" texture="/ui/elements:thick" color="black" borderthickness="0.75h"/>
+				<frame name="abilityLevelUpEntry{id}_simple_frame_3" texture="/ui/elements:thick" color="#333333" borderthickness="0.75h" hmargin="0.15h" vmargin="0.15h"/>
+			</panel>
+			<panel noclick="true" passivechildren="true" width="-3h" align="center" float="bottom" padding="1.5h" grow="true" regrow="true">
+				<panel height="0"/>
+				<panel width="100%" grow="true" regrow="true">
+					<panel width="9h" height="11.5h">
+						<panel width="100%" height="100@">
+							<image name="abilityLevelUpEntry{id}IconSimple" texture="/heroes/bastion/ability_02/icon.tga"/>
+							<frame color="invisible" bordercolor="#333333" borderthickness="0.1h"/>
+						</panel>
+						<panel height="-9.75h" valign="bottom" align="center" grow="true" regrow="true" growinvis="false" float="right" y="-0.25h">
+							<label name="abilityLevelUpEntry{id}ManaCostSimple" textvalign="center" fitx="true" fitxpadding="0.35h" textalign="center" font="maindyn_12" outline="true" color="#00CCFF" content="70"/>
+							<image name="abilityLevelUpEntry{id}ManaIconSimple" texture="/ui/elements:itemtype_mana" color="#00CCFF" width="100@" height="100%"/>
+							<label name="abilityLevelUpEntry{id}CooldownLabel" textvalign="center" fitx="true" fitxpadding="1h" textalign="right" font="maindyn_12" outline="true" color="#CCCCCC" content="10s"/>
+							<image name="abilityLevelUpEntry{id}CooldownIcon" texture="/ui/elements:icon_loading" width="100@" height="100%"/>
+						</panel>
+						<panel name="abilityLevelUpEntry{id}HotkeySimple_parent" width="3.75h" height="3.75h" x="-0.75h" y="-0.75h">
+							<frame texture="/ui/elements:key" borderthickness="1.25h"/>
+							<label name="abilityLevelUpEntry{id}HotkeySimple" style="gameHotkeyLabel" content="Q" y="-0.35h"/>
+						</panel>
+					</panel>
+					<panel align="right" width="5h" height="10.5h">
+						<label height="1.75h" textalign="center" textvalign="center" color="#999999" outline="true" font="maindyn_12" content="game_scores_label_lvl"/>
+						<label name="abilityLevelUpEntry{id}LevelLabel" height="2.5h" y="2h" textalign="center" textvalign="center" color="white" outline="true" font="maindyn_20" content="1/4"/>
+						<panel grow="true" width="100%" valign="bottom" float="bottom" padding="0.15h">
+							<instance name="levelUpPanelEntrySimpleLevelPip" abilID="{id}" id="4"/>
+							<instance name="levelUpPanelEntrySimpleLevelPip" abilID="{id}" id="3"/>
+							<instance name="levelUpPanelEntrySimpleLevelPip" abilID="{id}" id="2"/>
+							<instance name="levelUpPanelEntrySimpleLevelPip" abilID="{id}" id="1"/>
+						</panel>
+					</panel>
+					<label name="abilityLevelUpEntry{id}NameSimple" height="2.25h" width="-16h" x="10h" textvalign="center" color="white" outline="true" font="maindyn_20" content="-"/>
+					<label name="abilityLevelUpEntry{id}DescriptionSimple" width="-16h" x="10h" y="2.5h" font="maindyn_12" outline="1" outlinecolor="0 0 0 1" color="white" wrap="true" fity="true" content="-" />
+				</panel>
+				<panel height="0"/>
+			</panel>
+			<button name="abilityLevelUpEntry{id}ButtonSimple" color="invisible" interactive="false"/>
+		</panel>
+	</template>
+
+	<style name="levelUpPanelEntryDetailedStatName" width="20h" textvalign="center" font="maindyn_12" outline="true"/>
+	<style name="levelUpPanelEntryDetailedStatValue" width="6.75h" textalign="center" font="maindyn_12" outline="true"/>
+
+	<template name="levelUpPanelEntryDetailedStat">
+		<panel name="abilityLevelUpEntry{abilID}PropertyRow{id}" height="2h" sticky="true" stickytoinvis="false">
+			<panel hmargin="1h" vmargin="0.25h" float="right">
+				<label name="abilityLevelUpEntry{abilID}Property{id}Name" style="levelUpPanelEntryDetailedStatName" color="white" content="-"/>
+				<label name="abilityLevelUpEntry{abilID}Property{id}Value1" style="levelUpPanelEntryDetailedStatValue" color="white" content="1"/>
+				<label name="abilityLevelUpEntry{abilID}Property{id}Value2" style="levelUpPanelEntryDetailedStatValue" color="white" content="2"/>
+				<label name="abilityLevelUpEntry{abilID}Property{id}Value3" style="levelUpPanelEntryDetailedStatValue" color="white" content="3"/>
+				<label name="abilityLevelUpEntry{abilID}Property{id}Value4" style="levelUpPanelEntryDetailedStatValue" color="white" content="4"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="levelUpPanelEntryDetailed">
+		<panel name="abilityLevelUpEntry{id}" width="100%" grow="true" regrow="true">
+			<panel noclick="true" passivechildren="true">
+				<frame name="abilityLevelUpEntry{id}_frame_1" texture="/ui/elements:rounded_bg_white" color="#342218" borderthickness="0.75h"/>
+				<frame name="abilityLevelUpEntry{id}_frame_2" texture="/ui/elements:thick" color="black" borderthickness="0.75h"/>
+				<frame name="abilityLevelUpEntry{id}_frame_3" texture="/ui/elements:thick" color="#333333" borderthickness="0.75h" hmargin="0.15h" vmargin="0.15h"/>
+			</panel>
+			<panel noclick="true" passivechildren="true" width="-2h" align="center" float="bottom" padding="1h" grow="true" regrow="true">
+				<panel height="0"/>
+				<panel width="100%" float="bottom" grow="true" regrow="true" growinvis="false">
+					<panel height="3h" sticky="true" stickytoinvis="false">
+						<panel width="100@" height="100%">
+							<image name="abilityLevelUpEntry{id}Icon" texture="/heroes/bastion/ability_03/icon.tga"/>
+							<frame color="invisible" bordercolor="#333333" borderthickness="0.1h"/>
+						</panel>
+						<label name="abilityLevelUpEntry{id}Name" x="135@" textvalign="center" font="maindyn_20" color="white" outline="true" content="-"/>
+						<panel align="right" grow="true" height="100%" float="right" padding="0.25h">
+							<label name="abilityLevelUpEntry{id}ManaCost" textalign="right" textvalign="center" width="6h" color="#00CCFF" font="maindyn_12" outline="true" content="80" />
+							<panel width="100@" height="100%">
+								<panel width="65@" height="65%" align="left" valign="center">
+									<image texture="/ui/elements:itemtype_mana" color="0 0 0 0.5" x="0.15h" y="0.15h"/>
+									<image name="abilityLevelUpEntry{id}ManaIcon" texture="/ui/elements:itemtype_mana" color="#00CCFF"/>
+								</panel>
+							</panel>
+							<panel name="abilityLevelUpEntry{id}Hotkey_parent" width="100@" height="100%">
+								<frame texture="/ui/elements:key" borderthickness="1h"/>
+								<label name="abilityLevelUpEntry{id}Hotkey" style="gameHotkeyLabel" content="Q" y="-0.35h"/>
+							</panel>
+						</panel>
+					</panel>
+					<panel grow="true" regrow="true" width="100%" sticky="true" stickytoinvis="false"><!-- No sticky labels -->
+						<label name="abilityLevelUpEntry{id}Description" fity="true" wrap="true" fitypadding="1h" textvalign="center" color="white" outline="true" font="maindyn_11" content=""/>
+					</panel>
+
+					<panel height="2.5h" sticky="true" stickytoinvis="false">
+						<frame texture="/ui/elements:rounded_bg_solid" color="#1b120d" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h" />
+						<frame texture="/ui/elements:thick" color="#442513" borderthickness="0.5h" hmargin="0.1h" vmargin="0.1h"/>
+						<panel hmargin="1h" vmargin="0.25h" float="right">
+							<label name="abilityLevelUpEntry{id}LevelHeader" style="levelUpPanelEntryDetailedStatName" color="white" content="general_level"/>
+							<label name="abilityLevelUpEntry{id}LevelHeading1" style="levelUpPanelEntryDetailedStatValue" color="white" content="1"/>
+							<label name="abilityLevelUpEntry{id}LevelHeading2" style="levelUpPanelEntryDetailedStatValue" color="white" content="2"/>
+							<label name="abilityLevelUpEntry{id}LevelHeading3" style="levelUpPanelEntryDetailedStatValue" color="white" content="3"/>
+							<label name="abilityLevelUpEntry{id}LevelHeading4" style="levelUpPanelEntryDetailedStatValue" color="white" content="4"/>
+						</panel>
+					</panel>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="1"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="2"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="3"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="4"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="5"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="6"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="7"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="8"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="9"/>
+					<instance name="levelUpPanelEntryDetailedStat" abilID="{id}" id="10"/>
+				</panel>
+				<panel height="0"/>
+			</panel>
+			<button name="abilityLevelUpEntry{id}Button" color="invisible" interactive="false"/>
+		</panel>
+	</template>
+
+	<!-- ================================================= -->
+
+
+	<template name="autoLevelEntry">
+		<panel name="autoLevelSkill{id}" width="7.5h" align="{align}"  noclick="true" passivechildren="true">
+			<frame texture="/ui/elements:rounded_bg_solid" color="#484848" borderthickness="0.5h"/>
+			<frame texture="/ui/elements:thick" color="black" borderthickness="0.5h"/>
+			<panel hmargin="0.35h" vmargin="0.35h">
+				<panel align="right" width="100@" height="100%">
+					<image name="autoLevelSkill{id}Icon" texture="/heroes/ace/ability_01/icon.tga" rendermode="grayscale" color="#333333"/>
+					<modelpanel name="autoLevelSkill{id}CanLevel" style="levelUpModel"/>
+					<frame texture="/ui/elements:thick" color="black" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:rounded_corner_white" color="#484848" borderthickness="0.5h"/>
+				</panel>
+				<label name="autoLevelSkill{id}Level" width="-100@" textalign="center" textvalign="center" outline="true" color="#444444" font="maindyn_16" content="{id=1}"/>
+			</panel>
+			<button name="autoLevelSkill{id}Button" color="invisible" interactive="false"/>
+		</panel>
+	</template>
+
+	<template name="autoLevelRow">
+		<panel height="5h" noclick="true">
+			<instance name="autoLevelEntry" id="{id1}"/>
+			<instance name="autoLevelEntry" id="{id2}" align="center"/>
+			<instance name="autoLevelEntry" id="{id3}" align="right"/>
+		</panel>
+	</template>
+
+	<!-- ================================================= -->
+
+	<template name="simpleItemEntry">
+		<panel name="{containerName}" width="{width=100@}" height="{height=100%}">
+			<image name="{id}Icon" texture="/ui/icons/empty_pack.tga" width="-10@" height="-10%" align="center" valign="center" />
+
+			<image name="{id}innerGlow" texture="/ui/dev_elements/shop_item_iglow.tga" color="#5fc85135" visible="0"/>
+			<frame name="{id}outerFrame" texture="/ui/frames/button_stroke.tga"  bordercolor=".75 .75 .75 1" borderthickness="33@" visible="1"/>
+			<image name="{id}shoppingIcon" x="14@" y="-14%" width="44@" height="44%" align="right" visible="0" />
+		</panel>
+	</template>
+
+	<template name="simpleItemEntryGold">
+		<panel name="{id}Container" width="{width=7.5h}" align="{align}" visible="{visible=true}">
+			<button name="{id}Button" color="invisible" interactive="false" cangrab="true" dragexclusive="false">
+			<instance id="{id}" name="simpleItemEntry" width="100%" height="100@"/>
+			<panel valign="bottom" height="-100@" align="center" grow="true" regrow="true" float="right" padding="0.25h">
+				<label name="{id}Cost" fitx="true" textvalign="center" color="white" outline="true" font="{font=maindyn_12}" content="1,435"/>
+				<panel name="{id}CostIconContainer" width="80@" height="100%" noclick="true" passivechildren="true">
+					<image width="100%" height="100@" valign="center" texture="/ui/elements:gold_coins"/>
+				</panel>
+			</panel>
+			</button>
+			<panel name="{id}DropTarget" visible="false" color="#FFCC0044"/>
+			
+		</panel>
+	</template>
+
+	<template name="autoBuyEntry">
+		<instance name="simpleItemEntryGold" id="gameShopAutoBuyEntry{id}" visible="false" align="{align}"/><!-- In case we actually want to separate these out -->
+	</template>
+
+	<template name="autoBuyRow">
+		<panel height="9.5h">
+			<instance name="autoBuyEntry" id="{id1}" visible="false"/>
+			<instance name="autoBuyEntry" id="{id2}" visible="false" align="center"/>
+			<instance name="autoBuyEntry" id="{id3}" visible="false" align="right"/>
+		</panel>
+	</template>
+
+	<!-- ================================================= -->
+
+	<template name="buyQueueEntryComponentPip">
+		<panel name="gameShopBuyQueueEntry{itemID}Component{id}" width="100@" height="100%" sticky="true" stickytoinvis="false">
+
+			<panel name="gameShopBuyQueueEntry{itemID}Component{id}Color" color="#666666"/>
+			<image name="gameShopBuyQueueEntry{itemID}Component{id}Icon" hmargin="2" vmargin="2"/>
+			<frame color="invisible" bordercolor="black" borderthickness="1"/>
+		</panel>
+	</template>
+
+	<template name="buyQueueEntry">
+		<panel name="gameShopBuyQueueEntry{id}" width="100%" height="101@" sticky="true" stickytoinvis="false" noclick="true">
+			<panel width="80%" height="80@" align="center" color="#333333" noclick="true">
+				<piegraph name="gameShopBuyQueueEntry{id}Piegraph" style="inventoryCooldownPie" color="lime" value="0.35h" visible="false"/>
+				<frame texture="/ui/elements:rounded_corner_white" color="#21140e" borderthickness="0.5h"/>
+				<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				<button name="gameShopBuyQueueEntry{id}Button" color="invisible" interactive="false" cangrab="true" dragexclusive="false">
+				<panel hmargin="0.35h" vmargin="0.35h">
+					<image name="gameShopBuyQueueEntry{id}Icon" texture="/items/basic/power_2/icon.tga"/>
+					<frame color="invisible" bordercolor="black" borderthickness="0.1h"/>
+					<panel name="gameShopBuyQueueEntry{id}Crafted" x="-0.75h" y="-0.75h" width="2.5h" height="2.5h" noclick="true" passivechildren="true">
+						<image texture="/ui/elements:itemtype_crafted"/>
+					</panel>
+				</panel>
+				<panel height="1.5h" align="center" grow="true" regrow="true" growinvis="false" float="right" padding="0.5h" x="-0.5h" y="0.5h" valign="bottom">
+					<instance name="buyQueueEntryComponentPip" itemID="{id}" id="0"/>
+					<instance name="buyQueueEntryComponentPip" itemID="{id}" id="1"/>
+					<instance name="buyQueueEntryComponentPip" itemID="{id}" id="2"/>
+				</panel>
+				</button>
+				<panel name="gameShopBuyQueueEntry{id}DropHighlight" visible="false" color="#FFCC0044" noclick="true">
+					<panel name="gameShopBuyQueueEntry{id}DropTarget" width="160%" align="center" valign="center" height="+2h" visible="true"/>
+				</panel>
+				<panel name="gameShopBuyQueueEntry{id}Remove" texture="/ui/shared/textures/kick_up.tga" visible="false"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="shopCategoryButton">
+		<button name="shopCategoryButton{id}" width="100@" height="100%" color="invisible" interactive="false">
+			<image name="shopCategoryButton{id}Backer" texture="/ui/dev_elements/filters/filter_base.tga"/>
+			<image name="shopCategoryButton{id}Icon" texture="/ui/dev_elements/filters/{icon}_0.tga"/><!-- Etching - Always On -->
+			<image name="shopCategoryButton{id}Hover" texture="/ui/dev_elements/filters/{icon}_1.tga" visible="0" /><!-- Hover: Quick FadeIn/FadeOut -->
+			<image name="shopCategoryButton{id}Selected" texture="/ui/dev_elements/filters/{icon}_2.tga" color="1 1 1 1" visible="0"/><!-- Selected: FadeIn/FadeOut -->
+			<image name="shopCategoryButton{id}SelectGlow" texture="/ui/dev_elements/filters/{icon}_3.tga" color="1 1 1 1" visible="0"/><!-- Selected: Pulse alpha when selected -->
+			<modelpanel name="shopCategoryButton{id}Glow" style="levelUpModelBoots" hmargin="0.5h" vmargin="0.5h"/>
+		</button>
+	</template>
+
+	<template name="shopFilterGroupHeader">
+		<panel name="shopFilterGroupHeader{id}" height="3h" noclick="true" sticky="true" stickytoinvis="false">
+			<panel noclick="true" align="right" width="{width=100%}">
+				<panel noclick="true" passivechildren="true">
+					<label textvalign="center" color="white" font="maindyn_14" outline="true" content="shopfilter_{id}"/>
+					<panel width="100@" height="100%" align="right">
+						<image name="shopFilterGroupHeader{id}Arrow" texture="/ui/shared/textures/arrow_rounded_up.tga" rotation="180" align="center" valign="center" width="60@" height="60%"/>
+					</panel>
+
+				</panel>
+				<button name="shopFilterGroupHeader{id}Button" color="invisible" interactive="false"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="shopFilterCheckbox">
+		<panel name="shopFilterCheckbox{id}" height="3h" noclick="1" sticky="true" stickytoinvis="false">
+			<panel noclick="1" align="right" width="{width=100%}">
+				<button name="shopFilterCheckbox{id}Button" color="invisible" interactive="false">
+					<frame name="shopFilterCheckbox{id}_frame_1" noclick="1" texture="/ui/elements:rounded_bg_white" color="#241f1a" borderthickness="0.5h"/>
+					<frame name="shopFilterCheckbox{id}_frame_2" noclick="1" texture="/ui/elements:roundframe" color="#2e2118" borderthickness="0.5h"/>
+					<frame name="shopFilterCheckbox{id}_frame_3" noclick="1" texture="/ui/elements:roundframe" color="#130a05" borderthickness="0.5h" hmargin="0.1h" vmargin="0.1h"/>
+					<label noclick="1" x="1h" width="-1h" textvalign="center" font="maindyn_12" color="#DDDDDDFF" outline="true" content="shopfilter_{id}"/>
+				</button>
+				<panel name="shopFilterCheckbox{id}CheckButton" align="right" width="120@" >
+					<panel noclick="1" width="50%" height="60%" x="30@" valign="center" >
+						<frame name="shopFilterCheckbox{id}_frame_4" noclick="1" texture="/ui/elements:rounded_bg_solid" color="1 1 1 1" borderthickness="0.5h"/>
+						<frame name="shopFilterCheckbox{id}_frame_5" noclick="1" texture="/ui/elements:thick" color="0 0 0 1" borderthickness="0.5h"/>
+						<image noclick="1" name="shopFilterCheckbox{id}Check" texture="/ui/shared/textures/check_mark_white.tga" hmargin="15@" vmargin="15%" color="black" visible="false"/>
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+
+	</template>
+
+	<template name="shopFilterCheckbox_icon">
+		<panel name="shopFilterCheckbox{id}" height="3h" noclick="1" sticky="true" stickytoinvis="false">
+			<panel noclick="1" align="right" width="{width=100%}">
+				<button name="shopFilterCheckbox{id}Button" color="invisible" interactive="false">
+					<frame name="shopFilterCheckbox{id}_frame_1" noclick="1" texture="/ui/elements:rounded_bg_white" color="#241f1a" borderthickness="0.5h"/>
+					<frame name="shopFilterCheckbox{id}_frame_2" noclick="1" texture="/ui/elements:roundframe" color="#2e2118" borderthickness="0.5h"/>
+					<frame name="shopFilterCheckbox{id}_frame_3" noclick="1" texture="/ui/elements:roundframe" color="#130a05" borderthickness="0.5h" hmargin="0.1h" vmargin="0.1h"/>
+					<frame noclick="1" color="black" height="85%" width="85@" valign="center" x="5@" >
+						<image texture="{icon=$invis}" valign="center" align="center" height="-2" width="-2" />
+					</frame>
+					<label noclick="1" x="3.5h" width="-1h" textvalign="center" font="maindyn_12" color="#DDDDDDFF" outline="true" content="shopfilter_{id}"/>
+				</button>
+				<panel name="shopFilterCheckbox{id}CheckButton" align="right" width="120@" >
+					<panel noclick="1" width="50%" height="60%" x="30@" valign="center" >
+						<frame name="shopFilterCheckbox{id}_frame_4" noclick="1" texture="/ui/elements:rounded_bg_solid" color="white" borderthickness="0.5h"/>
+						<frame name="shopFilterCheckbox{id}_frame_5" noclick="1" texture="/ui/elements:thick" color="black" borderthickness="0.5h"/>
+						<image noclick="1" name="shopFilterCheckbox{id}Check" texture="/ui/shared/textures/check_mark_white.tga" hmargin="15@" vmargin="15%" color="black" visible="false"/>
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+	<!-- ================================================= -->
+
+	<template name="shopSelectedItemComponent">
+		<panel name="gameShopSelectedItemComponent{id}" width="9h" sticky="true" stickytoinvis="false">
+			<frame texture="/ui/elements:rounded_bg_solid" color="0 0 0 0.5" borderthickness="0.5h"/>
+			<frame texture="/ui/elements:roundframe" color="#333333" borderthickness="0.5h"/>
+			<panel width="100@" height="100%" noclick="true">
+				<frame texture="/ui/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" noclick="true"/>
+				<panel hmargin="0.25h" vmargin="0.25h" noclick="true" passivechildren="true">
+					<image name="gameShopSelectedItemComponent{id}Icon" texture="/items/basic/power_1/icon.tga"/>
+					<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				</panel>
+			</panel>
+			<panel width="-100@" vmargin="7.5%" align="right" noclick="true" passivechildren="true">
+				<panel height="45%" align="center" grow="true" regrow="true" float="right">
+					<label name="gameShopSelectedItemComponent{id}StatValue" textalign="center" textvalign="center" fitx="true" fitxpadding="0.5h" font="maindyn_12" color="white" content="6"/>
+					<image name="gameShopSelectedItemComponent{id}StatIcon" width="100@" height="100%" texture="/ui/elements:itemtype_damage" color="#FF9911"/>
+				</panel>
+				<panel height="45%" align="center" grow="true" regrow="true" float="right" valign="bottom">
+					<label name="gameShopSelectedItemComponent{id}Cost" textalign="center" textvalign="center" fitx="true" fitxpadding="0.5h" font="maindyn_12" color="white" content="600"/>
+					<image width="100@" height="100%" texture="/ui/elements:gold_coins"/>
+				</panel>
+			</panel>
+			<button name="gameShopSelectedItemComponent{id}Button" color="invisible" interactive="false"/>
+		</panel>
+	</template>
+
+	<template name="shopSelectedItemDivider">
+		<panel name="gameShopSelectedItemComponent{id}Divider" width="1.75h" sticky="true" stickytoinvis="false">
+			<label textalign="center" textvalign="center" font="maindyn_20" color="#999999" content="{label=+}"/>
+		</panel>
+	</template>
+
+	<template name="gameShopBuildSelect_abilities_icon" >
+		<panel height="100%" width="100@" >
+			<image name="gameShopBuildSelect_abilities_icon_{index}" texture="$checker" />
+		</panel>
+	</template>	
+	<!-- 8======================================================D -->
+
+	<panel name="gameShopContainer" align="left" width="52.9h" height="-14h" x="-52.9h" blockinput="true" visible="false" hotkey="ESC" onhotkey="PlaySound('/shared/sounds/ui/button_close_01.wav'); CloseShop();"><!-- Shop Container -->
+		<panel name="gameShopLevelUpKeyController" noclick="true" color="invisible"/>
+		<panel name="gameShopBuyQueueContainer" x="100%" width="7.25h" y="5.25h" noclick="true" grow="true" regrow="true">
+			<panel noclick="true">
+				<frame texture="/ui/elements:rounded_bg_solid" color="#21140e" borderthickness="0.5h" width="+0.5h" x="-0.5h" noclick="true"/>
+				<panel name="autoBuyQueueAddDropTargetFull" visible="false" width="300%" height="80.9h">
+					<frame noclick="true" texture="/ui/elements:squareglow" borderthickness="4h" color="#b5910022" rendermode="additive"/>
+				</panel>
+			</panel>
+			<panel height="10h" noclick="true"/><!-- Min Height -->
+			<panel width="100%" grow="true" regrow="true" growinvis="false" float="bottom" padding="0.5h" noclick="true">
+
+
+				<button name="gameShopBookmarkIcon" y="0" height="5.5h" color="invisible" interactive="false" visible="1">
+					<panel hmargin="0.25h" vmargin="0.25h" color="#555555" noclick="true">
+						<frame texture="/ui/elements:rounded_corner_white" color="#21140e" borderthickness="0.5h" noclick="true"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h" noclick="true"/>
+						<panel hmargin="0.35h" vmargin="0.35h" noclick="true">
+							<frame texture="/ui/elements:rounded_bg_white" color="#114411" borderthickness="0.5h" noclick="true"/>
+							<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h" noclick="true"/>
+							<image texture="/ui/icons/lore.tga" color="1 1 1 1" width="90@" height="90%" align="center" valign="bottom" noclick="1" />
+						</panel>
+					</panel>
+				</button>
+
+				<panel height="0.8h" noclick="true"/>
+				<instance name="buyQueueEntry" id="0"/>
+				<instance name="buyQueueEntry" id="1"/>
+				<instance name="buyQueueEntry" id="2"/>
+				<instance name="buyQueueEntry" id="3"/>
+				<instance name="buyQueueEntry" id="4"/>
+				<instance name="buyQueueEntry" id="5"/>
+				<instance name="buyQueueEntry" id="6"/>
+				<instance name="buyQueueEntry" id="7"/>
+				<instance name="buyQueueEntry" id="8"/>
+				<panel name="autoBuyQueueAdd" width="100%" height="100@" noclick="true" sticky="true" stickytoinvis="false">
+					<panel width="80%" height="80@" align="center">
+						<image name="autoBuyQueueAdd_icon" texture="/ui/dev_elements/shop_drag.tga"/>
+						<panel name="autoBuyQueueAddDropTarget" visible="false" color="#FFCC0044" rendermode="overlay"/>
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+		<frame texture="/ui/elements:rounded_bg_solid" color="#150d09" borderthickness="0.5h" width="+0.5h" height="+0.5h" x="-0.5h" y="-0.5h"/>
+
+		<!-- Header Bar/Menu -->
+		<panel style="gameShopHeader">
+			<image style="gameShopHeaderBar" />
+			
+			<panel style="gameShopTabItemsPlacer">
+				<panel style="gameShopTabPlacerPlate">
+					<image style="gameShopTabPlacerPlateC" />
+					<image style="gameShopTabPlacerPlateL" />
+					<image style="gameShopTabPlacerPlateR" />
+					<panel style="gameShopTabPlacerPlateMargins">
+						<panel width="-90@">
+							<label name="gameShopTabItemsLabel" fitx="true" align="center" textvalign="center" font="maindyn_14" outline="true" color="1 1 1 1" content="game_shop_label_allitems"/>
+						</panel>
+						<button name="gameShopTabItemsHotkey" width="86@" height="86%" color="invisible" sticky="true" stickytoinvis="false" valign="center" align="right" interactive="false">
+							<frame align="center" valign="center" width="100%" height="100@" texture="/ui/elements:key" borderthickness="0.75h"/>
+							<label style="gameHotkeyLabel" y="0" content="B"/>
+						</button>
+					</panel>
+					<button name="gameShopTabItemsButton" interactive="false" color="invisible" />
+				</panel>
+			</panel>
+			<panel style="gameShopTabAbilitiesPlacer">
+				<panel style="gameShopTabPlacerPlate">
+					<image style="gameShopTabPlacerPlateC" />
+					<image style="gameShopTabPlacerPlateL" />
+					<image style="gameShopTabPlacerPlateR" />
+					<panel style="gameShopTabPlacerPlateMargins">
+						<panel width="-90@">
+							<label name="gameShopTabAbilitiesLabel" fitx="true" align="center" textvalign="center" font="maindyn_14" outline="true" color="1 1 1 1" content="game_shop_label_abilities"/>
+						</panel>
+						<button width="86@" height="86%" color="invisible" sticky="true" stickytoinvis="false" valign="center" align="right" interactive="false">
+							<frame align="center" valign="center" width="100%" height="100@" texture="/ui/elements:key" borderthickness="0.75h"/>
+							<label style="gameHotkeyLabel" y="0.25h" content="~"/>
+						</button>
+					</panel>
+					<button name="gameShopTabAbilitiesButton" interactive="false" color="invisible" />
+				</panel>
+			</panel>
+			<panel noclick="1" >			
+				<instance name="closeXButton" buttonName="game_shop_closex" width="50@" height="50%" align="right" y="8%" x="45@" valign="top" onclicklua="" visible="1" />	
+			</panel>
+		</panel>
+
+		<panel name="gameShopCategoryList" height="12h" y="4.2h" hmargin="0.5h" visible="true"><!-- Item Categories -->
+
+			<panel noclick="1" height="7.2h" float="right" padding="0.2h" >
+				<!--
+				<instance name="shopCategoryButton" id="1" icon="/ui/icons/icon_host.tga"/>
+				-->
+				<instance name="shopCategoryButton" id="2" icon="crafted"/><!-- Crafted and Item Builds -->
+				<instance name="shopCategoryButton" id="5" icon="caster"/>
+				<instance name="shopCategoryButton" id="4" icon="physical"/>
+				<instance name="shopCategoryButton" id="6" icon="mana"/>
+				<instance name="shopCategoryButton" id="7" icon="defense"/>
+				<instance name="shopCategoryButton" id="8" icon="support"/>
+				<instance name="shopCategoryButton" id="3" icon="boots"/>
+			</panel>
+
+			<!-- Second Row -->
+			<panel noclick="1" height="4.4h" valign="bottom" float="right" padding="0.8h">
+
+				<!-- All/Search Box -->
+				<panel x="0.4h" width="620@" height="100%" noclick="1">
+					<instance name="shopCategoryButton" id="1" icon="all"/>
+
+					<panel align="right" valign="center" height="80%" width="-110@" noclick="1">
+						<instance name="dialogWrapper2"/>
+						<frame name="game_shop_search_bg" texture="/ui/frames/text_input.tga" borderthickness="0.6h" color=".8 .8 .8 1.0" noclick="1"/>
+						<label name="game_shop_search_cover_label" x="1.2h" y="-0.1h"  noclick="1" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_16" content="game_shop_search"/>
+						<textbox name="game_shop_search_input" color="invisible" y="0.25h" hmargin="0.65h" vmargin="0.25h" textcolor="black" textvalign="center" font="maindyn_14" shadow="true"
+							onesc="
+								EraseInputLine()
+							"
+
+							onfocuslua="
+								trigger_gamePanelInfo.selectedShopItem = -1
+								trigger_gamePanelInfo.selectedShopItemType = ''
+								trigger_gamePanelInfo:Trigger(false)
+
+								trigger_shopFilter.shopCategory	= ''
+								trigger_shopFilter:Trigger(false)
+
+								self:GetWidget('game_shop_search_cover_label'):FadeOut(50)
+								self:GetWidget('game_shop_search_closex'):FadeIn(50)
+								self:GetWidget('game_shop_search_bg'):SetColor('1 1 1 1')
+								self:GetWidget('game_shop_search_bg'):SetBorderColor('1 1 1 1')
+							"
+							onenter="DoEvent()"
+							onevent="self:SetFocus(false)"
+							onchangelua="
+								if (string.len(tostring(self:GetValue())) &#62; 0) then
+									self:GetWidget('game_shop_search_cover_label'):FadeOut(50)
+									self:GetWidget('game_shop_search_closex'):FadeIn(50)
+									self:GetWidget('game_shop_search_bg'):SetColor('1 1 1 1')
+									self:GetWidget('game_shop_search_bg'):SetBorderColor('1 1 1 1')
+									Shop.SetSearchString(self:GetValue())
+								else
+									self:GetWidget('game_shop_search_cover_label'):FadeIn(250)
+									self:GetWidget('game_shop_search_closex'):FadeOut(250)
+									self:GetWidget('game_shop_search_bg'):SetColor('.8 .8 .8 1')
+									self:GetWidget('game_shop_search_bg'):SetBorderColor('.8 .8 .8 1')
+									Shop.SetSearchString('')
+								end
+							"
+						/>
+						<instance name="closeXButton" buttonName="game_shop_search_closex" width="80@" height="80%" align="right" x="-15@" valign="center"
+							onclicklua="
+								self:GetWidget('game_shop_search_input'):EraseInputLine()
+							"
+						visible="0" />
+					</panel>
+				</panel>
+
+				<instance name="shopCategoryButton" id="10" icon="components"/><!-- Components -->
+				<instance name="shopCategoryButton" id="9" icon="consumable"/>
+
+				<panel width="1" color="#281407" noclick="true" />
+				<panel height="62%" valign="center" float="right" padding="0.7h" noclick="true">
+					<instance name="ListButton" id="gameShopItemViewButtonDetailed"/><!-- List View -->
+					<instance name="GridButton" id="gameShopItemViewButtonSimple"/><!-- Icon View -->
+					<panel width="0.4h" noclick="true" />
+					<instance name="FilterButton" id="shopToggleFilterBtn" /><!-- Show Filters -->
+				</panel>
+
+			</panel>
+
+		</panel>
+
+		<panel name="gameShopFilterList" align="left" width="17h" height="52h" x="1h" y="17.5h" float="bottom" padding="0.5h" noclick="true" visible="0" ><!-- Filters / Filtergories -->
+
+
+
+			<instance name="shopFilterCheckbox" id="activatable"/>
+			<instance name="shopFilterCheckbox" id="attack_damage"/>
+			<instance name="shopFilterCheckbox" id="attack_speed"/>
+			<instance name="shopFilterCheckbox" id="attack_mod"/>
+			<instance name="shopFilterCheckbox" id="defense_armor"/>
+			<instance name="shopFilterCheckbox" id="buff_team"/> <!-- heal too -->
+			<instance name="shopFilterCheckbox" id="attack_crit"/>
+			<instance name="shopFilterCheckbox" id="cd_reduction"/>
+			<instance name="shopFilterCheckbox" id="debuff_enemy"/>
+			<instance name="shopFilterCheckbox" id="defense_health"/>
+			<instance name="shopFilterCheckbox" id="attack_lifesteal"/> <!-- spell vamp too -->
+			<instance name="shopFilterCheckbox" id="defense_magic_armor"/>
+			<instance name="shopFilterCheckbox" id="ability_mana"/>
+			<instance name="shopFilterCheckbox" id="mobility"/> <!-- boots, speed boosts, cc resist -->
+			<instance name="shopFilterCheckbox" id="ability_power"/>
+			<instance name="shopFilterCheckbox" id="stealth"/>
+			<instance name="shopFilterCheckbox_icon" id="health_comp1"			icon="/items/basic/health_1/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="health_comp2"			icon="/items/basic/health_2/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="health_comp3"			icon="/items/basic/health_3/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="health_regen_comp1"	icon="/items/basic/healthregen_1/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="health_regen_comp2"	icon="/items/basic/healthregen_2/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="mana_comp1"			icon="/items/basic/mana_1/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="mana_comp2"			icon="/items/basic/mana_2/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="mana_comp3"			icon="/items/basic/mana_3/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="mana_regen_comp1"		icon="/items/basic/manaregen_1/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="mana_regen_comp2"		icon="/items/basic/manaregen_2/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="power_comp1"			icon="/items/basic/power_1/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="power_comp2"			icon="/items/basic/power_2/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="power_comp3"			icon="/items/basic/power_3/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="attack_speed_comp1"	icon="/items/basic/attackspeed_1/icon.tga"/>
+			<instance name="shopFilterCheckbox_icon" id="attack_speed_comp2"	icon="/items/basic/attackspeed_2/icon.tga"/>
+
+		</panel>
+
+		<!-- Item list -->
+		<panel name="gameShopItemListContainer" width="-6h" height="52h" noclick="true" align="right" x="-3h" valign="top" y="17.5h">
+			<panel clip="true" noclick="true">
+				<panel name="gameShopItemList" hmargin="0.5h" vmargin="0.5h">
+					<panel name="gameShopItemListBody"><!-- Just instantiate these later on -->
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="1"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="2"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="3"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="4"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="5"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="6"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="7"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="8"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="9"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="10"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="11"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="12"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="13"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="14"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="15"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="16"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="17"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="18"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="19"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="20"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="21"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="22"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="23"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="24"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="25"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="26"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="27"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="28"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="29"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="30"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="31"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="32"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="33"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="34"/>
+						<instance name="gameShopItemListRow" itemRowTemplate="gameShopItemListItemRow" id="35"/>
+						<instance name="gameShopItemListRow" id="36"/>
+						<instance name="gameShopItemListRow" id="37"/>
+						<instance name="gameShopItemListRow" id="38"/>
+						<instance name="gameShopItemListRow" id="39"/>
+						<instance name="gameShopItemListRow" id="40"/>
+						<instance name="gameShopItemListRow" id="41"/>
+						<instance name="gameShopItemListRow" id="42"/>
+						<instance name="gameShopItemListRow" id="43"/>
+						<instance name="gameShopItemListRow" id="44"/>
+						<instance name="gameShopItemListRow" id="45"/>
+						<instance name="gameShopItemListRow" id="46"/>
+						<instance name="gameShopItemListRow" id="47"/>
+						<instance name="gameShopItemListRow" id="48"/>
+						<instance name="gameShopItemListRow" id="49"/>
+						<instance name="gameShopItemListRow" id="50"/>
+						<instance name="gameShopItemListRow" id="51"/>
+						<instance name="gameShopItemListRow" id="52"/>
+						<instance name="gameShopItemListRow" id="53"/>
+						<instance name="gameShopItemListRow" id="54"/>
+						<instance name="gameShopItemListRow" id="55"/>
+						<instance name="gameShopItemListRow" id="56"/>
+						<instance name="gameShopItemListRow" id="57"/>
+						<instance name="gameShopItemListRow" id="58"/>
+						<instance name="gameShopItemListRow" id="59"/>
+						<instance name="gameShopItemListRow" id="60"/>
+						<instance name="gameShopItemListRow" id="61"/>
+						<instance name="gameShopItemListRow" id="62"/>
+						<instance name="gameShopItemListRow" id="63"/>
+						<instance name="gameShopItemListRow" id="64"/>
+						<instance name="gameShopItemListRow" id="65"/>
+						<instance name="gameShopItemListRow" id="66"/>
+						<instance name="gameShopItemListRow" id="67"/>
+						<instance name="gameShopItemListRow" id="68"/>
+						<instance name="gameShopItemListRow" id="69"/>
+						<instance name="gameShopItemListRow" id="70"/>
+						<instance name="gameShopItemListRow" id="71"/>
+						<instance name="gameShopItemListRow" id="72"/>
+						<instance name="gameShopItemListRow" id="73"/>
+						<instance name="gameShopItemListRow" id="74"/>
+						<instance name="gameShopItemListRow" id="75"/>
+						<instance name="gameShopItemListRow" id="76"/>
+						<instance name="gameShopItemListRow" id="77"/>
+						<instance name="gameShopItemListRow" id="78"/>
+						<instance name="gameShopItemListRow" id="79"/>
+						<instance name="gameShopItemListRow" id="80"/>
+						<instance name="gameShopItemListRow" id="81"/>
+						<instance name="gameShopItemListRow" id="82"/>
+						<instance name="gameShopItemListRow" id="83"/>
+						<instance name="gameShopItemListRow" id="84"/>
+						<instance name="gameShopItemListRow" id="85"/>
+						<instance name="gameShopItemListRow" id="86"/>
+						<instance name="gameShopItemListRow" id="87"/>
+						<instance name="gameShopItemListRow" id="88"/>
+						<instance name="gameShopItemListRow" id="89"/>	
+						<instance name="gameShopItemListRow" id="90"/>
+						<instance name="gameShopItemListRow" id="91"/>
+						<instance name="gameShopItemListRow" id="92"/>
+						<instance name="gameShopItemListRow" id="93"/>
+						<instance name="gameShopItemListRow" id="94"/>
+						<instance name="gameShopItemListRow" id="95"/>
+						<instance name="gameShopItemListRow" id="96"/>
+						<instance name="gameShopItemListRow" id="97"/>
+						<instance name="gameShopItemListRow" id="98"/>
+						<instance name="gameShopItemListRow" id="99"/>						
+						<instance name="gameShopItemListRow" id="100"/>						
+					</panel>
+				</panel>
+			</panel>
+			
+			<panel name="gameShopItemListSimple_noitems" noclick="1" passivechildren="true" visible="0" >
+				<?lua
+					object:RegisterWatchLua('ShopItem0', function(widget, trigger)
+						widget:SetVisible(not trigger.exists)
+					end, true, nil, 'exists')
+				?>
+				<panel width="-0.5h" noclick="true" align="right">
+					<label name="gameShopItemListSimple_noitems_label" y="-20h" textalign="center" textvalign="center" color="#CCCCCC" font="maindyn_24" shadow="true" noclick="true" content="game_shop_noresults"/>
+				</panel>
+			</panel>
+			
+			<scrollbar
+				name="gameShopItemListScrollbar"
+				width="2h" align="right"
+				texture="/ui/dev_elements/combobox_simple.tga"
+				scrollbarsize="2.0h"
+				handleheight="2.0h"
+				handlewidth="2.0h"
+				vertical="true"
+				step="1"
+			/>
+			<panel name="gameShopItemListScrollPanel" hover="false" processonlyscroll="true" color="invisible"/>
+		</panel>
+
+		<!-- Build Select -->
+		<panel name="gameShopBuildSelect_items" noclick="1" height="30.5h" y="7.8h" visible="0" width="26h" align="center" padding="1h" color="0 0 0 0.6" x="48.5h" >
+			
+			<instance name="dialogWrapper1" />
+			
+			<panel y="0" align="center" float="bottom" padding="0.75h" width="100%" height="4.75h" >
+				<panel height="4.0h">
+					<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+					<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+					<label textvalign="center" x="0.75h" font="maindyn_22" style="goldColor" outline="true" outlinecolor="0 0 0 .7" content="game_shop_bookmark_choose_bookmark"/>
+					<panel align="right" grow="1" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h">
+						<panel width="100@">
+							<instance name="closeXButton" onclicklua="self:GetWidget('gameShopBuildSelect_items'):SetVisible(false)" align="center" valign="center"/>
+						</panel>
+					</panel>
+				</panel>
+			</panel>					
+					
+			<instance id="game_shop_build_clear_items_bookmark_btn" height="3.5h" width="40%" align="left" valign="bottom" rendermode="grayscale"
+				name="standardButton"
+				label="game_shop_bookmark_clear_bookmark"
+				font="maindyn_14"
+			/>		
+
+			<instance id="game_shop_build_select_items_bookmark_btn" height="3.5h" width="58%" align="right" valign="bottom"
+				name="standardButton"
+				label="game_shop_bookmark_load_bookmark"
+				font="maindyn_14"
+			/>			
+			
+			<listbox
+				name="game_bookmarks_load_listbox"
+				width="-2"
+				height="-8.6h" y="4.75h"
+				color="invisible"
+				font="maindyn_16"
+				itemwidth="100%"
+				itemheight="2.3h"
+				select="true"
+				clearselection="true"
+				hoverselect="false"
+				hoverhighlight="true"
+				highlight="under"
+				highlightcolor="#46adff42"
+				highlightbordercolor="invisible"
+				selectedcolor="#346dff52"
+				selectedbordercolor="invisible"
+				backgroundimage="$invis"
+				backgroundimagecolor="#1d2f3b"
+				colortransition="true"
+				colortransitiontime="250"
+				scrollbarsize="2.25h"
+				scrolltexture="/ui/info/combobox.tga"
+				handleheight="2.25h"
+				onselect="Echo('onselect');"
+			/>			
+			
+			
+		</panel>
+
+		<panel name="gameShopQuickSlotsContainer" height="6h" y="71h" width="-0.5h"><!-- Quick Slots / Gold / Sell -->
+			<panel x="-100@" width="14h" align="right"><!-- Current Gold -->
+				<label name="gameShopHeroGold" width="-60@" textalign="right" textvalign="center" color="white" outline="true" font="maindyn_16" content=""/>
+				<image align="right" width="50@" height="50%" texture="/ui/elements:gold_coins" valign="center"/>
+			</panel>
+			<panel align="right" width="100@" height="100%"><!-- Sell -->
+				<image texture="/ui/icons/trash.tga" noclick="true"/>
+				<panel name="gameShopDropSell" style="heroInventoryBackpackUsableItemDrop"/>
+				<panel name="gameShopDragSell" style="heroInventoryBackpackUsableItemDrop" visible="false"/>
+			</panel>
+		</panel>		
+		
+		<!-- Item Stash / Courier -->
+		<panel name="gameShopStashContainer" height="6h" y="78.9h" width="-0.5h" noclick="true">
+			<label name="gameShopStashLabel" width="6h" textalign="center" textvalign="center" wrap="true" font="maindyn_12" color="#CCCCCC" noclick="true" content="Item Stash"/>
+			<panel name="gameShopCourierContainer" x="0" align="right" width="100@" height="100%" noclick="true">
+				<instance name="gameInventoryBasicBackers" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+				<instance name="gameInventoryBasicIcons" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+				<instance name="gameInventoryBasicCooldowns" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+				<instance name="gameInventoryBasicModels" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+				<instance name="gameInventoryBasicOverlays" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+				<instance name="gameInventoryBasicLabels" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+				<instance name="gameInventoryBasicLabels12" id="11" suffix="B" keySpace="gameInventoryItemKeySpace" keyStyle="gameInventoryItemHotkeyLabel"/>
+			</panel>
+		</panel>
+
+		<panel name="levelUpPanel" noclick="true" hmargin="1h" visible="false"><!-- Entire Ability Management -->
+
+			<panel y="5h" height="3.5h">
+				<panel align="left" float="right" padding="0.5h">
+					<label fitx="true" textvalign="center" color="#CCCCCC" outline="true" font="maindyn_20" content="game_shop_label_yourlevel" />
+					<label name="levelUpPanelCurrentLevel" textvalign="center" outline="true" font="maindyn_20" color="white" content=""/>
+				</panel>
+				<panel align="right" grow="true" regrow="true" height="100%" float="right" padding="0.5h">
+					<label fitx="true" textalign="right" textvalign="center" color="#999999" outline="true" font="maindyn_20" content="game_shop_label_skillpoints" />
+					<label name="levelUpPanelPointsLeft" fitx="true" fitxpadding="1h" textvalign="center" color="white" outline="true" font="maindyn_20" content=""/>
+				</panel>
+			</panel>
+
+			<panel visible="0" y="10h" height="2.5h" float="right" padding="0.5h"> <!-- RMM Remove this? -->
+				<instance name="GridButton" id="levelUpPanelViewButtonSimple" width="100@" height="100%"/>
+				<label name="levelUpPanelViewButtonSimpleLabel" fitx="true" textvalign="center" color="white" outline="true" font="maindyn_12" content="game_shop_label_simpleview"/>
+				<panel width="3h"/>
+				<instance name="ListButton" id="levelUpPanelViewButtonDetailed" width="100@" height="100%"/>
+				<label name="levelUpPanelViewButtonDetailedLabel" fitx="true" textvalign="center" color="white" outline="true" font="maindyn_12" content="game_shop_label_detailedview"/>
+			</panel>
+
+			<panel name="levelUpPanelListSimple" valign="bottom" height="-17.7h" noclick="true" float="bottom" padding="1h" visible="0"><!-- Simple View -->
+				<instance name="levelUpPanelEntrySimple" id="0"/>
+				<instance name="levelUpPanelEntrySimple" id="1"/>
+				<instance name="levelUpPanelEntrySimple" id="2"/>
+				<instance name="levelUpPanelEntrySimple" id="3"/>
+			</panel>
+
+			<panel name="levelUpPanelListDetailed" valign="bottom" height="-17.7h" noclick="true" float="bottom" padding="1h" visible="0"><!-- Detailed View -->
+				<instance name="levelUpPanelEntryDetailed" id="0"/>
+				<instance name="levelUpPanelEntryDetailed" id="1"/>
+				<instance name="levelUpPanelEntryDetailed" id="2"/>
+				<instance name="levelUpPanelEntryDetailed" id="3"/>
+			</panel>
+
+			<!-- ability builds selection -->
+			<panel name="gameShopBuildSelect_abilities" noclick="1" height="7.5h" y="8.85h" visible="0" width="-1h" align="center" >
+				<panel noclick="1" height="3.5h" float="right" padding="0.8h" >
+					<instance name="simpleCombobox" id="game_shop_build_select_abilities_combobox" blockinput="0" visible="1" width="32.5h" align="left"/>		
+				<instance name="standardButton2Check" id="game_shop_autolevel_checkbox" width="16h" height="3.5h" align="center" enabled="1" label="game_shop_autolevel" disableCheck="true"/>	
+				</panel>
+				<panel noclick="1" valign="bottom" height="3.1h" float="right" padding="0.3h" >
+					<instance  name="gameShopBuildSelect_abilities_icon" index="1" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="2" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="3" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="4" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="5" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="6" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="7" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="8" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="9" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="10" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="11" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="12" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="13" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="14" />
+					<instance  name="gameShopBuildSelect_abilities_icon" index="15"/>
+				</panel>
+			</panel>
+
+		</panel>
+
+	</panel><!-- End Shop Container -->
+
+	
+	<panel name="gameShopItemPurchasedAnimScriptWidget" color="invisible" noclick="true"/>
+
+	<include file="/ui/shopitemtip.package"/>
+
+</package>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<model
+				bone="_bone_head"
+				position="0 0 0"
+				expirelife="250"
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				scale="1.725"
+				startcolor="0 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".4"
+				yawspeed="-180"
+				pitchspeed="180"
+				directionalspace="world"
+			>
+
+				
+					<template name="star">
+						<billboard
+							bone="{bone}"
+							position="0 0 0"
+							scale="{scale}"
+							material="/shared/effects/smaterials/star_blend.material"
+							expirelife="500"
+							minrollspeed="-100"
+							maxrollspeed="100"
+							color=".8 .6 0"
+							startalpha="1"
+							endalpha="0"
+						/>
+						
+						<billboard
+							bone="{bone}"
+							position="0 0 0"
+							scale="{scale}"
+							material="/shared/effects/materials/whitedot.material"
+							expirelife="500"
+							minrollspeed="-100"
+							maxrollspeed="100"
+							startcolor=".5 .15 0"
+							endcolor="0 0 0"
+							depthbias="-20"
+						/>
+					</template>
+					
+					<instance name="star" bone="_bone_fx_09" scale=".25"/>
+					<instance name="star" bone="_bone_fx_05" scale=".2"/>
+					<instance name="star" bone="_bone_fx_06" scale=".15"/>
+					<instance name="star" bone="_bone_fx_02" scale=".3"/>
+
+					<billboard
+						position="0 0 0"
+						expirelife="250"
+						material="/shared/effects/smaterials/fire_swoosh_blend.material"
+						color=".75 0 .75"
+						startalpha=".125"
+						endalpha="0"
+						size="90"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						rollspeed="360"
+						directionalspace="local"
+					/>
+					
+			</model>
+
+			<model
+				bone="_bone_head"
+				position="0 0 0"
+				expirelife="250"
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				scale="1.725"
+				startcolor="0 0 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startalpha="0"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".4"
+				yawspeed="-270"
+				yaw="180"
+				pitchspeed="-180"
+				pitch="45"
+				directionalspace="world"
+			>
+
+				
+					<template name="star">
+						<billboard
+							bone="{bone}"
+							position="0 0 0"
+							scale="{scale}"
+							material="/shared/effects/smaterials/star_blend.material"
+							expirelife="500"
+							minrollspeed="-100"
+							maxrollspeed="100"
+							color=".8 .6 0"
+							startalpha="1"
+							endalpha="0"
+						/>
+						
+						<billboard
+							bone="{bone}"
+							position="0 0 0"
+							scale="{scale}"
+							material="/shared/effects/materials/whitedot.material"
+							expirelife="500"
+							minrollspeed="-100"
+							maxrollspeed="100"
+							startcolor=".5 .15 0"
+							endcolor="0 0 0"
+							depthbias="-20"
+						/>
+						
+					</template>
+					
+					<instance name="star" bone="_bone_fx_09" scale=".25"/>
+					<instance name="star" bone="_bone_fx_05" scale=".2"/>
+					<instance name="star" bone="_bone_fx_06" scale=".15"/>
+					<instance name="star" bone="_bone_fx_02" scale=".3"/>
+
+					<billboard
+						position="0 0 0"
+						expirelife="250"
+						material="/shared/effects/smaterials/fire_swoosh_blend.material"
+						color=".75 0 .75"
+						startalpha=".2"
+						endalpha="0"
+						size="90"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						yaw="180"
+						rollspeed="360"
+						directionalspace="local"
+					/>
+					
+					
+			</model>
+			
+
+					<billboard
+						bone="_bone_head"
+						expirelife="250"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".25 0 .25"
+						endcolor="0 0 0"
+						size="150"
+						depthbias="-50"
+					/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

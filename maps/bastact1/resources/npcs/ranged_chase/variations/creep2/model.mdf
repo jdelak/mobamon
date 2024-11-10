@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" >
+
+	<anim name="idle" clip="../../clips/default_1.clip" fps="35" loop="true"  minstartframe="0" maxstartframe="-1"/>
+	
+	<anim name="attack_1" clip="../../clips/attack_1.clip" fps="34" loop="false">
+		<frameevent frame="1" cmd="PlaySoundLinear ../../sounds/sfx_attack_%.wav 500 2400 .45"/>
+	</anim>
+
+	<anim name="attack_2" clip="../../clips/ability_1.clip" fps="34" loop="false">
+		<frameevent frame="1" cmd="PlaySoundLinear ../../sounds/sfx_attack_%.wav 500 2400 .45"/>
+	</anim>
+
+	<anim name="ability_1" clip="../../clips/ability_1.clip" fps="34" loop="false">
+		<frameevent frame="1" cmd="PlaySoundLinear ../../sounds/sfx_attack_%.wav 500 2400 .45"/>
+	</anim>
+	
+	<anim name="ability_02" clip="../../clips/ability_02.clip" fps="34" loop="false">
+		<frameevent frame="10" cmd="StartEffect ../../ability_02/effects/cast.effect"/>
+		<frameevent frame="10" cmd="StartEffect ../../ability_02/effects/arrows_up.effect"/>
+		<frameevent frame="1" cmd="PlaySoundLinear ../../sounds/sfx_attack_%.wav 500 2400 .45"/>
+	</anim>
+
+	<anim name="walk_1" clip="../../clips/run_1.clip" fps="30" loop="true" minstartframe="0" maxstartframe="-1">
+		<frameevent frame="10" cmd="PlaySoundLinear /npcs/lane_creeps/range_creep/sounds/creep_move_%.wav 0 1200 .2"/>
+		<frameevent frame="3" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_left_%.wav 0 1200 0.1"/>
+		<frameevent frame="16" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 0 1200 0.1"/>
+		<frameevent frame="24" cmd="PlaySoundLinear /npcs/lane_creeps/range_creep/sounds/creep_move_%.wav 0 1200 .2"/>
+	</anim>
+	
+	<anim name="run_1" clip="clips/run_1.clip" fps="30" loop="true" minstartframe="0" maxstartframe="-1">
+		<frameevent frame="10" cmd="PlaySoundLinear /npcs/lane_creeps/range_creep/sounds/creep_move_%.wav 0 1200 .2"/>
+		<frameevent frame="3" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_left_%.wav 0 1200 0.1"/>
+		<frameevent frame="16" cmd="PlaysoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 0 1200 0.1"/>
+		<frameevent frame="24" cmd="PlaySoundLinear /npcs/lane_creeps/range_creep/sounds/creep_move_%.wav 0 1200 .2"/>
+	</anim>
+	
+	<anim name="death_1" clip="../../clips/death_1.clip" fps="24" loop="true" loopbackframe="-1">
+		<frameevent frame="10" cmd="PlaySoundLinear ../../sounds/sfx_death_%.wav 500 2400 .45"/>
+	</anim>	
+
+	<anim name="frozen" clip="../../clips/default_1.clip" fps="0" loop="true" loopbackframe="-1">
+	</anim>	
+	
+	<anim name="stunned_1" clip="../../clips/stunned_1.clip" fps="24" loop="true" loopbackframe="1">
+	</anim>
+
+</model>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_EnvironmentTrigger_Snake_Green_Ground"
+
+	icon=""
+	portrait=""
+	model="/world/sprops/jungle/snake/model.mdf"
+	passiveeffect="/world/sprops/jungle/snake/idle.effect"
+	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+	
+	maxhealth="4500"
+	healthregen="4500"
+
+
+	sightrangeday="0"
+	sightrangenight="0"
+	revealrange="0"
+	
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	
+	invulnerable="true"
+	hidealtinfo="true"
+	Runing="false"
+	drawonmap="false"
+	
+>
+	<!-- remove this onspawn when setting up properly. This is a hack to get mystik to work -->
+	<onspawn>
+		<playanim name="idle" />
+	</onspawn>
+	
+	<aura
+		radius="400"
+		targetscheme="all_heroes"
+		state="State_EnvironmentTrigger_Snake_Green"
+		reflexivestate="State_EnvironmentTrigger_Snake_Green_Anim"
+		duBation="5000"
+	/>
+	
+	<aura
+		radius="800"
+		targetscheme="all_heroes"
+		state="State_EnvironmentTrigger_Snake_Green2"
+		reflexivestate="State_EnvironmentTrigger_Snake_Green_Anim_Runback"
+		duBation="5000"
+	/>
+
+	
+</gadget>
+

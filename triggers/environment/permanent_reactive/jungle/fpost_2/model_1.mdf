@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="high.max" file="high_1.model" type="K2" >
+
+	<anim name="idle" clip="clips/idle.clip" startframe="0" numframes="1" loop="true" />
+	
+	<!--<anim name="hit" clip="clips/hit.clip" loop="true" loopbackframe="-1"/>-->
+	
+	<anim name="flamehit" clip="clips/flamehit.clip" loop="true" fps="60" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear /shared/sounds/reactive/sfx_crumble_%.wav 500 2000 0.5"/>
+		
+		<frameevent frame="1" cmd="StartEffect effects/dust.effect"/>
+		<frameevent frame="1" cmd="StartEffect effects/apex_dust.effect"/>
+		<frameevent frame="8" cmd="StartEffect effects/apex_dust.effect"/>
+		
+		
+		
+		<physicalshape
+			bone="_bone_rubble01"
+			type="box"
+			bounds="10 10 100"
+			density="1500"
+			expiretime="10000"
+			expiretype="freeze"
+			
+			restitution=".1"
+			static="true"
+		/>
+		<physicalshape
+			bone="_bone_rubble02"
+			type="box"
+			bounds="10 10 10"
+			endkinematictime="1000"
+			density=".25"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+
+		/>
+		<physicalshape
+			bone="_bone_rubble03"
+			type="box"
+			bounds="5 5 5"
+			endkinematictime="0"
+			density=".25"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+		/>
+		<physicalshape
+			bone="_bone_rubble04"
+			type="box"
+			bounds="5 5 5"
+
+			density=".25"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+			static="true"
+
+		/>
+		<physicalshape
+			bone="_bone_rubble05"
+			type="box"
+			bounds="5 5 5"
+			endkinematictime="350"
+			density=".25"
+			expiretime="10000"
+			expiretype="freeze"
+			restitution=".1"
+			
+
+		/>
+		<physicalshape
+			bone="_bone_rubble06"
+			type="box"
+			bounds="8 8 8"
+			endkinematictime="350"
+			density=".5"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+		/>
+		
+		
+		
+		
+		<physicalshape
+			bone="_bone_rubble07"
+			type="box"
+			bounds="8 8 8"
+			endkinematictime="350"
+			density=".5"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+		/>
+		<physicalshape
+			bone="_bone_rubble08"
+			type="box"
+			bounds="8 8 8"
+			endkinematictime="350"
+			density=".5"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+		/>
+
+		<physicalshape
+			bone="_bone_rubble09"
+			type="box"
+			bounds="12 12 12"
+			endkinematictime="350"
+			density="500"
+			expiretime="10000"
+			expiretype="drop"
+			restitution=".1"
+		/>
+		
+	</anim>
+	
+</model>

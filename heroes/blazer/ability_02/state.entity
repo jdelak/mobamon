@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Blazer_Ability2"
+	
+	icon="icon.tga"
+	
+	passiveeffect=""
+	effecttype="StatusDebuff CrowdControl"
+	alwaystransmitdata="true"
+	
+>
+	<onframe>
+
+		<distance source="proxy_entity" />
+		<compare a="result" b="150" op="gt" >
+			<setvar0 a="result" b="1000" op="div" />
+			<setvar0 a="var0" b="1.0" op="min" />
+			<setvar0 a="-600" b="var0" op="mult" />
+			<push force="var0" frame="true" source="proxy_position" />
+		</compare>
+
+		<distance source="proxy_entity" target="this_owner_entity" />
+		<compare a="result" b="1500" op="gt">
+			<expire />
+		</compare>
+	</onframe>
+
+	<onexpired>
+		<delete target="this_proxy_entity" />
+		<playeffect effect="effects/sound_end.effect" source="target_entity" target="" occlude="true" />
+
+	</onexpired>
+	
+
+</state>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+			
+<!--
+			<light
+				position="0 0 50"
+				life="250"
+				startcolor="0 5 10"
+				endcolor="0 0 0"
+				falloffstart="25"
+				falloffend="350"
+			/>
+-->
+
+			<template name="">
+
+			
+			<simpleemitter
+				bone="_bone_center"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<simpleemitter
+						delay="300"
+						count="25"
+						bone="_bone_center"
+						position="0 0 0"
+						minspeed="0"
+						maxspeed="300"
+						spawnrate="2000"
+						minparticlelife="75"
+						maxparticlelife="400"
+						offsetradial="75 0 0"
+						offsetsphere="25 25 25"
+						minangle="0"
+						maxangle="1"
+						material="/shared/effects/smaterials/bubble_add.material"
+						direction="0 0 1"
+					>
+						<particle
+							color="{zcolor}"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							minstartscale="10"
+							maxstartscale="25"
+							endscale="0"
+							depthbias="-160"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						delay="300"
+						count="6"
+						bone="_bone_center"
+						position="0 0 0"
+						minspeed="0"
+						maxspeed="300"
+						spawnrate="2000"
+						minparticlelife="75"
+						maxparticlelife="400"
+						offsetradial="30 0 0"
+						offsetsphere="20 20 20"
+						minangle="0"
+						maxangle="1"
+						material="/shared/effects/smaterials/bubble_add.material"
+						direction="0 0 1"
+					>
+						<particle
+							color="{zcolor}"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							minstartscale="6"
+							maxstartscale="6"
+							endscale="0"
+							depthbias="-160"
+						/>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+
+			</template>
+			
+			<instance name="" zcolor=".75 .25 1"/>
+			<instance name="" zcolor="1 .5 .5"/>
+			<instance name="" zcolor="0 0 1"/>
+			<instance name="" zcolor="0 1 0"/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				gravity="50"
+			>
+				<particle
+				>
+
+					<model
+						bone="_bone_center"
+						life="250"
+						startcolor="1 1 1"
+						midcolor="1 1 1"
+						endcolor="1 1 1"
+						startscale=".25"
+						endscale=".85"
+						model="shield/shield.mdf"
+						minrollspeed="-180"
+						maxrollspeed="180"
+						minyawspeed="-180"
+						maxyawspeed="180"
+					/>
+					
+					<model
+						bone="_bone_center"
+						life="250"
+						startcolor=".85"
+						midcolor=".85"
+						endcolor="0 0 0"
+						startscale=".25"
+						endscale=".85"
+						model="shield/shield.mdf"
+						material="shield/shell_sludge.material"
+					/>
+
+<!--
+					<model
+						bone="_bone_centerofchest"
+						life="500"
+						startcolor=".125 .125 .125"
+						midcolor=".125 0 .125"
+						endcolor=".125 .125 .125"
+						scale="1.15"
+						model="shield_death/shield.mdf"
+						anim="idle"
+						rollspeed="0"
+					/>
+
+					<model
+						bone="_bone_centerofchest"
+						life="500"
+						startcolor=".5 .25 .25"
+						midcolor=".25 .25 .5"
+						endcolor=".5 .25 .25"
+						scale="1.15"
+						model="shield_death/shield.mdf"
+						anim="idle"
+						material="shield/shell_sludge.material"
+						rollspeed="0"
+					/>
+-->
+					
+					
+
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

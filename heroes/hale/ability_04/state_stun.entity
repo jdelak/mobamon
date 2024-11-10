@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Hale_Ability4_Stun"
+	
+	ishidden="true"
+	stunned="true"
+	effecttype="StatusDebuff StatusDisable CrowdControl"
+	
+	passiveeffect="shared/effects/stun.effect"
+	impactinterval="50"
+>
+
+	<onimpact>
+		<compare a="accumulator" b="1" op="ne">
+			<playanim name="stunned_1" target="target_entity" />
+			<setaccumulator value="1" />
+		</compare>
+	</onimpact>
+
+	<onexpired>
+		<delete target="this_proxy_entity" />
+		<iscurrentanim entity="target_entity" anim="stunned_1">
+			<playanim name="idle" target="target_entity"/>
+		</iscurrentanim>
+	</onexpired>
+
+</state>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+
+	<!-- Passive -->
+	<template name="passive" parentmodel="true" parentskeleton="true" directionalspace="local">
+		<billboard timenudge="1000" expirelife="100" material="/shared/effects/smaterials/whitedot.material" size="2" startcolor="0" endcolor="0" />
+		<model timenudge="1000" bone="_bone_rightwrist" position="0 0 0" expirelife="150" anim="idle" model="key/chain_wrists/model.mdf" scale=".85" startcolor="1 1 1" midcolor="1 1 1" endcolor="1 1 1" midcolorpos=".75" startalpha="1" endalpha="0" roll="0" yaw="180"/>
+		<billboard timenudge="1000" expirelife="250" bone="_bone_rightwrist" material="/shared/effects/smaterials/whitedot.material" scale="2.25" startcolor=".25 0 .5" endcolor="0 0 0"/>
+		<model timenudge="1000" bone="_bone_leftankle" position="0 5 6" expirelife="150" anim="idle" model="key/chain_wrists/model.mdf" scale=".6" startcolor="1 1 1" midcolor="1 1 1" endcolor="1 1 1" midcolorpos=".75" startalpha="1" endalpha="0" roll="-90" yaw="0"/>
+		<billboard timenudge="1000" expirelife="250" bone="_bone_leftankle" material="/shared/effects/smaterials/whitedot.material" scale="1.5" depthbias="-75" startcolor=".35 0 .7" endcolor="0 0 0"/>
+	</template>
+	<instance name="passive"/>
+	
+	<sound delay="120" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="420" falloffend="3400" volume="0.45" channel="90049"/>
+
+		
+
+	
+			
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0" />
+<waitfordeath instance="instance0" />
+</thread>
+</effect>

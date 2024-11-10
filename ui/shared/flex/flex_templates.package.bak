@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="flex_image_dropdown_item_template">
+		<image texture="{texture=$checker}" color="1 1 1 1" width="{width=92}@" height="92%" valign="center"/>
+		<label fitx="1" align="right" x="-5@" style="labelBase" color="1 1 1 1" font="maindyn_18" textvalign="center" content="{label}"/>
+	</template>	
+	
+	<template name="flex_slider_integer_v3">
+		<panel name="{id}_parent"  sticky="0" stickytoinvis="0"
+			grow="true"
+			height="{height=100%}" width="{width=100%}" group="{group}"
+			noclick="1"
+			oninstantiatelua=""
+			onmouseoverlua=""			
+		>
+			<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="1.3h" noclick="true" rendermode="{rendermode}" color="#4ab4ff" />
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true">
+			
+				<panel height="1.8h" noclick="true" sticky="true" stickytoinvis="false">
+					<label width="-2.5h" height="100%" textvalign="center" font="maindyn_20" color="#ffaa00" shadow="true" content="{title}" noclick="true" />
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="0.3h" noclick="true" />
+				
+				<panel height="2.6h" noclick="true">
+					<panel width="{intWidth=6h}" noclick="true">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+						<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="true" />
+						<label name="{id}_value_label" textvalign="center" textalign="center" font="maindyn_18" color="1 1 1 1" shadow="true" noclick="1" />
+					</panel>
+				
+					<slider
+						name="{id}_slider"
+						width="{sliderWidth=-6.2h}"
+						align="right"
+						slotwidth="-1%" slotheight="0.1h"
+						slotcolor="#51647b"
+						handlewidth="90@" handleheight="90%"
+						handlecolor="1 1 1 1"
+						minvalue="{minvalue=0}" maxvalue="{maxvalue=1}"
+						step="{step}"
+						texture="/ui/shared/textures/slider.tga"
+						onselect="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+						onmouseoverlua=""
+					/>
+				</panel>
+				<panel height="0" noclick="true" />
+				
+				<!-- Txt 1 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text1=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".7 .9 .8 1" noclick="true" />
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".7 .9 .8 1"  content="{sub_text1}" noclick="true" />
+					</panel>
+				</panel>				
+				<!-- Txt 2 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text2=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .8 .8 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" content="{sub_text2}" noclick="true" />
+					</panel>
+				</panel>
+				<!-- Txt 3 -->
+				<panel grow="true" width="100%" noclick="true" sticky="true" stickytoinvis="false" visible="0"
+					oninstantiatelua="self:SetVisible(not Empty(('{sub_text3=}')))"
+				>
+					<panel grow="true" width="-1.4h" align="center" noclick="1">
+						<image y="0.6h" width="1.0h" height="1.0h" texture="/ui/shared/textures/ul.tga" color=".8 .4 .3 1" noclick="true" />					
+						<label fity="true" width="-1.4h" align="right" wrap="true" textvalign="top" style="labelBase" font="maindyn_16" color=".8 .4 .3 1" content="{sub_text3}" noclick="true" />
+					</panel>
+				</panel>	
+			
+				<panel height="0.4h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>			
+		</panel>
+	</template>	
+	
+	<template name="flex_widget_listitem_template">
+		<panel name="flex_widget_listitem_{index}" noclick="1" >
+			<image noclick="1" height="85%" width="85@" color="1 1 1 1" texture="{texture=$invis}" valign="center" align="left" />
+			<label noclick="1" width="-95@" align="right" style="labelBase" font="subdyn_12" textvalign="center" content="{label=???}"/>
+			<instance name="iconButton" icon="/ui/shared/twitch/textures/undo_icon.tga" id="flex_widget_listitem_{index}_undo" width="80@" height="80%" align="right" x="-100@" valign="center" noclick="0" onclicklua="" />
+			<instance name="closeXButton" buttonName="flex_widget_listitem_{index}_closex" width="80@" height="80%" align="right" x="-10@" valign="center" noclick="0" onclicklua="" />
+		</panel>
+	</template>		
+	
+	<template name="Flex_Logged_Button">
+		<panel name="{id}" height="{height=10%}" color="{color}"
+			onmouseoverlua="
+				self:SetColor('{hover}')
+				self:GetWidget('{id}_icon'):SetColor('{hovertype}')
+				self:GetWidget('{id}_label'):SetColor('{hovertype}')
+			"
+			onmouseoutlua="
+				self:SetColor('{color}')
+				self:GetWidget('{id}_icon'):SetColor('{type}')
+				self:GetWidget('{id}_label'):SetColor('{type}')
+			"
+			onclicklua="{onclicklua}"
+		>
+			<image name="{id}_icon" x="6%" texture="/ui/shared/twitch/textures/{texture}" color="{type}" height="70%" width="70@" valign="center" noclick="1"/>
+			<label name="{id}_label" x="19%" content="{label}" font="maindyn_18" height="100%" color="{type}" valign="center" textvalign="center" noclick="1"/>
+		</panel>
+	</template>
+	
+	<template name="Flex_Overlay_Button">
+		<panel name="{id}" height="{height=17%}" color="{color}"
+			onmouseoverlua="
+				self:SetColor('{hover}')
+				self:GetWidget('{id}_icon'):SetColor('{hovertype}')
+				self:GetWidget('{id}_label'):SetColor('{hovertype}')
+			"
+			onmouseoutlua="
+				self:SetColor('{color}')
+				self:GetWidget('{id}_icon'):SetColor('{type}')
+				self:GetWidget('{id}_label'):SetColor('{type}')
+			"
+			onclick="PlaySound('/ui/sounds/sfx_button_generic.wav')"
+		>
+			<image name="{id}_icon" x="2%" texture="/ui/shared/twitch/textures/{texture}" color="{type}" height="60%" width="60@" valign="center" noclick="1"/>
+			<label name="{id}_label" x="20%" content="{label}" font="maindyn_18" style="labelBase" height="100%" color="{type}" valign="center" textvalign="center" noclick="1"/>
+		</panel>
+	</template>
+
+	<template name="Window_Header_LG">
+		<panel name="{id}" width="100%" height="{height}" noclick="1">			
+			<image noclick="1" texture="/ui/shared/twitch/textures/flex_icon.tga" height="100%" width="100@" valign="center"/>
+			<label noclick="1" y="-0.4h" x="130@" content="{label}" style="h1" font="maindyn_26" height="100%" textvalign="top"/>
+			<!-- Close -->
+			<instance name="closeXButton" buttonName="{id}_Close" width="{closewidth}" height="100%" align="right" valign="center"  noclick="0" onclicklua="{onclicklua}" />
+		</panel>	
+	</template>
+	
+	<template name="Window_Footer_LG">
+		<panel name="{id}" width="100%" height="{height}" valign="{valign}" noclick="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" color="#061b29" borderthickness="0.5h" />
+			<!-- Save and Close -->
+			<instance name="standardButton" id="Flex_Overlays_Close" x="-1%" width="40%" height="80%" align="right" valign="center" label="{label}"
+				onclicklua="{onclicklua}"
+			/>
+		</panel>
+	</template>
+	
+	<template name="flex_dropdown_basic">
+		<panel name="{cvar}{nameid}_parent" sticky="0" stickytoinvis="0"
+			grow="true"
+			width="{width=100%}"
+			noclick="1"
+			group="{group=options_options}"
+			oninstantiatelua="
+				Strife_Options.RegisterOption('option_dropdown_v3', '{category}', '{subcategory}', '{cvar}', '{title}', '{sub_text1}', '{sub_text2}', '{sub_text3}', '{tip_image}', '{tip_name}', '{tip_text1}', '{tip_text2}', '{tip_text3}', '{gradmark1_pos}', '{gradmark2_pos}', '{gradmark3_pos}', '{gradmark4_pos}', '{gradmark5_pos}', '{gradmark1_name}', '{gradmark2_name}', '{gradmark3_name}', '{gradmark4_name}', '{gradmark5_name}', '{slidefunction}', '{maxvalue=1}', '{data}', [=[{onchange}]=], [=[{onchangelua}]=], [=[{onselect}]=], [=[{populate}]=], '{maxlistheight}', '{pair=false}', '{inverted=false}', '{enforce}', '{enforce2}', '{enforce3}', '{enforce4}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}', '{title_font=dyn_12}', [=[{command}]=], '{table}', '{action}', '{param=}', '{impulse=false}', [=[{onclick}]=], [=[{oneventlua}]=], [=[{oninstantiatelua}]=])
+				self:Sleep(1, function() 
+					Strife_Options:RegisterDropdown(self, '{cvar}{nameid}_combobox', '{cvar}', '{nameid}', '{group}', '{precision=0}', '{numerictype=int}', '{percent=true}', '{round_var=true}')
+				end)
+			"		
+		>
+			<panel grow="true" growinvis="false" width="-1.6h" y="0.7h" align="center" float="bottom" padding="0.4h" noclick="true" reverse="true">
+				
+				<panel height="1.8h" noclick="true" sticky="true" stickytoinvis="false">
+					<label y="-0.1h" height="100%" textvalign="center" width="-2.6h" style="h2" color="#bdbdbd" font="maindyn_20" content="{title}" noclick="true" />
+					<instance name="tip_mark" tip_id="{tip_id}" width="2.3h" height="2.3h" valign="center" align="right" visible="0"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="0.7h" noclick="true" />
+				
+				<panel height="3.8h" noclick="true">
+					<combobox
+						name="{cvar}{nameid}_combobox"
+						align="right"
+						valign="center"
+						color="invisible"
+						itemwidth="100%"
+						itemheight="3.8h"
+						maxlistheight="{maxlistheight}"
+						exteriorscrollbars="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						handleheight="6.0h" handlewidth="3.0h"
+						scrollbarsize="3.0h"
+						scrollbaroffset="-0.1h"
+						highlight="under"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						vscrollbar="1"
+						hscrollbar="0"
+						onrefreshlua="{onrefreshlua}"
+						oneventlua="{oneventlua}"
+						oninstantiatelua="{oninstantiatelua}"
+						onloadlua="{oninstantiatelua}"
+						oninstantiate="{oninstantiate}; {populate=}; {data=}('{itemtemplate=simpleDropdownItem}','{font=dyn_9}'); {onload=}"
+						onload="{populate=}; {data=}('{itemtemplate=simpleDropdownItem}','{font=dyn_9}'); {onload=}"						
+						onselect="If(IsVisible(), PlaySound('/shared/sounds/ui/button_click_05.wav')); {onselect}"
+						onselectlua="{onselectlua}"
+						onevent="{onevent=}"
+						onchange="{onchange=}"
+						onchangelua="{onchangelua=}"
+						onmouseoverlua="Strife_Options:HoverScroller()"
+						group="{grouptarget}"
+					>
+						<widgetstate statename="up">
+							<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color=".8 .8 .8 1" />
+							<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color=".8 .8 .8 1" />
+							<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color=".8 .8 .8 1" />
+						</widgetstate>
+						<widgetstate statename="over">
+							<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color="1 1 1 1" />
+							<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color="1 1 1 1" />
+							<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color="1 1 1 1" />
+						</widgetstate>
+						<widgetstate statename="disabled">
+							<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color=".4 .4 .4 1" />
+							<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color=".4 .4 .4 1" />
+							<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color=".4 .4 .4 1" />
+						</widgetstate>						
+						<widgetstate statename="listbg">
+							<frame texture="/ui/elements:rounded_bg_white" height="+1.0h" valign="center" color=".05 .05 .05 .95" borderthickness="0.5h" />
+							<frame texture="/ui/elements:roundframe" height="+1.0h" valign="center"  borderthickness="0.5h" color=".2 .2 .2 1"/>
+						</widgetstate>
+						<widgetstate statename="itembg">
+
+						</widgetstate>
+						<widgetstate statename="itemhighlight">
+							<frame texture="/ui/elements:rounded_bg_white" x="0.2h" width="-3.4h" valign="center" color="1 1 1 .1" borderthickness="0.4h" />
+						</widgetstate>
+					</combobox>
+				</panel>
+					
+				<panel height="0.9h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="flex_instantiate_template_webcam" >
+		<panel name="flexinstantiate_template_{index}" group="{group=flex_instantiated_overlay_widgets}" visible="1" height="{height=20h}" width="{width=20h}" x="{x=0}" y="{y=0}" align="{align=left}" valign="{valign=top}" color="1 1 1 0" noclick="1"
+			cangrab="{canMove=0}" canmove="{canMove=0}"	
+		>	
+			<label x="2%" height="85%" width="85@" style="labelBase" color=".6 .6 .6 1" outlinecolor="0 0 0 .6" textalign="center" textvalign="center" valign="center" noclick="1" font="maindyn_20" content="flex_webcam_preview" wrap="1" />
+			<image name="flexinstantiate_template_{index}_webcam" noclick="1" texture="/ui/main/watch/textures/icon_live.tga" rendermode="grayscale"
+				oninstantiatelua="
+					local trigger = LuaTrigger.GetTrigger('TwitchStatus')
+					if (true) then
+						if (trigger.webCamTexture) and (not Empty(trigger.webCamTexture)) then
+							self:SetTexture(trigger.webCamTexture)
+						else
+							self:SetTexture('$flexwebcam_0')
+						end
+						self:SetVFlip(trigger.webCamFlipped)
+						self:SetColor('1 1 1 1')
+						self:SetRenderMode('normal')
+					else
+						self:SetTexture('/ui/main/watch/textures/icon_live.tga')
+						self:SetColor('1 1 1 0.3')
+						self:SetRenderMode('grayscale')
+					end
+					self:RegisterWatchLua('TwitchStatus', function(widget, trigger)
+						if (trigger.webCamActive) then
+							if (trigger.webCamTexture) and (not Empty(trigger.webCamTexture)) then
+								widget:SetTexture(trigger.webCamTexture)
+							else
+								widget:SetTexture('$flexwebcam_0')
+							end
+							widget:SetColor('1 1 1 1')
+							widget:SetRenderMode('normal')
+						else
+							widget:SetTexture('/ui/main/watch/textures/icon_live.tga')
+							widget:SetColor('1 1 1 0.3')
+							widget:SetRenderMode('grayscale')
+						end
+						widget:SetVFlip(trigger.webCamFlipped)
+					end, false, nil, 'webCamTexture', 'webCamFlipped', 'webCamActive')
+				"
+			/>
+			<label content="Widget: {index}" visible="0" shadow="black" outline="1" outlinecolor="black" font="maindyn_20" height="100%" color="1 1 1 1" textalign="center" valign="center" textvalign="top" noclick="1"/> 
+		</panel>	
+	</template>		
+	
+	<template name="flex_instantiate_template_panel" >
+		<panel name="flexinstantiate_template_{index}_panel" group="{group=flex_instantiated_overlay_widgets}" visible="1" height="{height=20h}" width="{width=20h}" x="{x=0}" y="{y=0}" align="{align=left}" valign="{valign=top}" color="{color=0 0 0 1}" noclick="1"
+			cangrab="{canMove=0}" canmove="{canMove=0}"	
+		>	
+			<label content="Widget: {index}" visible="0" shadow="black" outline="1" outlinecolor="black" font="maindyn_20" height="100%" color="1 1 1 1" textalign="center" valign="center" textvalign="top" noclick="1"/> 
+		</panel>	
+	</template>	
+	
+	<template name="flex_instantiate_template_image" >
+		<panel name="flexinstantiate_template_{index}" group="{group=flex_instantiated_overlay_widgets}" visible="1" height="{height=20h}" width="{width=20h}" x="{x=0}" y="{y=0}" align="{align=left}" valign="{valign=top}" color="1 1 1 0" noclick="1"
+			cangrab="{canMove=0}" canmove="{canMove=0}"	
+		>	
+			<splashimage name="flexinstantiate_template_{index}_image" height="100%" width="100%" noclick="1" image="{texture}" view="stretch" imagemaxheight="100h" imagemaxwidth="100w" imagekeepaspect="false" />
+			<label content="Widget: {index}" visible="0" shadow="black" outline="1" outlinecolor="black" font="maindyn_20" height="100%" color="1 1 1 1" textalign="center" valign="center" textvalign="top" noclick="1"/> 
+		</panel>	
+	</template>		
+	
+	<template name="flex_instantiate_template_label" >
+		<panel name="flexinstantiate_template_{index}" group="{group=flex_instantiated_overlay_widgets}" visible="1" height="{height=20h}" width="{width=20h}" x="{x=0}" y="{y=0}" align="{align=left}" valign="{valign=top}" color="1 1 1 0" noclick="1"
+			cangrab="{canMove=0}" canmove="{canMove=0}"	
+		>	
+			<label name="flexinstantiate_template_{index}_label" content="{label}" shadow="black" outline="1" outlinecolor="black" font="{font=maindyn_18}" height="100%" color="{color=1 1 1 1}" valign="center" textvalign="center" noclick="1"
+				onshowlua="FlexEdit.ResizeFont(self)"
+			/>
+			<label content="Widget: {index}" visible="0" shadow="black" outline="1" outlinecolor="black" font="maindyn_20" height="100%" color="1 1 1 1" textalign="center" valign="center" textvalign="top" noclick="1"/> 
+		</panel>	
+	</template>		
+	
+	<template name="flex_helper_template" >
+		<sizingframe name="flex_helper_{index}" group="flex_helpers{temp}" visible="1" align="left" height="20h" width="20h" x="0" y="0" valign="top" color="1 1 0 0.1" noclick="0" constraintoparent="1"
+			canmove="{canMove=0}" minwidth="1s" maxwidth="100w" minheight="1s" maxheight="100h"	
+		>	
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="bottom" />
+			
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="bottom" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="bottom" />	
+			
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="center" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="bottom" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="top" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="center" />
+			
+			<label content="Helper: {index}" visible="0" shadow="black" outline="1" outlinecolor="black" font="maindyn_20" height="100%" color="1 1 1 1" valign="center" textvalign="bottom" textalign="center" noclick="1"/>
+			
+		</sizingframe>	
+	</template>
+	
+	<template name="flex_helper_template_nosize" >
+		<panel name="flex_helper_{index}" group="flex_helpers{temp}" visible="1" align="left" height="20h" width="20h" x="0" y="0" valign="top" color="1 1 0 0.1" noclick="0" constraintoparent="1"
+			cangrab="{canMove=0}" canmove="{canMove=0}" minwidth="1s" maxwidth="100w" minheight="1s" maxheight="100h"	
+		>	
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="2" height="100%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canMove=0}" noclick="1" color="1 1 0 1" width="100%" height="2" align="left" valign="bottom" />
+			
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="bottom" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="top" />
+			<panel group="flex_helper_{index}_resize_constrain" visible="{canResizeConstrained=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="bottom" />	
+			
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="right" valign="center" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="bottom" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="center" valign="top" />
+			<panel group="flex_helper_{index}_resize" visible="{canResize=0}" noclick="1" color="1 1 0 1" width="5@" height="5%" align="left" valign="center" />
+			
+			<label content="Helper: {index}" visible="0" shadow="black" outline="1" outlinecolor="black" font="maindyn_20" height="100%" color="1 1 1 1" valign="center" textvalign="bottom" textalign="center" noclick="1"/>
+			
+		</panel>	
+	</template>	
+	
+
+</package>

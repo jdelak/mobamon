@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/skybox_bias.shader" vDiffuseColor="0.5 0.5 0.5" fSpecularLevel="1.0" fGlossiness="1.0" fBumpLevel="1.0">
+		<float name="fAlphaLeak" value="0.2" />
+	</parameters>
+	<phase name="color" cull="back" depthwrite="false" blend="composite">
+		<samplerCUBE name="skybox" texture="1.tga" repeat="true" />
+	</phase>
+</material>

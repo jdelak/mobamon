@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="line_position_animated">
+	<dependency name="Position" type="float3" source="Position" />
+	<dependency name="BlendedMatrix" type="float4x3" source="BlendedMatrix" />
+	<output name="Out" type="float3" solution="ObjectPosition" />
+	<?hlsl
+		Out = float4(mul(float4(Position, 1.0f), BlendedMatrix).xyz, 1.0f).xyz;
+	?>
+	<?glsl
+		Out = vec4((vec4(Position, 1.0f) * BlendedMatrix).xyz, 1.0f).xyz;
+	?>
+</node>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Bastact1_Projectile3_Executioner_Ability5"
+
+	lifetime="1250"
+	useexactlifetime="true"
+	gravity="1500"
+	model="../effects/rock_projectile/model.mdf"
+	canturn="false"
+	preglobalscale="2"
+	modelscale="2"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="100"
+
+
+	
+	traileffect=""
+	deatheffect="../effects/impact3.effect"
+	touchcliffs="true"
+	
+	touchradius="100"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+	deathtime="1500"
+
+
+
+>	
+<!-- 	<ontouch>
+		<kill target="this_entity" source="" />
+	</ontouch> -->
+
+<!-- 	<onspawn>
+		<playeffect effect="../effects/debris.effect" source="this_entity" target="this_entity"  visibility="all"/>
+	</onspawn> -->
+
+<onimpact>
+	
+	<areaofeffect
+			radius="175"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			effecttype="Magic Splash"
+			center="this_entity"
+			maxtotalimpacts="1"
+
+			
+		>
+			
+			<damage amount="15" effecttype="Magic Splash" />
+	</areaofeffect>	
+</onimpact>	
+
+
+</projectile>

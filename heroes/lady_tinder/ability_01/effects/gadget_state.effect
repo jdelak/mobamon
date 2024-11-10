@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<billboard
+				expirelife="250"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+			</billboard>
+
+			<model
+				life="2750"
+				color="1 1 1"
+				position="0 0 0"
+				model="ground_plants/model.mdf"
+				material="ground_plants/material.material"
+				anim="idle_slower"
+				startscale=".825"
+				midscale=".825"
+				endscale="0"
+				midscalepos=".975"
+				minyaw="0"
+				maxyaw="360"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".9"
+			>
+			</model>
+
+			
+			
+<!--
+			<simpleemitter		
+				life="1750"
+				position="0 0 0"
+				spawnrate="200"			
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="-10"
+				material="/shared/effects/smaterials/cartoon_cloud_single.material"
+				offsetsphere="0 0 50"
+				direction="0 0 1"
+				minangle="50"
+				maxangle="90"
+				drag="0.01"
+				minspeed="75"
+				maxspeed="150"
+				depthbias="-12"				
+			>
+				<particle
+					minstartsize="50"				
+					maxstartsize="60"				
+					minendsize="100"
+					maxendsize="200"
+					startcolor=".75 1 0"
+					midcolor=".75 1 0"
+					endcolor="0 0 0"
+					startalpha=".25"
+					endalpha="0"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+				/>
+			</simpleemitter>
+-->
+
+
+<!--
+			<simpleemitter
+			delay="2750"
+			count="20"
+				minparticlelife="250"
+				maxparticlelife="500"
+				spawnrate="2000"
+				minspeed="250"
+				maxspeed="750"
+				gravity="50"
+				position="0 0 -10"
+				drag=".025"
+				material="/shared/effects/smaterials/leaf.material"
+				offsetsphere="15 15 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="120"
+				depthbias="0"
+			>
+				<particle
+					turn="true"
+					color="1 1 1"
+					minsize="15"
+					maxsize="30"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-180"
+					maxanglespeed="180"
+				>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+<!--
+			<billboard
+				delay="2500"
+				position="0 0 20"
+				life="1000"
+				startcolor="0 0 0"
+				midcolor=".1 .2 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-25"
+				size="250"
+			>
+			</billboard>
+-->
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<camerashake scale="1" radius="300" duration="800" frequency="0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

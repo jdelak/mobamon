@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_TowerMaster"
+
+	
+	
+	icon="icon.tga"
+
+	immobilized2="true"
+	
+	
+	impactinterval="30000"	
+		
+	damageperlevel="4.25"
+	maxhealthperlevel="425"	
+>
+
+	<onimpact>
+		<setvar0 a="min_team_gold" b="6500" op="div" />
+		<setvar0 a="var0" b="match_hero_level" op="add" />
+		<setlevel entity="this_owner_entity" value="var0" />
+		<setlevel entity="this_entity" value="var0" />
+	</onimpact>
+	
+	<oninflict>
+		<setvar0 a="min_team_gold" b="6500" op="div" />
+		<setvar0 a="var0" b="match_hero_level" op="add" />
+		<setlevel entity="this_owner_entity" value="var0" />
+		<setlevel entity="this_entity" value="var0" />
+	</oninflict>
+</state>

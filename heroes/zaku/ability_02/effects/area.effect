@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+<!--
+		<modifier
+			startcolor=".5 1.5 3"
+			endcolor="1 1 1"
+			startalpha="1"
+			endalpha="0"
+			expirelife="250"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1">
+
+<!--
+			<light
+				position="0 0 50"
+				expirelife="250"
+				startcolor="1 2 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="250"
+				endfalloffend="250"
+			/>
+
+
+			<model
+				life="500"
+				parentmodel="true"
+				anim="spawn_1"
+				color="1 1 1"
+				alpha="1"
+			/>
+			
+			<model
+			delay="500"
+				expirelife="500"
+				parentmodel="true"
+				anim="spawn_1"
+				color="1 1 1"
+				alpha="1"
+			/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

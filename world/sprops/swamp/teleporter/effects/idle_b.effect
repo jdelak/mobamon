@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" pausable="true">
+	<definitions>
+		<particlesystem name="system0" space="entity">
+
+		<light 
+			color="2 1 0"		
+			bone="_bone_pillar"
+			falloffstart="90"
+			falloffend="250"
+		/>
+		
+<simpleemitter
+		
+			spawnrate="13"
+			
+			bone="_bone_pillar"
+			particlelife="1000"			
+			gravity="-1.5"
+			speed="4"
+			drag="0"
+			acceleration="0"
+		
+	
+			
+			offsetsphere="22 22 0"
+			position="0 0 -30"
+			
+			direction="0 0 1"
+		
+		>
+		
+
+			<particle>
+			
+			
+				<simpleemitter					
+					count="1"
+					particlelife="800"			
+					speed="5"
+					drag="0"
+					position="0 0 13"					
+					acceleration="0"
+					material="/shared/effects/materials/whitedot.material"
+				>
+
+					<particle
+						startcolor="0 0 0"
+						midcolor="1 1 1"
+						endcolor="0 0 0"
+						
+						midalphapos="0.9"
+
+						startsize="0"
+						endsize="94"
+						depthbias="0"
+					
+						lockup="true"
+						pitch="90"
+					/>
+				</simpleemitter>	
+
+
+				<simpleemitter					
+					count="1"
+					particlelife="800"			
+					speed="5"
+					drag="0"
+					position="0 0 3"					
+					acceleration="0"
+					material="/shared/effects/materials/whitedot.material"
+				>
+
+					<particle
+						startcolor="0 0 0"
+						midcolor=".9 .6 .1"
+						endcolor="0 0 0"
+						
+						midalphapos="0.9"
+
+						startheight="110"
+						endheight="600"
+						width="10"
+						depthbias="0"
+						position="0 0 4"
+						lockup="true"
+						pitch="0"
+					/>
+				</simpleemitter>					
+
+			</particle>
+		</simpleemitter>
+
+
+
+		<simpleemitter
+		
+			spawnrate="133"
+			
+			bone="_bone_pillar"
+			particlelife="1000"			
+			gravity="-4.8"
+			speed="0"
+			drag="0"
+			acceleration="50"
+			position="0 0 8"
+			timenudge="200"
+
+			material="/shared/effects/materials/star_03.material"
+			offsetsphere="18 18 30"
+			minangle="0"
+			maxangle="360"
+			direction="0 0 0"
+			
+		>
+
+			<particle 
+				minangle="0"
+				maxangle="0"
+				minanglespeed="100"
+
+				startcolor="1 .8 0"
+				midcolor="1 .4 .0"
+				endcolor="0 0 0"
+				midcolorpos=".7"
+
+				maxanglespeed="0"
+				startframe="0"
+				endframe="1"
+
+				startsize="0"
+				midsize="6"
+				endsize="0"
+				midsizepos=".7"
+
+				heightdistort="0.052"
+
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".7"
+
+				startstickiness="0"
+				endstickiness="0"
+			/>
+		</simpleemitter> 	
+	
+	
+	
+		<billboard
+			bone="_bone_pillar"
+			color=".3 .2 .0"
+			startalpha="1.0"
+			midalpha="1.0"
+			endalpha="1.0"
+			midalphapos="0.75"
+			startparam=".05"
+			endparam="0.00"
+			
+			size="168"
+			depthbias="-122"
+			position="0 0 0"
+			material="/shared/effects/materials/whitedot.material"			
+		/>	
+		
+		<billboard
+			bone="_bone_pillar"
+			color=".2 .1 .0"
+			startalpha="1.0"
+			midalpha="1.0"
+			endalpha="1.0"
+			midalphapos="0.75"
+			startparam=".05"
+			endparam="0.00"
+			
+			size="98"
+			depthbias="-122"
+			position="0 0 0"
+			material="/shared/effects/materials/whitedot.material"			
+		/>			
+		<template name="fountain">			
+
+
+
+
+			
+			<simpleemitter		
+				bone="{bone}"
+				spawnrate="3"
+				particlelife="7500"			
+				speed="0"
+				drag="0"
+				offsetsphere=" 5 5 0"
+				acceleration="0"
+				material="/shared/effects/materials/refract_waterring.material"
+			>
+
+				<particle
+					color="1.0 1.0 1.0"
+					startalpha="1.0"
+					midalpha="1.0"
+					endalpha="0.0"
+					midalphapos="0.75"
+					startparam=".05"
+					endparam="0.00"
+					startsize="8"
+					endsize="80"
+					depthbias="0"
+					position="0 0 0"
+					lockup="true"
+					pitch="90"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			<simpleemitter		
+				timenudge="5000"
+				bone="{bone}"
+				spawnrate="1"
+				particlelife="7500"			
+				speed="0"
+				drag="0"
+				offsetsphere=" 5 5 0"
+				acceleration="0"
+				material="/shared/effects/materials/refract_ripples.material"
+			>
+
+				<particle
+					color="1.0 1.0 1.0"
+					startalpha="1.0"
+					midalpha="1.0"
+					endalpha="0.0"
+					midalphapos="0.75"
+					startparam=".01"
+					endparam="0.00"
+					startsize="8"
+					endsize="190"
+					depthbias="0"
+					position="0 0 0"
+					lockup="true"
+					pitch="90"
+				/>
+			</simpleemitter>			
+
+
+			
+
+			
+			
+			<simpleemitter		
+				timenudge="10"
+				bone="{bone2}"
+				spawnrate="33"		
+				speed="40"
+				gravity="4"
+				drag="0"
+				direction="0 0 0"
+				minangle="0"
+				maxangle="10"
+				position="0 0 0"
+				offsetsphere="0 5 5"
+				particlelife="1200"
+				material="/shared/effects/materials/refract_stream.material"
+				
+			>
+				<particle 
+					param="0.022"			
+					startsize="5"
+					endsize="19"				
+					color="1 1 1"
+					turn="1"
+					startheightdistort="1"
+					endheightdesitort="-0.5"
+					depthbias="10"
+				/>
+			</simpleemitter>	
+			
+		
+			<simpleemitter		
+				bone="{bone2}"
+				spawnrate="84"
+				particlelife="1400"		
+				direction="0 1 0"
+				minangle="0"
+				maxangle="10"
+				speed="40"
+				gravity="7"
+				drag="0"
+				position="0 0 3"
+				offsetsphere="10 10 10"
+				acceleration="0"
+				material="/shared/effects/materials/whitedot.material"
+			>
+
+				<particle
+					startcolor=".5 .5 0"
+					
+					endcolor="0 0 0"
+					
+					midalphapos="0.75"
+					startparam=".05"
+					endparam="0.00"
+					startsize="18"
+					endsize="18"
+					depthbias="0"
+
+				/>
+			</simpleemitter>	
+			
+					
+		</template>	
+		
+		
+		<template name="eye">
+		
+			<simpleemitter
+				bone="{bone}"
+				spawnrate="34"
+				minparticlelife="444"
+				maxparticlelife="1100"
+				gravity="-3"
+				minspeed="0"
+				maxspeed="8"
+				drag=".003"
+				position="0 0 0"
+				material="/shared/effects/materials/phantom_smoke_04.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="90"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="50"
+					startcolor="1 .8 .3"
+					endcolor="1 .25 .1"
+					maxanglespeed="0"
+					startsize="0"
+					midsize="15"
+					endsize="0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+				/>
+
+			</simpleemitter>	
+			
+			
+			<simpleemitter
+				bone="{bone}"
+				spawnrate="5"
+				minparticlelife="444"
+				maxparticlelife="2200"
+				gravity="-1"
+				minspeed="0"
+				maxspeed="0"
+				
+				position="0 0 0"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="0"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="50"
+					startcolor="0 0 0"
+					midcolor=".5 .2 0"
+					endcolor="0 0 0"
+					maxanglespeed="0"
+					startsize="0"
+					midsize="25"
+					endsize="0"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+				/>
+
+			</simpleemitter>			
+			
+			<simpleemitter
+				bone="{bone}"
+				spawnrate="11"
+				minparticlelife="1"
+				maxparticlelife="2000"
+				gravity="-3"
+				minspeed="0"
+				maxspeed="20"
+				drag=".013"
+				position="0 0 0"
+				material="/shared/effects/materials/spark_10.material"
+				offsetsphere="5 4 0"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 0"
+			>
+				<particle
+					startcolor="1 .2 .2"
+					endcolor="0 0 0"
+					alpha="1.0"
+					size="5"
+					minangle="-360"
+					maxangle="0"
+					minanglespeed="110"
+					maxanglespeed="-110"
+				/>
+				<particle
+					startcolor="1 .75 .2"
+					endcolor="0 0 0"
+					alpha="1.0"
+					size="5"
+					minangle="-360"
+					maxangle="0"
+					minanglespeed="110"
+					maxanglespeed="-110"
+				/>
+			</simpleemitter>		
+	</template>
+	
+	<instance name="eye" bone="_bone_r_eye_001"/>
+	<instance name="eye" bone="_bone_r_eye_002"/>	
+	<instance name="eye" bone="_bone_r_eye_003"/>
+	<instance name="eye" bone="_bone_r_eye_004"/>
+	<instance name="eye" bone="_bone_r_eye_005"/>
+	<instance name="eye" bone="_bone_r_eye_006"/>
+	<instance name="eye" bone="_bone_r_eye_007"/>
+	<instance name="eye" bone="_bone_r_eye_008"/>
+	
+	
+	<instance name="fountain" bone="_bone_splash_001" bone2="_bone_spout_001"/>	
+	<instance name="fountain" bone="_bone_splash_002" bone2="_bone_spout_002"/>	
+	<instance name="fountain" bone="_bone_splash_003" bone2="_bone_spout_003"/>	
+	<instance name="fountain" bone="_bone_splash_004" bone2="_bone_spout_004"/>	
+	
+    
+      </particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

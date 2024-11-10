@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="panner">
+	<parameter name="Speed" type="float2" default="0.0 0.0" />
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="Time" type="float" source="fTime" />
+	<dependency name="Speed" type="float2" source="Speed" />
+	<output name="Out" type="float2" />
+	<?hlsl
+		Out = Texcoord + Speed * Time;
+	?>
+	<?glsl
+		Out = Texcoord + Speed * Time;
+	?>
+</node>

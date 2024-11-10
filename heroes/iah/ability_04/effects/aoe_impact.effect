@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="moon_beam">
+	<definitions>
+	
+		<particlesystem name="system0" space="entity" scale="5">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".85"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<model
+				life="500"
+				name="spin"
+				model="fx_rig/model.mdf"
+				anim="idle"
+				startalpha=".3"
+				endalpha=".3"
+				scale="1"
+				yaw="180"
+			>
+				<template name="">
+
+					<billboard
+						mindelay="0"
+						maxdelay="50"
+						bone="{zbone}"
+						minlife="350"
+						maxlife="350"
+						startscale="3"
+						midscale="3"
+						endscale="3"
+						startcolor=".25 .075 0"
+						midcolor=".25 .075 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_128.material"
+						lockup="1"
+						lockright="1"
+						depthbias="-25"
+						directionalspace="local"
+						height="200"
+						width="12"
+					/>
+					
+					<billboard
+						mindelay="0"
+						maxdelay="50"
+						bone="{zbone}"
+						minlife="350"
+						maxlife="350"
+						startscale="3"
+						midscale="3"
+						endscale="3"
+						startcolor=".5 .25 0"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_128.material"
+						lockup="1"
+						lockright="1"
+						depthbias="-25"
+						directionalspace="local"
+						height="100"
+						width="12"
+					/>
+				</template>
+				
+				<instance name="" zbone="_bone_fx_01" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_03" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_05" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_07" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_09" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_11" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_13" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_15" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_17" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_19" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_21" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_23" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_25" zdelay="0"/>
+				<instance name="" zbone="_bone_fx_27" zdelay="0"/>
+
+			</model>
+			
+			
+			
+			
+			<template name="">
+
+				<billboard
+					minlife="850"
+					maxlife="850"
+					position="0 0 0"			
+					startcolor="0 0 0"
+					midcolor="{zcolor}"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					startsize="{zsize}"
+					endsize="{zsize}"
+					material="/shared/effects/materials/ring_ground.material"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			
+			</template>
+			
+			<instance name="" zsize="120" zcolor=".3 .15 0"/>
+			<instance name="" zsize="118" zcolor=".275 .125 0"/>
+			<instance name="" zsize="116" zcolor=".25 .1 0"/>
+			<instance name="" zsize="114" zcolor=".225 .075 0"/>
+			<instance name="" zsize="112" zcolor=".2 .05 0"/>
+			<instance name="" zsize="110" zcolor=".175 .025 0"/>
+			<instance name="" zsize="108" zcolor=".1 0 0"/>
+			<instance name="" zsize="106" zcolor=".1 0 0"/>
+			<instance name="" zsize="104" zcolor=".1 0 0"/>
+			<instance name="" zsize="102" zcolor=".1 0 0"/>
+			<instance name="" zsize="100" zcolor=".1 0 0"/>
+			
+			
+
+			<light
+				life="500"
+				delay="200"
+				startcolor="0 0 0"
+				midcolor="6 3 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="30"
+				falloffend="105"
+				position="0 0 100"
+			/>
+			
+			
+			
+			
+			
+			<template name="">
+
+				<billboard
+					delay="{zdelay}"
+					material="/shared/effects/smaterials/bulb_add.material"
+					startcolor=".6 .2 0"
+					endcolor="0 0 0"
+					life="250"
+					position="0 0 25"
+					startsize="75"
+					endsize="150"
+					depthbias="-150"
+				/>
+
+			</template>
+			
+			<instance name="" zdelay="0"/>
+			<instance name="" zdelay="100"/>
+			<instance name="" zdelay="200"/>
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+			count="30"
+			delay="250"
+				endspawnrate="3000"
+				particlelife="2000"
+				offsetsphere="10 10 0"
+				offsetradial="40 0 0"
+				direction="0 0 1"
+			>
+				<particle
+				>
+					<billboard
+						minlife="350"
+						maxlife="700"
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						startscale=".2"
+						minendscale="1"
+						maxendscale="2"
+						color="1 .9 .5"
+						startalpha="0"
+						midalpha=".25"
+						endalpha="0"
+						midalphapos=".2"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-15"
+					/>
+				</particle>
+			</simpleemitter>
+			
+-->
+			
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="15" radius="3000" duration="250" frequency="22" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

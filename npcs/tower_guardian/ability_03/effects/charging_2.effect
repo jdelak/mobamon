@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		
+		<particlesystem name="system0" space="world" scale="1">
+		
+	
+		<template name="charge_effect">
+			
+			
+			
+			<billboard
+				delay="1500"
+				life="500"
+				bone="{bone_laser}"						
+				startcolor="0 0 0"
+				endcolor="0 .5 .5"	
+				size="80"
+				material="/shared/effects/smaterials/whitedot.material"			
+				depthbias="-50"		
+				position="0 0 -4"				
+			/>		
+			<billboard
+				delay="2000"
+				life="1000"
+				bone="{bone_laser}"		
+				
+				color="0 .5 .5"	
+				size="80"
+				material="/shared/effects/smaterials/whitedot.material"			
+				depthbias="-50"		
+				position="0 0 -4"				
+			/>				
+			<billboard
+				delay="3000"
+				life="500"
+				bone="{bone_laser}"						
+				endcolor="0 0 0"
+				startcolor="0 .5 .5"	
+				size="80"
+				material="/shared/effects/smaterials/whitedot.material"			
+				depthbias="-50"		
+				position="0 0 -4"				
+			/>	
+			
+<!-- dot-->					
+			<billboard
+				life="500"
+				bone="{bone_dot}"						
+				startcolor="0 0 0"
+				endcolor="0 1 1"	
+				size="80"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-50"		
+				position="0 0 -4"
+			/>		
+			<billboard
+				delay="500"
+				life="2000"
+				bone="{bone_dot}"									
+				color="0 1 1"				
+				size="80"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-50"
+				position="0 0 -4"				
+			/>	
+			<billboard
+				delay="2500"
+				life="1000"
+				bone="{bone_dot}"									
+				startcolor="0 1 1"				
+				endcolor="0 0 0"
+				size="80"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-50"				
+				position="0 0 -4"
+			/>						
+
+				
+
+
+				
+				
+			<billboard
+				life="500"
+				delay="500"
+				bone="{bone_start}"									
+				startcolor="0 0 0"
+				endcolor="0 1 1"			
+				size="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-50"		
+				position="0 0 -4"				
+			/>
+			<billboard
+				life="2000"
+				delay="1000"
+				bone="{bone_start}"									
+				
+				color="0 1 1"			
+				size="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-50"				
+				position="0 0 -4"
+			/>		
+			<billboard
+				life="500"
+				delay="3000"
+				bone="{bone_start}"									
+				
+				startcolor="0 1 1"			
+				endcolor="0 0 0"
+				size="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+				depthbias="-50"	
+				position="0 0 -4"				
+			/>	
+
+
+			<beam
+				delay="1000"
+				life="200"			
+				bone_a="{bone_start}"
+				bone_b="{bone_end}"
+				size="50"
+				startcolor="0 0 0"
+				endcolor=".4 1 1"				
+				framespeed="3.75"
+				material="/shared/effects/materials/femme_lightning_10.material"
+			>
+			</beam>
+			<beam
+				delay="1200"
+				life="2000"			
+				bone_a="{bone_start}"
+				bone_b="{bone_end}"
+				size="50"
+				color=".4 1 1"				
+				framespeed="3.75"
+				material="/shared/effects/materials/femme_lightning_10.material"
+			>
+			</beam>		
+			<beam
+				delay="3200"
+				life="200"			
+				bone_a="{bone_start}"
+				bone_b="{bone_end}"
+				size="50"
+				startcolor=".4 1 1"				
+				endcolor="0 0 0"
+				framespeed="3.75"
+				material="/shared/effects/materials/femme_lightning_10.material"
+			>
+			</beam>	
+
+			
+			<trackeremitter
+				startparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+				
+				life="2000"
+				delay="1200"
+				bone="{bone_start}"
+				targetbone="{bone_end}"
+				targetposition="0 0 0"
+				tracktype="linear"
+				trackspeed="44"
+				spawnrate="8"
+				particlelife="350"
+				speed="1000"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="10 10 10"
+			>
+				<particle>
+					<trailemitter
+						life="1000"
+						spawnrate="75"
+						particlelife="200"
+						offsetsphere="5 5 5"
+						texpostime="500"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+					>
+						<particle
+							startcolor=".5 .7 .9"
+							midcolor=".2 .3 .4"
+							endcolor="0 0 0"
+							startsize="2"
+							midsize="10"
+							endsize="2"
+							midcolorpos=".1"
+							midsizepos=".1"
+							
+						/>
+					</trailemitter>
+				</particle>
+			</trackeremitter>	
+		
+		</template>
+		<!--
+		<instance name="charge_effect" bone_dot="_bone_fx_005" bone_start="_bone_fx_014" bone_end="_bone_fx_015" bone_laser="_bone_laser_5"/>
+		<instance name="charge_effect" bone_dot="_bone_fx_004" bone_start="_bone_fx_012" bone_end="_bone_fx_013" bone_laser="_bone_laser_4"/>
+		<instance name="charge_effect" bone_dot="_bone_fx_003" bone_start="_bone_fx_010" bone_end="_bone_fx_011" bone_laser="_bone_laser_3"/>
+		-->
+		<instance name="charge_effect" bone_dot="_bone_fx_002" bone_start="_bone_fx_008" bone_end="_bone_fx_009" bone_laser="_bone_laser_2"/>
+		<!--
+		<instance name="charge_effect" bone_dot="_bone_fx_001" bone_start="_bone_fx_006" bone_end="_bone_fx_007" bone_laser="_bone_laser_1"/>
+		-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		
+	</thread> 
+</effect>

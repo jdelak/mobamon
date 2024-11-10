@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="gamelist_item">
+		<panel width="-.1h" align="center" float="right" padding="0" reverse="true" >
+
+			<panel width="22.5%"
+				onmouseover="ShowWidget('gamelist_item_{ip}_fullname');"
+				onmouseout="HideWidget('gamelist_item_{ip}_fullname');"
+			>
+				<label
+					name="{ip}"
+					x="0.8h"
+					width="90%"
+					height="100%"
+					font="maindyn_11"
+					color="{color}"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{game_name}"
+					noclick="true"
+				/>
+				<panel name="gamelist_item_{ip}_fullname" noclick="true" height="100%" grow="true" visible="false">
+					<frame texture="/ui/elements:rounded_bg_white" noclick="true" borderthickness="0.8h" color=".1 .1 .1 .9"/>
+					<frame texture="/ui/elements:roundframe" noclick="true" color="#455166" borderthickness="0.8h"/>
+					<label
+						x="0.8h"
+						fitx="true"
+						fitxpadding="1h"
+						height="100%"
+						font="maindyn_11"
+						color="{color}"
+						textvalign="center"
+						shadow="true"
+						shadowoffset="1"
+						content="{game_name}"
+						noclick="true"
+					/>
+				</panel>
+			</panel>
+
+			<panel width="7.0%">
+				<label
+					x="-0.8h"
+					width="100%"
+					height="100%"
+					font="maindyn_11"
+					color="{color}"
+					rendermode="{rendermode}"
+					textalign="right"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{numplayers=0}/{maxplayers=0}"
+				/>
+			</panel>
+
+			<panel width="6.5%">
+				<label
+					x="-1.0h"
+					width="100%"
+					height="100%"
+					font="maindyn_11"
+					color="{color}"
+					rendermode="{rendermode}"
+					textalign="right"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{ping}"
+				/>
+			</panel>
+			
+			<panel width="6.5%">
+				<label
+					x="-1.0h"
+					width="100%"
+					height="100%"
+					font="maindyn_11"
+					color="{color}"
+					rendermode="{rendermode}"
+					textalign="right"
+					textvalign="center"
+					shadow="true"
+					shadowoffset="1"
+					content="{players}"
+				/>
+			</panel>
+
+		</panel>
+
+	</template>
+
+	<panel name="main_game_list_parent" align="center" width="630s" height="500s" x="230s" y="170s" visible="1" 
+		onshowlua="Client.GetGameList()"
+	>
+
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 .8"/>
+		<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+		
+
+		<panel hmargin="20s" vmargin="10s" noclick="1" >
+			<label fity="1" fitypadding="5s" style="h1" font="maindyn_30" content="mainlobby_button_custom_game"/>
+
+			<listbox
+				name="main_game_list_listbox"
+				y="50s"
+				height="-120s"
+				color="invisible"
+				font="maindyn_16"
+				itemwidth="100%"
+				itemheight="2.3h"
+				select="true"
+				clearselection="true"
+				hoverselect="false"
+				hoverhighlight="true"
+				highlight="under"
+				highlightcolor="#46adff42"
+				highlightbordercolor="invisible"
+				selectedcolor="#346dff52"
+				selectedbordercolor="invisible"
+				backgroundimage="$invis"
+				backgroundimagecolor="#1d2f3b"
+				colortransition="true"
+				colortransitiontime="250"
+				scrollbarsize="2.25h"
+				scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+				handleheight="2.25h"
+				hscrollbar="0"
+				horizontal="false"				
+				watch="GameListAdd"
+				ontrigger="
+					CreateString('_game_mode_'#StringReplace(param0, ':', '_'), param4);
+
+					AddTemplateListItemWithSort(
+						'gamelist_item',
+						param0,
+						param12,
+						'game_name', param1,
+						'ping', param2,
+						'players', param3,
+						'game_type', param4,
+						'official', param6,
+						'minpsr', param19,
+						'maxpsr', param20,
+						'game_option0', param7,
+						'game_option1', param8,
+						'game_option2', param9,
+						'game_option3', param10,
+						'game_option4', param11,
+						'private', param5,
+						'noleaver', param14,
+						'color', If(param15, 'white', 'gray'),
+						'rendermode', If(param15, 'normal', 'grayscale'),
+						'select', param15,
+						'numplayers', param16,
+						'maxplayers', param17,
+						'map', param18,
+						'ip', param0,
+						'gameoptions', param21,
+						'verifiedonly', param23
+					);
+					SetSelectedItemByValue(_game_list_last_selected);
+					Call('game_list_message', 'ClearText();');
+					"
+				onload="CreateString('_game_list_last_selected', ''); CreateInt('_game_list_sort_column', '1');"
+				onselect="_game_list_last_selected = this;"
+				watch0="GameListShow"
+				ontrigger0="ShowItemByValue(param); SetSelectedItemByValue(_game_list_last_selected); If(GetNumItems() == 0, Split(Call('game_list_message', 'SetText(Translate(\'main_lobby_no_games_found\'));'), Call('game_list_message', 'ClearText();'));"
+				watch1="GameListHide"
+				ontrigger1="HideItemByValue(param); If(GetNumItems() == 0, Call('game_list_message', 'SetText(Translate(\'main_lobby_no_games_found\'));'), Call('game_list_message', 'ClearText();'));"
+				watch2="GameListUpdate"
+				ontrigger2="SortListboxSortIndex(_game_list_sort_column);"
+				watch3="GameListClear"
+				ontrigger3="Clear(); Call('game_list_message', 'SetText(Translate(\'main_lobby_searching\'));');"
+				watch4="GameListStatus"
+				ontrigger4="If(!param0 and GetNumItems() == 0, If(GetNumItems() == 0, If(!IsVisible('optiontab_search'), Call('game_list_message', 'SetText(Translate(\'main_lobby_no_games_found\'));'), Call('game_list_message', 'SetText(Translate(\'main_lobby_no_servers_found\'));'))));"
+				onevent="Set(_game_list_last_selected, ''); SetSelectedItemByValue('');"
+				oneventlua="Client.GetGameList()"
+			/>
+			
+			<label name="game_list_message" width="100%" height="100%" textalign="center" textvalign="center" style="labelBase" font="maindyn_26" contents="mainlobby_label_custom_searching" noclick="true" />
+
+			<!-- Responses -->
+			<panel name="main_game_list_retrieving" group="py_bottom_status_info" x="0" y="70%" width="24h" height="3.5h" align="center" visible="0" >
+				<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#171a28"/>
+				<panel x="0.4h" y="0.4h" width="-0.8h" height="-0.8h">
+					<panel name="main_game_list_retrieving_panel_1" width="0" color="green" />
+				</panel>
+				<frame texture="/ui/elements:roundframe" color="#bbdefa" borderthickness="0.5h"/>
+				<label name="main_game_list_retrieving_label_2" width="100%" height="100%" textalign="center" textvalign="center" font="maindyn_11" color="white" shadow="true" content="mainlobby_label_custom_retrieving_list" />
+				<label name="main_game_list_retrieving_label_3" width="100%" height="100%" textalign="center" textvalign="center" font="maindyn_11" color="white" shadow="true" content="0/0" />
+			</panel>
+			
+			<!-- Status -->
+			<panel name="main_game_list_status_parent_1" group="py_bottom_status_info" y="3h" x="0" width="25%" align="center" visible="0" >
+				<label name="main_game_list_status_label_1" width="100%" height="100%" textalign="center" textvalign="center" font="maindyn_11" color="white" shadow="true" count="?/?" />
+			</panel>
+			
+			<!-- Throbber -->
+			<panel name="main_game_list_status_throb_1" group="py_bottom_status_info" y="3h" x="10h" visible="0" width="4.5h" height="4.5h" align="center" valign="center" >
+				<animatedimage texture="/ui/shared/throb/throb.tga" noclick="true" loop="1" fps="30" onshow="StartAnim(1);" />
+			</panel>
+
+		</panel>
+		
+		<!-- Close -->
+		<instance name="iconButton" id="{id}"
+			icon="/ui/main/shared/textures/close.tga"
+			y="10s" x="-10s" width="27s" height="27s" align="right" valign="top" borderthickness="4s"
+			onclicklua="
+				local triggerPanelStatus		= LuaTrigger.GetTrigger('mainPanelStatus')
+				triggerPanelStatus.main = 101
+				triggerPanelStatus:Trigger(false)	
+			"
+		/>
+
+		<!-- Refresh -->
+		<instance
+			id="main_game_list_refresh_button"
+			name="iconButton"
+			icon="/ui/main/shared/textures/refresh.tga" iconsize="76"
+			y="10s" x="-44s" width="27s" height="27s" align="right" valign="top" borderthickness="4s"
+			visible="true"
+			onclicklua="
+				  Client.GetGameList()
+			"
+			onmouseoverlua="
+				simpleTipGrowYUpdate(true, '/ui/main/shared/textures/refresh.tga', Translate('player_hosted_refresh'), Translate('player_hosted_refresh_desc'))
+			"
+			onmouseoutlua="
+				simpleTipGrowYUpdate(false)
+			"
+		/>		
+		
+		<instance
+			id="main_game_list_join_button"
+			name="standardButton"
+			width="280s" height="40s" align="right" valign="bottom" y="-20s" x="-20s"
+			label="general_join"
+			font="maindyn_26"
+			onclicklua=""
+		/>			
+
+		<instance
+			id="main_game_list_close_button" rendermode="grayscale"
+			name="standardButton"
+			width="200s" height="40s" align="left" valign="bottom" y="-20s" x="20s"
+			label="general_close"
+			font="maindyn_26"
+			onclicklua="
+				local triggerPanelStatus		= LuaTrigger.GetTrigger('mainPanelStatus')
+				triggerPanelStatus.main = 101
+				triggerPanelStatus:Trigger(false)	
+			"
+		/>			
+		
+		
+	</panel>
+	
+	<lua file="game_list.lua" />
+	
+	<instance name="create_game_template" />	
+	<instance name="server_browser_template" />
+	
+</package>

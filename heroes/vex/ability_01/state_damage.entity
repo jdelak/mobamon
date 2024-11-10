@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Vex_Ability1_Damage"
+	
+	allowtransfer="true"
+	icon="icon.tga"
+	maxcharges="12"
+	ishidden="true"
+	passiveeffect="effects/state.effect"
+
+>
+	
+	<oninflict>
+		<playeffect effect="effects/rockets.effect" source="this_owner_entity" occlude="true" />
+		<getconstant name="damage" adjustmentsource="this_entity"/>
+		<setaccumulator value="result" valueb="18" valueop="div" />
+		<addcharges />
+	</oninflict>
+	
+
+	<onrefresh>
+		<addcharges />
+	</onrefresh>
+	
+	<onexpired>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<compare a="charges" b="1" op="eq" >
+					<setvar0 a="accumulator" b="4" op="mult" />
+					<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+				</compare>
+				<else>
+					<compare a="charges" b="2" op="eq" >
+						<setvar0 a="accumulator" b="7" op="mult" />
+						<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+					</compare>
+					<else>
+						<compare a="charges" b="3" op="eq" >
+							<setvar0 a="accumulator" b="9" op="mult" />
+							<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+						</compare>
+						<else>
+							<compare a="charges" b="3" op="gt" >
+								<setvar0 a="accumulator" b="charges" op="mult" />
+								<setvar1 a="accumulator" b="6" op="mult" />
+								<setvar0 a="var0" b="var1" op="add" />
+								<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+							</compare>
+						</else>
+					</else>
+				</else>
+				
+				<playeffect effect="effects/explosions.effect" source="this_owner_entity" occlude="true" />
+				<applystate name="State_Vex_Ability1_Slow" duration="3000" pushentity="true" />
+				<setcharges a="charges" entity="stack_entity" />
+			</onimpact>
+		</combatevent>
+	</onexpired>
+</state>

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<sound
+				life="5000"
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_aoe.wav"
+			/>
+
+			<billboard
+				expirelife="2000"
+				material="/shared/effects/smaterials/sand_groundsprite.material"
+				startsize="536"
+				endsize="100"
+				color=".8"
+				startalpha="1"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".65"
+				rollspeed="-10"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-10"
+			/>
+			
+			<template name="">
+
+				<billboard
+					delay="{zdelay}"
+					life="2000"
+					material="/shared/effects/smaterials/sand_groundsprite.material"
+					startscale="10"
+					endscale="2"
+					color=".8"
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					midalphapos=".2"
+					rollspeed="-10"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					depthbias="-10"
+				/>
+
+			</template>
+			
+			<instance name="" zdelay="0"/>
+			<instance name="" zdelay="500"/>
+			<instance name="" zdelay="1000"/>
+			<instance name="" zdelay="1500"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				spawnrate="30"
+				particlelife="2000"
+				offsetsphere="75 75 0"
+				offsetradial="75 0 0"
+				direction="0 0 1"
+			>
+				<particle
+				>
+					<billboard
+						life="1000"
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						startscale="3"
+						endscale="5"
+						color="1 .9 .5"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".2"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-15"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<light
+				position="0 0 50"
+				expirelife="1250"
+				startcolor="3 1.5 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+
+			<simpleemitter	
+				position="0 0 5"
+				spawnrate="10"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/twirl_blend.material"
+				depthbias="-50"
+			>
+				<particle
+					minangle="0"
+					maxangle="180"
+					color=".5 .35 .1"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".2"
+					anglespeed="0"
+					startsize="520"
+					endsize="200"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					anchor=".8"
+				/>
+			</simpleemitter>
+
+			<simpleemitter	
+				position="0 0 5"
+				spawnrate="20"
+				minparticlelife="1000"
+				maxparticlelife="1200"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/twirl_blend.material"
+				depthbias="-50"
+			>
+				<particle
+				minangle="0"
+				maxangle="180"
+					color=".3 .225 .125"
+					startalpha="0"
+					midalpha=".6"
+					endalpha="0"
+					midalphapos=".2"
+					anglespeed="0"
+					minstartsize="300"
+					maxstartsize="400"
+					endsize="150"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					anchor=".8"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter	
+				position="0 0 5"
+				spawnrate="20"
+				minparticlelife="1000"
+				maxparticlelife="1200"
+				gravity="0"
+				speed="5"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/twirl_blend.material"
+				depthbias="-50"
+			>
+				<particle
+				minangle="0"
+				maxangle="180"
+					color=".035 .025 .015"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".2"
+					anglespeed="0"
+					minstartsize="150"
+					maxstartsize="250"
+					endsize="150"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					anchor=".8"
+				/>
+			</simpleemitter>
+
+			<template name="">
+				<billboard
+					expirelife="1500"
+					material="/shared/effects/smaterials/sand_spin_no_center.material"
+					color="{zcolor}"
+					size="{zsize}"	
+					position="{zpos}"
+					rollspeed="{zrollspeed}"
+					lockup="1"
+					pitch="-90"
+					startalpha="{zalpha}"
+					endalpha="0"
+					depthbias="-50"
+				/>	
+			</template>
+			
+			<instance name="" zsize="375" zpos="0 0 5" zrollspeed="-45" zcolor="1 .7 .3" zalpha=".5"/>
+			<instance name="" zsize="275" zpos="0 0 5" zrollspeed="-90" zcolor=".5 .35 .15" zalpha=".5"/>
+			<instance name="" zsize="195" zpos="0 0 5" zrollspeed="-135" zcolor=".25 .15 .075" zalpha=".3"/>
+			<instance name="" zsize="125" zpos="0 0 5" zrollspeed="-180" zcolor=".25 .15 .075" zalpha=".3"/>
+
+			<template name="">
+				<billboard
+					expirelife="1500"
+					material="/shared/effects/smaterials/sand_spin_no_center.material"
+					color="{zcolor}"
+					size="{zsize}"	
+					position="{zpos}"
+					rollspeed="{zrollspeed}"
+					lockup="1"
+					pitch="-90"
+					startalpha="{zalpha}"
+					endalpha="0"
+					depthbias="-50"
+					roll="180"
+				/>	
+			</template>
+			
+			<instance name="" zsize="370" zpos="0 0 5" zrollspeed="-15" zcolor="1 .7 .3" zalpha=".5"/>
+			<instance name="" zsize="275" zpos="0 0 5" zrollspeed="-60" zcolor=".5 .35 .15" zalpha=".5"/>
+			<instance name="" zsize="195" zpos="0 0 5" zrollspeed="-100" zcolor=".25 .15 .075" zalpha=".3"/>
+			<instance name="" zsize="125" zpos="0 0 5" zrollspeed="-150" zcolor=".25 .15 .075" zalpha=".3"/>
+
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="16"
+				minparticlelife="750"
+				maxparticlelife="1000"			
+				spawnrate="650"
+				minspeed="100"
+				maxspeed="500"
+				gravity="10"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="25"
+				drag="0.01"
+				material="/shared/effects/smaterials/sand_dots.material"
+				offsetsphere="25 25 10"
+				position="0 0 40"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-60"
+					maxanglespeed="60"
+					startsize="40"
+					endsize="110"
+					color="1 1 1"			
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".25"
+					startstickiness="0"
+					endstickiness=".4"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			<simpleemitter	
+			position="0 0 100"
+				spawnrate="6000"		
+				gravity="10"
+				count="50"
+				minspeed="100"
+				maxspeed="200"
+				drag=".01"
+				minangle="0"
+				maxangle="20"
+				minparticlelife="750"
+				maxparticlelife="1000"
+				direction="0 0 1"
+				offsetsphere="50 50 25"
+				material="/shared/effects/smaterials/cartoon_dust_brown.material"	
+			>
+				<particle	
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-80"
+					maxanglespeed="80"
+					minsize="60"
+					maxsize="90"
+					endsize="0"
+					color="1"		
+					startalpha="0"
+					midalpha=".3"
+					endalpha="0"
+					midalphapos=".3"
+				/>
+			</simpleemitter>
+
+			<simpleemitter	
+			position="0 0 25"
+				spawnrate="6000"		
+				gravity="10"
+				count="50"
+				minspeed="100"
+				maxspeed="300"
+				drag=".01"
+				minangle="0"
+				maxangle="20"
+				minparticlelife="750"
+				maxparticlelife="1000"
+				direction="0 0 1"
+				offsetsphere="20 20 50"
+				material="/shared/effects/smaterials/cartoon_dust_brown.material"	
+			>
+				<particle	
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-80"
+					maxanglespeed="80"
+					minsize="20"
+					maxsize="60"
+					endsize="0"
+					color="1 1 1"		
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".1"
+				/>
+			</simpleemitter>
+
+
+			
+			
+
+
+
+			<simpleemitter	
+				life="400"
+				spawnrate="6600"		
+				gravity="10"
+				count="10"
+				minspeed="100"
+				maxspeed="300"
+				drag=".01"
+				minangle="0"
+				maxangle="20"
+				minparticlelife="750"
+				maxparticlelife="1000"
+				direction="0 0 1"
+				offsetsphere="35"
+				material="/shared/effects/smaterials/sand_poofy.material"	
+			>
+				<particle	
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-80"
+					maxanglespeed="80"
+					startsize="40"
+					endsize="180"
+					color="1 .9 .5"		
+					startalpha="0"
+					midalpha=".25"
+					endalpha="0"
+					midalphapos=".25"
+					
+				/>
+			</simpleemitter>
+
+			<billboard			
+				expirelife="1500"
+				material="/shared/effects/materials/whitedot.material"
+				position="0 0 25"
+				depthbias="-75"
+				startcolor=".25 .1 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				startsize="800"
+				endsize="0"
+				startalpha="1"
+				endalpha="0"				
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+<!--
+			<billboard				
+				life="1500"
+				material="/shared/effects/materials/whitedot.material"
+				position="0 0 25"
+				depthbias="-75"
+				startcolor="0 0 0"
+				midcolor=".125 .04 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				startsize="100"
+				endsize="800"
+				startalpha="1"
+				endalpha="0"				
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+-->
+
+
+
+
+
+			<simpleemitter
+				spawnrate="30"	
+				minparticlelife="1000"			
+				maxparticlelife="2000"			
+				speed="0"
+				acceleration="0"
+				position="0 0 10"
+				material="/shared/effects/smaterials/sand_poofy_no_center.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="180"
+				direction="0 0 1"
+				depthbias="-25"
+			>
+				<particle 
+					startanchor="1"
+					endanchor=".75"
+					minangle="-360"
+					maxangle="360"
+					color=".6 .4 .125"
+					minstartscale="20"
+					maxstartscale="50"
+					minendscale="50"
+					maxendscale="125"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".15"
+					turn="true"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="10"	
+				minparticlelife="1000"			
+				maxparticlelife="2000"			
+				speed="0"
+				acceleration="0"
+				position="0 0 10"
+				material="/shared/effects/smaterials/sand_poofy_no_center.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="180"
+				direction="0 0 1"
+				depthbias="-25"
+			>
+				<particle 
+					startanchor="1"
+					endanchor=".75"
+					minangle="-360"
+					maxangle="360"
+					color=".8 .65 .4"
+					minstartscale="75"
+					maxstartscale="100"
+					minendscale="175"
+					maxendscale="250"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".15"
+					turn="true"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			</simpleemitter>
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

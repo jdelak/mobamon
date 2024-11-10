@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Spellblade"
+		
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="effects/blade/model.mdf"
+	skin=""
+	
+	isunit="false"
+	
+	passiveeffect="effects/body.effect"
+
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	iscontrollable="false"
+	
+	preglobalscale="1"
+	modelscale="1"
+	effectscale="1"
+	boundsheight="64"
+	radiusheight="64"
+	boundsradius="8"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+	inheritvisibilityfromowner="true"
+
+	movespeed="400"
+	turnrate="720"
+
+	cancarryitems="false"
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="true"
+	flyheight="250"
+	
+	diewithowner="true"
+	deathtime="0"
+	corpsetime="0"
+	
+	attackstarteffect=""
+
+	attackactioneffect=""
+	attackeffecttype=""
+	attacktype="melee"
+	combattype="none"
+	drawonmap="false"
+
+	wanderrange="200"
+	
+	unittype="Unit_Spellblade"
+>
+	<onspawn>
+		<order command="wander" source="this_entity" target="this_owner_entity" />
+	</onspawn>
+	
+	<onframe>
+		<distance source="this_entity" target="this_owner_entity" />
+		<setvar0 a="result" />
+		<compare a="var0" b="250" op="gt">
+			<applystate name="State_Spellblade_MovementCatchup" continuous="true" timeout="750" proxy="this_owner_entity" target="this_entity" />
+		</compare>
+		<compare a="var0" b="600" op="gt">
+			<applystate name="State_Spellblade_MovementCatchupExtreme" continuous="true" timeout="500" proxy="this_owner_entity" target="this_entity" />
+		</compare>
+		<compare a="var0" b="1000" op="gt">
+			<teleport source="this_entity" target="this_owner_entity" interpolate="false" />
+		</compare>
+		<condition test="not_hasorder" target="this_entity" source="this_entity">
+			<order command="wander" source="this_entity" target="this_owner_entity" />
+		</condition>
+
+	</onframe>
+
+</pet>

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../castle_gate/sounds/sfx_impact.wav"
+			/>
+			
+			<!-- Ground scorch mark -->
+			<!-- <simpleemitter
+				
+				spawnrate="2000"
+				count="1"
+				minparticlelife="1500"
+				gravity="0"
+				acceleration="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/scorch_ground.material"
+			>
+				<particle
+					color="0"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					scale="300"
+					turn="true"
+					pitch="90"
+					lockup="true"
+					lockright="true"
+					minangle="0"
+					maxangle="360"
+				/>
+			</simpleemitter> -->
+			
+			<simpleemitter
+			
+				spawnrate="3000"
+				count="5"
+				particlelife="100"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 100"
+				offsetsphere="0"
+				direction="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				
+			>
+				<particle
+					startcolor="1 .6 0"
+					endcolor="0"
+					startscale="50"
+					endscale="300"
+					
+				/>
+			</simpleemitter>
+
+			<debris
+				position="0 0 25"
+				minscale=".3"
+				maxscale=".4"
+				minlife="1000"
+				maxlife="1500"
+				model="rocks_debris/model.mdf"
+				material="rocks_debris/material.material"
+				anim="idle"
+				minspeed="2000"
+				maxspeed="3000"
+				direction="0 0 1"
+				minrotationspeed="-90"
+				maxrotationspeed="90"
+				gravity="400"
+				minangle="-45"
+				maxangle="45"
+				startcolor="2 0 0"
+				midcolor=".5 0 0"
+				endcolor=".5 0 0"
+				startalpha="1"
+				endalpha="0"
+				midalphapos=".65"
+				collide="true"
+				bounce=".1"
+				reflect=".8"
+				animpose="false"
+				offsetsphere="0"
+				minyaw="0"
+				maxyaw="360"
+				depthbias="-100"
+			>
+				
+				<template name="bits">
+					<!-- Flamesplosion -->
+					<!-- <trailemitter
+						life="1000"
+						spawnrate="50"
+						particlelife="300"
+						texpostime="100"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+					>
+						<particle
+							startcolor="0"
+							midcolor=".5 0 0"
+							endcolor="0"
+							size="75"
+							midcolorpos=".05"
+							midsizepos=".1"
+						/>
+					</trailemitter> -->
+					
+						<!-- Dark purple flames-->
+					<simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="200"
+						minparticlelife="200"
+						maxparticlelife="400"
+						mingravity="0"
+						maxgravity="0"
+						minspeed="100"
+						maxspeed="300"
+						acceleration="0"
+						position="0 0 20"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-100"
+						direction="0 0 0"
+						directionalspace="world"
+						startangle="360"
+						endangle="0"
+					>
+						<particle
+							startcolor="1 0 0"
+							endcolor="1 0 0"
+							midcolorpos=".3"
+							startalpha="1"
+							endalpha="0"
+							startscale="10"
+							midscale="35"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+
+						<!-- Purple pink flames -->
+					<simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="200"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="100"
+						maxspeed="300"
+						acceleration="0"
+						position="0 0 0"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-100"
+						direction="0 0 0"
+						directionalspace="world"
+					>
+						<particle
+							startcolor="1 1 0"
+							midcolor="1 0.5 0"
+							endcolor=".5 0 0"
+							midcolorpos=".5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							startscale="10"
+							midscale="35"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+					
+						<!-- White flames -->
+					<simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="200"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="100"
+						maxspeed="200"
+						acceleration="0"
+						position="0 0 -20"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-50"
+						direction="0 0 0"
+						directionalspace="world"
+					>
+						<particle
+							startcolor="1 1 1"
+							endcolor="1 1 1"
+							midcolorpos=".5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							startscale="2.5"
+							midscale="7.5"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+					
+					<model
+						minlife="500"
+						maxlife="900"
+						model="molten_rock/model.mdf"
+						anim="idle"
+						scale=".5"
+						color="1 0 0"
+						alpha="1"
+						pitchspeed="0"
+						position="0 0 40"
+						depthbias="-1000"
+					/>
+					
+					<!--Ember bits-->			
+					<simpleemitter
+						
+						spawnrate="100"			
+						particlelife="500"
+						gravity="-10"
+						minspeed="10"
+						maxspeed="700"
+						drag="0"
+						acceleration="0"
+						direction="1 1 0"
+						offsetsphere="60"
+						depthbias="0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						inheritvelocity="true"
+						position="-15 70 50"
+					>
+						<particle
+							minscale=".1"
+							maxscale="1"
+						>
+						
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1 1 0"
+								endcolor="0"
+								minsize="4"
+								maxsize="8"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+							/>
+						
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1 .5 0"
+								endcolor="0"
+								minsize="5"
+								maxsize="10"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+								
+							/>
+							
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1 0 0"
+								endcolor="0"
+								minsize="6"
+								maxsize="12"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+								
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					
+				</template>
+				
+				<!-- <instance name="bits" newbone="Box001"/> -->
+
+			</debris>
+
+				<!-- Streaks -->
+			<simpleemitter
+				
+				spawnrate="5000"
+				count="20"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="1500"
+				maxspeed="3000"
+				drag="0.01"
+				acceleration="0.0"
+				offsetsphere="20"
+				material="/shared/effects/smaterials/whitecircleblurred_add_unlit.material"
+			>
+				<particle
+					heightdistort="0.2"
+					widthdistort=".05"
+					scale=".1"
+					startcolor="1 1 "
+					endcolor="1 0 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+
+				<!-- Purple impact ring -->
+			<simpleemitter
+			
+				spawnrate="3000"
+				count="1"
+				particlelife="200"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 100"
+				offsetsphere="0"
+				direction="0 0 0"
+				material="/shared/effects/smaterials/fire_ring.material"
+				
+			>
+				<particle
+					startcolor="1 0 0"
+					endcolor="0"
+					startscale="50"
+					endscale="400"
+					lockright="1"
+					lockup="1"
+					pitch="90"
+				/>
+			</simpleemitter>
+			
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<camerashake2 scale="12" radius="3000" duration="250" frequency="22" />
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

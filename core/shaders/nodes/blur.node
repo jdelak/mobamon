@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="blur" novs="true">
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Sampler" type="sampler2D" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="TexelSize" type="float" source="fTexelSize" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = 0.0f;
+	
+			Out += tex2D(Sampler, Texcoord + float2(-TexelSize * 0.5f, -TexelSize * 0.5f));
+			Out += tex2D(Sampler, Texcoord + float2(-TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += tex2D(Sampler, Texcoord + float2(TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += tex2D(Sampler, Texcoord + float2(TexelSize * 0.5f, -TexelSize * 0.5f));
+			
+			Out *= 0.25f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			Out = 0.0f;
+			
+			Out += Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(-TexelSize * 0.5f, -TexelSize * 0.5f));
+			Out += Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(-TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += Sampler_texture.Sample(Sampler_sampler, Texcoord + float2(TexelSize * 0.5f, -TexelSize * 0.5f));
+			
+			Out *= 0.25f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			Out = vec4(0.0f);
+	
+			Out += texture2D(Sampler, Texcoord + vec2(-TexelSize * 0.5f, -TexelSize * 0.5f));
+			Out += texture2D(Sampler, Texcoord + vec2(-TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += texture2D(Sampler, Texcoord + vec2(TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += texture2D(Sampler, Texcoord + vec2(TexelSize * 0.5f, -TexelSize * 0.5f));
+			
+			Out *= 0.25f;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			Out = vec4(0.0f);
+	
+			Out += texture(Sampler, Texcoord + vec2(-TexelSize * 0.5f, -TexelSize * 0.5f));
+			Out += texture(Sampler, Texcoord + vec2(-TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += texture(Sampler, Texcoord + vec2(TexelSize * 0.5f, TexelSize * 0.5f));
+			Out += texture(Sampler, Texcoord + vec2(TexelSize * 0.5f, -TexelSize * 0.5f));
+			
+			Out *= 0.25f;
+		?>
+	</case>
+</node>

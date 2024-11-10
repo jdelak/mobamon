@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="browserButtonState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<image texture="/ui/main/windowframe/textures/window_button.tga" width="64s" height="32s" align="center"  />
+			<image texture="/ui/main/windowframe/textures/window_button_hover.tga" width="64s" height="32s" align="center" visible="{hover=false}"  />
+			<image group="{id}_icon_group" align="center" valign="center" width="{iconsize}" height="{iconsize}" texture="{icon}" y="{icony}" color="{color}" />
+		</widgetstate>
+	</template>	
+	<template name="browserButton">
+		<button name="{id}" width="40s" height="23s" group="{group}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" onloadlua="{onloadlua}"  visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onrightclicklua="{onrightclicklua}" onclicklua="{onclicklua}"	>
+			<instance name="browserButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" color=".8 .8 .8 1" statename="up"/>
+			<instance name="browserButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" hover="true" statename="over"/>
+			<instance name="browserButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" statename="down"/>
+			<instance name="browserButtonState" id="{id}" icon="{icon}" iconsize="{iconsize}" icony="{icony}" colorized="{colorized=false}" statename="disabled"/>
+		</button>
+	</template>
+
+	<panel name="browser_panel" bgcolor="black" width="100%" visible="0">
+	
+		<frame color="invisible" height="+30s" valign="center" width="+30s" align="center" borderthickness="17s" bordercolor="black" noclick="1" />
+		<frame color="invisible" borderthickness="2s" bordercolor="#2c3437" noclick="1" />
+		<frame color="invisible" borderthickness="1s" bordercolor="#314354" noclick="1" />
+
+		<webbrowser name="browser_browser" url="" />
+		
+		<panel name="browser_browser_drag_bar_1" visible="1" height="50s" 
+			onclicklua="System.StartWindowDrag(select(2, ...), select(3, ...))" 
+			ondoubleclicklua="System.CenterWindow(true)" 
+			onmouseoverlua="UpdateCursor(object, true, { canLeftClick = true, canRightClick = false, canDrag = true })"
+			onmouseoutlua="UpdateCursor(object, false, { canLeftClick = true, canRightClick = false, canDrag = true })"
+			onstartdraglua=""
+			onenddraglua=""		
+		/>			
+		
+		<panel width="60s" height="28s" x="0s" y="0h" align="right" color="black" />
+		
+		<instance id="browser_panel_quit" name="browserButton" visible="1" x="-5s" y="0h" align="right"
+			onclicklua="
+				UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserStop()
+				UIManager.GetActiveInterface():GetWidget('browser_browser'):WebBrowserClose()
+				UIManager.GetActiveInterface():GetWidget('browser_panel'):FadeOut(250)
+				local triggerPanelStatus = LuaTrigger.GetTrigger('mainPanelStatus')
+				triggerPanelStatus.launcherMusicEnabled = mainUI.savedRemotely.launcherMusicEnabled
+				triggerPanelStatus:Trigger(false)				
+			"
+			icon="/ui/shared/textures/undo_icon.tga" iconsize="16s"
+		/>			
+
+	</panel>
+
+</package>

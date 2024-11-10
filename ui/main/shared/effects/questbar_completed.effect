@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+		<particlesystem name="system0" space="world">			
+			<meshemitter
+				mesh="_invis_emitter"
+				spawnrate="90"
+				minparticlelife="700"
+				maxparticlelife="3000"	
+				gravity="0"
+				minspeed="6"
+				maxspeed="12"
+				drag="0.015"
+				material="/shared/effects/materials/neb_add.material"
+				angle="0"
+			>
+				<particle
+					minagle="-360" 
+					maxangle="360"
+					minanglespeed="130"
+					startcolor=".2 .1 0"
+					midcolor="1 0 0"
+					midcolorpos="0.5"
+					endcolor="1 0 0"
+					startsize="30"			
+					minendsize="50"
+					maxendsize="240"
+					startalpha=".5"
+					midalpha="1"
+					endalpha="0"
+					midalphapos="1"
+					startanchor="1.0"
+					endanchor="1.0"
+				/>
+
+			</meshemitter>
+			
+			
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

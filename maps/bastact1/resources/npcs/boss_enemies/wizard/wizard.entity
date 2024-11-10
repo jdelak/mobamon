@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Enemy_Wizard"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+	gibanim=""
+	deniedanim=""
+
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	rewardsoundself=""
+	rewardsoundteam=""
+	rewardsoundenemy=""
+  
+	preglobalscale="1.2"
+	modelscale="1.5"
+	effectscale="1.0"
+	boundsheight="64"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+
+	movespeed="100"
+	turnrate="320"
+	turnsmoothing="0.05"
+
+	maxhealth="800"
+	healthregen="0.5"
+	maxmana="0"
+	manaregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	
+	inventory0="Ability1_Bastact1_Enemy_Wizard"
+	inventory1="Ability2_Bastact1_Enemy_Wizard"
+	inventory2="Ability3_Bastact1_Enemy_Wizard"
+	inventory3="Ability4_Bastact1_Enemy_Wizard"
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+  
+
+	attackduration="1000"
+	attackactiontime="1600"
+	attackcooldown="1000"
+	attackdamagemin="100"
+	attackdamagemax="100"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="75"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep1/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="player_controlled_units"
+	leashaggroscheme="player_controlled_units"
+	attackdamagetype="AttackDamage"
+
+	canattack="false"
+	ismobile="false"
+	aggrorange="0"
+	proximityrange="500"
+	sightrangeday="30000"
+	sightrangenight="30000"
+	
+	corpsetime="6000"
+	corpsefadetime="6000"
+	deathtime="1000"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+
+	
+	pathing="true"
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+
+	showaggropopup="false"
+>
+
+	<onspawn>
+		<applystate name="State_Bastact1_Wizard_Enemy" target="this_entity" source="source_entity" proxy="this_entity" duration="-1"/>
+	</onspawn>
+
+	<modifier key="dontshootstuff" modpriority="100"
+		invulnerable="true"
+		>
+	</modifier>
+
+	<modifier key="fake" modpriority="100"
+		model="variations/model.mdf"
+		>
+		<ondeath>
+		</ondeath>
+	</modifier>
+
+</pet>

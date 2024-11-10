@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Bastact1_Projectile_Executioner_Ability4_Cast2b"
+
+	lifetime="500"
+	useexactlifetime="true"
+	gravity="1500"
+	
+	canturn="false"
+	flying="false"
+	flyheight="5"
+
+	effectscale="2.0"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact_enemy.effect"
+	touchcliffs="true"
+	
+	touchradius="25"
+	touchradiusdiradjust="true"
+	touchtargetscheme="all_buildings"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+>	
+	<ontouch>
+		<playanim source="proxy_entity" target="proxy_entity" name="idle" /> 
+		<kill target="this_entity" source="" />
+	</ontouch>
+
+	<onimpact>
+		<setpos0 position="source_position" positionend="this_position" positionmodifier="pointonline" positionvalue="900" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Cast2c" source="this_entity" target="pos0"  bind="proxy_entity" proxy="proxy_entity" />
+	</onimpact>
+
+</projectile>

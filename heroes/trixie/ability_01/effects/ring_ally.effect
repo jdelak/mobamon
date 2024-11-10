@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="frostarmordebuff">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1.23">
+		
+			<groundsprite
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 0.5 0"
+				midcolor="0 0.5 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				life="2000"
+				startsize="200"
+				endsize="200"
+				alpha="0.5"
+				
+			/>
+			
+			<groundsprite
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 0.5 0"
+				midcolor="0 0.5 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				life="2000"
+				startsize="200"
+				endsize="0"
+				alpha="0.5"
+				
+			/>
+			<groundsprite			
+				delay="0"
+				life="2000"
+				material="/shared/effects/smaterials/trixie.material"
+				startsize="0"
+				midsize="150"				
+				endsize="150"
+				midsizepos=".22"
+				startalpha="1"
+				midalpha="1"
+				midalphapos="0.6"
+				endalpha="0"
+				color="0 1 0"				
+				yaw="180"
+			/>
+      </particlesystem>
+	  
+   
+
+
+		
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+
+      <waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+
+			<sound
+				volume="0.85" 
+				falloffstart="500" 
+				falloffend="2500"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+
+			<light
+				position="-10 110 80"
+				life="250"
+				startcolor="6 2 .5"
+				midcolor="6 2 .5"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="100"
+			/>
+
+			<simpleemitter
+				delay="0"
+				count="1"
+				spawnrate="110"
+				particlelife="1600"
+				speed="0"
+				minangle="0"
+				maxangle="0"
+				position="-5 120 0"
+				direction="0 1 0"
+				particledirectionalspace="local"
+			>
+				<particle
+				>
+					<groundsprite
+						color=".25 .175 .125"
+						life="100"
+						position="0 0 0"
+						material="/shared/effects/smaterials/cartoon_muzzle_flash_ground.material"
+						yaw="180"
+						size="50" 
+						directionalspace="local"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="20"
+				spawnrate="11340"
+				minparticlelife="30"
+				maxparticlelife="100"
+				gravity="0"
+				minspeed="2500"
+				maxspeed="5000"
+				position="-5 120 80"
+				minangle="0"
+				maxangle="5"
+				direction="0 1 0"
+				offsetsphere="5 5 5"
+				particledirectionalspace="local"
+			>
+				<particle>
+					<trailemitter
+						life="700"
+						spawnrate="10"
+						particlelife="700"
+						texpostime="700"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/arrow_trail.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor=".4 .25 0"
+							midcolor=".25 .05 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="5"
+							midsize="5"
+							endsize="0"
+							midsizepos="0.25"
+						/>
+					</trailemitter>
+				</particle>
+			</simpleemitter>
+
+			
+			<simpleemitter
+				count="10"
+				spawnrate="11340"
+				minparticlelife="30"
+				maxparticlelife="100"
+				gravity="0"
+				minspeed="6500"
+				maxspeed="6500"
+				position="-5 120 80"
+				minangle="0"
+				maxangle="2"
+				direction="0 1 0"
+				offsetsphere="2 2 2"
+				particledirectionalspace="local"
+			>
+				<particle>
+					<trailemitter
+						life="1000"
+						spawnrate="10"
+						particlelife="1000"
+						texpostime="1000"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/arrow_trail.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor=".4 .25 0"
+							midcolor=".25 .05 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							startsize="5"
+							midsize="5"
+							endsize="0"
+							midsizepos="0.25"
+						/>
+					</trailemitter>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="1"
+				spawnrate="11340"
+				minparticlelife="1000"
+				maxparticlelife="1000"
+				gravity="0"
+				speed="2500"
+				position="-5 120 80"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				offsetsphere="0 0 0"
+				particledirectionalspace="local"
+			>
+				<particle>
+					<model
+						life="325"
+						model="bullets/model.mdf"
+						anim="idle"
+						material="/shared/effects/smaterials/shell_sludge.material"
+						startcolor="1 1 1"
+						midcolor="4 1 0"
+						endcolor="0 0 0"
+						startscale=".3"
+						endscale=".3"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="10"
+				spawnrate="11340"
+				minparticlelife="30"
+				maxparticlelife="150"
+				gravity="0"
+				minspeed="2500"
+				maxspeed="5000"
+				position="-5 120 80"
+				minangle="0"
+				maxangle="12"
+				direction="0 1 0"
+				offsetsphere="5 5 5"
+				particledirectionalspace="local"
+			>
+				<particle>
+					<model
+						life="100"
+						model="bullet/bullet.mdf"
+						material="/shared/effects/smaterials/shell_sludge.material"
+						anim="idle"
+						color="5 2.5 1"
+						minscale=".2"
+						maxscale=".2"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="0"
+				count="122"
+				spawnrate="11340"
+				particlelife="530"
+				gravity="12.0"
+				minspeed="600"
+				maxspeed="1800.0"
+				drag="0.03"
+				acceleration="0.0"
+				position="-5 120 80"
+				minangle="0"
+				maxangle="25"
+				direction="0 1 0"
+				offsetsphere="8 150 8"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					heightdistort="0.01"
+					startsize="4"
+					endsize="2"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="0"
+				count="1"
+				spawnrate="110"
+				particlelife="1600"
+				gravity="1.0"
+				speed="10.0"
+				drag="0.0"
+				acceleration="0.0"
+				minangle="0"
+				maxangle="0"
+				position="-5 120 80"
+				direction="0 1 0"
+				offsetdirection="0 0 0"
+				offsetradial="0 0 0"
+				particledirectionalspace="local"
+				inheritvelocity="0"
+			>
+				<particle
+				>
+					<billboard
+						color="1 .65 .45"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						life="100"
+						position="0 0 0"
+						material="/shared/effects/smaterials/cartoon_muzzle_flash.material"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						param=".012"
+						startsize="80" 
+						endsize="110"
+						directionalspace="local"
+						depthbias="-35"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

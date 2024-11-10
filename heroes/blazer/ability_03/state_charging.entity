@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Blazer_Ability3_Charging"
+	
+	icon="icon.tga"
+	passiveeffect="effects/charging.effect" 
+	
+	ishidden="true"
+	effecttype=""
+	
+	impactinterval="50"
+	maxcharges="30"
+		
+
+>
+	<onimpact>
+		<addcharges entity="this_proxy_entity" count="1" />
+		<addcharges count="1" />
+		
+		<compare a="30" b="charges" op="eq" >
+			<setactivemodifierkey entity="this_entity" name="Blazer_Ability3_Charged" />
+		</compare>
+	</onimpact>
+	
+	<modifier key="Blazer_Ability3_Charged" modpriority="100"
+		passiveeffect="effects/charged.effect" 
+	>	
+		<onimpact>
+
+		</onimpact>
+	</modifier>
+
+</state>

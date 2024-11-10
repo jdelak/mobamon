@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="inventoryNavItem">
+		<panel name="inventory_nav_slot_{id}" width="100@" height="100%" color="black">
+			<frame borderthickness="1" color="#191919" bordercolor="#191919" noclick="true"/>
+			<image name="inventory_nav_slot_{id}Icon" texture="/ui/main/inventory/textures/inventory_empty_slot.tga" noclick="true"/>
+			<instance name="iconFrame" />
+		</panel>
+	</template>
+
+	<template name="inventoryNavItemRow">
+		<panel height="34s">
+			<panel align="center" grow="true" height="100%" float="right" padding="4s">
+				<instance name="inventoryNavItem" id="{id1}"/>
+				<instance name="inventoryNavItem" id="{id2}"/>
+				<instance name="inventoryNavItem" id="{id3}"/>
+				<instance name="inventoryNavItem" id="{id4}"/>
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="inventory_nav_button">
+		<panel valign="bottom" x="-40s" y="-35s" height="100s" width="770s" align="right" noclick="1">		
+			<panel width="274s" height="72s" x="-5s" align="right" noclick="true">
+				<panel name="{id}VisContainer" noclick="true" color="invisible" >
+					<button passivechildren="true"  enabled="true" color="invisible"
+						disabledmouseover="true"
+						disabledmouseout="true"
+					>
+						<panel align="center" valign="center">
+							
+							<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="10s" rendermode="grayscale" />
+							<image texture="/ui/main/inventory/textures/inventory.tga" x="-32s" y="-2s" width="94s" height="94s" valign="center" />
+
+							<panel width="-44s" align="right">
+								<label name="InventoryLabel" y="8s" textalign="center" font="maindyn_24" style="labelBase" color="white" content=" Manage Inventory"/>
+								<label name="InventoryLabel2" y="40s" textalign="center" font="maindyn_18" style="labelBase" color=".7 .7 .7 1" content="No Empy Slots!"/>
+							</panel>
+						</panel>
+					</button>
+				</panel>
+			</panel>			
+		</panel>
+	</template>
+
+	<template name="inventory_content_category_tab">
+		<panel name="inventory_content_category_tab_{id}" width="100@" height="100%" noclick="true" group="selection_animation_widgets_group_0_fade" >						
+			<button name="inventory_content_category_tab_{id}Button" color="invisible"/>
+			<image texture="{icon}" noclick="true" />						
+			<image name="inventory_content_category_tab_{id}_cover" texture="{icon}" rendermode="grayscale" color="1 1 1 .9" noclick="true" visible="1" />
+			<image name="inventory_content_category_tab_{id}_frame" texture="/ui/main/shared/textures/herorole_frame.tga" noclick="1" visible="0" />
+			<!-- Selected -->
+			<image name="inventory_content_category_tab_{id}_frame_selected" texture="/ui/main/shared/textures/herorole_frame_selected.tga" noclick="1" visible="0"/>
+			<!-- Reco In Here -->			
+			<panel name="inventory_content_category_tab_{id}_glow" x="-1s" y="-1s" width="90@" height="90%" align="center" valign="center" noclick="1" visible="0">
+				<modelpanel model="/ui/_effects/toggle/toggle.mdf" anim="idle" effect="/ui/_effects/toggle/toggle.effect" camerapos="0 1 0" cameraangles="0 0 180" camerafov="38" cameranear="1" carmerafar="100" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="inventorySlotComponent">
+		<panel name="{id}" x="{x}" y="-1s" align="center" valign="center" width="78@" height="78%" noclick="1">
+			<image name="{id}Icon" visible="1"/><!-- Component Icon -->
+		</panel>
+	</template>
+
+	<template name="inventorySlot">
+		<panel width="100@" height="100%" group="inventory_animation_widgets">
+			<button name="inventory_slot_{index}" color="invisible" interactive="false" cangrab="true" dragexclusive="false">
+				<panel noclick="1" width="100%" height="100@" >
+					
+					<frame noclick="true" texture="/ui/elements:squareglow" color="0 0 0 .7" width="-18s" height="+10s" align="center" valign="center" borderthickness="20s" />
+					<frame name="inventory_slot_{index}_hover" texture="/ui/shared/frames/frameglow.tga" y="-4s" width="92%" height="80%" borderthickness="20s" color=".4 .9 1 .4" align="center" valign="top" rendermode="additive" noclick="1" visible="0" />
+					
+					<panel y="-4s" width="70@" height="70%" align="center" valign="center" color=".07 .07 .07 1" noclick="1" />
+					<image name="inventory_slot_{index}_icon" y="-4%" x="-1s" width="64@" height="64%" align="center" valign="center" texture="/ui/main/inventory/textures/inventory_empty_slot.tga" rendermode="grayscale"/>
+					
+					<image name="inventory_slot_{index}_frame" texture="/ui/main/inventory/textures/slot_frame.tga" align="center" noclick="1" />
+					<image name="inventory_slot_{index}_hover_frame" texture="/ui/main/inventory/textures/slot_frame_hover.tga" visible="0" noclick="1" />
+					
+					<panel name="inventory_slot_{index}_lifetime_bar_parent" visible="0" y="3.8%" width="68%" align="center" height="7.0%" noclick="1">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="2s" color="#0e1b20" noclick="1"/>
+						<frame name="inventory_slot_{index}_lifetime_bar" width="50%" texture="/ui/elements:rounded_bg_white" color="#22EE33" borderthickness="2s" hmargin="2s" vmargin="2s" noclick="1"/>
+						<frame texture="/ui/elements:rounded_corner_white" borderthickness="2s" color="#0e1b20" noclick="1"/>
+					</panel>
+					
+					<panel x="0" y="-3.1%" width="68%" height="17.2%" valign="bottom" align="center" noclick="1">
+						<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="3s" bordercolor=".6 .6 .6 .7" color=".6 .6 .6 .7" />
+						<instance name="inventorySlotComponent" id="inventory_slot_{index}_component1" x="-32%" />
+						<instance name="inventorySlotComponent" id="inventory_slot_{index}_component2" x="0" />
+						<instance name="inventorySlotComponent" id="inventory_slot_{index}_component3" x="32%" />
+					</panel>
+					
+					<panel name="inventory_slot_{index}_lock" visible="1" noclick="true" passivechildren="true">
+						<panel color=".1 .1 .1 .75" y="-4%" x="-1s" width="64@" height="64%" align="center" valign="center" noclick="1" />
+						<panel y="-4%" width="44s" height="44s" align="center" valign="center" texture="/ui/main/pregame/textures/locked.tga" noclick="1" color="1 1 1 1" visible="1"/>
+					</panel>
+										
+					<panel name="inventory_slot_{index}_expired" visible="1" noclick="true" passivechildren="true">
+						<panel color=".1 .1 .1 .75" y="-4%" x="-1s" width="64@" height="64%" align="center" valign="center" noclick="1" />
+						<panel y="-4%" width="32s" height="32s" align="center" valign="center" texture="/ui/shared/textures/alert.tga" noclick="1" color="1 1 1 1" visible="1"/>
+					</panel>
+					
+					<panel name="inventory_slot_{index}_disabled" visible="1" noclick="true" passivechildren="true">
+						<panel width="64s" height="64s" align="left" x="-16s" y="-16s" texture="/ui/main/shared/textures/lock2.tga" noclick="1" color="1 1 1 1" visible="0"/>
+					</panel>					
+					
+					<panel name="inventory_slot_{index}_rareBonus" width="40s" height="40s" valign="top" align="left" x="38s" y="38s" visible="false">
+						<panel name="inventory_slot_{index}_rareIcon" noclick="1" color="1 1 1 1"/>
+						<instance name="iconFrame" />
+					</panel>
+					
+				</panel>
+			</button>
+
+			<panel name="inventory_slot_{index}_hover_actions" visible="0" noclick="1" >				
+				<image name="inventory_slot_{index}_action_bg" texture="/ui/main/inventory/textures/slot_frame_action_cover.tga" noclick="1" color="0 .02 .03 .85" visible="0" />			
+				<button name="inventory_slot_{index}_repurchase" width="50s" height="50s" align="left" x="21s" y="-8s" visible="1" color="invisible"
+					onloadlua="
+						buttonInfo = libButton2.initializeButton(self, 'inventory_slot_{index}_repurchase', 'basicBounce')
+					"
+				>
+					<panel name="inventory_slot_{index}_repurchaseBody" align="center" valign="center">
+						<panel texture="/ui/main/shared/textures/hourglass_glow.tga" width="96%" height="96%" align="center" valign="center" noclick="1" color="1 1 1 .9"/>
+						<panel texture="/ui/main/shared/textures/hourglass.tga" noclick="1" color="1 1 1 1"/>
+					</panel>
+				</button>				
+				<button name="inventory_slot_{index}_salvage" width="46s" height="46s" align="right" x="-19s" y="-8s" visible="1" color="invisible"
+					onloadlua="
+						buttonInfo = libButton2.initializeButton(self, 'inventory_slot_{index}_salvage', 'basicBounce')
+					"
+				>
+					<panel name="inventory_slot_{index}_salvageBody" align="center" valign="center">
+						<panel texture="/ui/main/shared/textures/salvage_glow.tga" noclick="1" color="1 1 1 1"/>
+						<panel texture="/ui/main/shared/textures/salvage.tga" noclick="1" color="1 1 1 1"/>
+					</panel>
+				</button>				
+				<instance
+					name="standardButton"
+					id="inventory_slot_{index}_hover_action_button"
+					label="crafting_begin_button_label" font="maindyn_18"
+					align="center" valign="bottom" height="16.0%" width="70%" y="-3.4%" borderthickness="3s"
+					visible="0"
+				/>
+			</panel>
+		</panel>
+	</template>
+
+</package>

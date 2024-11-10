@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="dust_particle_blend">
+				<particle
+					minanglespeed="{minanglespeed=-30}"
+					maxanglespeed="{maxanglespeed=30}"
+					startcolor="0 0 0"
+					midcolor="{color}"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					minscale="{minscale}"
+					maxscale="{maxscale}"
+					lockup="true"
+					startalpha="0"
+					midalpha="{midalpha=.2}"
+					endalpha="0"
+				/>
+			</template>
+			
+			<simpleemitter
+				position="0 800 0"
+				spawnrate="35"
+				particlelife="1000"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+			>
+				<particle
+				minangle="0"
+				maxangle="360"
+
+					startcolor="0 0 0"
+					midcolor=".15 .15 .15"
+					endcolor="0 0 0"
+
+					minheight="750"
+					maxheight="1500"
+					minwidth="15"
+					maxwidth="80"
+					depthbias="-100"
+					position="0 0 0"
+
+				>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				life="10000"
+				color=".25 .25 .25"
+				material="/shared/effects/smaterials/whitedot.material"
+				position="0 0 0"
+				size="80"
+				loop="true"
+			/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	
+	
+	name="Bastact1_State_Executioner2_Stage3"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	
+	impactinterval="500"
+	ishidden="true"
+
+	wanderrange="90"
+	
+	movespeed="400"
+>
+	<!-- This state represents the Executioner abilities and behavior in Stage 4 of the boss battle -->
+	<onspawn>
+		<deactivatemodifierkey entity="source_entity" name="stage2"/>
+		<print text="NOW ENTERING STAGE 3" />
+	</onspawn>
+
+	<onimpact>
+		<!-- Can Cyclone? -->
+		<pushability entity="source_entity" slot="4" />
+		<canactivate entity="stack_entity">
+			<areaofeffect
+				radius="2000"
+				targetselection="all"
+				targetscheme="enemy_heroes"
+				center="source_entity"
+				maxtotalimpacts="-1"
+			>
+				<useability slot="4"/>
+			</areaofeffect>
+		</canactivate>
+	</onimpact>		
+	
+	
+
+</state>

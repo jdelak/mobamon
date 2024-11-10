@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			life="5000"
+			startcolor="1 1 1"
+			midcolor="0 0 0"
+			endcolor="0 0 0"
+			startalpha="0"
+			midalpha="0"
+			endalpha="0"
+			midalphapos=".025"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="models">
+
+				<model
+					delay="{zdelay}"
+					position="{zpos}"
+					life="200"
+					parentmodel="true"
+					parentskeleton="true"
+					startcolor="{zstartcolor}"
+					endcolor="{zendcolor}"
+					scale="{zscale}"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+
+			</template>
+
+			<instance name="models" zdelay="0" zpos="0 0 0" zscale="1" zstartcolor="1 1 1" zendcolor=".8"/>
+			<instance name="models" zdelay="0" zpos="0 25 10" zscale=".95" zstartcolor=".8" zendcolor=".6"/>
+			<instance name="models" zdelay="200" zpos="0 50 20" zscale=".9" zstartcolor=".6" zendcolor=".4"/>
+			<instance name="models" zdelay="400" zpos="0 75 30" zscale=".85" zstartcolor=".4" zendcolor=".2"/>
+			<instance name="models" zdelay="600" zpos="0 100 40" zscale=".8" zstartcolor=".2" zendcolor="0 0 0"/>
+			<instance name="models" zdelay="600" zpos="0 100 50" zscale=".7" zstartcolor=".2" zendcolor="0 0 0"/>
+
+
+			<template name="twirls">
+
+				<simpleemitter
+				delay="{zdelay}"
+					count="5"			
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="750"
+					maxparticlelife="1000"
+					gravity="0"
+					speed="5"
+					material="/shared/effects/smaterials/twirl_blend.material"
+					direction="0 0 1"
+					depthbias="0"
+					directionalspace="local"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+						startcolor="0 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".05"
+						maxangle="360"
+						anglespeed="-30"
+						startsize="{zstartsize}"
+						endsize="0"
+						anchor=".8"
+						lockup="1"
+						lockright="1"
+					/>
+
+				</simpleemitter>
+				
+			
+			</template>
+
+			<instance name="twirls" zdelay="0" zpos="0 0 100" zstartsize="200"/>
+			<instance name="twirls" zdelay="0" zpos="0 25 100" zstartsize="200"/>
+			<instance name="twirls" zdelay="200" zpos="0 50 100" zstartsize="200"/>
+			<instance name="twirls" zdelay="400" zpos="0 75 100" zstartsize="200"/>
+			<instance name="twirls" zdelay="600" zpos="0 100 100" zstartsize="200"/>
+			<instance name="twirls" zdelay="600" zpos="0 100 100" zstartsize="200"/>
+
+			
+			
+
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+			bone="_bone_origin"
+
+				position="0 0 50"
+				count="1"
+				spawnrate="5000"
+				particlelife="2600"
+				acceleration="0.0"
+				minangle="0"
+				maxangle="0"
+				direction="-1 0 0"
+			>
+				<particle
+					turn="1"
+				>
+					<simpleemitter
+						count="100"
+						spawnrate="2000"
+						minparticlelife="500"
+						maxparticlelife="1250"
+						acceleration="0.0"
+						drag="0.02"
+						minangle="-25"
+						maxangle="25"
+						direction="-1 0 0"
+						minspeed="200"
+						maxspeed="600"
+						material="/shared/effects/smaterials/black_spot_ground.material"
+					>
+						<particle
+							startsize="25"
+							endsize="0"
+							startcolor=".5 .75 1"
+							midcolor="0 .5 1"
+							endcolor="0 0 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+						>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+			bone="_bone_origin"
+
+				position="0 0 50"
+				count="10"
+				spawnrate="5000"
+				particlelife="2600"
+				acceleration="0.0"
+				minangle="0"
+				maxangle="0"
+				direction="-1 0 0"
+				offsetsphere="25 0 0"
+			>
+				<particle
+					turn="1"
+				>
+					<simpleemitter
+						count="1"
+						spawnrate="75"
+						minparticlelife="100"
+						maxparticlelife="500"
+						acceleration="0.0"
+						drag="0.02"
+						minangle="0"
+						maxangle="0"
+						direction="-1 0 0"
+						minspeed="0"
+						maxspeed="200"
+						material="/shared/effects/smaterials/black_spot_ground.material"
+						depthbias="-50"
+					>
+						<particle
+							startsize="300"
+							endsize="0"
+							startcolor="1 1 1"
+							endcolor="0 0 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							height="250"
+							width="25"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+		</particlesystem>
+
+
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

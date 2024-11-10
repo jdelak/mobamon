@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- Footer -->
+	<panel y="-2s" height="32s" width="100%" valign="bottom" 
+		onloadlua="
+			self:RegisterWatchLua('mainPanelStatus', function(widget, trigger)
+				widget:SetVisible(not trigger.hideSecondaryElements)
+			end, false, nil, 'hideSecondaryElements')
+		"		
+	>
+		<label noclick="1" font="subdyn_9" color=".1 .1 .1 0.25" fitx="1" fity="1" valign="bottom" align="left" x="2s" y="-32s"
+			onloadlua="
+				self:RegisterWatchLua('AccountInfo', function(widget, trigger)
+					widget:SetText('v'..GetCvarString('host_version')..Translate(GetCvarString('host_os'))..trigger.identID)
+				end)
+				
+			"
+		/>
+		<image texture="/ui/main/footer/textures/bottom_base.tga" uscale="128p" utile="true" />
+	</panel>	
+</package>

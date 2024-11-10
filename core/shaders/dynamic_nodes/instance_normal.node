@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="instance_normal">
+	<dependency name="ObjectNormal" type="float3" source="ObjectNormal" />
+	<dependency name="InstanceRotate" type="float3x3" source="InstanceRotate" />
+	<output name="Out" type="float3" solution="WorldNormal" />
+	<?hlsl
+		Out = mul(ObjectNormal, InstanceRotate);
+	?>
+	<?glsl
+		Out = InstanceRotate * ObjectNormal;
+	?>
+</node>

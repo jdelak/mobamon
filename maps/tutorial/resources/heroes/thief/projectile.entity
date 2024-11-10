@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Thief_Ability1"
+
+	speed="1200"
+	gravity="0"
+
+	modelscale="2"
+	model="projectile/blade/model.mdf"
+	traileffect="projectile/trail.effect"
+
+	
+	canturn="false"
+	flying="true"
+	flyheight="75"
+	
+	touchradius="80"
+	maxtouchespertarget="1"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+	touchradiusdiradjust="true"
+	
+	lifetime="-1"
+>
+
+	<ontouch>	
+		<combatevent effecttype="Counterable">	
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic" significant="true" amount="1" b="result" op="mult"/>
+
+				<playeffect effect="projectile/impact.effect" target="target_entity" source="target_entity"/>
+	
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+		<kill entity="this_entity" target="this_entity" />
+	</ontouch>
+
+</projectile>

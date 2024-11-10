@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<include file="lobby_templates.package"/>		
+
+	
+	<panel name="lobby" noclick="1" visible="0" >
+
+	
+		<panel y="120s" width="460" align="center" float="bottom" noclick="1">
+			<label name="lobby_header_label" fity="1" wrap="1" style="h1" font="maindyn_40" noclick="1" textalign="center" content="" />
+			<label name="lobby_header_label_2" sticky="true" stickytoinvis="false" fity="1" style="labelBase" font="maindyn_24" color=".8 .8 .8 1" noclick="1" textalign="center" textvalign="bottom" content="" visible="1" />
+		</panel>
+		
+		<panel name="lobby_team_1" valign="top" x="70s" y="205s" width="320s" height="350s" align="left" onclick="Team(1)" noclick="0"
+			onclicklua="
+				ClearDrag()			
+			"
+		>
+			<panel height="300s" valign="bottom" noclick="1" >
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 .8" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible" noclick="1"/>			
+				<panel x="10s" y="-50s" noclick="1">
+					<image x="-7s" noclick="true" texture="/ui/shared/textures/team_logo_glory.tga" width="104s" height="104s"/>
+					<label x="100s" y="14s" fity="1" style="labelBase" color="white" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_glory" font="maindyn_72" />
+					<label x="100s" y="5s" fity="1" style="labelBase" color=".8 .8 .8 1" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+				</panel>		
+				<panel y="60s" width="-40s" align="center" noclick="true">
+					<panel float="bottom" padding="6s" noclick="true">
+						<instance name="lobby_entry" id="0"/>
+						<instance name="lobby_entry" id="1"/>
+						<instance name="lobby_entry" id="2"/>
+						<instance name="lobby_entry" id="3"/>
+						<instance name="lobby_entry" id="4"/>
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+		
+		<panel name="lobby_team_2" valign="top" x="-70s" y="205s" width="320s" height="350s" align="right" onclick="Team(2)" noclick="0" 
+			onclicklua="
+				ClearDrag()
+			"
+		>
+			<panel height="300s" valign="bottom" noclick="1" >
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 .8" noclick="1" />
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible" noclick="1"/>			
+				<panel x="10s" y="-50s" noclick="1">
+					<image y="-8s" x="0" noclick="true" texture="/ui/shared/textures/team_logo_valor.tga" align="right" width="110s" height="110s"/>
+					<label x="-100s" y="14s" align="right" fity="1" style="labelBase" color="white" fitypadding="0" fitxpadding="0" textvalign="top" textalign="right" fitx="1" noclick="1" content="general_valor" font="maindyn_72" />
+					<label x="-100s" y="5s" align="right" fity="1" style="labelBase" color=".8 .8 .8 1" fitypadding="0" fitxpadding="0" textvalign="top" textalign="right" fitx="1" noclick="1" content="general_team" font="maindyn_36" />
+				</panel>
+				<panel y="60s" width="-40s" align="center" noclick="true">
+					<panel float="bottom" padding="6s" noclick="true">
+						<instance name="lobby_entry" id="5"/>
+						<instance name="lobby_entry" id="6"/>
+						<instance name="lobby_entry" id="7"/>
+						<instance name="lobby_entry" id="8"/>
+						<instance name="lobby_entry" id="9"/>
+					</panel>
+				</panel>
+			</panel>
+		</panel>				
+
+		<panel name="lobby_team_0" valign="top" y="210s" width="25%" height="51s" align="center" onclick="Team(0)" noclick="0"  grow="1" regrow="1" growinvis="0" float="bottom"
+			onclicklua="
+				ClearDrag()			
+			"		
+		>
+			<frame y="0" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 .8" noclick="1"/>
+			<frame y="0" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible" noclick="1"/>	
+			
+			<label y="10s" style="labelbase" font="maindyn_36" color="1 1 1 1" noclick="1" textalign="center" content="temp_gamelobby_team3" />
+			
+			<panel y="60s" width="-40s" height="50s" align="center" noclick="true" grow="1" regrow="1" growinvis="0">
+				<panel float="bottom" width="280s" padding="6s" noclick="true" grow="1" regrow="1" growinvis="0">					
+					<instance name="lobby_entry" id="spec_0" />
+					<instance name="lobby_entry" id="spec_1" />
+					<instance name="lobby_entry" id="spec_2" />
+					<instance name="lobby_entry" id="spec_3" />
+					<instance name="lobby_entry" id="spec_4" />
+					<instance name="lobby_entry" id="spec_5" />
+					<instance name="lobby_entry" id="spec_6" />
+					<instance name="lobby_entry" id="spec_7" />
+					<instance name="lobby_entry" id="spec_8" />
+					<instance name="lobby_entry" id="spec_9" />
+				</panel>
+				<instance name="DropLand" id="lobby_overlay_listarea_droptarget_3" width="+2s" height="+2s" />
+			</panel>
+			
+			<panel noclick="1" height="12s" sticky="0" stickytoinvis="0" width="0" />
+			
+		</panel>			
+		
+		<panel noclick="1" valign="bottom" align="left" x="15s" y="-50s" height="130s" width="292s" visible="1">
+			
+			<panel valign="bottom" height="90s" width="292s" noclick="1">
+				<instance
+					name="standardButton"
+					id="lobby_fill_with_bots_button"
+					width="100%" align="right"
+					borderthickness="14s" font="maindyn_40"
+					label="gamelobby_fill_with_bots"
+				/>						
+			</panel>			
+			
+			<instance name="simple_combobox_textured" id="gameLobby_bot_difficulty_combobox" noclick="0" maxlistheight="4"
+				x="10s" width="170s" height="29s" align="left" itemheight="27s"
+			/>
+			
+		</panel>		
+		
+		<panel noclick="1" valign="bottom" align="right" x="-15s" y="-50s" height="130s" width="292s" visible="1">
+			<!-- Secondary Button -->
+			<instance
+				name="standardButton"
+				id="gameLobbyDisbandButton" rendermode="grayscale"
+				x="-10s" width="170s" height="34s" align="right"
+				label="gamelobby_disband_button"
+			/>
+			<instance
+				name="standardButton"
+				id="gameLobbyDisconnectButton" rendermode="grayscale"
+				x="-10s" width="170s" height="34s" align="right"
+				label="gamelobby_disconnect_button"
+			/>
+			<instance
+				name="standardButton"
+				id="gameLobbyCancelButton" rendermode="grayscale"
+				x="-10s" width="170s" height="34s" align="right"
+				label="general_cancel"
+			/>
+			
+			<!-- Main Button -->
+			<panel valign="bottom" height="90s" width="292s" noclick="1">
+				<instance
+					name="lobby_start_button"
+					id="gameLobbyStartMatchButton"
+					width="100%" align="right"
+					borderthickness="14s" font="maindyn_40"
+					label="main_lobby_startmatch"
+				/>						
+			</panel>
+		</panel>
+		
+	</panel>
+	
+</package>

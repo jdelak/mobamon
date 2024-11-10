@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect entityeffectscale="true" deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".5">
+
+      <sound
+        life="2000"
+        linearfalloff="true"
+        falloffstart="500"
+        falloffend="2400"
+        volume="0.45"
+        sample="../sounds/sfx_trail.wav"
+			/>
+
+
+<!--
+			<light
+				life="500"
+				startcolor="0 3 6"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="250"
+				position="0 0 50"
+			/>
+-->
+
+
+
+			<simpleemitter
+			life="250"
+				spawnrate="400"
+				particlelife="300"
+				gravity="0"
+				position="0 0 0"
+				offsetsphere="25"
+				direction="0 1 0"
+				minspeed="0"
+				maxspeed="200"
+				minangle="0"
+				maxangle="0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="400"
+						maxlife="500"
+						color="0 .75 1"
+						material="/shared/effects/materials/ice_blob_overlay.material"
+						startalpha=".25"
+						midalpha=".25"
+						endalpha="0"
+						midalphapos=".15"
+						minscale=".25"
+						maxscale="1.75"
+						depthbias="25"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minroll="0"
+						maxroll="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			life="250"
+				spawnrate="100"
+				particlelife="300"
+				gravity="0"
+				position="0 0 0"
+				offsetsphere="0"
+				direction="0 1 0"
+				minspeed="0"
+				maxspeed="200"
+				minangle="0"
+				maxangle="0"
+				directionalspace="local"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="400"
+						maxlife="500"
+						startcolor=".25 .5 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/water_splashes.material"
+						minstartscale=".5"
+						maxstartscale="1"
+						minendscale="1.5"
+						maxendscale="3"
+						depthbias="25"
+						lockup="1"
+						lockright="1"
+						pitch="135"
+						minroll="90"
+						maxroll="180"
+					/>
+				</particle>
+			</simpleemitter>
+
+
+
+
+
+			<simpleemitter
+				spawnrate="500"
+				particlelife="1000"
+				position="0 -50 0"
+				offsetsphere="12"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="200"
+				gravity="40"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="100"
+						maxlife="500"
+						color="0 .5 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minscale=".25"
+						maxscale=".75"
+						depthbias="-75"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+				spawnrate="25"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="12"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="200"
+				gravity="0"
+			>
+				<particle
+					turn="true"
+				>
+					<template name="">
+					
+						<billboard
+							life="300"
+							startcolor=".25 .5 .5"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							material="/shared/effects/smaterials/water_splashes.material"
+							directionalspace="world"
+							startscale="{zstartscale}"
+							minendscale="{zminendscale}"
+							maxendscale="{zmaxendscale}"
+							depthbias="-25"
+							lockup="1"
+							lockright="1"
+							pitch="135"
+							roll="180"
+						/>
+
+					</template>
+					
+					<instance name="" zstartscale="1.2" zminendscale="2.2" zmaxendscale="3.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="1.2" zminendscale="2.2" zmaxendscale="3.2" zcolor="0 .5 1"/>
+
+					<instance name="" zstartscale="2.2" zminendscale="4.2" zmaxendscale="5.2" zcolor="0 .5 1"/>
+					<instance name="" zstartscale="2.2" zminendscale="4.2" zmaxendscale="5.2" zcolor="0 .5 1"/>
+
+					
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				expirelife="0"
+				startcolor="0 .5 1"
+				endcolor="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="2"
+			/>	
+
+		</particlesystem>
+		
+		
+		
+		<particlesystem name="system1" space="entity" scale=".5">
+
+			<simpleemitter
+				spawnrate="300"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="12"
+				direction="0 0 0"
+				minspeed="250"
+				maxspeed="500"
+				gravity="40"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="100"
+						maxlife="400"
+						color="0 .5 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minscale=".25"
+						maxscale="1"
+						depthbias="-75"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="300"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="12"
+				direction="0 0 0"
+				minspeed="125"
+				maxspeed="250"
+				gravity="40"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="100"
+						maxlife="400"
+						color="0 .5 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".75"
+						midalpha=".75"
+						endalpha="0"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minscale=".25"
+						maxscale="1"
+						depthbias="-75"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

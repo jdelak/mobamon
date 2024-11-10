@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="view_position">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="mWorldView" type="float4x4" source="mWorldView" />
+	<output name="Out" type="float3" solution="ViewPosition" />
+	<?hlsl
+		Out = mul(float4(ObjectPosition, 1.0f), mWorldView).xyz;
+	?>
+	<?glsl
+		Out = (mWorldView * vec4(ObjectPosition, 1.0f)).xyz;
+	?>
+</node>

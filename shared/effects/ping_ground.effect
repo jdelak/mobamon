@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="3.0">
+
+			<billboard
+				position="0 0 0"
+				life="500"
+				material="/shared/effects/smaterials/whitesquare.material"
+				size="75"
+				startcolor="0 .05 0"
+				endcolor="0 0 0"
+				startheight="6000"
+				endheight="6000"
+				width="20"
+				lockup="1"
+				delay="0"
+			/>
+
+			<billboard
+				position="0 0 0"
+				life="500"
+				material="/shared/effects/smaterials/whitesquare.material"
+				size="75"
+				startcolor="0 .05 0"
+				endcolor="0 0 0"
+				startheight="3000"
+				endheight="3000"
+				width="20"
+				lockup="1"
+				delay="0"
+			/>
+
+			<!-- beams--> 
+			<simpleemitter
+				count="4"
+				position="0 0 600"
+				spawnrate="500"
+				particlelife="450"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="5 5 0"
+				direction="0 0 1"
+				depthbias="-75"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .25 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="750"
+					maxstartheight="1500"
+					endheight="100"
+					width="20"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="4"
+				position="0 0 500"
+				spawnrate="500"
+				particlelife="450"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="10 10 0"
+				direction="0 0 1"
+				depthbias="-125"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".05 .1 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="750"
+					maxstartheight="1500"
+					endheight="100"
+					width="6"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				life="500"
+				position="0 0 0"
+				spawnrate="20"
+				particlelife="500"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				direction="0 0 1"
+				depthbias="-75"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".025 .1 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					scale="100"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				life="500"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="3.25"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				startcolor="0 .35 0"
+				midcolor="0 .35 0"
+				endcolor="0 0 0"
+			/>
+
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+				delay="150"
+				life="500"
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .035 0"
+				midcolor="0 .035 0"
+				endcolor="0 0 0"
+				startsize="110"
+				endsize="120"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				delay="250"
+				life="500"
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .035 0"
+				midcolor="0 .035 0"
+				endcolor="0 0 0"
+				startsize="120"
+				endsize="130"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<billboard
+				delay="350"
+				life="500"
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .035 0"
+				midcolor="0 .035 0"
+				endcolor="0 0 0"
+				startsize="130"
+				endsize="140"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			
+
+			<template name="duplos">
+				
+				<simpleemitter
+					count="1"
+					delay="{zdelay}"
+					spawnrate="10"
+					particlelife="500"
+				>
+					<particle
+					>
+						<template name="waves">
+							<billboard
+								delay="{delay1}"
+								startsize="30"
+								endsize="{endsize1}"
+								position="0 0 0"
+								life="100"
+								material="/shared/effects/materials/ring_ground.material"
+								startcolor="0 .2 0"
+								endcolor="0 0 0"
+								startalpha=".1"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+							/>
+							
+							<billboard
+								delay="{delay2}"
+								startsize="30"
+								endsize="{endsize2}"
+								position="0 0 0"
+								life="100"
+								material="/shared/effects/materials/ring_ground.material"
+								startcolor="0 .2 0"
+								endcolor="0 0 0"
+								startalpha=".3"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+							/>
+
+							<billboard
+								delay="{delay3}"
+								startsize="30"
+								endsize="{endsize3}"
+								position="0 0 0"
+								life="100"
+								material="/shared/effects/materials/ring_ground.material"
+								startcolor="0 .2 0"
+								endcolor="0 0 0"
+								startalpha=".5"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+							/>
+						</template>
+
+						<instance delay1="100" delay2="50" delay3="0" name="waves" endsize1="155" endsize2="105" endsize3="55"/>
+					
+					</particle>
+				</simpleemitter>
+					
+			</template>
+			
+			<instance name="duplos" zdelay="100"/>
+			<instance name="duplos" zdelay="112"/>
+			<instance name="duplos" zdelay="125"/>
+			<instance name="duplos" zdelay="137"/>
+			<instance name="duplos" zdelay="150"/>
+			<instance name="duplos" zdelay="162"/>
+			<instance name="duplos" zdelay="175"/>
+			<instance name="duplos" zdelay="187"/>
+			<instance name="duplos" zdelay="200"/>
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+
+
+
+
+
+
+

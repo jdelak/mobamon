@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Nikolai_Ability1"
+
+	icon="icon.tga"
+
+	passiveeffect="effects/state.effect"
+	
+	attackspeed="0.75"
+	 
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	ishidden="true"
+	
+	attackrange="120"
+>
+
+	<onrefresh>
+		<setaccumulator value="0" />
+	</onrefresh>
+
+	<onattackstart >
+	
+		<distance usepathing="true"  />
+		<compare a="result" b="600" op="lt">
+			
+			<distance />
+			<compare a="result" b="170" op="gt">
+				<applystate name="State_Nikolai_Ability1_Dash" target="source_entity" duration="-1" />
+				<spawnprojectile name="Projectile_Nikolai_Ability1_Dash" param="accumulator" source="source_entity" target="target_entity" bind="source_entity" bindstate="State_Nikolai_Ability1_Dash" bindturn="true" />
+
+				<recordheroaggression  />
+				<aggression />
+				<setactivemodifierkey name="dash_followup" />
+				
+				<compare a="accumulator" b="0" op="eq" >
+					<playanim name="attackability1_3" target="source_entity" source="source_entity"/>
+				</compare>
+				
+				<!-- second hit -->
+				<compare a="accumulator" b="1" op="eq" >
+					<playanim name="attackability1_2" target="source_entity" source="source_entity"/>
+				</compare>
+				
+				
+				<!-- last hit -->
+				<compare a="accumulator" b="2" op="eq" >
+					<playanim name="attackability1_4" target="source_entity" source="source_entity"/>
+				</compare>
+			</compare>
+			<else>
+				<!-- first hit -->
+				<compare a="accumulator" b="0" op="eq" >
+
+					<addattackimpactactions>
+						<changeaccumulator b="1" op="add" />
+						<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" occlude="true"/>
+						<playeffect effect="effects/arc.effect" target="source_entity" source="source_entity"/>
+					</addattackimpactactions>
+
+					<playanim name="attackability1_3" target="source_entity" source="source_entity"/>
+
+				</compare>
+				
+				<!-- second hit -->
+				<compare a="accumulator" b="1" op="eq" >
+				
+					<addattackimpactactions>
+						<changeaccumulator b="1" op="add" />
+						<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" occlude="true"/>
+						<playeffect effect="effects/arc.effect" target="source_entity" source="source_entity"/>
+					</addattackimpactactions>
+					
+					<playanim name="attackability1_2" target="source_entity" source="source_entity"/>
+
+				</compare>
+				
+				
+				<!-- last hit -->
+				<compare a="accumulator" b="2" op="eq" >
+				
+					<addattackimpactactions>
+						<targettype type="building" />
+						<else>
+							<cantarget effecttype="CrowdControl" >
+								<setpos0 position="source_position" positionend="target_position" positionmodifier="pointpastline" positionvalue="100" />
+								<spawnprojectile name="Projectile_Nikolai_Ability1" source="target_entity" target="pos0" bind="target_entity" bindstate="State_Nikolai_Ability1_Airborn" bindpriority="2" pushentity="true"/>
+								<applystate target="target_entity" name="State_Stunned" duration="1000"  />
+								<playeffect effect="effects/impact_final_hit.effect" target="target_entity" source="target_entity" occlude="true"/>
+								<playeffect effect="effects/arc_final_hit.effect" target="source_entity" source="source_entity"/>
+						
+							</cantarget>
+						</else>
+
+						<expire/>
+						<starttimer duration="0" entity="tool_entity" />
+						
+					<playanim name="attackability1_4" target="source_entity" source="source_entity"/>
+
+					</addattackimpactactions>
+					
+
+				
+				</compare>
+			</else>
+		
+		</compare>
+
+
+	</onattackstart>
+	
+	<onattackimpact>
+		<applystate name="State_Nikolai_Ability1_Attack_Cooldown" target="source_entity" proxy="this_entity" duration="400" />
+		<applystate name="State_Nikolai_Ability1_AnimTime" target="source_entity" duration="300" />
+		
+		<setactivemodifierkey name="attack_cd" />
+	</onattackimpact>
+	
+	<onattackdamageevent activateonbounces="true">
+		<damagesupertype supertype="attack">
+			<setvalue name="damage_attempted" a="damage_attempted" b="0.9,1,1.1,1.2" op="mult" />
+		</damagesupertype>
+	</onattackdamageevent>
+	
+	<modifier key="attack_cd" modpriority="100" attackrange="0" disarmed="true" >
+
+	</modifier>
+	
+	<modifier key="dash_followup" modpriority="100"
+	>
+		<onattackstart >
+
+			<!-- first hit -->
+			<compare a="accumulator" b="0" op="eq" >
+
+				<addattackimpactactions>
+
+					<changeaccumulator b="1" op="add" />
+					
+					<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" occlude="true"/>
+					<playeffect effect="effects/arc.effect" target="source_entity" source="source_entity"/>
+				</addattackimpactactions>
+
+			</compare>
+			
+			<!-- second hit -->
+			<compare a="accumulator" b="1" op="eq" >
+
+				<addattackimpactactions>
+					<playeffect effect="effects/arc.effect" target="source_entity" source="source_entity"/>
+					<changeaccumulator b="1" op="add" />
+					
+					<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" occlude="true"/>
+					<playeffect effect="effects/arc.effect" target="source_entity" source="source_entity"/>
+					
+				</addattackimpactactions>
+
+			</compare>
+
+			
+			<!-- last hit -->
+			<compare a="accumulator" b="2" op="eq" >
+			
+				<addattackimpactactions>
+					<playeffect effect="effects/arc.effect" target="source_entity" source="source_entity"/>
+					
+					<targettype type="building" />
+					<else>
+						<cantarget effecttype="CrowdControl" >
+							<setpos0 position="source_position" positionend="target_position" positionmodifier="pointpastline" positionvalue="100" />
+							<spawnprojectile name="Projectile_Nikolai_Ability1" source="target_entity" target="pos0" bind="target_entity" bindstate="State_Nikolai_Ability1_Airborn" bindpriority="2" pushentity="true"/>
+							<applystate target="target_entity" name="State_Stunned" duration="1000"  />
+						</cantarget>
+					</else>
+					
+					<expire/>
+					<starttimer duration="0" entity="tool_entity" />
+
+					<playeffect effect="effects/impact_final_hit.effect" target="target_entity" source="target_entity" occlude="true"/>
+					<playeffect effect="effects/arc_final_hit.effect" target="source_entity" source="source_entity"/>
+					
+				</addattackimpactactions>
+
+			</compare>
+	
+			<setactivemodifierkey name="" />
+		</onattackstart>
+	</modifier>
+	
+
+</state>

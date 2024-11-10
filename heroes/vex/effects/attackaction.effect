@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" name="ability_01_impact" useentityeffectscale="1">
+	<definitions>
+
+			<template name="beam">
+			
+<!--
+				<beam
+					life="250"
+					delay="100"
+					bone_a="Bip01 R Forearm"
+					bone_b="Bip01 R Hand"
+					size="{size}"
+					startcolor="1 .5 1"
+					midcolor="1 .5 1"
+					endcolor="0 0 0"
+					material="/shared/effects/materials/femme_lightning_10.material"
+					startframe="{frame}"
+					framespeed="8"
+				/>
+				
+				<beam
+					life="250"
+					delay="100"
+					bone_a="Bip01 R Forearm"
+					bone_b="Bip01 R Hand"
+					size="{size}"
+					startcolor="1 .5 1"
+					midcolor="1 .5 1"
+					endcolor="0 0 0"
+					material="/shared/effects/materials/femme_lightning_10.material"
+					startframe="{frame}"
+					framespeed="2"
+				/>
+-->
+				
+				<billboard
+					life="250"
+					bone="Bip01 R Hand"
+					material="/shared/effects/materials/whitedot.material"
+					size="160"
+					startcolor=".25 .1 .5"
+					endcolor="0 0 0"
+					depthbias="-25"
+				/>
+
+			</template>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<instance name="beam" size="100" frame=".8"/>
+
+		</particlesystem>
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

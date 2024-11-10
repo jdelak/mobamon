@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="entity">
+		
+<!--
+				count="1"
+				spawnrate="2000"
+-->
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="1000"
+			>
+				<particle 
+				>
+					<light
+						position="0 0 40"
+						life="500"
+						startcolor="1 5 0"
+						midcolor="1 5 0"
+						endcolor="0"
+						falloffstart="0"
+						falloffend="300"
+					/>
+
+					<trackeremitter
+						count="10"
+						position="0 0 300"
+						targetbone="_bone_center"
+						tracktype="angular"
+						trackspeed="18"
+						drag="0"
+						spawnrate="250"
+						particlelife="3000"
+						offsetsphere="25 25 25"
+						speed="500"
+						maxspeed="250"
+						acceleration="30.0"
+						direction="0.0 0.0 1.0"
+						inheritvelocity="0.0"
+						distancelife="true"
+					>
+						<particle
+						>
+							<simpleemitter
+								life="500"
+								spawnrate="200"
+								minparticlelife="200"
+								maxparticlelife="1000"
+								position="0 0 0"
+								speed="50"
+								material="/shared/effects/materials/whitedot.material"
+							>
+								<particle
+									startcolor="0 .25 0"
+									midcolor="0 .1 .25"
+									endcolor="0 0 0"
+									midcolorpos=".5"
+									startsize="0"
+									midsize="10"
+									endsize="0"
+									midsizepos=".1"
+								/>
+							</simpleemitter>
+						</particle>
+						
+					</trackeremitter>
+
+					<simpleemitter
+						spawnrate="200"
+						count="20"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="-100"
+						speed="40"
+						drag=".08"
+						acceleration="0"
+						position="0 0 150"
+						material="/shared/effects/smaterials/whitedot.material"
+						offsetsphere="25 25 70"
+						minangle="90"
+						maxangle="-90"
+					>
+						<particle 
+							startcolor="0 0 0"
+							midcolor=".05 .25 0"
+							endcolor="0"
+							midcolorpos=".1"
+							startframe="0"
+							endframe="1"
+							startwidth="20"
+							midwidth="15"
+							endwidth="6"
+							midwidthpos=".5"
+							startheight="750"
+							endheight="0"
+							lockup="true"
+						/>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="orbs">
+
+				<model
+					delay="250"
+					expirelife="1000"
+					bone="_bone_center"
+					model="/heroes/moxie/ability_01/effects/orbit/orbit.mdf"
+					anim="idle"
+					scale="{zscale}"
+					roll="{zroll}"
+					pitch="{zpitch}"
+					position="0 0 30"
+					yaw="0"
+					yawspeed="{zyaw}"
+					directionalspace="world"
+				>
+					<light
+						bone="_bone_fx"
+						expirelife="1000"
+						startcolor="2 10 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						falloffstart="0"
+						falloffend="40"
+						position="0 0 0"
+					/>
+
+					<billboard
+						expirelife="750"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".075 .5 0"
+						endcolor="0 0 0"
+						scale=".9"
+						depthbias="-25"
+					/>
+
+					<trailemitter
+						bone="_bone_fx"
+						expirelife="250"
+						spawnrate="50"
+						particlelife="750"
+						texpostime="750"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						midparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor=".1 .5 0"
+							endcolor="0 0 0"
+							startsize="25"
+							midsize="25"
+							endsize="0"
+						/>
+					</trailemitter>
+<!--
+					<simpleemitter
+						life="750"
+						bone="_bone_fx"
+						spawnrate="50"
+						particlelife="1500"
+						gravity="-15"
+						speed="00"
+						drag=".08"
+						acceleration="0"
+						position="0 0 0"
+						material="/shared/effects/smaterials/plus.material"
+						offsetsphere="10 10 20"
+						minangle="90"
+						maxangle="-90"
+					>
+						<particle 
+							startsize="50"
+							endsize="50"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+						/>
+					</simpleemitter>
+-->
+					<billboard
+						expirelife="750"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/plus.material"
+						color="1"
+						scale=".5"
+						depthbias="-25"
+						startalpha="1"
+						endalpha="0"
+					/>
+
+				</model>
+			
+			</template>
+
+			<instance name="orbs" zroll="0" zyaw="180" zpitch="0" zscale="1.25"/>
+<!--
+			<instance name="orbs" zroll="-45" zyaw="180" zpitch="0" zscale="1.25"/>
+
+			<instance name="orbs" zroll="0" zyaw="0" zpitch="45" zscale="1.65"/>	
+-->
+
+
+
+
+
+
+
+
+
+
+			
+			<template name="orbs">
+
+				<model
+					delay="250"
+					expirelife="1000"
+					bone="_bone_center"
+					model="/heroes/moxie/ability_01/effects/orbit/orbit.mdf"
+					anim="idle"
+					scale="{zscale}"
+					roll="{zroll}"
+					pitch="{zpitch}"
+					position="0 0 30"
+					yaw="180"
+					yawspeed="{zyaw}"
+					directionalspace="world"
+				>
+					<light
+						bone="_bone_fx"
+						expirelife="1000"
+						startcolor="0 2 10"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						falloffstart="0"
+						falloffend="40"
+						position="0 0 0"
+					/>
+
+					<billboard
+						expirelife="750"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .075 .5"
+						endcolor="0 0 0"
+						scale=".9"
+						depthbias="-25"
+					/>
+
+					<trailemitter
+						bone="_bone_fx"
+						expirelife="250"
+						spawnrate="50"
+						particlelife="750"
+						texpostime="750"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						midparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor="0 .5 1"
+							endcolor="0 0 0"
+							startsize="25"
+							midsize="25"
+							endsize="0"
+						/>
+					</trailemitter>
+<!--
+					<simpleemitter
+						life="750"
+						bone="_bone_fx"
+						spawnrate="50"
+						particlelife="1500"
+						gravity="-15"
+						speed="00"
+						drag=".08"
+						acceleration="0"
+						position="0 0 0"
+						material="/shared/effects/smaterials/plus.material"
+						offsetsphere="10 10 20"
+						minangle="90"
+						maxangle="-90"
+					>
+						<particle 
+							startsize="50"
+							endsize="50"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+						/>
+					</simpleemitter>
+-->
+					<billboard
+						expirelife="750"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/plus.material"
+						color="1"
+						scale=".5"
+						depthbias="-25"
+						startalpha="1"
+						endalpha="0"
+					/>
+
+				</model>
+			
+			</template>
+
+			
+<!--
+			<instance name="orbs" zroll="0" zyaw="180" zpitch="0" zscale="1.25"/>
+-->
+			<instance name="orbs" zroll="-45" zyaw="180" zpitch="0" zscale="1.25"/>
+			
+			
+<!--
+			<instance name="orbs" zroll="0" zyaw="0" zpitch="45" zscale="1.65"/>
+-->
+
+
+
+
+
+
+
+
+		</particlesystem>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		<particlesystem name="system1" space="world">
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+					<simpleemitter
+					life="1000"
+					position="0 0 0"
+						bone="_bone_overhead"
+						spawnrate="3"
+						minparticlelife="500"
+						maxparticlelife="750"
+						gravity="50"
+						speed="00"
+						drag=".08"
+						acceleration="0"
+						material="/shared/effects/smaterials/plus.material"
+						offsetsphere="15 15 0"
+						minangle="90"
+						maxangle="-90"
+					>
+						<particle 
+						startanchor="0"
+						endanchor="1"
+							startsize="0"
+							midsize="40"
+							midsizepos=".1"
+							endsize="10"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+						/>
+					</simpleemitter>
+
+					<simpleemitter
+					life="1000"
+					position="0 0 0"
+						bone="_bone_overhead"
+			
+						spawnrate="3"
+						minparticlelife="500"
+						maxparticlelife="750"
+						gravity="50"
+						speed="00"
+						drag=".08"
+						acceleration="0"
+						material="/shared/effects/smaterials/plus.material"
+						offsetsphere="15 15 0"
+						minangle="90"
+						maxangle="-90"
+					>
+						<particle 
+						startanchor="0"
+						endanchor="1"
+							startsize="00"
+							midsize="40"
+							midsizepos=".1"
+							endsize="10"					
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+						/>
+					</simpleemitter>	
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+		
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>
+

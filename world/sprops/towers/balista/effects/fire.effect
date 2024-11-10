@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="2000"
+				volume="1.5" 
+				sample="/world/sprops/towers/balista/sounds/attack_1_mono.wav"
+			/>
+
+		
+				<simpleemitter	
+					bone="_bone_muzzle"			
+					life="1400"				
+					spawnrate="30"
+					count="2"
+					gravity="5"
+					position="0 0 -30"
+					minparticlelife="200"
+					maxparticlelife="1500"
+					material="/shared/effects/smaterials/dustfall.material"			
+					
+					offsetsphere="20 20 20"
+				>
+					<particle 
+						minangle="0"
+						maxangle="0"
+						lockup="1"
+						lockright="0"
+						color="1"
+						startalpha="1"
+						midalpha=".5"
+						endalpha="0"
+						startheight="40"
+						endheight="200"
+						minscale="1"
+						maxscale="3"
+						width="59"
+						depthbias="-50"
+					/>
+				</simpleemitter>					
+
+				
+				
+				
+				
+				
+				
+				<!-- muzzle flash 
+				<simpleemitter	
+					bone="_bone_muzzle"	
+					
+					life="1400"				
+					spawnrate="101"
+					count="11"
+					gravity="0"
+					speed="305"
+					minangle="0"
+					maxangle="40"
+					position="0 0 -00"
+					minparticlelife="350"
+					maxparticlelife="400"
+					material="/shared/effects/smaterials/dustfall.material"			
+					direction ="0 -1 0"
+					offsetsphere="20 20 20"
+					directionalspace="local"
+				>
+					<particle 
+						turn="true"
+						color="1"
+						startsize="20"
+						endsize="111"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						heightdistort="0.2"
+					
+						
+						
+						
+					>
+					</particle>
+				</simpleemitter>	
+				
+				-->
+				
+				
+
+			<template name="dust">
+
+				<simpleemitter	
+					bone="{bone}"			
+					life="1400"				
+					spawnrate="30"
+					count="1"
+					gravity="5"
+					position="0 0 -30"
+					minparticlelife="200"
+					maxparticlelife="1500"
+					material="/shared/effects/smaterials/dustfall.material"			
+					
+					offsetsphere="20 20 20"
+				>
+					<particle 
+						minangle="0"
+						maxangle="0"
+						lockup="1"
+						lockright="0"
+						color="1"
+						startalpha="1"
+						midalpha=".5"
+						endalpha="0"
+						startheight="40"
+						endheight="200"
+						minscale="1"
+						maxscale="3"
+						width="59"
+						depthbias="-50"
+					/>
+				</simpleemitter>			
+				
+			</template>
+			<template name="smoke">
+
+
+
+				<simpleemitter	
+					bone="{bone}"
+					life="1400"				
+					spawnrate="30"
+					count="3"
+					gravity="4"
+					position="0 0 0"
+					particlelife="1000"
+					material="/shared/effects/smaterials/dust2.material"			
+					
+					offsetsphere="20 20 20"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						color="1"
+						startalpha=".1"
+						endalpha="0"
+						minsize="22"
+						maxsize="44"
+						startscale="1"
+						endscale="3"
+					/>
+				</simpleemitter>
+			</template>
+			
+			<instance name="smoke" bone="_bone_arm002"/>
+			<instance name="smoke" bone="_bone_arm_2"/>
+			<instance name="smoke" bone="_bone_arm004"/>
+			<instance name="smoke" bone="_bone_support"/>			
+			<instance name="smoke" bone="_bone_arm007"/>
+			<instance name="smoke" bone="_bone_arm_6"/>
+			<instance name="smoke" bone="_bone_arm005"/>
+			<instance name="smoke" bone="_bone_muzzle"/>
+			<instance name="smoke" bone="_bone_latch"/>
+			
+			
+			
+			<instance name="dust" bone="_bone_arm002"/>			
+			<instance name="dust" bone="_bone_support"/>			
+			<instance name="dust" bone="_bone_arm007"/>		
+		
+			<instance name="dust" bone="_bone_muzzle"/>
+			<instance name="dust" bone="_bone_latch"/>			
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />		
+	</thread>
+
+</effect>

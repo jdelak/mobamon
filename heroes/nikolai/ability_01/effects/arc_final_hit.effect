@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="1">
+	<definitions>
+		
+		
+		<particlesystem name="system0" space="world" scale="2">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="1000"
+				falloffend="2500"
+				volume=".65"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+
+			
+
+			<template name="">
+				
+				<simpleemitter
+					bone="_bone_origin"
+					position="{zpos}"
+					life="1000"
+					spawnrate="3300"
+					count="25"
+					minparticlelife="250"
+					maxparticlelife="500"			
+					gravity="25"
+					minspeed="{zmin}"
+					maxspeed="{zmax}"
+					drag=".01"
+					material="/shared/effects/materials/whitedot.material"
+					offsetsphere="12 12 0"
+					minangle="0"
+					maxangle="10"
+					direction="{zdirection}"
+					depthbias="-50"
+					directionalspace="local"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						startcolor="0 1 1"
+						midcolor="0 1 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minscale="2"
+						maxscale="4"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_origin"
+					position="{zpos}"
+					life="1000"
+					spawnrate="3300"
+					count="8"
+					minparticlelife="250"
+					maxparticlelife="500"			
+					gravity="10"
+					minspeed="{zmin}"
+					maxspeed="{zmax}"
+					drag=".01"
+					offsetsphere="12 12 0"
+					minangle="0"
+					maxangle="15"
+					direction="{zdirection}"
+					depthbias="-50"
+					directionalspace="local"
+				>
+					<particle
+					>
+
+						<model
+							minlife="200"
+							maxlife="400"
+							startcolor="1 1 1"
+							midcolor="1 1 1"
+							endcolor="1 1 1"
+							midcolorpos=".25"
+							model="rock/model.mdf"
+							material="../../material.material"
+							minscale=".3"
+							maxscale=".5"
+							depthbias="-25"
+							minyaw="0"
+							maxyaw="360"
+							minpitch="0"
+							maxpitch="360"
+							minroll="0"
+							maxroll="360"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".8"
+						>
+
+							<trailemitter
+								life="500"
+								position="0 0 0"
+								spawnrate="200"
+								particlelife="250"
+								texpostime="250"
+								texposscale="0.0"
+								texstretchscale=".4"
+								material="/shared/effects/smaterials/whitedot.material"
+								subframepos="true"
+								startparticlecolor="1 1 1"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+							>
+								<particle
+									startcolor=".25 1 1"
+									midcolor="0 1 1"
+									endcolor="0 1 1"
+									startsize="40"
+									endsize="0"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+								/>
+							</trailemitter>
+
+							<trailemitter
+								life="500"
+								position="0 0 0"
+								spawnrate="200"
+								particlelife="500"
+								texpostime="500"
+								texposscale="0.0"
+								texstretchscale=".4"
+								material="/shared/effects/smaterials/whitedot.material"
+								subframepos="true"
+								startparticlecolor="1 1 1"
+								midparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+							>
+								<particle
+									startcolor=".25 1 1"
+									midcolor="0 1 1"
+									endcolor="0 1 1"
+									startsize="40"
+									endsize="0"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+								/>
+							</trailemitter>
+
+						</model>
+
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zdirection="0 -1 0" zpos="0 100 50" zmin="150" zmax="700"/> 
+
+      </particlesystem>
+   </definitions>
+   <thread>
+   
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>   
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

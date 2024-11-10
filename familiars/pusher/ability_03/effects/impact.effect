@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale=".5">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2500"
+				volume=".35"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="1"
+				spawnrate="2000"
+				particlelife="500"
+				texpostime="500"
+				texposscale="1"
+				texstretchscale=".75"
+				position="0 0 0"
+				startparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+				speed="0"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="2"
+				offsetsphere="25 25 0"
+			>
+				<particle
+				>
+
+					<billboard
+						bone="_bone_centerofchest"
+						material="/shared/effects/smaterials/whitedot.material"				
+						startcolor="1 .5 0"				
+						endcolor="0 0 0"
+						life="750"	
+						position="0 0 10"
+						startsize="150"
+						endsize="1000"
+						depthbias="-150"			
+					/>
+
+					<simpleemitter
+						bone="_bone_centerofchest"
+						count="15"
+						spawnrate="11340"
+						minparticlelife="250"
+						maxparticlelife="500"
+						gravity="12.0"
+						minspeed="750"
+						maxspeed="1500"
+						drag="0.005"
+						acceleration="0.0"
+						offsetsphere="25"
+						material="/shared/effects/smaterials/whitedot.material"
+						particledirectionalspace="local"
+					>
+						<particle
+							startheightdistort="0.25"
+							endheightdistort="0"
+							startsize="10"
+							endsize="6"
+							startcolor="0 0 0"
+							midcolor="1 .65 0"
+							endcolor="1 0 0"
+							midcolorpos=".25"
+							turn="1"
+						>
+						</particle>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

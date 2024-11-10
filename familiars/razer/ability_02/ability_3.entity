@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Razer_TriggeredPassive_3"
+
+	icon="icon.tga"
+	
+	maxlevel="15"
+	targetradius="300"
+	targetmaterial="/shared/materials/area_cast_indicator_simple.material"
+	actiontype="passive"
+	manacost="0"
+	cooldowntime="14000"
+	
+>
+	<constant name="health" value="96" adjustment="none" />
+	
+	<onattackpreimpact>
+		<isready>
+			<setvar0 a="26,31,36,41,46,51,56,61,66,71,76,81,86,91,96" />
+			<setvar1 a="source_power" b="100" op="div" />
+			<setvar2 a="source_maxhealth" b="source_health" op="sub" />
+			<compare a="var2" b="var0" op="ge">
+				<cantarget targetscheme="enemy_heroes">
+					<addattackimpactactions>
+						<playeffect effect="effects/impact_self.effect" target="source_entity" source="source_entity"/>
+						<playeffect effect="effects/link_razer.effect" target="this_proxy_entity" source="source_entity"/>
+						<playeffect effect="effects/link_target.effect" target="source_entity" source="target_entity"/>
+						<playeffect effect="effects/impact_target.effect" target="target_entity" source="target_entity"/>
+						<setvar0 a="26,31,36,41,46,51,56,61,66,71,76,81,86,91,96" />
+						<setvar1 a="source_power" b="100" op="div" />
+						<heal target="source_entity" a="var0" b="var1" op="mult" />
+						<startcooldown />
+						<applystate name="State_Razer_Not_Ready" duration="14000" target="this_proxy_entity" />
+					</addattackimpactactions>
+				</cantarget>
+			</compare>
+		</isready>
+	</onattackpreimpact>
+
+</ability>

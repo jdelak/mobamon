@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="texcoord_light">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="mLightWorldViewProjTex" type="float4x4" source="mLightWorldViewProjTex" />
+	<output name="Out" type="float4" solution="TexcoordLight" />
+	<?hlsl
+		Out = mul(float4(ObjectPosition, 1.0f), mLightWorldViewProjTex);
+	?>
+	<?glsl
+		Out = mLightWorldViewProjTex * vec4(ObjectPosition, 1.0f);
+	?>
+</node>

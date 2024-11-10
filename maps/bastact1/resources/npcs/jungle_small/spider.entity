@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Enemy_Spider"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	rewardsoundself=""
+	rewardsoundteam=""
+	rewardsoundenemy=""
+	
+	aggrosound=""
+  
+	preglobalscale="1.0"
+	modelscale="4.0"
+	effectscale="1.0"
+	boundsheight="32"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 0"
+
+	movespeed="400"
+	turnrate="320"
+	turnsmoothing="0.05"
+
+	maxhealth="175"
+	healthregen="0.5"
+	maxmana="0"
+	manaregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	
+	inventory0="Ability_Spider1"
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+  
+
+	attackduration="1000"
+	attackactiontime="600"
+	attackcooldown="1000"
+	attackdamagemin="30"
+	attackdamagemax="30"
+	deathnumanims="2"
+	attacknumanims="2"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="75"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep1/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="player_controlled_units"
+	leashaggroscheme="player_controlled_units"
+	attackdamagetype="AttackDamage"
+
+	canattack="true"
+	ismobile="true"
+	aggrorange="0"
+	proximityrange="500"
+	sightrangeday="1000"
+	sightrangenight="1000"
+	alwaysvisible="true                     "
+
+	
+	corpsetime="0"
+	corpsefadetime="0"
+	corpsefadeeffect=""
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+	
+	pathing="true"
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+	unittype="trash_mob"
+	infoheight="250"
+
+	showaggropopup="false"
+>
+<onspawn>
+	<applystate name="State_Bastact1_Spider_Abilities" duration="-1" target="this_entity" />
+	<spawnunit name="Patrol_Gadget" count="1" target="this_position" pushentity="true" owner="source_entity" />
+	<setproxy entity="source_entity" target="stack_entity"/>
+</onspawn>
+
+<onframe>
+		<areaofeffect
+			radius="500"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			center="this_entity"
+			source="this_entity"
+			ignoreinvulnerable="false"
+			maximpactspertarget="1"
+		>
+			<applystate name="State_Campaign_AttackPlayerOnImpact" duration="-1" target="source_entity" proxy="source_entity" />
+			<order command="attack" source="this_entity" target="target_entity"/>
+			<activatemodifierkey entity="this_entity" name="attacking" />
+		</areaofeffect>		  
+</onframe>		
+
+<onkilled>
+		<spawnunit name="Bastact1_Mini_Spider_Enemy" target="target_entity" count="1" />
+		<spawnunit name="Bastact1_Mini_Spider_Enemy" target="target_entity" count="1" />
+		<spawnunit name="Bastact1_Mini_Spider_Enemy" target="target_entity" count="1"/>
+		<spawnunit name="Bastact1_Mini_Spider_Enemy" target="target_entity" count="1"/>
+		<spawnunit name="Spider_Effect_Gadget" source="source_entity" target="source_entity" count="1" />
+		<delete target="source_entity"  />
+</onkilled>	
+
+<modifier key="attacking" modpriority="100"
+	>
+	<onframe>
+	</onframe>
+</modifier>
+
+<modifier key="speedy" modpriority="100"
+	movespeed="600"	
+	invulnerable="true"
+/>
+
+<modifier key="stronk" modpriority="101"
+	preglobalscale="1.5"	
+	maxhealth="400"
+	attackdamagemin="20"
+	attackdamagemax="20"
+	movespeed="500"
+	attackactiontime="300"
+	sightrangeday="645"
+	sightrangenight="645"
+	unittype="trash_mob"
+	skin="red"
+	boundsradius="40"
+	deathtime="0"
+	corpsetime="0"
+	corpsefadetime="0"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+>
+
+	<onspawn>
+		<spawnunit name="Patrol_Gadget" count="1" target="this_position" pushentity="true" owner="source_entity" />
+	</onspawn>
+	<onframe>
+		<distance source="this_entity" target="proxy_entity"/>
+		<setvar0 a="result"/>	
+		<compare a="var0" b="1350" op="gt">
+			<forgetattacks target="this_entity"/>	
+			<order command="move" source="this_entity" target="proxy_entity" force="true"/>
+		</compare>
+			<else>
+				<starttimer	entity="source_entity" duration="5000"/>
+			</else>	
+
+	</onframe>
+
+	<onkill>
+		<order command="move" source="this_entity" target="proxy_entity" force="true"/>
+	</onkill>
+
+	<ondeath>
+		<!-- <playeffect effect="effects/splat_death.effect" source="this_entity" target="this_entity" /> -->
+		<!-- <playeffect effect="effects/big_spider_death.effect" source="this_entity" target="this_entity" /> -->
+		<!-- <spawnunit name="Big_spider_Effect_Gadget" source="source_entity" target="source_entity" count="1" /> -->
+	</ondeath>
+
+	<ontimer>
+		<forgetattacks target="this_entity"/>	
+		<order command="move" source="this_entity" target="proxy_entity" force="true" forceduration="3000"/>
+		<printdebuginfo/>
+	</ontimer>	
+
+	<onkilled>
+		<spawnunit name="Big_Spider_Effect_Gadget" source="source_entity" target="source_entity" count="1" />
+	</onkilled>
+</modifier>
+
+
+</pet>

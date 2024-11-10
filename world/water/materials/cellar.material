@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/water_directional.shader" vDiffuseColor="0.2 0.09 0.03" fSpecularLevel="0.2" fGlossiness="1538.0" fBumpLevel="0.5" fOpacity="1.0">
+		<vec3 name="vAlphaParams" value=".7 .5 .1" />
+		<vec3 name="vTextureParams" value=".01 .0025 .04" />
+		<rotvec name="vRotation" value="225" />
+	</parameters>
+	<phase name="color" cull="back" alphawrite="false" vampire="true" depthwrite="false" depthsortbias="10.0" blend="composite">
+		<sampler name="waternormalmap1" texture="../textures/river_normal.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="waternormalmap2" texture="../textures/river_normal.tga" repeat_u="true" repeat_v="true" />
+		<samplercube name="cube" texture="/world/sky/deadlock/1.tga" />
+	</phase>
+</material>

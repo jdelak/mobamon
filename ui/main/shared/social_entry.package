@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="socialEntryUserActionItemTip">
+		<panel name="{prefix}ActionItem{index}Tip" align="right" x="-2s" grow="true" regrow="true" height="24s" y="-90%" noclick="true" passivechildren="true" visible="false">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+			<frame texture="/ui/elements:roundframe" borderthickness="4s" color="#64e0ff"/>
+			<image texture="/ui/main/friends/textures/tip_marker.tga" align="right" valign="bottom" y="4s" x="-8s" width="8s" height="4s" color="#64e0ff" />
+			<label name="{prefix}ActionItem{index}TipLabel" x="5s" fitx="1" fitxpadding="5s" textvalign="center" style="labelBase" color="#64e0ff" font="maindyn_18" noclick="1"/>
+		</panel>
+	</template>
+
+	<template name="socialEntryUserActionItemVis">
+		<panel name="{prefix}ActionItem{index}Body" group="{prefix}ActionItemVisGroup" width="100@" height="100%" align="right" x="{x}" visible="{visible=false}">
+			<image name="{prefix}ActionItem{index}Icon" width="85@" height="85%" align="center" valign="center" noclick="1"/>
+			<instance name="socialEntryUserActionItemTip" prefix="{prefix}" index="{index}"/>
+		</panel>
+
+	</template>
+
+	<template name="socialEntryUserActionItem">
+		<panel name="{prefix}ActionItem{index}ButtonPanel" group="{prefix}ActionItemVisGroup" width="100@" height="100%" align="right" noclick="true" x="{x}" visible="{visible=false}"><!-- This is required as buttons cannot slide  -->
+			<button name="{prefix}ActionItem{index}" color="invisible"/>
+		</panel>
+	</template>
+
+	<template name="socialEntryHeaderBody">
+		<panel name="{prefix}HeaderBody" valign="center" height="65%" noclick="true" visible="{visible=false}">
+			<label name="{prefix}HeaderName" textvalign="center" style="labelBase" font="maindyn_20" color="0.6 0.6 0.6 1" noclick="true"/>
+			<panel align="right" x="-25@" width="100@" height="100%" noclick="true" passivechildren="true">
+				<image name="{prefix}HeaderExpandArrow" texture="/ui/shared/textures/arrow_rounded_up.tga" color="0.6 0.6 0.6 1" align="center" valign="center" width="58@" height="58%"/>
+			</panel>
+			<button name="{prefix}HeaderExpandButton" color="invisible"/>
+		</panel>
+	</template>
+	
+	<template name="socialEntryUserPlayFindPlayer">
+		<instance id="{prefix}FindPlayer" visible="0" align="right" width="-115@" x="-5@" valign="center" height="90%" enabled="1" rendermode="grayscale"
+			name="standardButton"
+			label="party_finder_select_a_player"
+			font="maindyn_20"
+			onclicklua="Party.CreateParty()  println('^y CreateParty 666')"
+		/>
+	</template>
+	<template name="socialEntryUserPartyOccupied">
+		<image name="{prefix}IsWaiting" texture="" align="right" valign="center" width="90@" height="90%" x="-5@" color="0 0 0 .6" noclick="1" visible="false" />
+	</template>
+	
+	<template name="socialEntryUserActionBarItemsPartySelf">
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="1" visible="true" x="-5@"/>
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="2" visible="true" x="-100@"/><!-- Paid Status -->
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="3" visible="true" x="-100@"/>
+	</template>
+	
+	<template name="socialEntryUserActionBarItemsParty"><!-- and play, 10 items -->
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="1" /><!-- Ordered in script -->
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="2" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="3" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="4" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="5" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="6" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="7" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="8" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="9" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="10" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="11" /><!-- Added to cover paid status -->
+		
+		<!--
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="12" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="13" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="14" />
+		-->
+	</template>
+	
+	<template name="socialEntryUserActionBarItems">
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="1" /><!-- Ordered in script -->
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="2" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="3" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="4" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="5" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="6" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="7" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="8" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="9" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="10" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="11" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="12" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="13" />
+		<instance name="{useTemplate=socialEntryUserActionItem}" prefix="{prefix}" index="14" />
+	</template>
+
+	<template name="socialEntryUserStatusLight">
+		<panel width="36@" x="-10@" align="right">
+			<image name="{prefix}UserStatus" texture="/ui/main/shared/textures/user_status_light.tga" height="100@" valign="center" color="#b7ff00"/>
+		</panel>
+	</template>
+	
+	<template name="socialEntryUserVOIP">
+		<panel name="{prefix}VOIP" width="90@" height="90%" valign="center" x="5@" visible="0">
+			<panel name="{prefix}VOIPIcon1" color="0 0 0 0.7" />
+			<modelpanel name="{prefix}VOIPIcon2"
+				hmargin="0.5h" vmargin="0.5h" noclick="true" model="/ui/_models/invis.mdf"
+				anim="idle" camerapos="-5 100 25" cameraangles="2 40 181" camerafov="10"
+				cameranear="1" carmerafar="5000" depthclear="false" depthcompress="true"
+				sunazimuth="-90" sunaltitude="180" suncolor="2 2 2" 
+				onshow="SetAnim('idle'); SetEffect('/shared/effects/talking.effect');"
+			/>
+		</panel>
+	</template>
+	
+	<template name="socialEntryUserBody">
+		<panel name="{prefix}UserBody" noclick="true" visible="{visible=true}">
+			<button name="{prefix}UserButton" color="invisible" cangrab="{cangrab=true}" dragexclusive="{dragexclusive=false}">
+				<frame texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s"/>
+				<image name="{prefix}UserIcon" width="90@" height="90%" valign="center" x="5@"/>
+				<instance name="{VOIPTemplate}" prefix="{prefix}"/>
+
+				<label name="{prefix}UserName" x="115@" height="60%" textvalign="center" style="labelBase" color="1 1 1 1" font="maindyn_20" content="{userName}"/>
+				<label name="{prefix}UserGroup" x="115@" y="-2s" height="40%" textvalign="center" style="labelBase" color=".8 .8 .8 1" font="maindyn_14" valign="bottom" content="{userGroup}"/><!-- Group / Subtitle (user label) -->
+
+				<frame name="{prefix}UserDarken" color="0 0 0 0.5" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" visible="false"/>
+				<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h"/>
+
+				<panel name="{prefix}ActionBacker" width="{actionBarWidth=100@}" visible="{actionBackerVis=true}" align="right"><!-- Roughly 100@, 36s-ish minimum -->
+					<image width="50@" height="100%" texture="/ui/main/friends/textures/social_entry_flag_left.tga"/>
+					<image width="50@" height="100%" align="right" texture="/ui/main/friends/textures/social_entry_flag_cap.tga"/>
+					<image hmargin="50@" height="100%" texture="/ui/main/friends/textures/social_entry_flag_center.tga"/>
+					<instance name="{statusLightTemplate}" prefix="{prefix}"/>
+				</panel>
+				
+				<instance name="{occupiedTemplate}" prefix="{prefix}"/>
+
+				<panel name="{prefix}ActionBarVis" noclick="true" color="invisible">
+					<instance name="{actionItems=socialEntryUserActionBarItems}" prefix="{prefix}" useTemplate="socialEntryUserActionItemVis"/><!-- Visible portion remains inside buttons so dragging works as expected -->
+				</panel>
+				
+			</button>
+
+			<panel name="{prefix}ActionBarButtons" noclick="true" color="invisible">
+				<instance name="{actionItems=socialEntryUserActionBarItems}" prefix="{prefix}"/><!-- Interactive portion outside button -->
+			</panel>
+			
+			<instance name="{findPlayerTemplate}" prefix="{prefix}"/>
+
+			<panel name="{prefix}DropTarget" width="+4s" height="+4s" align="center" valign="center" visible="0" passivechildren="true">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05"/>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="socialEntry">
+		<panel name="{prefix}" width="{width=100%}" height="{height=38s}" visible="{visible=false}" noclick="true">
+			<instance name="socialEntryUserBody" prefix="{prefix}" visible="{isUser=true}" occupiedTemplate="{occupiedTemplate}" actionBarWidth="{actionBarWidth=100@}" statusLightTemplate="{statusLightTemplate}" actionBackerVis="{actionBackerVis=true}" findPlayerTemplate="{findPlayerTemplate}" VOIPTemplate="{VOIPTemplate}" />
+			<instance name="{headerTemplate=socialEntryHeaderBody}" prefix="{prefix}" visible="{isHeader=false}"/>
+		</panel>
+	</template>
+
+	<lua file="/ui/main/shared/social_entry.lua"/>
+</package>

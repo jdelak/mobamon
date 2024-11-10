@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".85">
+
+			<beam
+				life="2000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_head"
+				startsize="75"
+				midsize="150"
+				endsize="75"
+				color="0 .5 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_head"
+				startsize="75"
+				midsize="150"
+				endsize="75"
+				color="0 .5 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_head"
+				startsize="75"
+				midsize="150"
+				endsize="75"
+				color="0 .5 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				material="/shared/effects/smaterials/animated_energy.material"
+				startframe="0"
+				endframe="1"
+				framespeed="1"
+			/>
+			
+			
+			
+			
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_head"
+				size="25"
+				startcolor=".5 1 1"
+				midcolor=".5 1 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_head"
+				size="25"
+				startcolor=".5 1 1"
+				midcolor=".5 1 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+
+			<beam
+				life="2000"
+				owner_a="target"
+				owner_b="source"
+				bone_b="_bone_head"
+				size="25"
+				startcolor=".5 1 1"
+				midcolor=".5 1 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/laser_white_add.material"
+				startframe="0"
+				endframe="1"
+				framespeed="2"
+			/>
+			
+			
+			
+			
+			
+			<billboard
+				life="4000"
+				bone="_bone_head"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="85"
+				startcolor=".2 .65 1"
+				endcolor="0 0 0"
+				depthbias="-50"
+			/>
+
+		</particlesystem>
+
+   	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

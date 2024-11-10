@@ -1,0 +1,1718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<style name="selection_captains_mode_player_status" style="labelBase" y="36s" font="maindyn_20" textalign="center" noclick="1" />
+	<style name="selection_captains_mode_player_status_waiting" style="selection_captains_mode_player_status" color="#747474" />
+	<style name="selection_captains_mode_player_status_acting_greenTeam" style="selection_captains_mode_player_status" color="#ff3d00" />
+	
+	
+	<template name="selection_hero_level_star">
+		<panel width="100@" height="100%" noclick="1" >
+			<image name="selection_hero_level_star_{type}_{index}_1" texture="/ui/shared/textures/star.tga" noclick="1"  />
+			<panel name="selection_hero_level_star_{type}_{index}_2" align="right" clip="1" noclick="1"  >
+				<image height="{size=42s}" width="{size=42s}" texture="/ui/shared/textures/star.tga" align="right" rendermode="grayscale" color=".3 .3 .3 .9" noclick="1"  />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="party_finder_region_item">
+		<panel noclick="1" group="party_finder_region_items" >
+			<label y="-2s" x="9s" style="labelBase" font="maindyn_18" textvalign="center" noclick="1" content="{label}" />
+			<image y="-1s" width="80@" x="-120@" height="80%" align="right" valign="center" noclick="true" texture="{texture=$invis}"/>
+		</panel>
+	</template>
+
+	<template name="team_selector_region_combobox">
+		<image y="-1s" width="94@" height="94%" x="5s" valign="center" noclick="true" texture="{texture=$invis}"/>
+		<label y="-2s" x="140@" style="labelBase" font="maindyn_18" textvalign="center" noclick="1" content="{label}" />
+	</template>
+
+	<template name="team_selector_region_combobox_state">
+		<widgetstate statename="{state}" noclick="1">
+			<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color="{color}" />
+			<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color="{color}" />
+			<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color="{color}" />
+		</widgetstate>
+	</template>
+
+	<template name="splashimage_template">
+		<splashimage
+			y="36s"
+			noclick="1"
+			visible="0"
+			image="{image}"
+			bgcolor="black"
+			view="clip"
+			onhidelua=""
+		/>
+	</template>
+
+	<template name="selection_crafteditem_item_template" >
+		<panel name="selection_crafteditem_item_{index}_parent" noclick="0" height="100%" width="100@" color=".1 .1 .1 1" >
+			<image name="selection_crafteditem_item_{index}_icon" align="center" valign="center" width="88@" height="88%" texture="/ui/shared/textures/pack.tga" noclick="1" />
+			<instance name="iconFrame" />
+			<button name="selection_crafteditem_item_{index}_btn" color="invisible" interactive="false" cangrab="true" dragexclusive="false"/>
+		</panel>
+	</template>
+
+	<template name="heroSelectCraftedItemBackpackItemSlot">
+		<panel name="heroSelectCraftedItemBackpackItemSlot{id}" width="100%" height="100@" noclick="true">
+			<frame color="#494424" borderthickness="1" noclick="true"/>
+			<frame color="black" borderthickness="1" hmargin="1" vmargin="1" noclick="true"/>
+			<image name="heroSelectCraftedItemBackpackItemSlot{id}Icon" hmargin="2" vmargin="2" texture="/items/basic/power_1/icon.tga" noclick="true"/>
+			<button name="heroSelectCraftedItemBackpackItemSlot{id}Button" color="invisible"/>
+		</panel>
+	</template>
+
+	<template name="heroSelectCraftedItemComponent2">
+		<panel name="heroSelectCraftedItem{itemID}Component{id}" width="100@" height="100%" sticky="true" stickytoinvis="false" noclick="true" visible="{visible=true}">
+			<image name="heroSelectCraftedItem{itemID}Component{id}Icon" texture="{icon=/items/basic/health_1/icon.tga}" noclick="true" color="1 1 1 1"/>
+			<instance name="iconFrame" />
+		</panel>
+	</template>
+
+	<template name="heroSelectCraftedItem">
+		<panel name="heroSelectCraftedItem{id}" height="54s">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.6h" color=".1 .1 .1 1"/>
+			<frame texture="/ui/elements:roundframe" borderthickness="0.6h" color=".2 .2 .2 1"/>
+
+			<panel noclick="true" passivechildren="true" width="82@" height="82%" valign="center" x="10@">
+				<image name="heroSelectCraftedItem{id}Icon" texture="{icon=/heroes/legionnaire/icon.tga}"/>
+				<frame color="invisible" bordercolor="black" borderthickness="0.15h"/>
+			</panel>
+			<label name="heroSelectCraftedItem{id}Name" width="-310@" x="105@" textvalign="center" font="maindyn_20" style="labelBase" wrap="true" color="1 1 1 1" content="Shiney Ring of Superior Circles" noclick="true"/>
+
+			<!-- Components - Populate these instead of the old componenet categories below - currently using 'heroSelectCraftedItemComponent2' as to not break lua, but 'heroSelectCraftedItemComponent' just needs to be updated to this style -->
+			<panel grow="1" height="60%" valign="center" float="right" regrow="true" growinvis="false" padding="3s" x="-6s" align="right" noclick="1" visible="1">
+				<instance name="heroSelectCraftedItemComponent2" itemID="{id}" id="1" />
+				<instance name="heroSelectCraftedItemComponent2" itemID="{id}" id="2" />
+				<instance name="heroSelectCraftedItemComponent2" itemID="{id}" id="3" />
+			</panel>
+
+			<button name="heroSelectCraftedItem{id}Button" color="invisible" interactive="false" cangrab="true" dragexclusive="false"/>
+		</panel>
+	</template>
+
+	<template name="heroSelectCraftedItemTypeTab">
+		<panel name="heroSelectCraftedItemTypeTab{id}" width="100@" height="100%" noclick="true">
+
+			<!-- This texture change is needed, not the above frame -->
+			<image name="heroSelectCraftedItemTypeTab{id}Backer" texture="/ui/_textures/elements/toggle_off.tga" />
+
+			<button name="heroSelectCraftedItemTypeTab{id}Button" color="invisible"/>
+			<image hmargin="10@" vmargin="10@" texture="{icon}" noclick="true"/>
+		</panel>
+	</template>
+
+	<template name="selection_crafted_items">
+		<panel name="heroSelectSectionCraftedItems" y="-2.0h" x="240s" height="460s" width="490s" visible="0"><!-- Crafted Items -->
+
+			<instance name="dialogWrapper1" noclick="1" inneralpha=".1 .1 .1 1" />
+			<frame texture="/ui/elements:roundframe" noclick="1" borderthickness="0.8h" width="+2h" height="+2h" valign="center" align="center" color=".2 .2 .2 1"/>
+
+			<panel y="0h" hmargin="0.5h" valign="bottom" height="-80s" noclick="true">
+				<panel height="72s" noclick="true">
+					<frame texture="/ui/elements:rounded_bg_white" noclick="1" borderthickness="8s" color=".2 .2 .2 1"/>
+					<frame texture="/ui/elements:roundframe" noclick="1" borderthickness="8s" color=".2 .2 .2 1"/>
+
+					<!-- Filters -->
+					<panel noclick="1" float="right" padding="6s" hmargin="10s" vmargin="8s">
+						<label style="h1" content="heroselect_yourcrafteditems" fitx="true" fitxpadding="8s" textvalign="center" noclick="1" />
+						<instance name="heroSelectCraftedItemTypeTab" id="all" icon="/ui/shared/shop/filters/all_1.tga"/>
+						<instance name="heroSelectCraftedItemTypeTab" id="attack" icon="/ui/shared/shop/filters/physical_1.tga"/>
+						<instance name="heroSelectCraftedItemTypeTab" id="ability" icon="/ui/shared/shop/filters/caster_1.tga"/>
+						<instance name="heroSelectCraftedItemTypeTab" id="mana" icon="/ui/shared/shop/filters/mana_1.tga"/>
+						<instance name="heroSelectCraftedItemTypeTab" id="defense" icon="/ui/shared/shop/filters/defense_1.tga"/>
+						<instance name="heroSelectCraftedItemTypeTab" id="utility" icon="/ui/shared/shop/filters/support_1.tga"/>
+					</panel>
+
+				</panel>
+				<panel height="-80s" y="0" valign="bottom" noclick="true">
+					<listbox name="heroSelectCraftedItemsListbox"
+						width="-20s"
+						color="invisible"
+						exteriorscrollbars="true"
+						itemheight="58s"
+						itemwidth="-4s"
+						scrollbarsize="24s"
+						handleheight="48s"
+						scrollbarplaceholder="true"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						select="false"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						hscrollbar="0"
+						horizontal="false"
+					/>
+				</panel>
+				<instance name="standardButton" id="heroSelectViewAllCraftedItemsButton" height="4h" valign="bottom" y="-22h" font="maindyn_20" label="heroselect_viewallitems" visible="false"/>
+			</panel>
+
+			<label font="maindyn_18" style="labelBase" color=".8 .8 .8 1" wrap="1" content="heroselect_selectcrafted" x="220s" y="20s" width="-250s" fity="true" noclick="1" />
+
+			<instance
+				id="heroSelectSectionCraftedItems_close"
+				name="iconButton"
+				align="right"
+				x="-6s" y="6s"
+				width="24s" height="24s" borderthickness="4s"
+				icon="/ui/main/shared/textures/close.tga"
+			/>
+
+		</panel>
+	</template>
+
+	<template name="selection_bradcrumb_dye_item" >
+		<panel name="selection_gear_set_dye_popup_item_{index}_parent" noclick="1" height="100%" width="100@" visible="1" sticky="1" stickytoinvis="0" >
+			<frame name="selection_gear_set_dye_popup_item_{index}_glow_selected" texture="/ui/elements:squareglow" bordercolor="0.15 0.6 1 0.8" borderthickness="33@" width="+1.9h" height="+1.9h" align="center" valign="center" visible="0" noclick="1" />
+			<frame name="selection_gear_set_dye_popup_item_{index}_glow_highlight" texture="/ui/elements:squareglow" borderthickness="33@" width="+1.9h" height="+1.9h" align="center" valign="center" visible="0" noclick="1" />
+
+			<image name="selection_gear_set_dye_popup_item_{index}_image" texture="/ui/main/play/textures/prematch_gear_color_swatch.tga" color="1 1 1 1" noclick="1" />
+
+			<panel name="selection_gear_set_dye_popup_item_{index}_purchase_overlay" noclick="1" color="0 0 0 .3" visible="0" >
+				<image texture="/ui/main/shared/textures/gem.tga" height="-1.0h" width="-1.0h" valign="center" align="center" noclick="1" />
+			</panel>
+			<image name="selection_gear_set_dye_popup_item_{index}_button" color="invisible" />
+			<frame name="selection_gear_set_dye_popup_item_{index}_locked_overlay" texture="/ui/shared/textures/rounded_bg_solid.tga" color="0 0 0 .10" bordercolor="invisible" borderthickness="0.1h" visible="0" noclick="1"/>
+
+			<frame texture="/ui/elements:thick" color=".2 .2 .2 1" borderthickness="0.5h" noclick="1"/>
+			<frame name="selection_gear_set_dye_popup_item_{index}_frame_selected" texture="/ui/elements:thick" color="0.15 0.6 1 1" borderthickness="0.5h" visible="0" noclick="1"/>
+			<frame name="selection_gear_set_dye_popup_item_{index}_frame_highlight" texture="/ui/elements:thick" borderthickness="0.5h" visible="0" noclick="1"/>
+
+			<panel name="selection_gear_set_dye_popup_item_{index}_locked" noclick="1" visible="0" >
+				<image y="-4s" x="7s" texture="/ui/main/shared/textures/lock2.tga" color=".71 .55 .5 1" height="-0.7h" width="-0.7h" valign="top" align="right" noclick="1" />
+			</panel>
+
+			<panel name="selection_gear_set_dye_popup_item_{index}_new" visible="0" width="126@" height="126%" x="0" y="100%" align="center" valign="bottom" noclick="1" color="invisible">
+				<image name="selection_gear_set_dye_popup_item_{index}_image_new" noclick="1" texture="/ui/main/shared/textures/sign.tga" />
+				<modelpanel name="" visible="1"
+					noclick="true"
+					x="-7s" y="-4s" align="center" valign="center"
+					width="+32s" height="+14s"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/shared/effects/mastery_flames.effect"
+					camerapos="0 0 10"
+					cameraangles="0 0 0"
+					camerafov="80"
+					depthclear="true"
+					depthcompress="true"
+				/>
+				<label textalign="center" textvalign="center" font="subdyn_9" color="#571000" outline="1" outlinecolor="#ffb525" content="general_new" noclick="1" visible="1" />
+			</panel>
+
+		</panel>
+	</template>
+
+	<template name="selection_breadcrumbs" >
+
+		<panel name="selection_breadcrumbs" x="20s" y="17h" height="150s" width="434s" noclick="1" >
+
+			<panel name="selection_breadcrumb_parent_left" noclick="1" >
+
+				<panel name="selection_builds" height="32s" width="215s" x="0s" y="212s" noclick="1">
+
+					<panel name="selection_right_bottom_header" x="0" y="-26s" height="24s" visible="{visible=0}" noclick="1">
+						<panel name="selection_right_bottom_header_2" width="210s" noclick="1">
+							<label name="selection_builds_header_label" style="labelBase" font="maindyn_20" color="#08c3d9" fitx="true" fitxpadding="5s" content="heroselect_hero_builds" noclick="1" />
+							<instance
+								name="iconButton"
+								id="selection_builds_btn"
+								icon="/ui/shared/textures/edit.tga" iconsize="76"
+								visible="0"
+								width="114@" height="114%" align="right" valign="center" x="0"
+							/>
+						</panel>
+					</panel>
+
+					<panel name="selection_builds_parent_2" height="3.5h" valign="center" visible="0">
+						<label noclick="1" height="100%" textalign="center" align="center" textvalign="center" fitx="true" font="maindyn_16" color=".6 .6 .6" outline="true" content="heroselect_hero_builds_pick"/>
+					</panel>
+					<panel y="34s" height="25s" noclick="1">
+						<instance id="selection_builds_combobox_auto_btn_1" height="100%" width="80s" align="right" x="-105s"
+							name="standardButton2Check"
+							label="heroselect_auto_items"
+							font="maindyn_14"
+						/>
+						<instance id="selection_builds_combobox_auto_btn_2" height="100%" width="100s" align="right"
+							name="standardButton2Check"
+							label="heroselect_auto_abilities"
+							font="maindyn_14"
+						/>
+					</panel>
+					<panel name="selection_builds_parent" noclick="1">
+						<instance name="simple_combobox_textured" id="selection_builds_combobox"
+							onloadlua="
+							"
+						/>
+					</panel>
+
+				</panel>
+
+				<panel name="selection_breadcrumb_pet_parent" y="130s" height="32s" noclick="1" visible="1">
+					<panel grow="1" regrow="1" x="0s" y="4s" width="150s" height="100%" noclick="0">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="5s" color="0 0 0 .7" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="5s" bordercolor=".1 .1 .1 1" color="invisible" noclick="1"/>
+						<label name="selection_breadcrumb_pet" y="-1s" x="10s" fitx="1" fitxpadding="10s" textvalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" content="" noclick="1" />
+					</panel>
+					<instance id="selection_breadcrumb_pet_btn" height="32s" width="60s"
+						name="standardButton"
+						label="general_repick"
+						font="maindyn_18"
+						x="155s" y="5s"
+					/>
+					<label x="5s" y="-21s" style="labelBase" font="maindyn_20" color="#08c3d9" fity="true" content="general_pet" noclick="1" />
+				</panel>
+
+				<!-- Locked Pet Selection -->
+				<panel name="selection_breadcrumb_pet_parent_locked" y="130s" width="220s" height="32s" noclick="1" visible="0">
+					<panel grow="1" regrow="1" x="10s" y="4s" height="100%" noclick="0">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="5s" color="0 0 0 .5" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="5s" bordercolor=".1 .1 .1 1" color="invisible" noclick="1"/>
+						<label name="selection_breadcrumb_pet_name_locked" y="-1s" x="30s" fitx="1" fitxpadding="10s" textvalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" content="" noclick="1" />
+					</panel>
+					<image x="-8s" y="5s" texture="/ui/main/shared/textures/lock2.tga" width="50s" height="50s" valign="center" noclick="1" />
+					<label x="5s" y="-21s" style="labelBase" font="maindyn_20" color="#08c3d9" fity="true" content="general_pet" noclick="1" />
+				</panel>
+
+				<panel name="selection_breadcrumb_dye_parent" grow="true" y="68s" height="26s" noclick="1">
+					<panel grow="true" regrow="true" height="26s" float="right" padding="5s" noclick="1">
+						<instance name="selection_bradcrumb_dye_item" index="0" />
+						<instance name="selection_bradcrumb_dye_item" index="1" />
+						<instance name="selection_bradcrumb_dye_item" index="2" />
+						<instance name="selection_bradcrumb_dye_item" index="3" />
+						<instance name="selection_bradcrumb_dye_item" index="4" />
+						<instance name="selection_bradcrumb_dye_item" index="5" />
+						<instance name="selection_bradcrumb_dye_item" index="6" />
+						<instance name="selection_bradcrumb_dye_item" index="7" />
+					</panel>
+					<panel name="selection_breadcrumb_dye_purchase_info" y="26s" noclick="1" visible="0">
+						<panel grow="true" height="2.6h" align="center" float="right" padding="0.5h" noclick="1" visible="1">
+							<label name="selection_breadcrumb_dye_purchase_info_label" style="labelBase" font="maindyn_16" color=".8 .8 .8 1" textalign="center" textvalign="center" fitx="true" content="heroselect_unlockcost" noclick="1" />
+							<panel height="100%" width="100@" noclick="1">
+								<image x="-3s" texture="/ui/main/shared/textures/gem.tga" width="88@" height="88%" align="center" valign="center" noclick="1" />
+							</panel>
+						</panel>
+					</panel>
+
+					<label name="selection_breadcrumb_dye_name" x="5s" y="-23s" style="labelBase" font="maindyn_20" color="#08c3d9" fity="true" fitx="true" content="" noclick="1" />
+				</panel>
+
+				<panel name="selection_breadcrumb_hero_parent" y="0" height="32s" noclick="1" visible="1">
+					<panel grow="1" regrow="1" x="0s" y="4s" width="150s" height="100%" noclick="0">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="5s" color="0 0 0 .7" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="5s" bordercolor=".1 .1 .1 1" color="invisible" noclick="1"/>
+						<label name="selection_breadcrumb_hero" y="-1s" x="10s" fitx="1" fitxpadding="10s" textvalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" content="" noclick="1" />
+					</panel>
+					<instance id="selection_breadcrumb_hero_btn" height="32s" width="60s"
+						name="standardButton"
+						label="general_repick"
+						font="maindyn_18"
+						x="155s" y="4s"
+					/>
+					<panel y="-21s" height="20s" float="right" padding="5s" noclick="0" name="selection_breadcrumb_hero_btn_parent" >
+						<label fitx="1" style="labelBase" font="maindyn_20" color="#08c3d9" fity="true" content="general_hero" noclick="1" />
+						<panel float="right" padding="0" noclick="1">
+							<instance name="selection_hero_level_star" index="1" type="breadcrumb" size="20s" />
+							<instance name="selection_hero_level_star" index="2" type="breadcrumb" size="20s" />
+							<instance name="selection_hero_level_star" index="3" type="breadcrumb" size="20s" />
+							<instance name="selection_hero_level_star" index="4" type="breadcrumb" size="20s" />
+							<instance name="selection_hero_level_star" index="5" type="breadcrumb" size="20s" />
+						</panel>
+					</panel>
+				</panel>
+				<!-- Locked Hero Selection -->
+				<panel name="selection_breadcrumb_hero_parent_locked" y="0" width="220s" height="32s" noclick="1" visible="0">
+					<panel grow="1" regrow="1" x="10s" y="4s" height="100%" noclick="0">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="5s" color="0 0 0 .5" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="5s" bordercolor=".1 .1 .1 1" color="invisible" noclick="1"/>
+						<label name="selection_breadcrumb_hero_name_locked" y="-1s" x="30s" fitx="1" fitxpadding="10s" textvalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" content="Selected Hero" noclick="1" />
+					</panel>
+					<image x="-8s" y="5s" texture="/ui/main/shared/textures/lock2.tga" width="50s" height="50s" valign="center" noclick="1" />
+					<label x="5s" y="-21s" style="labelBase" font="maindyn_20" color="#08c3d9" fity="true" content="general_hero" noclick="1" />
+				</panel>
+
+			</panel>
+
+			<panel name="selection_breadcrumb_parent_right" noclick="1" >
+				<!-- Crafted items used to be here -->
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_overall_heromodel_template" >
+
+		<panel name="selection_overall_heromodel_parent" x="15h" y="15h" width="68h" height="68h" color="0 0 1 0.0" noclick="1" group="selection_animation_widgets_group_2B_radial"
+
+		>
+			<modelpanel
+				name="selection_overall_heromodel" noclick="1"
+				depthclear="true" depthcompress="false"
+				lookat="false"
+
+				cameranear="0.0"
+				camerafar="3000.0"
+				cameradistance="30"
+				camerapos="20 1720 1750"
+				cameraangles="-45 0 180"
+				camerafov="7"
+
+				modelpos="0 0 0" modelangles="30 25 -45" modelscale="1.0"
+				sunazimuth="120" sunaltitude="50" suncolor="0.9 0.9 0.9" ambientcolor="0.6 0.7 0.7"
+				resourcecontext="selection_model_hero"
+				anim="idle"
+				model=""
+				color="1 1 1 1"
+			/>
+
+			<if condition="ui_test_playscreenmodelcursor">
+				<panel height="100%" width="1s" color="1 0 0 1" align="center" valign="top" visible="1" />
+				<panel height="100%" width="1s" color="1 0 0 0.5" align="left" valign="top" visible="1" />
+				<panel height="100%" width="1s" color="1 0 0 0.5" align="right" valign="top" visible="1" />
+
+				<panel width="100%" height="1s" color="1 0 0 0.5" align="left" 	valign="top" visible="1" />
+				<panel width="100%" height="1s" color="1 0 0 1" align="left" valign="center" visible="1" />
+				<panel width="100%" height="1s" color="1 0 0 0.5" align="left" valign="bottom" visible="1" />
+
+				<panel height="12s" width="12s" color="1 0 0 0.5" align="center" valign="top" visible="1" >
+					<frame color="invisible" bordercolor="black" borderthickness="1s" />
+					<panel height="4s" width="4s" color="0 0 0 1" align="center" valign="center" visible="1" />
+				</panel>
+				<panel height="12s" width="12s" color="1 0 0 1" align="center" valign="center" visible="1" >
+					<frame color="invisible" bordercolor="black" borderthickness="1s" />
+					<panel height="4s" width="4s" color="0 0 0 1" align="center" valign="center" visible="1" />
+				</panel>
+				<panel height="12s" width="12s" color="1 0 0 0.5" align="center" valign="bottom" visible="1" >
+					<frame color="invisible" bordercolor="black" borderthickness="1s" />
+					<panel height="4s" width="4s" color="0 0 0 1" align="center" valign="center" visible="1" />
+				</panel>
+			</if>			
+			
+			<panel noclick="1" name="selection_overall_heromodel_parent_input" height="80%" valign="bottom" align="center" width="50%" />
+		</panel>
+	</template>
+
+	<template name="Play_gearsetPetEntry">
+		<panel name="Play_gearsetPetEntry{id}" height="85@" width="85%">
+			<frame name="Play_gearsetPetEntry{id}Glow" noclick="1" texture="/ui/elements:squareglow" color="0 0 0 .6" x="1s" y="3s" width="+6s" height="+6s" align="center" valign="center" borderthickness="10s" />
+			
+			<frame name="Play_gearsetPetEntry{id}SelectedGlow" noclick="1" texture="/ui/elements:squareglow" color="0.01 0.85 0.91 0.9" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" rendermode="additive" visible="0"/>
+			<frame name="Play_gearsetPetEntry{id}HoverGlow" noclick="1" texture="/ui/elements:squareglow" color="#ffa200" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" rendermode="additive" visible="0"/>
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".04 .04 .04 1"/>
+			
+			<!-- Pet Icon -->
+			<image name="Play_gearsetPetEntry{id}Icon" width="93@" height="93%" align="center" valign="center" />
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" bordercolor="0.1 0.1 0.1 1" color="invisible"/>
+			
+			<frame name="Play_gearsetPetEntry{id}SelectedBorder" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" bordercolor="0.01 0.85 0.91 1" color="invisible" visible="0"/>
+			<frame name="Play_gearsetPetEntry{id}HoverBorder" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" bordercolor="#ffa200" color="invisible" visible="0"/>				
+			<image name="Play_gearsetPetEntry{id}Lock" texture="/ui/main/shared/textures/lock2.tga"  color="#eabdb6" width="40@" height="40%" align="right" valign="top" y="-7s" x="6s"/>
+			
+			<button name="Play_gearsetPetEntry{id}Button" color="invisible"/>
+		</panel>
+	</template>	
+	
+	<template name="selection_overall_petmodel_template" >
+
+		<panel name="selection_overall_petmodel_parent" x="-19h" y="37h" width="72h" height="72h" color="0 1 0 0.0" noclick="1" group="selection_animation_widgets_group_2B_radial" >
+			
+			<panel height="180s" width="60s" y="-70s" x="-90s" valign="center" align="center" float="bottom" padding="6s" noclick="true" visible="0">
+				<instance name="Play_gearsetPetEntry" id="1" />
+				<instance name="Play_gearsetPetEntry" id="2" />
+				<instance name="Play_gearsetPetEntry" id="3" />
+			</panel>			
+			
+			<modelpanel
+				name="selection_overall_petmodel" noclick="1"
+				depthclear="true" depthcompress="false"
+				lookat="false"
+				cameranear="750.0" camerafar="1500.0" cameradistance="30" cameraangles="0 0 0" camerafov="6"
+				camerapos="0 -1100 0"
+				modelpos="0 350 0" modelangles="-20 0 -150" modelscale="0.3"
+				sunazimuth="270" sunaltitude="50" suncolor="0.9 0.9 0.9" ambientcolor="0.5 0.5 0.5"
+				resourcecontext="selection_model_pet"
+				anim="idle"
+				model=""
+				color="1 1 1 1"
+			/>
+			<panel height="1h" width="1h" color="1 1 0 0.6" align="center" valign="center" visible="0" /> <!-- centering point -->
+		</panel>
+	</template>
+
+	<template name="selection_gear_set_card_dye_popup_item" >
+		<panel name="selection_gear_set_card_dye_popup_item_{gearindex}_{index}_parent" noclick="1" height="5.4h" width="5.4h" visible="1" sticky="1" stickytoinvis="0" >
+			<image name="selection_gear_set_card_dye_popup_item_{gearindex}_{index}_image" texture="/ui/main/play/textures/prematch_gear_color_swatch.tga" color="1 1 1 1" noclick="1" />
+			<panel name="selection_gear_set_card_dye_popup_item_{gearindex}_{index}_purchase_overlay" noclick="1" color="0 0 0 .3" visible="0" >
+				<image texture="/ui/main/shared/textures/gem.tga" height="-1.0h" width="-1.0h" valign="center" align="center" noclick="1" />
+			</panel>
+			<image name="selection_gear_set_card_dye_popup_item_{gearindex}_{index}_button" color="invisible" />
+		</panel>
+	</template>
+
+	<template name="selection_gear_set_card" >
+
+		<panel name="selection_gear_set_card_{index}_parent" noclick="1" height="100%" width="90@" sticky="1" stickytoinvis="0" group="selection_animation_widgets_group_2B_radial" >
+						
+			<image name="selection_gear_set_card_{index}_image" width="100@" height="100%" align="center" noclick="1" texture="$checker" />
+			<image name="selection_gear_set_card_{index}_image_unowned" rendermode="grayscale" color=".6 .6 .6 0.7" width="100@" height="100%" align="center" noclick="1" texture="$checker" />
+
+			<!-- Hover / Current - texture name is same as base image, with __highlight at the end. Like this: '/heroes/rook/heroselect_highlight.tga' -->
+			<panel name="selection_gear_set_card_{index}_effect" width="100@" height="100%" align="center" visible="0" noclick="1" color="invisible">
+				<image name="selection_gear_set_card_{index}_image_highlight" noclick="1" texture="$invis" />
+			</panel>
+
+			<panel name="selection_gear_set_card_{index}_selected" visible="0" width="100@" height="100%" align="center" noclick="1" color="invisible">
+				<image name="selection_gear_set_card_{index}_image_selected" noclick="1" texture="$invis" color="0.2 0.65 0.85 .6" />
+				<image name="selection_gear_set_card_{index}_image_selected_unowned" rendermode="grayscale" color="1 1 1 0.7" noclick="1" texture="$invis" />
+			</panel>
+
+			<panel name="selection_gear_set_card_{index}_new" visible="0" width="36@" height="36%" x="-3.0%" y="4.0%" align="left" noclick="1" color="invisible">
+				<image name="selection_gear_set_card_{index}_image_new" noclick="1" texture="/ui/main/shared/textures/sign.tga" />
+				<modelpanel name="" visible="1"
+					noclick="true"
+					x="-14s" y="-7s" align="center" valign="center"
+					width="+58s" height="+30s"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/shared/effects/mastery_flames.effect"
+					camerapos="0 0 10"
+					cameraangles="0 0 0"
+					camerafov="80"
+					depthclear="true"
+					depthcompress="true"
+				/>
+				<label textalign="center" textvalign="center" font="maindyn_18" color="#571000" outline="1" outlinecolor="#ffb525" content="general_new" noclick="1" />
+			</panel>
+
+			<panel name="selection_gear_set_card_{index}_purchase_overlay" height="24s" width="62%" align="center" valign="bottom" noclick="1" visible="0" >
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" height="+8s" borderthickness="4s" color=".04 .04 .04 .75"/>
+				<frame texture="/ui/shared/frames/border_double.tga" height="+8s" bordercolor="0 0 0 1" borderthickness="4s" color="invisible"/>
+				<panel noclick="1" y="0" grow="1" regrow="1" align="center" >
+					<image x="4s" y="3s" texture="/ui/main/shared/textures/gem.tga" height="22s" width="22s" noclick="1" />
+					<label name="selection_gear_set_card_{index}_purchase_cost" x="30s" noclick="1" font="maindyn_24" content="100" color="white" outline="1" outlinecolour="black" fity="1" fitx="1" fitxpadding="10s" />
+				</panel>
+			</panel>
+
+			<button name="selection_gear_set_card_{index}_button" noclick="0" height="100%" width="+2.7h" valign="center" align="center" color="invisible" >
+			</button>
+
+			<panel name="selection_gear_set_card_{index}_locked" width="100@" height="100%" align="center" visible="0" noclick="1" color="invisible">
+				<image y="-10s" texture="/ui/main/shared/textures/lock2.tga" width="40%" height="40@" noclick="1" align="right" color=".64 .6 .58 1" />
+			</panel>
+
+		</panel>
+	</template>
+
+	<template name="selection_gear_set_cards" >
+			<panel name="selection_gear_set_cards" x="0" y="-45s" height="164s" valign="bottom" noclick="1" float="right" padding="0" visible="1">
+				<instance name="selection_gear_set_card" index="0" />
+				<instance name="selection_gear_set_card" index="1" />
+				<instance name="selection_gear_set_card" index="2" />
+				<instance name="selection_gear_set_card" index="3" />
+		</panel>
+	</template>
+
+	<template name="selection_right_content_background">
+		<panel name="selection_right_content_background" x="14s" width="280s" height="560s" align="right" noclick="0">
+			<!--<image texture="/ui/main/play/textures/info_bg.tga" vflip="1" noclick="1" />-->
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .85" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible" noclick="1"/>
+		</panel>
+	</template>
+
+	<template name="selection_header_buttonState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<image align="center" width="{iconsize=68}@" height="{iconsize=68}%" texture="{icon}_glow.tga" y="4s" x="{iconX}" rendermode="additive" color="1 1 1 .4" visible="{overstate=false}" />
+			<image align="center" width="{iconsize}@" height="{iconsize}%" texture="{icon}.tga" y="4s" x="{iconX}" color=".8 .8 .8 1" />
+			<image align="center" width="{iconsize}@" height="{iconsize}%" texture="{icon}.tga" y="4s" x="{iconX}" rendermode="grayscale" color="1 1 1 .8" />
+			<label y="-6s" textalign="center" textvalign="bottom" style="labelBase" color=".6 .6 .6 1" font="subdyn_13" content="{label}" noclick="1"/>
+		</widgetstate>
+	</template>
+	<template name="selection_header_button">
+
+		<button name="{id}" width="64s" height="88s" align="{align}" passivechildren="true" onloadlua="{onloadlua}"  visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}" noclick="{noclick=false}" color="invisible" onclick="{onclick}" onclicklua="{onclicklua}"	>
+			<instance name="selection_header_buttonState" label="{label}" icon="{icon}" iconsize="{iconsize=68}" iconY="{iconY}" iconX="{iconX}" colorized="{colorized=false}" statename="up"/>
+			<instance name="selection_header_buttonState" label="{label}" icon="{icon}" iconsize="{iconsize=68}" iconY="{iconY}" iconX="{iconX}" colorized="{colorized=false}" color="1 1 1 1" statename="over" overstate="true"/>
+			<instance name="selection_header_buttonState" label="{label}" icon="{icon}" iconsize="{iconsize=68}" iconY="{iconY}" iconX="{iconX}" colorized="{colorized=false}" statename="down" x="1" y="1"/>
+			<widgetstate statename="disabled">
+				<panel color="0 0 0 .2" noclick="1" />
+				<image align="center" width="{iconsize=68}@" height="{iconsize=68}%" texture="{icon}_glow.tga" y="4s" x="{iconX}" rendermode="additive" color="{glowcolor}" />
+				<image align="center" width="{iconsize=68}@" height="{iconsize=68}%" texture="{icon}.tga" y="4s" x="{iconX}" />
+				<label name="{id}_label" y="-6s" textalign="center" textvalign="bottom" style="labelBase" color="1 1 1 1" font="subdyn_13" content="{label}" noclick="1"/>
+			</widgetstate>
+		</button>
+	</template>
+
+	<template name="selection_right_top_header" >
+		<panel name="selection_right_top_header" width="262s" align="right" x="0" y="-10s" height="76s" noclick="1" color="1 1 1 .3" visible="{visible=0}">
+			<image y="-6s" x="-2s" width="512s" height="128s" align="right" texture="/ui/main/play/textures/selection_right_content_header.tga" noclick="1" />
+			<panel float="right" padding="1s" noclick="1">
+				<instance name="selection_header_button" id="selection_hero_info_btn" icon="/ui/main/play/textures/icon_hero" glowcolor="#99d7e7" label="general_hero" />
+				<instance name="selection_header_button" id="selection_pet_info_btn" icon="/ui/main/play/textures/icon_pet" glowcolor="#f4b429" label="general_pet" />
+				<instance name="selection_header_button" id="selection_team_info_btn" icon="/ui/main/play/textures/icon_team" glowcolor="#58d69e" label="general_party" />
+				<instance name="selection_header_button" id="selection_region_btn" icon="/ui/main/play/textures/icon_regions" glowcolor="#2bccff" label="general_regions" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_pet_ability_template">
+		<panel name="selection_pet_ability_{id}" height="72s" width="100%" noclick="0" passivechildren="1" clip="1" visible="{visible=1}">
+			<image texture="/ui/main/play/textures/ability_container.tga" noclick="1" />
+			<panel hmargin="8s" vmargin="8s" noclick="1" clip="1" >
+				<panel y="1s" width="100@" height="100%" noclick="1">
+					<image name="selection_pet_ability_{id}_icon" texture="$checker" noclick="1"/>
+					<instance name="iconFrame" />
+				</panel>
+				<panel height="100%" width="-110@" align="right" noclick="1" >
+					<label name="selection_pet_ability_{id}_name" y="-1s" textvalign="top" fity="1" style="labelBase" font="maindyn_20" color="white" content="Pet Name" noclick="1"/>
+					<label name="selection_pet_ability_{id}_description" y="20s" wrap="1" fity="1" style="labelBase"  textvalign="center" font="subdyn_12" color=".8 .8 .8 1" content="Pet Desc" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_pet_info" >
+		<panel name="selection_pet_info" align="right" x="-16s" y="100s" width="234s" noclick="1" visible="{visible=0}">
+			<panel name="selection_pet_info_tab_1" noclick="true">
+				<label name="selection_pet_info_name" noclick="1" align="center" wrap="1" style="h1" font="maindyn_30" content="Pet Name"/>
+				<label name="selection_pet_info_petdesc" y="38s" noclick="1" align="center" wrap="1" style="labelBase" font="maindyn_20" color="1 1 1 1" content=""/>
+				<panel x="-4s" height="38s" width="38s" align="right" noclick="1">
+					<panel width="100@" height="100%">
+						<image name="selection_pet_info_peticon" texture="/ui/shared/textures/ability_coverup.tga"/>
+						<instance name="iconFrame" />
+					</panel>
+					<!--
+					<instance
+						name="NumberValue"
+						labelId="selection_pet_info_petlevel"
+						align="right" valign="bottom" x="8s" y="4s" height="18s" font="maindyn_16" visible="1"
+						label=""
+					/>
+					-->
+				</panel>
+				<panel grow="true" valign="top" align="center" width="241s" float="bottom" reverse="1" padding="15s" y="110s" >
+					<panel height="10s" noclick="1">
+						<label style="labelBase" color=".7 .7 .7 1" font="maindyn_20" content="corral_active" noclick="1" />
+						<image texture="/ui/shared/shop/textures/activatable.tga" width="36s" height="36s" x="-6s" y="62s" align="left" noclick="1" />
+					</panel>
+					<instance name="selection_pet_ability_template" id="0"/>
+					<label height="10s" style="labelBase" color=".7 .7 .7 1" font="maindyn_20" content="corral_triggered" noclick="1" />
+					<instance name="selection_pet_ability_template" id="1"/>
+					<label height="10s" style="h3" color=".7 .7 .7 1" font="maindyn_20" content="corral_passive" noclick="1" />
+					<instance name="selection_pet_ability_template" id="2"/>
+				</panel>
+			</panel>
+			<panel name="selection_pet_info_tab_2" noclick="true" visible="false">
+				<panel y="7h" height="-7h">
+					<label name="selection_pet_info_tab_2_label" wrap="true" color="white" outline="true" font="maindyn_16" />
+				</panel>
+			</panel>
+			<panel name="selection_pet_info_tab_3" noclick="true" visible="false">
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_hero_ability_template">
+		<panel name="selection_hero_ability_{id}" height="68s" width="100%" noclick="0" passivechildren="1" clip="1">
+			<image texture="/ui/main/play/textures/ability_container.tga" noclick="1" />
+			<panel hmargin="8s" vmargin="8s" noclick="1" clip="1" >
+				<panel y="1s" width="100@" height="100%" noclick="1">
+					<image name="selection_hero_ability_{id}_icon" texture="/ui/shared/textures/ability_coverup.tga" noclick="1"/>
+					<instance name="iconFrame" />
+				</panel>
+				<panel height="100%" width="-110@" align="right" noclick="1" >
+					<label name="selection_hero_ability_{id}_name" y="-1s" textvalign="top" fity="1" style="labelBase" font="maindyn_20" color="white" content="Ability Name" noclick="1"/>
+					<label name="selection_hero_ability_{id}_description" y="20s" wrap="1" lineheight="15s" fity="1" style="labelBase"  textvalign="center" font="subdyn_12" color=".8 .8 .8 1" content="Ability Desc" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_hero_info" >
+		<panel name="selection_hero_info" align="right" x="-16s" y="85s" width="234s" noclick="1" visible="{visible=0}">
+			<panel name="selection_hero_info_tab_1" noclick="true">
+				<label name="selection_hero_info_name" noclick="1" align="center" wrap="1" style="h1" font="maindyn_30" content=""/>
+				<label name="selection_hero_info_herodesc" y="41s" noclick="1" align="center" wrap="1" style="labelBase" font="maindyn_18" color="1 1 1 1" content=""/>
+				<!-- Attack Type  -->
+				<image name="selection_hero_info_attacktype" texture="$checker" align="right" width="34s" height="34s" color="1 1 1 1" noclick="1" />
+				<!-- VO Btn / Hero Icon - Both Hidden -->
+				<panel x="-36s" y="-1s" height="36s" width="36s" align="right" noclick="1" visible="1">
+					<panel width="100@" height="100%" noclick="1" visible="0">
+						<image name="selection_hero_info_heroicon" texture="/ui/shared/textures/ability_coverup.tga" noclick="1"/>
+						<frame borderthickness="0.2h" color="invisible" bordercolor="black" noclick="1"/>
+					</panel>
+					<panel name="selection_hero_info_vo_preview" x="0" width="100@" height="100%" noclick="1" passivechildren="0" align="right" valign="bottom" visible="1">
+						<button name="selection_hero_info_vo_preview_btn" color="invisible"/>
+						<image texture="/ui/main/play/textures/speaker_glow.tga" color="1 1 1 1" noclick="true" visible="0"/>
+						<image texture="/ui/main/play/textures/speaker.tga" color="1 1 1 1" noclick="true"/>
+					</panel>
+				</panel>
+				<panel grow="true" valign="top" align="center" width="240s" float="bottom" padding="5s" y="88s" >
+					<instance name="selection_hero_ability_template" id="0"/>
+					<instance name="selection_hero_ability_template" id="1"/>
+					<instance name="selection_hero_ability_template" id="2"/>
+					<instance name="selection_hero_ability_template" id="3"/>
+				</panel>
+				
+				<!-- Hero Progression -->
+				<panel y="392s" height="66s" noclick="0" name="selection_hero_info_prog_parent">
+					<panel height="38s" float="right" padding="11s" noclick="1" >
+						<instance name="selection_hero_level_star" size="38s" index="1" type="heroinfo" />
+						<instance name="selection_hero_level_star" size="38s" index="2" type="heroinfo" />
+						<instance name="selection_hero_level_star" size="38s" index="3" type="heroinfo" />
+						<instance name="selection_hero_level_star" size="38s" index="4" type="heroinfo" />
+						<instance name="selection_hero_level_star" size="38s" index="5" type="heroinfo" />
+					</panel>
+
+					<panel name="selection_hero_info_prog_meter" visible="1" noclick="1">
+						<panel height="20s" valign="bottom" width="-28s" noclick="1">
+							<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".6 .6 .6 1" color=".6 .6 .6 1" noclick="1">
+								<panel hmargin="2s" vmargin="3s" noclick="1" passivechildren="1">
+									<instance name="progress_bar" id="selection_hero_level_bar" width="64%" borderthickness="3s" barstyle="barCommon" noclick="1"  />
+								</panel>
+							</frame>
+						</panel>
+						<panel height="24s" width="24s" align="right" valign="bottom" noclick="1">
+							<image texture="/ui/shared/textures/star.tga" noclick="1" />
+							<label x="1s" y="1s" textalign="center" textvalign="center" font="subdyn_13" color="0 0 0 .7" content="+" noclick="1"/>
+						</panel>
+					</panel>
+					<label name="selection_hero_info_prog_nometer" y="2s" x="1s" outline="1" textalign="center" textvalign="bottom" font="maindyn_20" color="white" content="stat_name_hero_mastered" visible="0" noclick="1"/>
+					
+					<panel name="selection_hero_info_prog_hover" noclick="1" visible="0">
+						<frame texture="/ui/shared/frames/std_btn_inset.tga" y="2s" align="center" valign="center" width="+8s" height="+8s" borderthickness="8s" bordercolor=".1 .1 .1 0.85" color=".1 .1 .1 0.85" noclick="1">
+							<label name="selection_hero_info_prog_hover_label_1" x="1s" y="1s" height="65%" textalign="center" outline="1" textvalign="center" font="maindyn_24" color="white" content="stat_name_hero_wins_x" noclick="1"/>
+							<label name="selection_hero_info_prog_hover_label_2" x="1s" y="-10s" height="35%" valign="bottom" outline="1" textalign="center" textvalign="center" font="maindyn_18" color="white" content="stat_name_hero_wins_next_star_x" noclick="1"/>
+						</frame>
+					</panel>
+					
+					<panel name="selection_hero_info_prog_rating_parent_1" y="26s" height="24s" valign="bottom" noclick="0"
+						onmouseoverlua="
+							simpleTipGrowYUpdate(true, nil, Translate('selection_rating_title'), Translate('selection_rating_desc'), 250)
+						"
+						onmouseoutlua="
+							simpleTipGrowYUpdate(false)
+						"					
+					>
+						<label name="selection_hero_info_prog_rating_label_1" style="labelBase" textalign="center" textvalign="center" font="subdyn_15" color="1 1 1 1" outlinecolor="0 0 0 1" content="" noclick="1"/>
+
+					</panel>	
+					
+				</panel>
+				<!-- Hero Ranked -->
+				<panel y="396s" height="66s" noclick="0" name="selection_hero_info_prog_parent_ranked" >
+					<image name="selectionPlayerDivision_ranked" texture="/ui/main/shared/textures/elo_rank_0.tga" x="-11s" width="93s" height="93s" valign="center" noclick="1" /> 						
+					<panel width="-80s" align="right" noclick="1">
+						<!-- Hero Name -->
+						<label name="selectionPlayerRankHero_ranked" y="6s" textalign="center" style="h1" font="maindyn_26" content="" noclick="1" />														
+						
+						<!-- Provisional Display -->
+						<panel name="selectionPlayerRankProvisional_ranked" y="36s" noclick="1" visible="1" >
+							<label textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="ranked_division_provisional_title" noclick="1" />
+							<label name="selectionPlayerRankProvisional_label_2_ranked" y="18s" textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="" noclick="1" />							
+						</panel>
+
+						<!-- Non-Provisional Display -->
+						<panel name="selectionPlayerRankEarned_ranked" y="36s" noclick="1" visible="0" >
+							<!-- Division Info -->
+							<panel width="62%" noclick="1" clip="1">
+								<label textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="ranked_division" noclick="1" />
+								<label y="16s" name="selectionPlayerRank2_ranked" textalign="center" style="labelBase" font="maindyn_20" color="1 1 1 1" content="ranked_division_silver_num" noclick="1" />								
+							</panel>
+							<!-- Rating Info -->
+							<panel width="35%" align="right" noclick="1">
+								<label textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="ranked_rank_colon" noclick="1" />
+								<label y="16s" name="selectionPlayerRank_ranked" textalign="center" style="labelBase" font="maindyn_20" color="1 1 1 1" content="---" noclick="1" />
+							</panel>
+						</panel>
+					</panel>
+				</panel>
+			</panel>
+			<panel name="selection_hero_info_tab_2" noclick="true" visible="false">
+				<panel y="7h" height="-7h">
+					<label name="selection_hero_info_tab_2_label" wrap="true" color="white" outline="true" font="maindyn_16" />
+				</panel>
+			</panel>
+			<panel name="selection_hero_info_tab_3" noclick="true" visible="false">
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_region_flag_button" >
+		<instance name="iconButton" group="selection_region_flag_buttons"
+			id="selection_region_flag_button_{region}"
+			icon="{flag}"
+			width="100@" height="100%" align="left" valign="top" borderthickness="4s" visible="1"
+			onclicklua=""
+			disabledmouseover="true"
+			disabledmouseout="true"
+			onmouseoverdisabledlua="
+				simpleTipGrowYUpdate(true, nil, Translate('party_finder_disabled_host'), Translate('party_finder_disabled_host_desc'), 250)
+			"
+			onmouseoutdisabledlua="
+				simpleTipGrowYUpdate(false)
+			"
+			numstates="2"
+		/>
+	</template>
+
+	<template name="mainBindableHotkeyButton">
+		<panel name="{id}" style="{style}" align="{align}" valign="{valign}" width="{width=100%}" height="{height=100%}" noclick="true">
+			<panel name="{id}Body" align="center" valign="center" noclick="true" passivechildren="true">
+				<frame name="{id}Backer" texture="/ui/elements:key" visible="1" borderthickness="{borderthickness=33@}"/>
+				<frame name="{id}Highlight" texture="/ui/elements:rounded_bg_white" rendermode="additive" color="#FFCC0011"/>
+				<label name="{id}Label" color="black" outline="true" outlinecolor="#DDDDDD" textalign="center" textvalign="center" noclick="true" font="{font=maindyn_14}" content="-" y="{labelY}"
+					onshowlua="{onrefreshlua}"
+					onrefreshlua="{onrefreshlua}"
+				/>
+			</panel>
+			<button name="{id}ButtonTip" hmargin="5@" vmargin="5%" noclick="false" interactive="false" color="invisible"/>
+			<button name="{id}Button" hmargin="5@" vmargin="5%" noclick="true" interactive="false" color="invisible"
+				onloadlua="libButton2.initializeButton(self, '{id}', 'key')"
+			/>
+		</panel>
+	</template>
+
+	<template name="selection_team_subheader_buttonState">
+		<widgetstate statename="{statename=up}" x="{x}" y="{y}">
+			<frame group="{id}_frames" texture="{texture=/ui/shared/frames/stnd_btn_up.tga}" borderthickness="6s" color="{color=.8 .8 .8 1}" rendermode="grayscale"/>
+			<image align="center" width="{iconsize}@" height="{iconsize}%" texture="{icon}.tga" y="{iconY}" x="{iconX}" />
+			<label y="-3s" textalign="center" textvalign="bottom" style="labelBase" color="1 1 1 1" font="subdyn_12" content="{label}" noclick="1"/>
+		</widgetstate>
+	</template>
+
+	<template name="selection_region_info_region_popularity_star">
+		<panel width="100@" height="100%" noclick="1" >
+			<image texture="/ui/main/play/textures/population_pip.tga" noclick="1"  />
+			<image name="selection_region_info_region_popularity_star_{id}_{index}" texture="/ui/main/play/textures/population_pip.tga" align="right" width="100@" rendermode="grayscale" visible="1" color=".25 .25 .25 .95" noclick="1" oninstantiatelua="self:SetVisible({index} > {popularity})" />
+		</panel>
+	</template>	
+	
+	<template name="selection_region_info_region_item_template">
+		<panel
+			name="{index}_parent" height="40s" valign="center"
+			grow="true"
+			width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="self:Sleep(1, function() Party.RegisterRegionCheckbox('{index}', '{regionName}') end)"		
+			group="selection_region_info_region_item_templates"
+		>
+	 		<button
+				name="{index}_button" noclick="0" color="invisible"
+				group="{group}"
+				onbutton=""
+				visible="1"
+				numstates="2"
+				disabledmouseover="1"
+				disabledmouseout="1"
+				onmouseoverlua="
+					local trigger = LuaTrigger.GetTrigger('PartyStatus')
+					if (trigger.isPartyLeader) then
+						simpleTipGrowYUpdate(true, '/ui/main/play/textures/population_pip.tga', '{label}', '{label}' .. ' ' .. Translate('game_region') .. ' ' .. Translate('game_region_pop_desc') .. ' ^960' .. Translate('game_region_pop_{popularity}') .. '\n\n^777' .. Translate('game_region_pop_breakdown'), 280)
+					else
+						simpleTipGrowYUpdate(true, '/ui/main/play/textures/population_pip.tga', '{label}', '{label}' .. ' ' .. Translate('game_region') .. ' ' .. Translate('game_region_pop_desc') .. ' ^960' .. Translate('game_region_pop_{popularity}') .. '\n\n^777' .. Translate('game_region_pop_breakdown') .. '\n\n^960' .. Translate('party_finder_disabled_host_desc'), 280)
+					end
+				"
+				onmouseoutlua="
+					simpleTipGrowYUpdate(false)
+				"
+				onmouseoverdisabledlua="
+					if ({timestamp=-1}) and tonumber({timestamp=-1}) and (tonumber({timestamp=-1}) > 0) then
+						simpleTipGrowYUpdate(true, nil, Translate('party_finder_disabled_region_desc'), Translate('party_finder_disabled_region_desc_time', 'time', FormatDateTime({timestamp=-1}, '%#I:%M %p %b%d', true)), 280)
+					else
+						simpleTipGrowYUpdate(true, nil, Translate('party_finder_disabled_region_desc'), Translate('party_finder_disabled_region_desc'), 280)
+					end
+				"
+				onmouseoutdisabledlua="
+					simpleTipGrowYUpdate(false)
+				"				
+			/>
+			<frame name="{index}_check_box" texture="/ui/shared/frames/togglebox.tga" borderthickness="10s" noclick="1"/>
+			<panel grow="true" growinvis="false" width="-13s" y="6s" align="center" float="bottom" padding="3s" noclick="true" visible="1">
+				<panel height="24s" noclick="true" sticky="true" stickytoinvis="false">
+					<panel width="-20s" noclick="true">
+						<panel width="100@" height="100%" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="4s" color=".1 .1 .1 1" noclick="true" />
+							<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+							<panel name="{index}_check_frame" x="1s" y="-2s" valign="bottom" align="center" width="125@" height="125%" nolclick="true" visible="false" noclick="1">
+								<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+								<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+							</panel>
+						</panel>
+						
+						<!-- Region Name -->
+						<label name="{index}_check_box_label" x="1s" y="5s" height="100%" textvalign="center" width="-130@" align="right" style="h2" font="maindyn_18" content="{label}" noclick="true" />
+						
+						<!-- Flag - Probably no room?
+						<image width="100@" x="-120@" height="100%" align="right" valign="center" noclick="true" texture="{texture=$invis}"/>
+						-->
+						
+						<panel x="16s" y="-14s" width="-28s" height="16s" align="center" valign="bottom" float="right" padding="0" noclick="1">
+							<instance name="selection_region_info_region_popularity_star" id="{index}" index="1" popularity="{popularity}" color="1 1 85 0.25" />
+							<instance name="selection_region_info_region_popularity_star" id="{index}" index="2" popularity="{popularity}" color="1 1 1 0.45" />
+							<instance name="selection_region_info_region_popularity_star" id="{index}" index="3" popularity="{popularity}" color="1 1 85 0.25" />
+							<instance name="selection_region_info_region_popularity_star" id="{index}" index="4" popularity="{popularity}" color="1 1 1 0.45" />
+							<instance name="selection_region_info_region_popularity_star" id="{index}" index="5" popularity="{popularity}" color="1 1 85 0.25" />
+						</panel>					
+					</panel>
+					<!-- Ping -->
+					<label name="{index}_check_box_label2" group="selection_region_info_region_item_pings" y="-0.1h" height="100%" textvalign="center" textalign="right" x="-4s" fitx="1" align="right" style="h3" font="maindyn_18" content="{ping}" noclick="true" visible="0" />						
+				</panel>
+				<panel height="0.8h" noclick="true" sticky="true" stickytoinvis="false" />
+			</panel>
+		</panel>
+	</template>		
+	
+	<template name="selection_region_info_refresh" >
+		<panel height="30s" valign="center" >
+			<label style="labelBase" color=".7 .7 .7 1" textvalign="center" font="maindyn_20" content="main_lobby_choose_region" />
+			<instance
+				buttonName="selection_region_info_listbox_refresh_btn"
+				name="iconButton"
+				icon="/ui/main/shared/textures/refresh.tga" iconsize="76"
+				align="right" x="-2s" borderthickness="4s"
+				visible="true"
+				onclicklua="Client.GetRegionPingList(LuaTrigger.GetTrigger('PartyStatus').queue) self:SetEnabled(0) local widget = self libThread.threadFunc(function() wait(3000) widget:SetEnabled(1) end)"
+				onmouseoverlua="
+					simpleTipGrowYUpdate(true, '/ui/main/shared/textures/refresh.tga', Translate('party_finder_refresh'), Translate('mainlobby_button_custom_refresh'))
+				"
+				onmouseoutlua="
+					simpleTipGrowYUpdate(false)
+				"
+			/>
+		</panel>
+	</template>
+	
+	<template name="selection_region_info" >
+		<panel name="selection_region_info" align="right" x="-8s" y="80s" width="256s" height="486s" noclick="1" visible="{visible=0}" >
+		
+			<frame y="-6s" x="2s" width="+8s" align="center" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .9"/>
+			<frame y="-6s" x="2s" width="+8s" align="center" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>		
+		
+			<panel style="doubleFrame" height="100%">
+				<panel noclick="1" name="selection_region_info_parent">
+					<listbox
+						valign="center" align="left"
+						width="-16s" height="-16s" x="8s"
+						name="selection_region_info_listbox"
+						color="invisible"
+						font="maindyn_16"
+						itemwidth="100%"
+						itemheight="46s"
+						select="false"
+						clearselection="true"
+						hoverselect="false"
+						hoverhighlight="false"
+						highlight="under"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						selectedbordercolor="invisible"
+						backgroundimage="$invis"
+						backgroundimagecolor="#1d2f3b"
+						colortransition="true"
+						colortransitiontime="250"
+						onselect=""
+						
+						scrollbaroffset="1s"
+						exteriorscrollbars="true"
+						scrollbarplaceholder="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbarsize="32s"
+						handleheight="64s"
+						handlewidth="32s"
+						hscrollbar="0"
+						horizontal="false"				
+						
+					>
+
+					</listbox>			
+				</panel>
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="selection_team_info" >
+		<panel name="selection_team_info" align="right" x="-14s" y="80s" width="238s" noclick="1" visible="{visible=0}" >
+		
+			<panel style="doubleFrame" height="52s">
+				<frame y="-6s" x="2s" width="+8s" align="center" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .2"/>
+				<frame y="-6s" x="2s" width="+8s" align="center" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>
+				
+				<panel y="2s" x="2s" hmargin="6s" height="-14s">
+					<label style="labelBase" color=".7 .7 .7 1" font="subdyn_12" content="general_game_mode" />
+					<label name="team_info_mode_label" y="13s" style="h3" font="maindyn_22" content="party_finder_game_ranked" />
+					
+					<instance name="iconButton" id="team_info_mode_swap"
+						icon="/ui/main/play/textures/swap.tga" iconsize="100" iconY="-1s"
+						y="3s" width="34s" height="34s" align="right" borderthickness="4s" x="-40s"
+						onclicklua=""
+						onmouseoverlua=""
+						onmouseoutlua="
+							simpleTipGrowYUpdate(false)
+						"
+					/>					
+					<instance name="vr" x="-34s" align="right" />					
+					<instance name="iconButton" id="team_info_createparty_exit"
+						icon="/ui/main/party/textures/icon_door.tga" iconsize="100" iconY="-1s"
+						y="3s" width="34s" height="34s" align="right" borderthickness="4s" x="3s"
+						visible="0"
+						onclicklua=""
+						onmouseoverlua=""
+						onmouseoutlua="
+							simpleTipGrowYUpdate(false)
+						"
+					/>	
+					
+				</panel>				
+			</panel>
+
+			<!-- Team List
+				Not sure how to add it to the action area, but the token/ticket (temp) images are as follows:
+					'/ui/main/play/textures/hkantoken_paid.tga'
+					'/ui/main/play/textures/hkantoken_unpaid.tga'
+			-->
+			<panel grow="true" valign="top" align="center" width="238s" float="bottom" padding="7s" y="196s">
+				<panel height="36s" noclick="1">
+					<label name="team_info_name_currentparty_label" y="4s" style="h2" font="maindyn_22" content="party_finder_team_members" noclick="1" />
+					<panel width="70s" height="36s" y="-2s" align="right" noclick="1"
+						onloadlua="
+							self:RegisterWatchLua('featureMaintenanceTrigger', function(self, trigger)
+								if ((mainUI) and (mainUI.featureMaintenance) and (mainUI.featureMaintenance['voice'])) then
+									self:Destroy()
+								end
+							end)
+							if ((mainUI) and (mainUI.featureMaintenance) and (mainUI.featureMaintenance['voice'])) then
+								self:Destroy()
+							end
+						"
+					>
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="4s" color=".1 .1 .1 .4"/>
+						<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".3 .3 .3 1" borderthickness="4s" color="invisible"/>
+						<panel hmargin="4s" vmargin="4s" noclick="1">
+							<image texture="/ui/shared/textures/megaphone.tga" width="100@" height="100%"
+								onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('party_finder_team_voip'), Translate('party_finder_team_voip_tip'), libGeneral.HtoP(31))"
+								onmouseoutlua="simpleTipGrowYUpdate(false)"
+							/>
+							<instance id="selection_team_info_voip_hotkey" name="mainBindableHotkeyButton" width="100@" height="100%" align="right"
+								labelY="-0.15h"
+								onrefreshlua="
+									local button = GetKeybindButton('game', 'VoicePushToTalk', '')
+									if button then
+										self:SetText(button)
+									else
+										self:SetText('')
+									end
+								"
+							/>
+							<panel width="2s" />
+						</panel>
+					</panel>
+					<instance name="hr" y="6s" valign="bottom" />
+				</panel>
+				<panel height="1s" noclick="1" />
+				<instance name="socialEntry" prefix="playTeamEntry0" id="0" visible="true" actionBackerVis="false" VOIPTemplate="socialEntryUserVOIP" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsPlaySelf" actionBarWidth="225@"/><!-- Self -->
+				<instance name="socialEntry" prefix="playTeamEntry1" id="1" visible="true" actionBackerVis="false" VOIPTemplate="socialEntryUserVOIP" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" findPlayerTemplate="socialEntryUserPlayFindPlayer"/>
+				<instance name="socialEntry" prefix="playTeamEntry2" id="2" visible="true" actionBackerVis="false" VOIPTemplate="socialEntryUserVOIP" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" findPlayerTemplate="socialEntryUserPlayFindPlayer"/>
+				<instance name="socialEntry" prefix="playTeamEntry3" id="3" visible="true" actionBackerVis="false" VOIPTemplate="socialEntryUserVOIP" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" findPlayerTemplate="socialEntryUserPlayFindPlayer"/>
+				<instance name="socialEntry" prefix="playTeamEntry4" id="4" visible="true" actionBackerVis="false" VOIPTemplate="socialEntryUserVOIP" occupiedTemplate="socialEntryUserPartyOccupied" actionItems="socialEntryUserActionBarItemsParty" findPlayerTemplate="socialEntryUserPlayFindPlayer"/>
+			</panel>
+
+			<!-- When not in party -->
+			<panel name="team_info_party_overview" y="62s" float="bottom" noclick="1" visible="1">
+				<label fity="1" fitypadding="12s" style="labelBase" font="maindyn_20" wrap="1" content="party_finder_explanation" noclick="1" visible="1"/>
+				<label fity="1" name="party_system_label" style="labelBase" font="maindyn_20" wrap="1" content="party_finder_explanation2" noclick="1" visible="1" />
+			</panel>
+			
+			<!-- Party Options -->
+			<panel y="74s" name="team_info_name_party_parent" noclick="1" visible="1">
+
+				<!-- Region Selection -->
+				<panel name="team_selector_region_target" visible="0" float="right" padding="4s" height="32s" noclick="1" ></panel>				
+
+				<panel height="86s" noclick="1">
+
+					<!-- Show in Unranked Mode Only -->
+					<panel name="team_selector_extra_unranked" noclick="1" visible="1">
+										
+						<!-- Hero Progression -->
+						<label y="-23s" style="h2" font="maindyn_20" content="player_profile_hero_mastery" noclick="1" />
+						<panel y="-7s" height="68s" valign="bottom" noclick="0" name="selection_hero_info_prog_parent_2" >
+							<panel height="-26s" float="right" padding="7s" noclick="1" >
+								<instance name="selection_hero_level_star" index="1" type="heroinfo_2" />
+								<instance name="selection_hero_level_star" index="2" type="heroinfo_2" />
+								<instance name="selection_hero_level_star" index="3" type="heroinfo_2" />
+								<instance name="selection_hero_level_star" index="4" type="heroinfo_2" />
+								<instance name="selection_hero_level_star" index="5" type="heroinfo_2" />
+							</panel>
+
+							<panel name="selection_hero_info_prog_meter_2" visible="1" noclick="1">
+								<panel height="20s" valign="bottom" width="-28s" noclick="1">
+									<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".6 .6 .6 1" color=".6 .6 .6 1" noclick="1">
+										<panel hmargin="2s" vmargin="3s" noclick="1" passivechildren="1">
+											<instance name="progress_bar" id="selection_hero_level_bar_2" width="64%" borderthickness="3s" barstyle="barCommon" noclick="1"  />
+										</panel>
+									</frame>
+								</panel>
+								<panel height="24s" width="24s" align="right" valign="bottom" noclick="1">
+									<image texture="/ui/shared/textures/star.tga" noclick="1" />
+									<label x="1s" y="1s" textalign="center" textvalign="center" font="subdyn_13" color="0 0 0 .7" content="+" noclick="1"/>
+								</panel>
+							</panel>
+							<label name="selection_hero_info_prog_nometer_2" x="1s" outline="1" textalign="center" textvalign="bottom" font="maindyn_20" color="white" content="stat_name_hero_mastered" visible="0" noclick="1"/>
+					
+							<panel name="selection_hero_info_prog_hover_2" noclick="1" visible="0">
+								<frame texture="/ui/shared/frames/std_btn_inset.tga" y="2s" align="center" valign="center" width="+8s" height="+8s" borderthickness="8s" bordercolor=".1 .1 .1 0.85" color=".1 .1 .1 0.85" noclick="1">
+									<label name="selection_hero_info_prog_hover_label_1_2" x="1s" y="1s" height="65%" textalign="center" outline="1" textvalign="center" font="maindyn_24" color="white" content="stat_name_hero_wins_x" noclick="1"/>
+									<label name="selection_hero_info_prog_hover_label_2_2" x="1s" y="-10s" height="35%" valign="bottom" outline="1" textalign="center" textvalign="center" font="maindyn_18" color="white" content="stat_name_hero_wins_next_star_x" noclick="1"/>
+								</frame>
+							</panel>
+						</panel>
+						
+						<!-- <instance name="hr" y="-4s" valign="bottom" /> -->
+						
+						<panel name="selection_hero_info_prog_rating_parent_2" y="19s" height="22s" valign="bottom" noclick="0" visible="0"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('selection_rating_title'), Translate('selection_rating_desc'), 250)
+							"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+							"						
+						>
+							<label name="selection_hero_info_prog_rating_label_2" style="labelBase" textalign="left" textvalign="center" font="maindyn_20" color="1 1 1 1" content="" noclick="1"/>
+						
+							<panel noclick="1" grow="1" regrow="1" align="right" valign="center" >
+								<label fitx="true" fity="1" style="labelClickable" font="maindyn_20" content="?" noclick="1" />						
+							</panel>							
+						
+						</panel>						
+						<instance name="hr" y="25s" valign="bottom" />
+											
+					</panel>
+					
+					<!-- Show in Ranked Mode Only -->
+					<panel name="team_selector_extra_ranked" noclick="0" visible="0">					
+						
+						<image name="selectionPlayerDivision" texture="/ui/main/shared/textures/elo_rank_0.tga" x="-11s" width="93s" height="93s" valign="center" noclick="1" /> 						
+						<panel width="-80s" align="right" noclick="1">
+							<!-- Hero Name -->
+							<label name="selectionPlayerRankHero" y="6s" textalign="center" style="h1" font="maindyn_26" content="" noclick="1" />
+							
+							<!-- Provisional Display -->
+							<panel name="selectionPlayerRankProvisional" y="36s" noclick="1" visible="1" >
+								<label textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="ranked_division_provisional_title" noclick="1" />
+								<label name="selectionPlayerRankProvisional_label_2" y="18s" textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="" noclick="1" />							
+							</panel>
+
+							<!-- Non-Provisional Display -->
+							<panel name="selectionPlayerRankEarned" y="36s" noclick="1" visible="0" >
+								<!-- Division Info -->
+								<panel width="62%" noclick="1" clip="1">
+									<label textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="ranked_division" noclick="1" />
+									<label y="16s" name="selectionPlayerRank2" textalign="center" style="labelBase" font="maindyn_20" color="1 1 1 1" content="ranked_division_silver_num" noclick="1" />								
+								</panel>
+								<!-- Rating Info -->
+								<panel width="35%" align="right" noclick="1">
+									<label textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="ranked_rank_colon" noclick="1" />
+									<label y="16s" name="selectionPlayerRank" textalign="center" style="labelBase" font="maindyn_20" color="1 1 1 1" content="---" noclick="1" />
+								</panel>
+							</panel>
+							
+						</panel>		
+						
+					</panel>
+					
+					<!-- Show in Khanquest Only
+						label options:
+							party_finder_game_khanquest_maketeam - When less that 5 wins
+							party_finder_game_khanquest_wl - wins/loss
+
+					-->
+					<panel name="team_selector_extra_khanquest" noclick="1" visible="0">
+						<label name="team_selector_extra_khanquest_info" textalign="center" textvalign="center" style="labelBase" color="1 1 1 1" font="maindyn_26" content="party_finder_game_khanquest_maketeam" noclick="0" />						
+					</panel>
+				</panel>
+
+
+			</panel>
+		</panel>
+	</template>
+
+	<!-- Hero Portraits -->
+	<template name="selection_hero_entry_item_template">
+		<panel name="selection_hero_entry_item_{prefix}{id}" noclick="1" group="selection_animation_widgets_group_{prefix}0_radial" >
+			<frame name="selection_hero_entry_item_{prefix}{id}hoverGlow" texture="/ui/shared/frames/frameglow.tga" y="-2%" width="+4%" height="70%" borderthickness="12s" color=".4 .9 1 .4" align="center" valign="top" rendermode="additive" noclick="1" visible="0" />
+			<frame width="66@" height="66%" align="center" y="11s" noclick="1" color="0 0 0 0.7"/>			
+			<image name="selection_hero_entry_item_{prefix}{id}Icon" width="66@" height="66%" align="center" y="11s" noclick="1"/>			
+			<frame texture="/ui/shared/frames/inner_glow.tga" width="66@" height="66%" borderthickness="14s" bordercolor="0 0 0 .7" align="center" y="11s" noclick="1"  />			
+			<panel name="selection_hero_entry_item_{prefix}{id}Recommended" width="66@" height="66%" align="center" y="11s" visible="0" noclick="1">
+				<modelpanel model="/ui/main/shared/effects/hero_highlight.mdf" anim="idle" effect="/ui/main/shared/effects/hero_highlight.effect" camerapos="-1 -40 0" cameraangles="0 0 180" camerafov="60" cameranear="1" camerafar="1000" depthclear="false" depthcompress="true" noclick="true" />
+			</panel>			
+			<image name="selection_hero_entry_item_{prefix}{id}Frame"  texture="/ui/main/shared/textures/iconframe_interactive_txt2.tga" width="100@" height="100%" align="center" color="1 1 1 1" noclick="1" />			
+			<image name="selection_hero_entry_item_{prefix}{id}PickedIcon" width="32@" height="32%" align="right" valign="top" y="0s" noclick="1" visible="0"/>
+			<panel name="selection_hero_entry_item_{prefix}{id}Hover" visible="0" noclick="1">
+				<image name="selection_hero_entry_item_{prefix}{id}HoverTexture" texture="/ui/main/shared/textures/iconframe_interactive_txt2_hover.tga" width="100@" height="100%" align="center" noclick="1" />
+			</panel>			
+			<panel name="selection_hero_entry_item_{prefix}{id}LongWait" y="-36s" x="-34s" width="60s" height="60s" align="center" valign="center" visible="0" noclick="1">
+				<image texture="/ui/main/shared/textures/hourglass_glow.tga" noclick="1" rendermode="additive" color="1 1 1 .8" />
+				<image texture="/ui/main/shared/textures/hourglass.tga" noclick="1" />
+			</panel>
+			<panel name="selection_hero_entry_item_{prefix}{id}Mastered" visible="0" noclick="1">
+				<modelpanel name="" visible="1" height="100%" width="100%"
+					noclick="true"
+					y="-4%"
+					model="/shared/models/invis.mdf"
+					effect="/ui/main/shared/effects/mastery_flames.effect"
+					camerapos="26 0 50"
+					cameraangles="0 0 0"
+					camerafov="80"
+					depthclear="true"
+					depthcompress="true"
+				/>
+				<image y="-31s" width="24s" height="24s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image y="-30s" x="-18s" width="22s" height="22s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image y="-30s" x="18s" width="22s" height="22s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image y="-29s" x="-34s" width="20s" height="20s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+				<image y="-29s" x="34s" width="20s" height="20s" align="center" valign="bottom" texture="/ui/shared/textures/star.tga" noclick="1" />
+			</panel>
+			<label name="selection_hero_entry_item_{prefix}{id}Name" y="-5.5%" valign="bottom" fity="true" textalign="center" font="subdyn_13" style="labelBase" color="1 1 1 .8" content="" noclick="1"/>
+			<label name="selection_hero_entry_item_{prefix}{id}Picked" y="-10s" textvalign="center" textalign="center" font="maindyn_22" style="h1" content="hero_list_picked" visible="0" noclick="1"/>
+			<button name="selection_hero_entry_item_{prefix}{id}Button" color="invisible" interactive="false" disabledmouseover="1" disabledmouseout="1" />			
+			<image name="selection_hero_entry_item_{prefix}{id}Locked" texture="/ui/main/shared/textures/lock2.tga" y="-6%" x="10%" height="40%" width="40@" align="right" visible="0" noclick="1" />
+			<image name="selection_hero_entry_item_{prefix}{id}Banned" texture="/ui/main/shared/textures/stylized_x.tga" y="-8%" height="56@" width="56%" align="center" valign="center" visible="0" noclick="1" />
+		</panel>
+	</template>
+
+	<template name="selection_hero_category_tab">
+		<panel name="selection_hero_category_tab_{id}" width="100@" height="100%" noclick="true" group="selection_animation_widgets_group_0_fade" >
+			<button name="selection_hero_category_tab_{id}Button" color="invisible"/>
+			<image texture="{icon}" noclick="true" />
+			<image name="selection_hero_category_tab_{id}_cover" texture="{icon}" rendermode="grayscale" color="1 1 1 .9" noclick="true" visible="1" />
+			<image name="selection_hero_category_tab_{id}_frame" texture="/ui/main/shared/textures/herorole_frame.tga" noclick="1" visible="0" />
+			<!-- Selected -->
+			<image name="selection_hero_category_tab_{id}_frame_selected" texture="/ui/main/shared/textures/herorole_frame_selected.tga" noclick="1" visible="0"/>
+			<!-- Reco In Here -->
+			<panel name="selection_hero_category_tab_{id}_glow" width="90@" height="90%" align="center" valign="center" noclick="1" visible="0">
+				<modelpanel model="/ui/main/shared/effects/hero_highlight.mdf" anim="idle" effect="/ui/main/shared/effects/hero_highlight.effect" camerapos="-1 -40 0" cameraangles="0 0 180" camerafov="60" cameranear="1" camerafar="1000" depthclear="false" depthcompress="true" noclick="true" />
+			</panel>
+		</panel>
+	</template>
+
+	<template name="selection_hero">
+		<panel name="selection_hero" x="-490s" y="110s" width="456s" height="630s" noclick="true" visible="0" group="selection_animation_widgets_group_0_slide"
+			onevent7lua="self:SlideX('-14s', styles_mainSwapAnimationDuration / 2)"
+			onevent8lua="self:SlideX('-490s', styles_mainSwapAnimationDuration / 2)"
+		>
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			<!-- Filters -->
+			<panel x="24s" y="12s" height="69s" width="420s" noclick="true">
+				<panel align="center" grow="true" height="100%" float="right" padding="2s" noclick="true">
+					<instance name="selection_hero_category_tab" id="All" icon="/ui/main/shared/textures/herorole_all.tga"/>
+					<instance name="selection_hero_category_tab" id="PhysDamage" icon="/ui/main/shared/textures/herorole_physdmg.tga"/>
+					<instance name="selection_hero_category_tab" id="MagDamage" icon="/ui/main/shared/textures/herorole_magdmg.tga"/>
+					<instance name="selection_hero_category_tab" id="Survival" icon="/ui/main/shared/textures/herorole_survival.tga"/>
+					<instance name="selection_hero_category_tab" id="CC" icon="/ui/main/shared/textures/herorole_cc.tga"/>
+					<instance name="selection_hero_category_tab" id="Utility" icon="/ui/main/shared/textures/herorole_utility.tga"/>
+				</panel>
+			</panel>
+			<label name="selection_hero_category_info" x="3s" y="80s" fity="true" textalign="center" font="maindyn_18" style="labelBase" color=".8 .8 .8 1" content="selection_hero_category_info_all"/>
+			<panel name="selection_hero_listbox_container" x="18s" y="104s" height="-110s" width="464s" color="1 1 1 0" noclick="1"><!-- Hero List -->
+				<listbox
+					name="selection_hero_listbox" style="simpleListbox" scrollbarplaceholder="false" width="-32s" scrollbaroffset="4s" wrap="row"
+					itemwidth="107s" itemheight="128s" select="false" highlightcolor="invisible" highlightbordercolor="invisible"
+				/>
+			</panel>
+			<panel y="-2.8h" width="25h" height="5.6h" align="center" valign="bottom" noclick="1" visible="0"><!-- View All Btn -->
+				<image texture="/ui/_textures/elements/prematch_heropick_btn_hole.tga" noclick="1" />
+				<instance name="standardButton" id="heroSelectViewAllHeroesButton" y="-2%" width="88%" height="60%" align="center" valign="center" font="maindyn_20" label="heroselect_viewall" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="selection_captains_mode_player_entry">
+		<panel name="selection_captains_mode_player_entry_parent_{index}" height="92s">
+			
+			<image name="selection_captains_mode_player_entry_base_{index}" texture="/ui/main/play/textures/player_entry_base.tga" y="-4s" width="512s" height="128s" align="{align}" hflip="{hflip}" noclick="1" />
+			
+			<!-- Swap Position (Show On Hover) -->
+			<panel name="selection_captains_mode_player_entry_swaphover_{index}" visible="0" noclick="1">
+				<image texture="/ui/main/play/textures/player_entry_base.tga" rendermode="additive" color=".7 .16 .9 .2" y="-4s" width="512s" height="128s" align="{align}" hflip="{hflip}" noclick="1" />
+				<panel width="64s" height="64s" align="{align}" x="{swapX}" y="-14s" noclick="1">
+					<image texture="/ui/main/pregame/textures/mode.tga" noclick="1" />
+					<label style="labelBase" color="#f4b7f9" font="subdyn_11" textalign="center" textvalign="bottom" content="captains_mode_swap" wrap="1" lineheight="11s" width="-10s" align="center" y="-3s" noclick="1" />
+				</panel>
+			</panel>
+			
+			<!-- Cap'n Hat -->
+			<image texture="/ui/main/play/textures/captainshat.tga" y="-35s" x="{hatX}" align="{align}" width="58s" height="58s" hflip="{hflip}" visible="{isCapn=0}" noclick="1" />
+			
+			<!-- Name/Status
+				Status strings: captains_mode_waiting | captains_mode_banning | captains_mode_drafting | captains_mode_picking
+			-->
+			<panel x="{infoX}" y="14s" width="172s" noclick="1">
+				<label name="selection_captains_mode_player_{index}" style="labelBase" font="maindyn_26" textalign="center" noclick="1" content="PlayerName{id}" />
+				<label name="selection_captains_mode_player_status_{index}" style="selection_captains_mode_player_status_waiting" content="captains_mode_waiting" noclick="1" />
+			</panel>
+			
+			<!-- No Hero Picked - Hide when hero is picked -->
+			<panel name="selection_captains_mode_player_nohero_{index}" x="{heroX}" y="-16s" valign="bottom" width="72s" height="72s" visible="1" noclick="1">
+				<label name="selection_captains_mode_player_status_nohero_{index}" color="1 1 1 .5" outline="1" outlinecolor="0 0 0 .3" font="maindyn_72" textalign="center" textvalign="center" content="QM" noclick="1" />
+			</panel>
+			
+			<!-- Hero Icon - Show when Picked -->
+			<image name="selection_captains_mode_player_hero_{index}" texture="/heroes/trixie/icon_full.tga" hflip="{hflip}" x="{heroX}" y="-16s" valign="bottom" width="80s" height="80s" visible="0" noclick="1" />
+			
+		</panel>
+	</template>
+
+	<template name="lobby_entry_captains">
+		<panel height="{height=38s}" width="100%" name="lobby_entry_caps_{id}" >
+			<panel name="lobby_entry_caps_{id}UserBody" noclick="true" visible="1">
+				<button name="lobby_entry_caps_{id}UserButton" color="invisible" cangrab="true" dragexclusive="false">
+					<frame texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s"/>
+					
+					<panel noclick="true" passivechildren="true">			
+						<label name="lobby_entry_caps_{id}UserName" y="-1s" x="14s" width="-14s" textalign="left" textvalign="center" color="1 1 1" outline="1" outlinecolor="0 0 0 .6" font="maindyn_22" content="{userName}"/>
+					</panel>			
+					<frame name="lobby_entry_caps_{id}UserDarken" color="0 0 0 0.5" texture="/ui/elements:rounded_Bg_white" borderthickness="0.5h" noclick="true" visible="false"/>
+					<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h" noclick="1"/>
+				</button>
+				<instance name="DropLand" id="lobby_entry_caps_{id}DropTarget" width="+2s" height="+2s" />
+			</panel>
+		</panel>
+	</template>	
+	
+	<template name="selection_captains_mode_template">
+		<panel name="selection_captains_mode" noclick="true" visible="0" group="selection_animation_widgets_group_5_slide" color="#13191b"
+			onevent7lua="self:SlideX('0s', styles_mainSwapAnimationDuration / 2)"
+			onevent8lua="self:SlideX('0s', styles_mainSwapAnimationDuration / 2)"
+		>
+				
+			<panel texture="/ui/main/shared/textures/main_background.tga" width="178.777778@" height="100%" align="center"/>
+			
+			<panel width="205w" height="200h" align="center" valign="center" color="invisible" noclick="1" >
+				<modelpanel name="captainsBG_modelpanel"
+					noclick="true"
+					model="/shared/models/invis.mdf"
+					effect="" 
+					camerapos="0 -40 0"
+					cameraangles="0 0 0"
+					camerafov="55"
+					depthclear="true"
+					depthcompress="true"
+					onloadlua="
+						self:SetEffect('/ui/main/background/blue/main_bg_simple.effect', '1', '1', '1')
+					"
+				/>
+			</panel>
+				
+			<!-- Team Glory -->
+			<panel y="150s" x="18s" align="left" width="294s">			
+				<panel name="captains_team_1_myteam_indicator_logo" noclick="true" texture="/ui/game/loading/textures/team_logo_glory_green.tga" x="25s" width="96s" height="96s"/>
+
+				<label name="captains_team_1_myteam_indicator_teamname" x="105s" y="12s" fity="1" color="#01d823" style="labelBase" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_glory" font="maindyn_72" />
+
+				<label name="captains_team_1_myteam_indicator_label" x="110s" y="-1s" fity="1" color=".8 .8 .8 1" style="labelBase" fitypadding="0" fitxpadding="0" textvalign="top" textalign="left" fitx="1" noclick="1" content="general_team" font="maindyn_36" />			
+				
+				<panel y="100s" float="bottom" padding="8s" noclick="1">
+					<instance id="0" name="selection_captains_mode_player_entry" index="0" isCapn="1" hatX="-11s" align="left" hflip="0" infoX="94s" heroX="10s" swapX="248s" />
+					<instance id="1" name="selection_captains_mode_player_entry" index="1" align="left" hflip="0" infoX="94s" heroX="10s" swapX="248s" />
+					<instance id="2" name="selection_captains_mode_player_entry" index="2" align="left" hflip="0" infoX="94s" heroX="10s" swapX="248s" />
+					<instance id="3" name="selection_captains_mode_player_entry" index="3" align="left" hflip="0" infoX="94s" heroX="10s" swapX="248s" />
+					<instance id="4" name="selection_captains_mode_player_entry" index="4" align="left" hflip="0" infoX="94s" heroX="10s" swapX="248s" />
+				</panel>
+			</panel>
+
+			<panel y="160s" align="center" width="566s" visible="1" noclick="1">
+				<label name="selection_captains_mode_label_1" style="h1" font="maindyn_40" textalign="center" content="." noclick="1" />
+				<label name="selection_captains_mode_label_2" style="labelBase" color=".8 .8 .8 1" font="maindyn_22" y="42s" textalign="center" content="." noclick="1" />	
+			</panel>
+			
+			<panel name="selection_captains_mode_ready_up" visible="1" noclick="1">
+				<panel y="160s" align="center" width="566s" visible="1" noclick="1">					
+					<label name="selection_captains_mode_ready_up_label_2" style="h3" font="maindyn_26" y="92s" textalign="center" content="captains_mode_x_x_are_ready" noclick="1" />
+						
+					<!-- Explainasection -->
+					<frame name="selection_captains_mode_ready_up_explainsection" visible="1" y="144s" grow="1" width="86%" align="center" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="10s" color=".04 .04 .04 .5" noclick="1">						
+						<panel grow="1" y="20s" width="70%" align="center" noclick="1">							
+							<label x="84s" fity="1" style="labelBase" color=".8 .8 .8 1" font="maindyn_30" content="captains_mode_readyup_info_title"  noclick="1"/>							
+							<panel y="54s" grow="1" width="100%" float="bottom" padding="10s" noclick="1">
+								<label fity="1" wrap="1" style="labelBase" color=".7 .7 .7 1" font="maindyn_22" content="captains_mode_readyup_info_banning" noclick="1" />
+								<label fity="1" wrap="1" style="labelBase" color=".7 .7 .7 1" font="maindyn_22" content="captains_mode_readyup_info_drafting" noclick="1" />
+								<label fity="1" fitypadding="20s" wrap="1" style="labelBase" color=".7 .7 .7 1" font="maindyn_22" content="captains_mode_readyup_info_picking" noclick="1" />
+							</panel>
+						</panel>
+						
+						<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="10s" color="invisible" noclick="1"/>
+						<panel width="0" height="0" noclick="1">
+							<image texture="/ui/main/play/textures/mode_captains.tga" rotation="-20" x="-50s" y="-60s" width="150s" height="150s" noclick="1" />
+						</panel>
+					</frame>
+					
+					<!-- Spectators -->
+					<frame name="selection_captains_mode_ready_up_spectatorssection" visible="0" y="144s" grow="1" width="86%" align="center" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="10s" color=".04 .04 .04 .5" noclick="1" 
+>						
+						<panel noclick="0" onclick="Team(0)" />
+						<panel height="246s" y="20s" width="86%" align="center" noclick="1" >							
+							<label y="-4s" x="86s" fity="1" style="labelBase" color=".8 .8 .8 1" font="maindyn_30" content="captains_mode_team_0"  noclick="1"/>							
+							<panel y="44s" x="-5%" height="180s" width="110%" noclick="1">
+								<panel noclick="1" width="49%" align="left" float="bottom" padding="1s" >
+									<instance name="lobby_entry_captains" id="0" />
+									<instance name="lobby_entry_captains" id="1" />
+									<instance name="lobby_entry_captains" id="2" />
+									<instance name="lobby_entry_captains" id="3" />
+									<instance name="lobby_entry_captains" id="4" />
+								</panel>
+								<panel noclick="1" width="49%" align="right" float="bottom" padding="1s"  >
+									<instance name="lobby_entry_captains" id="5" />
+									<instance name="lobby_entry_captains" id="6" />
+									<instance name="lobby_entry_captains" id="7" />
+									<instance name="lobby_entry_captains" id="8" />
+									<instance name="lobby_entry_captains" id="9" />	
+								</panel>
+							</panel>
+						</panel>	
+						<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="10s" color="invisible" noclick="1"/>
+						<panel width="0" height="0" noclick="1">
+							<image texture="/ui/main/play/textures/mode_captains.tga" rotation="-20" x="-50s" y="-60s" width="150s" height="150s" noclick="1" />
+						</panel>						
+					</frame>					
+
+					<label name="selection_captains_mode_ready_up_label_3" style="h3" font="maindyn_26" y="-295s" fity="1" textalign="center" valign="bottom" content="captains_mode_curstate_unready" noclick="1" />
+					
+					<instance name="standardButton" rendermode="grayscale" align="center" valign="bottom" y="-342s" id="selection_captains_mode_moreinfo" x="-100s" height="34s" width="180s" enabled="1" visible="0" label="general_more_info" noclick="0"/>					
+					<instance name="standardButton" rendermode="grayscale" align="center" valign="bottom" y="-342s" id="selection_captains_mode_spectators" x="-100s" height="34s" width="180s" enabled="1" label="captains_mode_team_0" noclick="0"/>					
+					<instance name="standardButton" rendermode="grayscale" align="center" valign="bottom" y="-342s" id="selection_captains_mode_leave_party" x="100s" height="34s" width="180s" enabled="1" label="options_notifications_friends_leavegame" noclick="0"/>					
+					<instance name="standardButton" borderthickness="10s" font="maindyn_36" align="center" valign="bottom" y="-220s" id="selection_captains_mode_ready_up_btn" x="0s" height="64s" width="290s" enabled="1" label="captains_mode_ready" noclick="0"/>
+				</panel>
+			</panel>			
+			
+			<panel name="selection_captains_mode_selection" visible="0" noclick="1" >
+
+				<!-- Hero Pool -->
+				<panel name="selection_captains_mode_hero_pool" y="170s" align="center" width="570s" visible="0" noclick="1">
+
+					<listbox
+						name="selection_captains_mode_hero_listbox" style="simpleListbox" scrollbarplaceholder="false" wrap="row" y="110s" height="452s" noclick="1"
+						itemwidth="91s" itemheight="108s" select="false" highlightcolor="invisible" highlightbordercolor="invisible"
+					>
+
+					</listbox>
+					
+				</panel>
+				
+				<!-- Pet Picking Pool -->
+				<panel name="selection_captains_mode_pet_selection" y="220s" align="center" width="566s" visible="0" noclick="1">
+
+					<panel y="80s" align="center" width="354s" height="390s" noclick="1">
+						<listbox
+							name="selection_captains_mode_pet_listbox" style="simpleListbox" scrollbarplaceholder="false" width="-32s" scrollbaroffset="12s" wrap="row" noclick="1"
+							itemwidth="107s" itemheight="128s" select="false" highlightcolor="invisible" highlightbordercolor="invisible"
+						/>						
+					</panel>
+					
+				</panel>
+				
+				<!-- Customization Station -->
+				<panel name="selection_captains_mode_customize" y="100s" align="center" width="600s" height="-150s" visible="0" noclick="1" >
+					
+				</panel>
+			</panel>
+
+			<!-- Team Valor -->
+			<panel y="150s" x="-18s" align="right" width="294s" noclick="1">			
+				<panel name="captains_team_2_myteam_indicator_logo" noclick="true" texture="/ui/game/loading/textures/team_logo_valor_red.tga" align="right" x="-25s" y="-10s" width="110s" height="110s"/>
+				<label name="captains_team_2_myteam_indicator_teamname" align="right" x="-105s" y="12s" fity="1" color="white" style="labelBase" fitypadding="0" fitxpadding="0" textvalign="top" textalign="right" fitx="1" noclick="1" content="general_valor" font="maindyn_72" />
+				<label name="captains_team_2_myteam_indicator_label" align="right" x="-110s" y="-1s" fity="1" color=".8 .8 .8 1" style="labelBase" fitypadding="0" fitxpadding="0" textvalign="top" textalign="right" fitx="1" noclick="1" content="general_team" font="maindyn_36" />			
+				<panel y="100s" float="bottom" padding="8s" noclick="1">
+					<instance id="5" name="selection_captains_mode_player_entry" index="5" isCapn="1" hatX="11s" align="right" hflip="1" infoX="28s" heroX="206s" swapX="-248s" />
+					<instance id="6" name="selection_captains_mode_player_entry" index="6" align="right" hflip="1" infoX="28s" heroX="206s" swapX="-248s" />
+					<instance id="7" name="selection_captains_mode_player_entry" index="7" align="right" hflip="1" infoX="28s" heroX="206s" swapX="-248s" />
+					<instance id="8" name="selection_captains_mode_player_entry" index="8" align="right" hflip="1" infoX="28s" heroX="206s" swapX="-248s" />
+					<instance id="9" name="selection_captains_mode_player_entry" index="9" align="right" hflip="1" infoX="28s" heroX="206s" swapX="-248s" />
+				</panel>			
+			</panel>
+
+		</panel>
+	</template>	
+	
+	<template name="selection_pet_entry_item_template">
+		<panel name="selection_pet_entry_item_{prefix}{id}" noclick="1" visible="1" group="selection_animation_widgets_group_1_radial">
+			<frame name="selection_pet_entry_item_{prefix}{id}hoverGlow" texture="/ui/shared/frames/frameglow.tga" y="-2%" width="+4%" height="70%" borderthickness="12s" color=".4 .9 1 .4" align="center" valign="top" rendermode="additive" noclick="1" visible="0" />
+			<frame name="selection_pet_entry_item_{prefix}{id}_frame" color="invisible" borderthickness="0.4h" bordercolor="#999999" noclick="true" visible="0" />
+			<image name="selection_pet_entry_item_{prefix}{id}Icon" width="66@" height="66%" align="center" y="11s" noclick="1"/>
+			<frame texture="/ui/shared/frames/inner_glow.tga" width="66@" height="66%" borderthickness="14s" bordercolor="0 0 0 .7" align="center" y="11s" noclick="1"  />
+			<image name="selection_pet_entry_item_{prefix}{id}Frame"  texture="/ui/main/shared/textures/iconframe_interactive_txt2.tga" width="100@" height="100%" align="center" color="1 1 1 1" noclick="1" />
+			<panel name="selection_pet_entry_item_{prefix}{id}Hover" visible="0" noclick="1">
+				<image texture="/ui/main/shared/textures/iconframe_interactive_txt2_hover.tga" width="100@" height="100%" align="center" noclick="1" />
+			</panel>
+			<label name="selection_pet_entry_item_{prefix}{id}Name" y="-8s" valign="bottom" fity="true" textalign="center" font="subdyn_15" style="labelBase" color="1 1 1 .8" content="Pet"/>	
+			<panel name="selection_pet_entry_item_{prefix}{id}Boost" visible="0" width="36s" height="36s" align="right" x="2s" y="-2s" texture="/ui/main/shared/textures/boosted_pets.tga"/><!-- RMM Boosted Bonus -->			
+			<button name="selection_pet_entry_item_{prefix}{id}Button" color="invisible" interactive="false"/>
+		</panel>
+	</template>
+
+	<template name="selection_pet">
+		<panel name="selection_pet" x="-490s" y="200s" width="350s" height="418s" noclick="true" visible="0" group="selection_animation_widgets_group_1_slide"
+			onevent7lua="self:SlideX('-14s', styles_mainSwapAnimationDuration)"
+			onevent8lua="self:SlideX('-490s', styles_mainSwapAnimationDuration)"
+		>
+
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+
+			<panel name="selection_pet_listbox_container" x="18s" y="20s" height="-30s" width="354s" noclick="true"><!-- Pet List -->
+				<listbox
+					name="selection_pet_listbox" style="simpleListbox" scrollbarplaceholder="false" width="-32s" scrollbaroffset="12s" wrap="row"
+					itemwidth="107s" itemheight="128s" select="false" highlightcolor="invisible" highlightbordercolor="invisible"
+				/>
+			</panel>
+
+			<!-- <instance name="standardButton" id="heroSelectViewAllPetsButton" height="4h" valign="bottom" font="maindyn_20" label="heroselect_viewallpets" visible="0"/> Don't need this yet -->
+		</panel>
+	</template>
+
+	<template name="build_editor_item_slot_template">
+		<panel name="build_editor_item_slot_{id}" noclick="1" visible="1" width="100@" height="100%" color=".1 .1 .1 1">
+			<button name="build_editor_item_slot_{id}Button" enabled="1" color="invisible" interactive="false" disabledmouseover="true" disabledmouseout="true" cangrab="true" dragexclusive="false">
+				<image name="build_editor_item_slot_{id}Icon" texture="/ui/shared/textures/pack.tga" width="80@" height="80%" rendermode="grayscale" noclick="true" align="center" valign="center"/>
+				<instance name="iconFrame" />
+			</button>
+			<instance name="DropLand" id="build_editor_item_slot_{id}DropTarget" align="center" valign="center" width="+2s" height="+2s" />
+		</panel>
+	</template>
+
+	<template name="selection_builds_expanded">
+		<panel name="selection_builds_expanded" noclick="1" color="0 0 0 0.75" visible="0"><!-- RMM add visibility controls -->
+
+			<panel name="main_build_editor_popup">
+
+				<!-- Items -->
+				<panel y="200s" x="435s" width="380s" height="496s" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+					<frame name="build_editor_item_frame" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+
+					<panel hmargin="20s" vmargin="15s">
+
+						<label noclick="1" style="h1" font="maindyn_30" content="builds_bookmarks"/>
+						<label y="44s" noclick="1" wrap="1" style="labelBase" font="maindyn_20" color="1 1 1 1" content="builds_bookmarks_info"/>
+
+						<panel y="126s" float="bottom" padding="7s" noclick="1">
+							<label name="" noclick="1" fity="1" style="labelBase" font="maindyn_24" color=".8 .8 .8 1" content="game_shop_item_type_1"/>
+							<panel height="64s" float="right" padding="6s" sticky="0" stickytoinvis="0" >
+								<instance name="build_editor_item_slot_template" id="1" />
+								<instance name="build_editor_item_slot_template" id="2" />
+								<instance name="build_editor_item_slot_template" id="3" />
+								<instance name="build_editor_item_slot_template" id="4" />
+								<instance name="build_editor_item_slot_template" id="5" />
+							</panel>
+							<panel height="8s" noclick="1" />
+							<label name="" noclick="1" fity="1" style="labelBase" font="maindyn_24" color=".8 .8 .8 1" content="game_shop_item_type_2"/>
+							<panel height="64s" float="right" padding="6s" sticky="0" stickytoinvis="0" >
+								<instance name="build_editor_item_slot_template" id="6" />
+								<instance name="build_editor_item_slot_template" id="7" />
+								<instance name="build_editor_item_slot_template" id="8" />
+								<instance name="build_editor_item_slot_template" id="9" />
+								<instance name="build_editor_item_slot_template" id="10" />
+							</panel>
+							<panel height="8s" noclick="1" />
+							<label name="" noclick="1" fity="1" style="labelBase" font="maindyn_24" color=".8 .8 .8 1" content="game_shop_item_type_3"/>
+							<panel height="64s" float="right" padding="6s" sticky="0" stickytoinvis="0" >
+								<instance name="build_editor_item_slot_template" id="11" />
+								<instance name="build_editor_item_slot_template" id="12" />
+								<instance name="build_editor_item_slot_template" id="13" />
+								<instance name="build_editor_item_slot_template" id="14" />
+								<instance name="build_editor_item_slot_template" id="15" />
+							</panel>
+						</panel>
+
+					</panel>
+
+				</panel>
+
+				<!-- Ability Area -->
+				<panel y="200s" x="835s" width="430s" height="496s" noclick="1">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".04 .04 .04 .8"/>
+					<frame name="build_editor_ability_frame" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+
+					<panel hmargin="20s" vmargin="15s">
+
+						<label noclick="1" style="h1" font="maindyn_30" content="builds_ability_order"/>
+						<label y="44s" noclick="1" wrap="1" style="labelBase" font="maindyn_20" color="1 1 1 1" content="builds_ability_order_info"/>
+
+						<!-- Ability Drop Areas -->
+						<panel y="193s" float="bottom" padding="11s" >
+							<panel height="84s" float="right" padding="16s" sticky="0" stickytoinvis="0">
+								<instance name="main_build_editor_abilityslot_template" id="1" />
+								<instance name="main_build_editor_abilityslot_template" id="2" />
+								<instance name="main_build_editor_abilityslot_template" id="3" />
+								<instance name="main_build_editor_abilityslot_template" id="4" />
+								<instance name="main_build_editor_abilityslot_template" id="5" />
+							</panel>
+							<panel height="84s" float="right" padding="16s" sticky="0" stickytoinvis="0" >
+								<instance name="main_build_editor_abilityslot_template" id="6" />
+								<instance name="main_build_editor_abilityslot_template" id="7" />
+								<instance name="main_build_editor_abilityslot_template" id="8" />
+								<instance name="main_build_editor_abilityslot_template" id="9" />
+								<instance name="main_build_editor_abilityslot_template" id="10" />
+							</panel>
+							<panel height="84s" float="right" padding="16s" sticky="0" stickytoinvis="0" >
+								<instance name="main_build_editor_abilityslot_template" id="11" />
+								<instance name="main_build_editor_abilityslot_template" id="12" />
+								<instance name="main_build_editor_abilityslot_template" id="13" />
+								<instance name="main_build_editor_abilityslot_template" id="14" />
+								<instance name="main_build_editor_abilityslot_template" id="15" />
+							</panel>
+						</panel>
+
+						<!-- Abilities -->
+						<panel y="105s" grow="1" regrow="1" float="right" align="center" padding="2s" >
+							<instance name="main_build_editor_ability_template" id="0" />
+							<instance name="main_build_editor_ability_template" id="1" />
+							<instance name="main_build_editor_ability_template" id="2" />
+							<instance name="main_build_editor_ability_template" id="3" />
+						</panel>
+
+					</panel>
+
+
+				</panel>
+
+				<!-- Info / Controls -->
+				<panel y="110s" x="445s" width="818s" noclick="1">
+					<panel float="right" height="40s" noclick="1">
+						<label name="main_build_editor_popup_hero_name_label" fitx="1" y='-10s' fitxpadding="10s" textvalign="bottom" noclick="1" style="h1" font="maindyn_40" content="?"/>
+						<panel name="main_build_editor_popup_hero_role_label_parent" noclick="1" y='10s' sticky="0" stickytoinvis="0" >
+							<label name="main_build_editor_popup_hero_role_label" y="-3s" textvalign="bottom" noclick="1" style="labelBase" font="maindyn_20" content="?"/>
+						</panel>
+						<instance
+							id="main_build_editor_popup_close_btn"
+							name="iconButton"
+							x="0"
+							align="right"
+							width="27s" height="27s" borderthickness="4s"
+							icon="/ui/main/shared/textures/close.tga"
+						/>
+					</panel>
+
+					<panel name="main_build_editor_combo_parent" noclick="1" onshow="BringToFront();" height="32s" y="45s" visible="1" float="right" padding="15s"  >
+
+						<instance name="simple_combobox_textured" id="main_build_editor_combobox" width="410s" x="0" sticky="1" stickytoinvis="0" />
+
+						<panel name="builds_input_parent" visible="0" x="0" width="410s" noclick="1" sticky="1" stickytoinvis="0" >
+							<panel width="376" noclick="1" >
+								<instance name="dialogWrapper2"/>
+								<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="true"/>
+								<textbox
+									name="builds_input_textbox"
+									style="textBox1Input"
+									textcolor="0 0 0 1" y="2s"
+									onesc="Cmd('script Builds.InputOnEsc()')"
+									onenter="Cmd('Script Builds.InputOnEnter()')"
+								/>
+								<label name="builds_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="builds_input_coverup"/>
+							</panel>
+
+							<instance name="iconButton" id="build_editor_input_button"
+								icon="/ui/main/friends/textures/social_findfriend.tga" iconsize="80"
+								width="100@" height="100%" align="right" valign="center" borderthickness="4s"
+							/>
+							<instance name="iconButton" id="build_editor_input_close_button"
+								icon="/ui/main/shared/textures/close.tga"
+								visible="0"
+								width="100@" height="100%" align="right" valign="center" borderthickness="4s" colorized="1"
+							/>
+						</panel>
+
+						<instance name="standardButton" id="main_build_editor_abilities_edit_btn"	x="420s" width="110s" enabled="1" label="builds_edit_build"/>
+						<instance name="standardButton" id="main_build_editor_abilities_delete_btn"	x="540s" width="120s" enabled="1" label="builds_delete_build"/>
+						<instance name="standardButton" id="main_build_editor_abilities_new_btn"	x="670s" width="110s" enabled="1" label="builds_new_build"/>
+
+						<instance name="standardButton" id="main_build_editor_abilities_undo_btn" x="440s" width="150s" enabled="1" label="builds_undo_build"/>
+						<instance name="standardButton" id="main_build_editor_abilities_save_btn" x="600s" width="120s" enabled="1" label="builds_save_build"/>
+
+						<instance id="main_build_editor_popup_share_btn" x="790s"
+							name="iconButton" align="left"
+							width="32s" height="32s" borderthickness="4s"
+							icon="/ui/shared/textures/drag_target.tga" iconsize="92" iconY="-1s" iconX="-1s"
+							cangrab="true" dragexclusive="false"
+						/>
+
+					</panel>
+				</panel>
+
+				<!-- Bottom Close -->
+				<instance name="standardButton" id="main_build_editor_popup_closex" align="right" valign="bottom" x="-14s" y="-58s" height="32s" width="110s" rendermode="grayscale" label="general_close"/>
+
+			</panel>
+
+		</panel>
+	</template>
+
+	<template name="selection_btn_wait">
+		<button name="{id}" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onloadlua="libButton2.initializeButton(self, '{id}', 'standardButton2')"
+			onclicklua="{onclicklua}"
+			onshowlua="GetWidget('{id}_throb'):SetVisible(1)"
+			onhidelua="GetWidget('{id}_throb'):SetVisible(0)"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />
+				<label name="{id}Label" x="100s" width="-100s" y="{labelY=-0.2h}" textalign="left" textvalign="center" font="{font=maindyn_16}" color="{labelcolor=white}" shadow="true" content="{label=temp_button}"/>
+			</panel>
+		</button>
+		<panel name="{id}_throb" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" noclick="1" visible="0" >
+			<animatedimage texture="/ui/shared/throb/throb.tga" noclick="1" loop="1" fps="30" onshow="StartAnim(1);"
+				width="64s" height="64s" valign="center" align="left" x="14s" y="0s"
+			/>
+		</panel>
+	</template>
+
+	<template name="selection_ribbons">
+		<panel name="selection_ribbons" noclick="1" visible="0">
+			<!-- Secondary Button -->
+			<instance
+				name="standardButton"
+				id="selection_ribbons_secondary_btn" rendermode="grayscale" visible="0"
+				x="-10s" width="170s" height="34s" align="right"
+				borderthickness="8s"
+				label="general_backtolobby"
+			/>
+			<!-- Main Button -->
+			<panel valign="bottom" height="90s" width="292s" noclick="1">
+				<frame name="selection_ribbons_primary_btn_glow_highlight" texture="/ui/elements:squareglow" color="1 1 0 1" borderthickness="33@" width="+3.9h" height="+3.9h" align="center" valign="center" visible="0" noclick="1" />
+				<instance
+					name="standardButton"  visible="0"
+					id="selection_ribbons_primary_btn"
+					width="100%" align="right"
+					borderthickness="14s" enabled="0"
+					label=""
+					disabledmouseover="true"
+					disabledmouseout="true"
+				/>
+				<!-- Primary Label -->
+				<panel align="center" y="-2s" grow="1" regrow="1" growinvis="0" width="100%" float="bottom" valign="center" noclick="1">
+					<label name="selection_ribbons_primary_label"  visible="0" textalign="center" fity="1" style="labelBase" font="maindyn_40" color="1 1 1 1" content="main_lobby_contacting_server" noclick="1"/>
+					<panel grow="true" regrow="true" growinvis="0" align="center" float="right" padding="5s" noclick="1">
+						<label name="selection_ribbons_primary_extension_label_1"  visible="0" fitx="1" fity="1" style="labelBase" font="maindyn_26" color="1 1 1 1" content="main_lobby_contacting_server_desc" noclick="true"/>
+						<label name="selection_ribbons_primary_extension_label_2"  visible="0" fitx="1" fity="1" style="labelBase" font="maindyn_26" color="1 1 1 1" content="" noclick="true"/>
+					</panel>
+				</panel>
+				<!-- Waiting coverup -->
+			</panel>
+			<instance
+				name="selection_btn_wait" enabled="0" font="maindyn_26" valign="bottom" height="90s" width="292s" visible="0"
+				id="selection_btn_in_queue"
+				align="right"
+				borderthickness="14s"
+				label="general_finding_match"
+			/>
+			<instance
+				name="selection_btn_wait" enabled="0" font="maindyn_26" valign="bottom" height="90s" width="292s" visible="0"
+				id="selection_ribbons_primary_wait_btn"
+				align="right"
+				borderthickness="14s"
+				label="general_finding_server"
+			/>
+
+		</panel>
+	</template>
+
+</package>

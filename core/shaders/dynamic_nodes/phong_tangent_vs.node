@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="phong_tangent_vs">
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<dependency name="WorldTangent" type="float3" source="WorldTangent" />
+	<dependency name="WorldBinormal" type="float3" source="WorldBinormal" />
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<dependency name="WorldSunPosition" type="float3" source="vSunPositionWorld" />
+
+	<output name="PhongTangentLight" type="float3" solution="PhongTangentLight" />
+	<output name="PhongTangentHalfAngle" type="float3" solution="PhongTangentHalfAngle" />
+	<output name="PhongTangentGroundAmbient" type="float" solution="PhongTangentGroundAmbient" />
+	<?hlsl
+	
+	float3 f3CamDirection = -normalize(WorldPositionOffset);
+	float3 f3Light = WorldSunPosition;
+
+	float3x3 mRotate = transpose(float3x3(WorldTangent, WorldBinormal, WorldNormal));
+	
+	PhongTangentLight = mul(f3Light, mRotate).xyz;
+	PhongTangentHalfAngle = mul(normalize(f3Light + f3CamDirection), mRotate);
+	PhongTangentGroundAmbient = dot(WorldNormal, float3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f;
+	
+	?>
+	<?glsl
+	
+	vec3 f3CamDirection = -normalize(WorldPositionOffset);
+	vec3 f3Light = WorldSunPosition;
+
+	mat3 mRotate = transpose(mat3(WorldTangent, WorldBinormal, WorldNormal));
+	
+	PhongTangentLight = (mRotate * f3Light).xyz;
+	PhongTangentHalfAngle = mRotate * normalize(f3Light + f3CamDirection);
+	PhongTangentGroundAmbient = dot(WorldNormal, vec3(0.0f, 0.0f, 1.0f)) * 0.375f + 0.625f;
+	
+	?>
+</node>

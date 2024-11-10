@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="clan_create" >
+		<panel noclick="1" name="clan_create" visible="0" >
+		
+			<panel y="-72s" height="70s" noclick="1" >		
+				<label content="clans_view_startaclub" x="54s" style="BrawlBlueReverse" textvalign="center" font="maindyn_36" noclick="1" />	
+			</panel>		
+			
+			<panel float="bottom" padding="5s" reverse="1" noclick="1" width="-16s" height="-5s" align="center" y="15s" >
+			
+				<label style="BrawlH_36" font="maindyn_40" content="clans_create_welcome" fity="1" fitypadding="25s" wrap="1" />
+				
+				
+				<panel height="46s" width="100%" noclick="0">
+					<label style="BrawlH_30" fitx="1" fitxpadding="15s" textvalign="center" content="clans_create_name" noclick="1" />
+					<frame name="clan_create_clannameinput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" width="528s" x="170s" noclick="1">
+						<textbox
+							name="clan_create_clannameinput_buffer" taborder="20"
+							maxlength="32"
+							textcolor="#35608c"
+							textoutlinecolor="#87c2ff"
+							color="invisible"
+							font="maindyn_22"
+							scrolltexture="/ui/_textures/elements/combobox.tga"
+							indent="0"
+							width="-20s" align="center" y="9s"
+							height="-4s" valign="center" 
+							grow="1"
+							onloadlua=""
+							onesc="DoEvent()"
+							onmouseldownlua=""
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"		
+							onmouseoutlua=""
+							onsizelua=""
+							onenter=""							
+						/>		
+						<label name="clan_create_clannameinput_frame_coverlabel" x="10s" y="0" noclick="true" textvalign="center" color="#35608c" font="maindyn_26" content="clans_create_pick_name"/>									
+						<frame name="clan_create_clannameinput_highlight" texture="/ui/shared/frames/text_input.tga" color="invisible" bordercolor="#fdc44b" borderthickness="5s" noclick="1" visible="0" />
+					</frame>
+					<panel x="698s" width="100@" height="100%" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_name'), Translate('clans_create_pick_name_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>				
+					
+					<label style="BrawlH_30" fitx="1" fitxpadding="10s" textvalign="center" content="clans_create_tag" x="770s" noclick="1" />
+					<frame name="clan_create_clantaginput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" width="204s" x="835s" noclick="1">
+						<textbox
+							name="clan_create_clantaginput_buffer" taborder="21"
+							maxlength="4"
+							textcolor="#35608c"
+							textoutlinecolor="#87c2ff"
+							color="invisible"
+							font="maindyn_22"
+							scrolltexture="/ui/_textures/elements/combobox.tga"
+							indent="0"
+							width="-20s" align="center" y="9s"
+							height="-4s" valign="center"
+							grow="1"
+							onloadlua=""
+							onesc="DoEvent()"
+							onmouseldownlua=""
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"		
+							onmouseoutlua=""
+							onsizelua=""
+							onenter=""							
+						/>		
+						<label name="clan_create_clantaginput_frame_coverlabel" x="10s" y="-1s" noclick="true" textvalign="center" valign="center" color="#35608c" font="maindyn_26" content="clans_create_pick_tag"/>
+						<frame name="clan_create_clantaginput_highlight" texture="/ui/shared/frames/text_input.tga" color="invisible" bordercolor="#fdc44b" borderthickness="5s" noclick="1" visible="0" />
+					</frame>	
+					<panel x="1040s" width="100@" height="100%" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_tag'), Translate('clans_create_tag_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+				</panel>
+				
+				<panel height="10s" noclick="1">
+					<instance name="hr" valign="center" />
+				</panel>
+				
+				<panel height="46s" width="100%" noclick="0">
+					<label style="BrawlH_30" fitx="1" fitxpadding="10s" textvalign="center" content="clans_create_desc" noclick="1" />
+					<frame name="clan_create_clandescriptioninput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" width="870s" x="170s" noclick="1">
+						<textbox
+							name="clan_create_clandescriptioninput_buffer" taborder="22"
+							maxlength="90"
+							textcolor="#35608c"
+							textoutlinecolor="#87c2ff"
+							color="invisible"
+							font="maindyn_22"
+							scrolltexture="/ui/_textures/elements/combobox.tga"
+							indent="0"
+							maxcharacters="5"
+							wrap="0"
+							width="-20s" align="center" y="9s"
+							height="-4s" valign="center"
+							grow="1"
+							onloadlua=""
+							onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+							onmouseldownlua=""
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"		
+							onmouseoutlua=""
+							onsizelua=""
+							onesc="DoEvent()"
+							onenter=""							
+						/>		
+						<label name="clan_create_clandescriptioninput_frame_coverlabel" x="10s" y="-1s" noclick="true" textvalign="center" valign="center" color="#35608c" font="maindyn_26" content="clans_create_desc_club"/>
+						<frame name="clan_create_clandescriptioninput_highlight" texture="/ui/shared/frames/text_input.tga" color="invisible" bordercolor="#fdc44b" borderthickness="5s" noclick="1" visible="0" />
+					</frame>
+					<panel x="1040s" width="100@" height="100%" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_desc'), Translate('clans_create_desc_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+				</panel>
+				
+				<panel height="6s" noclick="1">
+					<instance name="hr" valign="center" y="4s" />
+				</panel>
+				
+				<!--
+				<panel height="46s" width="100%" float="right" noclick="0">
+					<frame name="clan_create_chattopicinput_frame" texture="/ui/shared/frames/text_input.tga" color="1 1 1 1" bordercolor="1 1 1 1" borderthickness="5s" width="1040s" noclick="1">
+						<textbox
+							name="clan_create_chattopicinput_buffer"
+							maxlength="100"
+							textcolor="#35608c"
+							textoutlinecolor="#87c2ff"
+							color="invisible"
+							font="maindyn_20"
+							scrolltexture="/ui/_textures/elements/combobox.tga"
+							indent="0"
+							maxcharacters="5"
+							wrap="1"
+							width="-20s" align="center" y="11s"
+							height="-4s" valign="center"
+							grow="1"
+							onloadlua=""
+							onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+							onmouseldownlua=""
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"		
+							onmouseoutlua=""
+							onsizelua=""
+							onesc="DoEvent()"
+							onenter=""							
+						/>		
+						<label name="clan_create_chattopicinput_frame_coverlabel" x="10s" y="-1s" noclick="true" textvalign="center" valign="center" color="#35608c" font="maindyn_20" content="clans_create_motd"/>
+						<frame name="clan_create_chattopicinput_highlight" texture="/ui/shared/frames/text_input.tga" color="invisible" bordercolor="#fdc44b" borderthickness="5s" noclick="1" visible="0" />
+					</frame>
+					<panel width="100@" height="100%" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('Title'), Translate('Body'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+				</panel>				
+				-->
+				
+				<panel height="50s" width="100%" noclick="1" >
+					<instance name="hr" valign="bottom" y="3s" />
+					<label style="BrawlH_30" fitx="1" textvalign="center" content="clans_create_lang" noclick="1" />
+					<panel grow="1" regrow="1" height="22s" align="right" valign="center" x="-36s"  float="right" padding="5s" reverse="1" >
+						<combobox
+							name="clan_create_language_combobox" x="0s" y="0s" visible="1"
+							width="240s"
+							height="32s"
+							align="left"
+							valign="top"
+							color="invisible"
+							itemwidth="100%"
+							itemheight="32s"
+							cvar=""
+							maxlistheight="12"
+							exteriorscrollbars="1"
+							scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+							handleheight="100@" handlewidth="100%"
+							highlight="under"
+							highlightcolor="invisible"
+							highlightbordercolor="invisible"
+							onlosefocuslua="self:GetWidget('clan_create_language_combobox_listbox'):SetVisible(0)"
+							onselectlua="
+
+							"
+							onmouseover="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+							watch9="UIUpdateRegion"
+							ontrigger9="DoEvent(9);"
+							onevent9lua="UIManager.GetInterface('main'):StrifeRegionF('PopulateLanguageSelector', self)"
+							onshow="If(!StringEmpty(host_language) and StringEmpty(this), SetSelectedItemByValue(host_language, false));"
+							onloadlua="
+								self:GetWidget('clan_create_language_combobox_listbox'):SetCallback('onlosefocus', function()
+									self:GetWidget('clan_create_language_combobox_listbox'):SetVisible(0)
+								end)
+								self:GetWidget('clan_create_language_combobox_listbox'):SetCallback('onhide', function()
+									self:GetWidget('clan_create_language_combobox_listbox'):SetVisible(0)
+								end)				
+							"		
+							hscrollbar="0"
+							horizontal="false"		
+						>
+							<instance name="clans_combobox_state" state="up" color=".8 .8 .8 1" />
+							<instance name="clans_combobox_state" state="over" color="1 1 1 1" />
+							<instance name="clans_combobox_state" state="down" color=".4 .4 .4 1" />
+							<widgetstate statename="listbg">
+								<frame texture="/ui/elements:rounded_bg_white" height="+10s" valign="center" color=".1 .1 .1 .95" borderthickness="5s" />
+								<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+							</widgetstate>
+							<widgetstate statename="itembg">
+								
+							</widgetstate>
+							<widgetstate statename="itemhighlight">
+								<frame texture="/ui/elements:rounded_bg_white" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+							</widgetstate>
+						</combobox>							
+					
+					</panel>
+					<panel x="14s" width="100@" height="100%" align="right" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_lang'), Translate('clans_create_lang_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+				</panel>
+
+				<panel height="0s" width="100%" noclick="1" visible="0" >  <!-- NO REGIONS SEARCH THIS PHRASE -->
+					<instance name="hr" valign="bottom" y="3s" />
+					<label style="BrawlH_30" fitx="1" textvalign="center" content="clans_create_region" noclick="1" />
+					<panel grow="1" regrow="1" height="22s" align="right" valign="center" x="-36s"  float="right" padding="5s" reverse="1" >
+						<combobox
+							name="clan_create_region_combobox" x="0s" y="0s" visible="1"
+							width="240s"
+							height="32s"
+							align="left"
+							valign="top"
+							color="invisible"
+							itemwidth="100%"
+							itemheight="32s"
+							cvar=""
+							maxlistheight="8"
+							exteriorscrollbars="1"
+							scrolltexture="/ui/_textures/elements/combobox_simple.tga"
+							handleheight="100@" handlewidth="100%"
+							highlight="under"
+							highlightcolor="invisible"
+							highlightbordercolor="invisible"
+							onlosefocuslua="self:GetWidget('clan_create_region_combobox_listbox'):SetVisible(0)"
+							onselectlua=""
+							onmouseover="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+							onloadlua="
+								self:GetWidget('clan_create_region_combobox_listbox'):SetCallback('onlosefocus', function()
+									self:GetWidget('clan_create_region_combobox_listbox'):SetVisible(0)
+								end)
+								self:GetWidget('clan_create_region_combobox_listbox'):SetCallback('onhide', function()
+									self:GetWidget('clan_create_region_combobox_listbox'):SetVisible(0)
+								end)				
+							"		
+							hscrollbar="0"
+							horizontal="false"		
+						>
+							<instance name="clans_combobox_state" state="up" color=".8 .8 .8 1" />
+							<instance name="clans_combobox_state" state="over" color="1 1 1 1" />
+							<instance name="clans_combobox_state" state="down" color=".4 .4 .4 1" />
+							<widgetstate statename="listbg">
+								<frame texture="/ui/elements:rounded_bg_white" height="+10s" valign="center" color=".1 .1 .1 .95" borderthickness="5s" />
+								<frame texture="/ui/elements:roundframe" height="+10s" valign="center"  borderthickness="5s" color=".2 .2 .2 1"/>
+							</widgetstate>
+							<widgetstate statename="itembg">
+								
+							</widgetstate>
+							<widgetstate statename="itemhighlight">
+								<frame texture="/ui/elements:rounded_bg_white" width="-4s" align="center" valign="center" color="1 1 1 .1" borderthickness="3s" />
+							</widgetstate>
+						</combobox>							
+					
+					</panel>
+					<panel x="14s" width="100@" height="100%" align="right" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_region'), Translate('clans_create_region_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+				</panel>
+				
+				<panel height="48s" width="100%" noclick="1" >
+					<label style="BrawlH_30" fitx="1" textvalign="center" content="clans_create_membership" noclick="1" />
+					<panel grow="1" regrow="1" height="22s" align="right" valign="center" x="-82@" y="2s" float="right" padding="5s" >
+						<instance id="clan_create_filter_0_1" name="deckSimpleRadio" title="Open" height="100%" width="86s" />
+						<instance id="clan_create_filter_0_2" name="deckSimpleRadio" title="Application" height="100%" width="140s" />
+						<instance id="clan_create_filter_0_3" name="deckSimpleRadio" title="Invite Only" height="100%" width="132s" />
+					</panel>
+					<panel x="13s" width="100@" height="100%" align="right" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_membership'), Translate('clans_create_membership_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+					<instance name="hr" valign="bottom" y="3s" />
+				</panel>		
+		
+				<panel height="48s" width="100%" noclick="1" sticky="1" stickytoinvis="0" visible="0" >
+					<label style="BrawlH_30" fitx="1" textvalign="center" content="clans_create_focus" noclick="1" />
+					<panel grow="1" regrow="1" height="22s" align="right" valign="center" x="-82@" y="2s" float="right" padding="5s" >
+						<instance id="clan_create_filter_1_1" name="deckSimpleRadio" title="Social" height="100%" width="94s" />
+						<instance id="clan_create_filter_1_2" name="deckSimpleRadio" title="Competitive" height="100%" width="154s" />
+						<instance id="clan_create_filter_1_3" name="deckSimpleRadio" title="Both" height="100%" width="76s" />
+					</panel>
+					<panel x="13s" width="100@" height="100%" align="right" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_focus'), Translate('clans_create_focus_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+					<instance name="hr" valign="bottom" y="3s" />
+				</panel>		
+		
+				<panel height="48s" width="100%" noclick="1" sticky="1" stickytoinvis="0" visible="0" >
+					<label style="BrawlH_30" fitx="1" textvalign="center" content="clans_create_skill" noclick="1" />
+					<panel grow="1" regrow="1" height="22s" align="right" valign="center" x="-82@" y="2s" float="right" padding="5s" >
+						<instance id="clan_create_filter_2_1" name="deckSimpleRadio" title="Newbies" height="100%" width="114s" />
+						<instance id="clan_create_filter_2_2" name="deckSimpleRadio" title="Experienced" height="100%" width="150s" />
+						<instance id="clan_create_filter_2_3" name="deckSimpleRadio" title="Anyone" height="100%" width="100s" />
+					</panel>
+					<panel x="13s" width="100@" height="100%" align="right" noclick="1">
+						<image texture="/ui/shared/textures/what_dis.tga" width="32s" height="32s" align="center" valign="center" color="1 1 1 .75"
+							onmouseoverlua="
+								simpleTipGrowYUpdate(true, nil, Translate('clans_create_skill'), Translate('clans_create_skill_tip'), 320)
+								self:SetColor('1 1 1 1')
+								"
+							onmouseoutlua="
+								simpleTipGrowYUpdate(false)
+								self:SetColor('1 1 1 .75')
+								"
+						/>
+					</panel>
+					<instance name="hr" valign="bottom" y="3s" />
+				</panel>	
+
+				<panel height="82s" width="100%" noclick="1" sticky="1" stickytoinvis="0" visible="1" >
+					<panel width="400s" noclick="1">
+						<instance name="clans_slider_template_int" id="clans_create_minRating" sliderWidth="-70s" intWidth="68s" tip_id="clans_create_minRating_tip" showtip="1" valign="center" minvalue="0" maxvalue="3000" step="1" title="clans_applicants_medals_tip" tip_name="clans_applicants_medals_tip" tip_text1="clans_applicants_medals_desc"/>
+					</panel>
+				</panel>				
+				
+				<panel height="102s" y="-5s" valign="bottom" noclick="1" >
+
+					<instance name="standardButton" id="clans_create_finder_btn" font="maindyn_24" height="46s" label="clans_create_findclub" width="280s" valign="bottom" align="left" defaultsound="0"
+						onclicklua="mainUI.Clans.SetTab('clan_finder')"
+					/>	
+				
+					<panel width="300s" height="102s" sticky="1" stickytoinvis="0" visible="1" align="right" >						
+						<panel noclick="1" >						
+							<panel grow="1" height="48s" align="center" float="right" padding="8s" onmouseoutlua="simpleTipGrowYUpdate(false)">
+								<panel grow="1" height="100%" noclick="1">
+									<label name="clans_create_clan_btn2_cost_label" y="-2s" fitx="1" textvalign="center" style="labelBase" color="#ebebeb" outlinecolor="#1486d7" font="maindyn_30" content="???" noclick="1" />
+								</panel>
+								<image name="clans_create_clan_btn2_cost_image" texture="/ui/icons/valor.tga" width="100@" height="100%" noclick="1"/>
+							</panel>
+							<instance id="clans_create_clan_btn2" y="50s" height="46s" width="-34s" align="center" borderthickness="4s"
+								name="primaryButton"
+								label="clans_view_startmyclub"
+								font="maindyn_22"
+								onmouseoverdisabledlua="simpleTipGrowYUpdate(true, nil, Translate('clans_create_club_why'), Translate('clans_create_club_why_desc'), 290)"
+								onmouseoutlua="simpleTipGrowYUpdate(false)"
+								onmouseoutdisabledlua="simpleTipGrowYUpdate(false)"
+								disabledmouseover="true"
+								disabledmouseout="true"									
+							/>
+							<instance id="clans_create_clan_btn_buygems" y="50s" height="46s" width="-34s" align="center" borderthickness="4s"
+								name="primaryButton"
+								label="endmatch_needgems" visible="0"
+								font="maindyn_22"			
+								onclicklua="buyGemsShow() mainUI.Clans.SetTab('clan_finder')"
+							/>
+						</panel>
+						<frame texture="/ui/shared/frames/thick.tga" borderthickness="12s" bordercolor="#4bb3fd" color="invisible" width="+4s" height="+4s" align="center" valign="center" noclick="1" />
+					</panel>				
+
+				</panel>				
+				
+			</panel>
+			
+		</panel>
+	</template>		
+		
+</package>

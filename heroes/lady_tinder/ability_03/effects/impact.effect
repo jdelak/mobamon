@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.85"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_impact.wav"
+			/>
+			
+			<sound
+				volume="0.75"
+				falloffstart="500"
+				falloffend="2200"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			<trackeremitter
+				count="1"
+				position="0 0 500"
+				targetposition="0 0 0"
+				targetbone="_bone_center"
+				tracktype="lerp"
+				trackspeed="1" 
+				spawnrate="1000"
+				particlelife="2000"
+				offsetsphere="25 25 0"
+				speed="1100"
+			>
+				<particle
+				>
+					<simpleemitter
+						life="325"
+						position="0 0 0"
+						spawnrate="300"
+						minspeed="125"
+						maxspeed="250"
+						drag="0.05"
+						minparticlelife="500"
+						maxparticlelife="750"
+						offsetsphere="25"
+						depthbias="-25"
+						gravity="5"
+						material="/shared/effects/smaterials/leaf.material"
+					>
+						<particle 
+							minanglespeed="-180"
+							maxanglespeed="180"
+							minangle="-360"
+							maxangle="360"
+							color="1 1 1"
+							startalpha="1"
+							endalpha="1"
+							minscale="4"
+							maxscale="8"
+							flare="0"
+						/>
+					</simpleemitter>
+				</particle>
+			</trackeremitter>
+
+		</particlesystem>
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

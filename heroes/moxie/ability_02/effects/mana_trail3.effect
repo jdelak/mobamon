@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="tracker" deferred="true" persistent="false">
+	<definitions>
+	
+
+		
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2000"
+				volume="0.25"
+				sample="../sounds/sfx_trail_%.wav"
+			/>
+			
+			<model
+			position="30 0 0"
+				expirelife="250"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/shell_sludge_different.material"
+				model="side_to_side/model.mdf"
+				anim="idle"
+				rollspeed="1800"
+			>
+
+			
+			<template name="mana">
+			
+			
+			
+				<billboard
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor="0 .2 1"
+					midcolor="0 .2 1"
+					endcolor="0 0 0"
+					size="170"
+				/>
+				
+				<billboard
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor=".5"
+					midcolor=".5"
+					endcolor="0"
+					size="40"
+				/>
+			
+			
+				<groundsprite
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor="0 .2 .5"
+					midcolor="0 .2 .5"
+					endcolor="0 0 0"
+					size="90"
+				/>
+				
+				<groundsprite
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor=".25"
+					midcolor=".25"
+					endcolor="0"
+					size="25"
+				/>
+				
+				
+				
+				
+
+				<simpleemitter
+					life="500"
+					bone="{zbone}"
+					spawnrate="1000"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					startparticlealpha="1"
+					midparticlealpha="1"
+					endparticlealpha="0"
+					position="0 0 0"
+					speed="25"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="0"
+				>
+					<particle
+						startcolor="0 .25 .5"
+						midcolor="0 0 .5"
+						endcolor="0 0 0"
+						midcolorpos=".15"
+						minstartsize="5"
+						maxstartsize="20"
+						minendsize="2"
+						maxendsize="10"
+					/>
+				</simpleemitter>
+				
+
+			</template>
+
+			<instance name="mana" zbone="_bone_fx_02"/>
+			<instance name="mana" zbone="_bone_fx_03"/>
+			
+			</model>
+			
+			
+			<model
+			position="-30 0 0"
+				expirelife="250"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/shell_sludge_different.material"
+				model="side_to_side/model.mdf"
+				anim="idle"
+				rollspeed="1800"
+			>
+
+			
+			<template name="mana">
+			
+			
+			
+				<billboard
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor="0 .2 1"
+					midcolor="0 .2 1"
+					endcolor="0 0 0"
+					size="170"
+				/>
+				
+				<billboard
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor=".5"
+					midcolor=".5"
+					endcolor="0"
+					size="40"
+				/>
+			
+			
+				<groundsprite
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor="0 .2 .5"
+					midcolor="0 .2 .5"
+					endcolor="0 0 0"
+					size="90"
+				/>
+				
+				<groundsprite
+					bone="{zbone}"
+					life="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					startcolor=".25"
+					midcolor=".25"
+					endcolor="0"
+					size="25"
+				/>
+				
+				
+				
+				
+
+				<simpleemitter
+					life="500"
+					bone="{zbone}"
+					spawnrate="2000"
+					minparticlelife="1000"
+					maxparticlelife="2000"
+					startparticlealpha="1"
+					midparticlealpha="1"
+					endparticlealpha="0"
+					position="0 0 0"
+					speed="25"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="0"
+				>
+					<particle
+						startcolor="0 .25 .5"
+						midcolor="0 0 .5"
+						endcolor="0 0 0"
+						midcolorpos=".15"
+						minstartsize="5"
+						maxstartsize="20"
+						minendsize="2"
+						maxendsize="10"
+					/>
+				</simpleemitter>
+				
+
+			</template>
+
+			<instance name="mana" zbone="_bone_fx_02"/>
+			
+			</model>
+			
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>
+

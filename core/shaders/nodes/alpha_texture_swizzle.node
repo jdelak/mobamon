@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="alpha_texture_swizzle">
+	<dependency name="A" type="float4" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output type="float4" name="Out" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			Out = A;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			Out = A;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			Out = A;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			Out = vec4(0.0f, 0.0f, 0.0f, A.r);
+		?>
+	</case>
+</node>

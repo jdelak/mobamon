@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Zaku_Ability4"
+
+	radius="300"	
+	targetselection="all"
+	targetscheme="all_units"
+	effecttype="Magic"
+	destroytrees="true"
+	impactdelay="2000"
+	impacteffect=""
+	
+>
+	<onspawn>
+	</onspawn>
+	
+	<onimpact>
+		<targettype type="Boss" />
+		<else>
+			<cantarget targetscheme="enemy_units">
+				<push force="1200" duration="250" source="this_entity" />
+				<applystate name="State_Stunned" duration="250" />
+			</cantarget>
+		</else>
+	</onimpact>
+</affector>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Iah_Ability1"
+	
+	model="pet/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	unitwalking="true"
+	cliffwalking="false"
+	buildingwalking="false"
+	
+	canturn="true"
+	turnrate="360"
+	turnsmoothing="0.05"
+	
+	spawneffect="pet/effects/spawn.effect"
+	
+	showlifetime="true"
+
+	tiltfactor="0.0"
+	tiltspeed="90.0"
+	
+	passiveeffect="pet/effects/body.effect"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="1.4"
+	modelscale="1"
+	effectscale="1"
+	boundsheight="64"
+	searchheight="100"
+	searchradius="70"
+	minsearchradius="32"
+	boundsradius="16"
+	collisionradius="8"
+	selectionradius="45"
+	targetoffset="0 0 54"
+	
+	attackduration="500"
+	attackactiontime="400"
+	attackcooldown="1100"
+	attackdamagemin="30,40,50"
+	attackdamagemax="30,40,50"
+	attacknumanims="1"
+	attackoffset="0 80 120"
+	attackprojectile="Projectile_IahSummon"
+	attackrange="450"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect=""
+	attacktype="ranged"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="700"
+	sightrangeday="800"
+	sightrangenight="800"
+	
+	drawonmap="true"
+	invulnerable="false"
+	canattack="true"
+
+	corpsetime="500"
+	corpsefadetime="1000"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	deathtime="0"
+
+	movespeed="275"
+	lifetime="8000"
+	
+	immunity=""
+	nothreat="false"
+
+	hidealtinfo="false"
+	
+	maxhealth="1"
+	mitigation="5"
+	
+
+	ismobile="true"
+	
+	goldbountymin="15"
+	goldbountymax="15"
+
+
+	infoheight="150"
+
+	unittype=""
+	hasdynamicpower="false"
+
+>
+	
+	<onspawn>
+		<applystate name="State_Iah_Ability1_Speed" target="this_entity" duration="8000" />
+		<order command="attack" force="true" source="this_entity" target="this_proxy_entity" />
+		
+		<areaofeffect
+			radius="450"
+			targetselection="all"
+			targetscheme="non_player_controlled_enemy_units"
+			center="this_entity"
+		>
+			<targettype type="Boss" />
+			<else>
+				<distance source="source_entity" target="target_entity" />
+				<setvar0 a="result" />
+				<distance source="this_entity" target="target_entity" />
+
+				<compare a="result" b="var0" op="lt" >
+					<order command="attack" force="true" source="target_entity" target="this_entity" />
+				</compare>
+			</else>
+
+		</areaofeffect>
+	</onspawn>
+
+	<onattackingdamageevent>
+		<damageeffecttype effecttype="Indirect" />
+		<else>
+			<getconstant name="damage" adjustmentsource="this_owner_entity" />
+			<setvar0 a="1" b="result" op="mult" />
+			<setvalue name="damage_attempted" a="0" b="result" op="mult" />
+
+			<damage effecttype="AttackDamage Indirect" amount="1" b="var0" op="mult" target="target_entity" source="this_owner_entity" />
+		</else>
+	</onattackingdamageevent>
+	
+	<onattackimpact>
+	</onattackimpact>
+
+
+
+</pet>

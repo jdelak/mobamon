@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<style name="windowFrame" bordercolor="#5ab2d6" color="invisible" />
+	<style name="windowBase" color="#101d25" />
+	<style name="windowHeader" bordercolor="#033c54" color="#033c54" />
+	
+	<style name="labelBase" outline="true" outlinecolor="#0e2d3ab5" color="#ebebeb"/>
+	<style name="BrawlBlueReverse" color="#093b51" outline="1" outlinecolor="#97daf6"/>
+	<style name="BrawlH_48" style="labelBase" font="maindyn_48"/>
+	
+	<template name="buyGemsPackage">
+		<panel name="buyGemsPackage{id=1}" width="63@" height="100%" noclick="true" sticky="1" stickytoinvis="0" >
+			<panel>
+				<panel width="14h" height="14h" align="center" y="-1.5h">
+					<panel name="buyGemsPackage{id=1}Body" align="center" valign="center">
+						<image name="buyGemsPackage{id=1}Icon" texture="/ui/icons/gems.tga"/>
+					</panel>
+				</panel>
+				<panel name="buyGemsPackage{id=1}BonusGemsParent" align="right" x="0.4h" y="-0.3h" width="6.2h" height="6.2h" noclick="1">
+					<image texture="/ui/shared/textures/circle_ring.tga" align="center" valign="center" color="#65ccfc78" width="+1.0h" height="+1.0h" noclick="1" />
+					<image texture="/ui/shared/textures/circle_filled.tga" align="center" valign="center" color="#65ccfcec" noclick="1" />
+					<label name="buyGemsPackage{id=1}BonusGemLabel2" textalign="center" textvalign="center" y="-1.1h" font="subdyn_12" style="labelBase" content="needgems_free_caps"/>
+					<label name="buyGemsPackage{id=1}BonusGemLabel" textalign="center" textvalign="center" y="0.7h" font="maindyn_22" style="labelBase" content="{gemCount=-}"/>
+				</panel>				
+
+				<panel name="buyGemsPackage{id=1}GemsParent" height="4h" y="9.8h">
+					<label name="buyGemsPackage{id=1}GemLabel" textalign="center" textvalign="center" font="maindyn_36" style="BrawlBlueReverse" content="{gemCount=25}"/>
+				</panel>
+				
+				<panel width="-1.4h" height="5.2h" valign="bottom" align="center" noclick="1">
+					<label textalign="center" y="-2.2h" font="subdyn_12" style="labelBase" content="needgems_buynow_caps"/>
+					<instance id="buyGemsPackage{id=1}Button"
+						name="standardButton"
+						label=""
+						font="maindyn_24"
+					/>	
+					<label name="buyGemsPackage{id=1}RMTLabel" y="-0.3h" textalign="center" textvalign="center" font="maindyn_22" style="labelBase" color="#eff8ff" outlinecolor="0 0 0 .4" content="" noclick="1"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+	<panel name="buyGems" visible="0" >
+		<image texture="/ui/main/shared/textures/main_background_overlay_darkener.tga" color="#0f262cbb" noclick="1" />
+		<panel name="buyGemsWidth" align="center" valign="center" grow="1" regrow="1" growinvis="0" width="59h" >
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="2.2h" style="windowBase" noclick="1" y="0" />
+			
+			<!-- Header -->
+			<frame texture="/ui/shared/frames/header_bg.tga" borderthickness="2.2h" style="windowHeader" height="8h" noclick="1" y="0">
+				<label content="buygems_title" x="2.0h" style="labelBase" textvalign="center" font="maindyn_36" noclick="1" />
+				<panel grow="1" regrow="1" height="100%" align="right" x="-8.4h" float="right" padding="5s" noclick="1">
+					<label fitx="1" textvalign="center" font="maindyn_22" style="labelBase" content="buygems_current"/>
+					<label name="buyGemsCurrent" fitx="1" textvalign="center" font="maindyn_26" style="labelBase" content="--"/>
+					<label fitx="1" textvalign="center" font="maindyn_22" style="labelBase" content="currency_gems"/>
+				</panel>
+				<instance name="close_template" buttonName="buyGemsClose" x="-2.0h" height="4.4h" width="4.4h" align="right" valign="center" />
+				<instance name="hr" valign="bottom" />
+			</frame>
+			
+			<panel y="10.2h" width="100%" align="center" grow="1" regrow="1" growinvis="0" float="bottom" padding="1.6h">			
+				<label name="buyGemsPurchaseTitle" fity="1" style="BrawlH_48" wrap="1" textalign="center" content="needgems_title"/>
+				<panel width="100%" height="23.6h" noclick="1">
+					<panel name="buyGemsPurchasesEnabled" height="100%" align="center" grow="1" regrow="1" growinvis="0" float="right" padding="1.8h" x="-1.8h">
+						<panel name="specialOfferReopen" visible="0" width="63@" height="100%" noclick="true" sticky="1" stickytoinvis="0" >
+							<panel>
+								<panel width="14h" height="14h" align="center" y="-1.5h">
+									<panel align="center" valign="center">
+										<image texture="/ui/main/quests/textures/quest_treasures.tga" width="100@" height="100%" rendermode="normal" />
+									</panel>
+								</panel>
+								<panel align="right" x="0.4h" y="-0.3h" width="6.2h" height="6.2h" noclick="1">
+									<image texture="/ui/shared/textures/circle_ring.tga" align="center" valign="center" color="#65ccfc78" width="+1.0h" height="+1.0h" noclick="1" />
+									<image texture="/ui/shared/textures/circle_filled.tga" align="center" valign="center" color="#65ccfcec" noclick="1" />
+									<label name="specialOfferReopenLabel1" textalign="center" textvalign="center" y="0h" wrap="1" font="subdyn_12" style="labelBase" content=""/>
+								</panel>				
+
+								<panel height="4h" y="9.8h">
+									<label textalign="center" textvalign="center" font="maindyn_36" style="BrawlBlueReverse" content=""/>
+								</panel>
+								
+								<panel width="-1.4h" height="5.2h" valign="bottom" align="center" noclick="1">
+									<label textalign="center" y="-2.2h" font="subdyn_12" style="labelBase" content="special_offer_view1"/>
+									<instance id="specialOfferReopenButton"
+										name="standardButton"
+										label="special_offer_view2"
+										font="maindyn_24"
+										onclicklua="
+											local SpecialOffer 	= LuaTrigger.GetTrigger('SpecialOffer')
+											SpecialOffer.gemOfferMaximised = true
+											SpecialOffer:Trigger(false)
+										"
+									/>	
+									<label y="-0.3h" textalign="center" textvalign="center" font="maindyn_22" style="labelBase" color="#eff8ff" outlinecolor="0 0 0 .4" content="" noclick="1"/>
+								</panel>
+							</panel>
+						</panel>	
+						<instance name="buyGemsPackage" id="0" rmtCost="$0.75" gemCount="1"/>
+						<instance name="buyGemsPackage" id="1" rmtCost="$0.75" gemCount="1"/>
+						<instance name="buyGemsPackage" id="2" rmtCost="$1.75" gemCount="2"/>
+						<instance name="buyGemsPackage" id="3" rmtCost="$4" gemCount="5"/>
+						<instance name="buyGemsPackage" id="4" rmtCost="$7" gemCount="10"/>
+						<instance name="buyGemsPackage" id="5" rmtCost="$18" gemCount="25"/>
+						<instance name="buyGemsPackage" id="6" rmtCost="$18" gemCount="25"/>
+						<instance name="buyGemsPackage" id="7" rmtCost="$18" gemCount="25"/>
+						<instance name="buyGemsPackage" id="8" rmtCost="$18" gemCount="25"/>
+						<instance name="buyGemsPackage" id="9" rmtCost="$18" gemCount="25"/>						
+					</panel>
+					<panel name="buyGemsPurchasesDisabled" visible="0" height="100%" align="center" grow="1" regrow="1" growinvis="0" float="right" padding="1.8h" x="-1.8h">
+						<label name="buyGemsPurchaseTitle3" width="360s" textalign="center" fity="1" align="center" valign="center" y="-50s" font="maindyn_20" style="labelBase" content="needgems_nogemsyet" wrap="1"/>
+					</panel>
+				</panel>
+				<panel height="1.5h"/>
+			</panel>
+			
+			<frame texture="/ui/shared/frames/thick.tga" borderthickness="2.0h" style="windowFrame" noclick="1" y="0" />
+		</panel>
+	</panel>
+
+</package>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_MainBaseStructure_ShieldDestruction_Sides"
+
+	speed="1500"
+	gravity="0"
+	canturn="false"
+	modelscale="1.8"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact.effect"
+	
+>
+	<onimpact>
+		<pushentitysearch global="true" targetscheme="ally_main_base_structure" ignoreinvulnerable="true" />
+		<condition test="not_redirect">
+			<setpos0 position="stack_entity" offsetspace="stack_entity" offset="-160 -160 0" />
+			<retarget target="pos0" />
+		</condition>	
+		<else>
+			<setvar0 a="0.27" b="source_health" op="mult" source="stack_entity"  />
+			<setvar0 a="var0" b="source_shield" op="add" source="stack_entity" />
+			<changeaccumulator entity="stack_entity" b="param" op="add" />
+			<setvar1 a="result" />
+			<compare a="var1" b="1" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_1" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+			</compare>
+			<compare a="var1" b="2" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_2" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+			</compare>
+			<compare a="var1" b="3" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_3" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+			</compare>
+			<compare a="var1" b="4" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_4" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+			</compare>
+			<compare a="var1" b="5" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_5" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+			</compare>
+			<compare a="var1" b="6" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_6" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+			</compare>
+			<compare a="var1" b="7" op="eq">
+				<setactivemodifierkey entity="stack_entity" name="rax_destroyed_7" />
+				<damage amount="1" b="var0" op="mult" target="stack_entity" nonlethal="true" />
+
+				<compare a="target_team" b="1" op="eq" target="source_entity">
+					<pushentitybyname name="right_pillar" />
+					<applystate name="State_Kongor_TowerDisarm2" target="stack_entity" duration="-1" />
+					<pushentitybyname name="mid_pillar" />
+					<applystate name="State_Kongor_TowerDisarm2" target="stack_entity" duration="-1" />
+					<pushentitybyname name="left_pillar" />
+					<applystate name="State_Kongor_TowerDisarm2" target="stack_entity" duration="-1" />
+				</compare>
+
+				<compare a="target_team" b="2" op="eq" target="source_entity">
+					<pushentitybyname name="right_pillar2" />
+					<applystate name="State_Kongor_TowerDisarm2" target="stack_entity" duration="-1" />
+					<pushentitybyname name="mid_pillar2" />
+					<applystate name="State_Kongor_TowerDisarm2" target="stack_entity" duration="-1" />
+					<pushentitybyname name="left_pillar2" />
+					<applystate name="State_Kongor_TowerDisarm2" target="stack_entity" duration="-1" />
+				</compare>
+			</compare>
+
+			<compare a="param" b="1" op="eq">
+				<pushentitybyname name="right_pillar" />
+				<compare a="target_team" b="1" op="eq" target="source_entity">
+					<changeaccumulator entity="stack_entity" b="0" op="add" />
+					<compare a="result" b="0" op="eq" >
+						<setactivemodifierkey name="hit" entity="stack_entity" />
+						<playanim name="death_1" target="stack_entity"/>
+						<setaccumulator entity="stack_entity" value="1" />
+					</compare>
+				</compare>
+
+				<pushentitybyname name="right_pillar2" />
+				<compare a="target_team" b="2" op="eq" target="source_entity">
+					<changeaccumulator entity="stack_entity" b="0" op="add" />
+					<compare a="result" b="0" op="eq" >
+						<setactivemodifierkey name="hit" entity="stack_entity" />
+						<playanim name="death_1" target="stack_entity"/>
+						<setaccumulator entity="stack_entity" value="1" />
+					</compare>
+				</compare>
+			</compare>
+
+			<compare a="param" b="2" op="eq">
+				<pushentitybyname name="mid_pillar" />
+				<compare a="target_team" b="1" op="eq" target="source_entity">
+					<changeaccumulator entity="stack_entity" b="0" op="add" />
+					<compare a="result" b="0" op="eq" >
+						<setactivemodifierkey name="hit" entity="stack_entity" />
+						<playanim name="death_1" target="stack_entity"/>
+						<setaccumulator entity="stack_entity" value="1" />
+					</compare>
+				</compare>
+
+				<pushentitybyname name="mid_pillar2" />
+				<compare a="target_team" b="2" op="eq" target="source_entity">
+					<changeaccumulator entity="stack_entity" b="0" op="add" />
+					<compare a="result" b="0" op="eq" >
+						<setactivemodifierkey name="hit" entity="stack_entity" />
+						<playanim name="death_1" target="stack_entity"/>
+						<setaccumulator entity="stack_entity" value="1" />
+					</compare>
+				</compare>
+			</compare>
+
+			<compare a="param" b="4" op="eq">
+				<pushentitybyname name="left_pillar" />
+				<compare a="target_team" b="1" op="eq" target="source_entity">
+					<changeaccumulator entity="stack_entity" b="0" op="add" />
+					<compare a="result" b="0" op="eq" >
+						<setactivemodifierkey name="hit" entity="stack_entity" />
+						<playanim name="death_1" target="stack_entity"/>
+						<setaccumulator entity="stack_entity" value="1" />
+					</compare>
+				</compare>
+
+				<pushentitybyname name="left_pillar2" />
+				<compare a="target_team" b="2" op="eq" target="source_entity">
+					<changeaccumulator entity="stack_entity" b="0" op="add" />
+					<compare a="result" b="0" op="eq" >
+						<setactivemodifierkey name="hit" entity="stack_entity" />
+						<playanim name="death_1" target="stack_entity"/>
+						<setaccumulator entity="stack_entity" value="1" />
+					</compare>
+				</compare>
+			</compare>
+		</else>
+	</onimpact>
+</projectile>

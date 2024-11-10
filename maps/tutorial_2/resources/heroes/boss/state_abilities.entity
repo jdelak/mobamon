@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial2_Abilities"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="3250"
+	ishidden="true"
+
+>
+
+	<oninflict>
+		<setent1 name="BossPos2" />
+		<order command="move" source="source_entity" target="ent1" />
+		<order command="hold" source="source_entity" force="true" queue="back" />
+		<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />
+		<changeaccumulator b="1" op="add" />
+	</oninflict>
+
+	<onattackeddamageevent>
+		<setvar0 a="accumulator" b=".03" op="mult" />
+		<setvar0 a="var0" b="0.5" op="add" />
+		<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+	</onattackeddamageevent>
+
+	<onimpact>
+		<compare a="accumulator" b="12" op="lt" >
+			<areaofeffect
+				radius="1600"
+				center="source_entity"
+				targetselection="all"
+				targetscheme="enemy_heroes"
+				effecttype="Magic"
+				maxtotalimpacts="1"
+			>
+				<compare a="accumulator" b="1" op="eq" >
+					<useability source="source_entity" target="target_position" slot="0"/>
+				</compare>
+				<compare a="accumulator" b="2" op="eq" >
+					<setent1 name="BossPos3" />
+					<order command="move" source="source_entity" target="ent1" />
+					<order command="hold" source="source_entity" force="true" queue="back" />
+					<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />
+				</compare>
+				<compare a="accumulator" b="3" op="eq" >
+					<useability source="source_entity" target="target_position" slot="0"/>
+				</compare>
+				<compare a="accumulator" b="4" op="eq" >
+					<setent1 name="BossPos1" />
+					<order command="move" source="source_entity" target="ent1" />
+					<order command="hold" source="source_entity" force="true" queue="back" />
+					<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />
+				</compare>
+				<compare a="accumulator" b="5" op="eq" >
+					<useability source="source_entity" target="target_position" slot="2"/>
+				</compare>
+				<compare a="accumulator" b="6" op="eq" >
+					<setent1 name="BossPos2" />
+					<order command="move" source="source_entity" target="ent1" />
+					<order command="hold" source="source_entity" force="true" queue="back" />
+					<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />
+				</compare>
+				<compare a="accumulator" b="7" op="eq" >
+					<useability source="source_entity" target="target_position" slot="2"/>
+				</compare>
+				<compare a="accumulator" b="8" op="eq" >
+					<setent1 name="BossPos3" />
+					<order command="move" source="source_entity" target="ent1" />
+					<order command="hold" source="source_entity" force="true" queue="back" />
+					<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />
+				</compare>
+				<compare a="accumulator" b="9" op="eq" >
+					<useability source="source_entity" target="target_entity" slot="1"/>
+				</compare>
+				<compare a="accumulator" b="10" op="eq" >
+					<setent1 name="BossPos1" />
+					<order command="move" source="source_entity" target="ent1" />
+					<order command="hold" source="source_entity" force="true" queue="back" />
+					<applystate name="State_Tutorial2_Knockaway" target="source_entity" duration="-1" />
+				</compare>
+				<compare a="accumulator" b="11" op="eq" >
+					<useability source="source_entity" target="target_entity" slot="1"/>
+				</compare>
+				<changeaccumulator b="1" op="add" />
+			</areaofeffect>
+		</compare>
+		<else>
+			<applystate name="State_Tutorial2_Abilities2" target="source_entity" duration="-1" />
+			<expirestate name="State_Tutorial2_Abilities" target="source_entity" />
+		</else>
+	</onimpact>
+	
+	
+</state>

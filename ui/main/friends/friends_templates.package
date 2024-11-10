@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="friends_mini_bubble_template">
+		<panel name="notification_{id}_bubble" group="friends_mini_bubble_templates" visible="0" grow="1" regrow="1" width="{width}" height="{height}" x="{x}" y="{y}" align="{align=left}" valign="{valign=bottom}" noclick="0"
+			onclicklua="self:SetVisible(0)"
+			onrightclicklua="self:SetVisible(0)"
+		>
+			<frame texture="/ui/main/shared/frames/speech_br_nip.tga" width="+40s" height="+10s" borderthickness="30s" bordercolor="1 1 1 1"  noclick="1" />			
+			<panel x="24s" y="0" grow="true" regrow="true" valign="center" align="center" noclick="1" float="bottom" padding="1s" >
+				<label name="notification_{id}_bubble_label" fity="1" fitypadding="50s" valign="center" textvalign="center" fitx="1" fitxpadding="10s" fitxmax="250s" wrap="1" style="labelBase" font="maindyn_16" noclick="1" content="" />
+				<panel noclick="1" height="1s" />
+			</panel>				
+		</panel>
+	</template>	
+
+	<template name="friends_button">
+			<button name="{id}" width="{width=100%}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onclicklua="{onclicklua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=4s}" rendermode="{rendermode=grayscale}" />
+				<label name="{id}Label" style="labelBase" x="{labelX}" y="{labelY=-0.2h}" width="-10s" align="right" textalign="center" textvalign="center" font="{font=maindyn_20}" color="{labelcolor=white}" content="{label=temp_button}"/>
+				<image name="{id}BaseIcon" texture="/ui/main/friends/textures/social_handdown.tga" x="-16s" y="-2s" width="43s" height="43s" valign="center" visible="1" />				
+				<panel  name="{id}_notification_parent" noclick="1" visible="0">
+					<animatedimage name="{id}NotificationBaseIcon" texture="/ui/main/friends/textures/social_wave.tga" x="-16s" y="-2s" width="43s" height="43s" valign="center" noclick="true" loop="1" fps="9" onshow="StartAnim(0);"/>
+					<label name="{id}_notification_label" style="labelBase" x="-14s" y="7" width="18s" textalign="center" textvalign="center" font="maindyn_16" color="{labelcolor=white}" content=""/>
+				</panel>
+				<panel name="{id}PartyTime" width="43s" height="43s" valign="center" noclick="1" visible="0">
+					<image texture="/ui/main/friends/textures/partyhat.tga" x="-19s" y="-9s" noclick="1"/>
+					<image name="{id}PartyTimeBlower" texture="/ui/main/friends/textures/party_blower.tga" x="-21s" y="-6s" noclick="1"/>
+				</panel>
+			</panel>
+			<instance name="friends_mini_bubble_template" id="{id}" height="36s" width="36s" x="-304s" y="-24s" />
+		</button>
+		<panel name="{id}_droptarget" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" color="#00CCFF44" rendermode="additive" visible="false"/>
+	</template>	
+	
+	<template name="friends_button2">
+		<panel x="{x}" y="{y}" align="{align}" valign="{valign}" height="{height=100%}" width="{width=100%}" texture="/ui/main/footer/textures/friends_tab.tga" noclick="1" visible="{visible=true}">
+			<image name="{id}_tabhover" texture="/ui/main/footer/textures/friends_tab_hover.tga" visible="0"/>
+			<button name="{id}" group="{group}" width="135s" height="38s" align="right" valign="bottom" color="invisible"
+				onmouseoverlua="self:GetWidget('{id}_tabhover'):FadeIn(180)"
+				onmouseoutlua="self:GetWidget('{id}_tabhover'):FadeOut(100)"	
+			>
+				<image texture="/ui/main/footer/textures/user_icon.tga" height="55%" width="55@" valign="center" noclick="1"/>
+				<label name="{id}Label" textalign="center" textvalign="center" font="maindyn_18" color="white" outline="true" outlinecolor="0 0 0 0.5" content="{label=temp_button}" x="-8s" width="100s" align="right" noclick="1"/>
+			</button>
+		</panel>	
+	</template>
+	
+
+	<template name="friends_select_label_template" >
+		<panel name="friends_edit_info_parent" height="288s" width="240s" y="{y=14s}" align="right" x="{x=-332s}" grow="1" regrow="1" growinvis="0" color="invisible" visible="0" noclick="0" float="bottom" padding="12s" >
+
+			<instance name="dialogWrapper1" y="0" />
+			
+			<!-- contact current info -->
+			<panel y="0" height="24s" valign="top" noclick="true" >								
+				<label height="100%" textvalign="center" style="h2" content="social_action_bar_contact_info" noclick="true"  />	
+				
+				<instance name="iconButton" id="friends_label_close_button"
+					icon="/ui/main/shared/textures/close.tga"
+					align="right" valign="center" borderthickness="4s" colorized="1"
+				/>
+			</panel>			
+			
+			<panel height="18s" valign="top" noclick="true" >								
+				<label name="friends_edit_info_label_1" height="100%" textvalign="center" style="labelBase" color="1 1 1 1" font="maindyn_20" content="" noclick="true"  />	
+			</panel>			
+			
+			<panel height="16s" valign="top" noclick="true" >								
+				<label name="friends_edit_info_label_2" height="100%" textvalign="center" style="labelBase" color=".7 .7 .7 1" font="maindyn_16" content="" noclick="true"  />	
+			</panel>				
+			
+			<panel height="30s" noclick="true">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.4h" noclick="true"/>
+				<textbox 
+					name="friends_edit_info_rename_textbox"
+					style="textBox1Input"  
+					textcolor="0 0 0 1" y="2s"
+					onesc="Cmd('Script Friends.RenameInputOnEsc()')"
+					onenter="Cmd('Script Friends.RenameInputOnEnter()')"
+					maxlength="20"
+				/>
+				<label name="friends_edit_info_rename_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="social_action_bar_rename_cover"/>
+				<instance name="iconButton" id="friends_edit_info_rename_close"
+					icon="/ui/main/shared/textures/close.tga"
+					visible="0"
+					align="right" valign="center" borderthickness="4s" colorized="1"
+				/>
+			</panel>			
+			
+			<!-- notes -->
+			
+			<panel height="24s" valign="top" noclick="true" >								
+				<label height="100%" textvalign="center" style="h2" content="social_action_bar_user_notes" noclick="true"  />	
+			</panel>			
+			
+			<panel height="30s" noclick="true">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.4h" noclick="true"/>
+				<textbox 
+					name="friends_edit_info_notes_textbox"
+					style="textBox1Input"
+					textcolor="0 0 0 1" y="2s"
+					onesc="Cmd('Script Friends.NotesInputOnEsc()')"
+					onenter="Cmd('Script Friends.NotesInputOnEnter()')"
+					maxlength="20"
+				/>
+				<label name="friends_edit_info_notes_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="social_action_bar_notes_cover"/>
+				<instance name="iconButton" id="friends_edit_info_notes_close"
+					icon="/ui/main/shared/textures/close.tga"
+					visible="0"
+					align="right" valign="center" borderthickness="4s" colorized="1"
+				/>
+			</panel>				
+			
+			<!-- Friend Labels -->
+			<panel height="24s" valign="top" noclick="true" >								
+				<label height="100%" textvalign="center" style="h2" content="social_action_bar_assign_label" noclick="true"  />	
+			</panel>
+			
+			<panel name="friends_label_listbox_parent" height="160s" align="center" valign="top">
+				<frame texture="/ui/shared/frames/border_double.tga" borderthickness="8s" bordercolor=".2 .2 .2 1" color="invisible"/>
+				<listbox
+					name="friends_label_listbox"
+					x="4s"
+					width="-32s" height="-20s"
+					valign="center"
+					color="invisible"
+					font="maindyn_24"
+					itemwidth="100%"
+					itemheight="24s"
+					select="true"
+					clearselection="true"
+					hoverselect="false"
+					hoverhighlight="true"
+					highlight="under"
+					highlightcolor="#0cb5e03f"
+					highlightbordercolor="invisible"
+					selectedcolor="#0cb5e076"
+					selectedbordercolor="invisible"
+					backgroundimage="$invis"
+					backgroundimagecolor="#1d2f3b"
+					colortransition="true"
+					colortransitiontime="250"
+					exteriorscrollbars="true"
+					scrollbarplaceholder="true"
+					scrollbarsize="24s"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					handleheight="48s"				
+					onclick=""
+					ondoubleclick=""
+					onselectlua="Friends.SetSelectedLabelInput(self:GetValue())"
+					hscrollbar="0"
+					horizontal="false"					
+				/>
+			</panel>		
+		
+			<panel height="30s" noclick="true">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.4h" noclick="true"/>
+				<textbox 
+					name="friends_label_input_textbox"
+					style="textBox1Input"  
+					textcolor="0 0 0 1" y="2s"
+					onesc="Cmd('Script Friends.LabelInputOnEsc()')"
+					onenter="Cmd('Script Friends.LabelInputOnEnter()')"
+					maxlength="20"
+				/>
+				<label name="friends_label_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="social_action_bar_or_enter"/>
+				<instance name="iconButton" id="friends_label_input_close_button"
+					icon="/ui/main/shared/textures/close.tga"
+					visible="0"
+					align="right" valign="center" borderthickness="4s" colorized="1"
+				/>
+			</panel>		
+		
+			<panel noclick="1" height="32s">
+				<instance id="friends_label_input_textbox_btn_1" align="right" width="46%"
+					name="standardButton"
+					label="general_ok"
+					font="maindyn_24"
+				/>					
+				<instance id="friends_label_input_textbox_btn_2" align="left" width="46%"
+					name="standardButton"
+					rendermode="grayscale"
+					label="general_cancel"
+					font="maindyn_24"
+				/>					
+			</panel>		
+		
+		</panel>
+	</template>	
+	
+</package>

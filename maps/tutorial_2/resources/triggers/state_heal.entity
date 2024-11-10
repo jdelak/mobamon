@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial2_Heal"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	
+	ishidden="true"
+>
+	<oninflict>
+		<compare a="target_health_percent" b="0.65" op="lt" >
+			<setvar0 a="0.65" b="target_health_percent" op="sub" />
+			<setvar0 a="var0" b="10" op="div" />
+			<setvar0 a="var0" b="target_maxhealth" op="mult" />
+			<setaccumulator value="var0" />
+		</compare>
+	</oninflict>
+
+	<onframe>
+		<heal target="target_entity" a="accumulator" b="frametime" op="mult" />
+	</onframe>
+</state>

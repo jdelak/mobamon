@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".7">
+
+			<sound 
+				life="2500"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.75"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<sound
+				delay="150"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55"
+				sample="../../sounds/voice/vo_grunt_2.wav"
+			/>
+			
+			<light
+				position="100 0 50"
+				life="500"
+				startcolor="2 0 10"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="400"
+				endfalloffend="800"
+			/>
+
+			<billboard
+				bone="_bone_weapon3"
+				life="750"
+				startcolor="0 .35 1"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startsize="550"
+				endsize="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-25"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="4" radius="1200" duration="500" frequency="22" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

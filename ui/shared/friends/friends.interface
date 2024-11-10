@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="friends" luatable="true">
+	
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	
+	<template name="socialclient_friend_iconmode_template" >
+		<panel noclick="1" height="98s" width="98s" >
+			<panel height="64s" width="64s" borderthickness="4s" noclick="1" align="center" valign="top"> <!-- texture="/ui/elements:text_input_dark"  -->
+		
+				<image height="100%" width="100@" valign="center" align="center" visible="1" texture="/ui/shared/textures/account_icons/default.tga" noclick="1" />
+
+			</panel>
+			<panel width="100%" height="32s" valign="bottom" y="-2s" >
+				<label noclick="1" textalign="center" font="subdyn_13" wrap="1" style="labelBase" color="1 1 1 1" content="{username=User Name User Name User Name}"/>
+			</panel>				
+		</panel> 
+	</template>
+	
+	<template name="socialclient_friendlist_template" >
+
+		<listbox name="socialclient_im_friendlist" noclick="1" height="-240s" valign="top" y="200s" sticky="0" stickytoinvis="0" 
+			style="simpleListbox"
+			vscrollbar="1" hscrollbar="0" handleheight="56s" handlewidth="28s" scrollbarsize="28s" scrollbarplaceholder="false" scrollbaroffset="8s"
+			itemwidth="98s" itemheight="98s" select="false" highlightcolor="invisible" highlightbordercolor="invisible" wrap="row"
+		>
+
+		</listbox>
+		
+	</template>	
+		
+	<template name="socialclient_friendsearch_template" >	
+		
+		<panel noclick="1" height="36s" valign="bottom" y="-2s" sticky="0" stickytoinvis="0"  >
+			<frame name="main_social_friends_searchinput_frame" texture="/ui/elements:text_input_dark" borderthickness="6s" noclick="1" align="right" width="-4s" x="-2s" valign="bottom">
+				<chatinputbuffer
+					name="main_social_friends_searchinput_buffer"
+					x="8s" y="-8s"
+					textcolor="1 1 1 1"
+					color="invisible"
+					font="maindyn_18"
+					scrolltexture="/ui/_textures/elements/combobox.tga"
+					indent="0"
+					width="-85s"
+					grow="true"
+					valign="bottom"
+					onloadlua="
+						self:SetChannelID('Twitch') 
+					"
+					onesclua="self:SetFocus(false)"
+					onmouseldownlua=""
+					onfocuslua=""
+					hscrollbar="0"
+					horizontal="false"		
+					onmouseoutlua=""
+					onsizelua="
+						if (self:GetWidget('main_social_friends_searchinput_buffer')) then
+							self:GetWidget('main_social_friends_searchinput_buffer'):SetHeight(-(self:GetHeightFromString('56s') + self:GetHeight()))
+						end
+						if (self:GetWidget('main_social_friends_searchinput_frame')) then
+							self:GetWidget('main_social_friends_searchinput_frame'):SetHeight(self:GetHeightFromString('16s') + self:GetHeight())
+						end
+					"
+				/>		
+				<label name="main_social_friends_searchinput_coverlabel" x="15s" y="-1s" noclick="true" textvalign="center" outline="1" outlinecolor="black" valign="center" color=".7 .7 .7 1" font="maindyn_18" content="main_social_friends_addorsearch"/>
+				<instance noclick="0" x="-5s" y="5s" height="-10s" valign="top" width="64s" align="right"
+					name="standardButton" id="main_social_friends_searchinput_button"
+					label="general_search"
+					font="maindyn_20"
+					onclicklua="
+						self:GetWidget('main_social_friends_searchinput_buffer'):ProcessInputLine()
+					"
+				/>		
+				<panel noclick="0" blockinput="0" processonlyscroll="1" hover="false"
+					onmousewheeldownlua=""
+					onmousewheeluplua=""										
+				/>			
+			</frame>	
+		</panel>
+		
+	</template>
+	
+	<lua file="/ui/shared/friends/friends.lua"/>	
+	
+</interface>

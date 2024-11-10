@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2">
+
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="5750"
+				acceleration="0.0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				position="0 0 -30"
+				offsetsphere="0 0 0"
+			>
+				<particle
+					turn="0"
+				>
+					<model
+						delay="500"
+						life="4000"
+						model="flare_hover/model.mdf"
+						anim="idle"
+						color="0"
+						scale="1"
+						startalpha=".25"
+						midalpha="0"
+						endalpha="0"
+						midalphapos=".2"
+					>
+						<simpleemitter
+							bone="_bone_fx_01"
+							spawnrate="150"
+							particlelife="60"
+							gravity="-2"
+							minspeed="420"
+							maxspeed="600"
+							material="/shared/effects/smaterials/whitedot.material"
+							offsetsphere="0 0 0"
+							direction="-1 0 0"
+							position="0 0 0"
+						>
+							<particle
+								startstickiness="0"
+								endstickiness="0"
+								startcolor=".25 .25 0"
+								midcolor=".25 0 0"
+								endcolor="0 0 0"
+								startsize="12"
+								endsize="0"
+								turn="1"
+								minheight="25"
+								maxheight="125"
+							/>
+						</simpleemitter>
+
+						<billboard
+							bone="_bone_fx_01"
+							life="4000"
+							startcolor=".5 0 0"
+							midcolor=".3 0 0"
+							endcolor="0"
+							midcolorpos="0.5"
+							startsize="70"
+							midsize="50"
+							endsize="0"
+							depthbias="-5"
+							material="/shared/effects/smaterials/whitedot.material"
+							position="0 0 0"
+						/>
+						
+						<billboard
+							bone="_bone_fx_01"
+							life="80"
+							color=".25 0 0"
+							startsize="300"
+							midsize="200"
+							endsize="300"
+							material="/shared/effects/smaterials/whitedot.material"
+							loop="1"
+						/>
+						
+						<billboard
+							bone="_bone_fx_01"
+							life="4000"
+							startcolor=".5 .2 0"
+							midcolor=".5 .2 0"
+							endcolor="0"
+							midcolorpos="0.5"
+							startsize="60"
+							midsize="53"
+							endsize="0"
+							depthbias="-5"
+							material="/shared/effects/smaterials/whitedot.material"
+							position="0 0 0"
+						/>
+
+						<billboard
+							bone="_bone_fx_01"
+							life="80"
+							color=".2 .1 0"
+							startsize="100"
+							midsize="70"
+							endsize="100"
+							material="/shared/effects/smaterials/whitedot.material"
+							loop="1"
+						/>
+	
+	
+						<billboard
+							bone="_bone_fx_01"
+							life="310"
+							color=".4 .1 0"
+							startsize="210"
+							midsize="20"
+							endsize="210"
+							material="/shared/effects/smaterials/flare.material"
+							loop="1"
+						/>
+						
+						<billboard
+							bone="_bone_fx_01"
+							life="210"
+							color=".5 .1 0"
+							startsize="210"
+							midsize="20"
+							endsize="210"
+							material="/shared/effects/smaterials/flare.material"
+							loop="1"
+						/>
+
+						<template name="trails">
+
+							<simpleemitter
+								delay="1250"
+								bone="{bone}"
+								startspawnrate="555"
+								life="3000"
+								minparticlelife="1000"
+								maxparticlelife="800"
+								depthbias="-20"
+								gravity="0"
+								material="/shared/effects/materials/spark_10.material"
+								maxspeed="20"
+								offsetsphere="0 0 0"
+							>
+								<particle
+									startcolor="2 1 0"
+									endcolor="0"
+									size="1"
+									minscale="1"
+									maxscale="2"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+								/>
+							</simpleemitter>
+							
+							<simpleemitter
+								bone="{bone}"
+								spawnrate="250"
+								life="3000"
+								minparticlelife="1000"
+								maxparticlelife="800"
+								depthbias="-20"
+								gravity="0"
+								material="/shared/effects/materials/spark_10.material"
+								maxspeed="20"
+								offsetsphere="0 0 0"
+							>
+								<particle
+									startcolor="2 1 0"
+									endcolor="0"
+									size="1"
+									minscale="1"
+									maxscale="2"
+									startalpha="1"
+									midalpha="1"
+									endalpha="0"
+								/>
+							</simpleemitter>
+
+						</template>
+						
+						<instance name="trails" bone="_bone_fx_01" color=".3 .1 0" />
+
+					</model>
+					
+					<model
+						delay="500"
+						life="2000"
+						model="flare_hover/model.mdf"
+						material="/shared/effects/smaterials/shell_sludge.material"
+						anim="idle"
+						startcolor=".5 .25 0"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".35"
+						scale="1"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

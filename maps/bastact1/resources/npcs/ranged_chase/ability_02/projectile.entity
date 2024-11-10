@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastact1_Enemy_Ranged_Ability2_Chase"
+
+	gravity="0"
+	lifetime="1000"
+	useexactlifetime="true"
+
+	modelscale="3.5"
+	model="/shared/models/invis.mdf"
+
+>
+
+	<onimpact>
+		<playeffect effect="effects/impact.effect" source="target_position" target="target_position" />
+		<setproxy target="stack_entity" />
+		
+		<areaofeffect
+			radius="130"
+			targetselection="all"
+			maxtotalimpacts="1"
+			targetscheme="player_controlled_units"
+			effecttype="Magic"
+
+		>
+			<damage effecttype="Magic Splash" significant="true" amount="275" />
+		</areaofeffect>
+
+	</onimpact>
+	
+
+	
+</projectile>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				volume="0.25"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_impact.wav"
+			/>
+		
+		
+		
+
+			<template name="flashes">
+			
+			<!--embedded sound so that there is a hit for each little impact effect... up to u "Stephen" if u wanna keep it this way-->
+				
+
+				<simpleemitter
+				delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add_outline.material"
+					depthbias="-20"
+				>
+					<particle
+						color=".3 0 .3"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="50"
+						endscale="125"
+						turn="true"
+					/>
+				</simpleemitter>
+
+
+				
+				
+				
+				<simpleemitter
+				delay="{zdelay}"
+					bone="_bone_centerofchest"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add_outline.material"
+					depthbias="-20"
+				>
+					<particle
+						color=".3 0 .3"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="50"
+						endscale="125"
+						turn="true"
+					/>
+				</simpleemitter>
+
+
+			
+			</template>
+
+			<instance name="flashes" zpos="55 0 0" zdelay="0"/>
+			<instance name="flashes" zpos="0 50 0" zdelay="100"/>
+			<instance name="flashes" zpos="-50 0 0" zdelay="200"/>
+
+			
+			
+			
+			
+
+			
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				midcolor="1 0 1"
+				endcolor="0 0 0"
+				life="300"
+				startsize="125"
+				endsize="400"
+				depthbias="-65"
+			/>
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

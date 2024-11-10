@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Assassin"
+
+	passiveeffect=""  
+	icon="icon.tga"
+	fadetime="500"
+	stealthtype="hero"
+	unitwalking="true"
+
+	movespeed="40"
+	movespeedpercharge="0.4"
+	maxcharges="10"
+	modifierkey="shroud_invis"
+
+	ishidden="true"
+
+	impactinterval="250"
+>
+	<oninflict> 
+		<forgetattacks />
+		<startfade /> 
+		<setcharges a="item_quality" b="10" op="mult"/>
+	</oninflict>
+
+	<onframe>
+		<areaofeffect
+			targetscheme="visible_enemy_heroes"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="600"
+			maximpactspertarget="1"
+		>
+			<applystate name="State_Assassin_Revealed_Effect" duration="50" target="source_entity" />
+		</areaofeffect>
+		
+		
+		<areaofeffect
+			targetscheme="enemy_heroes"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="600"
+			maximpactspertarget="1"
+		>
+			<applystate name="State_Assassin_Revealed" duration="50" target="source_entity" />
+		</areaofeffect>
+		
+		<areaofeffect
+			targetscheme="enemy_towers"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="750"
+			maximpactspertarget="1"
+		>
+			<applystate name="State_Assassin_Revealed" duration="50" target="source_entity" />
+		</areaofeffect>
+	</onframe>
+
+	<onimpact>
+		<playeffect effect="effects/area.effect" source="this_owner_entity" visibility="allies"/>
+	</onimpact>
+
+	<onactivatestart>
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" >
+			<casteffecttype entity="inflictor_entity" effecttype="BreakStealth" >
+				<expire/>
+			</casteffecttype>
+		</casteffecttype>
+		<else>
+			<expire/>
+		</else>
+	</onactivatestart>
+
+	<onattackimpact>
+		<expire/>
+	</onattackimpact>
+
+	<modifier key="assasinsshroud_empower_1" modpriority="90"  >
+		<onattackpreimpact>
+			<getconstant name="damage_enchant" />
+			<bonusdamageadd a="result" target=""/>
+		</onattackpreimpact>
+	</modifier>
+
+	<modifier key="assasins_shroud_noms" modpriority="90" movespeed="0" />
+
+	<modifier key="assasins_shroud_deflection" modpriority="90" movespeed="0" >
+		<onattackedpredamage> 
+			<targettype type="player_controlled"/>
+			<else>
+				<combateffecttype effecttype="Attack">
+					<getconstant name="deflection_enchant" />
+					<setvalue name="combat_deflection" a="combat_deflection" b="result" op="add" />
+				</combateffecttype>
+			</else>
+		</onattackedpredamage>
+	</modifier>
+
+</state>

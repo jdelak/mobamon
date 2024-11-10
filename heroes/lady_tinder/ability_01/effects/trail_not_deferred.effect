@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+		
+			<groundsprite
+				expirelife="250"
+				color=".125 .25 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				size="100"
+			/>
+
+			<model
+				expirelife="0"
+				color="1 .9 .8"
+				position="0 0 0"
+				model="flying_plant/model.mdf"
+				anim="idle"
+				startscale="1.6"
+				endscale="1.6"
+				startalpha="1"
+				endalpha="1"
+				roll="0"
+				rollspeed="0"
+			>
+			
+			
+				<trailemitter
+					bone="_bone_CTRL_01"
+					spawnrate="50"
+					particlelife="1000"
+					texpostime="1000"
+					texposscale="1"
+					texstretchscale=".75"
+					position="0 0 0"
+					material="/shared/effects/smaterials/vines.material"
+					startparticlealpha="1"
+					endparticlealpha="0"
+					tile="10"
+				>
+					<particle
+						color=".8"
+						size="30"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+				 />
+				</trailemitter>	
+			
+			
+			
+				<trailemitter
+					bone="_bone_CTRL_01"
+					spawnrate="50"
+					particlelife="1000"
+					texpostime="1000"
+					texposscale="1"
+					texstretchscale=".75"
+					position="0 0 0"
+					material="/shared/effects/smaterials/vines_straight.material"
+					startparticlealpha="1"
+					endparticlealpha="0"
+					tile="10"
+				>
+					<particle
+						color="1"
+						size="30"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+				 />
+				</trailemitter>	
+				
+
+				
+				<simpleemitter
+					spawnrate="50"
+					minparticlelife="250"
+					maxparticlelife="500"
+					minspeed="75"
+					maxspeed="150"
+					gravity="-10"
+					position="0 10 0"
+					drag=".025"
+					material="/shared/effects/smaterials/leaf.material"
+					offsetsphere="0 0 0"
+					depthbias="-25"
+				>
+					<particle
+						turn="true"
+						color="1 1 1"
+						minsize="2"
+						maxsize="10"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						minangle="0"
+						maxangle="360"
+						minanglespeed="-180"
+						maxanglespeed="180"
+					>
+					</particle>
+				</simpleemitter>
+
+				<billboard
+					expirelife="250"
+					color=".1 .1 0"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					size="100"
+					depthbias="-75"
+				/>
+			</model>
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+      	<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

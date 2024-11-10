@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system1" space="world" scale="1.5">
+
+			<simpleemitter
+				spawnrate=".35"
+				particlelife="5000"
+			> 
+				<particle
+				>
+
+					<template name="flashes">
+					
+						<simpleemitter
+						life="1000"
+							spawnrate="150"
+							minparticlelife="300"
+							maxparticlelife="400"
+							minspeed="0"
+							maxspeed="30"
+							position="{zpos}"
+							offsetcube="{zoffset}"
+							material="/shared/effects/smaterials/cartoon_smack_white.material"
+							depthbias="0"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 0"
+						>
+							<particle
+							minangle="0"
+							maxangle="360"
+								anchor="1"
+								color=".5 0 0"
+								startalpha="0"
+								midalpha=".5"
+								endalpha="0"
+								startscale="10"
+								minendscale="30"
+								maxendscale="60"
+								lockup="true"
+								lockright="true"
+								minwidth="1"
+								maxwidth="3"
+								height="4"
+							/>
+						</simpleemitter>
+						
+						<simpleemitter
+						life="1000"
+							spawnrate="175"
+							minparticlelife="300"
+							maxparticlelife="400"
+							minspeed="0"
+							maxspeed="30"
+							position="{zpos}"
+							offsetcube="{zoffset}"
+							material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+							depthbias="0"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 0"
+						>
+							<particle
+							minangle="0"
+							maxangle="360"
+								anchor="1"
+								startcolor="1 .5 0"
+								endcolor="0 0 0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								startscale="10"
+								minendscale="30"
+								maxendscale="40"
+								lockup="true"
+								lockright="true"
+							/>
+						</simpleemitter>
+
+					</template>
+
+					<instance name="flashes" zpos="46 0 0" zoffset="0"/>
+					
+					
+<!--
+					<template name="flashes">
+					
+						<simpleemitter
+						life="1000"
+							spawnrate="150"
+							minparticlelife="150"
+							maxparticlelife="500"
+							minspeed="0"
+							maxspeed="60"
+							position="{zpos}"
+							offsetcube="{zoffset}"
+							material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+							depthbias="50"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+						>
+							<particle
+								anchor="1"
+								startcolor=".25 .1 0"
+								endcolor="0 0 0"
+								startalpha="0"
+								midalpha=".2"
+								endalpha="0"
+								startscale="12"
+								minendscale="30"
+								maxendscale="60"
+								lockup="true"
+								lockright="true"
+							/>
+						</simpleemitter>
+
+					</template>
+
+					<instance name="flashes" zpos="40 0 -15" zoffset="12 0 0"/>
+-->
+					
+					<simpleemitter
+					life="1000"
+						position="46 0 0"
+						spawnrate="4"
+						particlelife="5000"
+						offsetsphere="6"
+					> 
+						<particle
+							turn="true"
+						>
+							<billboard
+								life="750"
+								startcolor="0 0 0"
+								midcolor=".3 .05 0"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								position="0 0 0"
+								size="75"
+								depthbias="-25"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+
+			
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

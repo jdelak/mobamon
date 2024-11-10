@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Carter_Ability1_4"
+
+	speed="1400"
+	gravity="0"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	traileffect=""
+	deatheffect=""
+	canturn="0"
+	
+	flying="true"
+	flyheight="120"
+	
+	touchradius="90"
+	touchcliffs="false"
+	touchpropradius="90"
+	touchpropanim="hit"
+
+	hazardradius="300"
+	hazardoffset="230"
+  
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+
+	lifetime="5000"
+>
+	<onimpact>	
+		<playeffect effect="effects/death_orange.effect" target="target_position" source="target_position" occlude="true" />
+		<kill target="proxy_entity" source="" />
+	</onimpact>
+	
+	<ontouch>
+		<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" />
+		<playeffect effect="effects/impact_ground.effect" target="" source="target_position" occlude="true" />
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<setproxy entity="this_proxy_entity" target="target_entity" />
+			</onimpact>
+		</combatevent>
+		<kill target="proxy_entity" source="" />
+		<spawnunit name="Gadget_Carter_Ability1_Reveal_Linger" count="1" target="target_position" />
+		<delete target="this_entity" />
+	</ontouch>
+  
+</projectile>

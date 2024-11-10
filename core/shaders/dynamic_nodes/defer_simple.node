@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="defer_simple">
+	<dependency name="ViewPosition" type="float3" source="ViewPosition" />
+
+	<output name="Out0" type="float4" solution="PSOutColor0" />
+	<output name="Out1" type="float4" solution="PSOutColor1" />
+	<output name="Out2" type="float4" solution="PSOutColor2" />
+	<output name="Out3" type="float4" solution="PSOutColor3" />
+	<?hlsl
+		Out0.rgb = float3(1.0f, 1.0f, 1.0f);
+		Out0.a = 1.0f;
+	
+		Out1.rgb = float3(0.0f, 0.0f, 0.0f);
+		Out1.a = length(ViewPosition);
+		
+		Out2.rgb = float3(0.0f, 0.0f, 0.0f);
+		Out2.a = 0.0f;
+		
+		Out3.rgb = float3(0.0f, 0.0f, 0.0f);
+		Out3.a = 0.0f;
+	?>
+	<?glsl
+		Out0.rgb = vec3(1.0f, 1.0f, 1.0f);
+		Out0.a = 1.0f;
+	
+		Out1.rgb = vec3(0.0f, 0.0f, 0.0f);
+		Out1.a = length(ViewPosition);
+		
+		Out2.rgb = vec3(0.0f, 0.0f, 0.0f);
+		Out2.a = 0.0f;
+		
+		Out3.rgb = vec3(0.0f, 0.0f, 0.0f);
+		Out3.a = 0.0f;
+	?>
+</node>

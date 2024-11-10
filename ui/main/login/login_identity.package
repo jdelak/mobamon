@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<template name="loginChooseIdentityEntry">
+		<button name="loginChooseIdentityEntry{id=0}" height="26s" color="invisible">
+			<label name="loginChooseIdentityEntry{id=0}Name" textalign="center" textvalign="center" style="labelClickable" font="maindyn_22" content="--- Name ---"/>
+		</button>
+	</template>
+	
+	<panel name="loginChooseIdentity" visible="0" align="center" valign="center" width="320s" grow="true">
+		<instance name="dialogWrapper1" outerpadding="+10s" innerpadding="+5s" />
+		
+		<panel float="bottom" padding="6s" width="100%" grow="true">
+			<label height="32s" textalign="center" textvalign="center" style="h1" content="main_login_ident_choose"/>
+			<instance name="loginChooseIdentityEntry" id="0"/>
+			<instance name="loginChooseIdentityEntry" id="1"/>
+			<instance name="loginChooseIdentityEntry" id="2"/>
+			<instance name="loginChooseIdentityEntry" id="3"/>
+			<instance name="loginChooseIdentityEntry" id="4"/>
+			<instance name="loginChooseIdentityEntry" id="5"/>
+				
+			<panel height="2s" />
+			<panel height="32s">
+				<panel width="-150s">
+					<instance name="dialogWrapper1" outerpadding="+10s" innerpadding="+5s"/>
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="6s" />					
+					<textbox name="loginNewIdentityInput" color="invisible" textcolor="0 0 0 .9" font="maindyn_18" width="-10s" y="5s" align="center"
+						onenter="
+							Cmd('Script loginNewIdentInputEnter()')
+						"
+					/>
+				</panel>				
+				<instance
+					id="loginNewIdentitySubmit" enabled="0"
+					name="standardButton"
+					width="140s"
+					align="right"
+					label="main_login_ident_createnew"
+				/>								
+			</panel>
+		</panel>
+	</panel>	
+	
+	<panel name="login__enterName" align="center" valign="center" width="440s" grow="true" regrow="true" visible="false" >
+		<panel><!-- This exists so the +40s doesn't force the panel to grow when it shouldn't. -->
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+40s" height="+40s" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 .9"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+40s" height="+40s" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible"/>
+		</panel>
+		<panel grow="1" growinvis="0" width="100%" float="bottom" padding="30s">
+			<panel height="28s" noclick="1">
+				<label textvalign="center" textalign="center" style="h1" font="maindyn_40" content="new_player_experience_nameprompt"/>
+			</panel>			
+			<panel width="100%" height="46s">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>				
+					<textbox name="login__enterName_input" taborder="9" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+						onenter="
+							Cmd('Script login__enterName_enter()')
+						"
+						onesc="
+							Cmd('Script login__enterName_esc()')
+						"
+				
+					/>
+					<label name="login__enterName_input_coverup" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_18" content="main_social_entername"/>
+			</panel>
+			<panel name="login__enterName_submitContainer" height="48s">
+				<instance name="standardButton" id="login__enterName_submit" font="maindyn_30" enabled="false" label="new_player_experience_enter_name"/>
+			</panel>			
+			<panel name="login__enterName_haveAccountContainer" height="48s" visible="0">
+				<instance name="standardButton" id="login__enterName_haveAccount" font="maindyn_26" label="new_player_experience_haveaccount"/>
+			</panel>						
+		</panel>		
+	</panel>	
+	
+</package>

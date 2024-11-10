@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			expirelife="5000"
+			color="1 1 1"
+			alpha="0"
+		/>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<light
+				bone="_bone_fx_01"
+				position="0 0 0"
+				life="1000"
+				startcolor=".75 4 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="175"
+			/>
+
+			<model
+				expirelife="500"
+				parentmodel="1"
+				parentskeleton="1"
+				anim="idle"
+				startscale="1"
+				endscale="1"
+				color="1.2 .9 1.2"
+				startalpha="1"
+				endalpha="0"
+			>
+				<billboard
+					bone="_bone_fx_02"
+					expirelife="125"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".35 .5 0"
+					endcolor="0 0 0"
+					depthbias="0"
+					height="500"
+					width="30"
+					size="100"
+					lockup="1"
+					lockright="1"
+				>
+				</billboard>
+
+				<billboard
+					bone="_bone_fx_02"
+					expirelife="125"
+					material="/shared/effects/smaterials/whitesquare.material"
+					startcolor="0 .3 .1"
+					endcolor="0 0 0"
+					depthbias="0"
+					height="300"
+					width="10"
+					size="100"
+					lockup="1"
+					lockright="1"
+				>
+				</billboard>
+
+				<simpleemitter
+					bone="_bone_fx_02"
+					spawnrate="50"
+					minparticlelife="5000"
+					maxparticlelife="7500"
+					position="0 0 115"
+					offsetsphere="5 5 50"
+					direction="0 0 -1"
+					minspeed="25"
+					maxspeed="150"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="150"
+							maxlife="300"
+							startcolor="0 0 0"
+							midcolor=".35 1 0"
+							endcolor="0 0 0"
+							size="2"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="50"
+						/>
+					</particle>
+				</simpleemitter>
+<!--
+				<billboard
+					position="0 0 150"
+					bone="_bone_fx_02"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".1 .15 0"
+					midcolor=".2 .25 0"
+					endcolor="0 0 0"
+					depthbias="0"
+					size="150"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="world"
+				>
+				</billboard>
+				
+				<billboard
+					position="0 0 150"
+					bone="_bone_fx_02"
+					life="1000"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor=".1 .1 0"
+					midcolor=".15 .15 0"
+					endcolor="0 0 0"
+					depthbias="0"
+					size="25"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="world"
+				>
+				</billboard>
+-->
+				
+			</model>
+
+			<model
+				expirelife="150"
+				model="energy_pod_shell/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+				parentskeleton="1"
+				anim="idle"
+				startscale="1"
+				endscale="1"
+				startcolor="2 5 0" 
+				endcolor="0 0 0" 
+			/>
+
+			
+			
+			
+			
+
+			
+			<groundsprite
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/smaterials/torch_hole_overlay.material"
+				size="40"
+				color="1 1 1"
+				startalpha=".5"
+				endalpha="0"
+				yaw="90"
+			/>
+			
+			
+			<groundsprite
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/smaterials/torch_hole_overlay.material"
+				size="33"
+				color="1 1 1"
+				startalpha=".75"
+				endalpha="0"
+			/>
+
+			
+			
+			
+			
+
+			<model
+				delay="250"
+				position="0 0 0"
+				life="250"
+				startcolor=".35 .6 .1"
+				endcolor="0 0 0"
+				startscale="1.5"
+				endscale="1.65"
+				model="/shared/effects/generator_shield/octagonal_shield/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+			/>
+
+			<model
+				position="0 0 0"
+				life="250"
+				startcolor=".1 .2 0"
+				endcolor="0 0 0"
+				startscale="1.5"
+				endscale="0"
+				model="/shared/effects/generator_shield/pulse_shield/model.mdf"
+				material="/shared/effects/generator_shield/octagonal_shield/material_inverted.material"
+				anim="idle"
+				yawspeed="0"
+			/>
+			
+			
+			
+			
+			
+			<model
+				delay="250"
+				position="0 0 0"
+				life="500"
+				startcolor=".1 .175 0"
+				endcolor="0 0 0"
+				startscale=".65"
+				endscale=".65"
+				model="/shared/effects/generator_shield/octagonal_shield/model.mdf"
+				material="/shared/effects/generator_shield/octagonal_shield/material_inverted.material"
+				anim="idle"
+			/>
+
+			<model
+				delay="500"
+				position="0 0 0"
+				life="250"
+				startcolor=".1 .175 0"
+				endcolor="0 0 0"
+				startscale="1.525"
+				endscale="1.525"
+				model="/shared/effects/generator_shield/octagonal_shield/model.mdf"
+				material="/shared/effects/generator_shield/octagonal_shield/material_inverted.material"
+				anim="idle"
+			/>
+			
+			
+			
+			
+
+			<debris
+				position="0 0 10"
+				scale=".35"
+				minlife="750"
+				maxlife="1000"
+				model="/items/recipes/utility/stormspirit/effects/rocks_debris/model.mdf"
+				material="/items/recipes/utility/stormspirit/effects/rocks_debris/material.material"
+				anim="idle"
+				minspeed="1500"
+				maxspeed="4000"
+				direction="0 0 1"
+				minrotationspeed="-90"
+				maxrotationspeed="90"
+				gravity="350"
+				minangle="0"
+				maxangle="2"
+				color=".8 1 .6"
+				collide="true"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				bounce="0"
+				reflect=".8"
+				animpose="false"
+				offsetsphere="200 200 50"
+			>
+			</debris>
+
+			<billboard
+				bone="_bone_fx_02"
+				expirelife="125"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".15 .3 0"
+				endcolor="0 0 0"
+				depthbias="-65"
+				size="35"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			>
+			</billboard>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/> 
+	<camerashake2 scale="12" radius="5000" duration="250" frequency="22" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>

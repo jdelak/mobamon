@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			expirelife="250"
+			startcolor="3 1 1"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1.475">
+
+			<sound
+				life="2500"
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<simpleemitter
+				bone="_bone_origin"
+				spawnrate="50"
+				particlelife="5000"
+				minangle="0"
+				maxangle="0"
+				direction="0 -1 0"
+				position="0 40 0"
+			>
+				<particle
+					turn="1"
+				>
+
+					<billboard
+						bone="_bone_origin"
+						position="0 -75 0"
+						minlife="300"
+						maxlife="600"
+						startcolor=".5 .25 .1"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="150"
+						midsize="150"
+						endsize="50"
+						material="/shared/effects/smaterials/whitedot.material"
+						depthbias="-25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						directionalspace="local"
+					/>
+
+
+				</particle>
+			</simpleemitter>
+
+
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="6 1 0"
+				midcolor="6 1 0"
+				endcolor="0"
+				midcolorpos=".8"
+				falloffstart="0"
+				startfalloffend="75"
+				midfalloffend="75"
+				endfalloffend="175"
+			/>
+
+
+<!--
+			<template name="smoke">
+				<terrainemitter
+					bone="{zbone}"
+					spawnrate="160"
+					minparticlelife="500"
+					maxparticlelife="800"
+					gravity="-25"
+					minspeed="90"
+					maxspeed="140"
+					drag="0.025"
+					acceleration="0.0"
+					position="{zpos}"
+					direction="0 0 0"
+					offsetsphere="12 12 0"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					depthbias="0"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						color=".15"
+						minstartsize="50"
+						maxstartsize="75"
+						endsize="0"
+						startalpha=".65"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+				</terrainemitter>
+
+			</template>
+
+			<instance name="smoke" zbone="_bone_leftfoot" zpos="25 0 0"/>
+			<instance name="smoke" zbone="_bone_rightfoot" zpos="-25 0 0"/>
+-->
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<template name="">
+
+				<terrainemitter
+					life="420"
+					spawnrate="1000"
+					minparticlelife="250"
+					maxparticlelife="750"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					position="{zpos}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="30"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="1 0 0"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="80"
+						endsize="0"
+						turn="true"
+					/>
+				</terrainemitter>
+				
+				<terrainemitter
+					life="420"
+					spawnrate="125"
+					minparticlelife="150"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="-20"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor=".5 .5 0"
+						endcolor=".5 0 0"
+						midcolorpos=".2"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="60"
+						endsize="15"
+						turn="true"
+					/>
+				</terrainemitter>
+
+			</template>
+			
+			<instance name="" zpos="20 0 0"/>
+			<instance name="" zpos="-20 0 0"/>
+
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/> 
+	</thread>
+
+</effect>

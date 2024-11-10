@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="state_arc4_hook"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	
+	impactinterval="2500"
+	ishidden="true"
+
+	wanderrange="90"
+>
+	<oninflict>
+		<setaccumulator value="0" />
+		<setent0 name="hook_point1"/>
+		<pushstack a="0"/>
+	</oninflict>
+
+	<onimpact>
+		<setaccumulator value="0"/>
+		<areaofeffect
+			radius="1000"
+			targetselection="all"
+			targetscheme="visible_enemy_units"
+			center="this_owner_entity"
+			source="this_owner_entity"
+			maximpactspertarget="1"
+			maxtotalimpacts="1"
+			>
+			<order command="attack" source="this_owner_entity" target="target_entity" />
+		</areaofeffect> 
+	</onimpact>	
+
+	<onattackeddamageevent>
+		<changeaccumulator b="1" op="add"/>
+
+			<pushability entity="source_entity" slot="1" />
+				<canactivate entity="stack_entity">
+					<useability source="source_entity" slot="1" force="true" queue="front" />
+					<setaccumulator value="0" />
+				</canactivate>
+			<else>
+				<setent0 name="hook_point1"/>
+				<setent1 name="hook_point2"/>
+				<setent2 name="hook_point3"/>
+				<setent3 name="hook_point4"/>
+
+				<pushability entity="source_entity" slot="0" />
+				<canactivate entity="stack_entity">
+					<areaofeffect
+						radius="1500"
+						targetselection="random"
+						targetscheme="Bastact1_Hook_Point"
+						center="source_entity"
+						maxtotalimpacts="-1"
+						innerradiusoffset="800"
+					>
+						<useability source="source_entity" target="target_entity" slot="0"/>
+						<useability source="source_entity" target="target_entity" slot="0" force="true" queue="front" forceduration="1000" />
+
+					</areaofeffect>	
+					<else>
+						<print text="Cant find a target" />
+					</else>
+				</canactivate>
+			</else>
+	</onattackeddamageevent>
+
+	<onkill>
+		<!-- <chance threshold="0.2">
+			<chance threshold="0.33">
+				<playeffect effect="effects/sound_5.effect" source="source_entity" target="source_entity" />
+			</chance>
+			<else>
+				<chance threshold="0.5">
+					<playeffect effect="effects/sound_6.effect" source="source_entity" target="source_entity" />
+				</chance>
+				<else>
+					<playeffect effect="effects/sound_7.effect" source="source_entity" target="source_entity" />
+				</else>
+			</else>	
+		</chance> -->
+	</onkill>
+						
+	
+</state>

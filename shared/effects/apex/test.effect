@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="true">
+
+	<definitions>
+
+		<!-- Simplified fallback particle system for non-APEX clients -->
+		<particlesystem name="system0" space="entity" scale="1">
+			<simpleemitter
+				life="1500"
+				spawnrate="22"
+				offsetsphere="24"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="1200"
+				count="4"
+			>
+				<particle
+				>
+					<groundsprite
+						material="/shared/effects/smaterials/ground_splash_blend.material"
+
+						startsize="40"
+						midsize="70"
+						endsize="80"
+						midsizepos=".1"
+
+						color="0.4 .3 .1"
+						life="1000"
+
+						minyaw="0"
+						maxyaw="360"
+
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".3"
+
+						minscale="2"
+						maxscale="2"
+
+					/>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+
+		<!-- Particle system with APEX emitter and non-APEX fallback -->
+		<particlesystem name="system0_apex" space="entity" scale="1" apexfallback="system0" >
+			<apexemitter asset="defaultEffectPackage" position="0 0 5" />
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<!-- Spawns APEX effect -->
+		<spawnparticlesystem instance="instance0" particlesystem="system0_apex" />
+		<waitfordeath instance="instance1" />
+		<wait duration="-1"/>
+	</thread>
+
+</effect>

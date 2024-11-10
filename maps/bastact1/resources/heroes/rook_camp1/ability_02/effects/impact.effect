@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.0">
+			
+			<sound
+				linearfalloff="true" 
+				falloffstart="1000"
+				falloffend="2200"
+				volume="0.4" 
+				sample="../sounds/impact.wav"
+			/>
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="200"
+				falloffend="1400"
+				volume="0.5" 
+				sample="/shared/sounds/impacts/impact_flesh_%.wav"
+			/>	
+		
+		
+		
+		<simpleemitter		
+			
+			spawnrate="310"
+			count="80"
+			minparticlelife="1200"
+			maxparticlelife="1600"
+			gravity="1"
+			speed="1500"
+			offsetsphere="10 10 10"
+			drag="0.08"
+			inheritvelocity=".01"
+			direction="0 0 0"
+			material="/shared/effects/smaterials/blue_feather.material"
+			position="0 0 80"
+		>
+			<particle 
+				
+				color="0 0 0 "
+				startalpha="1"
+				endalpha="0"
+				midcolorpos=".2"				
+				minangle="0"
+				maxangle="360"
+				minanglespeed="-30"
+				maxanglespeed="30"
+				minsize="10"							
+				maxsize="16"
+			/>			
+		</simpleemitter>	
+		
+		
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Razer"
+	
+	speed="10000"
+	gravity="0"
+	
+	model=""
+	modelscale="1.5"
+	traileffect=""
+	impacteffect=""
+
+	touchcliffs="true"
+	touchprojectileblockers="true"
+	
+	touchradius="1"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+	maxtouchespertarget="1"
+>
+	<onspawn>
+		<order command="move" source="this_proxy_entity" target="this_position" />
+	</onspawn>
+
+	<ontouch>
+		<order command="move" source="this_proxy_entity" target="this_position" />
+		<kill target="this_entity" source="" />
+	</ontouch>
+	
+</projectile>

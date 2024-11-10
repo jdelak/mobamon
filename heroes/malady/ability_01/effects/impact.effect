@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" persistent="1" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".8">
+
+			<sound
+				volume="0.45"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+			
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="500"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				speed="0"
+			>
+				<particle
+					turn="1"
+				>
+					<model
+						position="0 0 100"
+						expirelife="100"
+						name="emitter0" 
+						anim="idle"
+						model="tornado/model.mdf"
+						scale=".8"
+						color="1 1 1"
+						startalpha=".9"
+						endalpha="0"
+						yaw="-90"
+					>
+
+						<trackeremitter
+							position="0 0 75"
+							bone="_bone_CTRL_05"
+							spawnrate="300"
+							particlelife="350"
+							targetbone="_bone_CTRL_01"
+							tracktype="linear"
+							trackspeed="5000"
+							speed="750"
+							material="/shared/effects/materials/corona_07.material"
+							distancelife="true"
+						>
+							<particle
+								startcolor=".075 .15 .15"
+								midcolor="0 .06 .125"
+								endcolor="0 0 0"
+								midcolorpos=".5"
+								startsize="350"
+								midsize="0"
+								endsize="0"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								startanchor="1"
+								endanchor="1"
+							/>
+						</trackeremitter>
+
+						<terrainemitter
+							bone="_bone_root_01"
+							spawnrate="250"
+							minparticlelife="250"
+							maxparticlelife="500"
+							gravity="-1.0"
+							minspeed="200"
+							maxspeed="400"
+							drag="0.025"
+							acceleration="0.0"
+							position="0 0 0"
+							direction="0 0 0"
+							offsetsphere="35 35 0"
+							particledirectionalspace="local"
+							material="/shared/effects/smaterials/cloud_single.material"
+							depthbias="-50"
+						>
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color=".75 1 1"
+								startsize="50"
+								endsize="0"
+								startalpha=".5"
+								endalpha="0"
+								midalphapos=".15"
+							/>
+						</terrainemitter>
+
+					</model>
+
+					<model
+						position="0 0 0"
+						expirelife="100"
+						name="emitter0" 
+						anim="idle"
+						model="tornado/model.mdf"
+						scale="1"
+						color="1 1 1"
+						startalpha=".9"
+						endalpha="0"
+						yaw="-90"
+					>
+						<template name="glow">
+							<billboard
+								expirelife="100"
+								bone="{zBone}"
+								material="/shared/effects/materials/corona_07.material"
+								position="0 0 0"
+								size="{zSize}"
+								startcolor=".035 .075 .075"
+								endcolor="0 0 0"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								yaw="0"
+								rollspeed="{zRollSpeed}"
+								depthbias="-50"
+							/>
+						</template>
+
+						<instance name="glow" zRollSpeed="800" zAlpha=".25" zSize="150" zBone="_bone_CTRL_03"/>
+						<instance name="glow" zRollSpeed="600" zAlpha=".25" zSize="200" zBone="_bone_CTRL_04"/>
+						<instance name="glow" zRollSpeed="-240" zAlpha="1" zSize="250" zBone="_bone_CTRL_05"/>
+
+					</model>
+					
+				</particle>
+			</simpleemitter>
+
+
+		</particlesystem>
+
+		<particlesystem name="system1" space="entity" scale="1.25">
+		
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

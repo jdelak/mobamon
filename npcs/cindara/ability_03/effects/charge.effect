@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				volume="0.4"
+				falloffstart="200"
+				falloffend="2200"
+				sample="sounds/cindara_sword_spawn_%.wav"
+			/>
+			
+			<light
+				expirelife="250"
+				position="0 0 20"
+				startcolor="5 1.5 0"
+				endcolor="0"
+				falloffstart="50"
+				falloffend="175"
+			/>
+
+			<model
+				expirelife="0"
+				color=".5 .75 1"
+				scale="1"
+				model="spinning_sword/model.mdf"
+				material="spinning_sword/material.material"
+				anim="idle"
+				startalpha="1"
+				endalpha="0"
+				yawspeed="800"
+			>
+
+				<template name="light">
+					<simpleemitter
+						count="1"
+						bone="{bone}"
+						particlelife="500"
+						spawnrate="5000"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard			
+								life="250"
+								bone="{bone}"
+								startsize="5"
+								midsize="200"
+								endsize="200"
+								material="/shared/effects/smaterials/whitedot.material"
+								startcolor=".15 .125 .06"
+								endcolor="0 0 0"
+								depthbias="-10"
+								width="1650"
+								directionalspace="local"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+							/>
+						</particle>
+					</simpleemitter>
+
+					<billboard			
+						life="750"
+						bone="{bone}"
+						startsize="5"
+						midsize="200"
+						endsize="10"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						endalpha="0"
+						startcolor=".15 .125 .06"
+						endcolor="0 0 0"
+						depthbias="-10"
+					/>	
+
+				</template>
+
+				<instance name="light" bone="_bone_weapon1" />
+				<instance name="light" bone="_bone_weapon2" />
+				<instance name="light" bone="_bone_weapon3" />
+				<instance name="light" bone="_bone_weaponattach" />
+
+			</model>
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+
+			<billboard
+				position="0 0 0"
+				life="5000"
+				color=".125 .035 .006"
+				size="250"
+				depthbias="-32"
+				material="/shared/effects/smaterials/whitedot.material"
+				loop="true"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<billboard
+				position="0 0 0"
+				life="5000"
+				color=".3 .2 .1"
+				size="100"
+				depthbias="-32"
+				material="/shared/effects/smaterials/whitedot.material"
+				loop="true"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+		
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+
+</effect>

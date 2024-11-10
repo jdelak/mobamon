@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_VampiricBlade_Empower_2"
+	
+	cost="1140"
+
+>
+	<!-- Tooltip only -->
+	<constant name="bonusdamage_enchant" value="80" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+	<constant name="bonusdamage_chance_enchant" value="25" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onattackimpact propagatetoillusions="false" >
+		<damageeffecttype effecttype="Splash" />
+		<else>
+			<chance threshold="0.25">
+				<cantarget targetscheme="enemy_creeps">
+					<damage effecttype="AttackDamage" amount="80" />
+				</cantarget>
+			</chance>
+		</else>
+	</onattackimpact>
+
+</qualityitem>

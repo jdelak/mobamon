@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.1">
+
+      <sound
+        linearfalloff="true"
+        falloffstart="500"
+        falloffend="2400"
+        volume="0.55"
+        sample="../sounds/sfx_cast_2.wav"
+			/>
+			
+
+			
+			<light
+				position="0 0 50"
+				life="650"
+				startcolor="0 0 0"
+				midcolor="0 1 2"
+				endcolor="0"
+				falloffstart="100"
+				falloffend="500"
+			/>
+
+			<template name="flashes">
+			
+				<terrainemitter
+				count="10"
+					position="{zpos}"
+					spawnrate="2000"
+					particlelife="1500"
+					offsetsphere="50 50 0"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							minlife="750"
+							maxlife="1000"
+							material="/shared/effects/materials/ice_blob_overlay.material"
+							minstartscale="7"
+							maxstartscale="8"
+							minendscale="8"
+							maxendscale="10"
+							color="0 1 .75"
+							startalpha="0"
+							midalpha=".04"
+							endalpha="0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-75"
+						/>
+
+					</particle>
+				</terrainemitter>
+	
+			</template>
+			
+			<instance name="flashes" zpos="0 0 0"/>
+
+			<simpleemitter
+			count="1"
+				spawnrate="2000"
+				particlelife="2000"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				speed="0"
+			>
+				<particle
+				>
+					<template name="">
+
+						<billboard
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .03 .05"
+							endcolor="0 0 0"
+							life="600"
+							startsize="400"
+							endsize="500"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+
+						<billboard
+							delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .03 .05"
+							endcolor="0 0 0"
+							life="300"
+							startsize="400"
+							endsize="600"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+
+					</template>
+
+					<instance name="" zroll="0" zdelay="0"/>
+					<instance name="" zroll="45" zdelay="0"/>
+					<instance name="" zroll="90" zdelay="0"/>
+					<instance name="" zroll="0" zdelay="100"/>
+					<instance name="" zroll="45" zdelay="100"/>
+					<instance name="" zroll="90" zdelay="100"/>
+
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="40"
+				spawnrate="120"
+				particlelife="2000"
+				offsetsphere="225 225 0"
+			>
+				<particle
+				>
+				
+					<template name="flashes">
+						<terrainemitter
+						count="4"
+							position="{zpos}"
+							spawnrate="2000"
+							particlelife="1500"
+							offsetsphere="85 85 0"
+							directionalspace="local"
+						>
+							<particle
+								turn="true"
+							>
+							
+								<billboard
+									minlife="300"
+									maxlife="500"
+									material="/shared/effects/materials/ice_blob_overlay.material"
+									minstartscale=".3"
+									maxstartscale=".6"
+									minendscale="2"
+									maxendscale="3.5"
+									color="0 1 1"
+									startalpha=".08"
+									endalpha="0"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+									minroll="0"
+									maxroll="360"
+									depthbias="-75"
+								/>
+
+								<billboard
+									minlife="300"
+									maxlife="500"
+									material="/shared/effects/smaterials/rings.material"
+									minstartscale=".15"
+									maxstartscale=".3"
+									minendscale=".75"
+									maxendscale="3.5"
+									startcolor="0 .08 .08"
+									endcolor="0 0 0"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+									minroll="0"
+									maxroll="360"
+									depthbias="-75"
+								/>
+
+							</particle>
+						</terrainemitter>
+					</template>
+					
+					<instance name="flashes" zpos="0 0 0"/>
+
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				count="65"
+				position="0 0 25"
+				spawnrate="5000"
+				minparticlelife="250"
+				maxparticlelife="1000"
+				gravity="0"
+				minspeed="0"
+				maxspeed="175"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				material="/shared/effects/smaterials/bubble_add.material"
+				offsetsphere="225 225 100"
+			>
+				<particle
+					startcolor="0 .3 .4"
+					endcolor="0 0 0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-80"
+					maxanglespeed="80"
+					minstartscale="2.5"
+					maxstartscale="15"
+					endscale="0"
+					midscalepos=".9"
+					param=".2"
+				/>
+			</simpleemitter>
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="1">
+
+			<simpleemitter
+				count="30"
+				minparticlelife="300"				
+				maxparticlelife="500"				
+				spawnrate="2000"
+				minspeed="0"
+				maxspeed="1000"
+				gravity="55"
+				direction="0 0 1"
+				minangle="20"
+				maxangle="15"
+				drag="0.01"
+				material="/shared/effects/materials/ice_blob_overlay.material"
+				offsetsphere="25 25 50"
+				position="0 0 15"
+				directionalspace="local"
+				depthbias="-25"
+			>
+				<particle 
+					maxangle="360"
+					startscale="0"
+					minendscale="50"
+					maxendscale="150"
+					color="0 1 1"
+					startalpha=".25"
+					endalpha="0"
+
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				count="30"
+				minparticlelife="300"				
+				maxparticlelife="500"				
+				spawnrate="2000"
+				minspeed="0"
+				maxspeed="1000"
+				gravity="55"
+				direction="0 0 1"
+				minangle="20"
+				maxangle="15"
+				drag="0.01"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 50"
+				position="0 0 15"
+				directionalspace="local"
+				depthbias="-25"
+			>
+				<particle 
+					maxangle="360"
+					startscale="0"
+					minendscale="50"
+					maxendscale="150"
+					startcolor="0 .1 .2"
+					endcolor="0 0 0"
+
+				/>
+			</simpleemitter>
+
+
+
+			<simpleemitter
+				position="0 0 90"
+				count="75"
+				spawnrate="6000"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="400"
+				maxspeed="700"
+				gravity="75"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="250"
+						maxlife="500"
+						startcolor="0 1 1"
+						midcolor="0 1 1"
+						endcolor="0 1 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="1.75"
+						minendscale=".2"
+						maxendscale=".4"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+
+		</particlesystem>
+		
+		
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

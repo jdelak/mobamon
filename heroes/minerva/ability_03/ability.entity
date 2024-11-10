@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Minerva3"
+
+	icon="icon.tga"
+	
+	maxlevel="4"
+	requiredlevel="2,3,5,7"
+
+	actiontype="passive"
+	
+
+	
+>	
+	<constant name="percent_maxhp" value="3.5,5,6.5,8" adjustment="support" floatprecision="1" />
+	<constant name="shield" value="3.5,5,6.5,8" adjustment="support" floatprecision="1" />
+	
+	<onabilitystart ignoreresponsetype="NoResponse">
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" />
+		<else>
+			<applystate name="State_Minerva_Ability3" duration="4000" target="source_entity" proxy="this_entity" />
+		</else>
+	</onabilitystart>
+</ability>

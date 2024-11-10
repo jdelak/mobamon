@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Observatory_On"
+	modifierkey="observatory_on"
+	ishidden="true"
+>
+	<oninflict>
+		<condition test="hasstate State_Observatory_Linger" target="this_owner_entity" >
+			<expirestate name="State_Observatory_Linger" target="this_owner_entity" />
+		</condition>
+		<else>
+			<condition test="not_hasstate State_Observatory_Contested" target="this_owner_entity" >
+				<playanim name="activate" target="source_entity" />
+				<playeffect effect="effects/sound.effect" target="source_entity" />
+			</condition>
+		</else>
+	</oninflict>
+	
+	<onexpired>
+		<applystate name="State_Observatory_Linger" duration="70000" target="this_owner_entity" />
+	</onexpired>
+	
+
+
+</state>

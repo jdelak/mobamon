@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="widget_highlight" luatable="true">
+
+	<include file="/ui/shared/templates_elements_simple.package"/>
+
+
+	<template name="widgetHighlightInstanceOld"><!-- for widgetHighlightMulti -->
+		<panel name="{id}" group="widgetHighlightInstances" x="{x}" y="{y}" width="{width}" height="{height}" noclick="true">
+			<modelpanel
+				noclick="1"
+				model="/ui/_models/tut_highlight.mdf"
+				anim="idle"
+				camerapos="0 -1000 3"
+				cameraangles="0 0 0"
+				camerafov="4.42"
+				carmerafar="5000"
+				depthclear="false"
+				depthcompress="true"
+				sunazimuth="140"
+				sunaltitude="10"
+				suncolor="1 1 1 1"
+				onshow="SetEffect('/ui/_models/tut_highlight.effect');"
+				onhide="SetEffect('');"
+			/>
+		</panel>
+	</template>
+
+	<template name="widgetHighlightInstance"><!-- for widgetHighlightMulti -->
+		<panel name="{id}" group="widgetHighlightInstances" x="{x}" y="{y}" width="{width}" height="{height}" noclick="true">
+			<modelpanel
+				noclick="1"
+				model="/ui/_models/{model=1to1}/button.mdf"
+				anim="idle"
+				camerapos="0 -1000 0.25"
+				cameraangles="0 0 0"
+				camerafov="4.42"
+				carmerafar="5000"
+				depthclear="false"
+				depthcompress="true"
+				sunazimuth="140"
+				sunaltitude="10"
+				suncolor="1 1 1 1"
+				onshow="SetEffect('/ui/_models/{model=1to1}/button.effect');"
+				onhide="SetEffect('');"
+			/>
+		</panel>
+	</template>
+
+	<frame name="widgetHighlight" color="invisible" visible="0" noclick="1" >
+		<modelpanel
+			name="widgetHighlightModel"
+			noclick="1" align="center" valign="center"
+			model="/ui/_models/1to1/button.mdf"
+			anim="idle"
+			camerapos="0 -1000 0.25"
+			cameraangles="0 0 0"
+			camerafov="4.42"
+			carmerafar="5000"
+			depthclear="false"
+			depthcompress="true"
+			sunazimuth="140"
+			sunaltitude="10"
+			suncolor="1 1 1 1"
+			onshow="SetEffect('/ui/_models/1to1/button.effect');"
+			onhide="SetEffect('');"
+		/>
+	</frame>
+	<panel name="widgetHighlightBlocker" visible="0" color="invisible" blockinput="1" />
+	<panel name="widgetHighlightBG1" visible="0" color="0 0 0 0.5" />
+	<panel name="widgetHighlightBG2" visible="0" color="0 0 0 0.5" />
+	<panel name="widgetHighlightBG3" visible="0" color="0 0 0 0.5" />
+	<panel name="widgetHighlightBG4" visible="0" color="0 0 0 0.5" />
+	<panel name="widgetHighlightBorder" visible="0" noclick="true" passivechildren="true">
+		<frame borderthickness="0.75h" color="0 0 0 0.5" texture="/ui/elements:rounded_corner_white"/>
+		<frame borderthickness="0.75h" color="#FFCC00" texture="/ui/elements:roundframe"/>
+	</panel>
+
+	<panel name="widgetHighlightInstanceContainer" noclick="true" color="invisible"/>
+
+	<panel name="darkenScreen" visible="0" color="0 0 0 0.75" />
+
+	<panel name="widgetHighlightLabelFrame" grow="1" noclick="1" passivechildren="1" visible="false">
+		<frame texture="/ui/elements:rounded_bg_solid" borderthickness="0.5h" color="0 0 0 0.5"/>
+		<frame texture="/ui/elements:thick" borderthickness="0.5h" color="black"/>
+
+		<panel align="center" valign="top" width="1h" height="1h" grow="1" regrow="1" >
+			<label name="widgetHighlightLabel" x="2.0h" y="-0.5h" fity="1" fitypadding="2h" width="20h" wrap="1" valign="center" textalign="center" textvalign="center"
+				font="maindyn_14" color="#ffc600" outline="0" shadow="1" content="-"
+			/>
+			<panel width="+2h" height="+1h" />
+		</panel>
+	</panel>
+
+	<image name="widgetPointer" texture="/ui/shared/textures/pointer_simple.tga" width="12h" height="12h" noclick="true" visible="false"/>
+
+	<!--
+		this one only roughly gestures at the target, but due to issues with recursive rotation, etc. it can't easily be manipulated to always face the target
+		also the hand is truly horrifying
+	<animatedimage name="widgetPointer" loop="1" fps="30" width="12h" height="12h" noclick="true"
+		onshow="StartAnim(1);" resourcecontext="widgetHighlight" texture="/ui/_textures/elements/hand/hand.tga"
+	/>
+	-->
+
+	<panel name="widgetHighlightPlaceholder" noclick="true" color="invisible"/>
+
+	<instance name="closeXButton" buttonName="widgetHighlightClose" width="3h" height="3h" align="right" x="-3h" y="3h" visible="false"/>
+
+	<lua file="widget_highlight.lua"/>
+
+</interface>

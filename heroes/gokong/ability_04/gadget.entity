@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Gadget_GoKong_Ability4"
+	
+	icon="icon.tga"
+	portrait=""
+	modelscale="1.7"
+	model="/shared/models/invis.mdf"
+	skin=""
+	
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	unitwalking="true"
+	
+	isselectable="false"
+	invulnerable="false"
+	
+	preglobalscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="10"
+	selectionradius="26"
+	targetoffset="0 0 0"
+	combattype="Ranged"
+	
+	maxhealth="100"
+	immunity=""
+	diewithowner="true"
+	infoheight="200"
+
+	canrotate="false"
+	ismobile="false"
+	isflying="false"
+	clearvision="false"
+	drawonmap="false"
+	
+	sightrangeday="350"
+	sightrangenight="350"
+
+	attacktype="none"
+	
+	corpsetime="0"
+	deathtime="0"
+	corpsefadetime="0"
+	
+	blocking="false"
+>
+	<onframe>
+		<setvar0 a="target_health_percent" b="100" op="mult" target="this_proxy_entity" />
+		<compare a="source_health" b="var0" op="gt">
+			<setvar1 a="source_health" b="var0" op="sub" />
+			<damage amount="1" effecttype="Splash" b="var1" op="mult" nonlethal="true"/>
+		</compare>
+		<compare a="source_health" b="var0" op="lt">
+			<setvar1 a="var0" b="source_health" op="sub"  />
+			<heal a="var1" />
+		</compare>
+		<targettype type="alive" target="this_proxy_entity" />
+		<else>
+			<delete target="this_entity" />
+		</else>
+	</onframe>
+</pet>

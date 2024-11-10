@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_HealAtWell"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	
+	serverentity="true"
+	
+	deathpersist="true"
+	
+>
+
+	<onframe>
+		<compare a="target_health_percent" b="1" op="ge" >
+			<condition test="hasstate State_LegionHealingWell" target="target_entity" >
+				<setscriptvalue name="healed_at_well" value="1" />
+				<expire />
+			</condition>
+		</compare>
+	</onframe>
+
+</state>

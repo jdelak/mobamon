@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Zaku_Ability1"
+
+	icon="icon.tga"
+
+	effecttype="StatusDebuff"
+	passiveeffect="effects/state_debuff.effect"
+	
+	resistancepercharge="-0.1"
+
+	impactinterval="300"
+>
+
+	<onimpact>
+		<condition target="this_owner_entity" test="hasstate State_Zaku_Ability1_DOT">
+			<getconstant name="resistance_reduction" />
+			<setvar0 a="result" b="10" op="mult" />
+			<compare a="charges" b="var0" op="lt">
+				<setvar1 a="var0" b="10" op="div" />
+				<setvar2 a="var1" b="charges" op="add"/>
+				<compare a="var2" b="var0" op="ge">
+					<setcharges a="var0" />
+				</compare>
+				<else>
+					<addcharges count="var1" />
+				</else>
+			</compare>
+		</condition>
+	</onimpact>
+</state>

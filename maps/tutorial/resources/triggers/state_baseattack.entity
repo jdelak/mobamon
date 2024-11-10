@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Walkthrough_BaseAttack"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	
+	impactinterval="4100"
+>
+	<oninflict>
+		<setent3 name="lane2_goodtower3" />
+		<spawnunit name="Creep_WalkBaseAttack" count="1" source="this_owner_entity" target="this_owner_position" pushentity="true" />
+		<order command="attack" source="stack_entity" target="ent3" />
+	</oninflict>
+	
+	<!-- impactinterval is how often a creep is spawned -->
+	<onimpact>
+		<setent3 name="lane2_goodtower3" />
+		<spawnunit name="Creep_WalkBaseAttack" count="1" source="this_owner_entity" target="this_owner_position" pushentity="true" />
+		<order command="attack" source="stack_entity" target="ent3" />
+	</onimpact>
+</state>

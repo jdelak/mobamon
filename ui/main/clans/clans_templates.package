@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="deckSimpleCheckbox">
+		<panel
+			name="{id}_cbpanel"
+			height="{height=100%}" width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="
+				{oninstantiatelua}
+			"
+			onloadlua="{oninstantiatelua}"			
+			onmouseoverlua=""
+		>
+	 		<button
+				name="{id}_cbname" noclick="0" color="invisible"
+				onbutton=""
+				visible="1"
+				numstates="2"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			/>
+			<panel width="100@" height="100%" noclick="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="4s" color=".1 .1 .1 .35" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor="#0f457e" color="invisible" borderthickness="4s" noclick="1"/>
+				<panel name="options_checkbox_check_{id}" x="1s" y="-2s" valign="bottom" align="center" width="110@" height="110%" nolclick="true" visible="false" noclick="1">
+					<image y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+					<image texture="/ui/shared/textures/check_mark_white.tga" color="#70f4be" noclick="1"/>
+				</panel>
+			</panel>			
+			<image name="options_checkbox_titleimage_{id}" x="118@" y="6%" textvalign="center" height="94%" width="94@" align="left" texture="{icon=$invis}" color="1 1 1 .7" noclick="true"  />					
+			<label name="options_checkbox_titlelabel_{id}" x="{x=230@}" y="-1s" textvalign="center" width="-130@" align="left" style="BrawlH_26" font="maindyn_18" content="{title}" noclick="true"  />					
+		</panel>
+	</template>
+	
+	<template name="deckSimpleRadio">
+		<panel
+			name="{id}_cbpanel"
+			height="{height=100%}" width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="
+				{oninstantiatelua}
+			"
+			onloadlua="{oninstantiatelua}"			
+			onmouseoverlua=""
+		>
+	 		<button
+				name="{id}_cbname" noclick="0" color="invisible"
+				onbutton=""
+				visible="1"
+				numstates="2"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			/>
+			<panel width="90@" height="90%" valign="center" noclick="1">
+				<image texture="/ui/shared/textures/circle_filled.tga" color=".1 .1 .1 .35" noclick="1"/>
+				<image texture="/ui/shared/textures/circle_ring.tga" color="#42cef4" noclick="1"/>				
+				
+				<panel name="options_checkbox_check_{id}" valign="center" align="center" width="72@" height="72%" nolclick="true" visible="0" noclick="1">
+					<image y="1" texture="/ui/shared/textures/circle_filled.tga" color="0 0 0 1" noclick="1"/>
+					<image texture="/ui/shared/textures/circle_filled.tga" color="#70f4be" noclick="1"/>
+				</panel>
+				
+			</panel>			
+			<label name="options_checkbox_titlelabel_{id}" y="-1s" textvalign="center" width="-118@" align="right" style="BrawlH_26" font="{font=maindyn_18}" content="{title}" noclick="true"  />					
+		</panel>
+	</template>
+
+	<template name="clans_tip_mark" >
+		<panel color="invisible" x="{x}" y="{y}" width="{width}" height="{height}" valign="{valign}" align="{align}" noclick="true" name="{tip_name}" onevent0="{onevent0}" watch="{watch}" ontrigger="{ontrigger}" tip_visible="{tip_visible}" onevent1="{onevent1}">
+			<button
+				name="{button_name}"
+				color="invisible"
+				visible="{visible=true}"
+				XXXonmouseover="If(!StringEmpty('{tip_id}'), Cmd('UICall {tip_id} SetVisible(1)')); PlaySound('/shared/sounds/ui/button_over_01.wav'); {onmouseover=}"
+				XXXonmouseout=" If(!StringEmpty('{tip_id}'), Cmd('UICall {tip_id} SetVisible(0)')); {onmouseout=}"
+				oninstantiatelua="{oninstantiatelua}"
+				onmousewheeluplua="{onmousewheeluplua}"
+				onmousewheeldownlua="{onmousewheeldownlua}"
+				onmouseoverlua="{onmouseoverlua}"
+				onmouseoutlua="{onmouseoutlua}"
+			>			
+				<widgetstate statename="up">
+					<image width="100%" height="100%" valign="center" align="center" texture="/ui/shared/textures/what_dis.tga"  color="1 1 1 .8" />
+				</widgetstate>
+				<widgetstate statename="over">
+					<image width="100%" height="100%" valign="center" align="center" texture="/ui/shared/textures/what_dis.tga" color="1 1 1 1" />
+				</widgetstate>
+			</button>
+		</panel>		
+	</template>
+
+	<template name="clans_slider_template_int">
+		<panel name="{id}_parent"  sticky="0" stickytoinvis="0" valign="{valign=top}" align="{align=left}"
+			grow="true"
+			width="{width=100%}"
+			noclick="1"
+			oninstantiatelua=" "
+			onmouseoverlua=""			
+		>
+			<frame texture="/ui/shared/frames/togglebox.tga" borderthickness="10s" noclick="true" rendermode="normal" color="#4ab4ff" />
+			<panel grow="true" growinvis="false" width="-13s" y="6s" align="center" float="bottom" padding="3s" noclick="true">
+			
+				<panel height="14s" noclick="true" sticky="true" stickytoinvis="false">
+					<label width="-20s" height="100%" textvalign="center" font="maindyn_20" style="BrawlH_26" content="{title}" noclick="true" />
+					<instance name="clans_tip_mark" tip_id="{tip_id}" width="22s" height="22s" valign="center" align="right" visible="{showtip=0}"
+						oninstantiatelua="self:SetVisible(not Empty(('{tip_text1=}')))"
+						onmouseoverlua="simpleTipGrowYUpdate(true, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+						onmouseoutlua="simpleTipGrowYUpdate(false, nil, Translate('{tip_name}'), Translate('{tip_text1}'), 300)"
+					/>
+				</panel>
+				<panel height="6s" noclick="true" />
+				
+				<panel height="21s" noclick="true">
+					<panel width="{intWidth=48s}" noclick="true">
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="4s" color=".1 .1 .1 .35" noclick="true" />
+						<frame texture="/ui/shared/frames/border_double.tga" bordercolor="#0f457e" color="invisible" borderthickness="4s" noclick="true" />
+						<label name="{id}_value_label" textvalign="center" textalign="center" font="maindyn_18" color="1 1 1 1" shadow="true" noclick="1" />
+						
+						<textbox
+							name="{id}_input" width="45s"
+							maxlength="4"
+							textcolor="white"
+							textoutlinecolor="black" textalign="center" textvalign="center"
+							color="invisible"
+							font="maindyn_18"
+							scrolltexture="/ui/_textures/elements/combobox.tga"
+							indent="0"
+							align="center"
+							valign="center"
+							onloadlua=""
+							onesclua="self:SetFocus(false) self:SetDefaultFocus(false)"
+							onmouseldownlua=""
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"		
+							onmouseoutlua=""
+							onsizelua=""
+							onesc="DoEvent()"
+							onenter="DoEvent(2)"							
+						/>						
+						
+					</panel>
+				
+					<slider
+						name="{id}_slider"
+						width="{sliderWidth=-50s}"
+						align="right"
+						slotwidth="-1%" slotheight="1s"
+						slotcolor="#51647b"
+						handlewidth="90@" handleheight="90%"
+						handlecolor="1 1 1 1"
+						minvalue="{minvalue=0}" maxvalue="{maxvalue=1}"
+						step="{step}"
+						texture="/ui/shared/textures/slider.tga"
+						onselect="PlaySound('/shared/sounds/ui/button_over_02.wav');"
+						onmouseoverlua=""
+					/>
+				</panel>
+				<panel height="8s" noclick="true" />	
+			</panel>			
+		</panel>
+	</template>
+
+	<template name="clans_combobox_lang_item">				
+		<image width="100@" height="100%" x="5s" valign="center" noclick="true" texture="{texture=$invis}"/>
+		<label y="-2s" x="140@" style="labelBase" font="maindyn_18" textvalign="center" noclick="1" content="{label}" />
+	</template>	
+
+	<template name="clans_combobox_state">
+		<widgetstate statename="{state}" noclick="1">
+			<image width="16@" texture="/ui/shared/textures/combobox_background_l.tga" color="{color}" />
+			<image x="16@" width="-116@" texture="/ui/shared/textures/combobox_background_c.tga" color="{color}" />
+			<image width="100@" align="right" texture="/ui/shared/textures/combobox_background_r.tga" color="{color}" />
+		</widgetstate>
+	</template>
+
+	<template name="clansSimpleRadio">
+		<panel
+			name="{id}_cbpanel"
+			height="{height=100%}" width="{width=100%}" noclick="1"  sticky="0" stickytoinvis="0"
+			onclick="PlaySound('/shared/sounds/ui/button_click_06.wav');"
+			oninstantiatelua="
+				{oninstantiatelua}
+			"
+			onloadlua="{oninstantiatelua}"			
+			onmouseoverlua=""
+		>
+	 		<button
+				name="{id}_cbname" noclick="0" color="invisible"
+				onbutton=""
+				visible="1"
+				numstates="2"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			/>
+			<panel width="90@" height="90%" valign="center" noclick="1">
+				<image texture="/ui/shared/textures/circle_filled.tga" color=".1 .1 .1 .35" noclick="1"/>
+				<image texture="/ui/shared/textures/circle_ring.tga" color="#041e3a" noclick="1"/>				
+				
+				<panel name="options_checkbox_check_{id}" valign="center" align="center" width="72@" height="72%" nolclick="true" visible="0" noclick="1">
+					<image y="1" texture="/ui/shared/textures/circle_filled.tga" color="0 0 0 1" noclick="1"/>
+					<image texture="/ui/shared/textures/circle_filled.tga" color="#70f4be" noclick="1"/>
+				</panel>
+				
+			</panel>			
+			<label name="options_checkbox_titlelabel_{id}" y="-1s" textvalign="center" width="-118@" align="right" style="BrawlH_26" font="maindyn_20" content="{title}" noclick="true"  />					
+		</panel>
+	</template>
+
+	<template name="clans_friend_longmode_template">
+		<panel visible="{visible=1}" height="40s" noclick="1" width="458s" sticky="1" stickytoinvis="0">
+			<button name="clans_friend_longmode_template{index}" color="invisible" height="40s" noclick="0" width="100%" oninstantiatelua="" sticky="1" stickytoinvis="0">
+				<frame name="clans_friend_longmode_template{index}_bg" width="458s" texture="/ui/elements:rounded_bg_solid" color="#15375c" bordercolor="#15375c" borderthickness="3s" noclick="1"/>
+				<frame name="clans_friend_longmode_template{index}_hover" width="458s" texture="/ui/elements:rounded_bg_solid" color="#0250a3" bordercolor="#0250a3" borderthickness="4s" noclick="1" visible="0"/>
+				<frame name="clans_friend_longmode_template{index}_hoverOutline" width="458s" texture="/ui/shared/frames/border_double.tga" color="invisible" bordercolor="#4bb3fd" borderthickness="4s" noclick="1" visible="0"/>
+				<panel name="clans_friend_longmode_template{index}_profile" x="5s" height="80%" valign="center" float="right" padding="3s" noclick="1" >
+					<instance name="shared_account_icon_template" id="clans_friend_longmode_template{index}" />
+					<panel name="clans_friend_longmode_template{index}_voip" x="0" height="100%" width="100@" noclick="1" color="white" texture="/ui/shared/textures/megaphone.tga" visible="0" />
+					<panel width="253s" noclick="1" >
+						<label name="clans_friend_longmode_template{index}_profile_name" content="{userName=???}" x="5s" y="-2s" fity="1" fitx="1" font="maindyn_22" align="left" textalign="left" valign="center" noclick="1" color="{userNameColor=white}" />
+					</panel>
+					<panel width="58s" noclick="1" align="left" >
+						<label name="clans_friend_longmode_template{index}_medals" content="{medals=6666}" fity="1" fitx="1" font="maindyn_22" align="center" textalign="left" valign="center" noclick="1" color="white" />
+					</panel>
+				</panel>
+			</button>
+			<panel x="-3s" width="98s" noclick="1" align="right">
+				<instance name="standardButton" id="clans_friend_longmode_template{index}_btn_sent" 		enabled="0" rendermode="grayscale" font="maindyn_18" label="smashparty_sent" height="32s" valign="center" defaultsound="1" onclicklua="" />				
+				<instance name="standardButton" id="clans_friend_longmode_template{index}_btn_invite" 	font="maindyn_18" label="general_invite" height="32s" valign="center" defaultsound="1" onclicklua="" />
+				<instance name="primaryButton" id="clans_friend_longmode_template{index}_btn_accept"		font="maindyn_18" label="smashparty_accept" height="32s" valign="center" defaultsound="1" onclicklua="" />				
+				<instance name="standardButton" id="clans_friend_longmode_template{index}_btn_spectate" 	font="maindyn_18" label="smashparty_spectate" height="32s" valign="center" defaultsound="1" onclicklua="" />
+				<panel grow="1" regrow="1" growinvis="0" noclick="1" align="right" float="right" padding="10s" valign="center" >
+					<instance name="iconButton" id="clans_friend_longmode_template{index}_btn_reject" icon="/ui/shared/textures/no.tga" colorized="1" width="32s" font="maindyn_18" height="32s" valign="center" defaultsound="1" onclicklua="" />	
+					<instance name="iconButton" id="clans_friend_longmode_template{index}_btn_approve" icon="/ui/shared/textures/yes.tga" texture="/ui/shared/frames/primary_btn_up.tga" colorized="1" width="32s" font="maindyn_18" height="32s" valign="center" defaultsound="1" onclicklua="" />	
+				</panel>
+			</panel>			
+			<panel height="40s" noclick="1" width="100%" sticky="1" stickytoinvis="0">
+				<panel x="5s" height="80%" valign="center" noclick="1" >
+					<panel name="clans_friend_longmode_template{index}_profile_id_hover" height="100%" width="100@" noclick="0" color="invisible" >	
+						
+					</panel>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	
+	<template name="clans_friendslist_header_row_template" >
+		<panel name="clans_friendslist_header_row_template{index}" visible="{visible=1}" height="48s" width="458s" noclick="0" sticky="1" stickytoinvis="0" clip="1" >
+			<panel noclick="1" height="28s" float="right" padding="5s" >
+				<panel name="clans_friendslist_header_row_template{index}_arrow" rotation="0" x="5s" height="18s" width="18s" noclick="1" color="#cfd3e7" texture="/ui/main/shared/textures/drop_arrow.tga" valign="center"/>
+				<label name="clans_friendslist_header_row_template{index}_label" content="" font="maindyn_18" color="#cfd3e7" fitx="1" fity="1" align="left" valign="center" noclick="1" />
+				<label name="clans_friendslist_header_row_template{index}_count_label" content="" font="maindyn_14" color="0.81 0.83 0.91 0.3" fitx="1" fity="1" align="left" valign="center" noclick="1" />
+				<panel name="clans_friendslist_header_row_template{index}_line" x="21s" height="3s" width="90s" align="left" valign="center" color="1 1 1 0.21" texture="/ui/main/shared/textures/grad_horz.tga" noclick="1"/> 
+			</panel>
+			<panel name="clans_friendslist_header_row_template{index}_subheader" height="20s" width="458s" noclick="1" valign="bottom" float="right" padding="0s" >
+				<label color="#8294d6" width="278s" outline="1" outlinecolor="0 0 0 .3" font="subdyn_14" textalign="left" content="ladder_playername_caps" noclick="1" />
+				<label color="#8294d6" width="90s" outline="1" outlinecolor="0 0 0 .3" font="subdyn_14" textalign="center" content="ladder_medals_caps" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="clans_friend_both_template">
+		<instance name="clans_friendslist_header_row_template" index="{index}" visible="0" />
+		<instance name="clans_friend_longmode_template" index="{index}" visible="0" />
+	</template>
+
+	<template name="clans_friendlist_template" >
+		<panel name="clans_friendlist_friendlist_parent" noclick="1" height="100%" valign="top" y="0s" sticky="0" stickytoinvis="0" width="-30s" style="simpleListbox" >
+			<panel name="clans_friendlist" grow="1" regrow="1" growinvis="0" noclick="1" valign="top" sticky="0" stickytoinvis="0" style="simpleListbox" float="bottom" padding="4s">
+
+			</panel>
+		</panel>
+		<scrollbar name="clans_friendlist_scrollbar" visible="0"
+			texture="/ui/shared/textures/new_slider.tga"
+			vertical="true"					
+			width="16s" align="right" valign="top" height="100%" step="1" minvalue="0" maxvalue="6"
+			hscrollbar="0"
+			horizontal="false"	
+			handleheight="50%" y="0s" x="-2s"			
+		/>		
+		<panel noclick="0" blockinput="0" processonlyscroll="1" hover="false" group="clans_friends_scroll_catchers"
+			onmousewheeldownlua=""
+			onmousewheeluplua=""										
+		/>
+	</template>
+
+	
+	<template name="clans_prizes_tier_marker">		
+		<panel name="clans_prizes_tier_marker_{id}" x="{x}" y="-5s" width="64s" height="128s" valign="bottom" noclick="1" visible="{visible=1}">
+			<image name="{id}_clans_prizes_spin_texture" texture="/ui/main/clans/textures/prize_marker_{boardname}_spin.tga" noclick="1"/>
+			<label name="{id}_clans_prizes_spin_count" style="labelBase" font="subdyn_11" content="pb_{boardname}_spin_caps" textalign="center" align="center" fitx="1" fity="1" valign="bottom" y="22s" noclick="1" />
+			<panel grow="1" regrow="1" y="-29s" height="20s" valign="center" align="center" float="right" noclick="1">
+				<label name="{id}_clans_prizes_seals_needed" style="labelBase" font="maindyn_22" content="0" textvalign="center" fitx="1" fitxpadding="2s" noclick="1" />
+				<label style="labelBase" font="subdyn_11" content="ladder_seals_caps" textvalign="center" fitx="1" noclick="1" />
+			</panel>
+		</panel>		
+	</template>
+	
+	<template name="clans_finder_noresults_listitem">		
+		<panel height="40s" noclick="1">
+			<panel float="right" padding="1" height="36s" valign="center">
+				<label width="600s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="left" textvalign="center" content="clans_finder_no_results_info" noclick="1" />
+			</panel>
+			<instance name="hr" valign="bottom" y="1s" />
+		</panel>		
+	</template>
+
+	<template name="clans_finder_results_listitem">		
+		<panel name="clans_finder_results_listitem_{id}_parent_btn" height="40s" width="1020s" noclick="0" onclicklua=" " >
+			<panel x="5s" float="right" padding="1" height="36s" valign="center" noclick="1">
+				<panel noclick="1" width="532s" >
+					<label name="clans_finder_results_listitem_{id}_clan_name" width="460s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="left" textvalign="center" content="{clan_name=Club Name}" noclick="1" />
+				</panel>
+				<label name="clans_finder_results_listitem_{id}_clan_tag" width="105s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{tag=[TAGG]}" noclick="1" />
+				<panel width="72s" noclick="1">
+					<image texture="{language_flag=/ui/shared/textures/flags/germany.tga}" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<panel width="0s" noclick="1" visible="0" > <!-- NO REGIONS SEARCH THIS PHRASE -->
+					<image texture="{region_flag=/ui/shared/textures/flags/germany.tga}" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<label name="clans_finder_results_listitem_{id}_membership" width="78s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{member_label=50/50}" noclick="1" />
+				<label name="clans_finder_results_listitem_{id}_medals" width="78s" color="{medalscolor=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{medals=0}" noclick="1" />
+				<panel name="clans_finder_results_listitem_{id}_moreinfo" width="55s" noclick="0">
+					<image texture="/ui/shared/textures/magnifying_glass.tga" color="1 1 1 0.5" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<panel width="90s" noclick="1">
+					<instance name="standardButton" id="clans_finder_results_listitem_{id}_action" font="maindyn_18" label="clans_apply" height="30s" valign="center" defaultsound="1" onclicklua="" />
+					<label name="clans_finder_results_listitem_{id}_action_label" visible="0" color="1 1 1 0.7" style="labelBase" font="maindyn_18" textalign="center" textvalign="center" content="" noclick="1" />
+				</panel>
+			</panel>
+			<instance name="hr" valign="bottom" y="1s" />
+		</panel>		
+	</template>
+	
+	<template name="clans_finder_pending_invite_listitem">		
+		<panel name="clans_finder_results_listitem_{id}_parent_btn" height="40s" width="1020s" noclick="0" onclicklua=" " >
+			<panel float="right" padding="1" height="36s" valign="center" noclick="1">
+				<panel noclick="1" width="460s" >
+					<label name="clans_finder_results_listitem_{id}_clan_name" width="460s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="left" textvalign="center" content="{clan_name=Club Name}" noclick="1" />
+				</panel>
+				<label name="clans_finder_results_listitem_{id}_clan_tag" width="105s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{tag=[TAGG]}" noclick="1" />
+				<panel width="72s" noclick="1">
+					<image texture="{language_flag=/ui/shared/textures/flags/germany.tga}" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<panel width="72s" noclick="1">
+					<image texture="{region_flag=/ui/shared/textures/flags/germany.tga}" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<label name="clans_finder_results_listitem_{id}_membership" width="78s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{member_label=50/50}" noclick="1" />
+				<label name="clans_finder_results_listitem_{id}_medals" width="78s" color="{medalscolor=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{medals=0}" noclick="1" />
+				<panel name="clans_finder_results_listitem_{id}_moreinfo" width="55s" noclick="0">
+					<image texture="/ui/shared/textures/magnifying_glass.tga" color="1 1 1 0.5" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<panel x="-3s" width="90s" noclick="1" align="right" >
+					<panel grow="1" regrow="1" noclick="1" float="right" padding="8s" align="center" valign="center" >
+						<instance name="iconButton" id="clans_finder_results_listitem_{id}_btn_reject" icon="/ui/shared/textures/no.tga" colorized="1" width="32s" font="maindyn_18" height="32s" valign="center" defaultsound="1" onclicklua="" />	
+						<instance name="iconButton" id="clans_finder_results_listitem_{id}_btn_approve" icon="/ui/shared/textures/yes.tga" texture="/ui/shared/frames/primary_btn_up.tga" colorized="1" width="32s" font="maindyn_18" height="32s" valign="center" defaultsound="1" onclicklua="" />	
+					</panel>
+				</panel>			
+			</panel>
+		</panel>			
+	</template>
+	
+	<template name="clans_finder_pending_application_listitem">		
+		<panel name="clans_finder_results_listitem_{id}_parent_btn" height="40s" width="1020s" noclick="0" onclicklua=" " >
+			<panel float="right" padding="1" height="36s" valign="center" noclick="1">
+				<panel noclick="1" width="460s" >
+					<label name="clans_finder_results_listitem_{id}_clan_name" width="460s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="left" textvalign="center" content="{clan_name=Club Name}" noclick="1" />
+				</panel>
+				<label name="clans_finder_results_listitem_{id}_clan_tag" width="105s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{tag=[TAGG]}" noclick="1" />
+				<panel width="72s" noclick="1">
+					<image texture="{language_flag=/ui/shared/textures/flags/germany.tga}" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<panel width="72s" noclick="1">
+					<image texture="{region_flag=/ui/shared/textures/flags/germany.tga}" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<label name="clans_finder_results_listitem_{id}_membership" width="78s" color="{color=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{member_label=50/50}" noclick="1" />
+				<label name="clans_finder_results_listitem_{id}_medals" width="78s" color="{medalscolor=#ebebeb}" style="labelBase" font="maindyn_20" textalign="center" textvalign="center" content="{medals=0}" noclick="1" />
+				<panel name="clans_finder_results_listitem_{id}_moreinfo" width="55s" noclick="0">
+					<image texture="/ui/shared/textures/magnifying_glass.tga" color="1 1 1 0.5" width="80@" height="80%" valign="center" align="center" noclick="1"/>
+				</panel>
+				<panel width="90s" noclick="1">
+					<instance name="standardButton" id="clans_finder_results_listitem_{id}_action" font="maindyn_18" label="clans_templates_withdraw" height="30s" valign="center" defaultsound="1" onclicklua="" />
+				</panel>
+			</panel>
+		</panel>					
+	</template>
+	
+</package>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="craftedItemTipComponent">
+		<panel name="craftedItemTipComponent{id=1}" width="100@" height="100%" sticky="true" stickytoinvis="false" visible="false">
+			<image name="craftedItemTipComponent{id=1}Icon" texture="{icon=/heroes/harrower/ability_01/icon.tga}"/>
+			<frame style="backerPanelGray1" texture="/ui/elements:rounded_corner_white" borderthickness="0.75h"/>
+			<frame color="black" texture="/ui/elements:thick" borderthickness="0.75h"/>
+		</panel>
+	</template>
+	
+	<template name="craftingItemStateBreakdownEntryVertical">
+		<panel height="2.5h">
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.25h" noclick="true" x="0.15h" y="0.15h"/>
+			<frame style="backerPanelGray4" texture="/ui/elements:rounded_bg_white" borderthickness="0.25h" noclick="true"/>
+			<panel hmargin="0.25h" vmargin="0.25h">
+				<image texture="{icon=elements:itemtype_power}" valign="center" width="85@" height="85%" x="10@"/>
+				<panel align="right" width="-125@">
+					<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.25h" noclick="true"/>
+					<label name="{id}" textalign="center" textvalign="center" style="whiteTextColor" font="subdyn_12" content="{value=5}"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<!-- ======================================================================= -->
+	
+	<floater name="craftedItemTip" x="22" y="-22" width="35.25h" grow="true" regrow="true" visible="false">
+		<panel>
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+			<frame style="backerPanelGray1" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+		</panel>
+		<panel width="-1h" align="center" grow="true" regrow="true" growinvis="false" float="bottom" padding="0.75h">
+			<panel height="0"/>
+			<panel height="3h">
+				<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" noclick="true" x="0.25h" y="0.25h"/>
+				<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" noclick="true"/>
+				<label name="craftedItemTipTitle" width="-1h" align="center" textvalign="center" font="maindyn_16" shadow="true" style="goldColor" content="temp_abilitytip_itemname"/>
+				<panel align="right" width="8h" x="-0.5h" vmargin="0.5h">
+					<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h"/>
+					<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.5h"/>
+					<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.5h" width="+0.1h" height="+0.1h"/>
+					<label name="craftedItemTipCost" x="10@" width="-110@" textalign="center" textvalign="center" style="goldColor" font="subdyn_12" content="3,600"/>
+					<image width="85@" height="85%" valign="center" align="right" x="-10@" texture="/ui/elements:gold_coins"/>
+				</panel>
+			</panel>
+			<panel height="14.5h">
+				<panel height="7h" width="-8.5h">
+					<panel>
+						<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h"/>
+						<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+						<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h"/>
+					</panel>
+					<label name="craftedItemTipDescription" align="center" width="-1h" wrap="true" fity="true" textvalign="center" fitypadding="1h" font="subdyn_12" shadow="true" style="whiteTextColor" content="temp_abilitytip_itemdesc"/>
+				</panel>
+				<panel width="-8.5h" height="7h" valign="bottom">
+					<panel grow="true" regrow="true" growinvis="false" height="100%" align="center" float="right" padding="1h" x="-1h">
+						<instance name="craftedItemTipComponent" id="1"/>
+						<instance name="craftedItemTipComponent" id="2"/>
+						<instance name="craftedItemTipComponent" id="3"/>
+					</panel>
+				</panel>
+				<panel align="right" width="8h" float="bottom" padding="0.5h">
+					<instance name="craftingItemStateBreakdownEntryVertical" id="craftedItemTipStatpower" icon="elements:itemtype_damage" value="108"/>
+					<instance name="craftingItemStateBreakdownEntryVertical" id="craftedItemTipStathp" icon="elements:itemtype_health" value="90"/>
+					<instance name="craftingItemStateBreakdownEntryVertical" id="craftedItemTipStatmp" icon="elements:itemtype_mana" value="0"/>
+					<instance name="craftingItemStateBreakdownEntryVertical" id="craftedItemTipStathpregen" icon="elements:itemtype_healthregen" value="0"/>
+					<instance name="craftingItemStateBreakdownEntryVertical" id="craftedItemTipStatmpregen" icon="elements:itemtype_manaregen" value="1.1"/>
+					<instance name="craftingItemStateBreakdownEntryVertical" id="craftedItemTipStatattackspeed" icon="/ui/_textures/icons/itemtype_damage.tga" value="1.1"/>
+				</panel>
+			</panel>
+			<instance name="craftingItemBonusLineEntry" id="craftedItemTipAnalogBonus" titleColor="#f5f2e2" icon="/heroes/harrower/ability_01/icon.tga" title="temp_abilitytip_analogbonus" description="temp_abilitytip_analogbonusdesc" visible="true"/>
+			<instance name="craftingItemBonusLineEntry" id="craftedItemTipRareBonus" titleColor="#ba00ff" icon="/items/recipes/damage/shieldbreaker/icon.tga" title="temp_abilitytip_rarebonus" description="temp_abilitytip_rarebonusdesc"/>
+			<instance name="craftingItemBonusLineEntry" id="craftedItemTipLegendaryBonus" titleColor="#FFDD33" icon="/heroes/accursed/ability_02/icon.tga" title="temp_abilitytip_legbonus" description="temp_abilitytip_legbonusdesc"/>
+			<panel height="0"/>
+		</panel>
+		<panel height="6h"/>
+	</floater>
+
+</package>

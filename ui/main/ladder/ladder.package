@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<include file="/ui/main/ladder/ladder_templates.package"/>
+	
+	<template name="ladder_body">
+		<label group="profile_animation_ladder_widgets" style="h1" textalign="center" font="maindyn_40" noclick="1" content="ranked_ladder_header" />			
+		<label group="profile_animation_ladder_widgets" y="45s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="ranked_ladder_header_desc" />
+		
+		<panel group="profile_animation_ladder_widgets" y="-20s" width="-160s" height="-114s" align="center" valign="bottom">		
+			<panel width="-260s">				
+				<instance name="ladder_data"/>
+			</panel>
+			
+			<panel width="220s" align="right">			
+				<panel height="140s">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+					<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>
+					<label y="8s" style="h3" font="maindyn_24" textalign="center" content="ranked_ladder_days_remaining" noclick="1"/>
+					<instance name="hr" y="40s" align="center" width="-30s" />
+					<image x="25s" y="50s" texture="/ui/main/quests/textures/quest_type_day.tga" width="80s" height="80s" />					
+					<label name="ranked_session_remaining_days" x="-10s" y="54s" width="-110s" align="right" style="labelBase" font="maindyn_58" textalign="center" content="?" noclick="1"/>
+				</panel>				
+				<panel y="-10s" height="-160s" valign="bottom">
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+					<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>
+					<label y="8s" style="h3" font="maindyn_24" textalign="center" content="ranked_ladder_season_prizes" noclick="1"/>
+					<instance name="hr" y="40s" align="center" width="-30s" />					
+					<label style="labelBase" font="subdyn_13" color=".8 .8 .8 1" y="50s" width="-30s" align="center" wrap="1" lineheight="16s" content="ladder_prize_info" noclick="1"  />
+					
+					<panel x="-50s" y="100s" align="center" width="66s" height="66s">
+						<image texture="/ui/shared/textures/account_icons/s02_1.tga" />
+						<label y="16s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="11s" textalign="center" textvalign="bottom" content="ladder_prizes_icons" />
+					</panel>
+					
+					<panel x="50s" y="91s" align="center" width="80s" height="80s">
+						<image texture="/ui/main/ladder/textures/gems_2.tga" />
+						<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="11s" textalign="center" textvalign="bottom" content="ladder_prizes_gems" />
+					</panel>
+					
+					<panel x="-50s" y="194s" align="center" width="64s" height="64s">
+						<image texture="/ui/main/shared/textures/acct_boost_on.tga" />
+						<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="11s" textalign="center" textvalign="bottom" content="ladder_prizes_boosts" />
+					</panel>
+					
+					<panel x="50s" y="170s" align="center" width="90s" height="90s">
+						<image texture="/ui/main/postgame/khanquest/textures/prize_chest4.tga" />
+						<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="11s" textalign="center" textvalign="bottom" content="ladder_prizes_cosmetics" />
+					</panel>
+					
+					<instance name="standardButton" id="ladder_prizes_expanded_body_open" width="80%" height="34s" align="center" valign="bottom" y="-12s" font="maindyn_18" label="ladder_show_all"  borderthickness=".6h"
+						onclicklua="
+							PlaySound('/ui/sounds/launcher/sfx_account_showprizes.wav')
+							self:GetWidget('ladder_prizes_expanded_body'):FadeIn(125)
+						"
+					/>					
+					
+				</panel>			
+			</panel>	
+
+			<panel name="ladder_prizes_expanded_body" visible="0" width="104%" height="104%" y="-2%" x="0" align="right">			
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+				<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>				
+				<panel hmargin="2s" float="right">
+					<!-- 1 -->
+					<panel width="20%">
+						<image texture="/ui/main/shared/textures/corner_grad.tga" y="-2s" width="100%" height="100@" valign="bottom" color="#05415159" noclick="1" />
+						<image texture="/ui/main/shared/textures/grad_vert.tga" width="1s" align="right" color="#12272a" />
+						<label y="12s" font="maindyn_20" style="labelBase" color="#13dbff" textalign="center" content="Season Champion" />
+						<panel y="55s" align="center" width="80s" height="80s">
+							<image texture="/ui/shared/textures/account_icons/s02_0.tga" />
+							<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" />
+						</panel>
+						<panel y="164s" align="center" width="94s" height="94s">
+							<image texture="/ui/main/ladder/textures/gems_0.tga" />
+							<label y="10s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="ladder_prize_250gems" />
+						</panel>
+						<panel y="282s" align="center" width="78s" height="78s">
+							<image texture="/ui/main/shared/textures/acct_boost_on.tga" />
+							<label y="14s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_perm_boost" />
+						</panel>
+						<panel y="354s" align="center" width="122s" height="122s">
+							<image texture="/ui/main/postgame/khanquest/textures/prize_chest5.tga" />
+							<label y="15s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_cosmetics1" />
+						</panel>
+					</panel>
+					<!-- 2-10 -->
+					<panel width="20%">
+						<image texture="/ui/main/shared/textures/corner_grad.tga" y="-2s" width="100%" height="100@" valign="bottom" color="#05415159" noclick="1" />
+						<image texture="/ui/main/shared/textures/grad_vert.tga" width="1s" align="right" color="#12272a" />
+						<label y="12s" font="maindyn_20" style="labelBase" color="#13dbff" textalign="center" content="Ranks 2-10" />
+						<panel y="55s" align="center" width="80s" height="80s">
+							<image texture="/ui/shared/textures/account_icons/s02_1.tga" />
+							<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" />
+						</panel>
+						<panel y="164s" align="center" width="94s" height="94s">
+							<image texture="/ui/main/ladder/textures/gems_1.tga" />
+							<label y="10s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="ladder_prize_50gems" />
+						</panel>
+						<panel y="282s" align="center" width="78s" height="78s">
+							<image texture="/ui/main/shared/textures/acct_boost_on.tga" />
+							<label y="14s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_perm_boost" />
+						</panel>
+						<panel y="354s" align="center" width="122s" height="122s">
+							<image texture="/ui/main/postgame/khanquest/textures/prize_chest4.tga" />
+							<label y="15s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_cosmetics2" />
+						</panel>
+					</panel>
+					<!-- 11-100 -->
+					<panel width="20%">
+						<image texture="/ui/main/shared/textures/corner_grad.tga" y="-2s" width="100%" height="100@" valign="bottom" color="#05415159" noclick="1" />
+						<image texture="/ui/main/shared/textures/grad_vert.tga" width="1s" align="right" color="#12272a" />
+						<label y="12s" font="maindyn_20" style="labelBase" color="#13dbff" textalign="center" content="Ranks 11-100" />
+						<panel y="55s" align="center" width="80s" height="80s">
+							<image texture="/ui/shared/textures/account_icons/s02_2.tga" />
+							<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" />
+						</panel>
+						<panel y="164s" align="center" width="94s" height="94s">
+							<image texture="/ui/main/ladder/textures/gems_2.tga" />
+							<label y="10s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="ladder_prize_25gems" />
+						</panel>
+						<panel y="282s" align="center" width="78s" height="78s">
+							<image texture="/ui/main/shared/textures/acct_boost_on.tga" />
+							<label y="14s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_30d_boost" />
+						</panel>
+						<panel y="354s" align="center" width="122s" height="122s">
+							<image texture="/ui/main/postgame/khanquest/textures/prize_chest3.tga" />
+							<label y="15s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" content="ladder_prize_cosmetics3" />
+						</panel>
+					</panel>
+					<!-- 1k Pts -->
+					<panel width="20%">
+						<image texture="/ui/main/shared/textures/corner_grad.tga" y="-2s" width="100%" height="100@" valign="bottom" color="#05415159" noclick="1" />
+						<image texture="/ui/main/shared/textures/grad_vert.tga" width="1s" align="right" color="#12272a" />
+						<label y="12s" font="maindyn_20" style="labelBase" color="#13dbff" textalign="center" content="1,000 Points" />
+						<panel y="55s" align="center" width="80s" height="80s">
+							<image texture="/ui/shared/textures/account_icons/s02_3.tga" />
+							<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" />
+						</panel>
+						<panel y="164s" align="center" width="94s" height="94s">
+							<image texture="/ui/main/ladder/textures/gems_3.tga" />
+							<label y="10s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="ladder_prize_5gems" />
+						</panel>
+						<panel y="282s" align="center" width="78s" height="78s">
+							<image texture="/ui/main/shared/textures/acct_boost_on.tga" />
+							<label y="14s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_14d_boost" />
+						</panel>
+						<panel y="354s" align="center" width="122s" height="122s">
+							<image texture="/ui/main/postgame/khanquest/textures/prize_chest2.tga" />
+							<label y="15s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" content="ladder_prize_cosmetics4" />
+						</panel>
+					</panel>
+					<!-- 100 Pts -->
+					<panel width="20%">
+						<image texture="/ui/main/shared/textures/corner_grad.tga" y="-2s" width="100%" height="100@" valign="bottom" color="#05415159" noclick="1" />
+						<label y="12s" font="maindyn_20" style="labelBase" color="#13dbff" textalign="center" content="100 Points" />
+						<panel y="55s" align="center" width="80s" height="80s">
+							<image texture="/ui/shared/textures/account_icons/s02_4.tga" />
+							<label y="12s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" textalign="center" textvalign="bottom" content="player_profile_referafriend_reward_icon" />
+						</panel>
+						<panel y="164s" align="center" width="78s" height="78s">
+							<image texture="/ui/main/shared/textures/acct_boost_on.tga" />
+							<label y="14s" font="subdyn_11" style="labelBase" color="#4f7e87" wrap="1" lineheight="12s" textalign="center" textvalign="bottom" width="+20s" align="center" content="ladder_prize_7d_boost" />
+						</panel>
+					</panel>				
+				</panel>				
+				<instance name="closeXButton" height="32s" width="32s" x="-10s" y="10s"  buttonName="ladder_prizes_expanded_body_closex" onclicklua="self:GetWidget('ladder_prizes_expanded_body'):FadeOut(125)" align="right" valign="top"/>
+			</panel>
+			
+		</panel>
+	</template>
+	
+</package>

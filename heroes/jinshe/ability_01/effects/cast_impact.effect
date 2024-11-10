@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffetscale="1">
+
+	<definitions>
+
+
+		<particlesystem name="system0" space="world" scale=".275">
+
+			<sound
+					linearfalloff="true" 
+					falloffstart="500"
+					falloffend="2400"
+					volume="0.85" 
+					sample="../sounds/sfx_cast_impact.wav"
+				/>
+
+			<simpleemitter
+				count="1"
+				spawnrate="2000"
+				particlelife="2000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+
+					<template name="">
+<!--
+						<groundsprite
+							life="750"
+							material="/shared/effects/smaterials/scorch_ground.material"
+							scale="6"
+							color="0"
+							startalpha="1"
+							endalpha="0"
+							directionalspace="local"
+							minyaw="0"
+							maxyaw="360"
+						/>
+-->
+
+
+
+						<light
+							position="0 0 50"
+							life="300"
+							startcolor="10 2 0"
+							endcolor="0"
+							falloffstart="0"
+							falloffend="800"
+						/>
+
+
+
+						<simpleemitter
+							delay="{zdelay}"
+							spawnrate="500"
+							life="50"
+							minparticlelife="150"
+							maxparticlelife="300"
+							gravity="{zgravity}"
+							drag="{zdrag}"
+							minspeed="500"
+							maxspeed="1500"
+							position="0 0 0"
+							material="/shared/effects/smaterials/firesprite_swirl.material"		
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="250 0 0"
+							offsetsphere="40 40 50"
+							depthbias="0"
+							directionalspace="world"
+						>
+							<particle 
+								minstartscale=".5"
+								maxstartscale="1"
+								endscale="1"
+								startcolor="1 1 1"
+								midcolor="1 1 0"
+								endcolor="1 0 0"
+								midcolorpos=".1"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".1"
+								startframe="0"
+								endframe="1"
+								minstartsize="750"
+								maxstartsize="1500"
+								endsize="0"
+								turn="true"
+								lockup="1"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+							delay="{zdelay}"
+							spawnrate="500"
+							life="50"
+							minparticlelife="150"
+							maxparticlelife="400"
+							gravity="{zgravity}"
+							drag="{zdrag}"
+							minspeed="2000"
+							maxspeed="3000"
+							position="0 0 0"
+							material="/shared/effects/smaterials/firesprite_swirl_add.material"	
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="200 0 0"
+							offsetsphere="25 25 80"
+							depthbias="0"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								minstartscale=".5"
+								maxstartscale="1"
+								endscale="1"
+								startcolor="1 .5 0"
+								midcolor=".5 0 0"
+								endcolor="0 0 0"
+								startalpha="0"
+								midalpha=".25"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								startsize="350"
+								endsize="0"
+								turn="true"
+							/>
+						</simpleemitter>
+<!--
+						<simpleemitter
+							delay="{zdelay}"
+							spawnrate="350"
+							life="50"
+							minparticlelife="200"
+							maxparticlelife="400"
+							gravity="{zgravity}"
+							drag="{zdrag}"
+							minspeed="0"
+							maxspeed="0"
+							position="0 0 0"
+							material="/shared/effects/smaterials/firesprite_01.material"	
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="200 0 0"
+							offsetsphere="25 25 25"
+							depthbias="0"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								minstartscale=".5"
+								maxstartscale="1"
+								endscale="1"
+								startcolor="1 .5 0"
+								midcolor="1 .15 0"
+								endcolor="0 0 0"
+								startalpha="0"
+								midalpha=".25"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								startsize="350"
+								endsize="0"
+								turn="true"
+							/>
+						</simpleemitter>
+-->
+						
+						
+<!--
+						<billboard
+						position="0 0 75"
+							life="300"
+							startcolor="1 .25 0"
+							endcolor="0 0 0"
+							size="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+							lockup="1"
+						/>
+						
+						<billboard
+						position="0 0 75"
+							life="300"
+							startcolor="1 .25 0"
+							endcolor="0 0 0"
+							size="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+							lockup="1"
+						/>
+-->
+					</template>
+					
+					<instance zdelay="0" zdrag=".01" zgravity="0"/>
+					<instance zdelay="0" zdrag=".02" zgravity="0"/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				count="1"
+				life="550"
+				spawnrate="12"
+				particlelife="2000"
+				position="0 -300 0"
+				offsetsphere="0 0 6"
+				directionalspace="local"
+			>
+				<particle
+				>
+
+					<template name="">
+
+						<groundsprite
+							life="750"
+							material="/shared/effects/smaterials/scorch_ground.material"
+							scale="8"
+							color="0"
+							startalpha="1"
+							endalpha="0"
+							directionalspace="local"
+							minyaw="0"
+							maxyaw="360"
+						/>
+
+						<simpleemitter
+							delay="{zdelay}"
+							spawnrate="500"
+							life="100"
+							minparticlelife="200"
+							maxparticlelife="500"
+							gravity="{zgravity}"
+							drag="{zdrag}"
+							minspeed="500"
+							maxspeed="1500"
+							position="0 0 40"
+							material="/shared/effects/smaterials/firesprite_swirl_01.material"		
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="100 0 0"
+							offsetsphere="40 40 100"
+							depthbias="25"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								minstartscale=".5"
+								maxstartscale="1"
+								endscale="1"
+								startcolor="1 1 1"
+								midcolor="1 .35 0"
+								endcolor="1 .35 0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								startsize="190"
+								endsize="0"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+							delay="{zdelay}"
+							spawnrate="750"
+							life="100"
+							minparticlelife="200"
+							maxparticlelife="400"
+							gravity="{zgravity}"
+							drag="{zdrag}"
+							minspeed="250"
+							maxspeed="750"
+							position="0 0 40"
+							material="/shared/effects/smaterials/firesprite_01.material"	
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="100 0 0"
+							offsetsphere="25 25 100"
+							depthbias="-20"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								minstartscale=".5"
+								maxstartscale="1"
+								endscale="1"
+								startcolor="1 .5 0"
+								midcolor="1 .15 0"
+								endcolor="0 0 0"
+								startalpha="0"
+								midalpha=".25"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								startsize="190"
+								endsize="0"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<billboard
+						position="0 0 75"
+							life="300"
+							startcolor="1 .25 0"
+							endcolor="0 0 0"
+							size="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+							lockup="1"
+						/>
+						
+						<billboard
+						position="0 0 75"
+							life="300"
+							startcolor="1 .25 0"
+							endcolor="0 0 0"
+							size="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+							lockup="1"
+						/>
+
+					</template>
+					
+					<instance zdelay="0" zdrag=".01" zgravity="0"/>
+					<instance zdelay="0" zdrag=".02" zgravity="0"/>
+
+				</particle>
+			</simpleemitter>
+			
+-->
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

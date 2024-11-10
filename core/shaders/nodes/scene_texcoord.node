@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="scene_texcoord">
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+	<output name="Out" type="float2" />
+	<?hlsl
+		Out = ScreenPosition.xy / ScreenPosition.w;
+	?>
+	<?glsl
+		Out = ScreenPosition.xy / ScreenPosition.w;
+	?>
+</node>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<modifier
+			expirelife="100"
+			name="modifier0"
+			startcolor=".5"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale="1.0">
+
+		
+			<template name="">
+		
+				<simpleemitter
+				bone="_bone_centerofchest"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					minspeed="150"
+					maxspeed="500"
+					drag=".05"
+					material="{zmaterial}"
+					minangle="80"
+					maxangle="100"
+					direction="0 0 1"
+					offsetsphere="0"
+					directionalspace="world"
+					gravity="-25"
+				>
+					<particle
+						startanchor="1"
+						endanchor="0"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startscale="20"
+						minendscale="20"
+						maxendscale="40"
+						startcolor="1 0 1"
+						midcolor="1 0 1"
+						endcolor="1 0 1"
+						startalpha="0"
+						midalpha=".15"
+						endalpha="0"
+						midalphapos=".25"
+						turn="true"
+					/>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance name="" zmaterial="/shared/effects/smaterials/cartoon_dust_white.material"/> 
+			<instance name="" zmaterial="/shared/effects/smaterials/rocket_smoke_blend.material"/>
+			
+		</particlesystem>
+		
+	</definitions>
+	
+	<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0"/>
+	<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

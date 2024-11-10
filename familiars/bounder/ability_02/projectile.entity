@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bounder"
+
+	speed="1500"
+	gravity="0"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+
+	effectscale="1.0"
+	impacteffect="effects/impact.effect"
+	traileffect="effects/trail.effect"
+	lifetime="4000"
+>
+
+	<onimpact>
+		<getconstant name="slow" />
+		<setvar0 a="result" b="1000" op="mult" />
+		<applystate name="State_Bounder_Slow" duration="var0" />	
+	</onimpact>
+
+</projectile>

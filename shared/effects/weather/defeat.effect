@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="rain" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+<!--
+			<sound
+				volume="1" 
+				soundloop="true"
+				sample="/shared/sounds/ambiance/environment/weather/rain_1.wav"
+				linearfalloff="true"
+				falloffstart="2500"
+				falloffend="2500"
+				fadein="3000"
+				fadeout="1000"
+			/>
+
+
+
+			<simpleemitter	
+				spawnrate="2"
+				particlelife="5000"			
+				position="0 0 0"
+
+			>
+				<particle
+				>
+					<light
+						delay="400"
+						position="0 0 100"
+						life="1000"
+						startcolor="20 20 20"					
+						endcolor="0"
+						falloffstart="0"
+						falloffend="200"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+
+<!--
+			<simpleemitter	
+				minspawnrate="0.01"
+				maxspawnrate="0.05"
+				particlelife="5000"			
+				position="0 0 500"
+				timenudge="2000"
+			>
+				<particle
+				>
+					<sound
+						volume="1" 
+						sample="/shared/sounds/ambiance/environment/weather/thunder_far_%.wav"
+						linearfalloff="true"
+						falloffstart="200"
+						falloffend="1400"
+						life="13000"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+
+			<precipemitter 
+				delay="4000"
+				count="5000" 
+				minspeed="250"                                         
+				maxspeed="450"
+				direction="-.1 -.1 -1" 
+				angle="0" 
+				material="/shared/effects/smaterials/whitedot.material" 
+				drawdistance="550.0" 
+		  	 > 
+				<particle 
+					angle="180"
+					turn="1"
+					minwidth=".5" 
+					maxwidth="1.25" 
+					minheight="10" 
+					maxheight="30" 
+					lockup="true" 
+					color=".2 .4 .6"
+				/> 
+			</precipemitter> 			 
+
+			<terrainemitter
+				delay="4000"
+				spawnrate="100"
+				range="1500"
+				particlelife="2000"
+				position="0 0 0"
+			>
+				<particle
+					turn="false"
+				>
+					<template name="">
+
+						<billboard
+							minlife="200"
+							maxlife="600"
+							material="/shared/effects/smaterials/animated_rain_drops.material"
+							startcolor="0 0 0"
+							midcolor=".25 .35 .45"
+							endcolor="0 0 0"
+							midcolorpos=".2"
+							position="0 0 0"
+							startframe="0"
+							endframe="1"
+							framspeed=".75"
+							minstartscale="1"
+							maxstartscale="2"
+							minendscale="2.6"
+							maxendscale="2.8"
+							minheight="100"
+							maxheight="100"
+							lockup="1"
+							lockright="1"
+							pitch="-90"
+							depthbias="-20"
+						/>
+
+						<billboard
+							delay="{zdelay}"
+							bone="_bone_centerofchest"
+							minlife="600"
+							maxlife="700"
+							startcolor="0 0 0"
+							midcolor="{zcolor}"
+							endcolor="0 0 0"
+							midcolorpos=".33"
+							startscale="{zstartsize}"
+							minendscale="{zminendsize}"
+							maxendscale="{zmaxendsize}"
+							depthbias="-50"
+							material="/shared/effects/smaterials/rings.material"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							roll="{zroll}"
+
+						/>
+
+					</template>
+
+					<instance name="" zdelay="0" zcolor=".3 .4 .6" zstartsize="0" zminendsize="1" zmaxendsize="1.5" zroll="0"/>
+					
+					<billboard
+						delay="{zdelay}"
+						bone="_bone_centerofchest"
+						minlife="600"
+						maxlife="700"
+						startcolor="0 0 0"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						midcolorpos=".33"
+						startscale="0"
+						minendscale="1.5"
+						maxendscale="2.5"
+						depthbias="-50"
+						material="/shared/effects/smaterials/whitedot.material"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+					/>
+	
+				</particle>
+			</terrainemitter>
+
+			<terrainemitter
+				delay="4000"
+				spawnrate="50"
+				range="1500"
+				particlelife="2000"
+				position="0 0 0"
+			>
+				<particle
+					turn="false"
+				>
+					<template name="">
+
+						<billboard
+							delay="{zdelay}"
+							bone="_bone_centerofchest"
+							minlife="600"
+							maxlife="700"
+							startcolor="0 0 0"
+							midcolor="{zcolor}"
+							endcolor="0 0 0"
+							midcolorpos=".33"
+							startscale="{zstartsize}"
+							minendscale="{zminendsize}"
+							maxendscale="{zmaxendsize}"
+							depthbias="-50"
+							material="/shared/effects/smaterials/rings.material"
+							lockup="true"
+							lockright="true"
+							pitch="90"
+							roll="{zroll}"
+						/>
+						
+					</template>
+
+					<instance name="" zdelay="0" zcolor=".3 .4 .6" zstartsize="0" zminendsize="1" zmaxendsize="1.5" zroll="0"/>
+	
+				</particle>
+			</terrainemitter>
+			
+
+			
+			
+			
+			
+			
+			<!-- dark clouds cruisin--> 
+			
+			
+			<simpleemitter
+			count="1"
+				position="-1200 -500 750"
+				spawnrate="2000"
+				particlelife="10000"
+				minangle="0"
+				maxangle="0"
+				direction="1 0 0"
+				speed="200"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 0"
+						life="4000"
+						color="0 0 0"
+						startscale="50"
+						endscale="65"
+						depthbias="-100"
+						material="/shared/effects/smaterials/black_cloud_ground.material"
+						startalpha="0"
+						midalpha=".3"
+						endalpha="0"
+						midalphapos=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						roll="60"
+						rollspeed="5"
+
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			count="1"
+				position="500 -500 100"
+				spawnrate="2000"
+				particlelife="10000"
+				minangle="0"
+				maxangle="0"
+				direction="1 0 0"
+				speed="100"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 0"
+						life="4000"
+						color="0 0 0"
+						startscale="50"
+						endscale="65"
+						depthbias="-100"
+						material="/shared/effects/smaterials/black_cloud_ground.material"
+						startalpha="0"
+						midalpha=".7"
+						endalpha="0"
+						midalphapos=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+
+				position="-1200 -500 750"
+				spawnrate=".5"
+				particlelife="10000"
+				minangle="0"
+				maxangle="0"
+				direction="1 0 0"
+				speed="50"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 0"
+						life="4000"
+						color="0 0 0"
+						startscale="50"
+						endscale="65"
+						depthbias="-100"
+						material="/shared/effects/smaterials/black_cloud_ground.material"
+						startalpha="0"
+						midalpha=".55"
+						endalpha="0"
+						midalphapos=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+						minrollspeed="-5"
+						maxrollspeed="5"
+
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+
+				position="500 -500 100"
+				spawnrate=".5"
+				particlelife="10000"
+				minangle="0"
+				maxangle="0"
+				direction="1 0 0"
+				speed="100"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 0"
+						life="4000"
+						color="0 0 0"
+						startscale="50"
+						endscale="65"
+						depthbias="-100"
+						material="/shared/effects/smaterials/black_cloud_ground.material"
+						startalpha="0"
+						midalpha=".55"
+						endalpha="0"
+						midalphapos=".5"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						minroll="0"
+						maxroll="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+		
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<!-- lightning leftside with sound -->
+				<terrainemitter
+					timenudge="4000"
+					delay="4000"
+					position="-1000 -400 500"
+					spawnrate=".2"
+					particlelife="10000"
+					minangle="0"
+					maxangle="0"
+					offsetsphere="150 150 0"
+				>
+					<particle
+					>
+
+						<sound
+							volume=".4" 
+							sample="sounds/thunder_%.wav"
+							linearfalloff="true"
+							falloffstart="200"
+							falloffend="5000"
+							life="13000"
+						/>
+
+						<light
+							life="150"
+							startcolor="0 8 20"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							falloffstart="0"
+							falloffend="2000"
+							position="0 0 500"
+						/>
+
+						<template name="lightning">
+
+							<billboard
+							delay="{zdelay}"
+								life="200"
+								position="0 0 600"
+								height="1000"
+								width="80"
+								color=".125 .35 .5"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="1"
+								endframe="2"
+								framespeed=".1"
+								lockup="true"
+								lockright="true"
+								yaw="180"
+							/>
+							
+							<billboard
+							delay="{zdelay}"
+								life="200"
+								position="0 0 600"
+								height="1000"
+								width="80"
+								color=".125 .35 .5"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="1"
+								endframe="2"
+								framespeed=".1"
+								lockup="true"
+								lockright="true"
+								yaw="180"
+							/>
+							
+							<billboard
+							delay="{zdelay}"
+								life="200"
+								position="0 0 600"
+								height="1000"
+								width="80"
+								color=".125 .35 .5"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="1"
+								endframe="2"
+								framespeed=".1"
+								lockup="true"
+								lockright="true"
+								yaw="180"
+							/>
+
+						</template>
+
+						<instance name="lightning" zdelay="0"/>
+						<instance name="lightning" zdelay="0"/>
+
+						<template name="lightning">
+						
+							<billboard
+								delay="{zdelay01}"
+								life="100"
+								position="{zpos}"
+								height="400"
+								width="100"
+								color=".25 .75 1"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+								lockup="true"
+								lockright="true"
+								roll="{zroll}"
+								yaw="{zyaw}"
+							/>
+							
+							<billboard
+								delay="{zdelay01}"
+								life="100"
+								position="{zpos}"
+								height="400"
+								width="100"
+								color=".25 .75 1"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+								lockup="true"
+								lockright="true"
+								roll="{zroll}"
+								yaw="{zyaw}"
+							/>
+
+							<billboard
+								delay="{zdelay01}"
+								life="100"
+								position="{zpos}"
+								height="400"
+								width="100"
+								color=".25 .75 1"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+								lockup="true"
+								lockright="true"
+								roll="{zroll}"
+								yaw="{zyaw}"
+							/>
+
+						</template>
+
+						<instance name="lightning" zdelay01="0" zpos="-150 0 150" zyaw="180" zroll="45"/>
+						<instance name="lightning" zdelay01="0" zpos="170 0 250" zyaw="-180" zroll="300"/>
+
+						<billboard
+							life="300"
+							position="0 0 0"
+							height="750"
+							width="750"
+							startcolor=".25 .75 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-100"
+						/>
+
+						<template name="lightning">
+
+							<simpleemitter
+							delay="{zdelay}"
+								position="{zpos}"
+								count="45"
+								spawnrate="200"									
+								gravity="5"
+								minspeed="400"						
+								maxpeed="2600"						
+								minparticlelife="100"
+								maxparticlelife="800"
+								material="/shared/effects/smaterials/muzzle_flash_white.material"
+								offsetsphere="20 20 20"
+								depthbias="0"
+								direction="{zdir}"
+								minangle="0"
+								maxangle="10"
+							>
+								<particle 								
+									startcolor="1 1 1"
+									midcolor=".25 1 1"
+									endcolor=".25 1 1"
+									startsize="15"
+									midsize="10"
+									endsize="0"
+								/>
+							</simpleemitter>	
+							
+							
+							
+							<simpleemitter
+							delay="{zdelay}"
+								position="{zpos}"
+								count="45"
+								spawnrate="200"									
+								gravity="20"
+								minspeed="200"						
+								maxpeed="900"						
+								minparticlelife="200"
+								maxparticlelife="1000"
+								material="/shared/effects/smaterials/muzzle_flash_white.material"
+								offsetsphere="20 20 20"
+								depthbias="0"
+								direction="{zdirall}"
+							>
+								<particle 								
+									startcolor="1 1 1"
+									midcolor=".25 1 1"
+									endcolor=".25 1 1"
+									startsize="15"
+									midsize="10"
+									endsize="0"
+
+								/>
+							</simpleemitter>
+
+							<billboard
+							delay="{zdelay}"
+								position="{zpos}"
+								life="300"
+								height="150"
+								width="150"
+								startcolor=".25 .25 .25"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								depthbias="-50"
+							/>
+						
+						</template>
+
+						<instance name="lightning" zpos="-60 120 0" zdir="1 0 .2" zdelay="0" zdirall="0 0 0"/>
+						<instance name="lightning" zpos="250 140 0" zdir="1 -.7 .2" zdelay="100" zdirall="0 0 0"/>
+						<instance name="lightning" zpos="-290 50 0" zdir="-1 -1 .2" zdelay="100" zdirall="0 0 0"/>
+
+					</particle>
+				</terrainemitter>
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- lightning rightside with sound -->
+				<terrainemitter
+					timenudge="4000"
+					delay="4000"
+					position="600 300 200"
+					spawnrate=".15"
+					particlelife="10000"
+					minangle="0"
+					maxangle="0"
+					offsetsphere="100 150 0"
+				>
+					<particle
+					>
+						<sound
+							volume="0.4" 
+							sample="sounds/thunder_%.wav"
+							linearfalloff="true"
+							falloffstart="200"
+							falloffend="5000"
+							life="13000"
+						/>
+
+						<light
+							life="150"
+							startcolor="0 8 20"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							falloffstart="0"
+							falloffend="2000"
+							position="0 0 500"
+						/>
+
+						<template name="lightning">
+						
+							<billboard
+								delay="{zdelay01}"
+								life="100"
+								position="{zpos}"
+								height="400"
+								width="80"
+								color=".2 .4 .6"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+								lockup="true"
+								lockright="true"
+								roll="{zroll}"
+								yaw="{zyaw}"
+							/>
+							
+							<billboard
+								delay="{zdelay01}"
+								life="100"
+								position="{zpos}"
+								height="400"
+								width="80"
+								color=".2 .4 .6"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+								lockup="true"
+								lockright="true"
+								roll="{zroll}"
+								yaw="{zyaw}"
+							/>
+
+							<billboard
+								delay="{zdelay01}"
+								life="100"
+								position="{zpos}"
+								height="400"
+								width="80"
+								color=".2 .4 .6"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+								lockup="true"
+								lockright="true"
+								roll="{zroll}"
+								yaw="{zyaw}"
+							/>
+
+						</template>
+
+						<instance name="lightning" zdelay01="0" zpos="-145 0 1100" zyaw="180" zroll="45"/>
+						<instance name="lightning" zdelay01="0" zpos="120 0 550" zyaw="180" zroll="-35"/>
+
+						<template name="lightning">
+
+							<billboard
+							delay="{zdelay}"
+								life="200"
+								position="0 0 1000"
+								height="1000"
+								width="60"
+								color=".125 .35 .5"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="1"
+								endframe="2"
+								framespeed=".1"
+								lockup="true"
+								lockright="true"
+								yaw="180"
+							/>
+							
+							<billboard
+							delay="{zdelay}"
+								life="200"
+								position="0 0 1000"
+								height="2000"
+								width="60"
+								color=".125 .35 .5"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="1"
+								endframe="2"
+								framespeed=".1"
+								lockup="true"
+								lockright="true"
+								yaw="180"
+							/>
+							
+							<billboard
+							delay="{zdelay}"
+								life="200"
+								position="0 0 600"
+								height="2000"
+								width="60"
+								color=".125 .35 .5"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startframe="1"
+								endframe="2"
+								framespeed=".1"
+								lockup="true"
+								lockright="true"
+								yaw="180"
+							/>
+
+						</template>
+
+						<instance name="lightning" zdelay="0"/>
+						<instance name="lightning" zdelay="0"/>
+
+						<billboard
+							life="300"
+							position="0 0 0"
+							height="750"
+							width="750"
+							startcolor=".25 .75 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-100"
+						/>
+
+						<template name="lightning">
+
+							<simpleemitter
+							delay="{zdelay}"
+								position="{zpos}"
+								count="45"
+								spawnrate="200"									
+								gravity="5"
+								minspeed="400"						
+								maxpeed="2600"						
+								minparticlelife="100"
+								maxparticlelife="800"
+								material="/shared/effects/smaterials/muzzle_flash_white.material"
+								offsetsphere="20 20 20"
+								depthbias="0"
+								direction="{zdir}"
+								minangle="0"
+								maxangle="10"
+							>
+								<particle 								
+									startcolor="1 1 1"
+									midcolor=".25 1 1"
+									endcolor=".25 1 1"
+									startsize="15"
+									midsize="10"
+									endsize="0"
+								/>
+							</simpleemitter>	
+							
+							
+							
+							<simpleemitter
+							delay="{zdelay}"
+								position="{zpos}"
+								count="45"
+								spawnrate="200"									
+								gravity="20"
+								minspeed="200"						
+								maxpeed="900"						
+								minparticlelife="200"
+								maxparticlelife="1000"
+								material="/shared/effects/smaterials/muzzle_flash_white.material"
+								offsetsphere="20 20 20"
+								depthbias="0"
+								direction="{zdirall}"
+							>
+								<particle 								
+									startcolor="1 1 1"
+									midcolor=".25 1 1"
+									endcolor=".25 1 1"
+									startsize="15"
+									midsize="10"
+									endsize="0"
+
+								/>
+							</simpleemitter>
+
+							<billboard
+							delay="{zdelay}"
+								position="{zpos}"
+								life="300"
+								height="150"
+								width="150"
+								startcolor=".25 .25 .25"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								depthbias="-50"
+							/>
+						
+						</template>
+
+						<instance name="lightning" zpos="0 0 0" zdir="1 0 .2" zdelay="0" zdirall="0 0 0"/>
+
+					</particle>
+				</terrainemitter>
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- flashes with sound -->
+				
+				<terrainemitter
+					timenudge="4000"
+					delay="7000"
+					position="-500 1200 200"
+					spawnrate=".5"
+					particlelife="10000"
+					minangle="0"
+					maxangle="0"
+					offsetsphere="300 150 0"
+				>
+					<particle
+					>
+
+						<light
+							life="100"
+							startcolor="0 8 20"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							falloffstart="0"
+							falloffend="2000"
+							position="0 0 500"
+						/>
+
+						<billboard
+							life="100"
+							position="0 0 0"
+							height="850"
+							width="850"
+							startcolor=".25 .75 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-150"
+						/>
+						
+						<billboard
+						delay="100"
+							life="100"
+							position="0 0 0"
+							height="850"
+							width="850"
+							startcolor=".25 .75 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-150"
+						/>
+
+					</particle>
+				</terrainemitter>
+				
+
+				
+				
+				
+				
+
+		</particlesystem>	
+
+	</definitions>
+
+	<thread>
+
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+
+		
+	</thread>
+
+</effect>

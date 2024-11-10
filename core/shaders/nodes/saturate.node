@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="saturate">
+	<dependency name="Value" type="*" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="Value" type="float" />
+		<output type="float" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = saturate(Value);
+	?>
+	<?glsl
+		Out = clamp(Value, 0.0f, 1.0f);
+	?>
+</node>

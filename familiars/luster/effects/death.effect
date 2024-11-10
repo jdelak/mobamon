@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+	
+			<modifier
+				expirelife="500"
+				startalpha="0"
+				endalpha="1"
+			/>
+	
+		<particlesystem name="system0" space="world" scale=".7">
+
+			<light
+				life="600"			
+				startcolor="10 5 0"			
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				falloffstart="25"
+				falloffend="400"
+				position="0 0 50"	
+			/>	
+
+			<template name="flashes">
+
+				<simpleemitter
+					position="{zpos}"
+					count="35"
+					spawnrate="1000"			
+					minparticlelife="150"
+					maxparticlelife="300"
+					gravity="0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="90"
+					minspeed="500"				
+					maxspeed="500"				
+				>
+					<particle
+						turn="true"
+						minsize="175"								
+						maxsize="350"								
+						startcolor=".5 .5 .5"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						lockup="true"
+						lockright="true"
+						pitch="-90"
+						minwidth="3"
+						maxwidth="6"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="{zpos}"
+					life="300"
+					spawnrate="5000"
+					midspawnratepos=".99"
+					minparticlelife="150"
+					maxparticlelife="400"
+					mincount="50"
+					maxcount="65"
+					material="/shared/effects/materials/whitedot.material"
+					minspeed="175"
+					maxspeed="2000"
+					drag="0.02"
+					gravity="50"
+					direction="0 0 1"
+					directionalspace="local"
+					minangle="70"
+					maxangle="100"
+				>
+					<particle
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0"
+						midcolorpos=".7"
+						scale="5"
+						minwidth=".5"
+						maxwidth="1"
+						minheight="3"
+						maxheight="6"
+						turn="1"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			<billboard
+				position="{zpos}"
+				life="750"
+				startcolor=".5 .35 .125"
+				midcolorpos="0.25"
+				endcolor="0"
+				startsize="150"
+				endsize="0"
+				depthbias="-35"
+				material="/shared/effects/materials/whitedot.material"
+			/>
+			
+			<simpleemitter
+				position="{zpos}"
+				count="20"
+				life="1000"
+				spawnrate="150"
+				particlelife="2000"
+			>
+				<particle
+				>
+					<simpleemitter
+						life="3000"
+						minspeed="200"
+						maxspeed="300"
+						count="1"
+						spawnrate="220"
+						gravity="25"
+						direction="0 0 0"
+						offsetsphere="30 30 30"
+						particlelife="2000"
+					>
+						<particle
+						>
+							<model
+								model="/familiars/luster/ability_02/effects/coin/model.mdf"
+								color="1 1 1"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="600"
+								maxlife="800"
+								minpitch="-360"
+								maxpitch="360"
+								minanglespeed="-130"
+								maxanglespeed="130"
+								scale="3.5"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+							/>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="flashes">
+			
+				<simpleemitter
+					position="{zpos}"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color=".5 .25 0"
+						startalpha=".5"
+						midalpha=".5"
+						endalpha="0"
+						startscale="50"
+						endscale="100"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="{zpos}"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="-20"
+				>
+					<particle
+						color=".5 .25 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="50"
+						endscale="75"
+						turn="true"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="flashes" zpos="0 -15 0" zdelay="0"/>
+			<instance name="flashes" zpos="0 20 0" zdelay="75"/>
+			<instance name="flashes" zpos="0 20 0" zdelay="150"/>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+			</template>
+
+			<instance name="flashes" zpos="0 0 50"/>
+
+		</particlesystem>
+
+	</definitions>
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>
+
+
+
+
+

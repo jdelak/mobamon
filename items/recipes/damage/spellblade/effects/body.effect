@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect  deferred="true" useentityeffectsscale="true">
+	<definitions>
+<!--
+		<modifier 
+			name="modifier0"
+			param0="1"
+			alpha=".7" 
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1.0">
+
+			
+
+
+			
+<!--
+			<simpleemitter
+				life="3000"
+				spawnrate="25"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="15 15 0"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+					<groundsprite
+						minlife="250"
+						maxlife="750"
+						startcolor="0 0 0"
+						midcolor=".05 .125 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						minscale=".1"
+						maxscale=".25"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+
+
+			
+<!--
+			<model
+				parentskeleton="1"
+				parentmodel="1"
+				life="4000"
+				position="0 0 0"
+				material="/shared/effects/smaterials/shell_glass.material"
+				color="0 .25 .25"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+			/>
+-->
+			
+
+			<template name="sparks">
+			
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					startcolor="0 .25 .15"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+					minscale="1"
+					maxscale="1"
+					depthbias="-25"
+				/>
+				
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="100"
+					minparticlelife="250"
+					maxparticlelife="500"			
+					gravity="0.5"
+					drag="0.03"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="15"
+					minspeed="2"
+					maxspeed="25"
+					offsetsphere="10"
+					material="/shared/effects/materials/flare1.material"				
+				>
+					<particle
+						turn="1"
+						minanglespeed="-50"
+						maxanglespeed="250"
+						startcolor="0 .125 .075"
+						endcolor="0 0 0"
+						startscale="20"
+						endscale="5"
+					/>
+				</simpleemitter>
+
+				
+<!--
+				<simpleemitter
+					spawnrate="500"
+					minparticlelife="500"
+					maxparticlelife="1000"				
+					gravity="0.3"
+					drag="0.02"
+					direction="0 0 1"
+					minangle="-5"
+					maxangle="5"
+					minspeed="6"
+					maxspeed="21"
+					offsetsphere="20"
+					material="/shared/effects/materials/whitewater_02.material"	
+					depthbias="-35"
+				>
+					<particle
+						minagle="-360" 
+						maxangle="360"
+						minanglespeed="-50"
+						maxanglespeed="20"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="0"
+						endsize="4.35"
+						minscale="3"
+						maxscale="3"						
+					/>
+				</simpleemitter>
+
+				<billboard
+					startcolor="0 .5 1"
+					midcolorpos=".8"
+					endcolor="0"
+					startsize="25"
+					endsize="25"
+					position="{position}"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="-75"
+				/>
+-->
+		
+			</template>
+			
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_fx_01"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_fx_02"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_fx_03"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_fx_04"/>
+
+<!--
+			<template name="sparks">
+
+				<simpleemitter
+				life="350"
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="1000"			
+					gravity="0.5"
+					drag="0.03"
+					direction="0 0 -1"
+					minangle="0"
+					maxangle="1"
+					minspeed="0"
+					maxspeed="50"	
+					material="/shared/effects/materials/flare1.material"
+					offsetsphere="20"					
+				>
+					<particle
+						turn="1"
+						minanglespeed="-50"
+						maxanglespeed="250"
+						startcolor=".25 .5 0"
+						endcolor="0 0 0"
+						size="0.35"
+						minscale="1"
+						maxscale="3"
+						startheightdistort=".004"
+						midheightdistortpos=".1"
+						endheightdistort="0"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				life="350"
+					bone="{zbone}"
+					spawnrate="50"
+					minparticlelife="500"
+					maxparticlelife="1000"			
+					gravity="0.3"
+					drag="0.02"
+					direction="0 0 -1"
+					minangle="-5"
+					maxangle="5"
+					minspeed="0"
+					maxspeed="50"	
+					offsetsphere="20"	
+					material="/shared/effects/materials/whitewater_02.material"	
+					depthbias="-35"
+				>
+					<particle
+						minagle="-360" 
+						maxangle="360"
+						minanglespeed="-50"
+						maxanglespeed="20"
+						startcolor="0 0 0"
+						midcolor=".25 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="0"
+						endsize="4.35"
+						minscale="1"
+						maxscale="3"						
+					/>
+				</simpleemitter>
+
+
+		
+			</template>
+			
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_02"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_15"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_08"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_03"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_04"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_06"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_07"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_11"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_09"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_13"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_14"/>
+			<instance name="sparks" delay="0" position="0 0 0" zbone="_bone_ctrl_01"/>
+-->
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

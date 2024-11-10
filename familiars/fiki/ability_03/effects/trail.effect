@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			life="300"
+			startcolor=".65"
+			endcolor="1 1 1"
+			alpha="0"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				life="3000" 
+				falloffstart="500"
+				falloffend="2500"
+				volume=".55"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+
+
+		
+			<model
+				position="0 0 0"
+				life="300"
+				parentmodel="true"
+				color="1 1 1"
+				startscale="1"
+				endscale="2.5"
+			>
+			
+				<billboard
+					bone="_bone_centerofchest"
+					life="300"
+					startcolor="1 .5 0"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="4"
+					depthbias="-100"
+				/>
+			
+			</model>
+		
+		
+		
+		
+<!--
+			<simpleemitter
+				spawnrate="30"
+				count="4"
+				particlelife="5500"
+				offsetsphere="0 25 0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+				speed="500"
+			>
+				<particle
+				turn="true"
+				>
+					<model
+						position="0 0 0"
+						life="300"
+						model="model_1/model.mdf"
+						anim="walk_1_faster"
+						color="1.3 1 1.6"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						scale="1.75"
+					>
+					
+						<billboard
+							bone="_bone_centerofchest"
+							life="150"
+							startcolor=".6 .3 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							material="/shared/effects/smaterials/whitedot.material"
+							scale="6"
+							depthbias="-100"
+						/>
+					
+					</model>
+					
+				</particle>
+			</simpleemitter>
+-->
+
+
+		
+			<light
+				position="0 0 50"
+				life="600"
+				startcolor="6 3 0"
+				midcolor="6 3 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="250"
+			/>
+
+			<template name="">
+
+				<trailemitter
+				position="0 50 30"
+					life="500"
+					spawnrate="50"
+					particlelife="1000"
+					texpostime="1000"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					midparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						startsize="85"
+						midsize="65"
+						endsize="65"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+			
+			</template>
+
+			<instance name="" zpos="0 0 20"/>
+
+			
+			
+			
+			<billboard
+			position="0 0 12"
+				life="150"
+				startcolor=".6 .3 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="6"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/> 
+		<waitfordeath instance="instance1"/> 
+		
+	</thread>
+
+</effect>

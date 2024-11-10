@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<template name="craftingBoostEnchantPackage">
+		<panel name="craftingBoostEnchantPackage{id=1}" width="65@" height="100%" noclick="true" sticky="true" stickytoinvis="false"
+			onloadlua="libButton2.initializeButton(self, 'craftingBoostEnchantPackage{id=1}', 'basicBounce')"
+		>
+			<button name="craftingBoostEnchantPackage{id=1}Button" color="invisible">
+				<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+				<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+				<panel hmargin="0.5h" vmargin="0.5h">
+					<panel width="8h" height="8h" align="center" y="0.25h">
+						<panel name="craftingBoostEnchantPackage{id=1}Body" align="center" valign="center">
+							<image name="craftingBoostEnchantPackage{id=1}IconShadow" texture="/ui/main/shared/textures/commodity_essence.tga" x="0.25h" y="0.25h" color="0 0 0 0.75"/>
+							<image name="craftingBoostEnchantPackage{id=1}Icon" texture="/ui/main/shared/textures/commodity_essence.tga"/>
+						</panel>
+					</panel>
+					<panel height="3h" valign="bottom" y="-3.5h">
+						<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+						<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h" noclick="true"/>
+						<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h" noclick="true"/>
+						<label name="craftingBoostEnchantPackage{id=1}AttemptLabel" textalign="center" textvalign="center" font="maindyn_16" style="greenTextColor" content="{attemptCount=250}"/>
+					</panel>
+					<panel height="3h" valign="bottom">
+						<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+						<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h" noclick="true"/>
+						<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h" noclick="true"/>
+						<label name="craftingBoostEnchantPackage{id=1}GemLabel" textalign="center" textvalign="center" font="maindyn_16" style="whiteTextColor" content="{gemCost=25}"/>
+					</panel>
+				</panel>
+			</button>
+		</panel>
+	</template>
+	
+	<panel name="craftingBuyEnchantBoost" align="center" valign="center" width="60h" grow="true" visible="false">
+		<panel>
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+			<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+		</panel>
+		<panel width="-1.5h" align="center" grow="true" float="bottom" padding="0.75h">
+			<panel height="0"/>
+			<panel height="3.5h">
+				<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+				<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+				<label textvalign="center" x="0.75h" font="maindyn_16" shadow="true" style="goldColor" content="crafting_boost_enchant_title"/>
+				<panel align="right" grow="true" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h">
+					<label width="6h" style="whiteTextColor" textvalign="center" textalign="right" font="maindyn_16" shadow="true" content="crafting_boost_enchant_current"/>
+					<panel width="8h">
+						<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+						<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h" noclick="true"/>
+						<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h" noclick="true"/>
+						<label name="craftingBuyEnchantBoostBoostCurrent" textalign="center" textvalign="center" font="maindyn_16" style="greenTextColor" content="1,800"/>
+					</panel>
+					<panel width="100@">
+						<instance name="closeXButton" buttonName="craftingBuyEnchantBoostClose" align="center" valign="center"/>
+					</panel>
+				</panel>
+			</panel>
+			<panel width="100%" grow="true">
+				<panel>
+					<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+					<frame style="backerPanelGray1" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+				</panel>
+				<panel align="center" width="-1.5h" float="bottom" padding="0.75h" grow="true">
+					<panel height="0"/>
+					<label fity="true" wrap="true" font="maindyn_12" style="whiteTextColor" shadow="true" content="crafting_boost_enchant_description" />
+					<panel height="16.25h">
+						<panel height="100%" align="center" grow="true" float="right" padding="1h">
+							<instance name="craftingBoostEnchantPackage" id="1" attemptCount="1" gemCost="5"/>
+							<instance name="craftingBoostEnchantPackage" id="2" attemptCount="2" gemCost="10"/>
+							<instance name="craftingBoostEnchantPackage" id="3" attemptCount="3" gemCost="15"/>
+							<instance name="craftingBoostEnchantPackage" id="4" attemptCount="4" gemCost="20"/>
+						</panel>
+					</panel>
+					<panel height="3.5h">
+						<panel width="10h">
+							<panel width="3.5h" height="3.5h">
+								<image texture="/ui/main/shared/textures/gem.tga" x="0.15h" y="0.15h" color="0 0 0 0.75"/>
+								<image texture="/ui/main/shared/textures/gem.tga"/>
+							</panel>
+							<panel width="6h" align="right">
+								<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+								<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h" noclick="true"/>
+								<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h" noclick="true"/>
+								<label name="craftingBuyEnchantBoostGemCount" textalign="center" textvalign="center" font="maindyn_16" style="whiteTextColor" content="35"/>
+							</panel>
+						</panel>
+						<panel align="right" height="100%" float="right" padding="0.75h" grow="true">
+							<label width="6h" style="whiteTextColor" textvalign="center" textalign="right" font="maindyn_16" shadow="true" content="needgems_title"/>
+							<instance name="standardButton" id="craftingBuyEnchantBoostBuyGemsButton" label="needgems_purchase" font="maindyn_16" width="12h" borderthickness="0.75h"/>
+						</panel>
+					</panel>
+					<panel height="0"/>
+				</panel>
+			</panel>
+			<panel height="0"/>
+		</panel>
+	</panel>
+
+</package>

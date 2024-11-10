@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="chain_lightning" deferred="1" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<sound
+				sample="../sounds/cast.wav"
+				volume="0.9"
+				linearfalloff="true"
+				falloffstart="1500"
+				falloffend="2500"
+
+			/>
+			
+			<beam
+				life="300"
+				owner_a="target"
+				owner_b="source"
+				bone_a="_bone_centerofchest"
+				bone_b="_bone_righthand"
+				size="160"
+				startcolor="0 0 1"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+			
+			
+			
+
+			<template name="lightning">
+				<beam
+				delay="{zdelay}"
+					life="{zlife}"
+					owner_a="target"
+					owner_b="source"
+					bone_a="_bone_centerofchest"
+					bone_b="_bone_righthand"
+					size="{zsize}"
+					startcolor="{zcolor}"
+					midcolor="{zcolor}"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/animated_shockstick.material"
+					framespeed="{zframespeed}"
+				/>
+			</template>
+
+			<instance name="lightning" zcolor="0 .5 1" zlife="250" zsize="85" zframespeed="5" zdelay="50"/>
+			<instance name="lightning" zcolor="1 .25 0" zlife="250" zsize="60" zframespeed="5" zdelay="50"/>
+			<instance name="lightning" zcolor="0 .15 1" zlife="250" zsize="110" zframespeed="5" zdelay="50"/>
+			<instance name="lightning" zcolor="1 .75 0" zlife="250" zsize="40" zframespeed="5" zdelay="50"/>
+
+			<instance name="lightning" zcolor="0 .5 1" zlife="125" zsize="85" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" zcolor="1 .25 .0" zlife="125" zsize="60" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" zcolor="0 .15 1" zlife="125" zsize="110" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" zcolor="1 .75 0" zlife="125" zsize="40" zframespeed="10" zdelay="0"/>
+
+			
+			
+
+			<light
+			position="0 0 50"
+				bone="_bone_righthand"
+				delay="0"
+				life="75"
+				startcolor="0 1 10"
+				midcolor="0 1 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="50"
+				falloffend="200"
+			/>
+
+			<billboard
+				delay="0"
+				bone="_bone_righthand"
+				life="250"
+				size="100"
+				startcolor="0 .1 .5"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+			/>
+
+			<light
+			position="0 0 50"
+				delay="100"
+				bone="_bone_righthand"
+				life="75"
+				startcolor="0 1 10"
+				midcolor="0 1 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="50"
+				falloffend="200"
+			/>
+
+			<billboard
+				delay="100"
+				bone="_bone_righthand"
+				life="250"
+				size="120"
+				startcolor="0 .1 .5"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+			/>
+
+<!--
+			<billboard
+				bone="_bone_centerofchest"
+				delay="250"
+				life="250"
+				size="120"
+				startcolor=".5"
+				midcolor="0 .5 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-35"
+			/>
+-->
+
+
+
+			<simpleemitter
+			delay="100"
+				bone="_bone_righthand"
+				count="20"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="125"
+				maxspeed="350"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort=".05"
+					endheightdistort="0"
+					startsize="4"
+					endsize="2"
+					startcolor="1 1 1"
+					midcolor="1 .5 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+
+
+
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

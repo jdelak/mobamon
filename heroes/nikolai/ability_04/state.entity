@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Nikolai_Ability4"
+	
+	icon="icon.tga"
+	passiveeffect="" 
+	
+	disarmed="true"
+	perplexed="true"
+	silenced="true"
+	
+	movespeed="9000"
+	
+	effecttype=""
+
+	invulnerable="true"
+	ishidden="true"
+	norender="true"
+	
+	modifierkey="Nikolai_flying"
+	
+	impactinterval="1800"
+
+>
+
+
+	<onimpact>
+		<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="0 0 1400" />
+
+		<spawnprojectile name="Projectile_Nikolai_Ability4_Attack" source="pos0" proxy="this_proxy_entity" target="source_entity" bind="this_proxy_entity" bindturn="true" pushentity="true" />
+		<applystate name="State_Nikolai_Ability4_PositionCheckDelay" target="source_entity" proxy="source_entity" duration="400" />
+	</onimpact>
+	
+
+</state>

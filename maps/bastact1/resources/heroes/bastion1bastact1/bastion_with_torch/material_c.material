@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	
+	<parameters shader="/shared/shaders/unit_opacity_orange.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1" fGlossiness="1024" fOpacity="0.5" fReflect="1.0" />
+
+	<phase name="shadow" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="../torch_stick_color.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	
+	<phase name="color" cull="none" blend="none">
+		<sampler name="diffuse" texture="../torch_stick_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+	</phase>
+
+	<phase name="fade" cull="none" blend="translucent">
+		<sampler name="diffuse" texture="../torch_stick_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="$flat" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

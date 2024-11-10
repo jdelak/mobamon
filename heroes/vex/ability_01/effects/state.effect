@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			life="1000"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+	
+		<particlesystem name="system0" space="world" scale="0.9" >
+
+
+<!--
+			<model
+				bone="_bone_head"
+				position="0 0 -10"
+				expirelife="250"
+				name="emitter0" 
+				anim="stop"
+				model="../projectile/model.mdf"
+				scale="2"
+				startcolor="1.5 1.5 1.85"
+				midcolor="1 1 1"
+				endcolor="1 1 1"
+				midcolorpos=".75"
+				startalpha="1"
+				endalpha="0"
+			>
+
+
+			</model>
+			
+
+			<model
+				bone="_bone_righthand"
+				position="0 0 -10"
+				expirelife="250"
+				name="emitter0" 
+				anim="stop"
+				model="../projectile/model.mdf"
+				scale="2"
+				startcolor="1.5 1.5 1.85"
+				midcolor="1 1 1"
+				endcolor="1 1 1"
+				midcolorpos=".75"
+				startalpha="1"
+				endalpha="0"
+			>
+
+
+			</model>
+			
+			<model
+				bone="_bone_lefthand"
+				position="0 0 -10"
+				expirelife="250"
+				name="emitter0" 
+				anim="stop"
+				model="../projectile/model.mdf"
+				scale="2"
+				startcolor="1.5 1.5 1.85"
+				midcolor="1 1 1"
+				endcolor="1 1 1"
+				midcolorpos=".75"
+				startalpha="1"
+				endalpha="0"
+			>
+
+
+			</model>
+-->
+      </particlesystem>
+   </definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	
+	<waitfordeath instance="instance0" />
+	<wait duration="20000"/>
+	<!-- <die /> -->
+</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Buckler_Empower_2"
+
+	cost="370"
+>
+	<constant name="deflection_enchant" value="2" adjustment="none" />
+	<modifier key="buckler_melee" modpriority="25" exclusive="true"
+	>
+		<onattackedpredamage> 
+			<targettype type="hero">
+				<combateffecttype effecttype="Attack">
+					<getconstant name="deflection_melee" />
+					<setvar0 a="result" />
+					<getconstant name="deflection_enchant" />
+					<setvar0 a="result" b="var0" op="add" />
+					<setvalue name="combat_deflection" a="combat_deflection" b="var0" op="add" />
+				</combateffecttype>
+			</targettype>
+		</onattackedpredamage>
+	
+	</modifier>
+	
+	<modifier key="buckler_ranged" condition="ranged" modpriority="100"
+	>
+		<onattackedpredamage> 
+			<targettype type="hero">
+				<combateffecttype effecttype="Attack">
+					<getconstant name="deflection" />
+					<setvar0 a="result" />
+					<getconstant name="deflection_enchant" />
+					<setvar0 a="result" b="var0" op="add" />
+					<setvalue name="combat_deflection" a="combat_deflection" b="var0" op="add" />
+				</combateffecttype>
+			</targettype>
+		</onattackedpredamage>
+		
+	</modifier>
+</qualityitem>

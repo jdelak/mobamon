@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_JinShe3"
+
+	statuseffecttooltip=""
+	
+	icon="icon.tga"
+	
+	anim="ability_3_channel"
+	casttime="0"
+	castactiontime="0"
+	channeltime="1400"
+	ischanneling="true"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+ 
+	actiontype="target_position"
+	casteffecttype=""
+	casteffect="effects/cast.effect"
+	
+	targetradius="120"
+	targetmaterial="/shared/materials/jinshe_selection_indicator.material"
+	targetscheme="enemy_units"
+
+	manacost="70"
+	cooldowntime="24000,20000,16000,12000"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	
+	range="1800"
+	hoverareacastrange="1800"
+	allowoutofrangecast="true"
+	alwaysshowtimer="true"
+>
+
+	<constant name="resistance" value="5,10,15,20" adjustment="none" />
+	
+	<onchannelend>
+		<unbind target="source_entity" />
+		<disjoint target="source_entity" />
+		
+		<playanim name="ability_3_fly" source="source_entity" target="source_entity" />
+		<expirestate name="State_JinShe_Ability3_Channel" target="source_entity" />
+		<spawnprojectile name="Projectile_JinShe_Ability3" source="source_entity" target="target_position" bind="source_entity" bindturn="true" proxy="this_proxy_entity" bindstate="State_JinShe_Ability3_Bind" noresponse="true" bindpriority="1"/>
+		
+		<playeffect effect="effects/shadow.effect" target="target_position" occlude="true"/>
+		<playeffect effect="effects/cast.effect" source="source_position" target="source_position" occlude="true"/>
+		<kill source="" target="this_proxy_entity" />
+
+	</onchannelend>
+	
+	<onchannelstart>		
+
+		<spawnunit name="Gadget_JinShe_Ability3" count="1" target="target_position" owner="source_entity" pushentity="true"/>
+		<playeffect effect="effects/warning_ally.effect" source="stack_entity" visibility="allies" occlude="true" />
+		<playeffect effect="effects/warning.effect" source="stack_entity" visibility="enemies" occlude="true" />
+		<applystate name="State_JinShe_Ability3_Channel" duration="1400" ischannel="true" target="source_entity" />
+		
+		<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="500" />
+		<spawnunit name="Gadget_JinShe_Ability3_Link" count="1" target="pos0" owner="source_entity" pushentity="true" proxy="stack_entity"/>
+		<setproxy target="stack_entity" />
+		<playeffect effect="effects/link.effect" source="stack_entity" target="source_entity" occlude="false"/>
+		
+	</onchannelstart>
+	
+	<onchannelbreak>
+		<kill source="" target="this_proxy_entity" />
+		<expirestate name="State_JinShe_Ability3" target="this_proxy_entity" />
+		<expirestate name="State_JinShe_Ability3_Self" target="source_entity" />
+	</onchannelbreak>
+
+	<ondamaged>
+		<compare a="source_damage" b="0" op="gt" >
+			<targettype type="player_controlled">
+				<targettype type="self"/>
+				<else>
+					<startcooldown duration="3000" />
+				</else>
+			</targettype>
+		</compare>
+	</ondamaged>
+
+	<modifier key="JinShe_leap" modpriority="100">
+		<ondamaged>
+			<compare a="source_damage" b="0" op="gt" >
+				<targettype type="player_controlled">
+					<targettype type="self"/>
+					<else>
+						<delete target="this_proxy_entity" />
+						<breakchannel />
+						<resetcooldown entity="this_entity" />
+						<startcooldown duration="3000" />
+					</else>
+				</targettype>
+			</compare>
+		</ondamaged>
+	</modifier>
+
+</ability>

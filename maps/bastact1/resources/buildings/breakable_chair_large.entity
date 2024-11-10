@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Building_Bastact1_ChairLarge"
+
+	model="large_chair_dining/model.mdf"
+
+	mapiconsize="0"
+	drawonmap="false"
+	
+	isselectable="false"
+	noaltclickping="true"
+	
+	preglobalscale="1.5"
+	modelscale="1.5"
+	effectscale="1.0"
+	
+	selectionradius="50"
+	targetoffset="0 0 0"
+	maxhealth="1"
+	corpsetime="0"
+    corpsefadetime="0"
+	deathtime="0"
+	canattack="false"
+	unitwalking="true"
+	aggrorange="1"
+	sightrangeday="0"
+	sightrangenight="0"
+	isshop="false"
+	invulnerable="false"
+	hidealtinfo="true"
+>
+
+	<onspawn>
+		<spawnunit name="Gadget_Bastact1_TableBlocker" source="this_entity" target="this_entity" count="1" offset="0 0 0" offsetspace="this_entity" proxy="this_entity" snaptargettogrid="true" fixedposition="true" />
+	</onspawn>
+
+	<onkilled>
+		<playeffect effect="effects/large_chair_death.effect" source="this_entity" target="this_position" />
+	</onkilled>
+
+</building>

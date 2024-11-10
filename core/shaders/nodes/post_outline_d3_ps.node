@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="post_outline_d3_ps" novs="true">
+	<parameter name="Sampler" type="sampler2D" default="image" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="Texcoord0" type="float2" source="PostTexcoord0" />
+	<dependency name="Texcoord1" type="float4" source="PostTexcoord1" />
+	<dependency name="Texcoord2" type="float4" source="PostTexcoord2" />
+	<dependency name="Texcoord3" type="float4" source="PostTexcoord3" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float4 f4Color = tex2D(Sampler, Texcoord0.xy).rgba;
+			float3 f3Color1 = tex2D(Sampler, Texcoord1.xy).rgb;
+			float3 f3Color2 = tex2D(Sampler, Texcoord1.zw).rgb;
+			float3 f3Color3 = tex2D(Sampler, Texcoord2.xy).rgb;
+			float3 f3Color4 = tex2D(Sampler, Texcoord2.zw).rgb;
+			float3 f3Color5 = tex2D(Sampler, Texcoord3.xy).rgb;
+			float3 f3Color6 = tex2D(Sampler, Texcoord3.zw).rgb;
+
+			float3 f3Color_max_1_2 = max(f3Color1, f3Color2);
+			float3 f3Color_max_3_4 = max(f3Color3, f3Color4);
+			float3 f3Color_max_5_6 = max(f3Color5, f3Color6);
+			float3 f3Color_max_1_2_3_4 = max(f3Color_max_1_2, f3Color_max_3_4);
+			float3 f3Color_max_5_6_0 = max(f3Color_max_5_6, f4Color.rgb);
+
+			float3 f3ColorMax = max(f3Color_max_1_2_3_4, f3Color_max_5_6_0);
+			
+			Out.rgb = f3ColorMax;
+			Out.a = f4Color.a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float4 f4Color = Sampler_texture.Sample(Sampler_sampler, Texcoord0.xy).rgba;
+			float3 f3Color1 = Sampler_texture.Sample(Sampler_sampler, Texcoord1.xy).rgb;
+			float3 f3Color2 = Sampler_texture.Sample(Sampler_sampler, Texcoord1.zw).rgb;
+			float3 f3Color3 = Sampler_texture.Sample(Sampler_sampler, Texcoord2.xy).rgb;
+			float3 f3Color4 = Sampler_texture.Sample(Sampler_sampler, Texcoord2.zw).rgb;
+			float3 f3Color5 = Sampler_texture.Sample(Sampler_sampler, Texcoord3.xy).rgb;
+			float3 f3Color6 = Sampler_texture.Sample(Sampler_sampler, Texcoord3.zw).rgb;
+
+			float3 f3Color_max_1_2 = max(f3Color1, f3Color2);
+			float3 f3Color_max_3_4 = max(f3Color3, f3Color4);
+			float3 f3Color_max_5_6 = max(f3Color5, f3Color6);
+			float3 f3Color_max_1_2_3_4 = max(f3Color_max_1_2, f3Color_max_3_4);
+			float3 f3Color_max_5_6_0 = max(f3Color_max_5_6, f4Color.rgb);
+
+			float3 f3ColorMax = max(f3Color_max_1_2_3_4, f3Color_max_5_6_0);
+			
+			Out.rgb = f3ColorMax;
+			Out.a = f4Color.a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec4 f4Color = texture2D(Sampler, Texcoord0.xy).rgba;
+			vec3 f3Color1 = texture2D(Sampler, Texcoord1.xy).rgb;
+			vec3 f3Color2 = texture2D(Sampler, Texcoord1.zw).rgb;
+			vec3 f3Color3 = texture2D(Sampler, Texcoord2.xy).rgb;
+			vec3 f3Color4 = texture2D(Sampler, Texcoord2.zw).rgb;
+			vec3 f3Color5 = texture2D(Sampler, Texcoord3.xy).rgb;
+			vec3 f3Color6 = texture2D(Sampler, Texcoord3.zw).rgb;
+
+			vec3 f3Color_max_1_2 = max(f3Color1, f3Color2);
+			vec3 f3Color_max_3_4 = max(f3Color3, f3Color4);
+			vec3 f3Color_max_5_6 = max(f3Color5, f3Color6);
+			vec3 f3Color_max_1_2_3_4 = max(f3Color_max_1_2, f3Color_max_3_4);
+			vec3 f3Color_max_5_6_0 = max(f3Color_max_5_6, f4Color.rgb);
+
+			vec3 f3ColorMax = max(f3Color_max_1_2_3_4, f3Color_max_5_6_0);
+			
+			Out.rgb = f3ColorMax;
+			Out.a = f4Color.a;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec4 f4Color = texture(Sampler, Texcoord0.xy).rgba;
+			vec3 f3Color1 = texture(Sampler, Texcoord1.xy).rgb;
+			vec3 f3Color2 = texture(Sampler, Texcoord1.zw).rgb;
+			vec3 f3Color3 = texture(Sampler, Texcoord2.xy).rgb;
+			vec3 f3Color4 = texture(Sampler, Texcoord2.zw).rgb;
+			vec3 f3Color5 = texture(Sampler, Texcoord3.xy).rgb;
+			vec3 f3Color6 = texture(Sampler, Texcoord3.zw).rgb;
+
+			vec3 f3Color_max_1_2 = max(f3Color1, f3Color2);
+			vec3 f3Color_max_3_4 = max(f3Color3, f3Color4);
+			vec3 f3Color_max_5_6 = max(f3Color5, f3Color6);
+			vec3 f3Color_max_1_2_3_4 = max(f3Color_max_1_2, f3Color_max_3_4);
+			vec3 f3Color_max_5_6_0 = max(f3Color_max_5_6, f4Color.rgb);
+
+			vec3 f3ColorMax = max(f3Color_max_1_2_3_4, f3Color_max_5_6_0);
+			
+			Out.rgb = f3ColorMax;
+			Out.a = f4Color.a;
+		?>
+	</case>
+</node>

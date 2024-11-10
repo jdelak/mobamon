@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Bastion1Bastact1_1"
+
+	icon="icon_torch.tga"
+	
+	anim=""
+	casttime="100"
+	castactiontime="100"
+
+	maxlevel="4"
+	requiredlevel="2,5,6,7"
+
+	actiontype="facing"
+	casteffect=""
+	casteffecttype="Magic"
+	targetscheme="all_units"
+	
+	allowoutofrangecast="true"
+	
+	manacost="0"
+	cooldowntime="250"
+
+	range="50"
+	queue="front"
+
+	maxcharges="2"
+	alwaysshowtimer="true"
+
+>
+	<constant name="damage" value="60,60,60,60" adjustment="ability" noshowintooltip="true"/>
+	<onlearn>
+		<setcharges a="2" />
+		<setaccumulator value="1" />
+	</onlearn>
+
+	<onimpact>
+		<order command="stop" source="source_entity" target="source_entity" />
+		<areaofeffect
+			radius="225"
+			targetselection="radial_closest"
+			targetscheme="visible_mobs"
+			center="source_entity"
+			ignoreinvulnerable="false"
+			maximpactspertarget="1"
+			maxtotalimpacts="1"
+			>
+			<teleport source="source_entity" target="target_entity" facetarget="true" interpolate="true" positionmodifier="minonline" />
+			<setpos0 position="source_position" offsetspace="source_entity" offset="0 100 0" />
+			<!-- <spawnprojectile name="Projectile_Bastion1Bastact1_Ability1" source="source_entity" target="pos0" bind="source_entity" bindturn="true" /> -->
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="500"
+				targetselection="radial_closest"
+				targetscheme="visible_mobs"
+				center="source_entity"
+				ignoreinvulnerable="false"
+				>
+					<teleport source="source_entity" target="target_entity" facetarget="true" interpolate="true" positionmodifier="minonline" />
+					<setpos0 position="source_position" offsetspace="source_entity" offset="0 200 0" />
+					<spawnprojectile name="Projectile_Bastion1Bastact1_Ability1" source="source_entity" target="pos0" bind="source_entity" bindturn="true" />
+			</areaofeffect>
+		</else>
+		
+		<applystate name="State_Bastion1Bastact1_Disable" target="source_entity" duration="500" />
+		<compare a="charges" b="1" op="eq" >
+			<removecharge />
+			<setactivemodifierkey name="bastioncombodisabled" />
+			<starttimer duration="3000" applycooldownreduction="true" />
+		</compare> 
+		<else>
+			<starttimer duration="1000" applycooldownreduction="true" />
+			<removecharge />
+		</else>
+
+		<!-- Spawn the correct affector based on the modifier -->
+		<hasmodifier entity="source_entity" name="with_sword" >
+			<spawnaffector name="Affector_Bastion1Bastact1_Ability1_Sword" target="source_entity" distance="0" proxy="this_entity"/>
+		</hasmodifier>
+		<else>
+			<spawnaffector name="Affector_Bastion1Bastact1_Ability1" target="source_entity" distance="0" proxy="this_entity"/>
+		</else>
+
+		<!--Animations for each attack. Descending order for accumulator is important-->
+		<compare a="accumulator" b="3" op="eq">
+			<hasmodifier entity="source_entity" name="with_sword" >
+				<playeffect effect="effects/spin_sword_03.effect" target="source_entity" />
+			</hasmodifier>
+			<else>
+				<playeffect effect="effects/spin_03.effect" target="source_entity" />
+			</else>
+
+			<playanim name="ability_1_c" target="source_entity" />
+			<spawnaffector name="Affector_Camshakedelay" target="source_position"/>
+			<setaccumulator value="0" />
+		</compare>
+		<compare a="accumulator" b="2" op="eq">
+			<hasmodifier entity="source_entity" name="with_sword" >
+				<playeffect effect="effects/spin_sword_02.effect" target="source_entity" />
+			</hasmodifier>
+			<else>
+				<playeffect effect="effects/spin_02.effect" target="source_entity" />
+			</else>
+
+			<playanim name="ability_1_b" target="source_entity" />
+			<setaccumulator value="3" />
+		</compare>
+		<compare a="accumulator" b="1" op="eq">
+			<hasmodifier entity="source_entity" name="with_sword" >
+				<playeffect effect="effects/spin_sword.effect" target="source_entity" />
+			</hasmodifier>
+			<else>
+				<playeffect effect="effects/spin.effect" target="source_entity" />
+			</else>
+
+			<playanim name="ability_1_a" target="source_entity" />
+			<setaccumulator value="2" />
+		</compare>
+		<compare a="accumulator" b="0" op="eq">
+			<setaccumulator value="1" />
+		</compare>
+	</onimpact>
+
+	<ontimer>
+		<setaccumulator value="1" />
+		<compare a="charges" b="2" op="lt">
+			<addcharges entity="this_entity" count="1" />
+			<starttimer duration="1000" applycooldownreduction="true" />
+		</compare>
+		<else>
+			<addcharges entity="this_entity" count="1" />
+		</else>	
+	</ontimer>
+
+	<modifier key="bastioncombodisabled" modpriority="100" 
+		disabled="true"
+	>
+		<ontimer>
+			<setcharges a="3" />
+			<setactivemodifierkey name="" />
+			<setaccumulator value="1" />
+		</ontimer>
+
+	</modifier>
+
+	<modifier key="with_nohitch" modpriority="98"
+		disabled="true"
+	>
+	</modifier>
+
+	<modifier key="Ability1_level2" modpriority="99"
+		maxcharges="3"	
+		icon="icon_sword.tga"
+	>
+	</modifier>
+
+	<modifier key="with_nohitch_withsword" modpriority="98"
+		disabled="true"
+	>
+	</modifier>
+
+	<modifier key="disable" modpriority="98"
+		disabled="true"
+	>
+	</modifier>
+</ability>

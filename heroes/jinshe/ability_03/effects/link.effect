@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="2">
+
+
+			<template name="">
+			
+				<beam
+				delay="{zdelay}"
+					owner_a="target"
+					bone_a="{zbone}"
+					owner_b="source"
+					size="20"
+					color=".5 0 0"
+					startframe="0"
+					endframe="1"
+					framespeed="2"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+				>
+				</beam>
+			
+				<beam
+				delay="{zdelay}"
+					owner_a="target"
+					bone_a="{zbone}"
+					owner_b="source"
+					size="10"
+					color="1 .5 0"
+					startframe="0"
+					endframe="1"
+					framespeed="2"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+				>
+				</beam>
+				
+				<beam
+				delay="{zdelay}"
+					owner_a="target"
+					bone_a="{zbone}"
+					owner_b="source"
+					size="2"
+					color="1 .5 0"
+					startframe="0"
+					endframe="1"
+					framespeed="2"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+				>
+				</beam>
+
+			</template>
+
+			<instance name="" zbone="_bone_bip01 L hand" zdelay="500"/> 
+			<instance name="" zbone="_bone_bip01 R hand" zdelay="1000"/> 
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="">
+
+				<simpleemitter
+					delay="500"
+					owner="source"
+					spawnrate="75"
+					minparticlelife="500"
+					maxparticlelife="750"
+					gravity="0"
+					minspeed="0"
+					maxspeed="300"
+					material="/shared/effects/smaterials/firesprite_swirl.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="0"
+					directionalspace="world"
+					offsetsphere="20"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						color="1 .35 0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="80"
+						endsize="0"
+						turn="true"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" />  
+			<instance name="" />  
+
+			<billboard
+			expirelife="500"
+				delay="500"
+				owner="source"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="1 0 0"
+				endcolor="0 0 0"
+				position="0 0 10"
+				size="150"
+				depthbias="-150"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				
+			/>
+
+			<billboard
+			expirelife="500"
+				delay="500"
+				owner="source"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				position="0 0 10"
+				size="90"
+				depthbias="-150"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				
+			/>
+
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			<template name="">
+				<simpleemitter
+				delay="{zdelay}"
+					position="{zpos}"
+					life="1000"
+					spawnrate="3300"
+					count="50"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="5"
+					minspeed="{zmin}"
+					maxspeed="{zmax}"
+					drag=".01"
+					material="/shared/effects/materials/whitedot.material"
+					offsetsphere="20 20 0"
+					minangle="0"
+					maxangle="20"
+					direction="{zdirection}"
+					depthbias="-50"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						startcolor="1 1 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minstartsize="12"
+						maxstartsize="16"
+						endsize="2"
+					/>
+				</simpleemitter>
+				
+				
+				<billboard
+					delay="{zdelay}"
+					expirelife="500"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="{zcolor}"
+					endcolor="0 0 0"
+					position="0 0 10"
+					size="90"
+					depthbias="-150"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+				
+			</template>
+			
+			<instance name="" zdirection="0 0 1" zcolor=".3 .15 0" zpos="0 0 0" zdelay="500" zmin="250" zmax="1500"/> 	
+			<instance name="" zdirection="0 0 1" zcolor=".6 .3 0" zpos="0 0 0" zdelay="1000" zmin="250" zmax="1500"/> 	
+			
+			
+			
+			
+			
+			
+
+
+
+
+		</particlesystem>
+
+	  
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <spawnparticlesystem instance="instance1" particlesystem="system1" />
+      <spawnparticlesystem instance="instance2" particlesystem="system2" />
+      <waitfordeath instance="instance0" />
+      <waitfordeath instance="instance1" />
+      <waitfordeath instance="instance2" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

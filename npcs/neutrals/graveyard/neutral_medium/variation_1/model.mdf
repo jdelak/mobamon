@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2">
+	
+	<anim name="idle" clip="../clips/default_1.clip" loop="true" minstartframe="0" maxstartframe="-1" fps="26" />
+
+	<anim name="walk_1" clip="../clips/walk_1.clip" loop="true" minstartframe="0" maxstartframe="-1" fps="25">
+		<frameevent frame="1" cmd="PlaySoundLinear /shared/sounds/footsteps/fs_dirt_left_%.wav 100 1500 0.5"/>
+		<frameevent frame="10" cmd="PlaySoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 100 1500 0.5"/>
+		<frameevent frame="20" cmd="PlaySoundLinear /shared/sounds/footsteps/fs_dirt_left_%.wav 100 1500 0.5"/>
+		<frameevent frame="30" cmd="PlaySoundLinear /shared/sounds/footsteps/fs_dirt_right_%.wav 100 1500 0.5"/>
+	</anim>
+	
+	<anim name="attack_1" clip="../clips/attack_1.clip" fps="17">
+		<frameevent frame="28" cmd="StartEffect projectile/effects/attack_action.effect" />
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/attack_grunt_%.wav 100 1500 .4"/>
+		<frameevent frame="10" cmd="PlaySoundLinear ../sounds/attack_1.wav 100 1500 .2"/>
+	</anim>
+	
+	<anim name="attack_2" clip="../clips/attack_2.clip" fps="17">
+		<frameevent frame="28" cmd="StartEffect projectile/effects/attack_action.effect" />
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/attack_grunt_%.wav 100 1500 .4"/>
+		<frameevent frame="10" cmd="PlaySoundLinear ../sounds/attack_1.wav 100 1500 .2"/>
+	</anim>
+	
+	<anim name="death_1" clip="../clips/death_1.clip" loop="true" loopbackframe="-1" fps="20">
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/sfx_death_%.wav 100 1500 .4"/>
+		
+	</anim>
+	
+</model>

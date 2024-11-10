@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1" >
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			life="500"
+			startcolor="0 0 0"
+			endcolor="1 1 1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.5"
+				falloffstart="500"
+				falloffend="2500"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+			
+			<light
+				life="150"
+				startcolor="0 6 10"
+				midcolor="3 0 6"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="00"
+				falloffend="175"
+				position="0 0 100"
+			/>
+			
+			<light
+				delay="300"
+				life="150"
+				startcolor="0 6 10"
+				midcolor="3 0 6"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="00"
+				falloffend="175"
+				position="0 0 100"
+			/>
+
+			<billboard
+				bone="_bone_center"
+				life="200"
+				startcolor="0 .25 .5"
+				midcolor=".75 0 .75"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				startsize="500"
+				endsize="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-25"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

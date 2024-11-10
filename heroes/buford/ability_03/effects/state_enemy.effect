@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="entity" scale="1">
+		
+			<template name="">
+
+				<sound
+					linearfalloff="true" 
+					falloffstart="100"
+					falloffend="2000"
+					volume=".15"
+					sample="../sounds/sfx_state.wav"
+				/>
+
+				<model
+					position="0 0 8"
+					bone="_bone_centerofchest"
+					expirelife="250"
+					model="leech/model.mdf"
+					material="leech/material_poison_leech.material"
+					anim="{zanim}"
+					scale="{zscale}"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					color="2"
+					pitch="{zpitch}"
+					yaw="{zyaw}"
+					yawspeed="{zyawspeed}"
+					directionalspace="world"
+				>
+					<billboard
+						bone="_bone_leechBody"
+						expirelife="250"
+						startcolor=".075 0 .25"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						scale="1"
+						depthbias="-50"
+					/>
+				</model>
+				
+			</template>
+			
+			<instance name="" zpitch="55" zyaw="0" zyawspeed="35" zscale="5" zanim="wiggle_fast"/>
+
+			<instance name="" zpitch="90" zyaw="95" zyawspeed="-40" zscale="4" zanim="wiggle_faster"/>
+			
+			<instance name="" zpitch="80" zyaw="210" zyawspeed="20" zscale="4" zanim="wiggle"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

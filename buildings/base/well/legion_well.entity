@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<building
+	name="Building_LegionWell"
+
+	icon="..\main\icon.tga"
+	portrait=""
+	model="/world/sprops/well/model_b.mdf"
+	mapicon="/shared/icons/minimap_well.tga"
+	mapiconsize="0.03"
+	skin=""
+	
+	passiveeffect="effects/sound.effect"
+	destroyedsound=""
+	lowhealtheffect=""
+	lowhealthsound=""
+	selectsound=""
+	isselectable="false"
+	noaltclickping="true"
+	
+	preglobalscale="1"
+	modelscale="1.0"
+	effectscale="1.8"
+	boundsheight="256"
+	radiusheight="256"
+	boundsradius="0"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	maxhealth="0"
+	healthregen="0"
+
+	resistance="0"
+
+	canattack="false"
+	
+	attackduration="150"
+	attackactiontime="50"
+	attackcooldown="0"
+	attackdamagemin="190"
+	attackdamagemax="199"
+	attacknumanims="1"
+	attackoffset="-250 -20 40"
+	attackprojectile="Projectile_well"
+	attackrange="0"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect=""
+	attacktype="ranged"	
+	combattype="Structure"
+
+	unittype="Well_Krytos"
+
+	hazardradius="1000"
+	hazardthreat="extreme"
+
+	sharesinventory="true"
+	
+	aggrorange="1"
+	sightrangeday="1200"
+	sightrangenight="1200"
+	drawonmap="false"
+	isshop="false"
+	invulnerable="true"
+	hidealtinfo="true"
+>
+	<aura state="State_LegionHealingWell" radius="800" duration="200" targetscheme="injured_ally_units" ignoreinvulnerable="true" />
+	<aura state="State_In_Well" radius="800" targetscheme="ally_heroes" ignoreinvulnerable="true" />
+	<aura state="State_ShopAccess_Main" radius="1300" targetscheme="ally_heroes" ignoreinvulnerable="true" />
+	<!--aura state="State_AllowRefillBottle" radius="500" targetscheme="ally_units" /-->
+
+	<modifier key="kongor_available" modpriority="99"
+		sharedinventory0="Ability_SpawnKongor_Top"
+		sharedinventory1="Ability_SpawnKongor_Mid"
+		sharedinventory2="Ability_SpawnKongor_Bot"
+	/>
+</building>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="instance_transform_position">
+	<dependency name="ObjectPosition" type="float3" source="ObjectPosition" />
+	<dependency name="InstancePosition" type="float3" source="InstancePosition" />
+	<dependency name="InstanceNormalX" type="float3" source="InstanceNormalX" />
+	<dependency name="InstanceNormalY" type="float3" source="InstanceNormalY" />
+	<dependency name="InstanceNormalZ" type="float3" source="InstanceNormalZ" />
+	<dependency name="mWorld" type="float4x4" source="mWorld" />
+	<dependency name="mViewProj" type="float4x4" source="mViewProj" />
+	<output name="Out" type="float4" solution="HomogeneousPosition" />
+	<?hlsl
+		float4x4 mInstance = float4x4(float4(InstanceNormalX.x, InstanceNormalY.x, InstanceNormalZ.x, 0.0f),
+											float4(InstanceNormalX.y, InstanceNormalY.y, InstanceNormalZ.y, 0.0f),
+											float4(InstanceNormalX.z, InstanceNormalY.z, InstanceNormalZ.z, 0.0f),
+											float4(InstancePosition, 1.0f));
+		float4x4 mInstanceWorld = mul(mInstance, mWorld);
+		float4x4 mInstanceWorldViewProj = mul(mInstanceWorld, mViewProj);
+		Out = mul(float4(ObjectPosition.x, ObjectPosition.y, ObjectPosition.z, 1.0f), mInstanceWorldViewProj);
+	?>
+	<?glsl
+		float4x4 mInstance(InstanceNormalX, 
+						   InstanceNormalY,
+						   InstanceNormalZ,
+						   InstancePosition);
+		float4x4 mInstanceWorld(mWorld * mInstance);
+		float4x4 mInstanceView(mView * mInstanceWorld);
+		float4x4 mInstanceViewProj(mProj * mInstanceView);
+		Out = mInstanceViewProj * vec4(ObjectPosition, 1.0f);
+	?>
+</node>

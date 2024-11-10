@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale=".75">
+
+			<sound
+				volume="0.25"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+
+			<simpleemitter
+				count="1"
+				bone="_bone_centerofchest"
+				spawnrate="1000"
+				particlelife="2000"
+			>
+				<particle
+				>
+				
+					<simpleemitter
+						bone="_bone_centerofchest"
+						count="40"
+						spawnrate="1500"
+						particlelife="1000"
+						position="0 0 0"
+						offsetsphere="0 0 0"
+						direction="0 0 0"
+						minspeed="100"
+						maxspeed="300"
+					>
+						<particle
+							turn="true"
+						> 
+							<billboard
+								bone="_bone_centerofchest"
+								minlife="300"
+								maxlife="500"
+								startcolor="1 .35 0"
+								midcolor="1 .35 0"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/goop_drop_add.material"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								directionalspace="local"
+								minstartscale="1"
+								maxstartscale="1.5"
+								midscale=".75"
+								endscale=".35"
+								depthbias="30"
+							/>
+						</particle>
+					</simpleemitter>
+				
+				</particle>
+			</simpleemitter>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1.5">
+
+			<billboard
+				size="100"
+				life="1500"
+				position="0 0 50"
+				bone="_bone_overhead"
+				depthbias="0"
+				material="/shared/effects/materials/flare_05.material"
+				startcolor="1 .7 .2"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				loop="true"
+			/>
+			
+			<billboard
+				size="175"
+				life="1500"
+				position="0 0 50"
+				bone="_bone_overhead"
+				depthbias="0"
+				material="/shared/effects/materials/flare_05.material"
+				startcolor="1 .5 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				loop="true"
+			/>
+
+			<billboard
+				width="125"
+				height="2.5"
+				position="0 0 50"
+				flare="true"
+				bone="_bone_overhead"
+				life="1500"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor="1 .5 .15"
+				midcolor="0 0 0"
+				endcolor="0  0 0"
+				midcolorpos=".5"
+				loop="true"
+			>
+			</billboard>
+
+			<billboard	
+				bone="_bone_overhead"
+				life="1500"
+				color="1 .5 0"
+				startalpha=".5"
+				midalpha="0"
+				endalpha="0"
+				midalphapos=".3"
+				size="50"
+				height="20"
+				width="85"
+				material="/shared/effects/materials/animated_target.material"
+				depthbias="-50"
+				position="0 0 50"
+				startframe="0"
+				framespeed="1"
+				loop="true"
+			/>
+
+			<billboard
+				startsize="30"
+				endsize="35"
+				position="0 0 25"
+				bone="_bone_overhead"
+				life="1500"
+				flare="true"
+				material="/shared/effects/materials/taunt.material"
+				color="1 1 1"
+				startalpha="0"
+				midalpha=".8"
+				endalpha="0"
+				midalphapos=".25"
+				loop="true"
+			>
+			</billboard>
+
+			<billboard
+				startsize="30"
+				midsize="40"
+				endsize="30"
+				position="0 0 25"
+				bone="_bone_overhead"
+				life="1500"
+				flare="true"
+				material="/shared/effects/materials/taunt.material"
+				color="1 1 1"
+				startalpha="0"
+				midalpha=".5"
+				endalpha="0"
+				midalphapos=".25"
+				loop="true"
+			>
+			</billboard>
+			
+			<billboard
+				startsize="30"
+				midsize="35"
+				endsize="30"
+				position="0 0 25"
+				bone="_bone_overhead"
+				life="1500"
+				flare="true"
+				material="/shared/effects/materials/taunt.material"
+				color="1 1 1"
+				startalpha="0"
+				midalpha=".5"
+				endalpha="0"
+				midalphapos=".25"
+				loop="true"
+			>
+			</billboard>
+
+			<billboard
+				startsize="30"
+				endsize="35"
+				position="0 0 25"
+				bone="_bone_overhead"
+				expirelife="500"
+				flare="true"
+				material="/shared/effects/materials/taunt.material"
+				color="1 1 1"
+				startalpha=".75"
+				endalpha="0"
+				midalphapos=".25"
+			>
+			</billboard>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+
+		<waitfordeath instance="instance0" />
+
+	</thread>
+</effect>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_flat_opacity.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="23.0" fOpacity="1.0" fReflect="1.0" />
+	<phase name="color" cull="back" blend="additive">
+		<sampler name="diffuse" texture="shieldstarfish.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" colorwrite="false" alphawrite="false" depthwrite="true" blend="none">
+		<multipass cull="back" blend="additive">
+			<sampler name="diffuse" texture="shieldstarfish.tga" repeat_u="true" repeat_v="true" />
+		</multipass>
+	</phase>
+</material>

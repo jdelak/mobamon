@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Bounder_TriggeredPassive_1"
+
+	icon="icon.tga"
+	
+	
+	maxlevel="15"
+	
+
+	actiontype="passive"
+	
+	manacost="0"
+	cooldowntime="14000"
+	
+>
+	<constant name="cooldown" value="14" adjustment="none" />
+	<constant name="slow" value="3" adjustment="none" />
+	
+	<onattack>
+		<isready>
+			<targettype type="hero">
+				<spawnprojectile name="Projectile_Bounder" source="this_proxy_entity" target="target_entity" offset="0 0 50" noresponse="true" />
+				<playeffect effect="effects/cast.effect" source="this_proxy_entity" target="this_proxy_entity"/>
+				<startcooldown entity="this_entity" />
+				<playanim name="ability_1" target="this_proxy_entity" />
+			</targettype>
+		</isready>
+	</onattack>
+
+</ability>

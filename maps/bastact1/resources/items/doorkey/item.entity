@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_Bastact1_Key"
+	icon="icon.tga"
+	actiontype="passive"
+	passiveeffect=""
+	maximpactspertarget="-1"
+>
+	<oncreate>
+		<areaofeffect
+			radius="4000"
+			targetselection="closest"
+			targetscheme="all_buildings"
+			ignoreinvulnerable="true"
+			source="source_entity"
+			center="source_entity"
+		>
+			<activatemodifierkey name="unlocked" entity="target_entity" />
+			<setproxy entity="target_entity" target="this_entity" />
+		</areaofeffect>
+	</oncreate>
+
+</crafteditem>

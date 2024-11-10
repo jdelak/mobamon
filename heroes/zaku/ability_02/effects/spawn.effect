@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+	<definitions>
+
+		<modifier
+			life="1100"
+			color="1 1 1"
+			startalpha="0"
+			midalpha="0"
+			endalpha="1"
+			midalphapos=".8"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume=".65"
+				sample="../sounds/sfx_cast.wav"
+				linearfalloff="true"
+				falloffstart="500" 
+				falloffend="2400" 
+			/>
+
+			<sound
+				delay="275"
+				volume=".45"
+				sample="../sounds/sfx_impact.wav"
+				linearfalloff="true"
+				falloffstart="500" 
+				falloffend="2400" 
+			/>
+
+			<light
+				position="0 0 50"
+				expirelife="500"
+				startcolor="1.5 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="500"
+				endfalloffend="500"
+			/>
+			
+			<groundsprite
+				expirelife="500"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				scale=".65"
+				startcolor=".5 .25 0"
+				endcolor="0 0 0"
+				minyaw="0"
+				maxyaw="360"
+			/>
+
+			<template name="groundsprite">
+
+				<groundsprite
+				delay="300"
+				position="{zpos}"
+					minlife="900"
+					maxlife="1100"
+					material="/shared/effects/smaterials/torch_hole_overlay.material"
+					minscale=".8"
+					maxscale="1"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".65"
+					maxyaw="360"
+				/>
+
+			</template>
+			
+			<instance name="groundsprite" zpos="25 0 0"/>
+			<instance name="groundsprite" zpos="-25 0 0"/>
+			<instance name="groundsprite" zpos="0 25 0"/>
+			<instance name="groundsprite" zpos="0 -25 0"/>
+			<instance name="groundsprite" zpos="0 0 0"/>
+			
+
+			<template name="groundsprite">
+				<groundsprite
+					delay="1000"
+					bone="{zbone}"
+					expirelife="250"
+					material="/shared/effects/smaterials/tornado_crack.material"
+					minscale=".45"
+					maxscale=".5"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".65"
+					maxyaw="360"
+					directionalspace="local"
+				/>
+				
+				<groundsprite
+					delay="1000"
+					bone="{zbone}"
+					expirelife="250"
+					material="/shared/effects/smaterials/tornado_crack.material"
+					minscale=".5"
+					maxscale=".55"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".65"
+					maxyaw="360"
+					directionalspace="local"
+				/>
+			</template>
+			
+			<instance name="groundsprite" zbone="_bone_fx_base_01"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_02"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_03"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_04"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_05"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_06"/>
+
+<!--
+			<template name="groundsprite">
+
+				<simpleemitter
+				delay="900"
+				life="250"
+					bone="{zbone}"
+					position="0 0 0"
+					startspawnrate="25"
+					midspawnrate="25"
+					endspawnrate="10"
+					particlelife="3000"
+					offsetsphere="0 0 0"
+				>
+					<particle
+					>
+						<billboard
+							bone="{zbone}"
+							minlife="1000"
+							maxlife="2000"
+							material="/shared/effects/smaterials/tornado_crack.material"
+							minscale=".6"
+							maxscale="1"
+							startalpha=".35"
+							midalpha=".5"
+							endalpha="0"
+							midalphapos=".75"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="groundsprite" zbone="_bone_fx_base_01"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_02"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_03"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_04"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_05"/>
+			<instance name="groundsprite" zbone="_bone_fx_base_06"/>
+-->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+
+			<template name="">
+			
+				<simpleemitter
+					delay="{zdelay}"
+					count="1"
+					position="0 0 0"
+					spawnrate="25"
+					particlelife="2000"
+					offsetsphere="15 15 0"
+				>
+					<particle
+					>
+						<model
+							position="0 0 0"
+							minlife="8000"
+							maxlife="10000"
+							name="emitter0" 
+							anim="idle"
+							model="/heroes/ray/ability_01/effects/rocks/model.mdf"
+							minscale=".25"
+							maxscale=".5"
+							color="1.25 1.5 1"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".75"
+							minyaw="0"
+							maxyaw="360"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				
+
+
+			</template>
+			
+			<instance name="" zdelay="300"/>
+			<instance name="" zdelay="400"/>
+			<instance name="" zdelay="500"/>
+			<instance name="" zdelay="600"/>
+
+			
+			
+				
+			<simpleemitter
+			delay="300"
+				count="6"
+				spawnrate="100"
+				particlelife="550"
+				gravity="100"
+				drag="0"
+				minspeed="500"
+				maxspeed="1000"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				offsetsphere="25 25 0"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .6"
+					minscale=".5"
+					maxscale=".9"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="75"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+				delay="300"
+				spawnrate="165"
+				life="250"
+				particlelife="550"
+				gravity="0"
+				drag="0.05"
+				minspeed="500"
+				maxspeed="1000"
+				acceleration="0"
+				position="0 0 15"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"
+				minangle="90"
+				maxangle="90"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					color="1 .8 .6"
+					minscale=".5"
+					maxscale=".9"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="75"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				delay="300"
+				spawnrate="500"
+				life="250"
+				particlelife="550"
+				gravity="0"
+				drag="0.05"
+				minspeed="1500"
+				maxspeed="3000"
+				acceleration="0"
+				position="0 0 15"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"
+				minangle="90"
+				maxangle="90"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="50"
+					startcolor="1 1 1"
+					midcolor="1 .8 .7"
+					endcolor="1 1 1"
+					minscale=".8"
+					maxscale="1.2"
+					startframe="0"
+					endframe="1"
+					startsize="25"
+					endsize="75"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+
+
+
+
+
+				<template name="vines">
+				
+					<beam
+						expirelife="500"
+						bone_a="{zbone}"
+						bone_b="{zboneb}"
+						minsize="25"
+						maxsize="50"
+						color="1 1 1"
+						startalpha="1"
+						endalpha="0"
+						material="/shared/effects/smaterials/web_1.material"
+						depthbias="-25"
+					/>
+
+				</template>
+
+				<instance name="vines" zbone="_bone_fx_tip_01" zboneb="_bone_fx_tip_04"/>
+				<instance name="vines" zbone="_bone_fx_tip_03" zboneb="_bone_fx_tip_06"/>
+				<instance name="vines" zbone="_bone_fx_tip_02" zboneb="_bone_fx_tip_05"/>
+
+
+
+
+
+
+
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Rook_Ability2_Damage"
+
+	speed="1800"
+	traileffect="effects/projectile.effect"
+	modelscale="1"
+	model="effects/projectile/crow_spiral.mdf"
+
+	effectscale="1.0"
+	
+	impacteffect="effects/impact.effect"
+	
+	canturn="true"
+	flying="true"
+	flyheight="50"
+	
+	
+>
+
+	<onimpact>
+		<kill target="this_proxy_entity" source="" />
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<setvar0 a="result" b="3" op="div" />
+				<damage effecttype="Magic" significant="true" amount="1" b="var0" op="mult"/>
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+	</onimpact>
+
+</projectile>

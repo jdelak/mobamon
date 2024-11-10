@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Carter_Ability4"
+
+	speed="185"
+	gravity="0"
+
+	flying="true"
+	flyheight="150"
+
+	touchpropradius="120"
+	touchpropanim="hit"
+
+	acceleration="200"
+
+	lifetime="4500"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	impactdistance="50"
+
+	
+>
+	<onspawn>
+		<setproxy entity="this_proxy_entity" target="target_entity" />
+		<targettype type="illusion" >
+			<setaccumulator value="1" />
+		</targettype>
+	</onspawn>
+
+	<onimpact> 
+		<cantarget targetscheme="enemy_heroes_and_buildings" >
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<propareaeffect center="this_position" radius="200" anim="flamehit" />
+					<pushability target="this_owner_entity" entity="this_owner_entity" name="Ability_Carter4" />
+					<getconstant name="stun" entity="stack_entity" adjustmentsource="this_owner_entity"/>
+					<setvar0 a="result" b="1000" op="mult" />
+					<cantarget effecttype="CrowdControl" >
+						<applystate name="State_Stunned" target="target_entity" duration="var0" />
+					</cantarget>
+					<pushability target="this_owner_entity" entity="this_owner_entity" name="Ability_Carter4" />
+					<getconstant name="damage" entity="stack_entity" adjustmentsource="this_owner_entity"/>
+					<damage effecttype="Magic" amount="1" b="result" op="mult"/>
+					<recordheroaggression  />
+					<aggression />
+					<setvar1 a="result" />
+
+					<changeaccumulator entity="this_proxy_entity" b="0" op="add" />
+					<compare a="result" b="1" op="eq">			
+						<playeffect effect="effects/explosion_blue.effect" source="target_position" target="" occlude="true" />				
+						<pushability target="this_owner_entity" entity="this_owner_entity" name="Ability_Carter3" />
+						<getconstant name="damage_increase" entity="stack_entity" adjustmentsource="this_owner_entity" />
+						<setvar2 a="result" b="100" op="div" />
+						<setvar0 a="var1" b="var2" op="mult" />
+						
+						<applystate name="State_Carter_Ability3_Projectiles" stack="true" inflictor="this_owner_entity" source="this_owner_entity" target="target_entity" pushentity="true" duration="950"/>
+						<setaccumulator entity="stack_entity" value="var0" />
+					</compare>
+					<else>
+						<playeffect effect="effects/explosion.effect" source="target_position" target="" occlude="true" />
+					</else>
+					<delete target="this_proxy_entity" />
+				</onimpact>
+			</combatevent>
+		</cantarget>
+		<expirestate name="State_Carter_Ability4" />
+	</onimpact>
+
+	<ondeath>
+		<kill target="this_proxy_entity" source=""/>
+	</ondeath>
+	
+	<ondisjointed>
+		<compare a="accumulator" b="0" op="eq" >
+			<pushentity entity="this_proxy_entity" />
+			<retarget target="stack_proxy_entity" ignoreinvulnerable="true"/>
+		</compare>
+	</ondisjointed>
+	
+</projectile>

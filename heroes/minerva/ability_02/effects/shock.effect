@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="world">
+
+			<beam
+				delay="0"
+				owner_a="target"
+				owner_b="source"
+				bone_a="_bone_centerofchest"
+				bone_b="_bone_weapon1"
+				size="50"
+				color=".3 .75 .75"
+				life="125"
+				material="/shared/effects/smaterials/lightning.material"
+				framespeed="8"
+				rollspeed="360"
+			/>
+
+			<beam
+				delay="0"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_weapon3"
+				bone_b="_bone_centerofchest"
+				size="50"
+				color=".3 .75 .75"
+				life="125"
+				material="/shared/effects/smaterials/lightning.material"
+				framespeed="8"
+				rollspeed="360"
+			/>
+			
+
+			<beam
+				delay="50"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_weapon1"
+				bone_b="_bone_centerofchest"
+				size="50"
+				color=".3 .75 .75"
+				life="125"
+				material="/shared/effects/smaterials/lightning.material"
+				framespeed="8"
+			/>
+			
+			<beam
+				delay="50"
+				owner_a="target"
+				owner_b="source"
+				bone_a="_bone_centerofchest"
+				bone_b="_bone_weapon3"
+				size="50"
+				color=".3 .75 .75"
+				life="125"
+				material="/shared/effects/smaterials/lightning.material"
+				framespeed="8"
+			/>
+			
+			
+			<beam
+				delay="100"
+				owner_a="source"
+				owner_b="target"
+				bone_a="_bone_weapon1"
+				bone_b="_bone_centerofchest"
+				size="50"
+				color=".3 .75 .75"
+				life="125"
+				material="/shared/effects/smaterials/lightning.material"
+				framespeed="8"
+			/>
+			
+			<beam
+				delay="100"
+				owner_a="target"
+				owner_b="source"
+				bone_a="_bone_centerofchest"
+				bone_b="_bone_weapon3"
+				size="50"
+				color=".3 .75 .75"
+				life="125"
+				material="/shared/effects/smaterials/lightning.material"
+				framespeed="8"
+			/>
+			
+			
+			
+
+			<trackeremitter
+				count="5"
+				bone="_bone_weapon3"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				targetposition="0 0 0"
+				tracktype="distance"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				minspeed="2000"
+				maxspeed="2500"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="45 45 75"
+			>
+				<particle>
+					<trailemitter
+						life="500"
+						spawnrate="150"
+						minparticlelife="150"
+						maxparticlelife="300"
+						endminparticlelife="1"
+						endmaxparticlelife="1" 
+						texpostime="300"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						offsetsphere="25 25 25"
+					>
+						<particle
+							startcolor=".5 0 1"
+							midcolor="0 .5 1"
+							endcolor="0 0 0"
+							startsize="20"
+							midsize="20"
+							endsize="10"
+							midcolorpos=".5"
+							midsizepos=".25"
+						/>
+					</trailemitter>
+				</particle>
+			</trackeremitter>
+			
+			
+			<trackeremitter
+				count="1"
+				bone="_bone_weapon3"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				targetposition="0 0 0"
+				tracktype="distance"
+				trackspeed="10"
+				spawnrate="50"
+				particlelife="2000"
+				minspeed="1750"
+				maxspeed="2250"
+				acceleration="0"
+				direction="0 0 1"
+				inheritvelocity="0"
+				distancelife="1"
+				offsetsphere="0 0 0"
+			>
+				<particle>
+					<billboard
+						life="500"
+						startcolor=".1 .5 1"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startsize="250"
+						endsize="150"
+					/>
+					
+					<groundsprite
+						life="500"
+						startcolor="0 .25 .5"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						size="200"
+					/>
+					
+					<groundsprite
+						life="500"
+						startcolor=".125"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground.material"
+						size="85"
+					/>
+<!--
+					<simpleemitter
+						count="12"
+						spawnrate="5000"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						position="0 0 0"
+						direction="0 -1 0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								spawnrate="500"
+								count="1"
+								minlife="150"
+								maxlife="300"
+								position="0 0 0"
+								material="/shared/effects/materials/whitedot.material"
+								directionalspace="local"
+								yaw="180"
+								roll="180"
+								lockup="true"
+								lockright="true"
+								minwidth="30"
+								maxwidth="60"
+								pitch="90"
+								startcolor=".25 0 .35"
+								midcolor="0 .25 .5"
+								endcolor="0 0 0"
+								minheight="100"
+								maxheight="360"
+							>
+							</billboard>
+						</particle>
+					</simpleemitter>
+-->
+
+				</particle>
+			</trackeremitter>
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+
+

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1.0">
+
+			<simpleemitter	
+				spawnrate="11500"
+				life="1200"				
+				count="20"			
+				position="0 0 50"
+				minparticlelife="500"			
+				maxparticlelife="1000"			
+				material="/shared/effects/smaterials/clouds.material"			
+				offsetsphere="12"
+				minspeed="0"
+				maxspeed="250"
+				angle="10"
+				direction="0 0 1"
+				drag=".01"
+				gravity="15"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					color=".9 .75 .5"
+					minsize="50"
+					maxsize="85"
+					startalpha="0"
+					midalpha=".1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+
+			<simpleemitter
+				count="1"
+				position="0 0 0"
+				spawnrate="5000"
+				particlelife="2000"
+				offsetsphere="0 0 0"
+			>
+				<particle
+				>
+					<groundsprite			
+						life="1000"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						size="75"
+						color="1 1 1"						
+						startalpha="0"
+						midalpha="1"
+						endalpha="1"
+						midalphapos=".75"
+					/>
+					
+					<groundsprite			
+						life="1000"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						size="30"
+						color="1 1 1"						
+						startalpha="0"
+						midalpha=".65"
+						endalpha=".65"
+						midalphapos=".75"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+
+<!--
+			<simpleemitter
+				life="500"
+				spawnrate="40"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="25"
+				minspeed="10"
+				maxspeed="50"
+				drag="0"
+				acceleration="10"
+				position="0 0 30"
+				material="/shared/effects/materials/dust_puff.material"
+				offsetsphere="0 0 50"
+				inheritvelocity=".5"
+				direction="0 0 1"
+				depthbias="-25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-30"
+					startcolor=".35 .25 .1"
+					endcolor="0 0 0"
+					maxanglespeed="30"
+					startsize="125"
+					endsize="175"
+					startalpha="0"
+					midalpha=".75"
+					endalpha="0"
+					midalphapos=".2"
+					startanchor="0"
+					endanchor="0"					
+				 />				 
+			</simpleemitter>
+-->
+
+			<simpleemitter
+				count="4"
+				position="0 0 0"
+				spawnrate="30"
+				particlelife="2000"
+				offsetsphere="15 15 0"
+			>
+				<particle
+				>
+					<model
+						position="0 0 0"
+						minlife="8000"
+						maxlife="10000"
+						name="emitter0" 
+						anim="idle"
+						model="rocks/model.mdf"
+						minscale=".15"
+						maxscale=".185"
+						color="2 1.5 1.25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

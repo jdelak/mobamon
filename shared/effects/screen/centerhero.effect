@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".75"
+			
+		>
+
+			<light
+				position="0 0 50"
+				life="300"
+				startcolor="5 5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+				delay="100"
+			/>
+			
+			
+			<billboard
+				position="0 0 0"
+				life="200"
+				material="/shared/effects/smaterials/whitesquare.material"
+				size="75"
+				startcolor=".25 .25 0"
+				endcolor="0 0 0"
+				startheight="6000"
+				endheight="6000"
+				width="65"
+				lockup="1"
+				delay="100"
+
+
+			/>
+
+			<billboard
+				position="0 0 0"
+				life="200"
+				material="/shared/effects/smaterials/whitesquare.material"
+				size="75"
+				startcolor=".5 .5 0"
+				endcolor="0 0 0"
+				startheight="3000"
+				endheight="3000"
+				width="65"
+				lockup="1"
+				delay="100"
+
+			/>
+
+			<template name="duplos">
+				
+				<simpleemitter
+					count="1"
+					delay="{zdelay}"
+					spawnrate="10"
+					particlelife="500"
+				>
+					<particle
+					>
+
+
+
+						<template name="waves">
+							<billboard
+								delay="{delay1}"
+								startsize="{endsize1}"
+								endsize="30"
+								position="0 0 0"
+								life="100"
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 1 0"
+								endcolor="1 1 0"
+								startalpha=".1"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+							/>
+							
+							<billboard
+								delay="{delay2}"
+								startsize="{endsize2}"
+								endsize="30"
+								position="0 0 0"
+								life="100"
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 1 0"
+								endcolor="1 1 0"
+								startalpha=".3"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+							/>
+
+							<billboard
+								delay="{delay3}"
+								startsize="{endsize3}"
+								endsize="30"
+								position="0 0 0"
+								life="100"
+								material="/shared/effects/materials/waves.material"
+								startcolor="1 1 0"
+								endcolor="1 1 0"
+								startalpha=".5"
+								endalpha="0"
+								depthbias="-100"
+								lockup="1"
+								pitch="90"
+							/>
+						</template>
+
+						<instance delay1="100" delay2="50" delay3="0" name="waves" endsize1="350" endsize2="400" endsize3="550"/>
+					
+					</particle>
+				</simpleemitter>
+					
+			</template>
+			
+			<instance name="duplos" zdelay="100"/>
+			<instance name="duplos" zdelay="112"/>
+			<instance name="duplos" zdelay="125"/>
+			<instance name="duplos" zdelay="137"/>
+			<instance name="duplos" zdelay="150"/>
+			<instance name="duplos" zdelay="162"/>
+			<instance name="duplos" zdelay="175"/>
+			<instance name="duplos" zdelay="187"/>
+			<instance name="duplos" zdelay="200"/>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

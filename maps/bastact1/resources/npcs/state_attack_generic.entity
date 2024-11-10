@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Campaign_AttackPlayerOnImpact"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="3000"
+	ishidden="true"
+	wanderrange="90"
+>
+	<!-- Make sure that when this state is applied that it's proxy is set to the entity that needs to attack -->
+	<oninflict>
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			maxtotalimpacts="1"
+			center="this_proxy_entity"
+			source="this_proxy_entity"
+		>
+			<order command="attack" source="this_proxy_entity" target="target_entity" force="true" />	
+		</areaofeffect>
+	</oninflict>
+
+	<onimpact>
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="enemy_heroes"
+			maxtotalimpacts="1"
+			center="this_proxy_entity"
+			source="this_proxy_entity"
+		>
+			<order command="attack" source="this_proxy_entity" target="target_entity" force="true" />	
+		</areaofeffect>
+	</onimpact>
+	
+</state>

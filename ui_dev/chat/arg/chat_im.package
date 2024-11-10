@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<lua file="/ui/shared/lib_thread.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/shared/lib_general.lua"/>
+	<lua file="/ui/shared/generic_event.lua"/>
+	<lua file="/ui/shared/lib_tween.lua"/>
+	<lua file="/ui/shared/lib_anims.lua"/>
+	<lua file="/ui/shared/lib_colors.lua"/>
+	<lua file="/ui/main/shared/cursors.lua"/>
+	<lua file="/ui/main/shared/custom_triggers.lua"/>
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="/ui/main/shared/styles2.lua"/>
+	<lua file="/ui/shared/global_drag2.lua"/>
+	<lua file="/ui/shared/lib_button2.lua"/>
+	<childinterface file="/ui/main/shared/main_styles.interface"/>
+	<include file="/ui/shared/shared_draggables.package"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	<include file="/ui/main/shared/main_templates_temp.package"/>
+	<include file="/ui_dev/friends/friends_templates.package"/>
+	<childinterface file="/ui/shared/scoreboard_templates.interface"/>	
+	
+	<include file="/ui_dev/chat/main_chat_templates.package"/>
+
+	<sizingframe name="overlay_chat_channel_window_parent" group="chat_overlay_channel_single_templates" visible="1}" align="left" width="100%"  height="100%" noclick="0" constraintoparent="1"
+		canmove="1" minwidth="340s" maxwidth="1100s" minheight="200s" maxheight="710s"  window="true" color="#071114"
+	>		
+		
+		<panel width="-16s" height="-16s" align="center" valign="center" noclick="1">
+			<frame texture="/ui/elements:rounded_bg_solid" color="#060b0d" bordercolor="#060b0d" borderthickness="6s" noclick="1"/>			
+			<frame texture="/ui/elements:roundframe" color="#040809" borderthickness="6s"/>
+			
+			<panel noclick="1" name="overlay_chat_channel_window_parent_left_container" visible="1" width="-16s" align="center">
+				<!-- Chat Buffer -->
+				<panel name="overlay_chat_channel_window_buffer" noclick="true" y="44s" height="-92s">
+					<chatoutputbuffer
+						name="overlay_chat_channel_window_output"
+						group="pin_main_chat_channel_outputbuffers"
+						valign="top"
+						textcolor="#f8f8f2"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/shared/textures/new_slider.tga"
+						indent="32"
+						paddingleft="4s"
+						paddingright="4s"
+						paddingbottom="4s"
+						paddingtop="4s"
+						shadow="true"
+						outline="false"
+						shadowoffset="1"
+						oninstantiatelua=""
+						scrollbarsize="14s"				
+						maxhandleheight="128s"
+						handlewidth="14s"
+						minhandlesize="128s"
+						maxhandlesize="128s"
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"			
+						onmouseoutlua="GetWidget('profile_preview_parent'):FadeOut(50)"
+						onupdate=""
+						oldmessagedarkfactor="0.7"
+						onclicklua=""
+						onmouseldownlua=""
+						onmouseluplua=""
+					/>				
+				</panel>
+				
+				<!-- Chat Input -->
+				<frame name="overlay_chat_channel_window_frame" texture="/ui/elements:rounded_bg_solid" color="#0c2127" borderthickness="5s" bordercolor="#0c2127" noclick="1" x="4s" y="-6s" height="30s" width="-16s" valign="bottom">
+					<chatinputbuffer
+						name="overlay_chat_channel_window_input"
+						x="8s" y="-6s"
+						textcolor="1 1 1 1"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-85s"
+						grow="true"
+						valign="bottom"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+						onsizelua="
+							self:GetWidget('overlay_chat_channel_window_buffer'):SetHeight(-(self:GetHeightFromString('62s') + self:GetHeight()))
+							self:GetWidget('overlay_chat_channel_window_frame'):SetHeight(self:GetHeightFromString('12s') + self:GetHeight())
+						"
+					/>						
+					<instance noclick="0" x="-5s" y="4s" height="25s" valign="top" width="64s" align="right" borderthickness="3s"
+						name="standardButton" id="overlay_chat_channel_window_input_btn"
+						label="general_send"
+						font="maindyn_20"
+						onclicklua=""
+					/>						
+				</frame>
+
+			</panel>
+			
+			<!-- Header -->
+			<panel height="40s" noclick="1">
+				<instance name="ChatHeader" height="142%"/>
+				
+				<panel x="10@" height="82%" width="82@" valign="center">
+					<image name="overlay_chat_channel_window_header_account_icon" texture="/ui/shared/textures/account_icons/default.tga" />
+					<frame color="invisible" borderthickness="1" bordercolor="0 0 0 1" noclick="1" />
+				</panel>
+				
+				<panel x="106@" noclick="1">
+					<!-- Username -->
+					<label name="overlay_chat_channel_window_header_label" noclick="1" style="labelBase" font="maindyn_20" color="#cfd3e7" content=""/>	
+					<!-- Status -->
+					<panel y="18s" height="20s">
+						<image name="overlay_chat_channel_window_status_light" texture="/ui/main/shared/textures/user_status_light.tga" color=".6 .6 .6 1" width="46@" height="46%" valign="center"/>
+						<label name="overlay_chat_channel_window_status_label" x="70@" style="labelBase" color=".6 .6 .6 1" font="subdyn_10" textvalign="center" content="Status"/>
+					</panel>	
+				</panel>			
+				
+				<panel visible="1" y="-6s" height="44s" name="overlay_chat_channel_window_header_dragger"
+					onloadlua="
+						self:SetCallback('onclick',
+						function(widget, x, y)
+							self:GetWindow():StartDrag(x, y)
+						end)		
+					" 	
+				>		
+				</panel>			
+				
+				<panel noclick="1" align="right" grow="true" float="right" padding="5s" x="-5s" height="-10s" valign="center">
+
+					<!-- Ignore Btn -->
+					<panel width="100@" height="100%" noclick="1">
+						<image name="overlay_chat_channel_window_ignore_button" texture="/ui/main/friends/textures/icon_mute.tga" color="#a9d6e4"  align="center" valign="center" height="26s" width="26s" />
+					</panel>					
+
+					<!-- Friend Btn -->
+					<panel width="100@" height="100%" noclick="1">
+						<image name="overlay_chat_channel_window_friend_button" texture="/ui/main/friends/textures/icon_friend_add.tga" color="#a9d6e4"  align="center" valign="center" height="28s" width="28s" />
+					</panel>
+
+					<!-- Invite Btn -->
+					<panel width="100@" height="100%" noclick="1">
+						<image name="overlay_chat_channel_window_invite_button" texture="/ui/main/friends/textures/icon_party.tga" color="#a9d6e4"  align="center" valign="center" height="28s" width="28s" />
+					</panel>
+					
+					<instance name="vr" />
+					
+					<!-- Min Btn -->
+					<panel width="80@" height="100%" noclick="1">
+						<image name="overlay_chat_channel_window_minimise_button" texture="/ui/main/shared/textures/minimize.tga" color="#a9d6e4"  align="center" valign="center" height="16s" width="16s" />
+					</panel>
+					
+					<!-- Close Btn -->					
+					<panel width="80@" height="100%" noclick="1">
+						<image name="overlay_chat_channel_window_close_button" texture="/ui/main/shared/textures/close.tga" color="#da3f3f" align="center" valign="center" height="16s" width="16s" />
+					</panel>
+										
+				</panel>
+			</panel>
+			
+		</panel>
+		
+		<image noclick="1" height="12s" width="12s" x="-1s" y="-1s" align="right" valign="bottom" texture="/ui/shared/textures/framecontrol_resize.tga" color="1 1 1 .4" />	
+		
+	</sizingframe>	
+
+	<lua file="/ui_dev/chat/chat_im.lua"/>
+	
+</package>

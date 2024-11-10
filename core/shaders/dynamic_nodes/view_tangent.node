@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="view_tangent">
+	<dependency name="ObjectTangent" type="float3" source="ObjectTangent" />
+	<dependency name="mWorldViewRotate" type="float3x3" source="mWorldViewRotate" />
+	<output name="Out" type="float3" solution="ViewTangent" />
+	<?hlsl
+		Out = mul(ObjectTangent, mWorldViewRotate);
+	?>
+	<?glsl
+		Out = mWorldViewRotate * ObjectTangent;
+	?>
+</node>

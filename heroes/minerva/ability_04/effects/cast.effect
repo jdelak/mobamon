@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2500"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<template name="flashes">
+				<model
+					delay="{zdelay}"
+					life="{zlife}"
+					parentskeleton="1"
+					model="{zmodel}"
+					material="../../material.material"
+					color="12 .65 2"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</template>
+
+			<instance name="flashes" zmodel="tail_1/model.mdf" zdelay="0" zlife="775"/>
+			<instance name="flashes" zmodel="tail_2/model.mdf" zdelay="75" zlife="700"/>
+			<instance name="flashes" zmodel="tail_3/model.mdf" zdelay="150" zlife="625"/>
+			<instance name="flashes" zmodel="tail_4/model.mdf" zdelay="225" zlife="550"/>
+<!--
+			<light
+				delay="450"
+				bone="_bone_fx_tip"
+				life="200"
+				startcolor="0 3 6"
+				endcolor="0 0 0"
+				falloffstart="00"
+				falloffend="300"
+				position="0 0 0"
+			/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+</effect>

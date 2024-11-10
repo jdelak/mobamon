@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="camera_distance">
+	<dependency name="WorldPositionOffset" type="float3" source="WorldPositionOffset" />
+	<output name="Out" type="float" solution="CameraDistance" />
+	<?hlsl
+		Out = length(WorldPositionOffset);
+	?>
+	<?glsl
+		Out = length(WorldPositionOffset);
+	?>
+</node>

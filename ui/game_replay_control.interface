@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_replay_control">
+	<childinterface file="/ui/game/shared/game_styles.interface"/>	
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	
+	<template name="infoTip">
+		<floater name="{id}" grow="1" align="right" x="-0.3h" y="-1.2h" visible="0" noclick="1">
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="0 0 0 .4" noclick="true"/>
+			<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="1 1 1 .1" noclick="true"/>
+			<label x="0.5h" y="-0.1h" fitx="1" fitxpadding="0.5h" content="{label}" height="2.5h" color=".8 .8 .8 1" outline="1" outlinecolor="0 0 0 0.6" font="subdyn_10" textvalign="center" noclick="1" />
+		</floater>
+	</template>
+	
+	<template name="combobox_list">
+		<combobox
+			name="{id=}"
+			x="{x}"
+			width="{width}"
+			height="{height}"
+			align="{align=right}"
+			valign="{valign=center}"
+			color="invisible"
+			itemwidth="{itemwidth=100%}"
+			itemheight="2.8h"
+			maxlistheight="{maxlistheight}"
+			cvar="{cvar}"
+			exteriorscrollbars="false"
+			scrolltexture="/ui/_textures/elements/combobox.tga"
+			handleheight="100@" handlewidth="100%"
+			scrollbarsize="2h"
+			scrollbaroffset="0"
+			highlight="under"
+			highlightbordercolor="{highlightbordercolor=white}"
+			onrefreshlua="{onrefreshlua}"
+			oneventlua="{oneventlua}"
+			onloadlua="{onloadlua}"
+			oninstantiate="{oninstantiate}; {populate=}; {data=}; {onload=}"
+			onload="{populate=}; {data=}; {onload=}"
+			onselect="If(IsVisible(), PlaySound('/ui/sounds/sfx_button_generic.wav')); {onselect}"
+			onfocus="PlaySound('/ui/sounds/social/sfx_pane_open.wav');"
+			onlosefocus="PlaySound('/ui/sounds/social/sfx_pane_close.wav');"
+			onselectlua="{onselectlua}"
+			onevent="{onevent=}"
+			onchange="{onchange=}"
+			onchangelua="{onchangelua=}"
+			onmouseoverlua=""
+			group="{grouptarget}"
+			visible="{visible=true}"
+			hscrollbar="0"
+			horizontal="false"					
+		>
+			<widgetstate statename="up">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.6 0.6 0.6 1" noclick="1"/>
+				<panel x="-2.8h" y="0.4h" width="0.2h" height="70%" color="1 1 1 0.1" align="right"/>
+				<image x="-0.3h" width="75@" height="75%" texture="/ui/shared/textures/dropdown_closed.tga" align="right" valign="center" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="over">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.8 0.8 0.8 1" noclick="1"/>
+				<panel x="-2.8h" y="0.4h" width="0.2h" height="70%" color="1 1 1 0.1" align="right"/>
+				<image x="-0.3h" width="75@" height="75%" texture="/ui/shared/textures/dropdown_closed.tga" align="right" valign="center" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="disabled">
+				<panel color="gray"/>
+			</widgetstate>
+			<widgetstate statename="itembg">
+				<panel align="center" width="-0.3h" valign="center" height="-0.2h">
+					<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.4 0.4 0.4 1" noclick="1"/>
+				</panel>
+			</widgetstate>
+			<widgetstate statename="listbg">
+				<panel valign="center">
+					<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.2 0.2 0.2 1" noclick="1"/>
+				</panel>
+			</widgetstate>
+			<widgetstate statename="itemhighlight">
+				<panel color="0 0.52 1 1">
+					<panel align="center" width="-0.3h" valign="center" height="-0.4h" onmouseover="PlaySound('/ui/sounds/social/sfx_pane_open.wav');">
+						<frame texture="/ui/elements:rounded_button_bg_white" color="0.4 0.4 0.4 1" borderthickness="0.5h" rendermode="additive" noclick="1"/>
+					</panel>
+				</panel>
+			</widgetstate>
+		</combobox>
+	</template>	
+	
+	<template name="playerlist_template">
+		<image x="0.5h" y="0.4h" height="70%" width="70@" texture="{icon}" noclick="1"/>
+		<label x="3h" y="-0.1h" content="{name}" height="2.5h" color="1 1 1 1" outline="1" outlinecolor="0 0 0 0.6" font="maindyn_14" textalign="left" textvalign="center" noclick="1" />
+	</template>
+	
+	<template name="camera_template">
+		<image x="0.5h" y="0.4h" height="70%" width="70@" texture="{icon}"/>
+		<label x="3h" y="-0.1h" content="{label}" height="2.5h" color="1 1 1 1" outline="1" outlinecolor="0 0 0 0.6" font="maindyn_14" textalign="left" textvalign="center" noclick="1" />
+	</template>
+	
+	<template name="simpleDarkButton">
+		<button name="{id}_button"
+			color="invisible"
+			width="{width}" height="{height}"
+			valign="center"
+			watch="{watch=}"
+			enabled="{enabled=true}"
+			ontrigger="{ontrigger=}"
+			onload="{onload=}"
+			onevent="{onevent}"
+			onevent0="{onevent0}"
+			numstates="{numstates}"
+			onmouseover="{onmouseover}"
+			onmouseout="{onmouseout}"
+			onclicklua="{onclicklua}"
+			group="{group}"
+		>
+			<widgetstate statename="up">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.6 0.6 0.6 1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" align="center" valign="center" noclick="1" hflip="{hflip}"/>
+			</widgetstate>
+			<widgetstate statename="over">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.8 0.8 0.8 1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" align="center" valign="center" noclick="1" hflip="{hflip}"/>	
+			</widgetstate>
+			<widgetstate statename="down" x="1" y="1">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" rendermode="grayscale" color="0.4 0.4 0.4 1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" align="center" valign="center" color="0.8 0.8 0.8 1" noclick="1" hflip="{hflip}"/>
+			</widgetstate>
+			<widgetstate statename="up2">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" color="0.6 0.6 0.6 1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" align="center" valign="center" noclick="1" hflip="{hflip}"/>
+			</widgetstate>
+			<widgetstate statename="over2">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" color="0.8 0.8 0.8 1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" align="center" valign="center" noclick="1" hflip="{hflip}"/>	
+			</widgetstate>
+			<widgetstate statename="down2" x="1" y="1">
+				<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.5h" color="0.4 0.4 0.4 1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" align="center" valign="center" color="0.8 0.8 0.8 1" noclick="1" hflip="{hflip}"/>
+			</widgetstate>
+		</button>
+	</template>
+	
+	<template name="simpleDarkButton_yellow">
+		<button x="0.8h" name="{id}_button" color="invisible" width="{width}" height="{height}" valign="center">
+			<widgetstate statename="up">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.3h" color="0.9 0.9 0.9 0.2" noclick="1"/>
+				<label y="-0.2h" group="speed_text" color="0.15 0.75 1 1" outline="1" outlinecolor="0 0 0 0.5" font="maindyn_16" textalign="center" textvalign="center" noclick="1" />
+			</widgetstate>
+			<widgetstate statename="over">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.3h" color="0.9 0.9 0.9 0.2" noclick="1"/>
+				<label y="-0.2h" group="speed_text" color="0.15 0.75 1 1" outline="1" outlinecolor="0 0 0 0.5" font="maindyn_16" textalign="center" textvalign="center" noclick="1" />	
+			</widgetstate>
+			<widgetstate statename="down">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.3h" color="0.9 0.9 0.9 0.2" noclick="1"/>
+				<label y="-0.2h" group="speed_text" color="0.15 0.75 1 1" outline="1" outlinecolor="0 0 0 0.5" font="maindyn_16" textalign="center" textvalign="center" noclick="1" />
+			</widgetstate>
+		</button>
+	</template>
+	
+	<template name="simpleColoredButtons">
+		<button 
+			name="{id}_button"
+			color="invisible"
+			width="{width}" height="{height}"
+			visible="{visible=1}"
+			valign="center"
+			onclick="PlaySound('/ui/sounds/sfx_button_generic.wav');"
+			numstates="2"
+			stickytoinvis="{stickytoinvis=false}"
+		>
+			<widgetstate statename="up">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="{color}" noclick="1"/>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" group="{id}_button_texture" align="center" valign="center" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="over">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="{color}" noclick="1"/>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0.1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" group="{id}_button_texture" align="center" valign="center" noclick="1"/>	
+			</widgetstate>
+			<widgetstate statename="down" x="1" y="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="{color}" noclick="1"/>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="0 0 0 0.1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" group="{id}_button_texture" align="center" valign="center" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="up2">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="{color}" noclick="1"/>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" group="{id}_button_texture" align="center" valign="center" noclick="1" vflip="{vertflip}" />
+			</widgetstate>
+			<widgetstate statename="over2">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="{color}" noclick="1"/>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0.1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" group="{id}_button_texture" align="center" valign="center" noclick="1" vflip="{vertflip}" />	
+			</widgetstate>
+			<widgetstate statename="down2" x="1" y="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="{color}" noclick="1"/>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="0 0 0 0.1" noclick="1"/>
+				<image width="75%" height="75%" texture="{icon}" group="{id}_button_texture" align="center" valign="center" noclick="1" vflip="{vertflip}" />
+			</widgetstate>
+		</button>
+	</template>
+	
+	<template name="simpleBlueCheckbox">
+		<button
+			name="{id}_button" 
+			color="invisible" 
+			x="{x}"
+			width="{width}" height="{height}" 
+			valign="center" 
+			numstates="2"
+			onclick="PlaySound('/ui/sounds/sfx_button_generic.wav');"
+			onclicklua="{onclicklua=}"
+			cvar="{cvar=}"	
+			watch="{watch=}"
+			enabled="{enabled=true}"
+			ontrigger="{ontrigger=}"
+			onload="{onload=}"
+			onevent="{onevent}"
+			onevent0="{onevent0}"
+		>	
+			<widgetstate statename="up">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="over">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".3 .3 .3 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="down" x="1" y="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".3 .3 .3 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+			</widgetstate>
+			<widgetstate statename="up2">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".2 .2 .2 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+				<panel x="-0.1h" y="-0.1h" valign="bottom" align="center" width="104@" height="104%" nolclick="true" noclick="1">
+					<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+					<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+				</panel>
+			</widgetstate>
+			<widgetstate statename="over2">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".3 .3 .3 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+				<panel x="-0.1h" y="-0.1h" valign="bottom" align="center" width="104@" height="104%" nolclick="true" noclick="1">
+					<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+					<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+				</panel>
+			</widgetstate>
+			<widgetstate statename="down2" x="1" y="1">
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color=".1 .1 .1 1" noclick="true" />
+				<frame texture="/ui/shared/frames/border_double.tga" bordercolor=".3 .3 .3 1" color="invisible" borderthickness="0.5h" noclick="1"/>
+				<panel x="-0.1h" y="-0.1h" valign="bottom" align="center" width="104@" height="104%" nolclick="true" noclick="1">
+					<image x="1" y="1" texture="/ui/shared/textures/check_mark_white.tga" color="0 0 0 1" noclick="1"/>
+					<image texture="/ui/shared/textures/check_mark_white.tga" color="#40cd3c" noclick="1"/>
+				</panel>
+			</widgetstate>
+		</button>
+	</template>
+	
+	<template name="generic_tooltip">
+		<panel name="{tip_id}" y="{y}" x="{x}" width="{width}" grow="1" regrow="1" growinvis="0" noclick="1" visible="0">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1h" color="0 0 0 0.6" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="1h" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+			
+			<panel float="bottom" width="100%" grow="1" regrow="1" growinvis="0" padding="0.5h">
+				<panel width="100%" height="2h" y="0.5h">
+					<label x="1h" content="{title}" style="labelBase" color="1 0.64 0.13 1" font="maindyn_16" textalign="left" textvalign="center" noclick="1" />
+				</panel>
+				<panel width="100%" grow="1" regrow="1" growinvis="0">
+					<label x="1h" content="{content}" style="labelBase" color="1 1 1 1" width="90%" wrap="1" fity="1" font="maindyn_12" textalign="left" textvalign="top" noclick="1" />
+				</panel>
+				<panel name="space" width="100%" height="1h" />
+			</panel>
+		</panel>
+	</template>
+	
+	<!-- Fullmode: Visible 1 | Micromode: Visible 1 | Closed: Visible 0 -->
+	<panel x="75%" y="30%" name="replay_controller" width="32h" height="3h" cangrab="true" onload="CreateInt('replaycc_x', GetX()); CreateInt('replaycc_y', GetY());">
+		<panel name="replay_controller_blocker" blockinput="1" noclick="1" />
+		<panel width="100%" align="center" valign="top" grow="1" regrow="1" growinvis="0" visible="1" noclick="1">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.6h" color="0.1 0.11 0.13 1" noclick="1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" borderthickness="0.6h" bordercolor="0.2 0.2 0.2 1" color="invisible" noclick="1"/>
+			
+			<panel name="replay_controller_container" float="bottom" valign="top" noclick="1" grow="1" regrow="1" growinvis="0" width="100%" reverse="true">
+				
+
+				
+				<panel y="3.0h" float="bottom" reverse="1" valign="top" noclick="1" width="100%" grow="1" regrow="1" growinvis="0">
+					<!-- Fullmode: Visible 0 | Micromode: Visible 0 | Minimized: Visible 1 -->
+					<panel name="spacer" group="minimode" width="100%" height="0.3h" sticky="1" stickyinvis="0" noclick="1" visible="0"/>
+					
+					<!-- Fullmode: Visible 1 | Micromode: Visible 0 | Minimized: Visible 0 -->
+					<panel name="replay_controller_viewing" group="micromode" height="3.5h" width="100%" float="right" padding="0.5h" noclick="1" sticky="1" stickyinvis="0" visible="1">
+						<label x="1h" font="subdyn_10" content="game_replay_control_viewing" style="labelBase" color="0.6 0.6 0.6 1" outlinecolor="0 0 0 .4"  textvalign="center" width="29.5%" height="80%" valign="center" noclick="1"/>
+						
+					</panel>
+					
+					<!-- Fullmode: Visible 1 | Micromode: Visible 0 | Minimized: Visible 0 -->
+					<panel name="replay_controller_viewing_divider" group="micromode" height="0.1h" width="100%" sticky="1" stickyinvis="0" visible="1">
+						<frame width="95%" texture="/ui/shared/frames/rounded_bg_solid.tga" color="1 1 1 0.1" noclick="1" align="center" valign="bottom"/>
+					</panel>
+					
+					<!-- Fullmode: Visible 1 | Micromode: Visible 0 | Minimized: Visible 0 -->
+					<panel name="replay_controller_camera" group="micromode" height="3.5h" width="100%" float="right" padding="0.5h" noclick="1" sticky="1" stickyinvis="0" visible="1">
+						<label x="1h" font="subdyn_10" content="game_replay_control_camera" style="labelBase" color="0.6 0.6 0.6 1" outlinecolor="0 0 0 .4"  textvalign="center" width="29.5%" height="80%" valign="center" noclick="1"/>
+						
+					</panel>
+					
+					<!-- Fullmode: Visible 1 | Micromode: Visible 0 | Minimized: Visible 0 -->
+					<panel name="replay_controller_camera_divider" group="micromode" width="100%" height="0.1h" sticky="1" stickyinvis="0" visible="1">
+						<frame width="95%" texture="/ui/shared/frames/rounded_bg_solid.tga" color="1 1 1 0.1" noclick="1" align="center" valign="bottom"/>
+					</panel>
+				</panel>
+				
+				<!-- Fullmode: Visible 1 | Micromode: Visible 1 | Minimized: Visible 0 -->
+				<panel name="replay_controller_time" height="11.5h" width="100%" float="bottom" padding="0.5h" noclick="1" sticky="1" stickyinvis="0" visible="1">
+					<panel height="3.2h" float="right" padding="0.5h" noclick="1">
+						<label x="1h" font="subdyn_10" content="game_replay_control_time" style="labelBase" color="0.6 0.6 0.6 1" outlinecolor="0 0 0 .4"  textvalign="center" width="49%" height="80%" valign="center" noclick="1"/>
+						
+						<!-- Text Input Here -->
+						<panel width="24%" height="83%" valign="center">
+							<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.3h" color="0.9 0.9 0.9 0.2" noclick="1"/>
+							<frame texture="/ui/shared/frames/border_double.tga" borderthickness="0.3h" bordercolor="0 0 0 0.6" color="invisible" noclick="1"/>
+							
+							<label name="replay_controller_time_settime" y="-0.1h" style="labelBase" content="00:00:00" color="0.15 0.75 1 1" outlinecolor="0 0 0 .4" font="subdyn_11" textalign="center" textvalign="center" />
+						</panel>
+						<label name="replay_control_time_totaltime" font="subdyn_11" style="labelBase" content="/ --:--" color="0.6 0.6 0.6 1" outlinecolor="0 0 0 .4" textvalign="center" width="28%" height="80%" valign="center" noclick="1"/>
+					</panel>
+					<panel height="2.5h" noclick="1">				
+						<!-- Slider Here -->
+						<panel width="95%" height="1.3h" align="center" valign="center" noclick="1">
+							<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="0.2h" rendermode="grayscale" color="0.6 0.6 0.6 1" noclick="1"/>
+							
+							<!-- This will need to change to the value of the slider -->
+							<frame name="replay_controller_time_slider_value" align="left" width="50%" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.2h" color="0.36 0.4 0.43 1" noclick="1"/>
+							
+							<slider name="replay_controller_time_slider"
+								handlecolor="1 1 1 1"
+								handlewidth="1.7h"
+								handleheight="3h"
+								slotcolor="invisible"
+								slotwidth="100%"
+								slotheight="100%"
+								minvalue="0"
+								maxvalue="1"
+								texture="/ui/shared/textures/tall_slider.tga"
+							/>
+						</panel>
+					</panel>
+				</panel>
+				
+				<!-- Fullmode: Visible 1 | Micromode: Visible 0 | Minimized: Visible 0 -->
+				<panel name="replay_controller_time_divider" group="micromode" height="0.1h" width="100%" sticky="1" stickyinvis="0" visible="1">
+					<frame width="95%" texture="/ui/shared/frames/rounded_bg_solid.tga" color="1 1 1 0.1" noclick="1" align="center" valign="bottom"/>
+				</panel>
+				
+				<!-- Fullmode: Visible 1 | Micromode: Visible 0 | Minimized: Visible 0 -->
+				<panel name="replay_controller_fog" group="micromode" height="3.6h" width="100%" noclick="0" sticky="1" stickyinvis="0" visible="1"			
+					onmouseoverlua="
+						simpleTipGrowYUpdate(true, nil, Translate('game_replay_control_fog'), Translate('game_replay_control_fog_tip'))
+					"
+					onmouseoutlua="
+						simpleTipGrowYUpdate(false) 
+					"
+					>						
+						<instance name="simpleBlueCheckbox" id="replay_controller_fog_checkbox" cvar="cg_fogofwar" x="1.0h" width="70@" height="70%" checked="1" />
+						<label name="replay_controller_fog_label" x="4.4h" style="labelBase" outlinecolor="0 0 0 .4" color=".6 .6 .6 1" font="subdyn_10" content="game_replay_control_fog" textvalign="center" noclick="1"/>						
+				</panel>				
+				<panel group="micromode" height="0.5h" noclick="0" sticky="1" stickyinvis="0"/>
+
+
+				<panel name="replay_controller_tab" height="3h" width="100%" noclick="1" y="0">
+					<frame width="98%" height="90%" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="0.14 0.16 0.18 1" noclick="1" align="center" valign="bottom"/>
+					
+					<panel name="replay_controller_tab_dots" align="center" noclick="1">
+						<frame x="16h" width="0.7h" height="0.8h" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0.1" noclick="1" valign="center"/>
+						<frame x="17h" width="0.7h" height="0.8h" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0.1" noclick="1" valign="center"/>
+						<frame x="18h" width="0.7h" height="0.8h" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="0.5h" color="1 1 1 0.1" noclick="1" valign="center"/>
+					</panel>
+					<panel align="right" y="0.11h" x="-0.22h" width="4.78h" noclick="1" float="right" padding="0.4h">
+						<instance name="simpleColoredButtons" id="replay_controller_micromode" height="72%" width="72@" color="0.1 0.35 0.75 1" icon="/ui/shared/textures/button_micromode.tga" vertflip="1" stickytoinvis="false"/>
+						<instance name="simpleColoredButtons" id="replay_controller_minimize" height="72%" width="72@" color="0.85 0.5 0.09 1" icon="/ui/shared/textures/button_minimize.tga" vertflip="1" stickytoinvis="false"/>
+					</panel>
+				</panel>
+				
+
+			</panel>
+		</panel>
+		<panel name="replay_controller_button_container" y='17.78h' height="4h" width="100%" float="right" padding="0.6h" noclick="1" sticky="1" stickyinvis="0">
+			<!-- Speed -->
+			<instance name="simpleDarkButton_yellow" id="replay_controller_time_speed" width="23.5%" height="80%" numstates="1"/>
+			
+			<instance name="simpleDarkButton" id="replay_controller_time_start" group="replay_controller_btns_non_essential" width="100@" height="80%" icon="/ui/shared/textures/start_end.tga" numstates="1" onmouseover="ShowWidget('startTip');" onmouseout="HideWidget('startTip');" />
+			<instance name="simpleDarkButton" id="replay_controller_time_rewind" group="replay_controller_btns_essential" width="100@" height="80%" icon="/ui/shared/textures/rr_ff.tga" numstates="1" onmouseover="ShowWidget('rewindeTip');" onmouseout="HideWidget('rewindeTip');" sticky='1'/>
+			<!-- <instance name="simpleDarkButton" id="replay_controller_time_frameback" group="replay_controller_btns_non_essential" width="9%" height="80%" icon="/ui/shared/textures/down_up.tga" numstates="1" onmouseover="ShowWidget('framebackTip');" onmouseout="HideWidget('framebackTip');"/> -->
+			<instance name="simpleDarkButton" id="replay_controller_time_pauseplay" group="replay_controller_btns_essential" width="100@" height="80%" icon="/ui/shared/textures/pause.tga" numstates="2" onmouseover="ShowWidget('pausepalyTip');" onmouseout="HideWidget('pausepalyTip');" sticky='1'/>
+			<!-- <instance name="simpleDarkButton" id="replay_controller_time_frameforward" group="replay_controller_btns_non_essential" width="9%" height="80%" icon="/ui/shared/textures/down_up.tga" hflip="1" numstates="1" onmouseover="ShowWidget('frameforwardTip');" onmouseout="HideWidget('frameforwardTip');"/> -->
+			<instance name="simpleDarkButton" id="replay_controller_time_fastforward" group="replay_controller_btns_essential" width="100@" height="80%" icon="/ui/shared/textures/rr_ff.tga" hflip="1" numstates="1" onmouseover="ShowWidget('fastforwardTip');" onmouseout="HideWidget('fastforwardTip');" sticky='1'/>
+			<instance name="simpleDarkButton" id="replay_controller_time_end" group="replay_controller_btns_non_essential" width="100@" height="80%" icon="/ui/shared/textures/start_end.tga" hflip="1" numstates="1" onmouseover="ShowWidget('endTip');" onmouseout="HideWidget('endTip');"/>	
+		</panel>
+		
+		<panel name="replay_controller_dropdowns" noclick="1">
+			<!-- Dropdown Here -->
+			<panel width="64%" x="-0.56h" y="7.33h" height="2.8h" align="right" valign="center">
+				<instance id="replay_controller_camera_dropdown"
+					name="combobox_list"
+					width="100%"
+					height="100%"
+					valign="top"
+					itemwidth="100%"
+					maxlistheight="11"
+					highlightbordercolor="invisible"
+					cvar=""
+					color="invisible"
+					overcolor="invisible"
+					downcolor="invisible"
+				/>
+			</panel>
+			<!-- Dropdown Here -->
+			<panel width="64%" x="-0.56h" y="3.56h" height="2.8h" align="right" valign="center">					
+				<instance id="replay_controller_viewing_dropdown"
+					name="combobox_list"
+					width="100%"
+					height="100%"
+					valign="top"
+					itemwidth="100%"
+					maxlistheight="11"
+					highlightbordercolor="invisible"
+					cvar="replay_client"
+					color="invisible"
+					overcolor="invisible"
+					downcolor="invisible"
+				/>
+			</panel>
+		</panel>
+		
+	</panel>
+	
+	<lua file="/ui/shared/lib_general.lua"/>
+	<lua file="/ui/shared/lib_number.lua"/>
+	<lua file="/ui/specui/replay_control/game_replay_control.lua"/>
+	
+	<childinterface file="/ui/shared/simpletip_growy.interface"/>
+	
+	<!-- Info Tips -->
+	<instance name="infoTip" id="startTip" label="game_replay_control_start" />
+	<instance name="infoTip" id="rewindeTip" label="game_replay_control_slower" />
+	<instance name="infoTip" id="framebackTip" label="game_replay_control_fback" />
+	<instance name="infoTip" id="pausepalyTip" label="game_replay_control_pauseplay" />
+	<instance name="infoTip" id="frameforwardTip" label="game_replay_control_fforward" />
+	<instance name="infoTip" id="fastforwardTip" label="game_replay_control_faster" />
+	<instance name="infoTip" id="endTip" label="game_replay_control_end" />
+	
+	
+</interface>

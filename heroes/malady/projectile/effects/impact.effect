@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale=".35">
+		
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2000"
+				volume=".75"
+				sample="../../sounds/sfx_impact_%.wav"
+			/>
+
+			<simpleemitter
+			bone="_bone_center"
+				count="1"
+				spawnrate="2500"
+				minparticlelife="500"
+				maxparticlelife="1500"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cloud_single.material"
+			>
+				<particle
+				
+				>
+					<billboard
+						life="500"
+						position="0 0 0"
+						color="1 1 1"
+						startsize="350"
+						endsize="900"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						material="/shared/effects/smaterials/cartoon_cloud_01.material"
+						startalpha="1"
+						endalpha="0"
+						roll="25"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+			bone="_bone_center"
+				count="200"
+				spawnrate="2500"
+				minparticlelife="500"
+				maxparticlelife="1500"
+				gravity="-1.0"
+				minspeed="1200"
+				maxspeed="1600"
+				drag="0.025"
+				acceleration="0.0"
+				position="0 0 0"
+				minangle="80"
+				maxangle="80"
+				direction="0 0 1"
+				offsetsphere="25 25 0"
+				particledirectionalspace="local"
+				material="/shared/effects/smaterials/cloud_single.material"
+			>
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					color="1 1 1"
+					startsize="75"
+					endsize="25"
+					startalpha="0"
+					midalpha=".175"
+					endalpha="0"
+					midalphapos=".15"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+			bone="_bone_center"
+				count="75"
+				spawnrate="2500"
+				minparticlelife="500"
+				maxparticlelife="1500"
+				gravity="-1.0"
+				minspeed="1200"
+				maxspeed="1600"
+				drag="0.025"
+				acceleration="0.0"
+				position="0 0 0"
+				minangle="80"
+				maxangle="80"
+				direction="0 0 1"
+				offsetsphere="25 25 0"
+				particledirectionalspace="local"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					startcolor="0"
+					midcolor=".1"
+					endcolor="0"
+					startsize="75"
+					midsize="75"
+					endsize="25"
+				/>
+				
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					startcolor="0"
+					midcolor=".05 .1 .1"
+					endcolor="0"
+					startsize="75"
+					midsize="75"
+					endsize="25"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			bone="_bone_center"
+				count="5"
+				spawnrate="100"
+				particlelife="100"
+				acceleration="0"
+				position="0 0 0"
+				direction="0 0 1"
+				offsetsphere="155 155 0"
+				particledirectionalspace="local"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					minangle="-180"
+					maxangle="180"
+					minanglespeed="-150"
+					maxanglespeed="150"
+					startcolor="0 0 0"
+					midcolor=".25"
+					endcolor="0 0 0"
+					size="200"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			</simpleemitter>
+			
+			<billboard
+				bone="_bone_center"
+				life="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .65 1"
+				midcolor="0 .65 1"
+				endcolor="0 0 0"
+				size="400"
+				depthbias="-50"
+			/>
+			
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

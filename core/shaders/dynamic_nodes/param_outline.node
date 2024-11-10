@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="param_outline">
+	<dependency name="Param" type="float4" source="vParam" />
+	<output name="Out" type="float4" solution="OutlineColor" />
+	<?hlsl
+		Out = float4(Param.rgb, Param.a * 127.0f / 255.0f + 128.0f / 255.0f);
+	?>
+	<?glsl
+		Out = vec4(Param.rgb, Param.a * 127.0f / 255.0f + 128.0f / 255.0f);
+	?>
+</node>

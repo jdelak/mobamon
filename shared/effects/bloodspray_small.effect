@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="bloodspray_small">
+	<definitions>
+		<particlesystem name="system0" space="world">
+
+			<simpleemitter	
+				spawnrate="720"
+				count="40"
+				minparticlelife="1"
+				maxparticlelife="500"
+				position="0 100 150"
+				depthbias="-10"			
+				material="/shared/effects/materials/blood_overlay.material"			
+				offsetsphere="75 75 30"
+				minspeed="300"
+				maxspeed="920"
+				minangle="0"
+				maxangle="12"
+				direction="1 0 0"
+				gravity="8"
+				drag=".005"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					color=".9 .2 .2"
+					startsize="40"
+					endsize="80"
+					startalpha="0.1"
+					midalpha=".5"
+					endalpha="0.1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter	
+				spawnrate="720"
+				count="40"
+				minparticlelife="1"
+				maxparticlelife="500"
+				position="0 100 150"
+				depthbias="-10"			
+				material="/shared/effects/materials/blood_overlay.material"			
+				offsetsphere="75 75 30"
+				minspeed="300"
+				maxspeed="920"
+				minangle="0"
+				maxangle="12"
+				direction="-1 0 0"
+				gravity="8"
+				drag=".005"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					color=".9 .2 .2"
+					startsize="40"
+					endsize="80"
+					startalpha="0.1"
+					midalpha=".5"
+					endalpha="0.1"
+				/>
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

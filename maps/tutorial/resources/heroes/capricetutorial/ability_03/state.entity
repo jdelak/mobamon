@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_CapriceTutorial_Ability3"
+
+	
+	
+	icon="icon.tga"
+	maxcharges="2"
+	allowtransfer="true"
+	passiveeffect="/heroes/caprice/ability_03/effects/state.effect"
+	
+>
+	<onrefresh>
+		<addcharges />
+		
+		<compare a="charges" b="1" op="eq" >
+			<setactivemodifierkey name="CapriceTutorial_Ability3_Ready" />
+		</compare>
+		<else>
+			<compare a="charges" b="2" op="eq" >
+				<pushability target="source_entity" entity="source_entity" name="Ability_CapriceTutorial3" />
+				<getconstant name="damage" entity="stack_entity" adjustmentsource="source_entity" />
+				<damage effecttype="Magic" target="this_owner_entity" source="source_entity" significant="true" amount="1" b="result" op="mult"/>
+				<recordheroaggression  />
+				<aggression />
+				<playeffect effect="/heroes/caprice/ability_03/effects/explosion.effect" source="this_owner_entity" />
+				<expire />
+			</compare>
+		</else>
+	</onrefresh>
+	
+	<modifier key="CapriceTutorial_Ability3_Ready" modpriority="100" passiveeffect="/heroes/caprice/ability_03/effects/state2.effect"
+	>
+	
+	</modifier>
+	
+
+</state>
+

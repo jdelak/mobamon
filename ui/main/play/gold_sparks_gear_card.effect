@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+		<particlesystem name="system0" space="world">
+			
+			<template name="border_glow" >
+				<billboard
+					material="/shared/effects/materials/whitedot.material"
+					height="{height}"
+					width="{width}"
+					roll="{roll}"
+					color="1 .85 .35"
+					position="{pos}"
+				/>
+			</template>
+			
+
+			<instance name="border_glow" width="300%" height="60%" roll="0"  pos="10 0 120%" />
+			<instance name="border_glow" width="300%" height="60%" roll="0"  pos="10 0 -118%" />
+			
+			<instance name="border_glow" width="60%" height="300%" roll="0"  pos="92% 0 0%" />
+			<instance name="border_glow" width="60%" height="300%" roll="0"  pos="-92% 0 0%" />
+
+			
+			<template name="border_emitter" >
+				<simpleemitter
+					position="{pos}"
+					spawnrate="{spawnrate}"
+					particlelife="2300"
+					direction="{direction}"
+					speed="20"
+					offsetcube="{offsetcube}"
+					material="/shared/effects/materials/flare_02.material"
+					angle="0"
+					minangle="-90"
+					maxangle="-70"
+				>
+					<particle
+						anglespeed="-160"
+						startcolor="0"
+						midcolor="1 .85 .35"
+						endcolor="0"
+						startsize="14"
+						endsize="1"
+						midcoloralphapos=".6"
+					/>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance name="border_emitter" spawnrate="45" pos="-1 0 130" direction="0 0 -1"  offsetcube="100 0 0" />
+			<instance name="border_emitter" spawnrate="45" pos="-1 0 -130"  direction="0 0 1"   offsetcube="100 0 0" />
+			<instance name="border_emitter" spawnrate="30" pos="-95 0 0"   direction="1 0 0"   offsetcube="0 0 100" />
+			<instance name="border_emitter" spawnrate="30" pos="95 0 0"  direction="-1 0 0"  offsetcube="0 0 100" />
+
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

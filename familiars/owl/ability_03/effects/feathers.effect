@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" >
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				life="2500"
+				falloffstart="500"
+				falloffend="2000"
+				volume="0.5" 
+				sample="../../sounds/sfx_attack_%.wav"
+			/>
+
+			<simpleemitter
+			bone="_bone_center"
+				spawnrate="30"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="5"
+				minspeed="0"
+				maxspeed="200"
+				offsetsphere="0 0 0"
+				drag=".04"
+				inheritvelocity=".4"
+				direction="0 0 0"
+				material="/shared/effects/smaterials/blue_feather.material"
+				position="0 0 0"
+			>
+				<particle
+					color=".2 .5 .35"
+					startalpha="1"
+					endalpha="1"
+					midcolorpos=".2"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-30"
+					maxanglespeed="30"
+					minscale="4"
+					maxscale="6"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+			bone="_bone_center"
+				spawnrate="30"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				gravity="5"
+				minspeed="0"
+				maxspeed="200"
+				offsetsphere="0 0 0"
+				drag=".04"
+				inheritvelocity=".4"
+				direction="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				position="0 0 0"
+			>
+				<particle
+					startcolor="0 .25 .125"
+					midcolor="0 .25 .125"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-30"
+					maxanglespeed="30"
+					minscale="4"
+					maxscale="6"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_center"
+				position="0 0 0"
+				spawnrate="25"
+				minparticlelife="250"
+				maxparticlelife="750"			
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="12 12 12"
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					startcolor="0 .25 .125"
+					midcolor="0 .25 .125"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					minstartsize="40"
+					maxstartsize="60"
+					minendsize="0"
+					maxendsize="10"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+</effect>

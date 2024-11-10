@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Ray_Ability1"
+
+	speed="650"
+	gravity="0"
+	
+	modelscale="1.0"
+	model=""
+	impacteffect=""
+	
+	canturn="false"
+	flying="true"
+	flyheight="2.5"
+	
+	impactdistance="60"
+	touchradius="70"
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="AttackDamage"
+	pathing="true"
+>
+	<onimpact>
+		<kill target="this_proxy_entity" source="" />
+	</onimpact>
+	<ontouch>
+		<kill target="this_proxy_entity" source="" />
+		<delete target="this_entity" />
+	</ontouch>
+
+	<onimpactinvalid>
+		<kill target="this_proxy_entity" source="" />
+	</onimpactinvalid>
+</projectile>

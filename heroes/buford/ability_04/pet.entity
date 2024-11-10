@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Buford_Ability4_Cage"
+    
+	model="effects/cage/model.mdf"
+	passiveeffect="effects/pet_passive.effect"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	unitwalking="true"
+	
+	isselectable="true"
+	iscontrollable="false"
+	
+	preglobalscale="1.35"
+	modelscale="2.25"
+	effectscale="1.0"
+	
+	boundsheight="112"
+	radiusheight="112"
+	boundsradius="128"
+	selectionradius="128"
+	targetoffset="0 0 0"
+	invulnerable="false"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="0"
+	
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="1"
+	maxhealthpercharge="10"
+	canrotate="false"
+	ismobile="false"
+	infoheight="275"
+	hazardradius="700"
+
+	attacktype="none"
+	combattype="Ranged"
+	sightrangeday="0"
+	sightrangenight="0"
+	drawonmap="false"
+	
+	alwaysvisible="true"
+	lifetime="4000,5000,6000"
+	showlifetime="true"
+	immunity="CrowdControlImmunity"
+	flying="true"
+	flyheight="100"
+	
+	maxcharges="15"
+
+>
+	
+
+	<onspawn>
+		<applystate name="State_Buford_Ability4_HP" duration="-1" proxy="this_owner_entity"/>
+	</onspawn>
+
+	<onkilled>
+		<resettimer entity="proxy_entity" />
+		<spawnunit name="Pet_Buford_Ability4_Cagebreak" target="source_entity" />
+		<expirestate name="State_Buford_Ability4_Slug" target="this_proxy_entity" />
+	</onkilled>
+	
+	<onexpired>
+		<resettimer entity="proxy_entity" />
+		<spawnunit name="Pet_Buford_Ability4_Cagebreak" target="source_entity" />
+		<expirestate name="State_Buford_Ability4_Slug" target="this_proxy_entity" />
+	</onexpired>
+	
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>
+	
+</pet>

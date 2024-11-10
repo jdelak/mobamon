@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Observatory_Linger"
+	modifierkey="observatory_on"
+	ishidden="true"
+>
+	<oninflict>
+		<hasmodifier name="team1control" target="source_entity">
+			<spawnunit name="Pet_ObservationLingerTimer" target="source_position" team="1" fixedposition="true" source="source_entity" owner="source_entity" pushentity="true" />
+			<setproxy target="stack_entity" />
+		</hasmodifier>
+		<hasmodifier name="team2control" target="source_entity">
+			<spawnunit name="Pet_ObservationLingerTimer" target="source_position" team="2" fixedposition="true" source="source_entity" owner="source_entity" pushentity="true" />
+			<setproxy target="stack_entity" />
+		</hasmodifier>
+	</oninflict>
+	
+	<onexpired>
+		<kill target="this_proxy_entity" source="" />
+		<condition test="hasstate State_Observatory_On" target="source_entity" />
+		<else>
+			<playanim name="deactivate_idle" target="source_entity"/>
+			<expirestate name="State_Observatory_Team1_Controlled" target="source_entity" />
+			<expirestate name="State_Observatory_Team2_Controlled" target="source_entity" />
+		</else>	
+	</onexpired>
+
+</state>

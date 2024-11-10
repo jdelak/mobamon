@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hero
+	name="Tutorial2_Enemy_Hero"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+	mapicon="icon_circle.tga"
+	
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	preglobalscale="1.6"
+	modelscale="1.23"
+	effectscale=".75"
+	boundsheight="64"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+	searchradius="70"
+	minsearchradius="48"
+	searchheight="112"
+
+	movespeed="350"
+	turnrate="900"
+
+
+	maxhealth="1000"
+	healthregen="1.8,1.92,2.04,2.16,2.28,2.4,2.52,2.64,2.76,2.88,3,3.12,3.24,3.36,3.48"
+	healthproportionregen="0"
+
+	armor="10,11.5,13,14.5,16,17.5,19,20.5,22,23.5,25,26.5,28,29.5,31"
+	magicarmor="10,11.5,13,14.5,16,17.5,19,20.5,22,23.5,25,26.5,28,29.5,31"
+
+	maxhealthperlevel="0"
+	
+	maxmana="400"
+	manaregen="4"
+
+
+	cancarryitems="false"
+	inventory0="Ability_EnemyHero1"
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+
+	canattack="true"
+	
+	powerperlevel="0"
+	attackduration="400"
+	attackactiontime="350"
+	attackcooldown="1350"
+	attackdamagemin="100"
+	attackdamageminperlevel="0"
+	attackdamagemax="100"
+	attackdamagemaxperlevel="0"
+	attacknumanims="2"
+	attackoffset="0 30 100"
+	attackprojectile="Projectile_EnemyHero_Attack"
+	attackrange="550"
+	attackstarteffect="effects/attack_start.effect"
+	attackactioneffect=""
+	attackimpacteffect="effects/impact.effect"
+	critimpacteffect="/shared/effects/crit_impact.effect"
+	attacktype="melee"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="0"
+	sightrangeday="1000"
+	sightrangenight="1000"
+
+
+	unitwalking="false"
+	
+	corpsetime="15000"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	levelbuild="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"
+
+>
+
+	<onkilled>
+		<setscriptvalue name="bot_dead" value="1" />
+	</onkilled>
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>
+
+
+</hero>

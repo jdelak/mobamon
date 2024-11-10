@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statenetaccum
+	name="State_Ladytinder_Ability3"
+
+	icon="icon.tga"
+	passiveeffect="effects/state.effect"
+	effecttype="StatusBuff Assist"
+	allowtransfer="true"
+
+	attackspeed="0.2,0.25,0.3,0.35"
+	
+	displaylevel="true"
+>
+	<oninflict>		
+		<getconstant name="shield_max" adjustmentsource="this_entity" />
+		<setvar0 a="result" />
+		<setvalue source="this_entity" name="source_max_shield" a="var0" />
+		<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+	</oninflict>
+	
+	<onattackeddamageevent>
+		<compare source="this_owner_entity" a="source_shield" b="damage_attempted" op="le">
+			<expire />
+		</compare>
+	</onattackeddamageevent>
+	
+	<onrefresh>
+		<getconstant name="shield_max" adjustmentsource="this_entity" />
+		<setvar0 a="result" />
+		<setvalue source="this_entity" name="source_max_shield" a="var0" />
+		<setvalue source="this_owner_entity" name="source_shield" a="source_shield" b="var0" op="add" />
+	</onrefresh>
+	
+	
+</statenetaccum>

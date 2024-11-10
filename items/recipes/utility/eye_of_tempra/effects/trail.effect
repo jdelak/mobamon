@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".9">
+
+<!--
+			<simpleemitter
+				count="1"
+				spawnrate="25"
+				offsetsphere="24"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				>
+					<groundsprite
+						position="0 150 0"
+						material="/shared/effects/smaterials/whitedot_ground.material"						
+						startcolor=".1 .25 .5"
+						midcolor=".1 .25 .5"
+						endcolor="0 0 0"
+						life="250"
+						startscale="1"
+						endscale="1"	
+						height="350"
+						width="85"
+						directionalspace="local"						
+					/>
+
+				</particle>
+			</simpleemitter>
+-->
+			
+
+			<groundsprite
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				color=".1 .25 .5"
+				size="55"
+			/>
+			
+			<groundsprite
+				position="0 -25 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				color=".1 .25 .5"
+				size="20"
+				width="55"
+				height="105"
+				directionalspace="local"
+			/>
+
+			<billboard
+				delay="150"
+				material="/shared/effects/smaterials/whitedot.material"
+				size="200"
+				expirelife="250"
+				startcolor=".1 .25 .5"
+				endcolor="0 0 0"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<model
+				position="0 0 0"
+				expirelife="0"
+				model="gem_singles/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+				color="3 6 10"
+				startalpha="1"
+				endalpha="0"
+				pitch="180"
+				scale="1"
+			>	
+			
+				<billboard
+					material="/shared/effects/smaterials/whitedot.material"
+					size="300"
+					expirelife="250"
+					startcolor=".05 .125 .25"
+					endcolor="0 0 0"
+					depthbias="-50"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			
+			</model>
+
+<!--
+			<template name="streaks">
+
+				<trailemitter	
+					position="{zpos}"			
+					spawnrate="10"
+					particlelife="400"
+					texpostime="400"
+					texposscale="0"
+					texstretchscale="1"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle				
+						startcolor="0 0 0"
+						midcolor="0 .2 .2"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startsize="60"
+						midsize="30"
+						endsize="5"
+						midsizepos="0.2"
+					/>
+				</trailemitter>	
+
+			</template>
+
+			<instance name="streaks" zpos="5 35 -10"/>
+			<instance name="streaks" zpos="0 35 -10"/>
+			<instance name="streaks" zpos="-5 35 -10"/>
+-->
+
+			<simpleemitter
+				life="1000"
+				spawnrate="60"
+				particlelife="2000"
+				position="0 0 -20"
+			>
+				<particle
+				>
+					<simpleemitter
+						life="3000"
+						minspeed="75"
+						maxspeed="150"
+						count="1"
+						spawnrate="220"
+						gravity="-10"
+						direction="0 0 0"
+						offsetsphere="15"
+						particlelife="1000"
+					>
+						<particle
+						>
+							<model
+								model="gem_singles/model.mdf"
+								material="/shared/effects/smaterials/shell_glass.material"
+								color="1.5 3 5"
+								minyaw="-360"
+								maxyaw="360"
+								minlife="150"
+								maxlife="300"
+								minpitch="-360"
+								maxpitch="360"
+								minanglespeed="-130"
+								maxanglespeed="130"
+								minstartscale=".35"
+								maxstartscale=".6"
+								endscale="0"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+							>
+							
+								<billboard
+									material="/shared/effects/smaterials/whitedot.material"
+									size="300"
+									expirelife="250"
+									startcolor=".05 .125 .25"
+									endcolor="0 0 0"
+									depthbias="-50"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+								
+							</model>
+							
+							
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				count="6"
+				spawnrate="300"
+				offsetsphere="0"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 -20 10"
+						material="/shared/effects/smaterials/whitedot.material"						
+						startcolor="0 0 0"
+						midcolor="0 .15 .25"
+						endcolor="0 0 0"
+						minlife="100"
+						maxlife="100"
+						startscale="1"
+						endscale="1"	
+						minheight="20"
+						maxheight="30"
+						minwidth="300"
+						maxwidth="600"
+						directionalspace="local"	
+						lockright="1"
+						lockup="1"	
+						pitch="90"	
+						minroll="0"						
+						maxroll="180"
+						depthbias="-50"						
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			<simpleemitter
+			count="200"
+				spawnrate="20000"
+				midspawnratepos=".2"
+				minparticlelife="350"
+				maxparticlelife="700"
+				offsetsphere="25 100 0"
+				minspeed="75"
+				maxspeed="150"								
+				direction="0 0 0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				inheritvelocity=".2"
+	
+			>			
+				<particle
+					startcolor="1 1 1"
+					midcolor="0 .65 .65"
+					endcolor="0 0 0"
+					startsize="10"
+					endsize="0"
+					minscale="1"
+					maxscale="1"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			<simpleemitter
+				count="1"
+				spawnrate="100"
+				offsetsphere="0"
+				position="0 20 0"
+				depthbias="0"
+				particlelife="5000"
+				direction="0 1 0"
+				minangle="0"
+				maxangle="0"
+				
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						position="0 0 5"
+						material="/shared/effects/smaterials/cartoon_muzzle_flash_blue.material"						
+						color=".75 1 1"
+						life="100"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="2"
+						endscale="2"	
+						directionalspace="local"	
+						lockright="1"
+						lockup="1"	
+						pitch="90"
+						depthbias="-100"					
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+-->
+			
+
+		</particlesystem>
+
+		
+		
+		
+		
+		
+		
+		
+		
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

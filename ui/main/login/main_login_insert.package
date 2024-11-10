@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<panel name="main_login_prompt_parent" noclick="1" visible="0" x="-60s" y="-45s" valign="bottom" >
+		<panel name="main_login_prompt_standard_content" noclick="1" >
+			<panel name="main_login_prompt_username" noclick="1" height="46s" width="410s" y="350s" x="0" align="right">
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+				<label name="main_login_prompt_username_label" x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" color="white" content="main_login_user_igames"/>
+				<label name="loginUsernameBox_hack" textcolor="invisible" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+				/>
+				<textbox name="loginUsernameBox" taborder="1" textcolor="0 0 0 .9" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center"
+					onenter="
+						Cmd('Script loginUserBoxEnter()')
+					"
+					onchangelua="self:GetWidget('loginUsernameBox_hack'):SetText(self:GetValue())"
+				/>
+			</panel>
+
+			<panel name="main_login_prompt_username_remember" noclick="0" width="140s" height="20s" x="-268s" y="400s" align="right" float="right" padding="5s" passivechildren="1" >
+				<instance name="tempSimpleCheckbox" id="main_login_prompt_username_remember_checkbox" bg_color="0 0 0 .2" width="100@" height="100%"/>
+				<panel grow="true" height="100%">
+					<label fitx="1" textvalign="center" textalign="right" style="labelBase" font="maindyn_18" color=".7 .7 .7 1" content="general_remember"/>
+				</panel>
+			</panel>
+
+			<panel name="main_login_prompt_current_region" visible="0" noclick="0" width="290s" height="20s" x="0s" y="400s" align="right" float="right" padding="5s" passivechildren="1">
+				<panel grow="true" regrow="1" align="right" height="100%" float="right" padding="7s" noclick="1">
+					<label name="main_login_prompt_current_region_label" fitx="1" textvalign="center" textalign="right" style="labelBase" font="maindyn_18" color=".7 .7 .7 1" content="main_login_country" noclick="1"/>
+					<panel name="main_login_prompt_current_region_change" visible="1" grow="1" regrow="1" align="right" noclick="1" >
+						<label fitx="true" fity="1" style="labelClickable" font="maindyn_16" content="main_login_change_country" noclick="1" />
+						<panel height="1" valign="bottom" color="#42D0F4" noclick="1" />
+					</panel>				
+				</panel>
+			</panel>		
+			
+			<panel name="main_login_prompt_password" noclick="1" height="46s" width="410s" y="500s" x="0" align="right" >
+				<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+				<label x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" content="main_label_password"/>
+
+				<textbox name="loginPasswordBox" taborder="2" textcolor="0 0 0 .9" textvalign="center" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center" passwordchar="*"
+					onenter="
+						Cmd('Script loginPassBoxEnter()')
+					"
+				/>
+				<panel name="loginPasswordBoxSaved" visible="0" passivechildren="true" noclick="true">
+					<label x="0.25h" textvalign="center" color="#FF0000" font="maindyn_24" content=""/>
+				</panel>
+				<panel name="loginPasswordBoxCover" passivechildren="true" noclick="true">
+					<label x="0.25h" textvalign="center" color="#666666" font="maindyn_24" content=""/>
+				</panel>
+			</panel>
+
+			<panel name="main_login_prompt_password_remember" visible="0" noclick="0" width="408s" height="20s" x="0" y="550s" align="right" float="right" padding="5s" passivechildren="1" >
+				<instance name="tempSimpleCheckbox" id="main_login_prompt_password_remember_checkbox" bg_color="0 0 0 .2" width="100@" height="100%"/>
+				<panel grow="true" height="100%">
+					<label fitx="1" textvalign="center" textalign="right" style="labelBase" font="maindyn_18" color=".7 .7 .7 1" content="general_remember"/>
+				</panel>
+			</panel>
+
+			<panel name="main_login_prompt_password_lost" visible="1" grow="1" height="18s" y="550s" align="right" >
+				<label fitx="true" style="labelClickable" font="maindyn_16" content="account_lost_password" noclick="1" />
+				<panel height="1" valign="bottom" color="#42D0F4" noclick="1" />
+			</panel>
+			
+			<panel name="main_login_socialmedia_parent" noclick="1" height="80s" width="308s" x="20s" y="262s" align="right" visible="1" >
+				<label x="20s" name="main_login_socialmedia_title_label" fitx="true" align="right" style="labelBase" font="maindyn_20" color=".7 .7 .7 1" content="" noclick="1" />
+				<panel grow="true" regrow="1" growinvis="0" height="45s" valign="bottom" align="right" float="right" padding="0" noclick="0">
+					<panel name="main_login_socialmedia_tab_igames" group="main_login_socialmedia_tabs" 	visible="0" width="50s" sticky="0" stickytoinvis="0">
+						<image texture="/ui/main/shared/textures/acct_type_igames.tga" 	align="center" width="45s" height="45s" noclick="1" />
+					</panel>
+					<panel name="main_login_socialmedia_tab_facebook" group="main_login_socialmedia_tabs" 	visible="0" width="50s" sticky="0" stickytoinvis="0">
+						<image texture="/ui/main/shared/textures/acct_type_facebook.tga" 	align="center" width="45s" height="45s" noclick="1" />
+					</panel>
+					<panel name="main_login_socialmedia_tab_twitter" group="main_login_socialmedia_tabs" 	visible="0" width="50s" sticky="0" stickytoinvis="0">
+						<image texture="/ui/main/shared/textures/acct_type_twitter.tga" 	align="center" width="45s" height="45s" noclick="1"/>
+					</panel>
+					<panel name="main_login_socialmedia_tab_google" group="main_login_socialmedia_tabs" 	visible="0" width="50s" sticky="0" stickytoinvis="0">
+						<image texture="/ui/main/shared/textures/acct_type_google.tga" 	align="center" width="45s" height="45s" noclick="1" />
+					</panel>
+					<panel name="main_login_socialmedia_tab_asiasoft" group="main_login_socialmedia_tabs" 	visible="0" width="50s" sticky="0" stickytoinvis="0">
+						<image texture="/ui/main/shared/textures/acct_type_asiasoft.tga" 	align="center" width="45s" height="45s" noclick="1" />
+					</panel>
+					<panel name="main_login_socialmedia_tab_asiasoft_facebook" group="main_login_socialmedia_tabs" 	visible="0" width="50s" sticky="0" stickytoinvis="0">
+						<image texture="/ui/main/shared/textures/acct_type_facebook.tga" 	align="center" width="45s" height="45s" noclick="1" />
+					</panel>				
+				</panel>
+			</panel>			
+			
+		</panel>
+		
+		<panel name="main_login_prompt_atkey" visible="0" noclick="1" height="46s" width="410s" y="590s" x="0" align="right" >
+			<frame texture="/ui/shared/frames/text_input.tga" borderthickness="0.6h"  noclick="1"/>
+			<label x="-2h" y="-6h" textvalign="center" font="maindyn_30" style="labelBase" content="main_label_atkey"/>
+
+			<textbox name="loginAtKeyBox" taborder="14" textcolor="0 0 0 .9" textvalign="center" font="maindyn_30" color="invisible" y="5s" width="-16s" align="center" passwordchar="*"
+				onenter="
+					Cmd('Script loginAtKeyBoxEnter()')
+				"
+				onesc="
+					Cmd('Script loginAtKeyBoxEsc()')
+				"				
+			/>
+			<panel name="loginAtKeyBoxCover" passivechildren="true" noclick="true">
+				<label x="0.25h" textvalign="center" color="#666666" font="maindyn_24" content=""/>
+			</panel>
+			<label x="2h" y="4.2h" textvalign="center" font="subdyn_13" color=".7 .7 .7 1" style="labelBase" content="main_label_atkey_desc"/>
+		</panel>		
+		
+		<panel name="main_login_prompt_login_content" noclick="1">
+			<panel name="main_login_prompt_login_parent" noclick="0" height="80s" width="308s" y="625s" align="right" >
+				<instance id="main_login_prompt_login"
+					name="standardButton"
+					borderthickness="14s"
+					label="general_login"
+					font="maindyn_40"
+				/>
+			</panel>
+
+			<panel name="main_login_prompt_createaccount" noclick="0" height="23s" width="308s" y="715s" align="right" >
+				<panel grow="1" height="100%" align="center" noclick="1">
+					<label fitx="true" style="labelClickable" font="maindyn_20" content="general_create_account" noclick="1" />
+					<panel height="1" valign="bottom" color="#42D0F4" noclick="1" />
+					<panel height="1" y="1" valign="bottom" color="0 0 0 .5" noclick="1" />
+				</panel>
+			</panel>
+		</panel>
+		
+	</panel>
+
+	<panel name="main_login_regionselection_parent" width="100w" height="100h" visible="0" color="0 0 0 0.4" >
+		<panel noclick="1" align="center" valign="center" width="40h" height="24.6h">
+			<instance name="dialogWrapper1" inneralpha="0 0 0 .9" />			
+			
+			<panel noclick="1" height="4.5h" align="right" valign="bottom" width="55%" x="-0.75h" >
+				<instance id="main_login_regionselection_parent_button_1"
+					name="standardButton"
+					label="general_ok"
+					font="maindyn_30"
+				/>					
+			</panel>		
+			<panel noclick="1" height="4.5h" align="left" valign="bottom" width="38%" x="0.75h" >
+				<instance id="main_login_regionselection_parent_button_2"
+					name="standardButton"
+					rendermode="grayscale"
+					label="general_cancel"
+					font="maindyn_24"
+				/>					
+			</panel>					
+			
+			<panel width="-1.5h" align="center" grow="true" float="bottom" padding="0.75h">
+				<panel height="0"/>
+				<panel height="4.0h">
+					<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+					<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+					<label textvalign="center" x="0.75h" font="maindyn_22" style="goldColor" outline="true" outlinecolor="0 0 0 .7" content="main_login_change_country_title"/>
+					<panel align="right" grow="true" height="-1h" valign="center" x="-0.5h" float="right" padding="0.5h">
+						<panel width="100@">
+							<instance name="closeXButton" buttonName="main_login_regionselection_closex" onclicklua=" self:GetWidget('main_login_regionselection_parent'):SetVisible(false) " 
+								align="center" valign="center"
+							/>
+						</panel>
+					</panel>
+				</panel>
+				
+				<panel height="0.0h" />
+				
+				<panel grow="1" regrow="1" noclick="1" width="100%" >
+					<label width="-5%" align="center" fity="true" wrap="1" style="labelBase" font="maindyn_20" color="1 1 1 1" content="main_login_change_country_desc" noclick="1" />
+				</panel>
+				
+				<panel height="0.5h" />
+				
+				<panel grow="1" regrow="1" noclick="1" width="100%" >
+					<instance name="simpleCombobox" id="main_login_regionselection_combobox" width="-5%" align="center"
+						noclick="1"
+						height="3.7h" font="maindyn_40"
+						maxlistheight="15"										
+					/>						
+				</panel>
+				
+			</panel>
+		
+		</panel>
+	</panel>	
+	
+</package>

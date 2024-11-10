@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Tutorial_Thief"
+
+	icon=""
+	passiveeffect=""
+	
+	effecttype=""
+	
+	impactinterval="100"
+>
+
+	<onimpact>
+		<areaofeffect
+			radius="900"
+			targetselection="all"
+			targetscheme="visible_enemy_heroes"
+			source="source_entity"
+		>
+			<spawnaffector name="Affector_Tutorial_Thief" target="source_position" proxy="source_entity" />
+			<applystate name="State_Tutorial_Thief_NoCheck" target="source_entity" duration="1500" />
+			
+			<changeaccumulator b="1" op="add" />
+			<compare a="accumulator" b="3" op="eq" >
+				<setscriptvalue name="thief_help" value="1" />
+			</compare>
+		</areaofeffect>
+	</onimpact>
+	
+	
+	<modifier key="aoe_check_off" modpriority="100"
+	>
+		<onimpact />	
+
+	</modifier>
+	
+
+</state>

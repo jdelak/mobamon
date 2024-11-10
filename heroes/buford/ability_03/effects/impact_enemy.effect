@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="true" >
+
+	<definitions>
+	
+<!--
+		<modifier
+			name="modifier0"
+			life="750"
+			startcolor="1 1 1"
+			endcolor="1 1 1"
+		/>
+-->
+
+		<particlesystem name="system0" space="entity" scale="1.1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".35"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="500"
+				startcolor=".5 0 .5"
+				midcolor=".5 0 .5"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				scale="2.5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+				depthbias="-50"
+			/>
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="35"
+				spawnrate="6000"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="200"
+				maxspeed="400"
+				gravity="25"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						bone="_bone_centerofchest"
+						minlife="300"
+						maxlife="600"
+						startcolor="1 0 1"
+						endcolor="1 0 1"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale=".75"
+						maxstartscale="1.5"
+						midscale=".75"
+						endscale=".25"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+
+
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

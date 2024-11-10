@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<simpleemitter
+				spawnrate="20"
+				particlelife="850"
+				offsetsphere="50 50 0"
+				minspeed="0"
+				maxspeed="250"
+				position="0 0 200"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+						minlife="250"
+						maxlife="350"
+						position="0 0 0"
+						material="/shared/effects/materials/light_rays.material"
+						directionalspace="local"
+						yaw="180"
+						roll="180"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						startcolor=".025 .125 0"
+						midcolor=".025 .125 0"
+						endcolor="0 0 0"
+						minheight="250"
+						maxheight="500"
+						depthbias="-200"
+					>
+					</billboard>
+					
+					<billboard
+						minlife="550"
+						maxlife="650"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						directionalspace="local"
+						startcolor=".0125 .125 0"
+						endcolor="0 0 0"
+						depthbias="-200"
+						minscale=".6"
+						maxscale="1"
+					>
+					</billboard>
+					
+					<billboard
+						minlife="550"
+						maxlife="650"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						directionalspace="local"
+						startcolor=".0125 .125 0"
+						endcolor="0 0 0"
+						depthbias="-200"
+						minscale=".2"
+						maxscale=".6"
+					>
+					</billboard>
+					
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_centerofchest"
+				expirelife="250"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				directionalspace="local"
+				startcolor=".02 .2 0"
+				endcolor="0 0 0"
+				depthbias="-200"
+				scale="6"
+			>
+			</billboard>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

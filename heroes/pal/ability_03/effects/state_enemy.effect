@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system1" space="entity" scale="2.5">
+
+			<template name="">
+
+				<simpleemitter
+					position="0 0 0"
+					bone="{zbone}"
+					spawnrate="100"
+					particlelife="300"
+					gravity="0"
+					speed="300"
+					material="/shared/effects/smaterials/whitedot.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="40"
+					directionalspace="world"
+					offsetsphere="15"
+				>
+					<particle 
+					anchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startcolor="0 0 0"
+						midcolor="0 .2 1"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						startframe="0"
+						endframe="1"
+						startscale="50"
+						minmidscale="0"
+						maxmidscale="25"
+						endscale="0"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					position="0 0 0"
+					bone="{zbone}"
+					spawnrate="100"
+					particlelife="300"
+					gravity="0"
+					speed="300"
+					material="/shared/effects/smaterials/firesprite_swirl_add.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="40"
+					directionalspace="world"
+					offsetsphere="20"
+				>
+					<particle 
+					anchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startcolor="0 0 0"
+						midcolor="0 0 .125"
+						endcolor="0 0 0"
+						midcolorpos=".05"
+						startframe="0"
+						endframe="1"
+						startscale="50"
+						endscale="0"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				
+				<simpleemitter
+					position="0 0 0"
+					bone="{zbone}"
+					spawnrate="100"
+					particlelife="200"
+					gravity="0"
+					speed="100"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="40"
+					directionalspace="world"
+					offsetsphere="25"
+				>
+					<particle 
+					anchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						startcolor="0 0 0"
+						midcolor="0 0 .25"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startscale="20"
+						minendscale="60"
+						maxendscale="80"
+						turn="true"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zbone="_bone_center"/> 
+
+			
+			
+				<billboard
+					bone="_bone_centerofchest"
+					position="0 0 0"
+					material="/shared/effects/materials/refract_ring.material"
+					param=".012"
+					life="500"
+					startsize="50"
+					endsize="180"
+					depthbias="-65"
+					roll="{zroll}"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".2"
+					loop="true"
+				/>
+			
+			
+			
+			
+<!--
+			<template name="">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="100"
+					minparticlelife="300"
+					maxparticlelife="600"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="0"
+				>
+					<particle
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .05 .1"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startscale=".4"
+						minendscale=".75"
+						maxendscale="1"
+						minwidth="140"
+						maxwidth="140"
+						height="140"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zbone="_bone_centerofchest"/>
+-->
+			
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

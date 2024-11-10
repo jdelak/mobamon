@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+<!--
+		<modifier
+			owner="owner"
+			name="modifier0"
+			life="750"
+			startcolor="0"
+			endcolor="1"
+			alpha="1"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<sound
+				life="3000"
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_buff.wav"
+			/>
+
+			<billboard
+				owner="target"
+				bone="_bone_centerofchest"
+				life="500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".125 .5 0"
+				endcolor="0 0 0"
+				depthbias="-50"
+				scale="5"
+			/>
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				position="0 0 0"
+				count="20"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				inheritvelocity="0.25"
+				tracktype="distance"
+				trackspeed="3"
+				spawnrate="5000"
+				minparticlelife="550"
+				maxparticlelife="750"
+				offsetsphere="25"
+				minspeed="200"
+				maxspeed="400"
+				distancelife="true"
+				direction="0 0 1"
+			>
+				<particle
+					anchor="1"
+				>
+					<trailemitter
+						position="0 0 0"
+						spawnrate="75"
+						particlelife="500"
+						texpostime="500"
+						texposscale="0.0"
+						texstretchscale=".4"
+						material="/shared/effects/smaterials/trail_blend.material"
+						subframepos="true"
+						startparticlealpha="1"
+						endparticlealpha="0"
+					>
+						<particle
+							color=".2 1 0"
+							startsize="0"
+							midsize="16"
+							endsize="0"
+							midsizepos=".1"
+							startalpha=".5"
+							endalpha="0"
+						/>
+					</trailemitter>
+
+					<trailemitter
+						spawnrate="75"
+						particlelife="500"
+						texpostime="500"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor=".5 .5 0"
+							midcolor=".5 .5 0"
+							endcolor="0 0 0"
+							startsize="0"
+							midsize="8"
+							endsize="0"
+							midsizepos=".1"
+					 />
+					</trailemitter>
+				</particle>
+			</trackeremitter>
+
+			<trackeremitter	
+				count="200"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				minparticlelife="600"
+				maxparticlelife="1000"
+				inheritvelocity="0.25"
+				tracktype="linear"
+				trackspeed="1.4" 
+				spawnrate="3000"
+				offsetsphere="10"
+				minspeed="200"
+				maxspeed="400"
+				direction="0 0 1"
+				material="/shared/effects/smaterials/lightbug_offset.material"
+				distancelife="true"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					maxanglespeed="360"
+					minanglespeed="-360"
+					minstartscale=".65"
+					maxstartscale="1.25"
+					endscale=".5"					
+					startcolor=".5 1 0"
+					midcolor=".5 1 0"
+					endcolor=".5 1 0"
+					framespeed="10"
+					startframe="0"
+					endframe="1"
+					height="16"
+					width="64"
+				/>
+			</trackeremitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<groundsprite
+			position="0 0 0"
+				life="1000"
+				material="/shared/effects/smaterials/goo_area_round.material"
+				startcolor=".35 .7 0"
+				midcolor=".35 .7 0"
+				endcolor="0 0 0"
+				startsize="55"
+				midsize="70"
+				endsize="75"
+				startalpha=".125"
+				midalpha=".125"
+				endalpha="0"
+				midalphapos=".85"
+				minyaw="-45"
+				maxyaw="45"
+			/>
+			
+			<groundsprite
+			position="0 0 0"
+				life="1000"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".35 .7 0"
+				midcolor=".35 .7 0"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				startsize="55"
+				midsize="70"
+				endsize="75"
+				minyaw="-45"
+				maxyaw="45"
+			/>
+			
+			<simpleemitter
+			delay="400"
+				position="0 0 0"
+				count="50"
+				spawnrate="1500"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="200"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						bone="_bone_center"
+						minlife="300"
+						maxlife="500"
+						startcolor=".5 1 0"
+						midcolor=".5 1 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="1.5"
+						midscale=".75"
+						endscale=".35"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+				position="0 0 50"
+				count="50"
+				spawnrate="100"
+				minparticlelife="200"
+				maxparticlelife="400"
+				material="/shared/effects/smaterials/lightbug_offset.material"
+				offsetsphere="15 15 0"
+				depthbias="-50"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					maxanglespeed="360"
+					minanglespeed="-360"
+					minstartscale=".35"
+					maxstartscale=".35"
+					endscale=".35"					
+					color=".5 1 0"
+					framespeed="10"
+					startframe="0"
+					endframe="1"
+					height="32"
+					width="128"
+				/>
+			</simpleemitter>
+-->
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>
+

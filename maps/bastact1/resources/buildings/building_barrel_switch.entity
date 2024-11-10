@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Switch"
+
+	model="/world/sprops/graveyard/crow/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="2.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="150"
+	boundsradius="30"
+	selectionradius="20"
+	invulnerable="false"
+	canattack="false"
+	corpsetime="0"
+	corpsefadetime="100"
+	deathtime="100"
+	nothreat="true"
+	hidealtinfo="false"
+	maxhealth="999999"
+	canrotate="false"
+	ismobile="false"
+	infoheight="10000"
+	attacktype="none"
+	flyheight="200"
+	flying="true"
+	alwaysvisible="true"
+	drawonmap="false"
+	sightrangeday="0"
+	sightrangenight="0"
+
+>
+
+	<oninflicted>
+		<condition test="not_hasstate State_Bastact1_Barrel" target="this_proxy_entity" >
+			<applystate name="State_Bastact1_Barrel" target="this_proxy_entity" duration="5000" />
+ 		</condition>
+	</oninflicted>
+	
+</gadget>

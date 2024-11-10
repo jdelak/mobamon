@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system1" space="world"  scale="1">
+		
+			
+			<trailemitter				
+				spawnrate="50"
+				particlelife="500"
+				texpostime="500"
+			 	texposscale="0.0"
+			 	texstretchscale=".4"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1 1 1"
+				endparticlecolor="0 0 0"
+			>
+				<particle				
+					 startcolor=".5 1 0"
+					 midcolor="0 .5 0"
+					 endcolor="0 0 0"
+					 startsize="35"
+					 midsize="25"
+					 endsize="5"
+					 midsizepos="0.2"
+			 />
+			</trailemitter>	
+		
+		
+		
+		
+<!--
+			<light
+				bone="_bone_fx_01"
+				position="0 0 0"
+				expirelife="250"
+				startcolor="2 5 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="0"
+				falloffend="100"
+
+			/>
+-->
+			
+
+			<groundsprite
+				bone="_bone_fx_01"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot_ground.material"
+				startcolor=".125 .25 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				loop="true"
+				size="90"
+
+			/>
+			
+			
+
+			<billboard
+				bone="_bone_fx_01"
+				position="0 0 0"
+				life="500"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".5 1 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="-40"
+				lockup="1"
+				pitch="90"
+				size="300"
+				loop="true"
+			/>
+<!--
+			<billboard
+				bone="_bone_fx_01"
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				startcolor=".125 .25 0"
+				midcolor="0 0 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				depthbias="50"
+				lockup="1"
+				pitch="90"
+				size="200"
+			/>
+
+-->
+
+
+
+
+
+<!--
+			<model
+				position="30 40 0"
+				expirelife="0"
+				anim="idle"
+				model="spheres_projectile/model.mdf"
+				color="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".75"
+				directionalspace="local"
+			>
+			
+				<trailemitter				
+					spawnrate="50"
+					particlelife="500"
+					texpostime="500"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle				
+						 startcolor=".5 1 0"
+						 midcolor="0 .5 0"
+						 endcolor="0 0 0"
+						 startsize="35"
+						 midsize="25"
+						 endsize="5"
+						 midsizepos="0.2"
+				 />
+				</trailemitter>	
+			</model>	
+			
+			
+			
+			
+			
+			
+
+			<model
+				position="-20 25 0"
+				expirelife="0"
+				anim="idle"
+				model="spheres_projectile/model.mdf"
+				color="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".75"
+				directionalspace="local"
+			>
+				<trailemitter				
+					spawnrate="50"
+					particlelife="500"
+					texpostime="500"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle				
+						 startcolor=".5 1 0"
+						 midcolor="0 .5 0"
+						 endcolor="0 0 0"
+						 startsize="35"
+						 midsize="25"
+						 endsize="5"
+						 midsizepos="0.2"
+				 />
+				</trailemitter>	
+			</model>	
+-->
+
+
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

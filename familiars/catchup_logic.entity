@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Familiar_Follow_Logic"
+	
+	icon="icon.tga"
+	
+	impactinterval="500"
+>
+	<onimpact>
+		<distance source="target_entity" target="source_owner_entity" usepathing="true"/>
+		<setvar0 a="result" />
+		<compare a="var0" b="100" op="lt"> 
+			<setpos0 position="source_owner_position" offsetspace="source_owner_entity" offset="0 -200 0" />
+			<order command="move" source="target_entity" target="pos0" />
+		</compare>
+		<else>
+			<compare a="var0" b="250" op="lt">
+				<order command="hold" source="target_entity" target="source_owner_entity" />
+			</compare>
+			<else>
+				<order command="follow" source="target_entity" target="source_owner_entity" />
+			</else>
+		</else>
+		<compare a="var0" b="350" op="gt">
+			<applystate name="State_Pincer_MovementCatchup" continuous="true" timeout="750" proxy="source_owner_entity" target="target_entity" />
+		</compare>
+		<compare a="var0" b="600" op="gt">
+			<applystate name="State_Pincer_MovementCatchupExtreme" continuous="true" timeout="500" proxy="source_owner_entity" target="target_entity" />
+		</compare>
+		<compare a="var0" b="1000" op="gt">
+			<teleport source="target_entity" target="source_owner_entity" interpolate="false" />
+		</compare>
+		<condition test="not_hasorder" target="target_entity" source="target_entity">
+			<order command="follow" source="target_entity" target="source_owner_entity" />
+		</condition>
+	</onimpact>
+
+	<modifier key="no_tele" modpriority="100"
+	>
+		<onimpact />
+	</modifier>
+</state>

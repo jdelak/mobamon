@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="float3_cast">
+	<dependency name="Value" type="*" />
+	<output name="Out" type="float3" />
+	<case>
+		<dependency name="Value" type="float" />
+		<?hlsl
+			Out = float3(Value, Value, Value);
+		?>
+		<?glsl
+			Out = vec3(Value);
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float3" />
+		<?hlsl
+			Out = Value;
+		?>
+		<?glsl
+			Out = Value;
+		?>
+	</case>
+	<case>
+		<dependency name="Value" type="float4" />
+		<?hlsl
+			Out = float3(Value.x, Value.y, Value.z);
+		?>
+		<?glsl
+			Out = vec3(Value);
+		?>
+	</case>
+</node>

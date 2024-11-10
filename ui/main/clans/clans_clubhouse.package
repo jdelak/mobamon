@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="clan_clubhouse" >
+		
+		<panel noclick="1" name="clan_parent" visible="0" >
+				
+			<panel y="-72s" height="70s" noclick="1" >		
+				<label name="clans_window_title" y="-10s" content="Clan Window Title" x="54s" style="BrawlBlueReverse" textvalign="center" font="maindyn_36" noclick="1" />	
+				<label name="clans_window_topic" y="20s" content="Clan Window Topic" x="54s" style="BrawlBlueReverse" textvalign="center" font="maindyn_22" noclick="1" />	
+			</panel>
+			
+			<panel noclick="1" name="clans_window_parent_left_container" visible="1" width="580s" align="left" >
+		
+				<panel x="20s" align="right" width="100s" height="+18s" noclick="1">
+					<image texture="/ui/main/shared/textures/grad_horz.tga" width="-2s" align="right" color="#001e3d3d" hflip="1" />
+					<instance name="vr" align="right" />
+				</panel>
+				
+				<!-- Tabs -->
+				<panel visible="0" noclick="1" float="right" padding="28s" grow="1" align="center" x="-38s" y="15s" >
+					<instance name="deckTab" id="clans_view_clan_btn" isOff="1" label="clans_view_my_clubhouse"
+						onclicklua="mainUI.Clans.SetTab('clan_clubhouse')"
+					/>	
+					
+					<instance name="deckTab" id="clans_view_clan_prizes_btn" isOff="1" label="clans_view_my_club_prizes"
+						onclicklua="mainUI.Clans.SetTab('clan_prizes')"
+					/>
+	
+				</panel>								
+
+				
+				<panel noclick="1" height="33%" y="6s" valign="top">
+					
+					<!-- Clubhouse -->
+					<panel noclick="1" name="clans_topleft_clubhouse" >
+						
+						<panel name="clans_info_parent" visible="1" width="520s" noclick="1" y="10s" x="0s" align="center" float="bottom" padding="18s">
+							<label style="labelBase" font="maindyn_30" content="clans_clubhouse_filler" wrap="1" lineheight="30s" textalign="center" fity="1" fitypadding="0" y="4s" noclick="1"/>
+							
+							<panel height="38s" noclick="1">	
+							
+								<panel name="clans_window_voip_join_button_parent" width="94%" align="center" noclick="1">
+									<instance name="standardButton"
+										id="clans_window_voip_join_button" 
+										label=""
+										font="maindyn_22" borderthickness="5s" rendermode="normal"
+										onclicklua=" "
+										onmouseoverdisabledlua="simpleTipGrowYUpdate(true, nil, Translate('clans_voiceinparty'), Translate('clans_voiceinparty_desc'), 320)"
+										onmouseoutdisabledlua="simpleTipGrowYUpdate(false)"
+										mouseoverdisabled="1" mouseoutdisabled="1"
+										disabledmouseover="1"
+										disabledmouseout="1" 
+									/>						
+									<panel float="right" grow="1" regrow="1" x="4s" y="-2s" height="100%" align="center" noclick="1">
+										<label name="clans_window_voip_join_button_label" fitx="1" style="labelBase" noclick="1" content="clan_enable_voice" textvalign="center" font="maindyn_22" color="#eff8ff" outlinecolor="0 0 0 .4" />
+										<panel width="100@" height="100%" noclick="1">
+											<image texture="/ui/shared/textures/mic_on.tga" y="1s" width="66@" height="66%" color="1 1 1 1" align="center" valign="center" noclick="1" />
+										</panel>
+									</panel>
+								</panel>
+								
+								<panel name="clans_window_voip_leave_button_parent" visible="0" width="94%" align="center" noclick="1" >
+									<instance name="standardButton"
+										id="clans_window_voip_leave_button" 
+										label=""
+										font="maindyn_22" borderthickness="5s" rendermode="normal"
+										onclicklua=" "
+									/>						
+									<panel float="right" grow="1" regrow="1" x="4s" y="-2s" height="100%" align="center" noclick="1">
+										<label fitx="1" style="labelBase" noclick="1" content="clan_disable_voice" textvalign="center" font="maindyn_22" color="#eff8ff" outlinecolor="0 0 0 .4" />
+										<panel width="100@" height="100%" noclick="1">
+											<image texture="/ui/shared/textures/mic_off.tga" y="1s" width="66@" height="66%" color="1 1 1 .75" align="center" valign="center" noclick="1" />
+										</panel>
+									</panel>
+								</panel>
+								
+							</panel>
+								
+							
+							
+							<panel height="38s" noclick="1">
+								<instance name="standardButton" id="clans_view_clan_ladder_btn" font="maindyn_22" label="clans_view_my_club_view_ladder" borderthickness="5s" width="94%" align="center" defaultsound="0"
+									onclicklua="mainUI.Clans.SetTab('clan_ladder')"
+								/>
+							</panel>
+						</panel>
+					
+						<panel name="clans_challenge_button_parent" visible="0" width="238s" height="188s" noclick="1" y="0s" x="150x" align="center" clip="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color="#0d3158" noclick="1"/>
+							<image texture="/ui/icons/scrim_notification.tga" align="center" valign="center" width="100%" height="100@" y="-5%" color="1 1 1 .1" noclick="1" />
+							<panel width="-22s" height="-14s" align="center" valign="center" float="bottom" noclick="1">								
+								<label style="BrawlH_36" content="clans_view_my_club_challenge_title" wrap="1" lineheight="34s" textalign="center" fity="1" fitypadding="7s" noclick="1"/>
+								<label style="labelBase" font="maindyn_18" content="clans_view_my_club_challenge_info" wrap="1" lineheight="18s" textalign="center" fity="1" fitypadding="14s" noclick="1"/>								
+								<instance name="primaryButton"
+									id="clans_challenge_button" 
+									label="clans_view_my_club_challenge_btn"
+									font="maindyn_22"  borderthickness="5s" rendermode="normal" height="38s" width="74%" valign="bottom" align="center"
+									onclicklua="ChatClient.ClanChallenge('')"
+								/>
+							</panel>
+							<frame texture="/ui/shared/frames/thick.tga" borderthickness="14s" style="windowFrame" noclick="1" />	
+						</panel>
+						
+					</panel>
+					
+					<!-- Prizes -->
+					<panel noclick="1" name="clans_topleft_prizes" visible="0" >
+						
+						<!-- Messaging -->
+						<panel grow="1" regrow="1" growinvis="0" height="58s" y="4s" x="-10s" align="center" noclick="1">
+							<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color="#0d3158" noclick="1"/>
+
+							<panel x="20s" grow="1" regrow="1" growinvis="0" height="100%" float="right" noclick="1" >
+								<panel grow="1" regrow="1" height="100%" noclick="1">
+									<label name="clans_prizes_seals_title_1" y="2s" style="BrawlH_30" fitx="1" fity="1" textalign="center" align="center" content="Earning Bronze Spins" />
+									<label name="clans_prizes_seals_title_2" y="35s" style="labelBase" font="subdyn_12" fitx="1" fity="1" textalign="center" align="center" content="XXX MORE CLUB SEALS TO WIN" />
+								</panel>
+								<panel width="5s" height="100%" noclick="1" />
+								<panel width="90@" height="100%" noclick="1">
+									<image name="clans_prizes_seals_texture_1" texture="/ui/main/shared/textures/spin/spin_ani_gold0000.tga" width="76@" height="76%" valign="center" align="right" noclick="1" />
+								</panel>
+								<!-- Time Remaining or End Date indication -->
+								<panel name="clans_prizes_seals_ending_parent" grow="1" regrow="1" height="100%" float="right" padding="10s" noclick="1" visible="0">
+									<panel width="2s" height="100%" noclick="1">
+										<instance name="vr" height="-16s" valign="center" />
+									</panel>
+									<panel grow="1" regrow="1" height="100%" noclick="1">
+										<label y="7s" style="labelBase" font="subdyn_12" fitx="1" fity="1" textalign="center" align="center" content="general_remaining_caps" />
+										<label name="clans_prizes_seals_ending" y="20s" style="labelBase" font="maindyn_30" fitx="1" fity="1" textalign="center" align="center" content="4d12h" />
+									</panel>								
+								</panel>								
+							</panel>
+							<frame texture="/ui/shared/frames/thick.tga" borderthickness="14s" style="windowFrame" noclick="1" />
+							<image texture="/ui/shared/textures/what_dis.tga" width="34s" height="34s" x="24s" align="right" valign="center" color="1 1 1 .75"
+								onmouseoverlua="
+									simpleTipGrowYUpdate(true, nil, Translate('clans_view_my_club_prizes_tip_title'), Translate('clans_view_my_club_prizes_tip_body'), 320)
+									self:SetColor('1 1 1 1')
+									"
+								onmouseoutlua="
+									simpleTipGrowYUpdate(false)
+									self:SetColor('1 1 1 .75')
+									"
+							/>							
+						</panel>
+						
+						<!-- Progress Bar -->
+						<panel name="clans_prizes_club_seals_parent" y="-24s" height="70s" width="480s" align="center" valign="bottom" noclick="1">
+							<image texture="/ui/main/shared/textures/mainprogress_base_c.tga" width="-100@" height="100%" align="center" noclick="1"/>
+							<image texture="/ui/main/shared/textures/mainprogress_base_l.tga" width="50@" height="100%" align="left" noclick="1"/>
+							<image texture="/ui/main/shared/textures/mainprogress_base_r.tga" width="50@" height="100%" align="right" noclick="1"/>
+							
+							<panel name="clans_prizes_club_seals_progress" width="0%"><!-- Match Progress Width -->
+								<panel width="100%" clip="1" nolcick="1">
+									<panel width="480s" height="100%" noclick="1">
+										<image texture="/ui/main/shared/textures/mainprogress_bar_c.tga" width="-100@" height="100%" align="center" noclick="1"/>
+										<image texture="/ui/main/shared/textures/mainprogress_bar_l.tga" width="50@" height="100%" align="left" noclick="1"/>
+										<image texture="/ui/main/shared/textures/mainprogress_bar_l.tga" width="50@" height="100%" align="right" hflip="1" noclick="1"/>
+									</panel>
+								</panel>
+								
+								<!--
+									These need to be absolutey positioned, not relative to the current width of 'clans_prizes_club_seals_progress' 
+									But they are inside said widget so they appear under the lead marker. 
+									So their X needs to be based off of the width of 'clans_prizes_club_seals_parent'. Sorry, wasn't sure a better way to lay it out. 
+									Should go invis once achieved.
+								-->
+								<instance name="clans_prizes_tier_marker" id="1" 	boardname="bronze" x="50s" visible="1" />
+								<instance name="clans_prizes_tier_marker" id="2" 	boardname="silver" x="190s" visible="1" />
+								<instance name="clans_prizes_tier_marker" id="3"    boardname="gold" x="410s" visible="1" />
+								
+								<image visible="1" texture="/ui/main/clans/textures/prime_marker_seals.tga" align="center" valign="center" y="-3%" width="52@" height="52%" color="1 1 1 .55" noclick="1" />
+								
+								<panel x="68@" y="9%" align="right" valign="center" width="142@" height="142%" noclick="1">
+									<image texture="/ui/main/shared/textures/mainprogress_lead_marker.tga" color="1 1 1 1" noclick="1"/>
+									<label name="clans_prizes_club_seals_current_lbl" y="-14%" fity="1" valign="center" textalign="center" content="0" style="BrawlH_36" outlinecolor="#3aaea4" noclick="1" /><!-- Current Club Seals Count -->
+									<label y="7%" fity="1" valign="center" textalign="center" content="ladder_seals_caps" style="labelBase" font="subdyn_11" noclick="1" />
+								</panel>							
+							</panel>
+							
+						</panel>
+						
+					</panel>					
+					<instance name="hr" valign="bottom" />
+				</panel>
+				
+				
+				<!-- Chat -->
+				<panel name="clans_chat_parent" noclick="0" height="366s" valign="bottom" y="8s">
+				
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="#071823" noclick="1"/>
+				
+					<panel name="clans_window_buffer" noclick="1" y="8s" height="-48s" width="-16s" align="center">
+						<chatoutputbuffer
+							name="clans_window_output"
+							group="main_chat_channel_outputbuffers"
+							valign="top"
+							textcolor="#f8f8f2"
+							color="invisible"
+							font="maindyn_18"
+							scrolltexture="/ui/shared/textures/new_slider.tga"
+							indent="32"
+							paddingleft="4s"
+							paddingright="4s"
+							paddingbottom="4s"
+							paddingtop="4s"
+							shadow="true"
+							outline="false"
+							shadowoffset="1"
+							oninstantiatelua=""
+							scrollbarsize="14s"				
+							maxhandleheight="128s"
+							handlewidth="14s"
+							minhandlesize="128s"
+							maxhandlesize="128s"
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"			
+							onmouseoutlua=""
+							onupdate=""
+							oldmessagedarkfactor="0.7"
+							onclicklua=""
+							onmouseldownlua=""
+							onmouseluplua=""
+						/>				
+					</panel>
+					
+					<frame name="clans_window_frame" texture="/ui/elements:rounded_bg_solid" color="#0c2127" borderthickness="5s" bordercolor="#0c2127" noclick="1" y="-6s" height="30s" width="-16s" align="center" valign="bottom">
+						<chatinputbuffer
+							name="clans_window_input"
+							x="8s" y="-5s"
+							textcolor="1 1 1 1"
+							color="invisible"
+							font="maindyn_18"
+							scrolltexture="/ui/_textures/elements/combobox.tga"
+							indent="0"
+							width="-85s"
+							grow="true"
+							valign="bottom"
+							oninstantiatelua=""
+							onesclua="self:SetFocus(false)"
+							onmouseldownlua=""
+							onfocuslua=""
+							hscrollbar="0"
+							horizontal="false"		
+							onmouseoutlua=""
+							onsizelua=""
+						/>		
+
+						<instance name="simple_combobox_textured" width="110s" height="-2s" y="2s" x="-75s" align="right" id="clans_window_input_combobox" comboboxName="clans_window_input_combobox2" texture="/ui/elements:rounded_bg_white" maxlistheight="3"
+							oninstantiatelua="
+								self:AddTemplateListItem('simpleDropdownItem', 'member', 'label', 'chat_stream_member')
+								self:AddTemplateListItem('simpleDropdownItem', 'officer', 'label', 'chat_stream_officer')
+								self:SetSelectedItemByValue('member', true)
+							"					
+							onselectlua="
+								self:GetWidget('clans_window_input'):SetStream(self:GetValue())
+								mainUI.Clans.stream = self:GetValue()
+							"
+							visible="0"
+						/> 
+						
+						<instance noclick="0" x="-5s" y="4s" height="25s" valign="top" width="64s" align="right" borderthickness="3s"
+							name="standardButton" id="clans_window_input_btn"
+							label="general_send"
+							font="maindyn_20"
+							onclicklua="GetWidget('clans_window_input'):ProcessInputLine()"
+						/>						
+					</frame>
+				
+				</panel>
+				
+			</panel>
+			
+			
+			
+			<panel noclick="1" name="clans_window_parent_right_container" valign="bottom" visible="1" width="-400s" x="12s" y="25s" align="right" clip="1" height="+25s" >
+				
+				<panel name="clans_right_container_memberlist" noclick="1" height="-25s" y="-12s" width="-188s" align="right">
+					<panel y="12s" x="12s" width="-26s" height="-12s" noclick="1" clip="1" >
+						<instance name="clans_friendlist_template" />
+					</panel>
+				</panel>
+				<panel name="clans_right_container_management" noclick="0" y="2s" x="100%">
+					<frame texture="/ui/shared/frames/squareglow.tga" y="14s" height="-12s" width="+10s" borderthickness="22s" color="0 0 0 .55" noclick="1" />
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" x="12s" height="-12s" borderthickness="20s" style="windowBase" noclick="1">					
+						<!-- Header -->			
+						<frame texture="/ui/shared/frames/header_bg.tga" borderthickness="18s" style="windowHeader" height="68s" noclick="1" y="0">
+													
+							<label content="clans_view_my_club_management" x="18s" style="labelBase" textvalign="center" font="maindyn_36" noclick="1" />
+							
+							<instance name="closeXButton" buttonName="clans_right_container_management_close" width="38s" height="38s" align="right" x="-26s" valign="center" borderthickness="4s" 
+								onclicklua="mainUI.Clans.SetTab('clan_management') " 
+							/>												
+							<instance name="hr" valign="bottom" />
+						</frame>					
+						<instance name="clan_management" />
+					</frame>
+					<frame texture="/ui/shared/frames/thick.tga" x="12s" height="-12s" width="+10s" borderthickness="20s" style="windowFrame" noclick="1" />	
+					
+				</panel>
+				<panel name="clans_right_container_ladder" noclick="0" y="12s" x="100%" height="-25s" width="-188s" align="right">
+					<frame texture="/ui/shared/frames/squareglow.tga" y="14s" height="-32s" width="+10s" borderthickness="22s" color="0 0 0 .55" noclick="1" />
+					<frame texture="/ui/shared/frames/rounded_bg_solid.tga" x="12s" height="-32s" borderthickness="20s" style="windowBase" noclick="1">					
+						<!-- Header -->			
+						<frame texture="/ui/shared/frames/header_bg.tga" borderthickness="18s" style="windowHeader" height="68s" noclick="1" y="0">
+													
+							<label content="clans_view_my_club_ladder" x="18s" style="labelBase" textvalign="center" font="maindyn_36" noclick="1" />
+							
+							<instance name="closeXButton" buttonName="clans_right_container_ladder_close" width="38s" height="38s" align="right" x="-26s" valign="center" borderthickness="4s" 
+								onclicklua="mainUI.Clans.SetTab('clan_clubhouse') " 
+							/>
+												
+							<instance name="hr" valign="bottom" />
+						</frame>					
+						<instance name="clan_ladder" />
+					</frame>
+					<frame texture="/ui/shared/frames/thick.tga" x="12s" width="+10s" height="-32s" borderthickness="20s" style="windowFrame" noclick="1" />										
+				</panel>					
+			</panel>
+			
+			<panel align="right" y="-56s" x="-52s" width="174s" height="38s">				
+				<instance name="standardButton"  id="clans_view_clan_management_btn" font="maindyn_20" label="clans_view_my_club_management" labelX="15s" defaultsound="0"
+					onclicklua="mainUI.Clans.SetTab('clan_management')"
+				/>
+				<image texture="/ui/shared/textures/gear.tga" width="64@" height="64%" x="13s" valign="center" noclick="1"/>
+			</panel>
+			
+		</panel>
+		
+	</template>
+
+</package>

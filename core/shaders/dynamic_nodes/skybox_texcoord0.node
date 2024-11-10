@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="skybox_texcoord0">
+	<dependency name="Position" type="float4" source="HomogeneousPosition" />
+	<dependency name="mWorldViewProjInv" type="float4x4" source="mWorldViewProjInv" />
+	<output name="Out" type="float3" solution="Texcoord0" />
+	<?hlsl
+		Out = mul(Position, mWorldViewProjInv).xyz;
+	?>
+	<?glsl
+		Out = (mWorldViewProjInv * Position).xyz;
+	?>
+</node>

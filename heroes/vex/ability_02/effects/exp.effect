@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="cyclone" deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="0.5">
+
+
+			<light		
+				bone="_bone_centerofchest"
+				life="100"
+				startcolor="6 4 1"				
+				endcolor="0"
+				falloffstart="00"
+				falloffend="320"
+				position="0 0 -60"			
+			/>
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_pop1.material"
+				depthbias="-25"
+			>
+
+				
+				<particle
+					color="1 .8 .35"
+					startalpha=".5"
+					midalpha="1"
+					endalpha="0"
+					startscale="88"
+					endscale="111"
+					turn="true"
+				/>
+			</simpleemitter>	
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				life="100"
+				spawnrate="180"
+				count="180"
+				particlelife="350"
+				gravity="5"
+				speed="100"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"				
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+				offsetsphere="50"
+				inheritvelocity="0.05"
+				depthbias="-200"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor="1 .8 0"
+					midcolor="1 .8 .7"
+					endcolor="1 1 1"
+					
+					midcolorpos=".2"
+					startframe="0"
+					endframe="1"
+					startsize="55"
+					endsize="30"
+					startalpha="1"
+					endalpha="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				life="100"
+				spawnrate="80"				
+				particlelife="50"
+				gravity="5"
+				speed="100"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/rocket_smoke_add.material"				
+				minangle="0"
+				maxangle="30"
+				direction="0 0 1"
+				offsetsphere="50"
+				inheritvelocity="0.05"
+				depthbias="-200"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=" 1 1 1"
+					midcolor="1 .5 0"
+					endcolor=".2 0 0"
+					startframe="0"
+					endframe="1"
+					startsize="55"
+					endsize="44"
+					startalpha="1"
+					endalpha="0"
+					
+				/>
+			</simpleemitter>
+			
+			
+			
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		
+      	<waitfordeath instance="instance0" />
+		
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".9">
+		
+			<simpleemitter
+				count="3"
+				bone="_bone_head"
+				spawnrate="2000"
+				minparticlelife="200"
+				maxparticlelife="200"
+				material="/shared/effects/smaterials/muzzle_flash_white.material"
+				offsetsphere="5"
+				position="0 0 0"
+				depthbias="-50"
+			>
+				<particle
+					startcolor="1 1 1"
+					midcolor="1 .5 .1"
+					endcolor="0 0 0"
+					startsize="100"
+					midsize="25"
+					endsize="0"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+			delay="200"
+				count="3"
+				bone="_bone_head"
+				spawnrate="2000"
+				minparticlelife="200"
+				maxparticlelife="200"
+				material="/shared/effects/smaterials/muzzle_flash_white.material"
+				offsetsphere="5"
+				position="0 0 0"
+				depthbias="-50"
+			>
+				<particle
+					startcolor="1 1 1"
+					midcolor="1 .5 .1"
+					endcolor="0 0 0"
+					startsize="100"
+					midsize="25"
+					endsize="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			delay="200"
+				bone="_bone_head"
+				count="5"
+				spawnrate="1055"
+				particlelife="50"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_pop1.material"
+				depthbias="-50"
+			>
+				<particle
+					color="1 .35 .1"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="35"
+					endscale="85"
+					turn="true"
+				/>
+				
+				<particle
+					color="1 .7 .35"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="35"
+					endscale="85"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+			delay="200"
+				bone="_bone_head"
+				count="5"
+				spawnrate="1055"
+				particlelife="50"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_pop1.material"
+				depthbias="-50"
+			>
+				<particle
+					color="1 1 1"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					startscale="25"
+					endscale="50"
+					turn="true"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" /> 
+	</thread>
+
+</effect>

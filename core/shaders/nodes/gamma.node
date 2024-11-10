@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="gamma">
+	<parameter name="Color" type="float3" />
+	<dependency name="Color" type="float3" source="Color" />
+	<dependency name="vGamma" type="float3" source="vGamma" />
+	<output name="Out" type="float3" />
+	<?hlsl
+		Out = pow(Color, 1.0f / vGamma);
+	?>
+	<?glsl
+		Out = pow(Color, 1.0f / vGamma);
+	?>
+</node>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastion1Bastact1_Ability3"
+
+	icon=""
+	movespeedslowstart="0.5"
+	movespeedslowmid="0.2"
+	movespeedslowend="0.0" 
+	movespeedslowmidpos="0.5"
+	ishidden="true"
+	passiveeffect="effects/state_steve.effect"
+	stunned="true"
+>
+
+<oninflict>
+	<applystate name="State_Stunned" target="this_proxy_entity" duration="4000" />
+</oninflict>
+
+<onframe>
+	<cantarget targetscheme="all_units">
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="4" op="div" />
+		<setvar0 a="var0" b="frametime" op="mult" />
+		<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+	</cantarget>
+	
+</onframe>
+
+</state>

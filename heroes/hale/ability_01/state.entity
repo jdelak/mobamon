@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Hale_Ability1_Self"
+	
+	icon="icon.tga"
+	stunned="true"
+	disarmed="true"
+	unitwalking="true"
+
+	impactinterval="500"
+	ishidden="true"
+
+>
+	<onimpact>
+		<targettype type="alive" target="source_entity" >
+			<playanim name="ability_1_attack" target="source_entity" />
+			<unbind target="source_entity" />
+
+			<compare a="accumulator" b="2" op="eq" >
+				<spawnprojectile name="Projectile_Hale_Ability1_Large" source="source_entity" target="source_entity" proxy="stack_entity" bind="source_entity" bindturn="true" unbindondeath="true" pushentity="true" offset="0 75 0"/>
+				<playeffect effect="effects/swoosh.effect" target="source_entity"/>
+			</compare>
+			<else>
+				<spawnprojectile name="Projectile_Hale_Ability1_Large" source="source_entity" target="proxy_entity" proxy="stack_entity" bind="source_entity" bindturn="true" unbindondeath="true" pushentity="true" offset="0 75 0"/>
+				<playeffect effect="effects/swoosh.effect" target="source_entity"/>
+				<setpos0 position="target_position" positionend="source_position" positionmodifier="pointonline" positionvalue="376" />
+				<spawnprojectile name="Projectile_Hale_Ability1_Cliff" source="source_entity" target="pos0" proxy="stack_entity" offsetspace="source_entity" offset="0 125 0" />
+			</else>
+		</targettype>
+	</onimpact>
+	
+	<onframe>
+		<haseffecttype name="StatusDisable" >
+			<expire />
+		</haseffecttype>
+	</onframe>
+
+	<onexpired>
+		<compare a="param" b="1" op="ne" >
+			
+		</compare>
+	</onexpired>
+</state>

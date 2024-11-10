@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+		<particlesystem name="system0" space="world" scale="0.5">
+
+		
+		
+			<model
+			position="0 0 1"
+				expirelife="250"
+				model="button.mdf"
+				anim="idle"
+				startalpha="1"
+				endalpha="0"
+				scale="4"
+				pitch="0"
+			>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="30"
+					minparticlelife="1000"
+					maxparticlelife="3000"
+					speed="2"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".1 .025 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						minsize="12"
+						maxsize="16"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="30"
+					minparticlelife="1500"
+					maxparticlelife="3000"
+					speed="0"
+					gravity="0"
+					offsetsphere="0"
+					drag="0.02"
+					material="/shared/effects/smaterials/flare.material"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".4 .25 .1"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						minsize="15"
+						maxsize="18"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="200"
+					particlelife="400"
+					minspeed="0"
+					maxspeed="26"
+					gravity="0"
+					offsetsphere="0"
+					material="/shared/effects/smaterials/flare.material"
+					directinalspace="local"
+				>
+					<particle
+						startcolor=".5 .5 .5"
+						midcolor=".5 .35 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startsize="1.5"
+						endsize="1.25"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="75"
+					minparticlelife="750"
+					maxparticlelife="1500"
+					offsetsphere="5"
+					material="/shared/effects/smaterials/flare.material"
+				>
+					<particle
+						startcolor=".5 .5 .5"
+						midcolor=".5 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startsize="1"
+						endsize="1"
+					/>
+				</simpleemitter>
+
+			</model>
+
+			
+			
+			
+			<template name="">
+
+			
+				<billboard
+					position="0 0 1"
+					life="2000"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="{zcolor}"
+					midcolor="{zcolor}"
+					endcolor="0 0 0"
+					startscale="{zstartscale}"
+					endscale="{zendscale}"
+					lockup="1"
+					loop="0"
+				/>
+		
+			</template>
+
+			
+			
+			<instance name="" zstartscale="1" zendscale="5" zcolor=".5 .25 0"/> 
+			<instance name="" zstartscale=".25" zendscale="2" zcolor="1 .75 .25"/> 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<model
+			position="0 0 1"
+				life="1500"
+				model="button.mdf"
+				anim="idle"
+				startalpha="1"
+				endalpha="0"
+				scale="4"
+				pitch="0"
+			>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="30"
+					minparticlelife="1000"
+					maxparticlelife="3000"
+					speed="10"
+					material="/shared/effects/smaterials/whitedot.material"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".1 .025 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						minsize="12"
+						maxsize="16"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="30"
+					minparticlelife="1500"
+					maxparticlelife="3000"
+					speed="0"
+					gravity="0"
+					offsetsphere="0"
+					drag="0.02"
+					material="/shared/effects/smaterials/flare.material"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".6 .3 .1"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						minsize="15"
+						maxsize="18"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="200"
+					particlelife="400"
+					minspeed="0"
+					maxspeed="26"
+					gravity="0"
+					offsetsphere="0"
+					material="/shared/effects/smaterials/flare.material"
+					directinalspace="local"
+				>
+					<particle
+						startcolor="1 1 1"
+						midcolor="1 .75 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startsize="1.5"
+						endsize="1.25"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="75"
+					minparticlelife="750"
+					maxparticlelife="1500"
+					offsetsphere="5"
+					material="/shared/effects/smaterials/flare.material"
+				>
+					<particle
+						startcolor="1 1 1"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startsize="1"
+						endsize="1"
+					/>
+				</simpleemitter>
+
+			</model>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+</effect>

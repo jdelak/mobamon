@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="default_1.max" file="high.model" type="K2">
+
+	<fur mesh="model_high" apxfile="/npcs/Krytos/hair/krytos.apx" material="/npcs/Krytos/hair/fur.material" />
+
+	<anim name="idle" clip="clips/default_1.clip" loop="true"/>
+
+	<anim name="break" clip="clips/break.clip"/>
+	
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" fps="45" >
+		<frameevent frame="11" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_walk_1.wav 500 3000 .6"/>
+		<frameevent frame="31" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_walk_2.wav 500 3000 .6"/>
+		<frameevent frame="55" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_walk_3.wav 500 3000 .6"/>
+		<frameevent frame="75" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_walk_4.wav 500 3000 .6"/>
+	</anim>
+	
+	<anim name="bash_1" clip="clips/bash_1.clip" fps="30" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_gate_destruction_1.wav 1500 3000 1"/>
+		<frameevent frame="90" cmd="PlaySoundLinear sounds/sfx_gate_destruction_2.wav 1500 3000 1"/>
+		<frameevent frame="175" cmd="PlaySoundLinear sounds/sfx_gate_destruction_3.wav 1500 3000 1"/>
+	</anim>
+	
+	<anim name="death_1" clip="clips/death_1.clip" fps="40" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="StartEffect /npcs/Krytos/effects/death_fade.effect"/>
+		<frameevent frame="75" cmd="StartEffect /npcs/Krytos/effects/death_transparent.effect"/>
+		<frameevent frame="1" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_death_vo.wav 500 3000 .95"/>
+		<frameevent frame="50" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_death.wav 500 3000 .95"/>
+	</anim>
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="32" >
+		<frameevent frame="15" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_attack_%.wav 500 3000 0.85"/>
+	</anim>
+	
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="32" >
+		<frameevent frame="15" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_attack_%.wav 500 3000 0.85"/>
+	</anim>
+	
+	<anim name="attack_3" clip="clips/attack_3.clip" fps="32" >
+		<frameevent frame="15" cmd="PlaySoundLinear /npcs/Krytos/sfx_attack_%.wav 500 3000 0.85"/>
+	</anim>
+	
+	<anim name="attack_4" clip="clips/attack_4.clip" fps="32" >
+		<frameevent frame="5" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_poundchest.wav 500 3000 0.85"/>
+		<frameevent frame="20" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_attack_%.wav 500 3000 0.85"/>
+	</anim>
+
+	<anim name="attack_4_Leap" clip="clips/leap_1.clip" fps="30" >
+		<frameevent frame="5" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_attack_leapland.wav 500 3000 0.85"/>
+	</anim>
+	
+	<anim name="jump_1" clip="clips/jump_1.clip" fps="32" >
+	</anim>
+	
+	<anim name="jump_2" clip="clips/leap_1.clip" startframe="1" numframes="23" fps="40" loop="true" loopbackframe="-1" >
+		<frameevent frame="1" cmd="PlaySoundLinear /npcs/Krytos/sounds/sfx_attack_leap.wav 500 3000 0.85"/>
+	</anim>
+	
+	<anim name="land_1" clip="clips/land_1.clip" fps="32" >
+	</anim>
+	
+	<anim name="land_2" clip="clips/leap_1.clip" startframe="24" numframes="16" fps="30" loop="false" >
+	</anim>
+
+	<anim name="ability_4" clip="clips/attack_3.clip" fps="40" >
+	</anim>
+	
+
+</model>

@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		
+		<particlesystem name="system1" space="world" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2000"
+				volume=".35"
+				sample="../../sounds/sfx_impact.wav"
+			/>
+			
+			<simpleemitter
+				
+				spawnrate="5000"
+				count="20"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="1500"
+				maxspeed="3000"
+				drag="0.01"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitecircleblurred_add_unlit.material"
+			>
+				<particle
+					heightdistort="0.2"
+					widthdistort=".05"
+					scale=".2"
+					startcolor="1 1 1"
+					endcolor=".6 0 .6"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+			
+				spawnrate="3000"
+				count="5"
+				particlelife="100"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 100"
+				offsetsphere="0"
+				direction="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				
+			>
+				<particle
+					startcolor="1 0 1"
+					endcolor="0"
+					startscale="50"
+					endscale="300"
+					
+				/>
+			</simpleemitter>
+
+			<!-- <debris
+				
+				minlife="1000"
+				maxlife="1000"
+				position="0 0 0"
+				minscale=".3"
+				maxscale=".4"
+				
+				model="rocks_debris/model.mdf"
+				material="rocks_debris/material.material"
+				anim="idle"
+				minspeed="1000"
+				maxspeed="2500"
+				direction="0 0 1"
+				minrotationspeed="-90"
+				maxrotationspeed="90"
+				gravity="200"
+				minangle="-45"
+				maxangle="45"
+				startcolor="2 0 0"
+				midcolor=".5 0 0"
+				endcolor=".5 0 0"
+				alpha="0"
+				midalphapos=".65"
+				collide="true"
+				bounce=".1"
+				reflect=".8"
+				animpose="false"
+				offsetsphere="0"
+				minyaw="0"
+				maxyaw="360"
+				depthbias="-100"
+			>
+				
+				<template name="bits"> -->
+							
+					<!-- Dark purple flames-->
+					<!-- <simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="200"
+						minparticlelife="200"
+						maxparticlelife="400"
+						mingravity="0"
+						maxgravity="0"
+						minspeed="100"
+						maxspeed="300"
+						acceleration="0"
+						position="0 0 20"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-100"
+						direction="0 0 0"
+						directionalspace="world"
+						startangle="360"
+						endangle="0"
+					>
+						<particle
+							startcolor=".4 0 .6"
+							endcolor="0 0 0"
+							midcolorpos=".3"
+							startalpha="1"
+							endalpha="0"
+							startscale="10"
+							midscale="35"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter> -->
+
+						<!-- Purple pink flames -->
+					<!-- <simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="200"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="100"
+						maxspeed="300"
+						acceleration="0"
+						position="0 0 0"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-100"
+						direction="0 0 0"
+						directionalspace="world"
+					>
+						<particle
+							startcolor="1 1 1"
+							midcolor="1 0 1"
+							endcolor=".8 0 1"
+							midcolorpos=".5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							startscale="10"
+							midscale="35"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter> -->
+					
+						<!-- White flames -->
+					<!-- <simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="200"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="100"
+						maxspeed="200"
+						acceleration="0"
+						position="0 0 -20"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-50"
+						direction="0 0 0"
+						directionalspace="world"
+					>
+						<particle
+							startcolor="1 1 1"
+							endcolor="1 1 1"
+							midcolorpos=".5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							startscale="2.5"
+							midscale="7.5"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+					
+					<model
+						minlife="500"
+						maxlife="900"
+						model="molten_rock/model.mdf"
+						anim="idle"
+						scale=".5"
+						color="1 0 0"
+						alpha="1"
+						pitchspeed="0"
+						position="0 0 40"
+						depthbias="-1000"
+					/> -->
+					
+					<!--Ember bits-->			
+					<!-- <simpleemitter
+						
+						spawnrate="50"			
+						particlelife="500"
+						gravity="-10"
+						minspeed="10"
+						maxspeed="700"
+						drag="0"
+						acceleration="0"
+						direction="1 1 0"
+						offsetsphere="60"
+						depthbias="0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						inheritvelocity="true"
+						position="-15 70 50"
+					>
+						<particle
+							minscale=".1"
+							maxscale="1"
+						>
+						
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor=".5 0 .5"
+								endcolor="0"
+								minsize="4"
+								maxsize="8"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+							/>
+						
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1 0 1"
+								endcolor="0"
+								minsize="5"
+								maxsize="10"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+								
+							/>
+							
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1"
+								endcolor="0"
+								minsize="6"
+								maxsize="12"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+								
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					
+				</template>
+				
+				<instance name="bits" newbone="Box001"/>
+
+			</debris> -->
+			
+			<debris
+				position="0 0 25"
+				minscale=".3"
+				maxscale=".4"
+				minlife="1000"
+				maxlife="1500"
+				model="rocks_debris/model.mdf"
+				material="rocks_debris/material.material"
+				anim="idle"
+				minspeed="2000"
+				maxspeed="5000"
+				direction="0 0 1"
+				minrotationspeed="-90"
+				maxrotationspeed="90"
+				gravity="400"
+				minangle="-45"
+				maxangle="45"
+				startcolor="2 0 0"
+				midcolor=".5 0 0"
+				endcolor=".5 0 0"
+				alpha="0"
+				midalphapos=".65"
+				collide="true"
+				bounce=".1"
+				reflect=".8"
+				animpose="false"
+				offsetsphere="0"
+				minyaw="0"
+				maxyaw="360"
+				depthbias="-100"
+			>
+				
+				<template name="bits">
+					
+						<!-- Dark purple flames-->
+					<simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="100"
+						minparticlelife="200"
+						maxparticlelife="400"
+						mingravity="0"
+						maxgravity="0"
+						minspeed="100"
+						maxspeed="300"
+						acceleration="0"
+						position="0 0 20"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-100"
+						direction="0 0 0"
+						directionalspace="world"
+						startangle="360"
+						endangle="0"
+					>
+						<particle
+							startcolor=".4 0 .6"
+							endcolor="0 0 0"
+							midcolorpos=".3"
+							startalpha="1"
+							endalpha="0"
+							startscale="10"
+							midscale="35"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+
+						<!-- Purple pink flames -->
+					<simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="100"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="100"
+						maxspeed="300"
+						acceleration="0"
+						position="0 0 0"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-100"
+						direction="0 0 0"
+						directionalspace="world"
+					>
+						<particle
+							startcolor="1 1 1"
+							midcolor="1 0 1"
+							endcolor=".8 0 1"
+							midcolorpos=".5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							startscale="10"
+							midscale="35"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+					
+						<!-- White flames -->
+					<simpleemitter
+						bone="{newbone}"
+						spawnrate="300"
+						count="100"
+						minparticlelife="200"
+						maxparticlelife="400"
+						gravity="0"
+						minspeed="100"
+						maxspeed="200"
+						acceleration="0"
+						position="0 0 -20"
+						offsetsphere="0"
+						material="/shared/effects/smaterials/flamewisps.material"
+						depthbias="-50"
+						direction="0 0 0"
+						directionalspace="world"
+					>
+						<particle
+							startcolor="1 1 1"
+							endcolor="1 1 1"
+							midcolorpos=".5"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".2"
+							startscale="2.5"
+							midscale="7.5"
+							endscale="0"
+							turn="true"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minanchor="0.5"
+							maxanchor="1"
+						/>
+					</simpleemitter>
+					
+					<!-- <model
+						minlife="500"
+						maxlife="600"
+						model="molten_rock/model.mdf"
+						anim="idle"
+						scale=".5"
+						color="1 0 0"
+						alpha="1"
+						pitchspeed="0"
+						position="0 0 40"
+						depthbias="-1000"
+					/> -->
+					
+					<!--Ember bits-->			
+					<simpleemitter
+						life="1000"
+						spawnrate="100"			
+						particlelife="500"
+						gravity="-10"
+						minspeed="10"
+						maxspeed="700"
+						drag="0"
+						acceleration="0"
+						direction="1 1 0"
+						offsetsphere="60"
+						depthbias="0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						inheritvelocity="true"
+						position="-15 70 50"
+					>
+						<particle
+							minscale=".1"
+							maxscale="1"
+						>
+						
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor=".5 0 .5"
+								endcolor="0"
+								minsize="4"
+								maxsize="8"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+							/>
+						
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1 0 1"
+								endcolor="0"
+								minsize="5"
+								maxsize="10"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+								
+							/>
+							
+							<billboard
+								minlife="100"
+								maxlife="500"
+								startcolor="0"
+								midcolor="1"
+								endcolor="0"
+								minsize="6"
+								maxsize="12"
+								depthbias="-200"
+								material="/shared/effects/smaterials/whitedot.material"
+								minrollspeed="-200"
+								maxrollspeed="200"
+								
+							/>
+
+						</particle>
+					</simpleemitter>
+					
+					
+				</template>
+				
+				<instance name="bits" newbone="Box001"/>
+
+			</debris>
+
+				<!-- Streaks -->
+			<simpleemitter
+				
+				spawnrate="5000"
+				count="20"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="1500"
+				maxspeed="3000"
+				drag="0.01"
+				acceleration="0.0"
+				offsetsphere="20"
+				material="/shared/effects/smaterials/whitecircleblurred_add_unlit.material"
+			>
+				<particle
+					heightdistort="0.2"
+					widthdistort=".05"
+					scale=".1"
+					startcolor="1 1 "
+					endcolor="1 0 0"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+			
+			<light
+				life="1000"
+				position="0 0 100"
+				startcolor="3 0 3"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="100"
+				falloffend="400"	
+			/>
+			
+			
+			<billboard
+				delay="0"
+				life="300"
+				startcolor="1"
+				endcolor="0"
+				startalpha="1"
+				endalpha="0"
+				startsize="0"
+				endsize="100"
+				depthbias="-100"
+				material="/shared/effects/smaterials/whitedot.material"
+				direction="0 0 1"
+				position="0 0 50"
+				directionalspace="local"
+				scale="4"
+				
+			/>
+			
+			<billboard
+			
+				delay="0"
+				life="300"
+				color="1"
+				startalpha="1"
+				endalpha="0"
+				startsize="0"
+				endsize="100"
+				depthbias="-100"
+				material="/shared/effects/smaterials/refract_ripples.material"
+				direction="0 0 1"
+				position="0 0 50"
+				directionalspace="local"
+				scale="8"
+				param=".1"
+			/>
+			
+		</particlesystem>
+
+		<modifier
+			name="modifier0"
+			life="1000"
+			startcolor="0"
+			endcolor="1"
+			alpha="1"
+		/>
+	</definitions>
+
+	<thread>
+		
+		<spawnparticlesystem instance="instance2" particlesystem="system1"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+	
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

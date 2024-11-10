@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect >
+	<definitions deferred="true">
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+		
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="1"
+				sample="/heroes/artillery/ability_04/sounds/trail.wav"
+			/>
+			
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="100"
+				falloffend="2400"
+				volume="1"
+				sample="/heroes/artillery/ability_04/sounds/trail.wav"
+			/>
+			
+			
+			<model
+				position="0 0 -12"
+				life="150"
+				color="1 1 1"
+				model="cheese/model.mdf"
+				material="cheese/material.material"
+				anim="idle"
+				directionalspace="local"
+				startscale="4"
+				endscale="0"
+				yaw="90"
+			/>
+
+			<simpleemitter
+				spawnrate="35"
+				count="70"		
+				particlelife="1000"					
+				position="0 0 12"
+				offsetsphere="25 25 25"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="100"
+						maxlife="200"
+						color="1 .9 .9"
+						material="/shared/effects/smaterials/cheese_goop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".75"
+						maxscale="1.5"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="35"
+				count="5"		
+				particlelife="1000"					
+				position="0 0 -25"
+				offsetsphere="25 25 50"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="50"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="250"
+						maxlife="500"
+						color="1 .9 .9"
+						material="/shared/effects/smaterials/cheese_goop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".1"
+						maxscale="1"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="35"
+				count="5"	
+				particlelife="1000"					
+				position="0 0 -25"
+				offsetsphere="25 25 50"
+				direction="0 0 1"
+				minangle="-1"
+				maxangle="1"
+				gravity="100"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						minlife="250"
+						maxlife="500"
+						color="1 .9 .9"
+						material="/shared/effects/smaterials/cheese_goop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+						lockup="true"
+						lockright="true"
+						directionalspace="local"
+						minscale=".1"
+						maxscale="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

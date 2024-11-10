@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Trixie_Ability4"
+
+	radius="350"
+	impactdelay="500"
+	targetselection="all"
+	targetscheme="enemy_nonboss_units"
+	effecttype="Magic"
+	hazardradius="350"
+	touchpropradius="300"
+	touchpropanim="hit"
+>
+	
+	<onimpact>
+		<cantarget effecttype="CrowdControl" >
+			<applystate name="State_Trixie_Ability4" duration="2000,2500,3000" />
+			<applystate name="State_Trixie_Ability4_Armor" duration="2000,2500,3000" />
+			<recordheroaggression  />
+			<aggression />
+		
+			<compare a="param" b="1" op="ne" >
+				<playeffect effect="effects/impact_sound.effect" source="target_entity" target="target_entity" />
+				<playeffect effect="effects/camera_shake.effect" source="target_entity" target="target_entity" />
+			</compare>
+			
+			<setparam a="1" />
+		</cantarget>
+	</onimpact>
+
+</affector>

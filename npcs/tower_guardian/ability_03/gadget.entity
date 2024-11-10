@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_TowerGuardian_Ability3"
+
+	icon=""
+	portrait=""
+	modelscale="1.25"
+	model="/shared/models/invis.mdf"
+
+	passiveeffect=""
+	boundsheight="0"
+	boundsradius="0"
+	isselectable="false"
+	iscontrollable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	
+	visible="true"
+	revealed="true"
+
+	sightrangeday="0"
+	sightrangenight="0"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="true"
+	flyheight="120"
+	drawonmap="false"
+	diewithowner="true"
+	unittype="boss_orb"
+	
+	lifetime="2000"
+>
+
+
+	<onexpired>
+		<areaofeffect
+			radius="1500"
+			targetselection="random"
+			targetscheme="enemy_heroes"
+			ignoreinvulnerable="true"
+		> 
+			<condition test="not_hasstate State_TowerGuardian_Ability3" target="target_entity"/>
+			<else>
+				<condition test="not_hasstate State_TowerMaster_CanAttack" target="target_entity"/>
+				<else>
+					<compare a="accumulator" b="1" op="lt" >
+						<spawnunit name="Gadget_Baldir_Beams_Projectile" target="proxy_position" count="1" proxy="this_proxy_entity" pushentity="true" />
+						<spawnprojectile name="Projectile_TowerGuardian_Ability3" offset="20 200 0" bind="stack_entity" source="this_proxy_position" owner="this_owner_entity" target="target_entity" proxy="stack_entity" />
+						<playeffect effect="effects/beam_1.effect" target="stack_entity" source="this_proxy_entity" />
+						<changeaccumulator b="1" op="add" />
+					</compare>
+				</else>
+			</else>
+		</areaofeffect>
+	</onexpired>
+</gadget>

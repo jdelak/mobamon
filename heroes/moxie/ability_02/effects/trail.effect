@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="false">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2000"
+				volume="1"
+				fadeout="2000"
+				sample="../sounds/ability_2.wav"
+			/>
+			
+			
+			
+			<model
+				position="0 25 20"
+				expirelife="250"
+				anim="idle"
+				model="/shared/effects/models/circle_of_bones/model.mdf"
+				scale="1"
+				alpha="0"
+				rollspeed="750"
+			>
+					<trailemitter
+						bone="_bone_fx_01"
+						spawnrate="75"
+						particlelife="750"
+						texpostime="750"
+						texposscale="1"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/twine.material"
+						startparticlealpha="1"
+						endparticlealpha="0"
+					>
+						<particle
+							color="1 1 1"
+							size="12"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".5"
+					 />
+					</trailemitter>	
+<!--
+					<trailemitter
+					delay="100"
+						bone="_bone_fx_04"
+						spawnrate="75"
+						particlelife="1000"
+						texpostime="100"
+						texposscale="1"
+						texstretchscale="1"
+						position="0 0 0"
+						material="/shared/effects/smaterials/twine.material"
+					>
+						<particle
+							color="1 1 1"
+							size="15"
+							midsizepos=".5"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".25"
+					 />
+					</trailemitter>	
+-->
+					
+			</model>
+			
+			
+			
+
+			<simpleemitter
+			position="0 20 0"
+				spawnrate="20"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				offsetsphere="12 12 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+					position="12 0 0"
+						bone="_bone_root"
+						life="450"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						minsize="30"
+						maxsize="45"
+						color="1 1 1"
+						startalpha=".85"
+						endalpha="0"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+					
+					<groundsprite
+					position="-12 0 0"
+						bone="_bone_root"
+						life="450"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						minsize="30"
+						maxsize="45"
+						color="1 1 1"
+						startalpha=".85"
+						endalpha="0"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="15"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				offsetsphere="25 0 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+						position="0 0 0"
+						life="250"
+						material="/shared/effects/smaterials/earth_cracks_add_blue.material"
+						minsize="75"
+						maxsize="125"
+						startcolor=".5 .5 1"
+						midcolor=".5 .5 1"
+						endcolor="0 0 0"
+						minyaw="0"
+						maxyaw="360"
+						startframe="1"
+						endframe=".001"
+					/>
+<!--
+					<billboard
+						position="0 0 5"
+						life="250"
+						material="/shared/effects/materials/whitedot.material"
+						minsize="75"
+						maxsize="150"
+						startcolor="0 .4 1"
+						midcolor="0 .4 1"
+						endcolor="0 0 0"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-35"
+					/>
+-->
+
+				</particle>
+			</simpleemitter>
+	
+<!--
+			<simpleemitter
+				delay="200"
+				life="200"
+				spawnrate="20"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+						bone="_bone_root"
+						life="750"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						size="70"
+						color="1 1 1"
+						startalpha=".85"
+						endalpha="0"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<simpleemitter
+				delay="400"
+				spawnrate="15"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+						bone="_bone_root"
+						life="750"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						size="85"
+						color="1 1 1"
+						startalpha=".85"
+						endalpha="0"
+						directionalspace="local"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+
+
+			<billboard
+				expirelife="250"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .2 .5"
+				scale="4"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="50"
+			/>
+
+			<model			
+				model="yarn/model.mdf"
+				anim="idle"
+				scale="5.5"
+				color="2 2 1.5"
+				pitchspeed="-720"
+			/>
+
+			<light
+				position="0 0 20"
+				life="500"
+				startcolor="0 3 10"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="150"	
+			/>
+
+			<simpleemitter
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 20 0"
+						material="/shared/effects/smaterials/lightning.material"
+						life="100"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						minscale=".6"
+						maxscale="1.2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 20 0"
+						material="/shared/effects/smaterials/lightning.material"
+						life="100"
+						startcolor="1 1 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						minscale=".6"
+						maxscale="1.2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="100"
+				offsetsphere="15 15 40"
+			>
+				<particle
+				>
+					<billboard
+						position="0 20 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						scale=".6"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="0"
+					/>
+					
+					<billboard
+						position="20 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						scale=".85"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="180"
+						framespeed="20"
+						depthbias="0"
+					/>
+					
+					<billboard
+						position="-20 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						scale=".85"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="0"
+						framespeed="20"
+						depthbias="0"
+					/>
+
+					<billboard
+						position="0 -20 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="0 .5 1"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						scale=".75"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="-90"
+						framespeed="20"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="8"
+				offsetsphere="25 25 25"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						life="50"
+						color="0 0 1"
+						scale="5"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="-35"
+					/>
+					
+					<billboard
+						life="50"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						color=".5 .5 .5"
+						scale="2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="-35"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/flare.material"
+						life="50"
+						color="0 .5 1"
+						scale="5"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="75"
+						width="10"
+						depthbias="-35"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/ring_half.material"
+						life="50"
+						color="0 .5 1"
+						startscale="5"
+						endscale="2.5"
+						midscalepos=".55"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="50"
+						width="10"
+						depthbias="-35"
+					/>
+				</particle>
+			</simpleemitter>
+<!--
+			<simpleemitter
+				position="0 25 0"
+				spawnrate="14"
+				particlelife="2000"
+				offsetsphere="50 0 0"
+				minspeed="0"
+				maxspeed="200"
+			>
+				<particle
+				>
+					<model
+						position="0 0 -35"
+						minlife="450"
+						maxlife="700"
+						name="emitter0" 
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						minscale=".15"
+						maxscale=".185"
+						color="1.8 1.7 1.6"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<wait duration="20000"/>
+	</thread>
+
+</effect>

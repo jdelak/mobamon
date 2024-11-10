@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		<modifier
+			expirelife="250"
+			startcolor=".65"
+			endcolor="1 1 1"
+			alpha="1"
+		/>
+
+		<particlesystem name="system0" space="world" scale=".85">
+<!--
+			<simpleemitter
+				count="10"
+				spawnrate="12"
+				particlelife="3000"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 1 0"
+			>
+				<particle
+					turn="true"
+				>
+					<model
+						delay="100"
+						position="0 35 0"
+						startscale="1"
+						endscale="1"
+						life="200"
+						model="../../model.mdf"
+						anim="ability_4"
+						color="1 .7 .35"
+						startalpha=".65"
+						endalpha="0"
+						midalphapos=".75"
+					/>
+
+					<model
+						delay="100"
+						position="0 0 0"
+						startscale="1.1"
+						endscale="1.1"
+						life="200"
+						model="../../model.mdf"
+						material="/shared/effects/materials/shell2.material"
+						anim="ability_4"
+						startcolor=".7 .35 0"
+						midcolor="0 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+					/>
+
+				</particle>
+			</simpleemitter>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			<template name="smoke">
+				<terrainemitter
+					bone="{zbone}"
+					spawnrate="200"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="-25"
+					minspeed="200"
+					maxspeed="400"
+					drag="0.025"
+					acceleration="0.0"
+					position="{zpos}"
+					direction="0 0 0"
+					offsetsphere="12 12 0"
+					particledirectionalspace="local"
+					material="/shared/effects/smaterials/cartoon_dust.material"	
+					depthbias="0"
+				>
+					<particle
+						minangle="-180"
+						maxangle="180"
+						minanglespeed="-150"
+						maxanglespeed="150"
+						startcolor="1 .75 .5"
+						midcolor=".35 .25 .125"
+						endcolor=".35 .25 .125"
+						midcolorpos=".75"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+				</terrainemitter>
+			</template>
+
+			<instance name="smoke" zbone="_bone_leftfoot" zpos="20 0 0"/>
+			<instance name="smoke" zbone="_bone_rightfoot" zpos="-20 0 0"/>
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+
+
+
+			
+
+			
+			
+			
+			
+			
+			
+			
+
+
+			<simpleemitter
+				delay="0"
+				count="25"
+				position="25 100 25"
+				spawnrate="16"
+				particlelife="750"
+				speed="0"
+				offsetsphere="20 0 20"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 50"
+						life="250"
+						material="/shared/effects/smaterials/animated_cloud_swirls.material"
+						startsize="100"
+						minendsize="150"
+						maxendsize="200"
+						startcolor="1 1 0"
+						midcolor="1 0 0"
+						endcolor="0"
+						midcolorpos=".75"
+						directionalspace="local"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						minroll="190"
+						maxroll="250"
+						yaw="180"
+						startframe="0"
+						endframe="1"
+						framespeed="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="0"
+				count="25"
+				position="-25 100 25"
+				spawnrate="13"
+				particlelife="750"
+				speed="0"
+				offsetsphere="20 0 20"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 50"
+						life="250"
+						material="/shared/effects/smaterials/animated_cloud_swirls.material"
+						startsize="100"
+						minendsize="150"
+						maxendsize="200"
+						startcolor="1 1 0"
+						midcolor="1 0 0"
+						endcolor="0"
+						midcolorpos=".75"
+						directionalspace="local"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						minroll="-100"
+						maxroll="-140"
+						startframe="0"
+						endframe="1"
+						framespeed="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+
+
+	
+
+
+
+			<billboard
+				expirelife="250"
+				position="0 40 25"
+				material="/shared/effects/smaterials/whitedot.material"
+				color=".25 0 0"
+				scale="4"
+				directionalspace="local"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				roll="90"
+				depthbias="-50"
+			/>
+
+			<light
+				position="0 40 25"
+				life="1000"
+				startcolor="10 2 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="150"	
+			/>
+
+			<simpleemitter
+				position="0 40 25"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/lightning.material"
+						life="100"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						minscale=".6"
+						maxscale="1.2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 40 25"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/lightning.material"
+						life="100"
+						startcolor="1 1 1"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						minscale=".6"
+						maxscale="1.2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			<simpleemitter
+				position="0 40 25"
+				particlelife="1000"
+				spawnrate="100"
+				offsetsphere="15 15 40"
+			>
+				<particle
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						scale=".6"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="-50"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						scale=".85"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="180"
+						framespeed="20"
+						depthbias="-50"
+					/>
+					
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						scale=".85"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="0"
+						framespeed="20"
+						depthbias="-50"
+					/>
+
+					
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="100"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						scale=".75"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="-90"
+						framespeed="20"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				position="0 40 25"
+				particlelife="1000"
+				spawnrate="8"
+				offsetsphere="25 25 25"
+			>
+				<particle
+					turn="1"
+				>
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						life="50"
+						color="1 0 0"
+						scale="5"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="-50"
+					/>
+					
+					<billboard
+						life="50"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						color=".5 .4 .3"
+						scale="2"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="-50"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/flare.material"
+						life="50"
+						color="1 .5 0"
+						scale="5"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="75"
+						width="10"
+						depthbias="-50"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/ring_half.material"
+						life="50"
+						color="1 .5 0"
+						startscale="5"
+						endscale="2.5"
+						midscalepos=".55"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="50"
+						width="10"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				position="0 0 0"
+				spawnrate="15"
+				particlelife="2000"
+				offsetsphere="50 0 0"
+				minspeed="50"
+				maxspeed="200"
+			>
+				<particle
+				>
+					<model
+						position="0 0 -35"
+						minlife="450"
+						maxlife="700"
+						name="emitter0" 
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						minscale=".185"
+						maxscale=".25"
+						color="1.75 1.5 1.25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".75"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+
+
+
+
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<camerashake2 scale="8" radius="1200" duration="850" frequency="22"/>
+		<spawnmodifier instance="instance1"/>
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/> 
+	</thread>
+
+</effect>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+
+			<!-- sound here. -->
+			<sound
+				delay="0"
+				sound2d="true"
+				sample="/shared/sounds/ui/levelup_Account_%.wav"
+			/>		
+		
+		
+		
+			<simpleemitter					
+				delay="300"
+				spawnrate="41"
+				count="20"
+				bone="_bone_coins"
+				particlelife="1200"
+				minspeed="130"
+				maxspeed="140"
+				position="0 0 0"
+				offsetsphere="410 0 0"
+				gravity="31"
+				material="/shared/effects/materials/silvercoin.material"	
+			>
+				<particle
+					minyawspeed="-40"
+					maxyawspeed="40"
+					
+					minrollspeed="-40"
+					maxrollspeed="40"
+					
+					minpitchspeed="-40"
+					maxpitchspeed="40"
+					
+					minanglespeed="-40"
+					maxanglespeed="40"
+					startalpha="1"
+					midalpha=".8"
+					endalpha="0"
+					size="40"
+		
+				>	
+	
+				</particle>							
+			</simpleemitter>
+
+
+
+
+
+
+			<simpleemitter					
+				delay="800"
+				spawnrate="341"
+				count="40"
+				bone="_bone_end"
+				particlelife="500"
+				minspeed="230"
+				maxspeed="440"
+				drag=".01"
+				position="0 0 0"
+				offsetsphere="0 100 0"
+				gravity="31"
+				material="/shared/effects/materials/whitedot.material"	
+			>
+				<particle
+					minyawspeed="-40"
+					maxyawspeed="40"
+					
+					minrollspeed="-40"
+					maxrollspeed="40"
+					
+					minpitchspeed="-40"
+					maxpitchspeed="40"
+					
+					minanglespeed="-40"
+					maxanglespeed="40"
+					
+					startcolor=".5 .3 .5"
+					endcolor="0 0 0"
+					
+					
+					
+					startsize="140"
+					endsize="0"
+		
+				>		
+				</particle>							
+			</simpleemitter>
+
+
+			
+			<template name="letter1">
+				<billboard
+					delay="{delay}"
+					bone="{bone}"
+					startcolor=".8 .5 1"
+					midcolor=".4 0 .4"
+					endcolor="0 0 0"
+					size="135"
+					minscale="2.75"
+					maxscale="3.0"
+					life="300"
+					material="/shared/effects/materials/whitedot.material"		
+					position="0 0 0"
+					depthbias="-100"
+				/>	
+				
+				<billboard
+					delay="{delay}"
+					bone="{bone}"
+					color=".5 .1 .5"
+					
+					size="100"
+					minscale="2.0"
+					maxscale="2.0"
+					width="200"
+					material="/shared/effects/materials/whitedot.material"		
+					position="0 00 0"
+					depthbias="100"
+				/>					
+				
+			</template>
+			<instance name="letter1" delay="890" bone="Box001"/>
+			<instance name="letter1" delay="920" bone="Box002"/>
+			<instance name="letter1" delay="950" bone="Box003"/>			
+			<instance name="letter1" delay="990" bone="Box004"/>			
+			<instance name="letter1" delay="1020" bone="Box005"/>
+			<instance name="letter1" delay="1090" bone="Box006"/>
+			<instance name="letter1" delay="1100" bone="Box007"/>			
+			<instance name="letter1" delay="1130" bone="Box008"/>	
+
+			
+			
+			
+			<simpleemitter		
+				delay="200"
+				bone="_bone_arrow"			
+				spawnrate="41"
+				life="1000"
+				particlelife="1500"
+				minspeed="30"
+				maxspeed="40"
+				position="0 0 0"
+				offsetsphere="0 0 20"
+				gravity="0"
+				material="/shared/effects/materials/whitedot.material"	
+			>
+				<particle
+					turn="1"
+					
+					minanglespeed="-40"
+					maxanglespeed="40"
+					startcolor=".1 .0 .1"
+					endcolor="0 0 0 "
+					startsize="311"
+					endsize="0"
+		
+				>	
+	
+				</particle>							
+			</simpleemitter>	
+
+
+			<simpleemitter	
+				delay="200"			
+				bone="_bone_arrow"			
+				spawnrate="111"
+				life="1000"
+				particlelife="700"
+				minspeed="0"
+				maxspeed="0"
+				position="0 0 0"
+				offsetsphere="7 7 7"
+				gravity="0"
+				material="/shared/effects/materials/whitedot.material"	
+			>
+				<particle
+					turn="1"
+					
+					minanglespeed="-40"
+					maxanglespeed="40"
+					startcolor=".2 .2 .2"
+					midcolor=".2"
+					endcolor="0 0 0 "
+					startsize="115"
+					endsize="33"
+		
+				>	
+	
+				</particle>							
+			</simpleemitter>
+
+			
+	</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

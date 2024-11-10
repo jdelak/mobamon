@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="world"  scale="1">
+			
+			<simpleemitter
+				count="1"
+				life="1000"
+				spawnrate="2000"
+				minparticlelife="100"
+				maxparticlelife="250"
+				position="0 0 0"
+				offsetsphere="0 0 "
+			>
+				<particle 
+				>
+
+					<light
+						startcolor="2 1 1"
+						endcolor="0 0 0"
+						falloffstart="00"
+						falloffend="640"
+						position="0 0 50"
+						life="1000"
+					/>
+
+					<billboard
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor=".125 .06 0"
+						endcolor="0 0 0"
+						life="250"
+						position="0 0 25"
+						startsize="150"
+						endsize="500"
+						depthbias="-150"
+					/>
+					
+					<billboard
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor=".125 .06 0"
+						endcolor="0 0 0"
+						life="250"
+						position="0 0 25"
+						startsize="150"
+						endsize="500"
+						depthbias="-150"
+					/>
+					
+					<billboard
+						material="/shared/effects/smaterials/bulb_add.material"
+						startcolor=".125 .06 0"
+						endcolor="0 0 0"
+						life="250"
+						position="0 0 25"
+						startsize="150"
+						endsize="500"
+						depthbias="-150"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				count="100"
+				position="0 0 35"
+				spawnrate="1000"			
+				minparticlelife="150"
+				maxparticlelife="300"
+				gravity="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="90"
+				minspeed="500"				
+				maxspeed="500"				
+			>
+				<particle
+					turn="true"
+					minsize="175"								
+					maxsize="350"								
+					startcolor=".5"
+					midcolor=".5 .25 0"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					lockup="true"
+					lockright="true"
+					pitch="-90"
+					minwidth="3"
+					maxwidth="10"
+				/>
+			</simpleemitter>
+-->
+
+			<simpleemitter
+				position="0 0 35"
+				count="50"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="750"
+				maxspeed="2000"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort=".05"
+					endheightdistort="0"
+					startsize="6"
+					endsize="6"
+					startcolor=".5 .25 0"
+					midcolor=".5 .25 0"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="flashes">
+				<simpleemitter
+					delay="{zdelay}"
+					count="5"
+					spawnrate="1055"
+					particlelife="100"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0.0"
+					timenudge="0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+					depthbias="0"
+				>
+					<particle
+						color=".5 .25 0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						startscale="75"
+						endscale="150"
+						turn="true"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flashes" zpos="0 0 40" zdelay="150"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<camerashake2 scale="2" radius="1000" duration="750" frequency="22" />
+		<wait duration="750"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

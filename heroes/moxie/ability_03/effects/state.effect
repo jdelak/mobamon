@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1" deferred="true">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+
+			<light
+				bone="_bone_overhead"
+				position="0 0 25"
+				expirelife="500"
+				startcolor="0 2 5"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="0"
+				falloffend="150"	
+			/>
+<!--
+			<template name="">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="15"
+					particlelife="1000"
+					minangle="0"
+					maxangle="1"
+					direction="0 1 0"
+					offsetsphere="25 0 0"
+				>
+					<particle
+						turn="1"
+					>	
+						<groundsprite
+							position="0 0 0"
+							minlife="250"
+							maxlife="500"
+							material="/shared/effects/smaterials/earth_cracks_add_blue.material"
+							minsize="75"
+							maxsize="125"
+							startcolor=".5 .5 1"
+							midcolor=".5 .5 1"
+							endcolor="0 0 0"
+							minyaw="0"
+							maxyaw="360"
+							startframe="1"
+							endframe=".001"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<billboard
+					bone="{zbone}"
+					expirelife="250"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					color="0 .15 .5"
+					scale="5"
+					directionalspace="world"
+					lockright="1"
+					lockup="1"
+					pitch="90"
+					depthbias="50"
+				/>
+
+				<simpleemitter
+					bone="{zbone}"
+					position="0 0 0"
+					particlelife="1000"
+					spawnrate="75"
+					offsetsphere="50 50 50"
+				>
+					<particle
+						turn="1"
+					>
+						<billboard
+							bone="{zbone}"
+							position="0 20 0"
+							material="/shared/effects/smaterials/lightning.material"
+							life="100"
+							startcolor="0 .5 1"
+							midcolor="0 .5 1"
+							endcolor="0 0 0"
+							minscale=".6"
+							maxscale="1.2"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="90"
+							framespeed="20"
+							depthbias="0"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					position="0 0 0"
+					particlelife="1000"
+					spawnrate="50"
+					offsetsphere="50 50 50"
+				>
+					<particle
+						turn="1"
+					>
+						<billboard
+							bone="{zbone}"
+							position="0 20 0"
+							material="/shared/effects/smaterials/lightning.material"
+							life="100"
+							startcolor="1 1 1"
+							midcolor="0 .5 1"
+							endcolor="0 0 0"
+							minscale=".6"
+							maxscale="1.2"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="90"
+							framespeed="20"
+							depthbias="0"
+						/>
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					position="0 0 0"
+					particlelife="1000"
+					spawnrate="100"
+					offsetsphere="15 15 40"
+				>
+					<particle
+					>
+					
+						<billboard
+							bone="{zbone}"
+							position="0 20 0"
+							material="/shared/effects/smaterials/animated_lightning.material"
+							life="100"
+							startcolor="0 .25 1"
+							midcolor="0 .25 1"
+							endcolor="0 0 0"
+							scale=".6"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="90"
+							framespeed="20"
+							depthbias="0"
+						/>
+						
+						<billboard
+							bone="{zbone}"
+							position="20 0 0"
+							material="/shared/effects/smaterials/animated_lightning.material"
+							life="100"
+							startcolor="0 .25 1"
+							midcolor="0 .25 1"
+							endcolor="0 0 0"
+							scale=".85"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="180"
+							framespeed="20"
+							depthbias="0"
+						/>
+						
+						<billboard
+							bone="{zbone}"
+							position="-20 0 0"
+							material="/shared/effects/smaterials/animated_lightning.material"
+							life="100"
+							startcolor="0 .25 1"
+							midcolor="0 .25 1"
+							endcolor="0 0 0"
+							scale=".85"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="0"
+							framespeed="20"
+							depthbias="0"
+						/>
+
+						<billboard
+							bone="{zbone}"
+							position="0 -20 0"
+							material="/shared/effects/smaterials/animated_lightning.material"
+							life="100"
+							startcolor="0 .25 1"
+							midcolor="0 .25 1"
+							endcolor="0 0 0"
+							scale=".75"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="-90"
+							framespeed="20"
+							depthbias="0"
+						/>
+						
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					bone="{zbone}"
+					position="0 0 0"
+					particlelife="1000"
+					spawnrate="8"
+					offsetsphere="25 25 25"
+				>
+					<particle
+						turn="1"
+					>
+						<billboard
+							bone="{zbone}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							life="50"
+							color="0 0 1"
+							scale="5"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="90"
+							depthbias="-35"
+						/>
+
+						<billboard
+							bone="{zbone}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/flare.material"
+							life="50"
+							color="0 .5 1"
+							scale="5"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="90"
+							height="75"
+							width="10"
+							depthbias="-35"
+						/>
+
+						<billboard
+							bone="{zbone}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/ring_half.material"
+							life="50"
+							color="0 .5 1"
+							startscale="5"
+							endscale="2.5"
+							midscalepos=".55"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+							roll="90"
+							height="50"
+							width="10"
+							depthbias="-35"
+						/>
+
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zbone="_bone_centerofchest"/>
+-->
+
+			
+			
+			
+			
+			
+			
+			
+
+
+
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="25"
+				offsetsphere="15 15 40"
+			>
+				<particle
+				turn="true"
+				>
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 20 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="200"
+						startcolor="1 1 1"
+						endcolor="0 .35 1"
+						scale=".6"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						framespeed="20"
+						depthbias="0"
+					/>
+					
+					<billboard
+						bone="_bone_centerofchest"
+						position="20 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="200"
+						startcolor="1 1 1"
+						endcolor="0 .35 1"
+						scale=".85"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="180"
+						framespeed="20"
+						depthbias="0"
+					/>
+					
+					<billboard
+						bone="_bone_centerofchest"
+						position="-20 0 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="200"
+						startcolor="1 1 1"
+						endcolor="0 .35 1"
+						scale=".85"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="0"
+						framespeed="20"
+						depthbias="0"
+					/>
+
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 -20 0"
+						material="/shared/effects/smaterials/animated_lightning.material"
+						life="200"
+						startcolor="1 1 1"
+						endcolor="0 .35 1"
+						scale=".75"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="-90"
+						framespeed="20"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="8"
+				offsetsphere="25 25 25"
+			>
+				<particle
+					turn="1"
+				>
+
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 0 0"
+						material="/shared/effects/smaterials/ring_half.material"
+						life="50"
+						color="0 .5 1"
+						startscale="5"
+						endscale="2.5"
+						midscalepos=".55"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="50"
+						width="10"
+						depthbias="-35"
+					/>
+
+				</particle>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				spawnrate="50"
+				bone="_bone_centerofchest"
+				minparticlelife="250"
+				maxparticlelife="750"
+				minspeed="0"
+				maxspeed="75"
+				offsetsphere="0"
+				direction="0 0 0"
+			>
+				<particle
+					turn="1"
+				>
+
+					<billboard
+						bone="_bone_centerofchest"
+						position="0 0 0"
+						material="/shared/effects/smaterials/ring_half.material"
+						minlife="350"
+						maxlife="700"
+						startcolor="0 0 0"
+						midcolor="0 .5 1"
+						endcolor="0 .15 .5"
+						minstartscale="4"
+						maxstartscale="6"
+						midscale="2"
+						endscale="0"
+						midscalepos=".55"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="50"
+						width="10"
+						depthbias="0"
+					/>
+
+				</particle>
+
+			</simpleemitter>	
+			
+			
+			
+			
+			
+			<template name="smoke">
+
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="750"
+					maxparticlelife="750"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-25"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="0 .025 .025"
+						midcolor="0 .015 .05"
+						endcolor="0 0 0"
+						startsize="150"
+
+						endsize="0"
+					/>
+				</simpleemitter>
+<!--
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="100"
+					minparticlelife="250"
+					maxparticlelife="500"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="35"
+					offsetsphere="25"
+					minspeed="0"
+					maxspeed="50"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="0 .5 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minsize="1.5"
+						maxsize="3"
+					/>
+				</simpleemitter>
+-->
+			</template>
+
+
+			<instance name="smoke" zbone="_bone_centerofchest" zpos="0 0 0"/>
+			<instance name="smoke" zbone="_bone_centerofchest" zpos="0 0 -25"/>
+			
+			
+			
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<wait duration="20000"/>
+	</thread>
+
+</effect>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Zaku_Ability4"
+
+	passiveeffect="effects/state_ally.effect"
+	
+	icon="icon.tga"
+	
+	effecttype="StatusBuff Assist ZakuUlt"
+
+	
+>
+
+	<ondeath>
+		<protecteddeath target="source_entity" />
+		<playeffect effect="effects/state_ally_death.effect" source="source_position" target="" occlude="true"/>
+		<spawnaffector name="Affector_Zaku_Ability4" target="source_position" duration="4000" occlude="true"/>
+		<setrespawntime target="source_entity" a="2000" />
+		<applystate name="State_Zaku_Ability4_ResEffects" duration="4000" target="source_entity" />
+		<setrespawnposition target="source_entity" position="source_position" />
+		<getconstant name="percent_hp_mana" />
+		<setvar0 a="result" b="100" op="div" />
+		<setrespawnhealthmultiplier target="source_entity" value="var0" />
+		<setrespawnmanamultiplier target="source_entity" value="var0" />
+
+
+
+		<setaccumulator value="0" />
+		<areaofeffect
+			radius="1500"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			maxtotalimpacts="3"
+			effecttype=""
+		>
+		</areaofeffect>
+		<setvar0 a="result" />
+
+
+		<compare a="var0" b="1" op="eq">
+			<areaofeffect
+				radius="1500"
+				targetselection="closest"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="1"
+				effecttype="Magic"
+			>
+
+				<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+				<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+
+
+				<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="-100 -100 0" proxy="target_entity" />
+				<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+
+				<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="100 -100 0" proxy="target_entity" />
+				<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+			</areaofeffect>
+		</compare>
+		
+		<compare a="var0" b="2" op="eq">
+			<areaofeffect
+				radius="1500"
+				targetselection="closest"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="2"
+				maximpactspertarget="1"
+				effecttype="Magic"
+			>
+				<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+				<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+			</areaofeffect>
+
+			<areaofeffect
+				radius="1500"
+				targetselection="closest"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="1"
+				maximpactspertarget="1"
+				effecttype="Magic"
+			>
+				<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+				<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+			</areaofeffect>
+		</compare>
+
+		<compare a="var0" b="3" op="eq">
+			<areaofeffect
+				radius="1500"
+				targetselection="closest"
+				targetscheme="visible_enemy_heroes"
+				maxtotalimpacts="3"
+				maximpactspertarget="1"
+				effecttype="Magic"
+			>
+				<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+				<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+			</areaofeffect>
+		</compare>
+
+		<!-- if no heroes hit, target anything -->
+
+		<compare a="var0" b="0" op="eq">
+			<areaofeffect
+				radius="1500"
+				targetselection="closest"
+				targetscheme="visible_enemy_units"
+				maxtotalimpacts="3"
+				effecttype=""
+			>
+			</areaofeffect>
+			<setvar0 a="result" />
+
+			<compare a="var0" b="1" op="eq">
+				<areaofeffect
+					radius="1500"
+					targetselection="closest"
+					targetscheme="visible_enemy_units"
+					maxtotalimpacts="1"
+					effecttype="Magic"
+				>
+
+					<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+					<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+
+
+					<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="-100 -100 0" proxy="target_entity" />
+					<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+
+					<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="100 -100 0" proxy="target_entity" />
+					<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+				</areaofeffect>
+			</compare>
+			
+			<compare a="var0" b="2" op="eq">
+				<areaofeffect
+					radius="1500"
+					targetselection="closest"
+					targetscheme="visible_enemy_units"
+					maxtotalimpacts="2"
+					maximpactspertarget="1"
+					effecttype="Magic"
+				>
+					<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+					<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+				</areaofeffect>
+
+				<areaofeffect
+					radius="1500"
+					targetselection="closest"
+					targetscheme="visible_enemy_units"
+					maxtotalimpacts="1"
+					maximpactspertarget="1"
+					effecttype="Magic"
+				>
+					<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+					<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+				</areaofeffect>
+			</compare>
+
+			<compare a="var0" b="3" op="eq">
+				<areaofeffect
+					radius="1500"
+					targetselection="closest"
+					targetscheme="visible_enemy_units"
+					maxtotalimpacts="3"
+					maximpactspertarget="1"
+					effecttype="Magic"
+				>
+					<spawnunit name="Pet_Zaku_Ability4" pushentity="true" target="source_position" offset="0 100 0" proxy="target_entity" />
+					<applystate name="State_Zaku_Ability4_HP" target="stack_entity" continuous="true" />
+				</areaofeffect>
+			</compare>
+		</compare>
+
+	</ondeath>
+</state>

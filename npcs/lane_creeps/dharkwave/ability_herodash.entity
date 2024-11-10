@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_DharkwaveHeroDash"
+	
+	
+	casttime="200"
+	castactiontime="100"
+	casteffect=""
+
+	actiontype="target_entity"
+	targetscheme="enemy_units"
+	casteffecttype="Magic"
+	anim="ability_1"
+	
+	manacost="0"
+	cooldowntime="2000"
+	range="600"	
+>
+	<onattackimpact>
+		<setaccumulator value="0" />
+	</onattackimpact>
+
+	<onimpact>
+		<applystate name="State_DharkwaveDash" target="target_entity" duration="7000" />
+		<spawnprojectile name="Projectile_HeroDash" homing="true" source="source_entity" target="target_position" bind="source_entity" noresponse="true" bindturn="true" unbindondeath="true" bindpriority="1" bindstate="State_DharkwaveDashStun" proxy="target_entity" />
+		<order command="attack" source="source_entity" target="target_entity" queue="front" duration="5000" />
+	</onimpact>
+
+	<onframe>
+		<canactivate>
+			<areaofeffect
+				radius="600"
+				targetselection="closest"
+				targetscheme="enemy_heroes"
+				center="this_owner_entity"
+			>
+				<condition test="not_hasstate State_DharkwaveDash" target="target_entity" >
+					<useability source="this_owner_entity" target="target_entity" slot="0" />
+				</condition>
+			</areaofeffect>
+		</canactivate>
+	</onframe>
+	
+</ability>

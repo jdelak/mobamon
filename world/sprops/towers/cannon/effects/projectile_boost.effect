@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1.1">
+		
+		
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+				
+					<light
+					position="0 0 0"
+						life="500"
+						startcolor="5 1.5 0"
+						endcolor="0"
+						falloffstart="0"
+						falloffend="500"
+					/>
+					
+					<billboard
+						life="500"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="1 .5 0"
+						endcolor="0"
+						position="0 0 0"
+						size="300"
+						depthbias="-50"
+					/>
+				
+				</particle>
+			</simpleemitter>
+		
+		
+		
+		
+
+			<simpleemitter
+				spawnrate="250"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="200"
+				maxspeed="500"
+				position="0 -25 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				minangle="0"
+				maxangle="5"
+				direction="0 1 0"
+				depthbias="50"
+				offsetsphere="15 15 15"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=".5 .4 .2"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					startframe="0"
+					endframe="1"
+					startsize="50"
+					minendsize="0"
+					maxendsize="20"
+					startalpha="1"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".15"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="250"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="200"
+				maxspeed="500"
+				position="0 -25 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="5"
+				direction="0 1 0"
+				depthbias="25"
+				offsetsphere="20 20 20"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=".2 .05 0"
+					midcolor=".05 0 0"
+					endcolor="0 0 0"
+					startsize="100"
+					minendsize="0"
+					maxendsize="75"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			
+
+			<model
+				model="ball/model.mdf"
+				anim="idle"
+				yawspeed="0"
+				scale="1.2"
+				startalpha="1"
+				position="0.0 0.0 0.0"
+				directionalspace="local"
+			>
+				<billboard
+					expirelife="250"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="1 0 0"
+					endcolor="0"
+					position="0 0 0"
+					size="110"
+					depthbias="50"
+				/>
+			</model>
+
+			
+			
+
+			<simpleemitter
+				spawnrate="150"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="0"
+				maxspeed="50"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				direction="0 0 0"
+				offsetsphere="35"
+			>
+				<particle 
+					startcolor="1 .75 .25"
+					midcolor="1 .25 0"
+					endcolor="0 0 0"
+					minsize="5"
+					maxsize="8"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			<trailemitter
+				life="1000"
+				spawnrate="50"
+				particlelife="600"
+				texpostime="600"
+				texposscale="0"
+				texstretchscale="1"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					startcolor="1 .25 0"
+					midcolor="1 .25 0"
+					endcolor="0 0 0"
+					size="50"
+					midcolorpos=".05"
+					midsizepos=".1"
+				/>
+			</trailemitter>
+			
+			
+			
+			
+			
+<!--
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".5 .1 0"
+				endcolor="0"
+				position="0 0 0"
+				size="125"
+				height="200"
+				width="75"
+				directionalspace="local"
+			/>
+			
+			<groundsprite
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor=".125 .06 0"
+				endcolor="0"
+				position="0 0 0"
+				size="70"
+			/>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

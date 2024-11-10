@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<include file="/ui_dev/chat/main_chat_templates.package"/>
+	
+	<sizingframe name="clans_window_parent" visible="1" align="left" width="100%" height="100%" noclick="0" constraintoparent="1"
+		canmove="1" minwidth="340s" maxwidth="1980s" minheight="200s" maxheight="1210s" window="true" color="#071114"
+	>
+		
+		<panel width="-16s" height="-16s" align="center" valign="center" noclick="1">
+			<frame texture="/ui/elements:rounded_bg_solid" color="#060b0d" bordercolor="#060b0d" borderthickness="6s" noclick="1"/>			
+			<frame texture="/ui/elements:roundframe" color="#040809" borderthickness="6s"/>
+		
+			<panel noclick="1" name="clans_window_parent_left_container" visible="1" width="100%" align="left"
+			>
+				<!-- Chat Buffer -->
+				<panel name="clans_window_buffer" noclick="true" y="52s" height="-80s">
+					<chatoutputbuffer
+						name="clans_window_output"
+						group="main_chat_channel_outputbuffers"
+						valign="top"
+						textcolor="#f8f8f2"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/shared/textures/new_slider.tga"
+						indent="32"
+						paddingleft="4s"
+						paddingright="4s"
+						paddingbottom="4s"
+						paddingtop="4s"
+						shadow="true"
+						outline="false"
+						shadowoffset="1"
+						oninstantiatelua=""
+						scrollbarsize="14s"				
+						maxhandleheight="128s"
+						handlewidth="14s"
+						minhandlesize="128s"
+						maxhandlesize="128s"
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"			
+						onmouseoutlua=""
+						onupdate=""
+						oldmessagedarkfactor="0.7"
+						onclicklua=""
+						onmouseldownlua=""
+						onmouseluplua=""
+						onloadlua="self:SetClan()"
+					/>				
+				</panel>
+				
+				<!-- Chat Input -->
+				<frame name="clans_window_frame" texture="/ui/elements:rounded_bg_solid" color="#0c2127" borderthickness="5s" bordercolor="#0c2127" noclick="1" x="4s" y="-6s" height="30s" width="-16s" valign="bottom">
+					<chatinputbuffer
+						name="clans_window_input"
+						x="8s" y="-6s"
+						textcolor="1 1 1 1"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-85s"
+						grow="true"
+						valign="bottom"
+						oninstantiatelua=""
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua=""
+						onsizelua="
+							self:GetWidget('clans_window_buffer'):SetHeight(-(self:GetHeightFromString('76s') + self:GetHeight()))
+							self:GetWidget('clans_window_frame'):SetHeight(self:GetHeightFromString('12s') + self:GetHeight())
+						"
+						onloadlua="self:SetClan()"
+					/>						
+					<instance noclick="0" x="-5s" y="4s" height="25s" valign="top" width="64s" align="right" borderthickness="3s"
+						name="standardButton" id="clans_window_input_btn"
+						label="general_send"
+						font="maindyn_20"
+						onclicklua=""
+					/>						
+				</frame>
+
+			</panel>
+			
+			<panel noclick="1" name="clans_window_parent_right_container" visible="0" width="170s" align="right" >
+				<panel noclick="1" y="-4s" height="-46s" valign="bottom" >
+					<panel x="-6s" width="4s" height="100%" color=".1 .1 .1 1" noclick="1" />
+					<listbox name="clans_window_memberlist_listbox" color="invisible" style="simpleListbox" height="100%" width="-25s"
+						itemheight="36s"
+						scrollbaroffset="5s"
+						select="true"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						exteriorscrollbars="true"
+						scrollbarplaceholder="false"
+						scrolltexture="/ui/shared/textures/new_slider.tga"
+						scrollbarsize="14s"
+						handleheight="128s"
+						hscrollbar="0"
+						horizontal="false"							
+					/>
+				</panel>					
+			</panel>
+			
+			<!-- Header -->
+			<panel height="40s" noclick="1" >
+				<instance name="ChatHeader" />
+				
+				<label name="clans_window_header_label" noclick="1" x="20@" textvalign="center" style="labelBase" font="maindyn_22" color="#cfd3e7" content=""/>
+				
+				<panel visible="1" y="-6s" height="44s" name="clans_window_header_dragger"
+					onloadlua="
+						self:SetCallback('onclick',
+						function(widget, x, y)
+							self:GetWindow():StartDrag(x, y)
+						end)		
+					" 
+					onmouseoverlua="UpdateCursor(self, true, { canLeftClick = true, canRightClick = true, spendGems = false, canDrag = true })"
+					onmouseoutrlua="UpdateCursor(self, false, { canLeftClick = true, canRightClick = true, spendGems = false, canDrag = true })"
+				>		
+				</panel>			
+				
+				<panel noclick="1" align="right" grow="true" growinvis="0" float="right" padding="8s" x="-5s" height="-10s" valign="center">
+					
+					<panel height="100%" noclick="1" width="210s">	
+					
+						<panel name="clans_window_voip_join_button_parent2" visible="0" width="94%" align="center" noclick="1">
+							<instance name="standardButton"
+								id="clans_window_voip_join_button2" 
+								label=""
+								font="maindyn_18" borderthickness="5s" rendermode="grayscale"
+								onclicklua=" "
+							/>						
+							<panel float="right" grow="1" regrow="1" x="4s" y="-2s" height="100%" align="center" noclick="1">
+								<label name="clans_window_voip_join_button_label2" fitx="1" style="labelBase" noclick="1" content="clan_enable_voice" textvalign="center" font="maindyn_18" color="#eff8ff" outlinecolor="0 0 0 .4" />
+								<panel width="100@" height="100%" noclick="1">
+									<image texture="/ui/shared/textures/mic_on.tga" y="1s" width="66@" height="66%" color="1 1 1 1" align="center" valign="center" noclick="1" />
+								</panel>
+							</panel>
+						</panel>
+						
+						<panel name="clans_window_voip_leave_button_parent2" visible="0" width="94%" align="center" noclick="1" >
+							<instance name="standardButton"
+								id="clans_window_voip_leave_button2" 
+								label=""
+								font="maindyn_18" borderthickness="5s" rendermode="grayscale"
+								onclicklua=" "
+							/>						
+							<panel float="right" grow="1" regrow="1" x="4s" y="-2s" height="100%" align="center" noclick="1">
+								<label fitx="1" style="labelBase" noclick="1" content="clan_disable_voice" textvalign="center" font="maindyn_18" color="#eff8ff" outlinecolor="0 0 0 .4" />
+								<panel width="100@" height="100%" noclick="1">
+									<image texture="/ui/shared/textures/mic_off.tga" y="1s" width="66@" height="66%" color="1 1 1 .75" align="center" valign="center" noclick="1" />
+								</panel>
+							</panel>
+						</panel>
+						
+					</panel>					
+					
+					<!-- Memberlist Btn -->
+					<panel width="380@" height="100%" noclick="1">
+						<instance name="standardButton"
+							id="clans_window_memberlist_button" 
+							label=""
+							font="maindyn_22" borderthickness="3s" rendermode="grayscale" height="90%" valign="center"
+						/>						
+						<panel float="right" grow="1" regrow="1" height="100%" align="center" noclick="1">
+							<label fitx="1" fitxpadding="6s" style="labelBase" noclick="1" outline="true" outlinecolor="0 0 0 0.5" content="general_members" textvalign="center" font="maindyn_18" color="#cfd3e7" />
+							<label name="clans_window_member_label" fitx="1" style="labelBase" noclick="1" outline="true" outlinecolor="0 0 0 0.5" content="0" textvalign="center" font="maindyn_18" color="#cfd3e7"/>
+						</panel>
+					</panel>				
+					
+					<instance name="vr" />
+					
+					<instance name="iconButton" id="clans_window_togglemode_button"
+						icon="/ui/main/shared/textures/maximize.tga"
+						x="" width="100@" height="100%" valign="center" align="right" borderthickness="4s" colorized="1" iconsize="66"
+						onclicklua=""
+					/>	
+					
+					<instance name="iconButton" id="clans_window_minimise_button"
+						icon="/ui/main/shared/textures/minimize.tga"
+						x="" width="100@" height="100%" valign="center" align="right" borderthickness="4s" colorized="1" iconsize="66"
+						onclicklua=""
+					/>	
+
+				</panel>
+			</panel>
+
+		</panel>
+		
+		<image noclick="1" height="12s" width="12s" x="-1s" y="-1s" align="right" valign="bottom" texture="/ui/shared/textures/framecontrol_resize.tga" color="1 1 1 .4" />	
+	</sizingframe>	
+	
+	<lua file="/ui/main/clans/clans_window.lua"/>
+	
+</package>

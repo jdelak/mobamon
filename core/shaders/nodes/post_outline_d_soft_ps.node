@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="post_outline_d_soft_ps" novs="true">
+	<parameter name="Sampler" type="sampler2D" default="image" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="Texcoord0" type="float2" source="PostTexcoord0" />
+	<dependency name="Texcoord1" type="float4" source="PostTexcoord1" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+		
+		float4 f4Color = Sampler_texture.Sample(Sampler_sampler, Texcoord0.xy).rgba;
+		float4 f4Color1 = Sampler_texture.Sample(Sampler_sampler, Texcoord1.xy).rgba;
+		float4 f4Color2 = Sampler_texture.Sample(Sampler_sampler, Texcoord1.zw).rgba;
+		
+		Out.rgb = (f4Color.rgb + f4Color1.rgb + f4Color2.rgb) / 3.0f;
+		
+		float fAlpha = f4Color.a - step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		float fAlpha1 = f4Color1.a - step(128.0f / 255.0f, f4Color1.a) * 128.0f / 255.0f;
+		float fAlpha2 = f4Color2.a - step(128.0f / 255.0f, f4Color2.a) * 128.0f / 255.0f;
+		
+		Out.a = (fAlpha + fAlpha1 + fAlpha2) / 3.0f + step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+		
+		float4 f4Color = tex2D(Sampler, Texcoord0.xy).rgba;
+		float4 f4Color1 = tex2D(Sampler, Texcoord1.xy).rgba;
+		float4 f4Color2 = tex2D(Sampler, Texcoord1.zw).rgba;
+		
+		Out.rgb = (f4Color.rgb + f4Color1.rgb + f4Color2.rgb) / 3.0f;
+		
+		float fAlpha = f4Color.a - step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		float fAlpha1 = f4Color1.a - step(128.0f / 255.0f, f4Color1.a) * 128.0f / 255.0f;
+		float fAlpha2 = f4Color2.a - step(128.0f / 255.0f, f4Color2.a) * 128.0f / 255.0f;
+		
+		Out.a = (fAlpha + fAlpha1 + fAlpha2) / 3.0f + step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+		
+		vec4 f4Color = texture2D(Sampler, Texcoord0.xy).rgba;
+		vec4 f4Color1 = texture2D(Sampler, Texcoord1.xy).rgba;
+		vec4 f4Color2 = texture2D(Sampler, Texcoord1.zw).rgba;
+		
+		Out.rgb = (f4Color.rgb + f4Color1.rgb + f4Color2.rgb) / 3.0f;
+		
+		float fAlpha = f4Color.a - step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		float fAlpha1 = f4Color1.a - step(128.0f / 255.0f, f4Color1.a) * 128.0f / 255.0f;
+		float fAlpha2 = f4Color2.a - step(128.0f / 255.0f, f4Color2.a) * 128.0f / 255.0f;
+		
+		Out.a = (fAlpha + fAlpha1 + fAlpha2) / 3.0f + step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+		
+		vec4 f4Color = texture(Sampler, Texcoord0.xy).rgba;
+		vec4 f4Color1 = texture(Sampler, Texcoord1.xy).rgba;
+		vec4 f4Color2 = texture(Sampler, Texcoord1.zw).rgba;
+		
+		Out.rgb = (f4Color.rgb + f4Color1.rgb + f4Color2.rgb) / 3.0f;
+		
+		float fAlpha = f4Color.a - step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		float fAlpha1 = f4Color1.a - step(128.0f / 255.0f, f4Color1.a) * 128.0f / 255.0f;
+		float fAlpha2 = f4Color2.a - step(128.0f / 255.0f, f4Color2.a) * 128.0f / 255.0f;
+		
+		Out.a = (fAlpha + fAlpha1 + fAlpha2) / 3.0f + step(128.0f / 255.0f, f4Color.a) * 128.0f / 255.0f;
+		
+		?>
+	</case>
+</node>

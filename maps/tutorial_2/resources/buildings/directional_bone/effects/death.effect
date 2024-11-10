@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+		
+<!--
+			<light
+				life="1500"
+				startcolor=".5 4 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="112"
+				position="0 0 50"
+			/>
+-->
+			<groundsprite
+				life="2500"
+				bone="_bone_fx_01"
+				position="0 0 50"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+				startcolor="1 1 1"
+				endcolor="0 0 0"
+				height="8"
+				width="75"
+				startalpha=".75"
+				midalpha=".75"
+				endalpha="0"
+			>
+			</groundsprite>
+
+		
+		
+			<template name="blackhole">
+
+				<simpleemitter
+					delay="{zdelay}"
+					life="750"			
+					bone="_bone_fx_01"
+					position="0 0 50"
+					spawnrate="50"
+					minparticlelife="750"
+					maxparticlelife="1000"
+					gravity="0"
+					speed="5"
+					material="/shared/effects/smaterials/twirl_blend.material"
+					direction="0 0 1"
+					depthbias="0"
+					directionalspace="local"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+						startcolor="0 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".5"
+						startalpha="0"
+						midalpha="{zmidalpha}"
+						endalpha="0"
+						midalphapos=".1"
+						maxangle="360"
+						anglespeed="-30"
+						startsize="{zstartsize}"
+						endsize="0"
+						anchor=".8"
+						lockup="1"
+						lockright="1"
+					/>
+
+				</simpleemitter>
+
+			</template>
+
+			<instance name="blackhole" zdelay="0" zstartsize="125" zmidalpha=".5"/>
+			<instance name="blackhole" zdelay="300" zstartsize="100" zmidalpha=".35"/>
+			<instance name="blackhole" zdelay="600" zstartsize="80" zmidalpha=".25"/>
+			<instance name="blackhole" zdelay="900" zstartsize="40" zmidalpha=".15"/>
+			
+
+
+
+
+
+
+			
+
+			<billboard
+			life="4000"
+				bone="_bone_fx_01"
+				position="0 0 50"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .25 0"
+				midcolor="0 .25 0"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				depthbias="-25"
+				size="50"
+				height="50"
+				width="50"
+				lockup="1"
+				lockright="1"
+				pitch="0"
+			>
+			</billboard>
+<!--
+			<simpleemitter
+			life="1200"
+				bone="_bone_fx_01"
+				position="0 0 50"
+				spawnrate="500"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetradial="45 0 0"
+				offsetsphere="5"
+				drag="0.01"
+				direction="0 1 0"
+				depthbias="-25"
+				directionalspace="local"
+				minangle="0"
+				maxangle="1"
+				
+			>
+				<particle 
+					turn="true"
+					startstickiness="0"
+					endstickiness="1"
+					startcolor=".2 0 1"
+					midcolor=".5 1 0"
+					endcolor="0 0 0"
+					startsize="2"
+					endsize="0"	
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+
+
+
+
+
+
+

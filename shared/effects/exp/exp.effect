@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect >
+
+	<definitions>
+
+		<particlesystem name="system0" space="world">
+
+
+
+			<model	
+				life="450"
+				bone="_bone_overhead"
+				model="exp.mdf"
+				anim="idle"
+				scale="0.2"
+				position="0 0 0"
+				directionalspace="global"				
+			>
+			
+				<billboard
+					life="700"
+					size="300"
+					depthbias="-40"
+					bone="_bone_center"
+					startcolor=".3 0 .4"
+					endcolor="0 0 0"
+					material="/shared/effects/materials/whitedot.material"
+				/>
+			</model>
+			
+		
+
+			<simpleemitter
+				delay="400"
+				bone="_bone_overhead"
+				minparticlelife="300"			
+				maxparticlelife="1000"
+				count="5"
+				gravity="6"
+				speed="20"
+				material="/shared/effects/materials/dust_explosion.material"
+				offsetsphere="15 15 15"
+				angle="10"
+				
+			>
+				<particle 
+					endwidth="80"
+					color=".8 0 1"				
+					startsize="30"
+					endsize="160"
+					startalpha="0.7"
+					endalpha="0"
+					minangle="-15"
+					maxangle="45"
+				/>
+
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="30"
+				delay="400"
+				bone="_bone_overhead"
+				minparticlelife="300"			
+				maxparticlelife="1000"
+				count="8"
+				gravity="0"
+				speed="150"				
+				offsetsphere="15 15 15"
+				minangle="0"
+				maxangle="90"
+				
+			>
+				<particle 					
+				>
+					<model	
+						life="450"
+						bone="_bone_overhead"
+						model="exp.mdf"
+						anim="idle"
+						startscale="0.1"
+						endscale="0"
+						position="0 0 0"
+						directionalspace="global"				
+					>
+				
+						<billboard
+							life="700"
+							size="300"
+							depthbias="-40"
+							bone="_bone_center"
+							startcolor=".3 0 .4"
+							endcolor="0 0 0"
+							material="/shared/effects/materials/whitedot.material"
+						/>
+					</model>
+				
+				</particle>
+
+			</simpleemitter>		
+	
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<camerashake scale="1" radius="300" duration="800" frequency="0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" persistent="true">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<sound
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2000"
+				sample="../sounds/sfx_impact.wav"
+			/>	
+		
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				speed="650"
+				direction="0 0 -1"
+				minangle="0"
+				maxangle="1"
+				directionalspace="world"
+			>
+				<particle
+				>
+				
+					<model
+						position="0 0 30"
+						model="orb/model.mdf"
+						anim="idle"
+						life="1000"
+						color="1 1 1"
+						scale="1.75"
+						material="orb/material.material"
+						rollspeed="45"
+						directionalspace="world"
+					/>
+				
+				</particle>
+			</simpleemitter>
+
+			
+			
+			<terrainemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				directionalspace="world"
+			>
+				<particle
+				>
+				
+					<model
+						delay="300"
+						position="0 0 0"
+						model="orb/model.mdf"
+						anim="death_1"
+						life="1500"
+						startcolor="1 1 1"
+						endcolor=".4"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+						midalphapos=".95"
+						scale="1.7"
+						material="orb/material.material"
+						roll="25"
+					>
+					
+						<groundsprite
+							bone="_bone_CTRL_01"
+							life="2000"
+							material="/shared/effects/smaterials/scorch_ground.material"
+							color="0 0 0"
+							size="150"
+							startalpha=".85"
+							midalpha=".85"
+							endalpha="0"
+							midalphapos=".8"
+						/>
+
+						<groundsprite
+							bone="_bone_CTRL_01"
+							life="2000"
+							material="/shared/effects/materials/ground_crater.material"
+							size="65"
+							maxyaw="360"
+							startalpha=".85"
+							midalpha=".85"
+							endalpha="0"
+						/>
+						
+						<billboard
+							bone="_bone_CTRL_01"
+							life="400"
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="1 1 1"
+							endcolor="0"
+							startscale="0"
+							endscale="6"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-100"
+							directionalspace="world"
+						/>
+
+						<simpleemitter
+						life="600"
+							bone="_bone_CTRL_01"
+							spawnrate="15"
+							minparticlelife="150"
+							maxparticlelife="400"
+							gravity="0"
+							acceleration="0"
+							timenudge="2000"
+							position="0 0 0"
+							material="/shared/effects/smaterials/animated_lightning_arc.material"
+							offsetsphere="5 5 5"
+							speed="0"
+							depthbias="-10"
+						>
+							<particle
+							minangle="0"
+							maxangle="360"
+								anchor="1"
+								startcolor="0 1 1"
+								endcolor="0 .5 1"
+								minstartscale=".1"
+								maxstartscale=".25"
+								minendscale=".25"
+								maxendscale=".4"
+								minwidth="200"
+								maxwidth="500"
+								height="175"
+								startframe="1"
+								endframe="0"
+							/>
+						</simpleemitter>
+						
+						
+						
+						
+						
+					</model>
+
+
+				</particle>
+			</terrainemitter>
+			
+
+		
+		
+			<simpleemitter
+				position="0 0 10"
+				count="30"
+				spawnrate="11340"
+				minparticlelife="400"
+				maxparticlelife="800"
+				gravity="0"
+				minspeed="500"
+				maxspeed="1000"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="20"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+				collide="true"
+			>
+				<particle
+					minscale="2"
+					maxscale="8"
+					color="0 .75 1"
+					turn="1"
+				>
+				</particle>
+				
+				<particle
+					minscale="2"
+					maxscale="7"
+					color="0 1 1"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+		
+			<simpleemitter
+				position="0 0 10"
+				count="30"
+				spawnrate="11340"
+				minparticlelife="750"
+				maxparticlelife="1250"
+				gravity="20"
+				minspeed="75"
+				maxspeed="150"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="20"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+				collide="true"
+			>
+				<particle
+					minscale="2"
+					maxscale="8"
+					color="0 .75 1"
+					turn="1"
+				>
+				</particle>
+				
+				<particle
+					minscale="2"
+					maxscale="7"
+					color="0 1 1"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+		
+		
+
+			<light
+				position="0 0 0"
+				life="500"
+				startcolor="0 .5 3"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="1000"
+			/>
+
+			<simpleemitter
+				position="0 0 0"
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+				speed="0"
+			>
+				<particle
+				>
+					<template name="">
+
+						<billboard
+						delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .025 .035"
+							endcolor="0 0 0"
+							life="600"
+							startsize="1500"
+							endsize="1600"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+						
+						<billboard
+						delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .025 .035"
+							endcolor="0 0 0"
+							life="600"
+							startsize="1200"
+							endsize="1300"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+						
+						<billboard
+						delay="{zdelay}"
+							position="0 0 0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 0 0"
+							midcolor="0 .05 .1"
+							endcolor="0 0 0"
+							life="300"
+							startsize="500"
+							endsize="1600"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-65"
+							roll="{zroll}"
+						/>
+
+					</template>
+
+					<instance name="" zroll="0" zdelay="0"/>
+					<instance name="" zroll="45" zdelay="0"/>
+					<instance name="" zroll="90" zdelay="0"/>
+					
+					<instance name="" zroll="0" zdelay="100"/>
+					<instance name="" zroll="45" zdelay="100"/>
+					<instance name="" zroll="90" zdelay="100"/>
+
+				</particle>
+			</simpleemitter>
+<!--
+			<billboard
+				life="300"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .65 1"
+				endcolor="0"
+				startscale="0"
+				endscale="4"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-100"
+				height="30"
+				width="800"
+				directionalspace="world"
+			/>
+-->
+			<billboard
+				life="600"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 .75 1"
+				midcolor="0 .75 1"
+				endcolor="0"
+				startscale="12"
+				endscale="12"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-100"
+				directionalspace="world"
+			/>
+			
+			<billboard
+				life="600"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="1 1 1"
+				endcolor="0"
+				startscale="0"
+				endscale="6"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-100"
+				directionalspace="world"
+			/>
+			
+			
+			
+			
+			
+			<!--larger-->
+			<billboard
+				delay="0"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".3 .05 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="350"
+				endsize="500"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+				delay="100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".3 0 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="350"
+				endsize="500"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+				delay="200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".15 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="350"
+				endsize="500"
+				depthbias="-150"			
+			/>
+			
+			<!--smaller-->
+			<billboard
+				delay="0"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 .1 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+				delay="100"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".6 0 0"					
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+			<billboard
+				delay="200"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor=".3 0 0"				
+				endcolor="0 0 0"
+				life="250"	
+				position="0 0 25"
+				startsize="150"
+				endsize="300"
+				depthbias="-150"			
+			/>
+			
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale="7">
+<!--
+			<template name="">
+			
+				<simpleemitter
+					delay="{zdelay}"
+					position="0 0 0"
+					count="25"
+					spawnrate="100"
+					particlelife="200"
+					minspeed="100"
+					maxspeed="300"
+					inheritvelocity="0"
+					offsetradial="{zoffsetradial}"
+					offsetsphere="0 0 0"
+					directionalspace="world"
+					direction="0 0 1"
+				>
+					<particle
+					>
+						<trailemitter
+							life="100"
+							spawnrate="61"
+							startminparticlelife="200"
+							startmaxparticlelife="200"
+							offsetsphere="5 5 5"
+							endminparticlelife="1"
+							endmaxparticlelife="1" 
+							texpostime="200"
+							texposscale="0"
+							texstretchscale="1"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+						>
+							<particle
+								startcolor="0 1 1"
+								midcolor="0 .2 .4"
+								endcolor="0 0 0"
+								midcolorpos=".3"
+								startsize="0"
+								minmidsize="1"
+								maxmidsize="6"
+								endsize="0"
+							/>
+						</trailemitter>
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zdelay="0" zoffsetradial="16 0 0" zcount="8"/>
+			<instance name="" zdelay="75" zoffsetradial="38 0 0" zcount="16"/>
+			<instance name="" zdelay="150" zoffsetradial="60 0 0" zcount="40"/>
+-->
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<camerashake2 scale="11" radius="1000" duration="400" frequency="30" />
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

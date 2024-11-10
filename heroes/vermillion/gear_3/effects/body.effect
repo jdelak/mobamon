@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+			
+
+
+		
+		
+		<billboard
+			position="0  0 0"
+			bone="_bone_righteye"
+			expirelife="1500"
+			startcolor=".1 .35 .35"
+			endcolor="0 0 0"
+			size="20"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-10"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			
+		/>		
+		<billboard
+			position="0  0 0"
+			bone="_bone_lefteye"
+			expirelife="1500"
+			startcolor=".1 .35 .35"
+			endcolor="0 0 0"
+			size="20"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-10"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			
+		/>
+
+		<billboard
+			position="0 0 0"
+			bone="_bone_lefthand"
+			expirelife="1500"
+			startcolor=".1 .35 .35"
+			endcolor="0 0 0"
+			size="50"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-50"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>
+		
+				
+
+	
+		<billboard
+			position="0 0 0"
+			bone="_bone_Cannon_CTRL_01"
+			expirelife="1500"
+			startcolor=".07 .15 .15"
+			endcolor="0 0 0"
+			size="52"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-50"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>
+		
+	
+
+
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

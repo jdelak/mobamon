@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>	
+	<!-- Standard Button -->
+	<template name="standardButton_spe">
+		<button name="{id}" width="{width=100%}" noclick="{noclick=0}" group="{group}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" passivechildren="true" visible="{visible=true}" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+			onloadlua="
+				local buttonInfo
+				if (not {dontRegister=false}) then
+					buttonInfo = libButton2.initializeButton(self, '{id}', 'standardButton2', '{rendermode=normal}')
+				end
+				if Empty('{id}') then
+					FindUnnamedWidget(self, 'standardButton_spe')
+				end
+				{onloadlua}
+			"
+			oninstantiatelua="	
+				{oninstantiatelua}
+			"
+			onclicklua="{onclicklua}"
+			disabledmouseover="{disabledmouseover=false}" disabledmouseout="{disabledmouseout=false}"
+			onmouseoverdisabled="{onmouseoverdisabled}"
+			onmouseoutdisabled="{onmouseoutdisabled}"
+			onmouseoverlua="{onmouseoverlua}"
+			onmouseoutlua="{onmouseoutlua}"
+		>
+			<panel name="{id}Body" align="center" valign="center">
+				<frame texture="/ui/shared/frames/squareglow.tga" borderthickness="30@" bordercolor="0 0 0 .8" color="0 0 0 .8" width="+16@" height="+16%" align="center" valign="center" visible="{glow=0}" />
+				<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=0.6h}" rendermode="{rendermode=normal}" />
+				<label name="{id}Label" x="{labelX}" y="{labelY=-0.2h}" wrap="{wrap=0}" width="{labelWidth=100%}" group="{id}_label_group" height="{labelHeight=100%}" align="{labelAlign}" valign="{labelValign}" textalign="center" textvalign="center" font="{font=maindyn_20}" style="labelBase" color="{labelcolor=white}" shadow="{shadow=false}" content="{label=temp_button}"/>
+			</panel>
+		</button>
+	</template>
+	
+	<panel name="spe_menu_parent" y="2.8h" x="-1.5h" align="right" valign="top" width="20.4h" grow="1" regrow="1" growinvis="0" noclick="true" visible="0" >	
+		<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="1.2h" height="+1.5h" x="1.0h" color=".06 .06 .06 1"/>
+		<frame texture="/ui/shared/frames/border_double.tga" borderthickness="1.2h" height="+1.5h" x="1.0h" color="invisible" bordercolor="#283036"/>			
+		
+		<panel grow="1" regrow="1" growinvis="0" x="1.5h" y="1.5h" width="-0.6h" float="bottom" padding="1.0h" noclick="1">			
+			
+			<panel height="3.2h" width="-1.2h" align="center" >
+				<instance name="standardButton_spe"
+					id="spe_menu_unpause"  sticky="1" stickytoinvis="0"
+					label="game_menu_unpause"
+					font="maindyn_20"
+					onclicklua="
+						Cmd('ServerUnpause')
+						self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+					"
+					visible="1"
+				/>
+				<instance name="standardButton_spe"
+					id="spe_menu_pause"  sticky="1" stickytoinvis="0"
+					label="game_menu_pause"
+					font="maindyn_20"
+					onclicklua="
+						Cmd('ServerPause')
+						GetWidget('gamePausedIndicator_unpause_btn', 'game'):SetEnabled(1)
+						self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+					"
+					onloadlua="
+						self:RegisterWatchLua('GameIsPaused', function(widget, trigger)
+							widget:SetVisible(not trigger.paused)
+						end, false, nil)
+					"
+				/>
+			</panel>
+			
+			<instance name="standardButton_spe"
+				id="spe_menu_flex" visible="0" sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="flex_ui_unlocked"
+				font="maindyn_20"
+				onclicklua="
+					Flex.Toggle()
+					self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+				"
+			/>				
+			
+			<instance name="standardButton_spe"
+				id="spe_menu_options" sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_options_button"
+				font="maindyn_20"
+				onclicklua="
+					Cmd('ShowWidget game_options')
+					PlaySound('/ui/sounds/ui_options_open.wav')
+					self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+					GetWidget('game_options', 'options_new'):SetNoClick(false)
+				"
+			/>	
+			
+			<!-- Need more stuff for the twitch functionality to work
+			<instance name="standardButton_spe"
+				id="spe_menu_twitch" sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_twitch_button"
+				font="maindyn_20"
+				onclicklua="
+					TwitchEdit.ToggleLoginPanel()
+					self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+				"
+				onloadlua="
+					self:SetVisible((GetCvarString('host_videoDriver') == 'vid_d9'))
+					self:RegisterWatchLua('featureMaintenanceTrigger', function(widget, trigger)
+						if ((mainUI.featureMaintenance) and (mainUI.featureMaintenance['twitch'])) then	
+							widget:SetVisible(0)
+						else
+							widget:SetVisible(self:SetVisible((GetCvarString('host_videoDriver') == 'vid_d9')))
+						end
+					end)
+				"
+			/>
+			-->
+
+			<instance name="standardButton_spe"
+				id="spe_menu_disconnect"  sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_leave_game"
+				font="maindyn_20"
+				onclicklua="
+					local Replay = LuaTrigger.GetTrigger('Replay')
+					local LocalPlayerInfo = LuaTrigger.GetTrigger('LocalPlayerInfo')
+					local LeavingInfo = LuaTrigger.GetTrigger('LeavingInfo')
+					if (LocalPlayerInfo.isActivePlayer) and (not Replay.watchingReplay) and (LeavingInfo) and (not LeavingInfo.safeToLeave) then
+						GenericDialogGame(
+							'main_disconnect_confirm', 'main_disconnect_confirm2', '', 'general_quit', 'general_cancel', 
+								function()
+									FinishMatch()
+								end,
+								function()
+									PlaySound('/ui/sounds/sfx_ui_back.wav')
+								end
+						)
+					else
+						GenericDialogGame(
+							'main_disconnect_confirm', 'main_disconnect_confirm', '', 'general_quit', 'general_cancel', 
+								function()
+									FinishMatch()
+								end,
+								function()
+									PlaySound('/ui/sounds/sfx_ui_back.wav')
+								end
+						)
+					end
+					SaveState()
+					SetSave('cg_cloudSynced', 'false', 'bool')		
+					PlaySound('/ui/sounds/sfx_ui_back.wav')		
+					self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+				"
+			/>	
+			
+			<instance name="standardButton_spe"
+				id="spe_menu_quit"  sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_quit_strife"
+				font="maindyn_20"
+				onclicklua="
+					GenericDialogGame(
+						'main_quit_confirm', 'main_quit_confirm2', '', 'general_quit', 'general_cancel', 
+							function()
+								Cmd('Quit')
+							end,
+							function()
+								PlaySound('/ui/sounds/sfx_ui_back.wav')
+							end
+					)
+					SetSave('cg_cloudSynced', 'false', 'bool')
+					SaveDBToWeb()
+					PlaySound('/ui/sounds/sfx_ui_back.wav')		
+					self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )					
+				"
+			/>			
+			
+			<instance name="standardButton_spe"
+				id="spe_menu_close"  sticky="1" stickytoinvis="0"
+				height="3.2h" width="-1.2h" align="center" 
+				label="game_menu_close_menu"
+				font="maindyn_20"
+				onclicklua="
+					self:GetWidget('spe_menu_parent'):SetVisible(not self:GetWidget('spe_menu_parent'):IsVisible() )
+				"
+			/>
+		</panel>
+	</panel>
+	
+	<panel y="0.5h" x="-0.5h" align="right" valign="top" width="4.0h" height="2.0h">
+		<button name="speMenuButton"
+			color="invisible"
+		>
+			<widgetstate statename="up">						
+				<panel style="gameInventoryItemIconSpace">							
+					<frame texture="/ui/elements:rounded_bg_solid" color=".12 .12 .12 1" borderthickness="0.4h" noclick="true"/>
+					<image texture="/ui/game/shared/minimap/textures/mini_map_options.tga" width="80@" height="80%" align="center" valign="center" color=".8 .8 .8 1" />
+					<image texture="/ui/elements:gloss_up" rendermode="additive" color=".6 .6 .6 1" noclick="true"/>
+					<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.4h" noclick="true"/>
+					<frame texture="/ui/elements:thick" color="black" borderthickness="0.4h" noclick="true"/>
+				</panel>						
+			</widgetstate>					
+			<widgetstate statename="over">
+				<panel style="gameInventoryItemIconSpace">							
+					<frame texture="/ui/elements:rounded_bg_solid" color=".12 .12 .12 1" borderthickness="0.4h" noclick="true"/>
+					<image texture="/ui/game/shared/minimap/textures/mini_map_options.tga" width="80@" height="80%" align="center" valign="center" color=".8 .8 .8 1" />
+					<image texture="/ui/elements:gloss_up" rendermode="additive" color="1 1 1 1" noclick="true"/>
+					<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.4h" noclick="true"/>
+					<frame texture="/ui/elements:thick" color="black" borderthickness="0.4h" noclick="true"/>
+				</panel>
+			</widgetstate>
+			<widgetstate statename="down">
+				<panel style="gameInventoryItemIconSpace">							
+					<frame texture="/ui/elements:rounded_bg_solid" color=".12 .12 .12 1" borderthickness="0.4h" noclick="true"/>
+					<image x="1" y="1" texture="/ui/game/shared/minimap/textures/mini_map_options.tga" width="80@" height="80%" align="center" valign="center" color=".8 .8 .8 1" />
+					<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.4h" noclick="true"/>
+					<frame texture="/ui/elements:thick" color="black" borderthickness="0.4h" noclick="true"/>
+				</panel>
+			</widgetstate>
+		</button>
+	</panel>
+	
+	<lua file="/ui/game/map_optionsButton/map_optionsButton.lua"/>
+</package>

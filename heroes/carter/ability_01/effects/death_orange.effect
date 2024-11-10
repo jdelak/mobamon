@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1">
+
+			<simpleemitter
+				life="2500"
+				spawnrate="1111"	
+				count="1"				
+				particlelife="2500"			
+				speed="0"				
+				offsetsphere="25"
+			>
+				<particle>					
+					<light
+						life="1700"
+						startcolor="3 2 1"
+						endcolor="0 0 0"
+						falloffstart="100"
+						falloffend="300"
+						position="0 0 55"					
+					/>
+					<groundsprite
+						life="2000"
+						material="/shared/effects/smaterials/scorch_ground.material"
+						startsize="100"
+						endsize="100"
+						
+						color="0 0 0"
+						startalpha="1"
+						midalpha="1"
+						midalphapos=".8"
+						endalpha="0"
+						
+					/>
+										
+					<simpleemitter
+						life="1500"
+						spawnrate="3300"
+						count="200"						
+						gravity="16"
+						minspeed="1800"						
+						maxpeed="1800"						
+						drag=".04"
+						minparticlelife="1000"
+						maxparticlelife="2000"
+						material="/shared/effects/smaterials/firework_trail.material"
+						offsetsphere="0 0 0"					
+					>
+						<particle 	
+							turn="1"
+							startheightdistort=".0"
+							midheightdistortpos=".02"
+							midheightdistort=".2"
+							endheightdistort="0"
+							startcolor="1 .4 .1 "
+							midcolor="1 .4 .1 "
+							endcolor="1 .4 .0"
+							startsize="10"
+							midsize="5"
+							endsize="0"
+						/>
+					</simpleemitter>	
+				
+					<simpleemitter
+						delay="700"
+						life="1500"
+						spawnrate="430"
+						count="200"						
+						gravity="16"
+						minspeed="0"						
+						maxpeed="0"						
+						
+						minparticlelife="200"
+						maxparticlelife="200"
+						material="/shared/effects/smaterials/muzzle_flash_white.material"
+						offsetsphere="153"					
+					>
+						<particle 								
+							startcolor="4 .5 .13 "
+							midcolor="4 .5 .1 "
+							endcolor="1 .0 .3"
+							startsize="35"
+							midsize="15"
+							endsize="0"
+						/>
+					</simpleemitter>				
+					<billboard
+						life="3	00"
+						material="/shared/effects/smaterials/whitedot.material"
+						startsize="100"
+						endsize="350"
+						depthbias="-30"
+						startcolor="2 1 0"
+						endcolor="0"
+						lockup="1"
+						pitch="90"
+					/>
+						
+
+					<billboard
+						life="100"
+						material="/shared/effects/materials/corona_07.material"
+						startsize="100"
+						endsize="350"
+						depthbias="-30"
+						startcolor=".7 .4 .1"
+						endcolor="0"
+						lockup="1"
+						pitch="90"
+					/>
+					
+					
+					<billboard
+						life="300"
+						position="0 0 50"
+						midalpha="1"			
+						startalpha="0"
+						endalpha="0"
+						startsize="000"
+						endsize="900"
+						depthbias="-100"
+						startparam="0.15"
+						endparam="0"
+						lockup="1"
+						pitch="90"
+						material="/shared/effects/materials/refract_ring.material"
+					/>					
+					<billboard
+						life="100"
+						material="/shared/effects/smaterials/muzzle_flash.material"
+						startsize="800"
+						endsize="800"
+						depthbias="-30"
+						color="1 .8 .2"
+						endcolor="0 0 0"
+						lockup="1"
+						pitch="90"
+					/>					
+						
+				</particle>	
+			</simpleemitter>
+			
+			<sound			
+				volume="0.85" 
+				falloffstart="1500"
+				falloffend="3000"
+				sample="../sounds/sfx_projectile_explosion.wav"
+			/>
+
+
+			<simpleemitter
+				life="2250"
+				spawnrate="350"	
+				count="11"
+				minparticlelife="1200"	
+				maxparticlelife="1600"
+				speed="101"
+				gravity="-3"
+				material="/shared/effects/smaterials/cloud1.material"
+				offsetsphere="40"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-50"
+					maxanglespeed="-50"
+					color="1 .5 .1"
+					startsize="110"
+					endsize="180"
+					startalpha="0"
+					midalpha=".1"
+					endalpha="0"
+					
+				/>
+
+			</simpleemitter>
+
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

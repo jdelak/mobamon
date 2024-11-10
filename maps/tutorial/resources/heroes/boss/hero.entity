@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neutralboss
+	name="Hero_Tutorial_Boss"
+
+	team=""
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="/npcs/Baldir_2/model.mdf"
+	skin=""
+	mapicon="icon_circle.tga"
+	
+	passiveeffect="/npcs/Baldir_2/effects/body.effect"
+	spawneffect=""
+	respawneffect="/heroes/bastion/effects/spawn.effect"
+	selectedsound=""
+	selectedflavorsound=""
+
+	largeunit="true"
+	preglobalscale=".9"
+	modelscale="1.6"
+	effectscale="1.6"
+	boundsheight="112"
+	boundsradius="24"
+	selectionradius="52"
+	targetoffset="0 0 92"
+	searchradius="170"
+	minsearchradius="130"
+	searchheight="170"
+	
+	canattack="false"
+
+	revealrange="850"
+	revealtype="hero"
+
+	rolesurvival="3"
+	rolecrowdcontrol="0"
+	rolephysicaldamage="1"
+	rolemagicdamage="2"
+	roleutility="4"
+
+	category="cc tank"
+	difficulty="2"
+	movespeed="350"
+	turnrate="900"
+	turnsmoothing="0.01"
+	
+	maxhealth="1500"
+	maxhealthperlevel="0"
+	healthproportionregen="0"
+	
+	unitcriticalmultiplier="1.0"
+	
+	maxmana="240"
+	maxmanaperlevel="10"
+	manaregen="3.7"
+	manaproportionregen="0.0"
+
+	armor="15,17,19,21,23,25,27,29,31,33,35,37,39,41,43"
+	magicarmor="15,17,19,21,23,25,27,29,31,33,35,37,39,41,43"
+
+	inventory0="Ability_Tutorial_Boss1"
+	inventory1="Ability_Tutorial_Boss2"
+	inventory2="Ability_Tutorial_Boss3"
+
+	powerperlevel="0"
+	attackduration="400"
+	attackactiontime="350"
+	attackcooldown="1100"
+	attackdamagemin="70"
+	attackdamageminperlevel="0"
+	attackdamagemax="70"
+	attackdamagemaxperlevel="0"
+	attacknumanims="2"
+	attackoffset="0 100 110"
+	attackprojectile=""
+	attackrange="9999999"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="effects/impact.effect"
+	critimpacteffect="/shared/effects/crit_impact.effect"
+	attacktype="melee"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="600"
+	sightrangeday="1800"
+	sightrangenight="1800"
+	wanderrange="250"
+	
+	previewmodel="model.mdf"
+	previewpos="30 0 -100"
+	previewangles="15 0 0"
+	previewscale=".85"
+	
+	storemodel="preview.mdf"
+	storepos="0 0 -20"
+	storeangles="0 0 0"
+	storescale="1.65"
+
+	infoheight="325"
+	
+	occlusionstealthtype="occlusion"
+	occlusionfadeineffect="/shared/effects/fade_in.effect"
+	occlusionfadeouteffect="/shared/effects/fade_out.effect"
+
+>
+	
+	<aura state="State_Tutorial_BossDummy" radius="1000" targetscheme="enemy_heroes" reflexivestate="State_Tutorial_Abilities" /> 
+
+	<onkill>
+		<applystate name="State_Tutorial_IgnoreDamage" target="this_entity" duration="2000" />
+	</onkill>
+	
+	<onspawn>
+		<areaofeffect
+			global="true"
+			targetselection="all"
+			targetscheme="all_heroes"
+		>
+			<playconductorevent name="Guardian" entity="target_entity" />
+		</areaofeffect>
+	</onspawn>
+	
+	<ondeath>
+		<setscriptvalue name="boss_killed" value="1" />
+		<areaofeffect
+			global="true"
+			targetselection="all"
+			targetscheme="all_heroes"
+		>
+			<playconductorevent name="Temp1" entity="target_entity" />
+		</areaofeffect>
+	</ondeath>
+
+	<onattackeddamageevent>
+		<targettype type="Tower">
+			<setvalue name="damage_attempted" a="damage_attempted" b="0.5" op="mult" />
+		</targettype>
+	</onattackeddamageevent>
+
+	<onframe>
+		<areaofeffect
+			radius="1300"
+			targetselection="all"
+			targetscheme="teleporter"
+			center="this_entity"
+			ignoreinvulnerable="true"
+		>
+			<setproxy target="target_entity" />
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<order command="move" source="this_entity" target="this_proxy_entity" />
+		</compare>
+	</onframe>
+</neutralboss>

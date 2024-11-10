@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="apex_tangent">
+	<dependency name="Tangent" type="float4" source="Tangent" />
+	<output name="Out" type="float3" solution="ObjectTangent" />
+	<output name="OutSign" type="float" solution="ObjectTangentSign" />
+	<?hlsl
+		float4 vInTangent = Tangent;
+		Out = vInTangent.xyz;
+		OutSign = vInTangent.w;
+	?>
+	<?glsl
+		vec4 vInTangent = Tangent;
+		Out = vInTangent.xyz;
+		OutSign = vInTangent.w;
+	?>
+</node>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastion1Bastact1_Knockaway"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+
+>
+	<oninflict>
+	</oninflict>
+
+	<onframe>
+		<haseffecttype name="CrowdControl StatusDisable" />
+		<else>
+			<areaofeffect
+				targetscheme="enemy_heroes"
+				effecttype=""
+				targetselection="closest"
+				radius="0"
+				maximpactspertarget="1"
+				
+			>
+				<setpos0 position="source_entity" offsetspace="source_entity" offset="0 100 0" />
+				<push direction="pos0" force="570" duration="105" perpendicular="false" />
+				<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+				<applystate name="State_Stunned" duration="1000" />
+				
+			</areaofeffect>
+		</else>
+	</onframe>
+
+	<onabilityimpact>
+		<expire/>
+	</onabilityimpact>
+	
+	
+</state>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<model		
+				life="8000"
+				model="../chest.mdf"
+				
+				scale=".2"
+				bone="_bone_chest_1"
+				anim="idle"
+			
+			>
+			</model>
+
+			<billboard
+				delay="1000"
+				bone="_bone_shadow"
+				life="1000"
+				startalpha="0"
+				endalpha="1"
+				position="0 10 0"
+				material="/shared/effects/materials/whitedot_blend.material"					
+				color="0 0 0"					
+				width="180"
+				height="280"
+				depthbias="8"				
+			/>		
+			<billboard
+				bone="_bone_shadow"
+				delay="2000"
+				life="1000"
+				alpha="1"				
+				position="0 10 0"
+				material="/shared/effects/materials/whitedot_blend.material"					
+				color="0 0 0"					
+				width="180"
+				height="280"
+				depthbias="8"				
+			/>							
+			<billboard
+				bone="_bone_shadow"
+				delay="3000"
+				life="2000"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				position="0 10 0"
+				material="/shared/effects/materials/whitedot_blend.material"					
+				color="0 0 0"					
+				width="180"
+				height="280"
+				depthbias="8"				
+			/>				
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

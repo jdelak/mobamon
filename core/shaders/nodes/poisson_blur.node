@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="poisson_blur" novs="true">
+	<parameter name="Index" type="TexcoordIndex" default="0" />
+	<dependency name="Sampler" type="sampler2D" />
+	<dependency name="Radius" type="float" />
+	<dependency name="TexelSize" type="float2" />
+	<dependency name="Texcoord" type="float2" source="Index" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			const int KERNEL_SIZE = 13;
+			
+			const float2 BLUR_OFFSETS[KERNEL_SIZE] =
+			{
+				float2(0.0f, 0.0f),
+				float2(-0.326212f, -0.40581f),
+				float2(-0.840144f, -0.07358f),
+				float2(-0.695914f, 0.457137f),
+				float2(-0.203345f, 0.620716f),
+				float2(0.96234f, -0.194983f),
+				float2(0.473434f, -0.480026f),
+				float2(0.519456f, 0.767022f),
+				float2(0.185461f, -0.893124f),
+				float2(0.507431f, 0.064425f),
+				float2(0.89642f, 0.412458f),
+				float2(-0.32194f, -0.932615f),
+				float2(-0.791559f, -0.59771f)
+			};
+		
+			Out = 0.0f;
+		
+			[unroll(KERNEL_SIZE)] for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				float2 f2TapTexcoord = Texcoord + TexelSize.xy * BLUR_OFFSETS[i] * Radius;
+				Out += tex2D(Sampler, f2TapTexcoord);
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			const int KERNEL_SIZE = 13;
+			
+			const float2 BLUR_OFFSETS[KERNEL_SIZE] =
+			{
+				float2(0.0f, 0.0f),
+				float2(-0.326212f, -0.40581f),
+				float2(-0.840144f, -0.07358f),
+				float2(-0.695914f, 0.457137f),
+				float2(-0.203345f, 0.620716f),
+				float2(0.96234f, -0.194983f),
+				float2(0.473434f, -0.480026f),
+				float2(0.519456f, 0.767022f),
+				float2(0.185461f, -0.893124f),
+				float2(0.507431f, 0.064425f),
+				float2(0.89642f, 0.412458f),
+				float2(-0.32194f, -0.932615f),
+				float2(-0.791559f, -0.59771f)
+			};
+		
+			Out = 0.0f;
+		
+			[unroll(KERNEL_SIZE)] for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				float2 f2TapTexcoord = Texcoord + TexelSize.xy * BLUR_OFFSETS[i] * Radius;
+				Out += Sampler_texture.Sample(Sampler_sampler, f2TapTexcoord);
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			const int KERNEL_SIZE = 13;
+			
+			const vec2 BLUR_OFFSETS[KERNEL_SIZE] =
+			{
+				vec2(0.0f, 0.0f),
+				vec2(-0.326212f, -0.40581f),
+				vec2(-0.840144f, -0.07358f),
+				vec2(-0.695914f, 0.457137f),
+				vec2(-0.203345f, 0.620716f),
+				vec2(0.96234f, -0.194983f),
+				vec2(0.473434f, -0.480026f),
+				vec2(0.519456f, 0.767022f),
+				vec2(0.185461f, -0.893124f),
+				vec2(0.507431f, 0.064425f),
+				vec2(0.89642f, 0.412458f),
+				vec2(-0.32194f, -0.932615f),
+				vec2(-0.791559f, -0.59771f)
+			};
+		
+			Out = 0.0f;
+		
+			for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				vec2 f2TapTexcoord = Texcoord + TexelSize.xy * BLUR_OFFSETS[i] * Radius;
+				Out += texture2D(Sampler, f2TapTexcoord);
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			const int KERNEL_SIZE = 13;
+			
+			const vec2 BLUR_OFFSETS[KERNEL_SIZE] =
+			{
+				vec2(0.0f, 0.0f),
+				vec2(-0.326212f, -0.40581f),
+				vec2(-0.840144f, -0.07358f),
+				vec2(-0.695914f, 0.457137f),
+				vec2(-0.203345f, 0.620716f),
+				vec2(0.96234f, -0.194983f),
+				vec2(0.473434f, -0.480026f),
+				vec2(0.519456f, 0.767022f),
+				vec2(0.185461f, -0.893124f),
+				vec2(0.507431f, 0.064425f),
+				vec2(0.89642f, 0.412458f),
+				vec2(-0.32194f, -0.932615f),
+				vec2(-0.791559f, -0.59771f)
+			};
+		
+			Out = 0.0f;
+		
+			for (int i = 0; i < KERNEL_SIZE; i++)
+			{
+				vec2 f2TapTexcoord = Texcoord + TexelSize.xy * BLUR_OFFSETS[i] * Radius;
+				Out += texture(Sampler, f2TapTexcoord);
+			}
+			
+			Out /= KERNEL_SIZE;
+		?>
+	</case>
+</node>

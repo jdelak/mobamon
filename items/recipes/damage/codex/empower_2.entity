@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Codex_Empower_2"
+	
+	cost="1350"
+
+	range="750"
+	hoverareacastrange="750"	
+
+>
+	<!-- Tooltip only -->
+	<constant name="range_enchant" value="150" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<ondoubleactivate>
+		<areaofeffect
+			radius="750"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			maxtotalimpacts="1"
+			effecttype=""
+		>
+			<useitem source="this_entity" />
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<cancel />
+		</compare>
+	</ondoubleactivate>
+
+</qualityitem>

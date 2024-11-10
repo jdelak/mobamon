@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".7">
+
+			<debris	
+				position="0 -140 20"
+				offsetsphere="25 25 5"
+				delay="1800"							
+				scale=".5"
+				life="1500"
+				model="/shared/effects/models/debris/debris.mdf"
+				anim="idle"	
+				minspeed="400.0"
+				maxspeed="500.0"
+				minrotationspeed="500.0"
+				maxrotationspeed="600.0"
+				gravity="45.0"
+				minangle="0"
+				color=".5 .5 .4"
+				maxangle="140"
+				collide="true"
+				startalpha="1.0"
+				midalpha="1.0"
+				endalpha="0.0"
+				midalphapos="0.9"
+				bounce="0.7"
+				reflect="0.6"
+				animpose="false"
+				maxyaw="360"
+			/>
+
+			<debris	
+				position="0 -140 20"
+				offsetsphere="25 25 5"
+				delay="1800"							
+				scale=".2"
+				life="1000"
+				model="/shared/effects/models/debris/debris.mdf"
+				anim="idle"	
+				minspeed="400.0"
+				maxspeed="1500.0"
+				minrotationspeed="500.0"
+				maxrotationspeed="1600.0"
+				gravity="60.0"
+				minangle="0"
+				color=".75 .75 .74"
+				maxangle="140"
+				collide="true"
+				startalpha="1.0"
+				endalpha="0.0"
+				bounce="0.7"
+				reflect="0.6"
+				animpose="false"
+				maxyaw="360"
+			/>
+
+			<simpleemitter
+				delay="1800"
+				offsetsphere="5"
+				spawnrate="6500"			
+				count="55"
+				gravity="1"
+				minparticlelife="1000"
+				maxparticlelife="2000"	
+				minspeed="40"		
+				maxspeed="1350"
+				minangle="-90"
+				maxangle="-90"
+				depthbias="-30"
+				drag="0.05"
+				direction="0 0 1"
+				position="0 -140 30"
+				acceleration="110"
+				material="/shared/effects/materials/dust.material"	
+			>
+				<particle
+					minangle="-360"
+					maxangle="360"
+					color=".4"
+					size="65"
+					minendscale="1.5"
+					maxendscale="4"
+					minanglespeed="-30"
+					maxanglespeed="75"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					anchor="1"
+				/>
+				<particle
+					minangle="-360"
+					maxangle="360"
+					color=".5"
+					size="65"
+					minendscale="1.5"
+					maxendscale="4"
+					minanglespeed="-60"
+					maxanglespeed="35"
+					startalpha="0"
+					midalpha=".3"
+					endalpha="0"
+					anchor="1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				delay="1800"
+				offsetsphere="5"
+				spawnrate="3500"			
+				count="15"
+				gravity="-1"
+				minparticlelife="400"
+				maxparticlelife="1600"	
+				minspeed="20"		
+				maxspeed="150"
+				minangle="-90"
+				maxangle="-90"
+				drag="0.015"
+				direction="0 0 1"
+				position="0 -140 20"
+				material="/shared/effects/materials/pyroclast_01.material"	
+			>
+				<particle
+					minangle="-360"
+					maxangle="360"
+					color=".3"
+					size="65"
+					minendscale="1.5"
+					maxendscale="4"
+					minanglespeed="-30"
+					maxanglespeed="25"
+					startalpha="0"
+					midalpha=".3"
+					endalpha="0"
+					anchor="1"
+				/>
+				<particle
+					minangle="-360"
+					maxangle="360"
+					color=".1"
+					size="65"
+					minendscale="1.5"
+					maxendscale="4"
+					minanglespeed="-30"
+					maxanglespeed="25"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					anchor="1"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

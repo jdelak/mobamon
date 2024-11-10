@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Ladytinder3"
+
+	icon="icon.tga"
+	passiveeffect=""
+	
+	anim="ability_3"
+	casttime="600"
+	castactiontime="200"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_entity"
+	targetscheme="ally_units_nocreep"
+	manacost="55,65,75,85"
+	cooldowntime="9000"
+	casteffecttype=""
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+	hoverareacastrange="700"
+	range="650"
+
+	doubleactivate="true"
+	doubleactivatenoninterrupting="true"
+>
+	<constant name="shield_max" value="110,145,180,215" adjustment="power_support" />
+	<!--Tooltip Only-->
+	<constant name="attackspeed" value="20,30,40,50" adjustment="none" />
+	<onimpact>
+		<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity" />
+		<applystate name="State_Ladytinder_Ability3" duration="8000" />
+	</onimpact>
+	
+	<ondoubleactivate>
+		<areaofeffect
+			radius="750"
+			targetselection="closest"
+			targetscheme="ally_heroes"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+		>
+			<useability source="source_entity" slot="2"/>
+		</areaofeffect>
+		<compare a="result" b="0" op="eq">
+			<cancel />
+		</compare>
+	</ondoubleactivate>
+</ability>

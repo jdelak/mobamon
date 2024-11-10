@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="default_1.max" file="high_3.model" type="K2" high="high_3.model" med="med_3.model" low="low_3.model"  >
+
+	<skin name="red">
+		<reference mesh="tank_10k"			material="material_red.material" />
+		<reference mesh="grins_10k"			material="material_red.material" />
+		<reference mesh="tank_3k"			material="material_red.material" />
+		<reference mesh="grins_3k"			material="material_red.material" />
+		<reference mesh="tank_1k"			material="material_red.material" />
+		<reference mesh="grins_1k"			material="material_red.material" />
+	</skin>
+	
+	<skin name="black">
+		<reference mesh="tank_10k"			material="material_black.material" />
+		<reference mesh="grins_10k"			material="material_black.material" />
+		<reference mesh="tank_3k"			material="material_black.material" />
+		<reference mesh="grins_3k"			material="material_black.material" />
+		<reference mesh="tank_1k"			material="material_black.material" />
+		<reference mesh="grins_1k"			material="material_black.material" />
+	</skin>
+
+	<skin name="blue">
+		<reference mesh="tank_10k"			material="material_blue.material" />
+		<reference mesh="grins_10k"			material="material_blue.material" />
+		<reference mesh="tank_3k"			material="material_blue.material" />
+		<reference mesh="grins_3k"			material="material_blue.material" />
+		<reference mesh="tank_1k"			material="material_blue.material" />
+		<reference mesh="grins_1k"			material="material_blue.material" />
+	</skin>
+	
+	<skin name="green">
+		<reference mesh="tank_10k"			material="material_green.material" />
+		<reference mesh="grins_10k"			material="material_green.material" />
+		<reference mesh="tank_3k"			material="material_green.material" />
+		<reference mesh="grins_3k"			material="material_green.material" />
+		<reference mesh="tank_1k"			material="material_green.material" />
+		<reference mesh="grins_1k"			material="material_green.material" />
+	</skin>
+	
+		<skin name="white">
+		<reference mesh="tank_10k"			material="material_white.material" />
+		<reference mesh="grins_10k"			material="material_white.material" />
+		<reference mesh="tank_3k"			material="material_white.material" />
+		<reference mesh="grins_3k"			material="material_white.material" />
+		<reference mesh="tank_1k"			material="material_white.material" />
+		<reference mesh="grins_1k"			material="material_white.material" />
+	</skin>
+	
+	<skin name="yellow">
+		<reference mesh="tank_10k"			material="material_yellow.material" />
+		<reference mesh="grins_10k"			material="material_yellow.material" />
+		<reference mesh="tank_3k"			material="material_yellow.material" />
+		<reference mesh="grins_3k"			material="material_yellow.material" />
+		<reference mesh="tank_1k"			material="material_yellow.material" />
+		<reference mesh="grins_1k"			material="material_yellow.material" />
+	</skin>
+
+	<anim name="idle" clip="clips_3/default_1.clip" loop="true" >
+		<frameevent frame="1" cmd="starteffect ../effects/idle.effect 0"/>
+	</anim>
+	
+	<anim name="portrait" clip="clips_3/portrait.clip" loop="true"/>
+	
+	<anim name="bored" clip="clips_3/bored_1.clip"/>
+	
+	<anim name="item_1" clip="clips_3/default_1.clip"/>
+	
+	<anim name="item_channel_1" clip="clips_3/default_1.clip" loop="true"/>
+	
+	<anim name="item_self_1" clip="clips_3/default_1.clip"/>
+	
+	<anim name="capture" clip="clips_3/default_1.clip" loop="true"/>
+
+	<anim name="emote_1" clip="clips_3/emote_1.clip" fps="30" loop="false">
+		<frameevent frame="1" cmd="PlaySoundLinear ../sounds/voice/vo_emote_4.wav 400 2500 .70"/>
+	</anim>
+
+	<anim name="death_1" clip="clips_3/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="2" cmd="PlaySoundLinear ../sounds/sfx_foley_death.wav 500 2200 .65"/>
+		<startevent cmd="StopEffect ../../effects/idle.effect"/>
+	</anim>
+	
+	<anim name="walk_1" clip="clips_3/walk_1.clip" loop="true" fps="22">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+		<frameevent frame="15" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .15"/>
+	</anim>
+
+	<anim name="knock_1" clip="clips_3/knock_1.clip" loop="true" loopbackframe="-1"/>
+	
+	<anim name="getup_1" clip="clips_3/getup_1.clip"/>
+
+	<anim name="attack_1" clip="clips_3/attack_1.clip" fps="30"/>
+			
+	<anim name="attack_2" clip="clips_3/attack_2.clip" fps="30"/>
+	
+	<anim name="ability_2" clip="clips_3/ability_2.clip"/>
+
+	<anim name="ability_3" clip="clips_3/default_1.clip"/>
+
+	<anim name="ability_4" clip="clips_3/attack_2.clip" blendtime="100"/>
+
+	<anim name="stunned_1" clip="clips_3/stunned_1.clip" loop="true"/>
+		
+	<anim name="port_out" clip="clips_3/port_out.clip" />
+	
+	<anim name="port_in" clip="clips_3/port_in.clip"/>
+
+</model>

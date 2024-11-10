@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="craftedItemTipComponentPip">
+		<panel name="craftedItemTipComponentPip{id}" width="100@" height="100%" passivechildren="true">
+			<image name="craftedItemTipComponentPip{id}Glow" texture="{icon=/ui/shared/textures/itemtype_crafted.tga}" color="{color=#FFFFFF}55" rendermode="additive" visible="{showglow=false}" hmargin="-0.25h" vmargin="-0.25h"/>
+			<image name="craftedItemTipComponentPip{id}Icon" texture="{icon=/ui/shared/textures/itemtype_crafted.tga}" color="{color=0 0 0 0.5}"/>
+		</panel>
+	</template>
+	
+	<panel name="craftedItemTip2" align="center" valign="center" width="35h" grow="true" visible="false">
+		<panel>
+			<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true" x="0.25h" y="0.25h"/>
+			<frame style="backerPanelGray1" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="true"/>
+		</panel>
+		<panel align="center" width="-1.5h" grow="true" float="bottom" padding="0.75h">
+			<panel height="0"/>
+			<panel width="100%" grow="true" regrow="true">
+				<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" noclick="true" x="0.25h" y="0.25h"/>
+				<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" noclick="true"/>
+				<label fity="true" textvalign="center" fitypadding="1h" wrap="true" width="-1h" align="center" font="maindyn_16" color="#FFDD33" outline="true" content="-"/>
+			</panel>
+			<panel width="100%" grow="true" regrow="true">
+				<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h"/>
+				<label textvalign="center" align="center" width="-1h" wrap="true" fity="true" fitypadding="1h" shadow="true" font="subdyn_12" style="whiteTextColor" content="-"/>
+			</panel>
+			<panel height="2h">
+				<frame texture="/ui/elements:squareglow" color="0 0 0 0.75" borderthickness="0.75h" align="center" valign="center" width="+0.35h" height="+0.35h"/><!--  Frames not thick enough, dark BG shadow glow to mimic black border -->
+				<frame texture="/ui/elements:rounded_bg_white" color="white" borderthickness="0.75h"/><!-- White bar BG -->
+				<frame texture="/ui/elements:rounded_bg_white" color="white" borderthickness="0.75h" rendermode="additive"/><!-- No pure-color rounded frame so just doubling up for brightness sake -->
+
+				<panel hmargin="0.15h" vmargin="0.15h" float="right">
+					<panel width="35%" color="green"/>
+					<panel width="30%" color="#ba00ff"/>
+					<panel width="15%" color="#FFDD33"/>
+					<panel width="1" color="0 0 0 0.35"/>
+				</panel>
+				
+				<panel align="center" valign="center"><!-- Stripes, more nitpicking -->
+					<panel hmargin="33%" color="#32497044" texture="/ui/_textures/elements/bg_striped_curved_c.tga"/>
+					<panel width="33%" color="#32497044" texture="/ui/_textures/elements/bg_striped_curved_l.tga"/>
+					<panel width="33%" color="#32497044" texture="/ui/_textures/elements/bg_striped_curved_r.tga" align="right"/>
+				</panel>
+
+				<panel height="50%"><!-- Cosmetic nitpicking, the shine on the bar -->
+					<panel rendermode="additive" color="1 1 1 0.05" width="-0.75h"/>
+					<panel align="right" width="0.75h" height="0.75h" color="1 1 1 0.05" rendermode="additive" texture="/ui/_textures/frames/rounded_bg_white_tr.tga"/>
+					<panel align="right" width="0.75h" valign="bottom" height="-0.75h" color="1 1 1 0.05" rendermode="additive"/>
+				</panel>
+
+				<frame texture="/ui/elements:rounded_corner_white" style="backerPanelGray1" borderthickness="0.75h"/>
+				<frame texture="/ui/elements:thick" color="0 0 0 0.75" borderthickness="0.75h"/>
+			</panel>
+			<panel height="1.95h">
+				<panel height="100%" float="right" padding="0.3h" align="center" grow="true">
+					<instance name="craftedItemTipComponentPip" id="1" icon="/ui/shared/textures/itemtype_damage.tga" color="#FFCC00" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="2" icon="/ui/shared/textures/itemtype_damage.tga" color="#FFCC00" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="3" icon="/ui/shared/textures/itemtype_damage.tga" color="#FFCC00" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="4" icon="/ui/shared/textures/itemtype_damage.tga" color="#FFCC00" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="5" icon="/ui/shared/textures/itemtype_damage.tga" color="#FFCC00" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="6" icon="/ui/shared/textures/itemtype_health.tga" color="#FF2222" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="7" icon="/ui/shared/textures/itemtype_health.tga" color="#FF2222" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="8" icon="/ui/shared/textures/itemtype_health.tga" color="#FF2222" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="9"  icon="/ui/shared/textures/itemtype_mana.tga" color="#3355FF" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="10" icon="/ui/shared/textures/itemtype_mana.tga" color="#3355FF" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="11" icon="/ui/shared/textures/itemtype_mana.tga" color="#3355FF" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="12" icon="/ui/shared/textures/itemtype_mana.tga" color="#3355FF" showglow="true"/>
+					<instance name="craftedItemTipComponentPip" id="13"/>
+					<instance name="craftedItemTipComponentPip" id="14"/>
+					<instance name="craftedItemTipComponentPip" id="15"/>
+				</panel>				
+			</panel>
+			<panel width="100%" grow="true" regrow="true">
+				<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h"/>
+				<label textvalign="center" align="center" width="-1h" wrap="true" fity="true" fitypadding="1h" shadow="true" font="subdyn_12" color="#22EE33" content="-"/>
+			</panel>
+			<panel width="100%" grow="true" regrow="true">
+				<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h"/>
+				<label textvalign="center" align="center" width="-1h" wrap="true" fity="true" fitypadding="1h" shadow="true" font="subdyn_12" color="#ba00ff" content="-"/>
+			</panel>
+			<panel width="100%" grow="true" regrow="true">
+				<frame style="backerPanelGray0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Dark" texture="/ui/elements:roundframe" borderthickness="0.75h"/>
+				<frame style="backerPanelBorder0Light" texture="/ui/elements:roundframe" borderthickness="0.75h" width="+0.1h" height="+0.1h"/>
+				<label textvalign="center" align="center" width="-1h" wrap="true" fity="true" fitypadding="1h" shadow="true" font="subdyn_12" color="#FFDD33" content="-"/>
+			</panel>
+			<panel height="0"/>
+		</panel>
+	</panel>
+</package>	

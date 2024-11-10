@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1">	
+
+			<sound
+				sample="../sounds/sfx_summon.wav"
+				volume="0.45"
+				falloffstart="500"
+				falloffend="3500"
+			/>
+
+			
+			<!--Lil bits-->
+			<simpleemitter
+				life="1000"
+				spawnrate="600"
+				particlelife="1200"
+				gravity="0"
+				minspeed="20"
+				maxspeed="100"
+				acceleration="10"
+				material="/shared/effects/smaterials/whitecircleblurred_additive.material" 
+				angle="0"
+				position="0 0 1"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="0"
+				offsetsphere="60"
+			>
+				<particle
+					minscale=".3"
+					maxscale="1"
+					lockup="true"
+					startcolor="0"
+					midcolor="1 0 1"
+					endcolor="0"
+					anchor="1"
+					
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				life="1000"
+				count="1"
+				spawnrate="100"
+				particlelife="1000"
+				minangle="0"
+				maxangle="0"
+				speed="100"
+				direction="0 0 1"
+				
+			>
+				<particle
+					yawspeed="900"
+				>
+					
+					<model
+						life="800"
+						model="models/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						scale="1.5"
+					>
+					
+						<simpleemitter
+							bone="_bone_emissionpoint"
+							spawnrate="500"
+							minparticlelife="200"
+							maxparticlelife="800"
+							gravity="0"
+							minspeed="0"
+							maxspeed="0"
+							drag="0.0"
+							acceleration="0.0"
+							position="0 0 0"
+							direction="0 0 0"
+							offsetsphere="5"
+							offsetradial="0"
+							particledirectionalspace="local"
+							material="/shared/effects/smaterials/baldir_puff_purple.material"	
+							depthbias="-20"
+							inheritvelocity=".01"
+						>
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color="1"
+								startsize="10"
+								midsize="10"
+								endsize="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+							/>
+							
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color="1"
+								startsize="10"
+								midsize="20"
+								endsize="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+							/>
+						</simpleemitter>
+					</model>
+					
+					<model
+						life="800"
+						model="models/model.mdf"
+						anim="idle"
+						color="1 1 1"
+						scale="1.5"
+						yaw="180"
+					>
+					
+						<simpleemitter
+							bone="_bone_emissionpoint"
+							spawnrate="500"
+							minparticlelife="200"
+							maxparticlelife="800"
+							gravity="0.0"
+							minspeed="0"
+							maxspeed="0"
+							drag="0.0"
+							acceleration="0.0"
+							position="0 0 0"
+							direction="0 0 0"
+							offsetsphere="5"
+							offsetradial="0"
+							particledirectionalspace="local"
+							material="/shared/effects/smaterials/baldir_puff_purple.material"	
+							depthbias="-20"
+							inheritvelocity=".01"
+						>
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color="1"
+								startsize="10"
+								midsize="10"
+								endsize="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+							/>
+							
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color="1"
+								startsize="10"
+								midsize="20"
+								endsize="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".15"
+							/>
+						</simpleemitter>
+					</model>
+				</particle>	
+			</simpleemitter>	
+		
+			<!--light-->
+			<light
+				life="2000"
+				startcolor="0"
+				midcolor="6 0 6"
+				endcolor="0"
+				position="0 0 10"
+				falloffstart="50"
+				falloffend="100"
+			/>
+			
+			<light
+				life="1000"
+				startcolor="0"
+				midcolor="6 0 6"
+				endcolor="0"
+				position="0 0 10"
+				falloffstart="50"
+				falloffend="100"
+			/>
+			
+			<!-- <billboard
+				delay="800"
+				life="400"
+				position="0 0 30"		
+				startcolor="0"
+				midcolor=".3 0 .3"
+				endcolor="0"
+				midsizepos=".2"
+				startsize="0"
+				midsize="300"
+				endsize="650"
+				depthbias="-10"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				material="/shared/effects/smaterials/fire_ring_white.material"
+			/> -->
+			
+			<billboard
+				delay="800"
+				life="300"
+				position="0 0 30"		
+				startcolor="0"
+				midcolor=".3 0 .3"
+				endcolor="0"
+				midsizepos=".2"
+				startsize="0"
+				endsize="300"
+				depthbias="-10"
+
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+			
+		</particlesystem>
+		
+		<modifier
+			name="modifier0"
+			life="2000"
+			startcolor="1"
+			midcolor="1 0 1"
+			endcolor="1"
+		/>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<!-- <spawnparticlesystem instance="instance1" particlesystem="system1" /> -->
+		<spawnmodifier instance="instance2" modifier="modifier0" />
+		<waitfordeath instance="instance0" />
+	<!-- 	<waitfordeath instance="instance1" /> -->
+		<waitfordeath instance="instance2" />
+	</thread>
+</effect>

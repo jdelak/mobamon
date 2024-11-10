@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="true">
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				soundloop="true"
+				fadein="100"
+				fadeout="200"
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_link.wav"
+			/>
+
+			<template name="">
+
+				<model
+					life="150"
+					parentmodel="true"
+					parentskeleton="true"
+					startcolor=".35"
+					midcolor="1 1 1"
+					endcolor=".35"
+					scale="1"
+					alpha="1"
+					loop="true"
+				/>
+
+				<billboard
+					bone="_bone_centerofchest"
+					life="150"
+					startcolor="0 0 0"
+					midcolor="0 .25 .4"
+					endcolor="0 0 0"
+					scale="4"
+					material="/shared/effects/smaterials/whitedot.material"
+					loop="true"
+					depthbias="-100"
+				/>
+			</template>
+			
+			<instance name="" zowner="target"/>
+			<instance name="" zowner="source"/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".2"
+				endcolor="0 0 0"
+				size="200"
+				position="0 0 0"
+				startalpha="1"
+				endalpha="0"
+				expirelife="250"
+				depthbias="-100"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				<simpleemitter
+					bone="_bone_centerofchest"
+					spawnrate="10"
+					minparticlelife="150"
+					maxparticlelife="400"
+					gravity="0"
+					acceleration="0"
+					timenudge="2000"
+					position="0 0 0"
+					material="/shared/effects/smaterials/animated_lightning_arc.material"
+					offsetsphere="0 0 25"
+					speed="25"
+				>
+					<particle
+					minangle="0"
+					maxangle="360"
+						anchor="1"
+						startcolor="1 1 1"
+						endcolor="0 .5 1"
+						minstartscale=".1"
+						maxstartscale=".25"
+						minendscale=".25"
+						maxendscale=".4"
+						minwidth="500"
+						maxwidth="700"
+						height="200"
+						startframe="1"
+						endframe="0"
+					/>
+				</simpleemitter>	
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+   </thread>
+</effect>

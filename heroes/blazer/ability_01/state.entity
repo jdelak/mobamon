@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Blazer_Ability1"
+	
+	icon="icon.tga"
+	passiveeffect="effects/charge_up.effect" 
+	
+	disarmed="true"
+	perplexed="true"
+	
+	effecttype=""
+	movespeedslow="0"
+	modifierkey="Blazer_Ability1_Charging"
+	
+	impactinterval="3950"
+	perplex="true"
+	ishidden="true"
+
+>
+
+	<onrefresh>
+		<setactivemodifierkey name="no_charge" />
+	</onrefresh>
+
+	<onframe>
+		<changeaccumulator b="1" op="add" />
+		<setaccumulator entity="tool_entity" value="accumulator" />
+		<compare a="accumulator" b="17" op="eq" >
+			<iscurrentanim entity="source_entity" anim="ability_1_walk"/>
+			<else>
+				<playanim name="ability_1_walk" target="source_entity"/>
+			</else>
+		</compare>
+	</onframe>
+
+	
+	<onexpired>
+		<kill target="this_proxy_entity" source="" />
+		<setactivemodifierkey entity="tool_entity" name="cancel" />
+		<playanim name="idle" target="source_entity"/>
+	</onexpired>
+	
+	<onimpact>
+		<givemana target="source_entity" amount="47.5,50,52.5,55" />
+	</onimpact>
+	
+	<modifier key="no_charge" modpriority="100">		
+		<onframe>
+		</onframe>
+	</modifier>
+	
+</state>

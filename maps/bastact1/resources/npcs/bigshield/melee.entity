@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_Enemy_Melee_Shield"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="variations/creep1/model.mdf"
+	skin=""
+	gibanim=""
+	deniedanim=""
+
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	aggrosound=""
+  
+	preglobalscale="1.9"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="74"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="32"
+	selectionradius="36"
+	radiusheight="16"
+	targetoffset="0 0 54"
+
+	movespeed="225"
+	turnrate="900"
+	turnsmoothing="0.01"
+
+	maxhealth="150"
+	healthregen="0"
+	maxmana="0"
+	manaregen="0"
+
+	armor="15"
+	magicarmor="0"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+  
+	walknumanims="1"
+	attackduration="1000"
+	attackactiontime="600"
+	attackcooldown="1000"
+	attackdamagemin="45"
+	attackdamagemax="45"
+	deathnumanims="1"
+	attacknumanims="3"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="75"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep2/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="visible_enemy_heroes"
+	attackdamagetype="AttackDamage"
+
+	aggrorange="1500"
+	sightrangeday="1500"
+	sightrangenight="1500"
+	
+	corpsetime="0"
+	corpsefadetime="1500"
+	deathtime="500"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+	
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+	canattack="true"
+	hidealtinfo="false"
+	drawonmap="false"
+	invulnerable="false"
+	isselectable="true"
+	
+	ismobile="true"
+	canrotate="true"
+	pathing="true"
+
+	showaggropopup="false"
+>
+
+	<!-- <onspawn>
+		<cantarget target="visible_enemy_heroes">
+			<order command="attack" source="this_entity" duration="30000" force="true" queue="front" forceduration="30000" />
+		</cantarget>
+	</onspawn> -->	
+
+	<!-- 	<onframe>
+			
+			<areaofeffect
+				radius="1500"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				center="this_entity"
+				ignoreinvulnerable="true"
+				maximpactspertarget="1"
+			>
+					<order command="attack" target="target_entity"/>	
+				
+			</areaofeffect>
+		<else>
+			<order command="hold" target="source_entity"/>
+		</else>				
+	</onframe> -->
+<!-- 
+	<onspawn>
+		<applystate name="State_Campaign_AttackPlayerOnImpact" target="source_entity" duration="-1" proxy="source_entity" />
+	</onspawn>	
+ -->
+
+
+
+
+	<ondamaged>
+		<cantarget target="visible_enemy_heroes">
+			<order command="attack" duration="30000" force="true" queue="front" forceduration="30000" />
+		</cantarget>	
+		<!-- reduce all damage taken from behind to 0 -->
+		<condition test="back_impact_angle lt 125">
+			
+		</condition>
+		<else>
+			<teleport source="this_entity" target="target_entity" interpolate="true" facetarget="true" positionmodifier="minonline"/>
+			<setpos0 position="source_position" offsetspace="source_entity" offset="25 100 100" />
+			<playeffect effect="effects/deflect.effect" source="pos0" target="pos0" />
+			<applystate source="" target="this_entity" name="State_Stunned" duration="2000" />
+			<scaledamage scale="0" />
+		</else>	
+	</ondamaged>
+
+
+	<ondeath>
+		<print text="Melee dude (shield) died" />
+		<areaofeffect
+			targetscheme="Bastact1_GuardKillCounter"
+			targetselection="all"
+			maximpacts="1"
+			radius="2500"
+			center="this_entity"
+			>
+			<print text="Found guard kill counter" />
+			<changeaccumulator entity="target_entity" b="1" op="add" />
+		</areaofeffect>
+	</ondeath>
+
+	<modifier key="invuln" modpriority="100"
+		invulnerable="true"
+		canattack="false"
+		ismobile="false"
+		hidealtinfo="true"
+		stunned="true"
+		sightrangeday="0"
+		sightrangenight="0"
+	>
+	</modifier>
+
+	<modifier key="hammer" modpriority="100"
+		model="variations/creep2/model.mdf"
+	>
+	</modifier>
+
+</pet>

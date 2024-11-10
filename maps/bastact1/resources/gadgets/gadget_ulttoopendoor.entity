@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_Bastact1_UltToOpenDoor"
+
+	icon=""
+	portrait=""
+	model="/shared/models/invis.mdf"
+	passiveeffect=""
+	deatheffect=""
+	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="20"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+	canattack="false"
+
+	sightrangeday="0"
+	sightrangenight="0"
+
+	deathtime="0"
+	corpsetime="0"
+		
+	invulnerable="false"
+	hidealtinfo="true"
+	drawonmap="false"
+>
+
+	<modifier key="OpenDoor" modpriority="100"
+		boundsheight="0"
+		radiusheight="0"
+		boundsradius="0"
+	>
+
+		<onframe>
+			<areaofeffect
+				radius="200"
+				targetselection="all"
+				targetscheme="Bastact1_LockedDoor"
+				source="this_entity"
+				center="this_entity"
+				maxtotalimpacts="1"
+				maximpactspertarget="1"
+				ignoreinvulnerable="true"
+			>
+				<playanim name="blow_open" target="target_entity" />
+				<playeffect effect="../heroes/rook_camp1/ability_04/effects/impact_huge.effect" source="target_entity" target="target_entity"/>
+				<activatemodifierkey name="inactive" entity="target_entity" />
+				<kill target="this_entity" source="" />
+			</areaofeffect>
+		</onframe>
+
+	</modifier>
+</gadget>

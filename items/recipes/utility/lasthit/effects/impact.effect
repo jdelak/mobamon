@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+<!--
+		<modifier
+			name="modifier0"
+			startcolor="1 5 10"
+			endcolor="1"
+			alpha="1"
+			life="750"
+		/>
+-->
+		<particlesystem name="system0" space="world" scale=".75">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.55" 
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-35"
+			>
+				<particle
+					color=".3 0 .5"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="150"
+					endscale="350"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="5"
+				spawnrate="1055"
+				particlelife="200"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				timenudge="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white.material"
+				depthbias="-35"
+			>
+				<particle
+					color=".75 0 1"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					startscale="100"
+					endscale="200"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+			
+			<billboard
+				bone="_bone_centerofchest"
+				life="250"
+				startcolor="1 0 1"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				scale="6"
+				depthbias="-25"
+
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="20"
+				spawnrate="11340"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="12.0"
+				minspeed="750"
+				maxspeed="1500"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="25"
+				material="/shared/effects/smaterials/whitedot.material"
+				particledirectionalspace="local"
+			>
+				<particle
+					startheightdistort="0.25"
+					endheightdistort="0"
+					startsize="10"
+					endsize="4"
+					startcolor="1 1 0"
+					midcolor=".5 .35 0"
+					endcolor="0 0 0"
+					midcolorpos=".4"
+					turn="1"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+		</particlesystem>
+
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

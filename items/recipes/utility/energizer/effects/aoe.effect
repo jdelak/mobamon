@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="1000"
+				falloffend="2200"
+				volume=".75"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<light
+				life="500"
+				startcolor="3"
+				midcolor="0 3 6"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="0"
+				startfalloffend="500"
+				endfalloffend="500"
+				position="0 0 50"
+			/>
+			
+			
+			<template name="wind">
+
+				<simpleemitter
+					position="{zpos}"
+					count="1"
+					spawnrate="2500"
+					particlelife="1000"
+					offsetsphere="100 100 25"
+				>
+					<particle
+					>
+						<billboard
+							position="0 0 50"
+							life="500"
+							material="/shared/effects/smaterials/animated_wind_rush.material"
+							minstartsize="100"
+							maxstartsize="125"
+							minendsize="135"
+							maxendsize="150"
+							startcolor="0"
+							midcolor=".1 .2 .4"
+							endcolor="0 0 0"
+							midcolorpos=".4"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							minroll="0"
+							maxroll="360"
+							depthbias="-50"
+							framespeed="2"
+						/>
+
+					</particle>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance name="wind" zpos="220 100 0"/>
+			
+			<instance name="wind" zpos="-200 -75 0"/>
+			
+			<instance name="wind" zpos="-200 150 0"/>
+			
+			<instance name="wind" zpos="200 -100 0"/>
+			
+			
+			
+			<instance name="wind" zpos="0 -150 0"/>
+			
+			<instance name="wind" zpos="0 160 0"/>
+			
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			<template name="rocks">
+			
+				<terrainemitter
+					delay="{zdelay}"
+					count="{zcount}"
+					life="2000"
+					spawnrate="5000"
+					particlelife="1500"
+					offsetradial="{zoffset}"
+					offsetsphere="12 12 0"
+				>
+					<particle>
+
+						<template name="orbs">
+
+							<model
+								minlife="1000"
+								maxlife="1000"
+								bone="_bone_center"
+								model="/heroes/moxie/ability_01/effects/orbit/orbit.mdf"
+								anim="idle"
+								minscale="1"
+								maxscale="2.5"
+								roll="{zroll}"
+								yaw="{zyaw}"
+								pitch="{zpitch}"
+								position="0 0 50"
+								minyawspeed="0"
+								maxyawspeed="180"
+								minyaw="0"
+								maxyaw="360"
+							>
+								<trailemitter
+									bone="_bone_fx"
+									minlife="750"
+									maxlife="750"
+									spawnrate="50"
+									particlelife="750"
+									texpostime="750"
+									texposscale="0"
+									texstretchscale="1"
+									position="0 20 0"
+									material="/shared/effects/smaterials/rocket_smoke_blend.material"
+									startparticlealpha="1"
+									endparticlealpha="0"
+								>
+									<particle
+										startcolor="1 1 1"
+										endcolor="0 .5 1"
+										startalpha=".125"
+										midalpha=".125"
+										endalpha="0"
+										midalphapos=".8"
+										minstartsize="5"
+										maxstartsize="10"
+										endsize="0"
+									/>
+								</trailemitter>
+
+								<trailemitter
+									bone="_bone_fx"
+									minlife="750"
+									maxlife="750"
+									spawnrate="50"
+									particlelife="750"
+									texpostime="750"
+									texposscale="0"
+									texstretchscale="1"
+									position="0 20 0"
+									material="/shared/effects/smaterials/whitedot.material"
+									startparticlecolor="1 1 1"
+									endparticlecolor="0 0 0"
+								>
+									<particle
+										startcolor=".025 .1 .1"
+										midcolor=".025 .2 .2"
+										endcolor="0 0 0"
+										minstartsize="10"
+										maxstartsize="15"
+										endsize="0"
+									/>
+								</trailemitter>
+
+							</model>
+						
+						</template>
+
+						<instance name="orbs" zroll="0" zyaw="360" zpitch="0" zscale="1.85"/>
+
+					</particle>
+				</terrainemitter>
+
+			</template>
+
+
+			<instance name="rocks" zoffset="300 0 0" zdelay="0" zcount="1" zminscale=".4" zmaxscale="1"/>
+			<instance name="rocks" zoffset="350 0 0" zdelay="0" zcount="1" zminscale=".4" zmaxscale="1"/>
+			<instance name="rocks" zoffset="400 0 0" zdelay="0" zcount="1" zminscale=".4" zmaxscale="1"/>
+			<instance name="rocks" zoffset="450 0 0" zdelay="0" zcount="1" zminscale=".5" zmaxscale="1"/>
+			<instance name="rocks" zoffset="500 0 0" zdelay="0" zcount="1" zminscale=".5" zmaxscale="1"/>
+			<instance name="rocks" zoffset="560 0 0" zdelay="0" zcount="1" zminscale=".5" zmaxscale="1"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				life="3000"
+				count="1"
+				spawnrate="5000"
+				particlelife="1300"
+				direction="0 0 1"
+				speed="700"
+				minangle="0"
+				maxangle="0" 
+				position="0 0 25"
+			>
+				<particle>
+				
+					<model
+						name="ring"
+						life="1500"
+						model="circle_rig/circle.mdf"
+						anim="idle"
+						yawspeed="720"
+						startscale="6"
+						midscale="0"
+						endscale="0"
+						midscalepos=".3"
+						position="0 0 0"
+						minyaw="0"
+						maxyaw="360"
+					>
+						<template name="trails">
+						
+							<trailemitter
+								bone="{bone1}"
+								minlife="300"
+								maxlife="500"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/rocket_smoke_blend.material"
+								startparticlealpha="1"
+								endparticlealpha="0"
+								inheritvelocity=".05"
+							>
+								<particle
+									startcolor="1 1 1"
+									endcolor="0 .35 1"
+									startalpha=".125"
+									midalpha=".125"
+									endalpha="0"
+									midalphapos=".8"
+									minstartsize="2"
+									maxstartsize="4"
+									endsize="0"
+								/>
+							</trailemitter>
+
+							<trailemitter
+								bone="{bone1}"
+								minlife="300"
+								maxlife="500"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								inheritvelocity=".05"
+							>
+								<particle
+									startcolor=".1 .15 .25"
+									midcolor="0 .125 .125"
+									endcolor="0 0 0"
+									minstartsize="4"
+									maxstartsize="8"
+									midsize="0"
+									endsize="0"
+								/>
+							</trailemitter>
+							
+						</template>
+
+						<instance name="trails" bone1="_bone_01" bone2="_bone_02"/>
+
+						<instance name="trails" bone1="_bone_03" bone2="_bone_04"/>
+
+						<instance name="trails" bone1="_bone_05" bone2="_bone_06"/>
+
+						<instance name="trails" bone1="_bone_07" bone2="_bone_08"/>
+
+						<instance name="trails" bone1="_bone_09" bone2="_bone_10"/>
+
+						<instance name="trails" bone1="_bone_12" bone2="_bone_13"/>
+
+						<instance name="trails" bone1="_bone_14" bone2="_bone_15"/>
+
+						<instance name="trails" bone1="_bone_16" bone2="_bone_17"/>
+
+						<instance name="trails" bone1="_bone_18" bone2="_bone_01"/>
+
+					</model>
+				</particle>
+			</simpleemitter>
+	
+			<simpleemitter
+				life="3000"
+				count="1"
+				spawnrate="5000"
+				particlelife="1300"
+				offsetsphere="75 75 0"
+				offsetradial="105 0 10"
+				direction="0 0 1"
+				minangle="-30"
+				maxangle="30"
+				speed="350"
+				position="0 0 25"
+			>
+				<particle>
+				
+					<model
+						name="ring"
+						life="1500"
+						model="circle_rig/circle.mdf"
+						anim="idle"
+						yawspeed="720"
+						startscale="3"
+						midscale="0"
+						endscale="0"
+						midscalepos=".3"
+						position="0 0 0"
+						yaw="180"
+					>
+						<template name="trails">
+						
+							<trailemitter
+								bone="{bone1}"
+								minlife="300"
+								maxlife="500"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/rocket_smoke_blend.material"
+								startparticlealpha="1"
+								endparticlealpha="0"
+								inheritvelocity=".05"
+							>
+								<particle
+									startcolor="1 1 1"
+									endcolor="0 .35 1"
+									startalpha=".175"
+									midalpha=".175"
+									endalpha="0"
+									midalphapos=".8"
+									minstartsize="2.5"
+									maxstartsize="5"
+									endsize="0"
+								/>
+							</trailemitter>
+
+							<trailemitter
+								bone="{bone1}"
+								minlife="300"
+								maxlife="500"
+								spawnrate="50"
+								particlelife="750"
+								texpostime="750"
+								texposscale="0"
+								texstretchscale="1"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								startparticlecolor="1 1 1"
+								endparticlecolor="0 0 0"
+								inheritvelocity=".05"
+							>
+								<particle
+									startcolor=".1 .15 .25"
+									midcolor="0 .125 .25"
+									endcolor="0 0 0"
+									minstartsize="5"
+									maxstartsize="10"
+									midsize="0"
+									endsize="0"
+								/>
+							</trailemitter>
+							
+						</template>
+
+						<instance name="trails" bone1="_bone_01" bone2="_bone_02"/>
+
+						<instance name="trails" bone1="_bone_03" bone2="_bone_04"/>
+
+						<instance name="trails" bone1="_bone_05" bone2="_bone_06"/>
+
+						<instance name="trails" bone1="_bone_07" bone2="_bone_08"/>
+
+						<instance name="trails" bone1="_bone_09" bone2="_bone_10"/>
+
+						<instance name="trails" bone1="_bone_12" bone2="_bone_13"/>
+
+						<instance name="trails" bone1="_bone_14" bone2="_bone_15"/>
+
+						<instance name="trails" bone1="_bone_16" bone2="_bone_17"/>
+
+						<instance name="trails" bone1="_bone_18" bone2="_bone_01"/>
+
+					</model>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

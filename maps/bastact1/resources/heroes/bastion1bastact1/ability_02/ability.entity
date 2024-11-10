@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Bastion1Bastact1_2"
+
+	icon="icon.tga"
+	
+	anim="ability_2"
+	casttime="50"
+	castactiontime="50"
+
+	maxlevel="4"
+	requiredlevel="1,5,6,7"
+
+	actiontype="target_position"
+	casteffecttype="Magic"
+	
+	manacost="0"
+	cooldowntime="1000"
+	
+	range="500"
+
+	showlinecast="true"
+	linecastwidth="100"
+	linecastrange="450"
+	linecastmaxrange="450"
+	forcerange="450"
+
+  	allowoutofrangecast="true"
+  	usepathforrange="true"
+  	queue="dropmovement"
+
+>
+	
+	<onimpact>
+  	 <spawnprojectile name="Projectile_Bastion1Bastact1_Ability2" source="source_entity" target="target_position" bind="source_entity" bindturn="false" unbindondeath="true" pushentity="true"/>
+     <setprojectilebounds entity="stack_entity" radius="source_radius" />
+
+	</onimpact>
+
+	<modifier key="with_nohitch" modpriority="100"
+		disabled="true"
+	>
+	</modifier>
+
+	<modifier key="with_nohitch_withsword" modpriority="98"
+		disabled="true"
+	>
+	</modifier>
+	
+</ability>

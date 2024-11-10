@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_BastionOnBridge"
+	
+	radius="500"
+	targetselection="all"
+	targetscheme="all"
+	impactinterval="200"
+	lifetime="-1"
+	effecttype="Magic"
+	touchpropradius="200"
+	touchpropanim="hit"
+>
+	<onspawn>
+		<print text="Bridge affector spawned" />
+		<printdebuginfo/>
+	</onspawn>
+
+	<oninterval>
+		<!-- <print text="interval" /> -->
+
+	</oninterval>
+
+	<onimpact>
+		<print text="hit something!" />
+		<setscriptvalue name="ActivateTower" value="1" />
+		<delete target="this_entity" />
+		
+	</onimpact>
+
+</affector>

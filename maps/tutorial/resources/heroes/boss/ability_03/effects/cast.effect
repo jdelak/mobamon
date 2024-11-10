@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2">
+
+			<light
+				position="0 0 50"
+				life="750"
+				startcolor="0 5 20"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="100"	
+			/>
+
+			<model
+				life="750"
+				parentskeleton="1"
+				startcolor="0 5 20"
+				endcolor="0 0 0"
+				model="sword_model/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+	
+			/>
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

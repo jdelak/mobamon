@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="gameRecipeTip1BonusInfo">
+		<panel name="gameRecipeTip1{id=Rare}BonusSpacer" height="0.5h" sticky="true" stickytoinvis="false"/>
+		<panel name="gameRecipeTip1{id=Rare}BonusContainer" width="100%" grow="true" regrow="true" sticky="true" stickytoinvis="false">
+			<panel width="4h" height="4h">
+				<image name="gameRecipeTip1{id=Rare}BonusIcon"/>
+				<frame texture="/ui/elements:rounded_corner_white" borderthickness="0.5h" color="#333333"/>
+				<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+			</panel>
+			<panel align="right" width="-4.5h" grow="true" regrow="true">
+				<label name="gameRecipeTip1{id=Rare}BonusTitle" height="2h" textvalign="center" shadow="true" font="maindyn_12" color="{titleColor=#f5f2e2}" content="game_itemtip_bonus_{id=Rare}"/>
+				<label name="gameRecipeTip1{id=Rare}BonusDescription" y="2.25h" wrap="true" fity="true" textvalign="center" shadow="true" font="maindyn_11" style="whiteTextColor" content="-"/>
+			</panel>
+		</panel>
+	</template>
+
+	<floater x="22" y="-22" width="28.5h" color="invisible" grow="true" regrow="true" growinvis="false" noclick="true" passivechildren="true" visible="false" name="gameRecipeTip1">
+		<panel>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="1h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" borderthickness="1h" color="#101010"/>
+		</panel>
+		<panel width="-1h" align="center" grow="true" regrow="true" growinvis="false" float="bottom">
+			<panel height="0.75h"/>
+			<panel grow="true" width="100%" regrow="true">
+				<panel>
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" color="0 0 0 0.5" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" color="#191919"/>
+				</panel>
+				<panel align="center" width="-1h" grow="true" regrow="true" float="bottom" growinvis="false">
+					<panel height="0.5h"/>
+					<panel height="3h">
+						<panel width="90@" height="90%" x="5@" valign="center">
+							<image name="gameRecipeTip1Icon"/>
+							<frame texture="/ui/elements:rounded_corner_white" borderthickness="0.5h" color="#333333"/>
+						</panel>
+						<label x="115@" width="-105@" textvalign="center" style="greenTextColor" font="maindyn_14" shadow="true" content="-" name="gameRecipeTip1Name"/>
+						<panel width="80@" height="80%" x="-10@" valign="center" align="right">
+							<image texture="/ui/elements:gold_coins" color="0 0 0 0.65" x="10@" y="10%"/>
+							<image texture="/ui/elements:gold_coins"/>
+						</panel>
+						<label x="-115@" width="-105@" align="right" textalign="right" textvalign="center" color="#FFDD33" font="maindyn_12" shadow="true" shadowoffset="2" content="3,600" name="gameRecipeTip1Cost"/>
+					</panel>
+					<instance name="horizRule1"/>
+					<label fity="true" wrap="true" style="whiteTextColor" font="maindyn_11" content="-" name="gameRecipeTip1Desc"/>
+					<panel height="0.5h"/>
+					
+					<panel width="100%" grow="true" sticky="true" stickytoinvis="false" name="gameRecipeTip1StatsContainer">
+						<panel>
+							<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#0B0B0B"/>
+							<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+							<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="#1A1A1A" align="center" valign="center" width="+2" height="+2"/>
+						</panel>
+						<panel grow="true" regrow="true" growinvis="false" width="-1h" align="center" float="bottom" padding="0.5h">
+							<panel height="0"/>
+							<panel height="2.5h">
+								<panel height="100%" align="center" grow="true" x="-0.5h" regrow="true" float="right" padding="0.5h">
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat1">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat1Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat1Value"/>
+										</panel>
+									</panel>
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat2">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat2Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat2Value"/>
+										</panel>
+									</panel>
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat3">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat3Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat3Value"/>
+										</panel>
+									</panel>
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat4">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat4Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat4Value"/>
+										</panel>
+									</panel>
+								</panel>
+							</panel>
+							<panel height="2.5h" name="gameRecipeTip1StatRow2" visible="false" sticky="true" stickytoinvis="false">
+								<panel height="100%" align="center" grow="true" x="-0.5h" regrow="true" float="right" padding="0.5h">
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat5">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat5Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat5Value"/>
+										</panel>
+									</panel>
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat6">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat6Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat6Value"/>
+										</panel>
+									</panel>
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat7">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat7Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat7Value"/>
+										</panel>
+									</panel>
+									<panel width="6h" sticky="true" stickytoinvis="false" name="gameRecipeTip1Stat8">
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" x="0.15h" y="0.15h" color="0 0 0 0.5"/>
+										<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#202020"/>
+										<panel hmargin="0.25h" vmargin="0.25h">
+											<image width="100@" height="100%" x="5@" name="gameRecipeTip1Stat8Icon"/>
+											<label width="-110@" align="right" textalign="center" textvalign="center" color="#FFDD33" font="maindyn_11" shadow="true" content="25" name="gameRecipeTip1Stat8Value"/>
+										</panel>
+									</panel>
+								</panel>
+							</panel>
+							<panel height="0" sticky="true" stickytoinvis="false"/>
+						</panel>
+					</panel>
+					
+					<label height="2h" sticky="true" stickytoinvis="false" textvalign="center" textalign="center" font="maindyn_12" style="header1Color" content="game_itemtip_components" name="gameRecipeTip1ComponentHeader"/>
+					<panel height="0.5h" sticky="true" stickytoinvis="false" name="gameRecipeTip1ComponentSpacer"/>
+					<panel width="100%" sticky="true" stickytoinvis="false" grow="true" name="gameRecipeTip1ComponentContainer">
+						<panel>
+							<frame texture="/ui/elements:rounded_bg_white" borderthickness="0.5h" color="#0B0B0B"/>
+							<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="black"/>
+							<frame texture="/ui/elements:roundframe" borderthickness="0.5h" color="#1A1A1A" align="center" valign="center" width="+2" height="+2"/>
+						</panel>
+						<panel grow="true" regrow="true" growinvis="false" width="-1h" align="center" float="bottom" padding="0.5h">
+							<panel height="0"/>
+							<panel height="2.75h" name="gameRecipeTip1Component1" sticky="true" stickytoinvis="false">
+								<panel width="90@" height="90%" x="5@" valign="center">
+									<image name="gameRecipeTip1Component1Icon"/>
+									<frame texture="/ui/elements:rounded_corner_white" borderthickness="7.5@" color="#333333"/>
+								</panel>
+								<panel x="115@" width="-105@" float="bottom">
+									<label height="1.5h" textvalign="center" style="shopComponentNameColor" font="maindyn_11" shadow="true" content="-" name="gameRecipeTip1Component1Name"/>
+									<label height="1.25h" textvalign="center" style="subtitle1Color" font="maindyn_10" shadow="true" content="-" name="gameRecipeTip1Component1Desc"/>
+								</panel>
+							</panel>
+							<panel width="100%" grow="true" float="bottom" padding="0.5h" name="gameRecipeTip1Component2" sticky="true" stickytoinvis="false">
+								<instance name="horizRule1" height="0.25h"/>
+								<panel height="2.75h">
+									<panel width="90@" height="90%" x="5@" valign="center">
+										<image name="gameRecipeTip1Component2Icon"/>
+										<frame texture="/ui/elements:rounded_corner_white" borderthickness="7.5@" color="#333333"/>
+									</panel>
+									<panel x="115@" width="-105@" float="bottom">
+										<label height="1.5h" textvalign="center" style="shopComponentNameColor" font="maindyn_11" shadow="true" content="-" name="gameRecipeTip1Component2Name"/>
+										<label height="1.25h" textvalign="center" style="subtitle1Color" font="maindyn_10" shadow="true" content="-" name="gameRecipeTip1Component2Desc"/>
+									</panel>
+								</panel>
+							</panel>
+							<panel width="100%" grow="true" float="bottom" padding="0.5h" name="gameRecipeTip1Component3" sticky="true" stickytoinvis="false">
+								<instance name="horizRule1" height="0.25h"/>
+								<panel height="2.75h">
+									<panel width="90@" height="90%" x="5@" valign="center">
+										<image name="gameRecipeTip1Component3Icon"/>
+										<frame texture="/ui/elements:rounded_corner_white" borderthickness="7.5@" color="#333333"/>
+									</panel>
+									<panel x="115@" width="-105@" float="bottom">
+										<label height="1.5h" textvalign="center" style="shopComponentNameColor" font="maindyn_11" shadow="true" content="-" name="gameRecipeTip1Component3Name"/>
+										<label height="1.25h" textvalign="center" style="subtitle1Color" font="maindyn_10" shadow="true" content="-" name="gameRecipeTip1Component3Desc"/>
+									</panel>
+								</panel>
+							</panel>
+							<panel height="0" sticky="true" stickytoinvis="false"/>
+						</panel>
+					</panel>
+					<instance name="gameRecipeTip1BonusInfo" id="Analog"/>
+					<instance name="gameRecipeTip1BonusInfo" id="Rare" titleColor="#ba00ff"/>
+					<instance name="gameRecipeTip1BonusInfo" id="Legendary" titleColor="#FFDD33"/>
+					<panel height="0.5h"/>
+					<label name="gameRecipeTip1DescExpanded" fity="true" wrap="true" style="whiteTextColor" font="maindyn_11" content="" visible="0"/>
+				</panel>
+			</panel>
+			<panel height="0.75h"/>
+		</panel>
+	</floater>
+	
+</package>

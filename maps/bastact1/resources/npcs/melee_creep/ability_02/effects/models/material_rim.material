@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/unit_opacity_rimlight_params.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="0.0" fGlossiness="1024.0" fOpacity="1.0" fReflect="1.0">
+		<vec4 name="vFresnelColor" value="0 0 1 10" />
+		<vec3 name="vFresnelScale" value=".1 100 10" />
+	</parameters>
+	
+	<phase name="shadow" cull="back" blend="translucent">
+		<sampler name="diffuse" texture="bola_color.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	
+	<phase name="color" cull="back" blend="none">
+		<sampler name="diffuse" texture="bola_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="bola_normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" depthwrite="true" depthbias="1" blend="translucent">
+		<sampler name="diffuse" texture="bola_color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="bola_normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

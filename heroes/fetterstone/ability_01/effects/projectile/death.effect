@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale=".3025">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="1000"
+				falloffend="2000"
+				volume="0.75"
+				sample="../sounds/death.wav"
+			/>
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="2000"
+				volume="0.2" 
+				sample="/heroes/pyromancer/sounds/impact_%.wav"
+			/>
+
+			<debris
+				position="0 0 50"
+				color="1 5 5"
+				startalpha="1"
+				endalpha="0"
+				scale=".85"
+				minlife="800"
+				maxlife="1000"
+				model="gem_debris/model.mdf"
+				material="gem_debris/material.material"
+				offsetsphere="50 50 50"
+				minspeed="600"
+				maxspeed="900"
+				minrotationspeed="100"
+				maxrotationspeed="300"
+				gravity="200"
+				minangle="0"
+				maxangle="90"
+				direction="0 0 1"
+				collide="true"
+				bounce=".7"
+				reflect=".5"
+				animpose="false"
+			/>
+
+			<billboard
+				position="0 0 50"
+				life="200"
+				startcolor="0 .4 .5"
+				midcolor="0 .4 .5"
+				endcolor="0"
+				startalpha="1"
+				endalpha="0"
+				size="750"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				position="0 0 50"
+				life="200"
+				startcolor=".35"
+				midcolor=".35"
+				endcolor="0"
+				startalpha="1"
+				endalpha="0"
+				size="300"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			
+			
+			
+			
+
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Tutorial2_Boss3"
+
+	icon="icon.tga"
+	
+	anim="ability_3_start"
+	casttime="3500"
+	castactiontime="1500"
+
+	actiontype="target_position"
+	targetradius="70"
+	casteffecttype="Magic"
+	targetscheme="ally_units"
+	casteffect="effects/cast.effect"
+	
+	manacost="0"
+	cooldowntime="0"
+
+	range="900"
+	forcerange="900"
+
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+	
+>
+
+	<onimpact>
+		<areaofeffect
+			targetscheme="Gadget_Tutorial2_Spawner"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="closest"
+			radius="2000"
+			center="source_position"
+			maxtotalimpacts="3"
+		>
+			<spawnunit name="Creep_Tutorial2_Boss" target="target_position" count="1" pushentity="true" />
+		</areaofeffect>
+	</onimpact>
+	
+	
+</ability>

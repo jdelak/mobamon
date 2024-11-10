@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				volume="0.35"
+				falloffstart="500"
+				falloffend="2000"
+				sample="sounds/sfx_wallcrumble.wav"
+			/>
+
+			<model
+				model="crumble.mdf"
+				anim="idle"
+				scale="1"
+				life="3000"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"				
+			/>
+			<simpleemitter	
+				delay="0"
+				life="200"				
+				spawnrate="330"
+				
+				speed="40"
+				gravity="5"
+				drag="0.01"
+				position="0 0 55"
+				minparticlelife="700"
+				maxparticlelife="2500"
+				material="/shared/effects/smaterials/dust2.material"			
+				
+				offsetsphere="220 55 80"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					startsize="55"
+					endsize="120"
+					color=".7 .6 .4"
+					startalpha=".2"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".2"
+					
+					depthbias="-50"
+				/>
+			</simpleemitter>	
+
+			
+			<simpleemitter	
+				delay="0"
+				life="1200"				
+				spawnrate="100"
+				
+				speed="40"
+				gravity="2"
+				drag="0.01"
+				position="0 0 55"
+				minparticlelife="1200"
+				maxparticlelife="1900"
+				material="/shared/effects/smaterials/dust2.material"			
+				
+				offsetsphere="140 55 80"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					startsize="55"
+					endsize="220"
+					color=".7 .6 .4"
+					startalpha="0"
+					midalpha=".3"
+					endalpha="0"
+					midalphapos=".2"
+					
+					depthbias="-50"
+				/>
+			</simpleemitter>				
+
+			
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_SewerObstacle"
+	
+	radius="500"
+	targetselection="all"
+	targetscheme="player_controlled_units"
+	impactinterval="3000"
+	lifetime="-1"
+	effecttype="Magic"
+	touchpropradius="200"
+	touchpropanim="hit"
+>
+
+	<!-- <oninterval>
+		<print text="interval" />
+
+	</oninterval> -->
+
+	<onimpact>
+		<print text="impact" />
+		<playeffect effect="../heroes/executioner/effects/dustfall.effect" source="target_position" target="target_position"  offset="0 0 1500" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability5_Cast" source="this_entity" target="this_position"  />
+	</onimpact>
+
+
+
+</affector>

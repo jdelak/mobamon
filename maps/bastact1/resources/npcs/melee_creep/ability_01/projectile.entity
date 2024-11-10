@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Guard_Enemy"
+
+	speed="2000"
+	gravity="5000"
+
+	modelscale="4"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	
+	deatheffect="effects/death.effect"
+	
+	canturn="0"
+	
+	flying="false"
+	flyheight="0"
+	
+	touchradius="50"
+	touchcliffs="false"
+
+	hazardradius="300"
+	hazardoffset="200"
+
+  
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="player_and_mobs"
+	toucheffecttype="Magic CrowdControl"
+>
+	<ontouch>
+		<playeffect effect="effects/impact.effect" source="target_entity" target=""/>
+	
+		<damage amount="400" effecttype="Magic" />
+		<kill target="this_entity" />
+	</ontouch>
+  
+</projectile>

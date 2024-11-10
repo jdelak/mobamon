@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<template name="flashes">
+				<billboard
+					bone="{bone}"
+					life="{zlife}"
+					startcolor=".05 .025 0"
+					midcolor=".5 .2 0"
+					endcolor=".05 .025 0"
+					size="80"
+					material="/shared/effects/materials/whitedot.material"
+					loop="true"
+					depthbias="35"
+				/>
+			</template>
+
+			<instance name="flashes" bone="Torus018" zlife="5000"/>
+			<instance name="flashes" bone="Torus019" zlife="3000"/>
+			<instance name="flashes" bone="Torus020" zlife="3500"/>
+			<instance name="flashes" bone="Torus021" zlife="3800"/>
+			<instance name="flashes" bone="Torus022" zlife="4250"/>
+			
+			<instance name="flashes" bone="Torus023" zlife="4500"/>
+			<instance name="flashes" bone="Torus024" zlife="2500"/>
+			<instance name="flashes" bone="Torus025" zlife="2800"/>
+			<instance name="flashes" bone="Torus026" zlife="5250"/>
+			<instance name="flashes" bone="Torus027" zlife="3200"/>
+			<instance name="flashes" bone="Torus028" zlife="3600"/>
+			<instance name="flashes" bone="Torus029" zlife="4800"/>
+			
+			<instance name="flashes" bone="Torus002" zlife="4500"/>
+			<instance name="flashes" bone="Torus005" zlife="2500"/>
+			<instance name="flashes" bone="Torus006" zlife="2800"/>
+			<instance name="flashes" bone="Torus007" zlife="5250"/>
+			<instance name="flashes" bone="Torus008" zlife="3200"/>
+			<instance name="flashes" bone="Torus009" zlife="3600"/>
+			
+			<instance name="flashes" bone="Torus017" zlife="4800"/>
+			<instance name="flashes" bone="Torus016" zlife="5000"/>
+			<instance name="flashes" bone="Torus015" zlife="3000"/>
+			<instance name="flashes" bone="Torus014" zlife="3500"/>
+			<instance name="flashes" bone="Torus013" zlife="3800"/>
+			<instance name="flashes" bone="Torus012" zlife="4250"/>
+			
+			
+			<!--hands-->
+			<light
+				bone="Torus010"
+				expirelife="250"
+				startcolor="2.5 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="125"
+			/>
+			
+			<light
+				bone="Torus011"
+				expirelife="250"
+				startcolor="2.5 1 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="125"
+			/>
+			
+			
+			
+			<light
+				bone="Torus003"
+				expirelife="250"
+				startcolor="5 2 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="125"
+			/>
+			
+			<light
+				bone="Torus004"
+				expirelife="250"
+				startcolor="5 2 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="125"
+			/>
+			
+		</particlesystem>
+
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>

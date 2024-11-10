@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item
+	name="Item_TeleportBoots"
+	
+	itemtype="Boots"
+	ignoredynamicactivation="true"
+
+	icon="icon.tga"
+	
+	cost="1150"
+	components="Item_Marchers"
+	
+	allowoutofrangecast="true"
+	range="999999"
+	noentercombat="true"
+	actiontype="target_position"
+	casteffecttype=""
+	casttime="0"
+	castactiontime="0"
+	cooldowntime="95000"
+	manacost="0"
+	cooldowntype="TeleportBoots"
+	disabled="true"
+	showareacast="false"
+	dontshowhovercast="true"
+	ischanneling="true"
+	botitem="TeleportBootsItem"
+
+	filters="boots,activatable,other_mobility"
+	
+	showinpractice="true"
+>
+
+	<onpurchase>
+		<setscriptvalue name="boots_purchased" value="1" />
+	</onpurchase>
+	
+	<modifier key="boots" modpriority="76" exclusive="true"
+		movespeed="85"
+		disabled="false"
+	>
+		
+		<onimpact>
+			<pushentity searchfortarget="true" searchorigin="target_position" radius="99999" targetscheme="teleport_targets" ignoreinvulnerable="true"/>
+			<applystate name="State_TeleportBoots_Target" target="stack_entity" duration="3500"/>
+			<playanim name="item_1" target="source_entity" />
+			<playanim name="port_out" target="source_entity" />
+			<setpos0 position="stack_position" positionmodifier="minonline" positionend="target_position" positionvalue="0" />
+
+			<setproxy target="stack_entity"/>
+
+			<compare a="target_team" b="1" op="eq" target="this_proxy_entity">
+				<spawnunit name="Gadget_TeleportBoots" count="1" team="1" target="pos0" pushentity="true" proxy="this_proxy_entity" />
+				<spawnunit name="Gadget_TeleportBoots_Enemy" count="1" team="2" target="pos0" pushentity="true" proxy="stack_entity" />
+				<ping name="teleport_red" source="stack_entity" target="stack_entity" position="proxy_position" />	
+			</compare>
+			<else>
+				<spawnunit name="Gadget_TeleportBoots" count="1" team="2" target="pos0" pushentity="true" proxy="this_proxy_entity" />
+				<spawnunit name="Gadget_TeleportBoots_Enemy" count="1" team="1" target="pos0" pushentity="true" proxy="stack_entity" />
+				<ping name="teleport_red" source="stack_entity" target="stack_entity" position="proxy_position" />	
+			</else>
+
+			<applystate name="State_TeleportBoots" target="source_entity" proxy="stack_entity" duration="3500"/>
+		</onimpact>
+		
+		<oncomplete>
+			<order command="hold" force="true" source="source_entity" target="source_entity" queue="back" />
+		</oncomplete>
+	</modifier>
+
+	<modifier key="tutorialmod" modpriority="80" nosell="true"
+	>
+		<onimpact>
+			<pushentity searchfortarget="true" searchorigin="target_position" radius="99999" targetscheme="shopkeeper" ignoreinvulnerable="true"/>
+			<applystate name="State_TeleportBoots_Target" target="stack_entity" duration="3500"/>
+			<playanim name="item_1" target="source_entity" />
+			<playanim name="port_out" target="source_entity" />
+			<setpos0 position="stack_position" positionmodifier="minonline" positionend="target_position" positionvalue="0" />
+
+			<spawnunit name="Gadget_TeleportBoots" count="1" target="pos0" pushentity="true" proxy="stack_entity" />
+
+			<applystate name="State_TeleportBoots" target="source_entity" proxy="stack_entity" duration="3500"/>
+		</onimpact>
+
+		<onframe>
+			<areaofeffect
+				radius="1000"
+				targetselection="all"
+				targetscheme="all_heroes"
+				center="source_entity"
+			/>
+			<compare a="result" b="1" op="gt" >
+				<setactivemodifierkey name="PostTeleport" />
+			</compare>
+		</onframe>
+	</modifier>
+
+	<modifier key="PostTeleport" modpriority="85" targetscheme="ally_units_and_buildings" nosell="false"
+	>
+		<onimpact>
+			<pushentity searchfortarget="true" searchorigin="target_position" radius="99999" targetscheme="teleport_targets" ignoreinvulnerable="true"/>
+			<applystate name="State_TeleportBoots_Target" target="stack_entity" duration="3500"/>
+			<playanim name="item_1" target="source_entity" />
+			<playanim name="port_out" target="source_entity" />
+			<setpos0 position="stack_position" positionmodifier="minonline" positionend="target_position" positionvalue="80" />
+
+			<spawnunit name="Gadget_TeleportBoots" count="1" target="pos0" pushentity="true" proxy="stack_entity" />
+
+			<applystate name="State_TeleportBoots" target="source_entity" proxy="stack_entity" duration="3500"/>
+		</onimpact>
+
+		<onframe/>
+	</modifier>
+</item>

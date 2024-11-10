@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_RookHook"
+	
+	radius="295"
+	targetscheme="Hook_Mag"
+	targetselection="all"
+	impactinterval="100"
+	lifetime="-1"
+	effecttype=""
+	touchpropradius="200"
+	touchpropanim="hit"
+	maxtotalimpacts="-1"
+	maximpactspertarget="-1"
+>
+	
+	<oninterval>
+
+		<!-- <print text="interval" /> -->
+
+	</oninterval>
+
+	<onimpact>
+		<areaofeffect
+			radius="500"
+			targetselection="all"
+			targetscheme="Hook_Mag"
+			center="source_entity"
+			source="source_entity"
+			ignoreinvulnerable="false"
+			maximpactspertarget="1"
+		>
+		
+			<print text="working"/>
+		</areaofeffect>	 	
+		<else>
+		<unbind target="target_entity"/>
+		<teleport source="target_entity" target="this_entity" interpolate="true" />
+		</else>
+	</onimpact>
+
+</affector>

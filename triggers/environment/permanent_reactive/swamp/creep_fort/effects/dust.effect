@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale=".25">
+	
+			<sound
+				life="5000"
+				volume="0.85"
+				falloffstart="800" 
+				falloffend="2400"
+				sample="../sounds/sfx_explode.wav"
+			/>
+
+			<light
+				position="0 0 600"
+				life="1250"
+				startcolor="10 5 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				startfalloffend="200"
+				endfalloffend="500"
+			/>
+
+<!--
+			<groundsprite
+				life="2750"							
+				material="/shared/effects/smaterials/scorch_ground.material"
+				color="0 0 0"				
+				size="550"				
+				startalpha=".85"
+				midalphapos=".85"
+				midalpha=".85"
+				endalpha="0"
+			/>
+-->
+
+<!--
+			<simpleemitter	
+				life="1000"				
+				spawnrate="5"
+				position="0 0 200"
+				minparticlelife="200"			
+				maxparticlelife="350"				
+				material="/shared/effects/smaterials/toon_explosion.material"			
+				depthbias="-50"
+				offsetsphere="5"
+			>
+				<particle 
+					startcolor=".25 .05 0"
+					endcolor="0 0 0"
+					startsize="0"
+					endsize="500"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+			</simpleemitter>
+
+			<billboard
+				life="2000"
+				position="0 0 200"			
+				startcolor="1 .5 0"
+				endcolor="0"
+				size="550"
+				depthbias="-100"
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+
+-->
+			<simpleemitter	
+				spawnrate="50"
+				life="2000"							
+				position="0 0 475"
+				minparticlelife="1000"			
+				maxparticlelife="1500"	
+				depthbias="0"			
+				material="/shared/effects/smaterials/clouds.material"			
+				offsetsphere="50 50 50"
+				minspeed="0"
+				maxspeed="500"
+				angle="10"
+				direction="0 0 1"
+				drag=".01"
+				gravity="15"
+			>
+				<particle 
+					minangle="-10"
+					maxangle="10"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					startcolor="1 .5 0"
+					midcolor=".05 .05 0"
+					endcolor=".05 .05 0"
+					minstartsize="100"
+					maxstartsize="200"
+					endsize="0"
+					startalpha="0"
+					midalpha=".125"
+					endalpha="0"
+					midalphapos=".2"
+				/>
+			</simpleemitter>
+
+
+			<simpleemitter	
+				spawnrate="60"
+				life="1600"							
+				position="0 0 375"
+				minparticlelife="500"			
+				maxparticlelife="1000"	
+				depthbias="10"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="50 50 25"
+				minspeed="0"
+				maxspeed="360"
+				minangle="0"
+				maxangle="12"
+				direction="0 0 1"
+				gravity="12"
+				drag=".005"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					startcolor="1 .6 .3"
+					midcolor="1 .6 .3"
+					endcolor=".6 .45 .45"
+					startsize="50"
+					endsize="100"
+					startalpha="0"
+					midalpha=".3"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter	
+				spawnrate="30"
+				life="1600"							
+				position="0 0 375"
+				minparticlelife="500"			
+				maxparticlelife="1000"	
+				depthbias="10"			
+				material="/shared/effects/smaterials/cartoon_dust.material"			
+				offsetsphere="100 100 50"
+				minspeed="0"
+				maxspeed="360"
+				minangle="0"
+				maxangle="12"
+				direction="0 0 1"
+				gravity="12"
+				drag=".005"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					startcolor="1 .6 .3"
+					midcolor="1 .6 .3"
+					endcolor=".6 .45 .45"
+					startsize="50"
+					endsize="100"
+					startalpha="0"
+					midalpha=".3"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			<simpleemitter	
+				spawnrate="50"
+				life="800"							
+				position="0 0 275"
+				minparticlelife="500"			
+				maxparticlelife="1000"	
+				depthbias="10"			
+				material="/shared/effects/smaterials/dust_puff.material"			
+				offsetsphere="50 50 50"
+				minspeed="0"
+				maxspeed="720"
+				minangle="0"
+				maxangle="12"
+				direction="0 0 1"
+				gravity="12"
+				drag=".005"
+			>
+				<particle 
+					minangle="-25"
+					maxangle="25"
+					minanglespeed="-100"
+					maxanglespeed="100"
+					color=".11 .13 .15"
+					startsize="150"
+					endsize="200"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="">
+
+				<simpleemitter	
+					bone="{zbone}"
+					spawnrate="40"
+					life="1600"							
+					position="0 0 0"
+					minparticlelife="500"			
+					maxparticlelife="1000"	
+					depthbias="10"			
+					material="/shared/effects/smaterials/cartoon_dust.material"			
+					offsetsphere="15 15 15"
+					drag=".005"
+				>
+					<particle 
+						minangle="-25"
+						maxangle="25"
+						minanglespeed="-100"
+						maxanglespeed="100"
+						startcolor="1 .6 .3"
+						midcolor="1 .6 .3"
+						endcolor=".6 .45 .45"
+						startsize="80"
+						endsize="25"
+						startalpha="0"
+						midalpha=".15"
+						endalpha="0"
+						midcolorpos=".25"
+					/>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance name="" zbone="_bone_rubble_19"/>
+			<instance name="" zbone="_bone_rubble_20"/>
+			<instance name="" zbone="_bone_rubble_03"/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

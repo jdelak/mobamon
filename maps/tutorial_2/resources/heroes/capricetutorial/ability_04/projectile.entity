@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_CapriceTutorial2_Ability4"
+
+	lifetime="450"
+	useexactlifetime="true"
+	gravity="9010"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	
+	traileffect="/heroes/caprice/ability_04/effects/roll_trail.effect"
+	
+	canturn="false"
+	
+	touchprojectileblockers="true"
+	touchradius="1"
+	touchradiusdiradjust="true"
+	touchtargetscheme="Nothing"
+	toucheffecttype=""
+>
+
+
+	<ontouch>
+		<areaofeffect
+			radius="600"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+		>
+			<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="1" />
+			<teleport interpolate="false" facetarget="true" target="pos0" />
+			<playanim name="ability_4_b" target="source_entity" source="source_entity" />
+			<spawnprojectile name="Projectile_CapriceTutorial2_Ability4_Damage" offset="-40 130 160" />
+			<playeffect effect="/heroes/caprice/ability_04/effects/fireball/cast.effect" source="source_entity" />
+		</areaofeffect>
+		<delete target="this_entity" />	
+	</ontouch>
+	<onimpact>
+
+		<areaofeffect
+			radius="600"
+			targetselection="closest"
+			targetscheme="visible_enemy_heroes"
+			maxtotalimpacts="1"
+			effecttype="Magic"
+		>
+			<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="1" />
+			<teleport interpolate="false" facetarget="true" target="pos0" />
+			<playanim name="ability_4_b" target="source_entity" source="source_entity" />
+			<spawnprojectile name="Projectile_CapriceTutorial2_Ability4_Damage"  offset="-40 130 160"/>
+			<playeffect effect="/heroes/caprice/ability_04/effects/cast.effect" source="source_entity" />
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="600"
+				targetselection="closest"
+				targetscheme="visible_enemy_units"
+				maxtotalimpacts="1"
+				effecttype="Magic"
+			>
+				<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="1" />
+				<teleport interpolate="false" facetarget="true" target="pos0" />
+				<playanim name="ability_4_b" target="source_entity" source="source_entity" />
+				<spawnprojectile name="Projectile_CapriceTutorial2_Ability4_Damage" offset="-40 130 160" />
+				<playeffect effect="/heroes/caprice/ability_04/effects/cast.effect" source="source_entity" />
+			</areaofeffect>
+		</else>
+	</onimpact>
+	
+	
+</projectile>

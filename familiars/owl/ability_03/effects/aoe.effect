@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				life="5000"
+				volume="0.45"
+				sample="../sounds/sfx_impact.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2500"
+			/>
+
+			<groundsprite
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 .05 0"
+				midcolor="0 .05 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				life="8000"
+				size="350"
+				alpha="0.5"
+				
+			/>
+
+			<light
+				position="0 0 75"
+				expirelife="250"
+				startcolor="0 2 .5"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="350"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

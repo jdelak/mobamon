@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="scene_color" novs="true">
+	<parameter name="Offset" type="float2" default="0.0 0.0" />
+	<dependency name="Offset" type="float2" source="Offset" />
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+	<dependency name="SceneSampler" type="sampler2D" source="scene" />
+	<dependency name="SceneSize" type="float2" source="vScene" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+		
+			f2SceneTexcoord += Offset * SceneSize;
+		
+			Out = tex2D(SceneSampler, f2SceneTexcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+		
+			f2SceneTexcoord += Offset * SceneSize;
+		
+			Out = SceneSampler_texture.Sample(SceneSampler_sampler, f2SceneTexcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+		
+			f2SceneTexcoord += Offset * SceneSize;
+		
+			Out = texture2D(SceneSampler, f2SceneTexcoord);
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec2 f2SceneTexcoord = ScreenPosition.xy / ScreenPosition.w;
+		
+			f2SceneTexcoord += Offset * SceneSize;
+		
+			Out = texture(SceneSampler, f2SceneTexcoord);
+		?>
+	</case>
+</node>

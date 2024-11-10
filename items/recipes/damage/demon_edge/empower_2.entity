@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_DemonEdge_Empower_2"
+	
+	cost="1050"
+
+>
+	<!-- Tooltip only -->
+	<constant name="damage_neutrals_enchant" value="15" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onattackdamageevent >
+		<damagesupertype supertype="attack">
+			<damageeffecttype effecttype="Splash" />
+			<else>
+				<cantarget targetscheme="enemy_creeps">
+					<getconstant name="damage_neutrals_enchant" adjustmentsource="tool_entity"/>
+					<setvar0 a="result" b="100" op="div" />
+					<setvar0 a="var0" b="1" op="add" />
+					<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+				</cantarget>
+			</else>
+		</damagesupertype>
+	</onattackdamageevent>
+
+</qualityitem>

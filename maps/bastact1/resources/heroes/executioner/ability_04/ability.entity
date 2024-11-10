@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bomb Throw (Regular and Multi) -->
+<ability
+	name="Ability_Executioner3_Enemy4"
+
+	icon="icon.tga"
+	
+	anim="bombthrow_1"
+	casttime="2000"
+	castactiontime="200"
+
+	actiontype="target_entity"
+	targetscheme="enemy_heroes"
+	targetradius="350"
+	targetmaterial="/shared/materials/area_cast_indicator_simple_small.material"
+
+	cooldowntime="4000"
+	noturntotarget="false"
+	range="500"	
+	noresponse="true"
+	responsetype="NoResponse"
+	
+>
+	<onimpact>
+		<spawnunit name="Bastact1_Bomb" count="1" target="source_entity" pushentity="true" team="1" />
+		<!-- <playeffect effect="effects/fuse.effect" source="stack_entity" occlude="true" visibility="all"/> -->
+		<playanim source="stack_entity" target="stack_entity" name="roll" />
+		<setpos0 position="source_position" positionend="target_position" positionmodifier="pointonline" positionvalue="500" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability4_Cast2" target="pos0"  bind="stack_entity" proxy="stack_entity" offset="0 0 100"  />
+	</onimpact>
+
+	<modifier key="disableabilities" modpriority="100" 
+		disabled="true"
+	>
+	</modifier>
+
+	<modifier key="stage2" modpriority="100" 
+		cooldowntime="15000"
+		anim="jump"
+		castactiontime="400"
+	>
+		<onimpact>
+			<areaofeffect
+				radius="5000"
+				targetselection="all"
+				targetscheme="Bastact1_BombAbility_Start"
+				center="source_entity"
+				maxtotalimpacts="1"
+				ignoreinvulnerable="true"
+
+
+			>
+				<spawnprojectile name="Projectile_Executioner_Ability4_Jump" source="source_entity" target="target_entity" bind="source_entity" bindturn="true"  duration="500" pushentity="true" />
+				<setproxy entity="this_entity" target="stack_entity" />				
+				
+				<applystate name="Bastact1_State_Executioner_Jumping" target="source_entity" duration="-1" />
+			</areaofeffect>
+
+			<areaofeffect
+				radius="3000"
+				targetselection="random"
+				targetscheme="Bombpos_Gadget"
+				center="source_entity"
+				maxtotalimpacts="1"
+				ignoreinvulnerable="true"
+
+			>		
+				<print text="doing stuff" />
+				<setproxy entity="this_proxy_entity" target="target_entity" />  <!-- This should set the proxy(projectile, from above)'s proxy to the Bombpos gadget-->
+				<applystate name="Bastact1_State_Bombcast" target="source_entity" duration="6000" />
+				<applystate name="Bastact1_State_Executioner_Laugh" target="source_entity" duration="4000" />	
+
+			</areaofeffect>
+			<else> <print text="fail" /> </else>
+		</onimpact>
+	</modifier>
+
+</ability>

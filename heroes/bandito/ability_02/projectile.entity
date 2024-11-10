@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bandito_Ability2"
+
+	speed="2000"
+
+	curve="-12000"
+	flying="true"
+	flyheight="100"
+
+	modelscale="0.6"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact.effect"
+	canturn="true"
+
+	
+>
+	
+	<onimpact>
+		<applystate name="State_Bandito_Ability2" duration="3000" />
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic" target="target_entity" significant="true" amount="1" b="result" op="mult" />
+		
+		<recordheroaggression  />
+		<aggression />
+	</onimpact>
+
+</projectile>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="blended_matrix">
+	<dependency name="BoneWeight" type="float4" source="ObjectBoneWeight" />
+	<dependency name="Bones" type="float4x3[]" size="NUM_BONES" source="vBones" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4x3" solution="BlendedMatrix" />
+	<case>
+		<dependency name="BoneIndex" type="uint4" source="ObjectBoneIndex" />
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			uint4 ui4BoneIndex = BoneIndex;
+			float4 f4BoneWeight = BoneWeight / 255.0f;
+			
+			Out = 0.0f;
+			for (int i = 0; i < NUM_BONE_WEIGHTS; ++i)
+				Out += Bones[ui4BoneIndex[i]] * f4BoneWeight[i];
+		?>
+	</case>
+	<case>
+		<dependency name="BoneIndex" type="uint4" source="ObjectBoneIndex" />
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			uint4 ui4BoneIndex = BoneIndex;
+			float4 f4BoneWeight = BoneWeight;
+			
+			Out = 0.0f;
+			for (int i = 0; i < NUM_BONE_WEIGHTS; ++i)
+				Out += Bones[ui4BoneIndex[i]] * f4BoneWeight[i];
+		?>
+	</case>
+	<case>
+		<dependency name="BoneIndex" type="float4" source="ObjectBoneIndex" />
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec4 i4BoneIndex = BoneIndex;
+			vec4 f4BoneWeight = BoneWeight / 255.0f;
+			
+			Out = mat3x4(0.0f);
+			for (int i = 0; i < NUM_BONE_WEIGHTS; ++i)
+				Out += Bones[int(i4BoneIndex[i])] * f4BoneWeight[i];
+		?>
+	</case>
+	<case>
+		<dependency name="BoneIndex" type="int4" source="ObjectBoneIndex" />
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			ivec4 i4BoneIndex = BoneIndex;
+			vec4 f4BoneWeight = BoneWeight / 255.0f;
+			
+			Out = mat3x4(0.0f);
+			for (int i = 0; i < NUM_BONE_WEIGHTS; ++i)
+				Out += Bones[i4BoneIndex[i]] * f4BoneWeight[i];
+		?>
+	</case>
+</node>

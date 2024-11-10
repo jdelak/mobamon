@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".75">
+
+			<template name="orbs">
+
+				<model
+					bone="_bone_center"
+					model="orbit/orbit.mdf"
+					anim="idle"
+					scale="{zscale}"
+					roll="{zroll}"
+					yaw="{zyaw}"
+					pitch="{zpitch}"
+					position="0 0 30"
+				>
+					<light
+						bone="_bone_fx"
+						expirelife="250"
+						startcolor="0 5 10"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						falloffstart="0"
+						falloffend="35"
+						position="0 0 0"
+					/>
+
+					<model
+						expirelife="250"
+						bone="_bone_fx"
+						model="sphere/model.mdf"
+						material="/shared/effects/smaterials/shell_sludge_different.material"
+						anim="idle"
+						scale=".35"
+						startcolor="0 .2 .4"
+						endcolor="0 0 0"
+						rollspeed="180"
+						position="0 0 0"
+					/>
+
+					<billboard
+						expirelife="250"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .15 1"
+						endcolor="0 0 0"
+						scale=".9"
+						depthbias="-25"
+					/>
+
+					<template name="light">
+						<simpleemitter
+							bone="_bone_fx"
+							delay="{zdelay}"
+							spawnrate="20"
+							particlelife="350"
+							material="/shared/effects/smaterials/animated_lightning.material"
+							offsetsphere="0 0 0"
+							position="0 0 0"
+						>
+							<particle
+								anchor="1"
+								minangle="0"
+								maxangle="360"
+								width="19"
+								minheight="22"
+								maxheight="27"
+								startcolor=".4 .8 1"
+								endcolor="0 0 0"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+							/>
+						</simpleemitter>
+					</template>
+
+					<instance name="light" zdelay="0"/>
+
+					
+
+					<template name="light">
+						<simpleemitter
+							bone="_bone_fx"
+							delay="{zdelay}"
+							spawnrate="8"
+							particlelife="350"
+							material="/shared/effects/smaterials/animated_lightning.material"
+							offsetsphere="0 0 0"
+							position="0 0 0"
+						>
+							<particle
+								anchor="1"
+								minangle="0"
+								maxangle="360"
+								width="18"
+								minheight="20"
+								maxheight="20"
+								startcolor=".5 .75 1"
+								endcolor="0 0 0"
+								startframe="0"
+								endframe="1"
+								framespeed=".25"
+							/>
+						</simpleemitter>
+					</template>
+
+					<instance name="light" zdelay="0"/>
+					
+					<trackeremitter
+						bone="_bone_fx"
+						targetbone="_bone_centerofchest"
+						tracktype="linear"
+						trackspeed="10"
+						spawnrate="100"
+						particlelife="2000"
+						speed="750"
+						acceleration="0"
+						direction="0 0 1"
+						inheritvelocity="0"
+						distancelife="1"
+						offsetsphere="8"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								life="200"
+								width="25"
+								height="25"
+								material="/shared/effects/smaterials/animated_lightning.material"
+								startcolor="1 1 1"
+								midcolor="1 1 1"
+								endcolor="1 1 1"
+								minyaw="0"
+								maxyaw="360"
+								depthbias="-20"
+							/>
+
+							<billboard
+								life="150"
+								material="/shared/effects/materials/whitedot.material"
+								startcolor="0 .05 .25"
+								midcolor="0 .05 .25"
+								endcolor="0  0 0"
+								depthbias="-20"
+							/>
+
+							
+						</particle>
+					</trackeremitter>
+
+				</model>
+			
+			</template>
+
+			<instance name="orbs" zroll="45" zyaw="80" zpitch="0" zscale="1.85"/>
+
+			<instance name="orbs" zroll="-45" zyaw="180" zpitch="0" zscale="1.75"/>
+<!--
+			<instance name="orbs" zroll="0" zyaw="0" zpitch="45" zscale="1.65"/>
+-->
+
+
+			
+			
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>

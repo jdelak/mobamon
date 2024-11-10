@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_LexiKhan2"
+	
+	icon="icon.tga"
+
+	actiontype="target_self"
+
+	casteffect="effects/cast.effect"
+	
+	anim="ability_spin"
+	casttime="200"
+	castactiontime="400"
+	inheritmovement="true"
+	frontqueue="true"
+
+	cooldowntime="11000,9000,7000,5000"
+	manacost="75"
+	range="400"
+
+
+>
+	<onimpact>
+		<areaofeffect
+			targetscheme="enemy_units"
+			effecttype=""
+			ignoreinvulnerable="true"
+			targetselection="all"
+			radius="400"
+			maximpactspertarget="1"
+		>
+			<damage amount="150" effecttype="Magic" target="target_entity" source="source_entity"/>
+			<playeffect  effect="effects/impact.effect" target="target_entity" source="target_entity" />
+		</areaofeffect>
+	</onimpact>
+
+</ability>

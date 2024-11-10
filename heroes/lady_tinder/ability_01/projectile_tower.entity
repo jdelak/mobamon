@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Ladytinder_Ability1_Towers"
+
+	speed="1500"
+	gravity="0"
+
+	modelscale="2"
+
+	canturn="0"
+	
+	
+	flying="true"
+	flyheight="45"
+	
+	touchradius="50"
+	touchcliffs="false"
+
+	hazardradius="300"
+	hazardoffset="200"
+  
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_buildings"
+	toucheffecttype="Magic"
+
+	lifetime="5000"
+>
+
+
+	<ontouch>
+		<changeaccumulator entity="this_proxy_entity" b="0" op="add" />
+		<compare a="result" b="1" op="ne" >
+			<getconstant name="damage" adjustmentsource="this_entity" />
+			<damage effecttype="Magic" amount="1" b="result" op="mult" />
+			<recordheroaggression  />
+			<aggression />
+			<setaccumulator entity="this_proxy_entity" value="1" />
+		</compare>
+		<delete target="this_entity" />
+	</ontouch>
+  
+</projectile>

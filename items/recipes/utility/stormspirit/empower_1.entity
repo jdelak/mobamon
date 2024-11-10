@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Stormspirit_Empower_1"
+	cost="850"
+
+>
+	<constant name="mana_enchant" value="50" adjustment="none" />
+	<onimpact>
+		<breakchannel entity="target_entity" />
+		<unbind />
+		<setpos0 position="source_position" offsetspace="source_entity" offset="0 50 0" />
+		<spawnunit name="Gadget_Item2I" target="target_position" mount="target_entity" facing="pos0" pushentity="true" />
+		<applystate name="State_Item2I" duration="2000" proxy="stack_entity" />
+		<popup name="invulnerable" source="source_entity" target="source_entity" />
+
+		<startcooldown/>
+		<getconstant name="cooldown_analog" />
+		<setvar0 a="result" b="1000" op="mult" />
+		<reducecooldown duration="var0" />
+
+		<getconstant name="mana_enchant" />
+		<givemana target="source_entity" amount="result" />
+	</onimpact>
+</qualityitem>

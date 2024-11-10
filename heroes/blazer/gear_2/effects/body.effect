@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale=".15">
+
+		
+		
+			<template name="">
+
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="{zlife}"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="{zgreen}"
+					midcolor="{zyellow}"
+					endcolor="{zgreen}"
+					midcolorpos=".25"
+					depthbias="-40"
+					size="{zsize}"
+					loop="true"
+				/>
+			
+			</template>
+
+			<instance name="" zbone="_bone_chest_fx02" zlife="1000" zsize="150" zyellow=".25 .25 0" zgreen=".06 .25 0"/>
+			<instance name="" zbone="_bone_chest_fx03" zlife="1000" zsize="150" zyellow=".25 .25 0" zgreen=".06 .25 0"/>
+
+			
+			
+			
+			
+			
+			
+			<template name="">
+
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="{zlife}"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="{zgreen}"
+					midcolor="{zyellow}"
+					endcolor="{zgreen}"
+					midcolorpos=".25"
+					depthbias="-40"
+					size="{zsize}"
+					loop="true"
+				/>
+			
+			</template>
+
+			<instance name="" zbone="_bone_weapon1" zlife="1000" zsize="350" zyellow=".35 .35 0" zgreen=".07 .35 0"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="">
+
+				<billboard
+					bone="{zbone}"
+					position="0 0 0"
+					life="{zlife}"
+					material="/shared/effects/materials/whitedot.material"
+					startcolor="{zgreen}"
+					midcolor="{zyellow}"
+					endcolor="{zgreen}"
+					midcolorpos=".25"
+					depthbias="-40"
+					size="{zsize}"
+					loop="true"
+				/>
+			
+			</template>
+			
+			<instance name="" zbone="_bone_Bip01 L ant2" zlife="500" zsize="175" zyellow=".265 .125 0" zgreen=".3 0 0"/>
+			<instance name="" zbone="_bone_Bip01 R ant2" zlife="500" zsize="175" zyellow=".265 .125 0" zgreen=".3 0 0"/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="templatz">
+
+				<simpleemitter
+					delay="0"
+					bone="{zbone}"
+					position="{zpos}" 
+					spawnrate="150"
+					minparticlelife="200"
+					maxparticlelife="300"
+					gravity="0"
+					offsetsphere="0"
+					speed="500"
+					drag="0"
+					acceleration="0"
+					material="/shared/effects/smaterials/firesprite_swirl_add.material"
+					minangle="0"
+					maxangle="2"
+					direction="{zdirection}"
+					depthbias="-10"
+					directionalspace="local"
+				>
+					<particle				
+						startcolor="1 1 0"
+						midcolor="0 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minangle="0"
+						maxangle="360"
+						startsize="50"
+						endsize="0"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						directionalspace="local"
+						startanchor="1"
+						endanchor="0"
+					/>
+					
+					<particle				
+						startcolor="0 1 0"
+						midcolor="0 1 0"
+						endcolor="0 0 0"
+						midcolorpos=".15"
+						minangle="0"
+						maxangle="360"
+						startsize="50"
+						endsize="0"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						directionalspace="local"
+						startanchor="1"
+						endanchor="0"
+					/>
+				</simpleemitter>
+
+				<billboard
+					bone="{zbone}"
+					position="{zpos}"
+					expirelife="250"
+					startcolor=".35 .35 0"
+					endcolor="0 0 0"
+					size="350"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-32"
+				/>
+				
+				<groundsprite
+					bone="{zbone}"
+					position="{zpos}"
+					expirelife="250"
+					startcolor=".1 .15 0"
+					endcolor="0 0 0"
+					size="250"
+					material="/shared/effects/smaterials/whitedot_ground.material"
+				/>
+
+			</template>
+
+			<instance name="templatz" zpos="4 0 12" zbone="_bone_fx_jets02" zdirection="-1 0 0"/>
+			<instance name="templatz" zpos="-4 0 12" zbone="_bone_fx_jets02" zdirection="-1 0 0"/>
+			<instance name="templatz" zpos="4 0 12" zbone="_bone_fx_jets05" zdirection="1 0 0"/>
+			<instance name="templatz" zpos="-4 0 12" zbone="_bone_fx_jets05" zdirection="1 0 0"/>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".15">
+		
+			<template name="templatz">
+		
+				<simpleemitter
+					spawnrate="{zspawnrate}"
+					bone="{zbone}"
+					particlelife="1500"
+				>
+					<particle
+					>
+						<simpleemitter
+							bone="{zbone}"
+							count="30"
+							spawnrate="5000"
+							minparticlelife="100"
+							maxparticlelife="200"
+							gravity="3"
+							minspeed="750"
+							maxspeed="1250"
+							drag="0"
+							acceleration="0"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							offsetsphere="0 0 0"
+							direction="0 0 0"
+
+						>
+							<particle
+								startcolor="1 1 0"
+								midcolor="1 1 0"
+								endcolor="0 0 0"
+								midcolorpos=".85"
+								startsize="20"
+								endsize="0"
+							/>
+						</simpleemitter>
+						
+						<billboard
+							bone="{zbone}"
+							life="150"
+							startcolor=".5 1 0"
+							endcolor="0 0 0"
+							size="400"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-32"
+						/>
+						
+						<groundsprite
+							bone="{zbone}"
+							position="0 0 0"
+							life="150"
+							startcolor=".125 .125 0"
+							endcolor="0 0 0"
+							size="135"
+							material="/shared/effects/smaterials/whitedot_ground.material"
+						/>
+
+					</particle>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="templatz" zbone="_bone_fx_jets02" zspawnrate="1" zdirection="-1 0 0"/>
+			<instance name="templatz" zbone="_bone_fx_jets05" zspawnrate=".66" zdirection="1 0 0"/>
+		
+		</particlesystem>
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="entity" scale="1">
+		
+		
+		
+		
+		
+		
+		
+			<template name="">
+
+				<simpleemitter
+					bone="{zbone}"
+					spawnrate="100"
+					particlelife="500"
+					position="0 0 0"
+					minangle="0"
+					maxangle="0"
+					direction="0 1 0"
+					minspeed="0"
+					maxspeed="200"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<billboard
+							life="250"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							directionalspace="local"
+							startcolor=".06 .125 0"
+							endcolor="0 0 0"
+							startsize="45"
+							endsize="15"
+							lockup="1"
+							lockright="1"
+
+						/>
+					</particle>
+				</simpleemitter>
+			
+			</template>
+			
+			<instance zbone="_bone_fx_backJet1"/>
+			<instance zbone="_bone_fx_backJet3"/>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+<!--
+			<model
+				parentskeleton="1"
+				expirelife="1000"
+				color="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+				model="purple/model.mdf"
+			/>
+-->
+
+<!--
+			<model
+				parentskeleton="1"
+				expirelife="1000"
+				color="1 1 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="1"
+				model="green_wings/model.mdf"
+			/>
+-->
+		</particlesystem>
+		
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

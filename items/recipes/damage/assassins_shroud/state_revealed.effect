@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" usentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			startcolor="1"
+			endcolor="1"
+			alpha=".5"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+		
+		
+			<billboard
+				life="250"
+				startsize="0"
+				endsize="50"
+				position="0 0 200"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .5 1"
+			/>
+			
+			<billboard
+				life="250"
+				startsize="0"
+				endsize="60"
+				position="0 0 200"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .25 .5"
+				width="125"
+				height="20"
+			/>
+			
+			<billboard
+				life="250"
+				startsize="0"
+				endsize="65"
+				position="0 0 200"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .25 .5"
+				width="100"
+				height="40"
+			/>
+
+			<billboard
+				life="250"
+				startsize="0"
+				midsize="40"
+				endsize="30"
+				position="0 0 200"
+				material="/shared/effects/smaterials/eye.material"
+				color="1 1 1"
+			/>
+		
+		
+		
+		
+		
+		
+		
+			<billboard
+			delay="250"
+				life="1000"
+				startsize="50"
+				midsize="55"
+				endsize="50"
+				position="0 0 200"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .5 1"
+				loop="1"
+			/>
+			
+			<billboard
+			delay="250"
+				life="500"
+				startsize="60"
+				midsize="65"
+				endsize="60"
+				position="0 0 200"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .25 .5"
+				width="125"
+				height="20"
+				loop="true"
+			/>
+			
+			<billboard
+			delay="250"
+				life="500"
+				startsize="65"
+				midsize="65"
+				endsize="65"
+				position="0 0 200"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .25 .5"
+				width="100"
+				height="40"
+				loop="true"
+			/>
+
+			<billboard
+			delay="250"
+				life="1000"
+				startsize="30"
+				midsize="35"
+				endsize="30"
+				position="0 0 200"
+				material="/shared/effects/smaterials/eye.material"
+				color="1 1 1"
+				loop="1"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<billboard
+				delay="250"
+				life="1000"
+				startsize="50"
+				midsize="55"
+				endsize="50"
+				position="0 0 150"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .25 .5"
+				loop="1"
+			/>
+			
+			<billboard
+				life="250"
+				startsize="50"
+				midsize="55"
+				endsize="50"
+				position="0 0 150"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 .25 .5"
+			/>
+
+			<groundsprite
+				expirelife="500"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+				size="85"
+				startalpha=".65"
+				endalpha="0"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+			/>
+
+			<model
+				parentskeleton="1"
+				parentmodel="1"
+				expirelife="500"
+				material="black/material.material"
+				color=".25"
+				alpha=".6"
+				startscale="1"
+				endscale="1"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

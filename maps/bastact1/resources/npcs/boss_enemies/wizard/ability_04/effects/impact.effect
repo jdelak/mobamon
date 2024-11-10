@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".6">
+			<!-- Ground scorch mark -->
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="2000"
+				count="1"
+				minparticlelife="450"
+				maxparticlelife="600"
+				gravity="0"
+				acceleration="0"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/scorch_ground.material"
+			>
+				<particle
+					color="0.2 0 0.2"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					startscale="100"
+					endscale="350"
+					turn="true"
+					pitch="90"
+					lockup="true"
+					lockright="true"
+					minangle="0"
+					maxangle="360"
+				/>
+			</simpleemitter>
+			
+			<!-- Flamesplosion -->
+				<!-- Dark purple flames-->
+	
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="2000"
+				count="300"
+				minparticlelife="200"
+				maxparticlelife="400"
+				mingravity="0"
+				maxgravity="-300"
+				minspeed="100"
+				maxspeed="300"
+				acceleration="0"
+				position="0 0 20"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/flamewisps.material"
+				depthbias="100"
+				direction="0 0 0"
+				directionalspace="world"
+				startangle="360"
+				endangle="0"
+			>
+				<particle
+					startcolor=".4 0 .6"
+					
+					endcolor="0 0 0"
+					midcolorpos=".7"
+					startalpha="1"
+					
+					endalpha="0"
+					startscale="20"
+					midscale="70"
+					endscale="0"
+					turn="true"
+					minanglespeed="-200"
+					maxanglespeed="200"
+					
+				/>
+			</simpleemitter>
+
+				<!-- Purple pink flames -->
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="2000"
+				count="300"
+				minparticlelife="200"
+				maxparticlelife="400"
+				mingravity="0"
+				maxgravity="-200"
+				minspeed="100"
+				maxspeed="300"
+				acceleration="0"
+				position="0 0 0"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/flamewisps.material"
+				depthbias="100"
+				direction="0 0 0"
+				directionalspace="world"
+			>
+				<particle
+					startcolor="1 1 1"
+					midcolor="1 0 1"
+					endcolor=".8 0 1"
+					midcolorpos=".7"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".2"
+					startscale="20"
+					midscale="70"
+					endscale="0"
+					turn="true"
+					minanglespeed="-200"
+					maxanglespeed="200"
+					
+				/>
+			</simpleemitter>
+			
+				<!-- White flames -->
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="2000"
+				count="300"
+				minparticlelife="200"
+				maxparticlelife="400"
+				mingravity="-100"
+				maxgravity="-200"
+				minspeed="100"
+				maxspeed="200"
+				acceleration="0"
+				position="0 0 -20"
+				offsetsphere="50"
+				material="/shared/effects/smaterials/flamewisps.material"
+				depthbias="50"
+				direction="0 0 0"
+				directionalspace="world"
+			>
+				<particle
+					startcolor="1 1 1"
+					endcolor="1 1 1"
+					midcolorpos=".5"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".2"
+					startscale="5"
+					midscale="15"
+					endscale="0"
+					turn="true"
+					
+					minanglespeed="-200"
+					maxanglespeed="200"
+					
+				/>
+			</simpleemitter>
+
+				<!-- Streaks -->
+			<simpleemitter
+				
+				spawnrate="5000"
+				count="20"
+				minparticlelife="200"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="1500"
+				maxspeed="3000"
+				drag="0.01"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitecircleblurred_add_unlit.material"
+			>
+				<particle
+					heightdistort="0.2"
+					widthdistort=".05"
+					scale=".2"
+					startcolor="1 1 1"
+					endcolor=".6 0 .6"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+
+				<!-- Purple impact ring -->
+			<simpleemitter
+				bone="_bone_center"
+				spawnrate="3000"
+				count="1"
+				particlelife="200"
+				gravity="0"
+				acceleration="0"
+				speed="0"
+				position="0 0 0"
+				offsetsphere="0"
+				direction="0 0 0"
+				material="/shared/effects/smaterials/circle_edge_inout_alpha_add.material"
+				
+			>
+				<particle
+					startcolor=".7 0 .7"
+					endcolor="0"
+					startscale="50"
+					endscale="400"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+				/>
+			</simpleemitter>
+		</particlesystem>
+
+		<modifier
+			name="modifier0"
+			life="1000"
+			startcolor="0"
+			endcolor="1"
+			alpha="1"
+		/>
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Hale4"
+
+	icon="icon.tga"
+	
+	anim="ability_4"
+	casttime="400"
+	castactiontime="400"
+	casteffect="effects/cast.effect"
+
+	maxlevel="3"
+	requiredlevel="6,11,15"
+
+	actiontype="self_position"
+	targetscheme="enemy_units_and_buildings"
+	targetradius="550"
+	casteffecttype="Magic"
+	
+	manacost="90,105,120"
+	cooldowntime="90000"
+>
+	<constant name="damage" value="150,200,250" adjustment="ability" />
+	<constant name="stun" value="1.2,1.5,1.8" adjustment="none" floatprecision="1" />
+
+	<onimpact>
+		<spawnaffector name="Affector_Hale_Ability4_Stun" target="source_position"/>
+		<playeffect effect="effects/explosion.effect" target="target_position" source="target_position" occlude="true"/>
+	</onimpact>
+	
+</ability>

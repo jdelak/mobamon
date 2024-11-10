@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="recover_deferred_position_intz_multisample">
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+	<dependency name="depth" type="sampler2DMS" source="depth" />
+	<dependency name="VPos" type="float2" source="VPos" />
+	<dependency name="ScreenToViewX" type="float3" source="vScreenToViewX" />
+	<dependency name="ScreenToViewY" type="float3" source="vScreenToViewY" />
+	<dependency name="ScreenToViewZ" type="float3" source="vScreenToViewZ" />
+	<dependency name="VPosToScreen" type="float4" source="vVPosToScreen" />
+	<dependency name="ProjRatio" type="float2" source="vProjRatio" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" solution="DeferredPositionMultisample" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<dependency name="VPos" type="float2" source="VPos" />
+		<?hlsl
+			float fDepth = tex2Dproj(depth, ScreenPosition).r;
+			float2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<dependency name="VPos" type="float4" source="VPos" />
+		<dependency name="SV_SampleIndex" type="uint" source="SV_SampleIndex" />
+		<?hlsl
+			float2 f2ScreenPositionTexcoord = float2(ScreenPosition.xy / ScreenPosition.w);
+		
+			uint2 ui2Size;
+			uint uiNumSamples;
+			depth.GetDimensions(ui2Size.x, ui2Size.y, uiNumSamples);
+
+			float4 fDepth = depth.Load(int2(ui2Size * f2ScreenPositionTexcoord), SV_SampleIndex).r;
+			float2 f2ScreenPosition = VPos.xy * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<dependency name="VPos" type="float2" source="VPos" />
+		<?glsl
+			#error Not available for glsl 120
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<dependency name="VPos" type="float2" source="VPos" />
+		<extension name="GL_ARB_sample_shading" />
+		<?glsl
+			vec2 f2ScreenPositionTexcoord = vec2(ScreenPosition.xy / ScreenPosition.w);
+			float fDepth = 2.0 * texelFetch(depth, ivec2(textureSize(depth) * f2ScreenPositionTexcoord), gl_SampleID).r - 1.0;
+			vec2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = ProjRatio.y / (fDepth - ProjRatio.x);
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX - f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+</node>

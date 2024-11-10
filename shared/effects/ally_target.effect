@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="0" name="level up">
+
+<definitions>
+	<particlesystem name="system0" space="world" scale="0.79">
+
+
+		<groundsprite
+			life="1000"
+			material="/shared/effects/materials/ground_context_protect.material"
+			startsize="100"
+			midsize="80"
+			endsize="100"
+			midcolor=".3  1 0"
+			startcolor="0 1 .0"			
+			endcolor=".3 1 0"
+			startalpha="1"
+			midalpha=".3"
+			endalpha="1"
+			
+			yawspeed="120" 
+			loop="1"
+			
+		/>
+		<groundsprite
+			life="1000"
+			material="/shared/effects/materials/ground_context_filler.material"
+			startsize="80"
+			midsize="120"
+			endsize="80"
+			midcolor=".3  1 0"
+			startcolor="0 1 .0"			
+			endcolor=".3 1 0"
+			startalpha="1"
+			midalpha=".3"
+			endalpha="1"
+			
+			yawspeed="120" 
+			loop="1"			
+		/>	
+		
+		<simpleemitter
+			spawnrate="3"
+			particlelife="1000"
+			expirelife="1000"
+			
+			gravity="0.0"
+			speed="0"
+			acceleration="0.0"
+			timenudge="-100"
+			position="0 0 0"
+			offestsphere="10 10 0"
+			
+			
+			material="/shared/effects/materials/flare2.material"
+		>
+			<particle
+				startcolor="0 0 0"
+				midcolor="0 1 0"
+				endcolor="0.0 0.0 0.0"
+				startalpha="1.0"
+				endalpha="0.0"
+				width="15.0"
+				startheight="0.0"
+				endheight="2350.0"
+				lockup="true"
+				
+				
+			/>
+		</simpleemitter>
+
+	
+
+	</particlesystem>
+</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	<!-- <die /> -->
+</thread>
+
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][pos] -->
+

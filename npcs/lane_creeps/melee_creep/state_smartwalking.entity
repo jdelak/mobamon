@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Smartwalking"
+
+	impactinterval="350"
+>
+	<onimpact>
+		<haseffecttype name="StatusDisable" />
+		<else>
+			<compare a="movement" b="4" op="le" >
+				<changeaccumulator b="1" op="add"/>
+				<compare a="accumulator" b="2" op="gt" >
+					<setaccumulator value="0"/>
+					<applystate name="State_Creep_Unitwalking" target="source_entity" duration="250"/>
+				</compare>
+			</compare>
+			<else>
+				<setaccumulator value="0" />
+			</else>
+		</else>
+	</onimpact>
+
+	<onattackstart>
+		<setaccumulator value="0" />
+	</onattackstart>
+
+	<onattackimpact>
+		<setaccumulator value="0" />
+	</onattackimpact>
+</state>

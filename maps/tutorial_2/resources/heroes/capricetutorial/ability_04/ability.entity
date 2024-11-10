@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_CapriceTutorialB4"
+
+	icon="/heroes/caprice/ability_04/icon.tga"
+	
+	anim="ability_4"
+	casttime="150"
+	castactiontime="150"
+
+	maxlevel="3"
+	requiredlevel="6,11,15"
+
+	actiontype="target_position"
+	targetradius="600"
+	targetmaterial="/shared/materials/area_cast_indicator_dotted.material"
+	targetscheme="enemy_units"
+	casteffecttype="Magic"
+
+	activatescheme="movement"
+	
+	manacost="100,115,130"
+	range="600"
+	cooldowntime="500"
+	novoiceresponse="true"
+	allowoutofrangecast="true"
+
+	notargetradius="500"
+	notargetmaterial="/shared/materials/area_cast_indicator_simple_red.material"
+	notargetscheme="Gadget_Tutorial2_NoCast"
+	notargetignoreinvulnerable="true"
+	
+	maxcharges="2"
+	
+	showareacast="true"
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+>
+
+	<constant name="damage" value="100,150,200" adjustment="ability" />
+	
+	<onlearn>
+		<setcharges a="2" />
+		<setscriptvalue name="learned_skill" value="1" />
+	</onlearn>
+	
+	<ondeath>
+		<setcharges a="2" />
+	</ondeath>
+	
+	<ontimer>
+		<addcharges entity="this_entity" count="1" />
+		<compare a="charges" b="2" op="lt">
+			<starttimer duration="15000" applycooldownreduction="true"/>
+		</compare>
+	</ontimer>
+
+	<onimpact>
+		<compare a="charges" b="2" op="eq">
+			<starttimer duration="15000" applycooldownreduction="true" />
+		</compare>
+		
+		<removecharge />
+		<compare a="charges" b="0" op="eq">
+			<setactivemodifierkey name="CapriceTutorial2_blink_disabled" />
+		</compare>
+	
+		<playeffect effect="/heroes/caprice/ability_04/effects/cast_ground.effect" source="source_position" target="target_position" occlude="true" />
+		<spawnprojectile name="Projectile_CapriceTutorial2_Ability4" source="source_entity" target="target_position" bind="source_entity" bindstate="State_CapriceTutorial2_Ability4" />
+	</onimpact>
+	
+	<modifier key="CapriceTutorial2_blink_disabled" modpriority="100"
+		disabled="true"
+	>
+		<onframe>
+			<compare a="charges" b="0" op="gt">
+				<setactivemodifierkey name="" />
+			</compare>
+		</onframe>
+	</modifier>
+	
+</ability>

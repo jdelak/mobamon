@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world">
+
+			
+			<!-- dummy to keep state from repeating -->
+			<billboard
+				position="0 0 0"
+				expirelife="250"
+				material="/shared/effects/smaterials/whitedot.material"
+				color="0 0 0"
+			/>
+<!--
+			<light
+				position="0 0 50"
+				life="1400"
+				startcolor="0 0 0"
+				midcolor="10 3 0"
+				endcolor="0 0 0"
+				midcolorpos=".9"
+				falloffstart="0"
+				startfalloffend="75"
+				endfalloffend="150"
+			/>
+-->
+
+
+
+<!--
+			<template name="">
+
+				<simpleemitter
+				delay="300"
+				bone="{zbone}"
+					spawnrate="25"
+					minparticlelife="500"
+					maxparticlelife="750"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					position="{zpos}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="0"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="1 0 0"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="50"
+						endsize="0"
+						turn="true"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+				delay="300"
+				bone="{zbone}"
+					spawnrate="8"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="0"
+					maxspeed="300"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="-25"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="0 0 0"
+						midcolor="1 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="20"
+						midsize="15"
+						endsize="0"
+						turn="true"
+					/>
+					
+					<particle 
+					anchor="1"
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="0 0 0"
+						midcolor="1 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="20"
+						midsize="15"
+						endsize="0"
+						turn="true"
+					/>
+				</simpleemitter>
+
+				<billboard
+				delay="300"
+					expirelife="250"
+					material="/shared/effects/materials/whitedot.material"
+					bone="{zbone}"
+					startcolor=".5 .2 0"
+					endcolor="0 0 0"
+					position="0 0 10"
+					size="20"
+					depthbias="-50"
+				/>
+			</template>
+
+			<instance name="" zbone="_bone_bip01 L finger22"/>  
+			<instance name="" zbone="_bone_bip01 R finger22"/>  
+-->
+			
+			<billboard
+				delay="300"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				bone="_bone_bip01 R finger22"
+				startcolor=".65 0 0"
+				endcolor="0 0 0"
+				position="0 0 10"
+				size="50"
+				depthbias="-150"
+			/>
+	
+			<billboard
+				delay="300"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				bone="_bone_bip01 L finger22"
+				startcolor=".65 0 0"
+				endcolor="0 0 0"
+				position="0 0 10"
+				size="50"
+				depthbias="-150"
+			/>
+			
+			<billboard
+				delay="300"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				bone="_bone_bip01 R finger22"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				position="0 0 10"
+				size="30"
+				depthbias="-150"
+			/>
+			
+			<billboard
+				delay="300"
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				bone="_bone_bip01 L finger22"
+				startcolor="1 .5 0"
+				endcolor="0 0 0"
+				position="0 0 10"
+				size="30"
+				depthbias="-150"
+			/>
+
+      </particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

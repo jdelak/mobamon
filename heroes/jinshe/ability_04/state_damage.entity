@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_JinShe_Ability4_Damage"
+
+	icon="icon.tga"
+	displaylevel="true"
+	ishidden="true"
+	
+	maxcharges="12"
+	
+	effecttype=""
+>
+	<oninflict>
+		<setaccumulator value="1" />
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+	</oninflict>
+	
+	<onrefresh>
+		<changeaccumulator b="0.9" op="mult" />
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="accumulator" op="mult" />
+		<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+	</onrefresh>
+</state>

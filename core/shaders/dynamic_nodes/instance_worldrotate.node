@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="instance_worldrotate">
+	<dependency name="mWorldRotate" type="float3x3" source="mWorldRotate" />
+	<dependency name="InstanceNormalX" type="float3" source="InstanceNormalX" />
+	<dependency name="InstanceNormalY" type="float3" source="InstanceNormalY" />
+	<dependency name="InstanceNormalZ" type="float3" source="InstanceNormalZ" />
+	<output name="Out" type="float3x3" solution="InstanceRotate" />
+	<?hlsl
+		float3x3 mInstanceRotate = float3x3(float3(InstanceNormalX.x, InstanceNormalY.x, InstanceNormalZ.x),
+											float3(InstanceNormalX.y, InstanceNormalY.y, InstanceNormalZ.y),
+											float3(InstanceNormalX.z, InstanceNormalY.z, InstanceNormalZ.z));
+		Out = mul(mInstanceRotate, mWorldRotate);
+	?>
+	<?glsl
+		mat3x3 mInstanceRotate(InstanceNormalX,
+							   InstanceNormalY,
+							   InstanceNormalZ);
+		Out = mWorldRotate * mInstanceRotate;
+	?>
+</node>

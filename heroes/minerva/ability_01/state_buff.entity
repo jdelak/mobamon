@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Minerva_Ability1_Buff"
+
+	
+	
+	icon="icon.tga"
+	passiveeffect=""
+	
+	attackspeedpercharge="0.12,0.18,0.24,0.3"
+	movespeedpercharge="15"
+	maxcharges="2"
+
+>
+	<oninflict>
+		<addcharges count="1" timed="true" />
+	</oninflict>
+	
+	<onrefresh>
+		<addcharges count="1" timed="true" />
+	</onrefresh>
+	
+	<onframe>
+		<setcharges entity="proxy_entity" a="charges" />
+			<compare a="charges" b="2" op="ge">
+				<setactivemodifierkey name="zigspeed4" />
+			</compare>
+			<else>
+				<compare a="charges" b="1" op="ge">
+					<setactivemodifierkey name="zigspeed2" />
+				</compare>
+				<else>
+					<setactivemodifierkey name="" />
+				</else>
+			</else>
+	</onframe>
+	
+	<onexpired>
+		<setcharges entity="proxy_entity" a="0" />
+	</onexpired>
+	
+	<modifier key="zigspeed1" modpriority="100"
+		passiveeffect="effects/state_target1.effect"
+	>
+	</modifier>
+	
+	<modifier key="zigspeed2" modpriority="100"
+		passiveeffect="effects/state_target2.effect"
+	>
+	</modifier>
+	
+	<modifier key="zigspeed3" modpriority="100"
+		passiveeffect="effects/state_target3.effect"
+	>
+	</modifier>
+	
+	<modifier key="zigspeed4" modpriority="100"
+		passiveeffect="effects/state_target4.effect"
+	>
+	</modifier>
+
+</state>

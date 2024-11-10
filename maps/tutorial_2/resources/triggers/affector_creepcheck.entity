@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Tutorial2_CreepCheck"
+
+	radius="1400"
+	targetselection="all"
+	targetscheme="enemy_units"
+	impactinterval="100"
+	lifetime="-1"
+
+>
+
+	<oninterval>
+		<areaofeffect
+			radius="600"
+			targetselection="all"
+			targetscheme="enemy_units"
+		>
+		</areaofeffect>
+		<else>
+			<delete target="this_entity" />
+			<setscriptvalue name="creeps_killed" value="1" />
+		</else>
+	</oninterval>
+</affector>

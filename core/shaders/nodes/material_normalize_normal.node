@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_normalize_normal">
+	<parameter name="NormalizeNormal" type="bool" default="true" />
+	<dependency name="NormalizeNormal" type="bool" source="NormalizeNormal" />
+	<output name="MaterialNormalizeNormal" type="bool" solution="MaterialNormalizeNormal" />
+	<?hlsl
+		MaterialNormalizeNormal = NormalizeNormal;
+	?>
+	<?glsl
+		MaterialNormalizeNormal = NormalizeNormal;
+	?>
+</node>

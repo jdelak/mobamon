@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_CapriceTutorial_Ability3_Damage"
+	ishidden="true"
+
+>
+	<oninflict>
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="source_owner_entity" />
+				<damage effecttype="Magic Splash" target="this_owner_entity" source="source_owner_entity" significant="true" amount="0.5" b="result" op="mult"/>
+			</onimpact>
+		</combatevent>
+		<recordheroaggression  />
+		<aggression />
+	</oninflict>
+	
+	<modifier key="CapriceTutorial_Ability3_Learned" modpriority="100"
+	>
+		<oninflict>
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<applystate target="target_entity" name="State_CapriceTutorial_Ability3" source="source_owner_entity" inflictor="source_owner_entity" duration="5000"  />
+					<getconstant name="damage" adjustmentsource="source_owner_entity" />
+					<damage effecttype="Magic Splash" target="this_owner_entity" source="source_owner_entity" significant="true" amount="0.5" b="result" op="mult"/>
+				</onimpact>
+			</combatevent>
+			<recordheroaggression  />
+			<aggression />
+		</oninflict>
+	</modifier>
+	
+
+</state>

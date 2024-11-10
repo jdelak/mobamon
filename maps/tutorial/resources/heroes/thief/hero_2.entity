@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hero
+	name="Tutorial_Thief_Laning"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+	mapicon="icon_circle.tga"
+	
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	preglobalscale="1.6"
+	modelscale="0.9"
+	effectscale=".75"
+	boundsheight="64"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+	searchradius="70"
+	minsearchradius="48"
+	searchheight="112"
+
+	movespeed="350"
+	turnrate="900"
+
+	maxhealth="1300"
+	maxhealthperlevel="0"
+	healthregen="3.08,3.3,3.52,3.74,3.96,4.18,4.4,4.62,4.84,5.06,5.28,5.5,5.72,5.94,6.16"
+	healthproportionregen="0.008"
+	
+	maxmana="400"
+	manaregen="4"
+
+	armor="0"
+	magicarmor="0"
+
+	cancarryitems="false"
+	inventory0="Ability_Thief1"
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+
+	canattack="true"
+	
+	powerperlevel="0"
+	attackduration="400"
+	attackactiontime="350"
+	attackcooldown="1350"
+	attackdamagemin="100"
+	attackdamageminperlevel="0"
+	attackdamagemax="100"
+	attackdamagemaxperlevel="0"
+	attacknumanims="2"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="160"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="effects/impact.effect"
+	critimpacteffect="/shared/effects/crit_impact.effect"
+	attacktype="melee"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="0"
+	sightrangeday="1000"
+	sightrangenight="1000"
+
+
+	unitwalking="false"
+	
+	corpsetime="15000"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	levelbuild="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"
+
+>
+
+	<onkilled>
+		<setscriptvalue name="bot_dead" value="1" />
+	</onkilled>
+
+	<onrespawn>
+		<delete target="this_entity"/>
+	</onrespawn>
+
+
+</hero>

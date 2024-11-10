@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Jungle"
+	
+	model="model_2/model.mdf"
+	icon="../model_2/icon.tga"
+	portrait="../model_2/icon.tga"
+	unitwalking="false"
+	cliffwalking="false"
+	buildingwalking="false"
+	
+	canturn="true"
+	turnrate="360"
+	turnsmoothing="0.05"
+	
+	spawneffect="pet/effects/spawn.effect"
+	
+	showlifetime="true"
+
+	tiltfactor="0.0"
+	tiltspeed="90.0"
+	
+	passiveeffect="effects/passive.effect"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="2.5"
+	modelscale="1"
+	effectscale="1"
+	boundsheight="64"
+	searchheight="100"
+	searchradius="70"
+	minsearchradius="32"
+	boundsradius="16"
+	collisionradius="8"
+	selectionradius="45"
+	targetoffset="0 0 54"
+	
+	attackduration="500"
+	attackactiontime="400"
+	attackcooldown="1100"
+	attackdamagemin="20,30,40"
+	attackdamagemax="20,30,40"
+	attacknumanims="1"
+	attackoffset="0 80 120"
+	attackprojectile=""
+	attackrange="100"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect=""
+	attacktype="melee"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="900"
+	sightrangeday="800"
+	sightrangenight="800"
+	
+	drawonmap="true"
+	invulnerable="false"
+	canattack="true"
+
+	corpsetime="0"
+	corpsefadetime="0"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	deathtime="0"
+
+	movespeed="400"
+	lifetime="15000"
+	
+	immunity=""
+	nothreat="false"
+
+	hidealtinfo="false"
+	
+	maxhealth="2000,2500,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000,8500,9000"
+	
+
+	ismobile="true"
+	
+	goldbountymin="15"
+	goldbountymax="15"
+
+
+	infoheight="150"
+
+	unittype=""
+	hasdynamicpower="false"
+
+>
+	
+	<onspawn>
+		<order command="attack" force="true" source="this_entity" target="this_proxy_entity" />
+		<areaofeffect radius="450" targetselection="all" targetscheme="non_player_controlled_enemy_units" center="this_entity">
+			<targettype type="Boss" />
+			<else>
+				<targettype type="Tower"/>
+				<else>			
+					<applystate name="State_Fiki_Ability3_Enemy" duration="-1" proxy="this_entity" />
+				</else>
+			</else>
+		</areaofeffect>
+	</onspawn>
+	
+
+	<onattackingdamageevent>
+		<damageeffecttype effecttype="Indirect" />
+		<else>
+			<getconstant name="damage" adjustmentsource="this_owner_entity" />
+			<setvar0 a="1" b="result" op="mult" />
+			<setvalue name="damage_attempted" a="0" b="result" op="mult" />
+			<damage effecttype="AttackDamage Indirect" amount="1" b="var0" op="mult" target="target_entity" source="this_owner_entity" />
+		</else>
+	</onattackingdamageevent>
+	
+	<onattackeddamageevent>
+		<cantarget targetscheme="enemy_buildings" >
+			<setvalue name="damage_attempted" a="damage_attempted" b="10" op="mult" />
+		</cantarget>
+	</onattackeddamageevent>
+	
+	
+	<ondeath>
+		<expirestate name="State_Jungle_Invis" target="this_proxy_entity" />
+	</ondeath>
+	
+
+
+
+</pet>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" usentityeffectscale="true" >
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			life="1500"
+			startcolor="1.25 1.25 1.25"
+			midcolor="1.25 1.25 1.25"
+			endcolor="1.25 1.25 1.25"
+		/>
+
+		<particlesystem name="system0" space="entity" scale=".75">
+
+		
+		
+		
+			<groundsprite
+				life="1500"
+				material="/shared/effects/smaterials/goo_area_round.material"
+				color="1 .75 0"
+				startsize="60"
+				midsize="75"
+				endsize="80"
+				startalpha=".125"
+				midalpha=".125"
+				endalpha="0"
+				midalphapos=".85"
+				minyaw="-45"
+				maxyaw="45"
+			/>
+			
+			<groundsprite
+				life="1500"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				startcolor="1 .5 0"
+				midcolor="1 .5 0"
+				endcolor="0 0 0"
+				midcolorpos=".8"
+				startsize="60"
+				midsize="75"
+				endsize="80"
+				minyaw="-45"
+				maxyaw="45"
+			/>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<template name="beam">
+
+				<beam
+					life="500"
+					bone_a="{a}"
+					bone_b="{b}"
+					minsize="40"
+					maxsize="70"
+					color="1 .6 0"
+					startalpha="0"
+					endalpha=".65"
+					material="/shared/effects/smaterials/web_1.material"
+					depthbias="-25"
+				/>
+
+				<beam
+					life="500"
+					bone_a="{a}"
+					bone_b="{b}"
+					minsize="40"
+					maxsize="70"
+					color="1 .6 0"
+					startalpha=".65"
+					endalpha="0"
+					material="/shared/effects/smaterials/web_1.material"
+					depthbias="-25"
+				/>
+			</template>
+
+			<instance name="beam" a="_bone_righthand" b="_bone_lefthand" size="15" frame=".6"/>
+			<instance name="beam" a="_bone_righthand" b="_bone_rightfoot" size="15" frame=".6"/>
+			<instance name="beam" a="_bone_lefthand" b="_bone_leftfoot" size="15" frame="5"/>
+			
+			<instance name="beam" a="_bone_rightfoot" b="_bone_leftfoot" size="15" frame=".6"/>
+			
+			<instance name="beam" a="_bone_righthand" b="_bone_head" size="15" frame="5"/>
+			<instance name="beam" a="_bone_lefthand" b="_bone_head"  size="15" frame="5"/>
+
+
+		
+		
+		
+		
+
+
+			<simpleemitter
+				bone="_bone_center"
+				count="50"
+				spawnrate="1500"
+				particlelife="1000"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="100"
+				maxspeed="300"
+			>
+				<particle
+					turn="true"
+				> 
+					<billboard
+						bone="_bone_center"
+						minlife="300"
+						maxlife="500"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0 0 0"
+						material="/shared/effects/smaterials/goop_drop_add.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="1.5"
+						midscale=".75"
+						endscale=".35"
+						depthbias="0"
+					/>
+				</particle>
+			</simpleemitter>
+				
+
+		
+		
+		
+		
+
+
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="2000"
+				startcolor=".5 .25 0"
+				midcolor=".5 .25 0"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="2.5"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				minroll="0"
+				maxroll="360"
+				depthbias="-100"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>

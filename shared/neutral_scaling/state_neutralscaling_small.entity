@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_NeutralScaling_Small"
+
+	
+	
+	icon="icon.tga"
+	ishidden="0"
+	impactinterval="10000"	
+	damagepercharge="0.1"
+	maxhealthpercharge="5.81"
+>	
+	<oninflict>
+		<setcharges target="this_entity" a="time" b="0.0000333333" op="mult"/>
+		<setcharges target="this_entity" a="charges" b="30" op="min"/>
+	</oninflict>
+	
+	<onimpact>
+		<setcharges target="this_entity" a="time" b="0.0000333333" op="mult"/>
+		<setcharges target="this_entity" a="charges" b="30" op="min"/>
+	</onimpact>
+	
+	<modifier key="incombat" condition="!idle" modpriority="100"
+	>
+		<onimpact />
+	</modifier>
+</state>

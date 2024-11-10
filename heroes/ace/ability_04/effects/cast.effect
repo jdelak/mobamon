@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			life="750"
+			startcolor="1 1 1"
+			midcolor="1 2.5 3.5"
+			endcolor="1 1 1"
+			midcolorpos=".5"
+		/>
+
+		<particlesystem name="system0" space="entity" scale="1.1">
+		
+			<sound
+				linearfalloff="true" 
+				falloffstart="1250"
+				falloffend="2400"
+				volume="0.85"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			<sound
+				linearfalloff="true" 
+				falloffstart="1250"
+				falloffend="2400"
+				volume="0.35"
+				sample="../sounds/vo_cast_%.wav"
+			/>
+
+<!--
+			<model
+				life="200"
+				name="spin"
+				parentskeleton="true"
+				model="../../model.mdf"
+				startcolor="2 7 10"
+				endcolor="2 7 10"
+				startalpha=".5"
+				endalpha="0"
+				scale="1"
+			>
+			</model>
+
+			<model
+				life="200"
+				name="spin"
+				parentskeleton="true"
+				model="../../model.mdf"
+				startcolor="2 7 10"
+				endcolor="2 7 10"
+				startalpha=".25"
+				endalpha="0"
+				scale="1"
+			>
+			</model>
+-->
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_origin"
+				spawnrate="100"
+				count="1"
+				minparticlelife="500"
+				maxparticlelife="500"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+			>
+				<particle
+					turn="true"
+				>
+					<billboard
+					bone="_bone_origin"
+						delay="350"
+						position="0 0 75"
+						life="100"
+						material="/shared/effects/smaterials/swoosh_ring_half.material"
+						startcolor="0 .6 .8"
+						endcolor="0 0 0"
+						size="400"
+						lockup="1"
+						lockright="1"
+						rollspeed="800"
+						directionalspace="local"
+						yaw="90"
+						depthbias="-25"
+					/>
+					
+					<billboard
+					bone="_bone_origin"
+						delay="350"
+						position="0 0 75"
+						life="100"
+						material="/shared/effects/smaterials/swoosh_ring_half.material"
+						startcolor=".25 .25 .25"
+						endcolor="0 0 0"
+						size="400"
+						lockup="1"
+						lockright="1"
+						rollspeed="800"
+						directionalspace="local"
+						yaw="90"
+						depthbias="-25"
+					/>
+					
+					<billboard
+					bone="_bone_origin"
+						delay="350"
+						position="0 0 75"
+						life="100"
+						material="/shared/effects/smaterials/swoosh_ring_half.material"
+						startcolor="0 .6 .8"
+						endcolor="0 0 0"
+						size="400"
+						lockup="1"
+						lockright="1"
+						rollspeed="800"
+						directionalspace="local"
+						yaw="90"
+						depthbias="-25"
+					/>
+					
+					<billboard
+					bone="_bone_origin"
+						delay="350"
+						position="0 0 75"
+						life="100"
+						material="/shared/effects/smaterials/swoosh_ring_half.material"
+						startcolor=".25 .25 .25"
+						endcolor="0 0 0"
+						size="400"
+						lockup="1"
+						lockright="1"
+						rollspeed="800"
+						directionalspace="local"
+						yaw="90"
+						depthbias="-25"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+			
+			
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="foliage_position">
+	<dependency name="Position" type="float3" source="Position" />
+	<dependency name="Data" type="float4" source="Data" />
+	<dependency name="Time" type="float" source="fTime" />
+	<dependency name="Foliage" type="float4" source="vFoliage" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="OutObject" type="float3" solution="ObjectPosition" />
+	<output name="OutWorld" type="float3" solution="WorldPosition" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float3 f3Position = Position;
+			float4 f4Data = Data / 255.0f;
+			
+			const float PI = 3.14159265358979323846f;
+			
+			float fWeight = f4Data.z;
+			float fPhase = f4Data.w * PI;
+				
+			float fTopShift = sin((Time + fPhase) * Foliage.z) * Foliage.w;
+			f3Position.x += fWeight * fTopShift;
+			
+			OutObject = f3Position;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float3 f3Position = Position;
+			float4 f4Data = Data;
+			
+			const float PI = 3.14159265358979323846f;
+			
+			float fWeight = f4Data.z;
+			float fPhase = f4Data.w * PI;
+				
+			float fTopShift = sin((Time + fPhase) * Foliage.z) * Foliage.w;
+			f3Position.x += fWeight * fTopShift;
+			
+			OutObject = f3Position;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec3 f3Position = Position;
+			vec4 f4Data = Data / 255.0f;
+			
+			const float PI = 3.14159265358979323846f;
+			
+			float fWeight = f4Data.z;
+			float fPhase = f4Data.w * PI;
+				
+			float fTopShift = sin((Time + fPhase) * Foliage.z) * Foliage.w;
+			f3Position.x += fWeight * fTopShift;
+			
+			OutObject = f3Position;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec3 f3Position = Position;
+			vec4 f4Data = Data / 255.0f;
+			
+			const float PI = 3.14159265358979323846f;
+			
+			float fWeight = f4Data.z;
+			float fPhase = f4Data.w * PI;
+				
+			float fTopShift = sin((Time + fPhase) * Foliage.z) * Foliage.w;
+			f3Position.x += fWeight * fTopShift;
+			
+			OutObject = f3Position;
+			OutWorld = OutObject;
+		?>
+	</case>
+</node>

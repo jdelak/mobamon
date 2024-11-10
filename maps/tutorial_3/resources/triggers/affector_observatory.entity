@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Tutorial3_Observatory"
+
+	radius="800"
+	targetselection="all"
+	targetscheme="all"
+	maximpactspertarget="1"
+	lifetime="-1"
+	effect=""
+>
+
+	<onimpact>
+		<compare a="this_proxy_entity" b="target_entity" op="eq">
+			<setscriptvalue name="observatory_activated" value="1" />
+			<delete target="this_entity" />
+		</compare>
+	</onimpact>
+</affector>

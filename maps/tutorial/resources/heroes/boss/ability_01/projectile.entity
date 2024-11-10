@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Tutorial_Boss_Ability1"
+
+	speed="400"
+	gravity="0"
+
+	modelscale="1.8"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/trail.effect"
+	canturn="0"
+	
+	
+	flying="true"
+	flyheight="45"
+	
+	touchradius="100"
+	touchcliffs="false"
+
+	hazardradius="300"
+	hazardoffset="200"
+  
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic CrowdControl"
+
+	lifetime="5000"
+>
+
+	<onspawn>
+		<playeffect effect="effects/link.effect" source="source_entity" target="this_entity"/>
+	</onspawn>
+
+	<ontouch>
+		<playeffect effect="effects/impact.effect" source="target_position" />
+		<damage amount="65" effecttype="Magic" />
+		<setscriptvalue name="damaged_by_baldir" value="1" />
+	</ontouch>
+  
+</projectile>

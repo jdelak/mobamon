@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="cyclone" deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<template name="">
+
+				<sound
+					linearfalloff="true"
+					falloffstart="500"
+					falloffend="2400"
+					volume="0.45"
+					sample="../sounds/sfx_cast_pre.wav"
+				/>
+
+
+				<simpleemitter
+				count="50"
+					bone="{zbone}"
+					spawnrate="5000"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="20"
+					depthbias="0"
+				>
+					<particle
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor=".1 .025 0"
+						endcolor="0 0 0"
+						startscale=".4"
+						minendscale="1"
+						maxendscale="2"
+						minwidth="200"
+						maxwidth="200"
+						height="200"
+					/>
+				</simpleemitter>
+
+				<simpleemitter
+				delay="300"
+				count="35"
+					bone="{zbone}"
+					spawnrate="2000"
+					minparticlelife="200"
+					maxparticlelife="400"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="50"
+					depthbias="0"
+				>
+					<particle
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor=".25 .05 0"
+						endcolor="0 0 0"
+						minstartscale="50"
+						maxstartscale="150"
+						minendscale="0"
+						maxendscale="0"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="" zbone="_bone_mace_center"/>
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+</effect>

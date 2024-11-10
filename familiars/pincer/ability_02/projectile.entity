@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Pincer_1"
+
+	gravity="0"
+	lifetime="500"
+	useexactlifetime="true"
+
+	modelscale="1.0"
+	model=""
+	deatheffect=""
+	flying="true"
+	flyheight="0"
+	canturn="true"
+	
+	impactdistance="100"
+	
+>
+	
+	<onimpact>
+		<setvar0 a="30,35,40,45,50,55,60,65,70,75,80,85,90,95,100" />
+		<setvar1 a="source_power" b="100" op="div" />
+		<setvar2 a="var0" b="var1" op="mult" />
+		<damage effecttype="Familiar"  amount="1" b="var2" op="mult" />
+		<order command="wander" source="this_proxy_entity" target="source_entity" force="true" queue="front" />		
+		<setactivemodifierkey entity="this_proxy_entity" name="" />
+		<playeffect effect="effects/impact.effect" source="target_entity" target="" occlude="true" />
+		<playeffect effect="effects/attack.effect" source="this_proxy_entity" target="" occlude="true" />
+	</onimpact>
+	
+</projectile>

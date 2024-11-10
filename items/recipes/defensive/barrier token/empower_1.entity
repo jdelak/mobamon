@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_BarrierToken_Empower_1"
+	
+	cost="1075"
+
+>
+	<!-- Tooltip only -->
+	<constant name="spelltrigger_enchant" value="15" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onattackeddamageevent>	
+		<damageeffecttype effecttype="Indirect" />
+		<else>
+			<isready>
+				<targettype type="player_controlled">
+					<compare a="damage_attempted" b="0" op="gt">
+						<damagesupertype supertype="spell" >
+							<startcooldown />
+							<setactivemodifierkey name="" />
+		
+							<getconstant name="spelltrigger_enchant" />
+							<setvar0 a="result" b="100" op="div" />
+							<setaccumulator value="var0" />
+
+							<getconstant name="reduction"  />
+							<setvar0 a="result" b="100" op="div" />
+							<setvar0 a="accumulator" b="var0" op="add" />
+							<setvar0 a="1" b="var0" op="sub" />
+							<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+							<applystate name="State_BarrierToken" target="source_entity" duration="2000" />
+						</damagesupertype>
+									
+						<damageeffecttype effecttype="AbilityAttack"> 
+							<startcooldown />
+							<setactivemodifierkey name="" />
+							<islegendary>
+								<getconstant name="legendary" />
+								<setvar0 a="result" b="100" op="div" />
+								<setaccumulator value="var0"  />
+							</islegendary>
+							<setvar0 a="result" b="100" op="div" />
+							<setvar0 a="accumulator" b="var0" op="add" />
+							<setvar0 a="1" b="var0" op="sub" />
+							<setvalue name="damage_attempted" a="damage_attempted" b="var0" op="mult" />
+							<applystate name="State_BarrierToken" target="source_entity" duration="2000" />
+						</damageeffecttype>
+					</compare>
+				</targettype>
+			</isready>
+		</else>
+	</onattackeddamageevent>
+
+</qualityitem>

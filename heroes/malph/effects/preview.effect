@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1.0">
+
+
+		<sound delay="300" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="532" falloffend="2512" volume="0.47" 		channel="90037" />	
+		<sound delay="700" volume=".25" linearfalloff="true" falloffstart="130" falloffend="1250" sample="sounds/cast.wav" 	channel="90037"/>
+		<sound delay="1700" volume=".21" linearfalloff="true" falloffstart="120" falloffend="2152" sample="sounds/drill_1.wav" 	channel="90037"/>
+		<sound delay="270" volume=".26" linearfalloff="true" falloffstart="110" falloffend="2453" sample="sounds/drill_2.wav" 	channel="90037" />
+			
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0" />
+<waitfordeath instance="instance0" />
+</thread>
+</effect>

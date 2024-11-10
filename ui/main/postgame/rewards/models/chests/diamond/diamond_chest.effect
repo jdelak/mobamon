@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".6">
+
+			<light
+			bone="_bone_fx_01"
+				expirelife="250"
+				startcolor="4 2 1"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="1000"
+				position="0 -50 0"
+			/>
+
+			<simpleemitter
+			bone="_bone_fx_01"
+				spawnrate="25"
+				minparticlelife="750"
+				maxparticlelife="1250"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				direction="0 0 0"
+				material="/shared/effects/materials/light_rays2.material"
+				depthbias="-50"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					startcolor="0 0 0"
+					midcolor=".125 .075 .05"
+					endcolor="0 0 0"
+					minheight="50"
+					maxheight="150"
+					width="50"
+					anchor="1"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			<template name="lightrays">
+			
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="25"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					offsetsphere="0 0 0"
+					direction="0 0 0"
+					material="/shared/effects/materials/light_rays2.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="0 0 0"
+						midcolor=".075 .035 .025"
+						endcolor="0 0 0"
+						minheight="50"
+						maxheight="50"
+						width="50"
+						anchor="1"
+					/>
+				</simpleemitter>
+
+			</template>
+
+
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_02"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_03"/>
+			
+			
+			
+
+			<template name="shimmers">
+			
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="15"
+					minparticlelife="2000"
+					maxparticlelife="6000"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="15 0 0"
+					directionalspace="local"
+					direction="0 0 0"
+					minangle="-20"
+					maxangle="0"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".25 .15 .1"
+						endcolor="0 0 0"
+						startscale="10"
+						minmidscale="2"
+						maxmidscale="2"
+						endscale="0"
+						heightdistort="0.01"
+						turn="1"
+						depthbias="0"
+						anchor="1"
+					/>
+				</simpleemitter>
+
+			</template>
+
+
+			<instance name="shimmers" zpos="0 50 -7" zbone="_bone_fx_02"/>
+			<instance name="shimmers" zpos="-5 50 -7" zbone="_bone_fx_03"/>
+			
+			
+			
+			<simpleemitter
+				bone="_bone_fx_01"
+				timenudge="10000"
+				position="0 50 -10"
+				spawnrate="13"
+				minparticlelife="1000"
+				maxparticlelife="2000"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="8 10 0"
+				directionalspace="local"
+				direction="0 0 0"
+				minangle="-20"
+				maxangle="0"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".15 .075 .15"
+					endcolor="0 0 0"
+					startscale="10"
+					midscale="15"
+					endscale="0"
+					heightdistort="0.01"
+					turn="1"
+					depthbias="0"
+					anchor="1"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<template name="lightrays">
+			
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="12"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					offsetsphere="0 0 0"
+					direction="0 0 0"
+					material="/shared/effects/materials/light_rays2.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="0 0 0"
+						midcolor="0 .025 .05"
+						endcolor="0 0 0"
+						minheight="50"
+						maxheight="100"
+						width="50"
+						anchor="1"
+					/>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="12"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					offsetsphere="4 0 2"
+					direction="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="0 0 0"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						anchor="1"
+						minscale="2"
+						maxscale="4"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_01"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_02"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_03"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_04"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_05"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_06"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_07"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_08"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_09"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_10"/>
+			
+			
+			
+			
+			<template name="lightrays">
+			
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="12"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					offsetsphere="0 0 0"
+					direction="0 0 0"
+					material="/shared/effects/materials/light_rays2.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="0 0 0"
+						midcolor="0 .1 .2"
+						endcolor="0 0 0"
+						minheight="50"
+						maxheight="100"
+						width="50"
+						anchor="1"
+					/>
+				</simpleemitter>
+				
+				
+				<simpleemitter
+					bone="{zbone}"
+					position="{zpos}"
+					spawnrate="12"
+					minparticlelife="750"
+					maxparticlelife="1250"
+					offsetsphere="4 0 2"
+					direction="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-50"
+				>
+					<particle
+						minangle="0"
+						maxangle="360"
+						startcolor="0 0 0"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						anchor="1"
+						minscale="2"
+						maxscale="4"
+					/>
+				</simpleemitter>
+
+			</template>
+
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_center_01"/>
+			<instance name="lightrays" zpos="0 0 0" zbone="_bone_fx_blue_center_02"/>
+
+			
+		</particlesystem>
+
+		
+		
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+
+
+	

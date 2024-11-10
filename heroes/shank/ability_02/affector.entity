@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Shank_Ability2"
+
+	radius="150"
+	arc="180"
+	
+	speed="3200"
+	
+	lifetime="380"
+	maximpactspertarget="1"
+	targetselection="all"
+	targetscheme="all_units"
+	effecttype="Magic"
+	persist="true"
+	effect="effects/aoe.effect"
+>
+	
+	<onimpact>
+		<cantarget targetscheme="enemy_units">
+			<applystate name="State_Shank_Ability2_Enemy" duration="2500" />
+		</cantarget>
+		<else>
+			<applystate name="State_Shank_Ability2" duration="2500" />
+		</else>
+		
+	</onimpact>
+</affector>

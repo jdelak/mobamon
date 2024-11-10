@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Bastact1_ScaredGuard"
+
+	ignoreteamattackcommands="true"
+	ignoreteammovecommands="true"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="variations/creep1/model.mdf"
+	skin=""
+
+	passiveeffect="effects/light.effect"
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	rewardsoundself=""
+	rewardsoundteam=""
+	rewardsoundenemy=""
+	
+	aggrosound=""
+	showaggropopup="false"
+  
+	preglobalscale="1.4"
+	modelscale="1.3"
+	effectscale="0.75"
+	boundsheight="64"
+	searchheight="90"
+	searchradius="64"
+	minsearchradius="32"
+	boundsradius="24"
+	selectionradius="36"
+	targetoffset="0 0 54"
+
+	movespeed="200"
+	turnrate="320"
+	turnsmoothing="0.05"
+	
+
+	maxhealth="20000"
+	healthregen="500"
+	maxmana="0"
+	manaregen="0"
+
+	armor="500"
+	magicarmor="500"
+
+	
+	inventory0="Ability_Guard_Enemy"
+	inventory1="Ability2_Guard_Enemy"
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+  
+  	idlenumanims="1"
+	walknumanims="1"
+	attackduration="1000"
+	attackactiontime="600"
+	attackcooldown="1000"
+	attackdamagemin="140"
+	attackdamagemax="140"
+	deathnumanims="1"
+	attacknumanims="2"
+	attackoffset="0 30 100"
+	attackprojectile=""
+	attackrange="75"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="variations/creep1/sound.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attacktargetscheme="visible_enemy_heroes"
+	leashaggroscheme="visible_enemy_heroes"
+	attackdamagetype="AttackDamage"
+
+	pathing="true"
+	canattack="true"
+	ismobile="true"
+	aggrorange="20"
+	proximityrange="500"
+	sightrangeday="1000"
+	sightrangenight="1000"
+	
+	corpsetime="0"
+	corpsefadetime="1500"
+	deathtime="500"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+
+	attackdamageminpercharge="0.84"
+	attackdamagemaxpercharge="0.84"
+	maxhealthpercharge="14"
+
+	shadowsize="72"
+	shadowwidth="72"
+	shadowheight="72"
+	cancarryitems="true"
+	hidealtinfo="true"
+
+	walkanim="walk_normal_1"
+	idleanim="cower_1"
+>
+
+	<aura
+		radius="400"
+		targetscheme="player_controlled_units"
+		state="State_Blank"
+		reflexivestate="State_Bastact1_SpiderGuard_Dialogue"
+		duration="500"
+	/>
+
+	<onspawn>
+		<setaccumulator entity="this_entity" value="1" valueb="1"/>
+	</onspawn>
+
+	<ondamaged>
+		<compare a="accumulator" b="2" op="lt">
+			<changeaccumulator b="1" op="add" />	
+		</compare>
+		<else>
+			<setscriptvalue name="guard_talk" value="1" />
+			<setaccumulator value="0" />
+		</else>
+	</ondamaged>
+
+	<modifier key="looking_for_spider" modpriority="95"
+			ismobile="false"
+			canattack="false"
+		>
+		
+	</modifier>
+
+	<modifier key="found_spider" modpriority="90"
+		>
+		<onframe>
+		</onframe>
+	</modifier>
+
+	<modifier key="speedy" modpriority="90"
+		movespeed="1000"
+		walkanim="walk_1"
+		>
+	</modifier>
+
+	<modifier key="no_aura" modpriority="90"
+		>
+		<aura
+		/>
+	</modifier>
+
+</pet>

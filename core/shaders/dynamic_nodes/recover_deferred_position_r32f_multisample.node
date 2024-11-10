@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="recover_deferred_position_r32f_multisample">
+	<dependency name="ScreenPosition" type="float4" source="ScreenPosition" />
+	<dependency name="deferred2" type="sampler2DMS" source="deferred2" />
+	<dependency name="VPos" type="float2" source="VPos" />
+	<dependency name="ScreenToViewX" type="float3" source="vScreenToViewX" />
+	<dependency name="ScreenToViewY" type="float3" source="vScreenToViewY" />
+	<dependency name="ScreenToViewZ" type="float3" source="vScreenToViewZ" />
+	<dependency name="VPosToScreen" type="float4" source="vVPosToScreen" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float3" solution="DeferredPositionMultisample" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float4 f4Deferred2 = tex2Dproj(deferred2, ScreenPosition);
+			float2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = f4Deferred2.r;
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth; 
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<dependency name="SV_SampleIndex" type="uint" source="SV_SampleIndex" />
+		<?hlsl
+			float2 f2ScreenPositionTexcoord = float2(ScreenPosition.xy / ScreenPosition.w);
+		
+			uint2 ui2Size;
+			uint uiNumSamples;
+			deferred2.GetDimensions(ui2Size.x, ui2Size.y, uiNumSamples);
+
+			float4 f4Deferred2 = deferred2.Load(int2(ui2Size * f2ScreenPositionTexcoord), SV_SampleIndex);
+			float2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = f4Deferred2.r;
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			#error Not available for glsl 120
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<extension name="GL_ARB_sample_shading" />
+		<?glsl
+			vec2 f2ScreenPositionTexcoord = (ScreenPosition.xy / ScreenPosition.w);
+			vec4 f4Deferred2 = texelFetch(deferred2, ivec2(textureSize(deferred2) * f2ScreenPositionTexcoord), gl_SampleID);
+			vec2 f2ScreenPosition = VPos * VPosToScreen.xy + VPosToScreen.zw;
+			float fLinearDepth = f4Deferred2.r;
+			
+			Out = (f2ScreenPosition.x * ScreenToViewX + -f2ScreenPosition.y * ScreenToViewY + ScreenToViewZ) * fLinearDepth;
+		?>
+	</case>
+</node>

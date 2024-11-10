@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="0.6">
+
+
+			<simpleemitter
+				spawnrate="75"
+				minparticlelife="300"
+				maxparticlelife="300"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/materials/dust_smoke_02.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 .75 .5"
+					endcolor="0 0 0"
+					startsize="25"
+					endsize="75"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".35"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="75"
+				particlelife="300"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 .5 .35"
+					endcolor="0 0 0"
+					startsize="35"
+					endsize="70"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="75"
+				particlelife="100"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 .5 .35"
+					endcolor="0 0 0"
+					startsize="35"
+					endsize="70"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				spawnrate="300"
+				minparticlelife="100"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="12"
+				depthbias="0"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .25 .25"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					minstartscale=".25"
+					maxstartscale=".5"
+					minendscale=".1"
+					maxendscale=".2"
+					minwidth="25"
+					maxwidth="25"
+					height="25"
+				/>
+			</simpleemitter>
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				spawnrate="65"
+				gravity="10"
+				minparticlelife="250"
+				maxparticlelife="550"
+				offsetsphere="25 25 8"
+				minspeed="10.0"
+				maxspeed="30"
+				direction="0 0 1"
+				material="/shared/effects/materials/whitedot.material"
+			>
+				<particle
+					maxangle="359"
+					maxanglespeed="30"
+					minanglespeed="-30"
+					minstartscale="1"
+					maxstartscale="2"
+					minendscale="1"
+					maxendscale="2"
+					startcolor="0 1 .75"
+					midcolor="0 1 .75"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+				/>
+			</simpleemitter> 
+
+			<simpleemitter
+				spawnrate="65"
+				mingravity="40"
+				maxgravity="50"
+				minparticlelife="250"
+				maxparticlelife="500"
+				offsetsphere="25 25 0"
+				minspeed="10"
+				maxspeed="25"
+				direction="0 0 1"
+				material="/shared/effects/materials/whitedot.material"
+			>
+				<particle
+					maxangle="359"
+					maxanglespeed="30"
+					minanglespeed="-30"
+					minstartscale="2"
+					maxstartscale="5"
+					minendscale="1"
+					maxendscale="2"
+					startcolor="0 1 .75"
+					midcolor="0 1 .75"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+				/>
+			</simpleemitter> 
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

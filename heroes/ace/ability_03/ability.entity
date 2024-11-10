@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Ace3"
+
+	icon="icon.tga"
+	
+	casttime="0"
+	castactiontime="0"
+	anim="ability_3"
+
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+	actiontype="target_self"
+	
+	manacost="50"
+	cooldowntime="12000"
+	
+	queue="front"
+	inheritmovement="true"
+
+	alwaysshowtimer="true"
+
+>
+	<constant name="damage" value="30,40,50,60" adjustment="ability"  />
+	<constant name="number_of_icicles" value="4" adjustment="none" noshowintooltip="true" />
+	
+
+	<!-- tool tip only -->
+	<constant name="slow" value="15,20,25,30" adjustment="none" />
+	<constant name="damage_reduction" value="25" adjustment="none" noshowintooltip="true"/>
+	
+
+	<onimpact>
+		<starttimer duration="4000" />
+		<getconstant name="number_of_icicles" adjustmentsource="this_entity" />
+		<setvar0 a="result" />
+		<compare a="var0" b="4" op="ge">
+			<spawnunit name="Gadget_Ace_Ability3" count="1" target="source_position" pushentity="true" />
+			<spawnprojectile name="Projectile_Ace_Ability3_Orbit" target="source_entity" source="source_entity" bind="stack_entity" bindturn="true" orbitstartingtheta="90" />
+		</compare>
+		<compare a="var0" b="3" op="ge">
+			<spawnunit name="Gadget_Ace_Ability3" count="1" target="source_position" pushentity="true" />
+			<spawnprojectile name="Projectile_Ace_Ability3_Orbit" target="source_entity" source="source_entity" bind="stack_entity" bindturn="true" orbitstartingtheta="270" />
+		</compare>
+		<compare a="var0" b="2" op="ge">
+			<spawnunit name="Gadget_Ace_Ability3" count="1" target="source_position" pushentity="true" />
+			<spawnprojectile name="Projectile_Ace_Ability3_Orbit" target="source_entity" source="source_entity" bind="stack_entity" bindturn="true" orbitstartingtheta="180" />
+		</compare>
+		<compare a="var0" b="1" op="ge">
+			<spawnunit name="Gadget_Ace_Ability3" count="1" target="source_position" pushentity="true" />
+			<spawnprojectile name="Projectile_Ace_Ability3_Orbit" target="source_entity" source="source_entity" bind="stack_entity" bindturn="true" orbitstartingtheta="0" />
+		</compare>
+		<applystate name="State_Ace_Ability3" target="source_entity" proxy="this_entity" duration="4000" />
+		<playeffect effect="effects/cast.effect"  />
+	</onimpact>
+	
+</ability>

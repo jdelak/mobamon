@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Nikolai_Ability2_Damage"
+	
+	icon="icon.tga"
+	effecttype=""
+	allowtransfer="true"
+	ishidden="true"
+	
+	
+>
+	<oninflict>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+
+		<damage effecttype="Magic Splash" amount="1" b="result" op="mult"/>
+		<changeaccumulator b="1" op="add" />
+		
+		<playeffect effect="effects/impact_enemy.effect" source="this_owner_entity" target="this_owner_entity" />
+	</oninflict>
+	
+	<onrefresh>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+
+		<damage effecttype="Magic Splash" amount="0.3" b="result" op="mult"/>
+		
+		<changeaccumulator b="1" op="add" />
+		
+		<compare a="accumulator" b="3" op="ge" >
+			<popup name="max" target="target_entity" source="target_entity"/>
+		</compare>
+	</onrefresh>
+
+</state>

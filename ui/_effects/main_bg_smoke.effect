@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1">
+
+			<template name="dust_particle_blend">
+				<particle
+					minanglespeed="{minanglespeed=-30}"
+					maxanglespeed="{maxanglespeed=30}"
+					color="{color}"
+					minscale="{minscale}"
+					maxscale="{maxscale}"
+					lockup="true"
+					startalpha="0"
+					midalpha="{midalpha=.2}"
+					endalpha="0"
+				/>
+			</template>
+
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="5000"
+				maxparticlelife="20000"
+				minspeed="-2"
+				maxspeed="2"
+				offsetcube="100 0 100"
+				direction="1 1 0"
+				minangle="-90"
+				maxangle="-70"
+				material="/shared/effects/materials/bad_heal_smoke_06.material"
+				depthbias="-10"
+				timenudge="10000"
+			>
+				<instance name="dust_particle_blend" color=".9 .9 .9" minscale="13" maxscale="20" midalpha="0.04" minanglespeed="-10" maxanglespeed="10" />
+				<instance name="dust_particle_blend" color=".9 .9 .9" minscale="8" maxscale="14" midalpha=".03" minanglespeed="-5" maxanglespeed="10"/>
+			</simpleemitter>
+
+
+			<simpleemitter
+				spawnrate="5"
+				minparticlelife="2000"
+				maxparticlelife="10000"
+				minspeed="-5"
+				maxspeed="5"
+				offsetcube="100 0 100"
+				direction="0 1 0"
+				minangle="90"
+				maxangle="90"
+				material="/shared/effects/materials/whitedot_blend.material"
+				depthbias="-10"
+				timenudge="10000"
+			>
+				<instance name="dust_particle_blend" color=".8 .9 1" midalpha="0.1" minscale="3.5" maxscale="4.5"/>
+				<instance name="dust_particle_blend" color="1 1 1" midalpha="0.2" minscale="3.5" maxscale="4.5"/>
+				<instance name="dust_particle_blend" color=".8 .8 1" midalpha="0.1" minscale="3.5" maxscale="4.5"/>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="8000"
+				maxparticlelife="20000"
+				minspeed="-5"
+				maxspeed="5"
+				offsetcube="100 0 100"
+				direction="0 1 0"
+				minangle="-90"
+				maxangle="-90"
+				material="/shared/effects/materials/whitedot_blend.material"
+				depthbias="-10"
+				timenudge="10000"
+			>
+				<instance name="dust_particle_blend" color="1 1 1" minscale=".1" maxscale=".2"/>
+				<instance name="dust_particle_blend" color="1 1 1" minscale=".1" maxscale=".2"/>
+								<instance name="dust_particle_blend" color="1 1 1" minscale=".01" maxscale=".1"/>
+			</simpleemitter>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

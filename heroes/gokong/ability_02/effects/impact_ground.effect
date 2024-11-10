@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="">
+
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.2">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="0"
+				falloffend="2200"
+				volume=".8" 
+				sample="../sounds/impact.ogg"
+			/>
+			
+<!--
+			<light
+				position="0 0 50"
+				life="500"
+				startcolor="0 5 10"
+				midcolor="0 5 10"
+				endcolor="0"
+				falloffstart="0"
+				startfalloffend="175"
+				endfalloffend="150"
+			/>
+-->
+			
+			
+
+			<simpleemitter
+				count="1"
+				spawnrate="500"
+				particlelife="5000"
+			>
+				<particle>
+
+					<groundsprite
+						delay="100"
+						life="1250"
+						material="/shared/effects/materials/ground_smash_overlay.material"
+						size="130"
+						color="1.0 1.0 1.0"
+						startalpha=".6"
+						endalpha="0"
+					/>
+	<!--
+					<billboard
+						delay="100"
+						life="3000"
+						material="/shared/effects/smaterials/torch_hole_overlay.material"
+						size="190"
+						color="1.0 1.0 1.0"
+						startalpha="1"
+						endalpha="0"
+						lockup="1"
+						lockuright="1"
+						pitch="90"
+						depthbias="-50"
+					/>
+	-->
+					
+					
+					
+					<groundsprite
+						delay="100"
+						bone="_bone_root"
+						life="1250"
+						material="/shared/effects/smaterials/dirtpile_groundsprite.material"
+						size="175"
+						color="1 .8 .6"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".5"
+						minyaw="0"
+						maxyaw="360"
+					/>
+				
+					<groundsprite
+						delay="100"
+						bone="_bone_root"
+						life="1250"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						size="100"
+						color="1 1 1"
+						startalpha=".75"
+						endalpha="0"
+					/>
+					
+					<groundsprite
+						delay="100"
+						bone="_bone_root"
+						life="1250"
+						material="/shared/effects/smaterials/tornado_crack.material"
+						size="100"
+						color="1 1 1"
+						startalpha=".75"
+						endalpha="0"
+						yaw="90"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				delay="{zdelay}"
+				spawnrate="500"
+				life="150"
+				minparticlelife="200"
+				maxparticlelife="500"
+				gravity="{zgravity}"
+				drag="{zdrag}"
+				minspeed="0"
+				maxspeed="750"
+				position="0 0 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"	
+				minangle="0"
+				maxangle="1"
+				direction="0 0 1"
+				offsetradial="75 0 0"
+				depthbias="25"
+				directionalspace="world"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-90"
+					maxanglespeed="90"
+					minstartscale=".5"
+					maxstartscale="1"
+					endscale="1"
+					color=".4 .3 .2"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".2"
+					startframe="0"
+					endframe="1"
+					minstartsize="100"
+					maxstartsize="150"
+					endsize="0"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			
+
+			
+			
+			
+			
+			
+
+			<simpleemitter
+			count="1"
+				spawnrate="14"
+				particlelife="2000"
+				position="0 0 0"
+				offsetsphere="0 150 0"
+			>
+				<particle
+				>
+				
+					<template name="">
+
+						<model
+							position="50 0 0"
+							minlife="7500"
+							maxlife="10000"
+							name="emitter0" 
+							anim="idle"
+							model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+							minscale=".4"
+							maxscale=".5"
+							color="{zcolor}"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".85"
+							yaw="0"
+						/>
+						
+						<model
+							position="0 50 0"
+							minlife="7500"
+							maxlife="10000"
+							name="emitter0" 
+							anim="idle"
+							model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+							minscale=".4"
+							maxscale=".5"
+							color="{zcolor}"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".85"
+							yaw="90"
+						/>
+						
+						
+						<model
+							position="-40 50 0"
+							minlife="7500"
+							maxlife="10000"
+							name="emitter0" 
+							anim="idle"
+							model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+							minscale=".4"
+							maxscale=".5"
+							color="{zcolor}"
+							startalpha="1"
+							midalpha="1"
+							endalpha="0"
+							midalphapos=".85"
+							yaw="180"
+						/>
+							
+					</template>
+					<instance name="" zcolor="1.2 .8 .5"/>  
+					
+					
+<!--
+					<model
+						position="0 0 0"
+						minlife="7500"
+						maxlife="10000"
+						name="emitter0" 
+						anim="idle"
+						model="/heroes/malady/ability_01/effects/rocks/model.mdf"
+						minscale=".3"
+						maxscale=".5"
+						color="1.6 1.7 1.8"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".85"
+						minyaw="0"
+						maxyaw="0"
+					/>
+-->
+				</particle>
+			</simpleemitter>	
+			
+
+
+	</particlesystem>
+	
+</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+

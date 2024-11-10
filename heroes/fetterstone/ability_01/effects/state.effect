@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+		
+			<model
+				expirelife="250"
+				parentskeleton="1"
+				parentmodel="1"
+				material="/shared/effects/smaterials/shell_glass.material"
+				startcolor=".25 .5 .5"
+				endcolor="0 0 0"
+				startalpha="2"
+				endalpha="0"
+			/>
+
+			<groundsprite
+				expirelife="250"
+				startcolor="0 .25 .35"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				position="0 0 0"
+				directionalspace="local"
+				scale="3"
+			/>
+			
+			<groundsprite
+				expirelife="250"
+				startcolor=".25 .25 .25"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				position="0 0 0"
+				directionalspace="local"
+				scale="1"
+			/>
+
+			
+			
+			
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="5"
+				particlelife="2000"
+				position="0 0 0"
+			>
+				<particle
+				>
+					<simpleemitter
+						bone="_bone_center"
+						life="3000"
+						minspeed="00"
+						maxspeed="100"
+						count="1"
+						spawnrate="220"
+						gravity="-10"
+						direction="0 0 0"
+						offsetsphere="50 50 25"
+						particlelife="1000"
+					>
+						<particle
+						>
+							<model
+								model="projectile/gem_singles/model.mdf"
+								color="7"
+								minyaw="-360" 
+								maxyaw="360"
+								minlife="200"
+								maxlife="400"
+								minpitch="-360"
+								maxpitch="360"
+								minstartscale=".8"
+								maxstartscale="1.1"
+								endscale=".5"
+								startalpha="1"
+								endalpha="0"
+							/>
+							
+							<billboard
+								minlife="200"
+								maxlife="400"
+								startcolor="0 .5 .5"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								position="0 0 0"
+								scale="2"
+								minyaw="0"
+								maxyaw="360"
+							/>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+-->
+			
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="20"
+				particlelife="2000"
+				position="0 0 0"
+			>
+				<particle
+				>
+					<simpleemitter
+						bone="_bone_center"
+						life="3000"
+						minspeed="00"
+						maxspeed="100"
+						count="1"
+						spawnrate="220"
+						gravity="-10"
+						direction="0 0 0"
+						offsetsphere="75 75 25"
+						particlelife="1000"
+					>
+						<particle
+						>
+							<billboard
+								minlife="200"
+								maxlife="300"
+								color="1 1 1"
+								material="/shared/effects/smaterials/crystal_teal_group.material"
+								position="0 0 0"
+								minstartscale=".75"
+								maxstartscale="1.25"
+								endscale=".5"
+								minyaw="0"
+								maxyaw="360"
+							/>
+							
+							<billboard
+								minlife="200"
+								maxlife="300"
+								startcolor="0 .5 .5"
+								endcolor="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								position="0 0 0"
+								minstartscale="1"
+								maxstartscale="1"
+								endscale=".5"
+								minyaw="0"
+								maxyaw="360"
+							/>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+-->
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="20"
+				minparticlelife="250"
+				maxparticlelife="500"
+				material="/shared/effects/smaterials/whitedot.material"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					startsize="8"
+					endsize="4"
+					startcolor="0 .06 .125"
+					midcolor="0 .06 .125"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+					turn="1"
+					minheight="150"
+					maxheight="400"
+					width="20"
+					
+				>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				bone="_bone_centerofchest"
+				expirelife="250"
+				life="1000"
+				startcolor="0 0 0"
+				midcolor=".3"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				position="0 0 0"
+				size="200"
+				depthbias="-65"
+				loop="true"
+			/>
+
+		</particlesystem>
+
+		<modifier
+			expirelife="250"
+			name="modifier0"
+			startcolor="1"
+			endcolor="1"
+		/>
+
+	</definitions>
+	
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+	
+</effect>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="false" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<model
+				position="0 0 0"
+				model="fx_model/model.mdf"
+				anim="idle"
+				minscale=".5"
+				maxscale="0.8"
+				minyaw="0"
+				maxyaw="360"
+			>
+			
+				<groundsprite
+					delay="400"
+					material="/shared/effects/materials/ring_ground.material"
+					startcolor="0 .25 0"
+					midcolor="0 .25 0"
+					endcolor="0 0 0"
+					midcolorpos="0.9"
+					expirelife="250"
+					size="100"
+				/>
+
+				<billboard
+					delay="400"
+					bone="_bone_fx_01"
+					expirelife="6000"
+					material="/shared/effects/smaterials/black_spot_ground.material"
+					scale="3"
+					color=".8"
+					startalpha=".8"
+					endalpha="0"
+					directionalspace="local"
+					depthbias="-25"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+
+				<simpleemitter
+					delay="400"
+					timenudge="1000"
+					bone="_bone_fx_01"
+					spawnrate="1"
+					minparticlelife="5000"
+					maxparticlelife="6000"
+					material="/shared/effects/smaterials/queso_area.material"
+					offsetsphere="15 15 0"
+				>
+					<particle
+						minangle="-20"
+						maxangle="20"
+						anchor="1"
+						color="1 .5 .1"
+						startalpha=".25"
+						midalpha=".25"
+						endalpha="0"
+						minstartscale="1"
+						maxstartscale="1"
+						minendscale="1.25"
+						maxendscale="1.65"
+						width="150"
+						height="150"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+					/>
+				</simpleemitter>
+
+				<billboard
+					delay="400"
+					bone="_bone_fx_01"
+					expirelife="6000"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="2.6"
+					startcolor=".5 0 0"
+					endcolor="0 0 0"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					depthbias="-50"
+				/>
+				
+				<billboard
+					delay="400"
+					bone="_bone_fx_01"
+					expirelife="6000"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="1.85"
+					startcolor="1 .5 0"
+					endcolor="0 0 0"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					directionalspace="local"
+					depthbias="-50"
+				/>
+
+				
+				
+
+				<simpleemitter
+					delay="0"
+					bone="_bone_fx_01"
+					position="0 0 0"
+					spawnrate="3"
+					particlelife="2000"
+					direction="0 0 1"
+					offsetsphere="50 50 0"
+					minangle="0"
+					maxangle="1"
+				>
+					<particle
+						turn="true"
+					>
+
+						<billboard
+							bone="_bone_fx_01"
+							life="1000"
+							material="/shared/effects/smaterials/animated_goop_white.material"
+							startcolor="1 .5 0"
+							midcolor="1 .5 0"
+							endcolor="1 .5 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".75"
+							position="0 0 0"
+							startframe="0"
+							endframe="1"
+							framspeed="1"
+							minscale=".6"
+							maxscale=".9"
+							lockup="true"
+							lockright="true"
+							pitch="-25"
+							depthbias="-25"
+						/>
+						
+						
+						
+						
+						
+						<simpleemitter
+							delay="750"
+							bone="_bone_fx_01"
+							position="0 0 3"
+							spawnrate="3300"
+							count="20"
+							minparticlelife="250"
+							maxparticlelife="750"
+							gravity="25"
+							minspeed="100"
+							maxspeed="500"
+							drag=".01"
+							material="/shared/effects/materials/whitedot.material"
+							offsetsphere="5 5 8"
+							minangle="0"
+							maxangle="20"
+							direction="0 0 1"
+							depthbias="-50"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="0"
+								maxangle="360"
+								startcolor="1 1 0"
+								midcolor="1 .25 0"
+								endcolor="0 0 0"
+								midcolorpos=".75"
+								minstartsize="20"
+								maxstartsize="40"
+								endsize="0"
+							/>
+						</simpleemitter>
+						
+
+						
+						
+						
+						
+						
+						
+						
+						<simpleemitter
+							delay="1000"
+							count="3"
+							bone="_bone_fx_01"
+							position="0 0 0"
+							spawnrate="15"
+							particlelife="2000"
+							offsetsphere="35 35 0"
+						>
+							<particle
+								turn="true"
+							>
+								<billboard
+									delay="225"
+									position="0 0 0"
+									minlife="300"
+									maxlife="600"
+									startcolor="0 0 0"
+									midcolor="1 .5 0"
+									endcolor="0 0 0"
+									midcolorpos=".25"
+									material="/shared/effects/smaterials/whitedot_ground.material"
+									minscale=".3"
+									maxscale=".5"
+									depthbias="-50"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+								
+								<billboard
+									delay="225"
+									position="0 0 0"
+									minlife="300"
+									maxlife="600"
+									startcolor="0 0 0"
+									midcolor="1 .5 0"
+									endcolor="0 0 0"
+									midcolorpos=".25"
+									material="/shared/effects/smaterials/whitedot_ground.material"
+									minscale=".15"
+									maxscale=".25"
+									depthbias="-50"
+									lockup="1"
+									lockright="1"
+									pitch="90"
+								/>
+
+							</particle>
+						</simpleemitter>
+
+					</particle>
+				</simpleemitter>
+
+				<simpleemitter
+					delay="400"
+					bone="_bone_fx_01"
+					spawnrate="2"
+					minparticlelife="2000"
+					maxparticlelife="4000"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="15 15 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".25 .125 0"
+						endcolor="0 0 0"
+						midcolorpos=".3"
+						minstartscale=".2"
+						maxstartscale=".5"
+						minendscale="1"
+						maxendscale="1.4"
+						width="150"
+						height="150"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</simpleemitter>
+
+			</model>
+
+		</particlesystem>
+			
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

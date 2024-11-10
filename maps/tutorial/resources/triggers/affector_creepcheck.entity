@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Tutorial_CreepCheck"
+
+	radius="1400"
+	targetselection="all"
+	targetscheme="enemy_units"
+	impactinterval="100"
+	lifetime="-1"
+
+>
+
+	<oninterval>
+		<areaofeffect
+			radius="600"
+			targetselection="all"
+			targetscheme="enemy_units"
+		>
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="1600"
+				targetselection="all"
+				targetscheme="wall"
+				ignoreinvulnerable="true"
+			>
+				<delete />
+			</areaofeffect>
+			
+			<areaofeffect
+				radius="1800"
+				targetselection="all"
+				targetscheme="crumbledwall"
+				ignoreinvulnerable="true"
+			>
+				<playeffect effect="/world/sprops/tutorial/wall/crumble.effect" source="target_entity" target="target_entity" />
+			</areaofeffect>
+			
+			<delete target="this_entity" />
+			<setscriptvalue name="creeps_killed" value="1" />
+		</else>
+	</oninterval>
+</affector>

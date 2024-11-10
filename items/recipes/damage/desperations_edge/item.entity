@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crafteditem
+	name="Item_DesperationsEdge"
+
+	icon="icon.tga"
+	
+	cost="720"
+	components="Item_Blade Item_Blade Item_Manaregen1"
+	craftingmaxcomponents="3"
+	
+	actiontype="passive"
+
+	powerpercharge="1"
+	basemanaregenpercharge="0.125"
+	filters="power,ability,mana_regen,attack"
+
+	empoweredeffects="Item_DesperationsEdge_Empower_1,Item_DesperationsEdge_Empower_2,Item_DesperationsEdge_Empower_4"
+	
+	showinpractice="true"
+>
+	<constant name="power" value="20" adjustment="none" qualityvalue="1.6" qualityadjustment="common" op="add"/>
+	<constant name="manaregen" value="2" adjustment="none" qualityvalue="0.15" qualityadjustment="common" op="add"/>
+
+	<constant name="power_legendary" value="5" adjustment="none" qualityvalue="5" qualityadjustment="legendary" op="add"/>
+	<constant name="common_increase" value="0" adjustment="none" qualityvalue="10" qualityadjustment="common" op="add"/>
+
+	<onframe>
+		<getconstant name="power" />
+		<setcharges a="result" b="source_health_percent" op="mult" />
+	</onframe>
+
+	<modifier key="ninja_legendary" modpriority="80"
+		powerpercharge="1.5"
+		>
+	</modifier>
+
+</crafteditem>

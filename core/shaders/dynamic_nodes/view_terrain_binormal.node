@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="view_terrain_binormal">
+	<dependency name="Normal" type="float3" source="ViewNormal" />
+	<dependency name="Tangent" type="float3" source="ViewTerrainTangent" />
+	<dependency name="TangentSign" type="float" source="ObjectTerrainTangentSign" />
+	<output name="Out" type="float3" solution="ViewTerrainBinormal" />
+	<?hlsl
+		Out = cross(Tangent, Normal) * TangentSign;
+	?>
+	<?glsl
+		Out = cross(Tangent, Normal) * TangentSign;
+	?>
+</node>

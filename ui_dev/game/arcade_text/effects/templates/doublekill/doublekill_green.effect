@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="0" useentityeffectscale="1">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<!-- Start -->
+			<simpleemitter
+				life="1000"
+				count="1"
+				spawnrate="1000"
+				particlelife="700"
+			>
+				<particle>
+			
+					<!-- distorted center -->
+					<billboard
+						life="700"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0 0 0"
+						midcolor="0 0.2 0"
+						endcolor="0 0 0"
+						height="10"
+						width="200"
+						lockup="1"
+						startscale="0"
+						midscale="2"
+						endscale="1.5"
+					/>
+					
+					<!-- Stretched BG -->
+					<billboard
+						life="700"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="10"
+						startcolor="0 0 0"
+						midcolor="0 0.5 0.2"
+						endcolor="0 0 0"
+						height="80"
+						width="120"
+						lockup="1"
+						startscale="0"
+						midscale="2"
+						endscale="1.5"
+					/>
+
+					<!-- floaty burst -->
+					<simpleemitter
+						life="2000"
+						count="100"
+						spawnrate="50"
+						particlelife="500"
+						particledirectionalspace="local"
+						material="/shared/effects/smaterials/whitecircleblurred_add_greenglow.material"
+						inheritvelocity="1"
+						direction="0 0 0"
+						gravity="1"
+						depthbias="-50"
+						minspeed="30"
+						maxspeed="70"
+						
+						offsetsphere="0"
+					>
+						<particle
+							minscale=".1"
+							maxscale=".7"
+							startsize="1"
+							endsize="3"
+							startcolor="0"
+							midcolor="1"
+							endcolor="0"
+							midcolorpos=".9"
+							turn="1"
+							flare="1"
+							minangle="0"
+							maxangle="360"
+							minstartstickiness="0.2"
+							maxstartstickiness="0.1"
+							minendstickiness="0.05"
+							maxendstickiness="0"
+							lockup="1"
+						/>
+					</simpleemitter>
+					
+					<!-- star streaks -->
+					<billboard
+						life="700"
+						
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0"
+						midcolor="0.3"
+						endcolor="0"
+						height="2"
+						width="110"
+						lockup="1"
+						startscale="0"
+						midscale="2"
+						endscale="1.5"
+					/>
+					
+					<billboard
+						life="700"
+						
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0"
+						midcolor="0.2"
+						endcolor="0"
+						height="2"
+						width="70"
+						roll="10"
+						lockup="1"
+						startscale="0"
+						midscale="2"
+						endscale="1.5"
+					/>
+					
+					<billboard
+						life="700"
+						
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0"
+						midcolor="0.2"
+						endcolor="0"
+						height="2"
+						width="70"
+						roll="-10"
+						lockup="1"
+						startscale="0"
+						midscale="2"
+						endscale="1.5"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			<!-- Mid -->
+			<simpleemitter
+				delay="200"
+				life="2000"
+				count="1"
+                spawnrate="1000"
+				particlelife="3000"
+			>
+				<particle>
+			
+					<!-- distorted center -->
+					<billboard
+						life="2500"
+						
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0 0.2 0"
+						midcolor="0 0.2 0"
+						endcolor="0 0.2 0"
+						height="10"
+						width="200"
+						lockup="1"
+						startscale="1"
+						midscale="1.5"
+						endscale="1.5"
+					/>
+					
+					<!-- Stretched BG -->
+					<billboard
+						life="2500"
+						
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="10"
+						startscale="1"
+						midscale="1.5"
+						endscale="1.5"
+						startcolor="0 0.5 0.2"
+						midcolor="0 0.5 0"
+						endcolor="0 0.5 0"
+						height="80"
+						width="120"
+						lockup="1"
+					/>
+					
+					<!-- floaty dots -->
+					<simpleemitter
+						
+						life="3000"
+						spawnrate="40"
+						particlelife="500"
+						particledirectionalspace="local"
+						material="/shared/effects/smaterials/whitecircleblurred_add_greenglow.material"
+						inheritvelocity="1"
+						direction="0 0 0"
+						depthbias="-50"
+						gravity="1"
+						offsetsphere="50"
+					>
+						<particle
+							minscale=".1"
+							maxscale=".7"
+							startcolor="0"
+							midcolor="1"
+							endcolor="0"
+							midcolorpos=".5"
+							turn="1"
+							flare="1"
+							minangle="0"
+							maxangle="360"
+							startstickiness="0.5"
+							endstickiness="0.2"
+							lockup="1"
+						/>
+					</simpleemitter>
+
+					<!-- star streaks -->
+					<model
+						life="2500"
+						model="model.mdf"
+						anim="seesaw"
+						position="0 0 0"
+	
+					>
+						<billboard
+							bone="_bone_seesaw"
+							life="2500"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							size="15"
+							startcolor="0.3"
+							midcolor="0.3"
+							endcolor="0.3"
+							height="2"
+							width="110"
+							lockup="1"
+							lockright="1"
+							startscale="1"
+							midscale="1.5"
+							endscale="1.5"
+							directionalspace="local"
+						/>
+						
+						<billboard
+							bone="_bone_seesaw"
+							life="2500"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							size="15"
+							startcolor="0.2"
+							midcolor="0.2"
+							endcolor="0.2"
+							height="2"
+							width="70"
+							roll="10"
+							lockup="1"
+							lockright="1"
+							startscale="1"
+							midscale="1.5"
+							endscale="1.5"
+							directionalspace="local"
+						/>
+						
+						<billboard
+							bone="_bone_seesaw"
+							life="2500"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							size="15"
+							startcolor="0.2"
+							midcolor="0.2"
+							endcolor="0.2"
+							height="2"
+							width="70"
+							roll="-10"
+							lockup="1"
+							lockright="1"
+							startscale="1"
+							midscale="1.5"
+							endscale="1.5"
+							directionalspace="local"
+						/>
+					</model>
+				</particle>
+			</simpleemitter>
+		
+			<!-- Finish -->
+			<simpleemitter
+				delay="2500"
+				life="100"
+				count="1"
+				spawnrate="1000"
+				particlelife="3000"
+			>
+				<particle>
+
+					<!-- distorted center -->
+					<billboard
+						life="500"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0 0 0"
+						midcolor="0 0.2 0"
+						endcolor="0 0 0"
+						height="10"
+						startwidth="200"
+						endwidth="0"
+						lockup="1"
+						startscale=".5"
+						midscale="1.5"
+						endscale="0"
+					/>
+					
+					<!-- Stretched BG -->
+					<billboard
+						
+						life="500"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="10"
+						startscale=".5"
+						midscale="1.5"
+						endscale="0"
+						startcolor="0 0 0"
+						midcolor="0 0.5 0.2"
+						endcolor="0 0 0"
+						height="80"
+						startwidth="120"
+						endwidth="0"
+						lockup="1"
+					/>
+
+					<!-- star streaks -->
+					<billboard
+						
+						life="500"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0"
+						midcolor="0.3"
+						endcolor="0"
+						height="2"
+						startwidth="110"
+						endwidth="0"
+						lockup="1"
+						startscale=".5"
+						midscale="1.5"
+						endscale="0"
+					/>
+					
+					<billboard
+						
+						life="500"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0"
+						midcolor="0.2"
+						endcolor="0"
+						height="2"
+						startwidth="70"
+						endwidth="0"
+						roll="10"
+						lockup="1"
+						startscale=".5"
+						midscale="1.5"
+						endscale="0"
+					/>
+					
+					<billboard
+						
+						life="500"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						size="15"
+						startcolor="0"
+						midcolor="0.2"
+						endcolor="0"
+						height="2"
+						startwidth="70"
+						endwidth="0"
+						roll="-10"
+						lockup="1"
+						startscale=".5"
+						midscale="1.5"
+						endscale="0"
+					/>
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

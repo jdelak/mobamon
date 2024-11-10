@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Tutorial2_Boss2"
+
+	radiusstart="80"
+	radiusmid="475"
+	radiusend="600"
+	
+	effectscale="1"
+	
+	lifetime="2500"
+
+	impactinterval="100"
+
+	targetselection="all"
+	targetscheme="enemy_units"
+	effecttype="Magic"
+
+	effect=""
+	persist="true"
+>
+	<onspawn>
+	
+		<compare a="param" b="1" op="eq" >
+			<playeffect effect="effects/aoe_left.effect" source="this_position" target="this_position"/>
+		</compare>
+		<compare a="param" b="2" op="eq" >
+			<playeffect effect="effects/aoe.effect" source="this_position" target="this_position"/>
+		</compare>
+		<compare a="param" b="3" op="eq" >
+			<playeffect effect="effects/aoe_right.effect" source="this_position" target="this_position"/>
+		</compare>
+	</onspawn>
+
+	<onexpired>
+		<spawnaffector name="Affector2_Tutorial2_Boss2" target="this_entity" />
+	</onexpired>
+
+	<onframe>
+		<targettype type="dead" target="source_entity">
+			<kill target="this_entity" />
+		</targettype>
+	</onframe>
+
+	<onimpact>
+		<damage amount="10" source="source_entity" target="target_entity" effecttype="Magic" />
+	</onimpact>
+</affector>

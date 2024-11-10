@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor=".75"
+			endcolor="1"
+			alpha="1"
+		/>
+	
+		<particlesystem name="system0" space="entity" scale=".75">
+
+			<template name="orbs">
+
+				<model
+					expirelife="250"
+					delay="{zdelay}"
+					bone="_bone_center"
+					model="../../ability_02/effects/orbit/orbit.mdf"
+					anim="idle"
+					startscale="1.85"
+					endscale="{zscale}"
+					roll="{zroll}"
+					yaw="{zyaw}"
+					pitch="{zpitch}"
+					position="0 0 30"
+					yawspeed="{zyawspeed}"
+					directionalspace="world"
+				>
+					<model
+						expirelife="250"
+						bone="_bone_fx"
+						model="../../ability_01/effects/projectile/gem_singles/model.mdf"
+						material="../../ability_01/effects/projectile/gem_singles/material.material"
+						anim="idle"
+						scale=".5"
+						color="6"
+						rollspeed="720"
+						position="0 0 0"
+						startalpha=".5"
+						endalpha="0"
+					/>
+
+					<billboard
+						expirelife="250"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .15 .5"
+						endcolor="0 0 0"
+						scale="1.1"
+						depthbias="-25"
+					/>
+
+					<trailemitter
+						expirelife="250"
+						bone="_bone_fx"
+						spawnrate="50"
+						particlelife="400"
+						texpostime="400"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							 startcolor="0 .25 .5"
+							 midcolor="0 .25 .5"
+							 endcolor="0 0 0"
+							 midcolorpos=".1"
+							 startsize="15"
+							 midsize="15"
+							 endsize="15"
+							 midsizepos="0.2"
+							 alpha="0"
+					 />
+					</trailemitter>
+	
+<!--
+					<simpleemitter
+					delay="2600"
+						bone="_bone_fx"
+						count="4"
+						spawnrate="1055"
+						particlelife="100"
+						gravity="0"
+						minspeed="22.0"
+						maxspeed="22"
+						acceleration="0.0"
+						offsetsphere="0 0 0"
+						material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+						depthbias="-25"
+					>
+						<particle
+							color=".7 0 .35"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							scale="200"
+							turn="true"
+							minheight="2.2"
+							maxheight="3"
+						/>
+					</simpleemitter>
+-->
+				</model>
+			
+			</template>
+
+<!--			<instance name="orbs" zdelay="0" zroll="45" zyaw="80" zyawspeed="180" zpitch="0" zscale="2.15"/>
+
+			<instance name="orbs" zdelay="0" zroll="-45" zyaw="180" zyawspeed="360" zpitch="0" zscale="2.05"/>
+
+			<instance name="orbs" zdelay="0" zroll="0" zyaw="0" zyawspeed="540" zpitch="45" zscale="1.95"/>
+-->
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<particlesystem name="system1" space="world" scale=".95">
+		
+			<model
+				position="0 0 250"
+				expirelife="250"
+				model="broken_sword/model.mdf"
+				anim="idle"
+				color="1.5"
+				depthbias="-65"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				lockup="1"
+				directionalspace="world"
+				roll="200"
+				pitch="120"
+				scale=".565"
+				pitchspeed="-25"
+			/>
+			
+			<model
+				position="0 0 250"
+				expirelife="250"
+				model="broken_sword/model.mdf"
+				material="/shared/effects/smaterials/shell_glass.material"
+				anim="idle"
+				startcolor="3 1.5 0"
+				endcolor="0 0 0"
+				depthbias="-65"
+				startalpha="1"
+				endalpha="0"
+				lockup="1"
+				directionalspace="world"
+				roll="200"
+				pitch="120"
+				scale=".565"
+				pitchspeed="-25"
+			>
+				<template name="flashes">
+				
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="35"
+						minparticlelife="200"
+						maxparticlelife="300"
+						minspeed="0"
+						maxspeed="60"
+						position="0 0 0"
+						offsetsphere="0 0 10"
+						material="/shared/effects/smaterials/cartoon_smack_white.material"
+						depthbias="75"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+					>
+						<particle
+						minangle="0"
+						maxangle="360"
+							anchor="1"
+							color="1 .75 0"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							startscale="25"
+							minendscale="75"
+							maxendscale="100"
+							lockup="true"
+							lockright="true"
+						/>
+					</simpleemitter>
+					
+					<simpleemitter
+						bone="{zbone}"
+						spawnrate="50"
+						minparticlelife="300"
+						maxparticlelife="500"
+						minspeed="0"
+						maxspeed="60"
+						position="0 0 0"
+						offsetsphere="0 0 10"
+						material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+						depthbias="50"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+					>
+						<particle
+						minangle="0"
+						maxangle="360"
+							anchor="1"
+							startcolor=".5 .25 0"
+							endcolor="0 0 0"
+							startscale="25"
+							minendscale="15"
+							maxendscale="50"
+							lockup="true"
+							lockright="true"
+						/>
+					</simpleemitter>
+				</template>
+
+				<instance name="flashes" zbone="_bone_fx_01"/>
+				<instance name="flashes" zbone="_bone_fx_01"/>
+
+			</model>
+
+			<billboard
+				position="0 0 250"
+				expirelife="300"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".5 .1 0"
+				endcolor="0 0 0"
+				depthbias="-75"
+				scale="3"
+				lockup="1"
+				lockright="1"
+				pitch="0"
+			/>
+<!--
+			<simpleemitter
+				position="0 0 250"
+				spawnrate="35"
+				minparticlelife="500"
+				maxparticlelife="1000"
+				minspeed="0"
+				maxspeed="200"
+				offsetsphere="12"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-75"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 -1"
+				directionalspace="world"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					anchor="1"
+					startcolor="1 .75 .5"
+					midcolor="1 .75 .25"
+					endcolor="0 0 0"
+					minscale="2"
+					maxscale="3"
+					lockup="true"
+					lockright="true"
+				/>
+			</simpleemitter>
+-->
+		</particlesystem>
+		
+		
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

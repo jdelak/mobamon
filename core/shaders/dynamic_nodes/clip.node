@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="clip">
+	<dependency name="HomogeneousPosition" type="float4" source="HomogeneousPosition" />
+	<dependency name="vClipPlane" type="float4" source="vClipPlane" />
+	<output name="Out" type="float" solution="ClipDistance" />
+	<?hlsl
+		Out = dot(HomogeneousPosition, vClipPlane);
+	?>
+	<?glsl
+		Out = dot(HomogeneousPosition, vClipPlane);
+	?>
+</node>

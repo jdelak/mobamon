@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Zaku_Ability4"
+	
+	model="/shared/models/invis.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	unitwalking="true"
+	cliffwalking="false"
+	buildingwalking="false"
+	
+	
+	canturn="true"
+	turnrate="360"
+	turnsmoothing="0.05"
+	
+	spawneffect="effects/bug/effects/spawn.effect"
+	
+	
+
+	tiltfactor="0.0"
+	tiltspeed="90.0"
+	
+	passiveeffect="effects/bug/effects/body.effect"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="1.4"
+	modelscale="1"
+	effectscale="1"
+	boundsheight="64"
+	searchheight="100"
+	searchradius="70"
+	minsearchradius="32"
+	boundsradius="16"
+	collisionradius="8"
+	selectionradius="45"
+	targetoffset="0 0 54"
+	
+	attackduration="500"
+	attackactiontime="150"
+	attackcooldown="800"
+	attackdamagemin="20,30,40"
+	attackdamagemax="20,30,40"
+	attacknumanims="1"
+	attackoffset="0 220 120"
+	attackprojectile=""
+	attackrange="100"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect=""
+	attacktype="ranged"
+	attackdamagetype="AttackDamage"
+	combattype="Hero"
+
+	aggrorange="700"
+	sightrangeday="800"
+	sightrangenight="800"
+	
+	drawonmap="true"
+	invulnerable="false"
+	canattack="false"
+
+	corpsetime="500"
+	corpsefadetime="1000"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	deathtime="0"
+
+	movespeed="500"
+	lifetime="10000"
+	showlifetime="true"
+	
+	immunity=""
+	nothreat="true"
+
+	hidealtinfo="true"
+	
+	maxhealth="2"
+	
+
+	ismobile="true"
+	
+	goldbountymin="35"
+	goldbountymax="35"
+
+
+	infoheight="150"
+
+	unittype=""
+	hasdynamicpower="false"
+
+>
+	
+	<onspawn>
+		<setactivemodifierkey name="active_initial" entity="this_entity" />
+	</onspawn>
+
+	<onattackingdamageevent>
+		<damageeffecttype effecttype="Indirect" />
+		<else>
+			<getconstant name="damage" adjustmentsource="this_owner_entity" />
+			<setvar0 a="result" b="5" op="div" />
+			<setvalue name="damage_attempted" a="0" b="result" op="mult" />
+			<damage effecttype="AttackDamage Indirect" amount="1" b="var0" op="mult" target="target_entity" source="this_owner_entity" />
+		</else>
+	</onattackingdamageevent>
+	
+	<onattackimpact>
+		<applystate name="State_Zaku_Ability4_Slow" target="target_entity" duration="1000" />
+	</onattackimpact>
+
+	<modifier key="active_initial" modpriority="100" canattack="false" disarmed="true" model="/shared/models/invis.mdf" ismobile="false" hidealtinfo="true">
+	</modifier>
+
+	<modifier key="active" modpriority="100" canattack="true" model="effects/bug/model.mdf" ismobile="true" hidealtinfo="false">
+		<onframe>
+			<order command="attack" target="this_proxy_entity" />
+			<targettype type="alive" target="this_proxy_entity" />
+			<else>
+				<kill target="this_entity" source="" />
+			</else>
+		</onframe>
+	</modifier>
+
+</pet>

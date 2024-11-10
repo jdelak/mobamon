@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="defer_low">
+	<dependency name="Emissive" type="float3" source="MaterialEmissive" />
+	<dependency name="Light" type="float3" source="MaterialLight" />
+	<dependency name="Diffuse" type="float3" source="MaterialDiffuse" />
+	<dependency name="Opacity" type="float" source="MaterialOpacity" />
+	<dependency name="Color" type="float4" source="MaterialObjectColor" />
+	<dependency name="Shadowed" type="float" source="MaterialShadowed" />
+	<dependency name="GroundAmbient" type="bool" source="MaterialGroundAmbient" />
+	<dependency name="Fog" type="float" source="MaterialFog" />
+	<dependency name="Fogofwar" type="float" source="MaterialFogofwar" />
+	<dependency name="DynamicDiffuse" type="float3" source="MaterialDynamicDiffuse" />
+	
+	<dependency name="ViewNormal" type="float3" source="ViewNormal" />
+	<dependency name="ViewPosition" type="float3" source="ViewPosition" />
+	<dependency name="WorldAmbient" type="float3" source="vAmbient" />
+	<dependency name="ViewSunPosition" type="float3" source="vSunPositionView" />
+	<dependency name="SunColor" type="float3" source="vSunColor" />
+	<dependency name="FogColor" type="float3" source="vFogColor" />
+	<dependency name="SpecParams" type="float3" source="vSpec" />
+	
+	<dependency name="ViewUp" type="float3" source="vViewUp" />
+	<dependency name="FarClipInv" type="float" source="fCameraFarClipInv" />
+
+	<output name="Out0" type="float4" solution="PSOutColor0" />
+	<output name="Out1" type="float4" solution="PSOutColor1" />
+	<output name="Out2" type="float4" solution="PSOutColor2" />
+	<output name="Out3" type="float4" solution="PSOutColor3" />
+	<?hlsl
+		if (TEXKILL)
+		{
+			clip(Opacity - 91.0f / 255.0f);
+		}
+		
+		float3 f3Normal = ViewNormal;
+		
+		float fShadow = Shadowed;
+		float fSpecular = SpecParams.x;
+		
+		float3 f3CamDirection = -normalize(ViewPosition);
+		float3 f3Light = ViewSunPosition;
+		
+		float fLit; // diffuse
+		fLit = saturate(dot(f3Normal, f3Light));
+		fLit *= fShadow;
+
+		float3 f3Diffuse = WorldAmbient;
+
+		if (GROUND_AMBIENT && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, ViewUp) * 0.375f + 0.625f);
+		
+		f3Diffuse += Light;
+
+		f3Diffuse += SunColor * fLit;
+		
+		float3 f3DiffuseColor = Diffuse * Color.rgb;
+		
+		float3 f3FinalColor = Emissive + f3DiffuseColor * f3Diffuse;
+		f3FinalColor *= Fogofwar;
+		f3FinalColor = lerp(f3FinalColor, FogColor, Fog);
+		
+		float fAlpha = Opacity * Color.a;
+		
+		Out0.rgb = f3FinalColor;
+		Out0.a = fAlpha;
+		
+		Out1.rgb = f3DiffuseColor * Fogofwar * (1.0f - Fog) * DynamicDiffuse;
+		Out1.a = fAlpha;
+	
+		Out2.rgb = ViewNormal * 0.5f + 0.5f;
+		Out2.a = fAlpha;
+		
+		Out3.r = ViewPosition.z * FarClipInv;
+		Out3.gba = 0.0f;    
+	?>
+	<?glsl
+		if (TEXKILL != 0)
+		{
+			if (Opacity < 91.0f / 255.0f)
+				discard;
+		}
+		
+		vec3 f3Normal = ViewNormal;
+		
+		float fShadow = Shadowed;
+		float fSpecular = SpecParams.x;
+		
+		vec3 f3CamDirection = -normalize(ViewPosition);
+		vec3 f3Light = ViewSunPosition;
+		
+		vec2 fLit; // diffuse
+		fLit = clamp(dot(f3Normal, f3Light), 0.0f, 1.0f);
+		fLit *= fShadow;
+
+		vec3 f3Diffuse = WorldAmbient;
+
+		if (GROUND_AMBIENT != 0 && GroundAmbient)
+			f3Diffuse *= (dot(f3Normal, ViewUp) * 0.375f + 0.625f);
+		
+		f3Diffuse += Light;
+
+		f3Diffuse += SunColor * fLit;
+		
+		vec3 f3DiffuseColor = Diffuse * Color.rgb;
+		
+		vec3 f3FinalColor = Emissive + f3DiffuseColor * f3Diffuse;
+		f3FinalColor *= Fogofwar;
+		f3FinalColor = mix(f3FinalColor, FogColor, Fog);
+		
+		float fAlpha = Opacity * Color.a;
+		
+		Out0.rgb = f3FinalColor;
+		Out0.a = fAlpha;
+		
+		Out1.rgb = f3DiffuseColor * Fogofwar * (1.0f - Fog) * DynamicDiffuse;
+		Out1.a = fAlpha;
+	
+		Out2.rgb = ViewNormal * 0.5f + 0.5f;
+		Out2.a = fAlpha;
+		
+		Out3.r = ViewPosition.z * FarClipInv;
+		Out3.gba = vec3(0.0f);
+	?>
+</node>

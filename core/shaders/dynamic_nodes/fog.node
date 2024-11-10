@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="fog">
+	<dependency name="CameraDistance" type="float" source="CameraDistance" />
+	<dependency name="FogParams" type="float3" source="vFog" />
+	<dependency name="FogDensity" type="float" source="fFogDensity" />
+	<dependency name="FogStart" type="float" source="fFogStart" />
+	<dependency name="FogEnd" type="float" source="fFogEnd" />
+	<dependency name="FogScale" type="float" source="fFogScale" />
+	<output type="float" name="Out" solution="Fog" />
+	<?hlsl
+	#if (FOG_TYPE == 0) // FOG_NONE
+		Out = 0.0f;
+	#elif (FOG_TYPE == 1) // FOG_LINEAR
+		Out = saturate(CameraDistance * FogParams.x + FogParams.y) * FogParams.z;
+	#elif (FOG_TYPE == 2) // FOG_EXP2
+		Out = 1.0f - exp2(-CameraDistance * FogDensity);
+	#elif (FOG_TYPE == 3) // FOG_EXP
+		Out = 1.0f - exp(-CameraDistance * FogDensity);
+	#elif (FOG_TYPE == 4) // FOG_HERMITE
+		Out = smoothstep(FogStart, FogEnd, CameraDistance) * FogScale;
+	#endif
+	?>
+	<?glsl
+	#if (FOG_TYPE == 0) // FOG_NONE
+		Out = 0.0f;
+	#elif (FOG_TYPE == 1) // FOG_LINEAR
+		Out = clamp(CameraDistance * FogParams.x + FogParams.y, 0.0f, 1.0f) * FogParams.z;
+	#elif (FOG_TYPE == 2) // FOG_EXP2
+		Out = 1.0f - exp2(-CameraDistance * FogDensity);
+	#elif (FOG_TYPE == 3) // FOG_EXP
+		Out = 1.0f - exp(-CameraDistance * FogDensity);
+	#elif (FOG_TYPE == 4) // FOG_HERMITE
+		Out = smoothstep(FogStart, FogEnd, CameraDistance) * FogScale;
+	#endif
+	?>
+</node>

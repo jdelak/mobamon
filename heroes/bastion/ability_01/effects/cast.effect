@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				volume="0.85"
+				falloffstart="500"
+				falloffend="2500"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+			
+			<light
+				life="500"
+				startcolor="0 0 0"
+				midcolor="10 5 1"
+				endcolor="0 0 0"
+				midcolorpos=".1"
+				falloffstart="0"
+				falloffend="250"
+				position="0 75 250"
+			/>
+			
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+	</thread>
+
+</effect>

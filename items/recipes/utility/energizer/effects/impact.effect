@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1">
+	<definitions>
+		
+		
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2200"
+				volume=".45"
+				sample="../sounds/sfx_impact_%.wav"
+			/>
+<!--
+			<template name="orbs">
+
+				<model
+				life="2000"
+					bone="_bone_center"
+					model="/heroes/moxie/ability_01/effects/orbit/orbit.mdf"
+					anim="idle"
+					scale="{zscale}"
+					roll="{zroll}"
+					yaw="{zyaw}"
+					pitch="{zpitch}"
+					position="0 0 30"
+					yawspeed="720"
+				>
+					<trailemitter
+						bone="_bone_fx"
+						minlife="1250"
+						maxlife="1750"
+						spawnrate="30"
+						particlelife="750"
+						texpostime="750"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 35 0"
+						material="/shared/effects/smaterials/rocket_smoke_blend.material"
+						startparticlealpha="1"
+						endparticlealpha="0"
+					>
+						<particle
+							startcolor="1 1 1"
+							endcolor="0 .5 .5"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"
+							midalphapos=".8"
+							minstartsize="10"
+							maxstartsize="15"
+							endsize="0"
+						/>
+					</trailemitter>
+
+					<trailemitter
+						bone="_bone_fx"
+						minlife="1250"
+						maxlife="1750"
+						spawnrate="30"
+						particlelife="750"
+						texpostime="750"
+						texposscale="0"
+						texstretchscale="1"
+						position="0 35 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor=".4 .7 1"
+							midcolor="0 .5 .5"
+							endcolor="0 0 0"
+							minstartsize="10"
+							maxstartsize="15"
+							endsize="0"
+						/>
+					</trailemitter>
+
+				</model>
+			
+			</template>
+
+			<instance name="orbs" zroll="0" zyaw="0" zpitch="0" zscale="1.85"/>
+-->
+		</particlesystem>
+	</definitions>
+	<thread>
+
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>   
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

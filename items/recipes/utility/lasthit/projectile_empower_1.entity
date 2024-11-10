@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Lasthit_Empower_1"
+
+	speed="1800"
+	gravity="10000"
+
+	modelscale="1"
+	model="effects/axe/model.mdf"
+	
+	impacteffect="effects/impact.effect"
+	traileffect="effects/trail.effect"
+>
+	<onimpact>
+		<applystate name="State_Lasthit_Legendary" duration="100" />
+
+		<getconstant name="damage" adjustmentsource="tool_entity"/>
+		<setvar0 a="result" />
+		<getconstant name="throw_damage" adjustmentsource="tool_entity"/>
+		<setvar0 a="result" b="var0" op="add" />
+		<setvar0 a="var0" b="100" op="div" />
+		<setvar0 a="var0" b="1" op="add" />
+		<setvar0 a="var0" b="source_attackdamage" op="mult" />
+
+		<damage effecttype="Magic" amount="1" b="var0" op="mult" />
+	</onimpact>
+</projectile>

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<panel name="main_chat_sleeper" noclick="1" />
+	
+	<template name="ChatHeader">
+		<image noclick="1" width="100@" height="{height=100%}" texture="/ui/main/chat/textures/chat_header_l.tga" color="{barcolor=#1e6898}"/>
+		<image noclick="1" hmargin="100@" height="{height=100%}" texture="/ui/main/chat/textures/chat_header_c.tga" color="{barcolor=#1e6898}"/>
+		<image noclick="1" width="100@" height="{height=100%}" align="right" texture="/ui/main/chat/textures/chat_header_r.tga" color="{barcolor=#1e6898}"/>
+	</template>
+
+	<template name="chatChannel">
+		<chatoutputbuffer
+			name="mainChat{type}{channelID}Buffer"
+			group="{group=main_chat_channel_outputbuffers}"
+			valign="top"
+			textcolor="#f8f8f2"
+			color="invisible"
+			font="maindyn_18"
+			scrolltexture="/ui/shared/textures/slider.tga"
+			indent="32"
+			paddingleft="4s"
+			paddingright="4s"
+			paddingbottom="4s"
+			paddingtop="4s"
+			shadow="true"
+			outline="false"
+			shadowoffset="1"
+			oninstantiatelua="
+				self:Sleep(1, function() mainUI.OutputBufferRegister(self, '{channelID}', [=[{channelName}]=], '{type}') end)
+				{oninstantiatelua}
+			"
+			scrollbarsize="24s"				
+			maxhandleheight="48s"
+			handlewidth="24s"
+			minhandlesize="48s"
+			maxhandlesize="48s"
+			onfocuslua=""
+			hscrollbar="0"
+			horizontal="false"			
+			onmouseoutlua="GetWidget('profile_preview_parent'):FadeOut(50)"
+			onupdate=""
+			oldmessagedarkfactor="0.7"
+			onclicklua=""
+			onmouseldownlua=""
+			onmouseluplua=""
+		/>	
+	</template>	
+	
+	<template name="memberlist_entry_template">
+		<button passivechildren="0" noclick="0" hmargin="0.15h" vmargin="0.15h" cangrab="true" dragexclusive="false" color="invisible"
+			cursor="/core/cursors/arrow_right.cursor"
+			oninstantiatelua="
+				self:RegisterWatchLua('ChatChannelMember', function(sourceWidget, trigger)
+						if (trigger.channelID == '{channelID=-1}') and (trigger.identID == ('{identID=-1}')) and (trigger.leave) then
+							GetWidget('overlay_chat_channel{channelID=-1}_memberlist_listbox'):EraseListItemByValue('{identID=-1}')
+						end
+					end,
+					false,
+					nil,
+					'identID', 'leave', 'channelID'
+				)
+				self:Sleep(1, function()
+					RegisterRockingScrollingLabel(self, '{playerName}', 'maindyn_16', 0, self:GetChildren()[1]:GetChildren()[2]:GetChildren()[1])
+				end)
+				globalDraggerRegisterSource(self, 12)
+			"
+			onstartdraglua="
+				local clientInfoDrag = LuaTrigger.GetTrigger('clientInfoDrag')
+				clientInfoDrag.clientDraggingName			= '{playerName}'
+				clientInfoDrag.clientDraggingUniqueID		= '{uniqueID}'
+				clientInfoDrag.clientDraggingIdentID		= '{identID}'
+				clientInfoDrag.clientDraggingCanSpectate	= false
+				clientInfoDrag.clientDraggingIsFriend		= {isFriend}
+				clientInfoDrag.clientDraggingIsOnline		= true
+				clientInfoDrag.dragActive					= true
+
+				clientInfoDrag:Trigger(false)
+			"			
+			onenddraglua="
+				local clientInfoDrag = LuaTrigger.GetTrigger('clientInfoDrag')
+				clientInfoDrag.dragActive			= false
+				clientInfoDrag:Trigger(false)
+			"
+			onrightclicklua="
+				ContextMenuTrigger.selectedUserIdentID 			= '{identID}'
+				ContextMenuTrigger.selectedUserUsername 		= '{playerName}'
+				ContextMenuTrigger.selectedUserIsInGame			= {inGame}
+				ContextMenuTrigger.selectedUserIsInParty		= {inParty}
+				ContextMenuTrigger.selectedUserIsInLobby		= {inLobby}
+				ContextMenuTrigger.spectatableGame			= {spectatableGame}
+				ContextMenuTrigger.contextMenuArea = 1
+				ContextMenuTrigger:Trigger(true)
+			"
+			ondoubleclicklua="mainUI.chatManager.InitPrivateMessage('{identID}', ContextMenuTrigger.contextMenuArea, '{playerName}')"
+			onmouseoverlua="self:SetColor('1 1 1 0.1')"
+			onmouseoutlua="self:SetColor('1 1 1 0')"
+		>
+			<panel hmargin="1s" vmargin="1s" noclick="1">
+				<panel width="100@" height="100%" noclick="1">
+					<image align="center" valign="center" texture="{accountIcon=/ui/shared/textures/user_icon.tga}" noclick="1"/>
+				</panel>
+				<panel x="-0.3h" y="-0.3h" align="right" width="-125@" noclick="1"	>
+					<label x="0.3h" y="0.3h" textvalign="center" color="{labelColor=white}" shadow="true" font="maindyn_16" content="{playerName}" noclick="1" />
+				</panel>
+			</panel>
+		</button>
+	</template>	
+	
+	<template name="memberlist_entry_multiwindow_template">
+		<button passivechildren="0" noclick="0" hmargin="0.15h" vmargin="0.15h" cangrab="true" dragexclusive="false" color="invisible"
+			cursor="/core/cursors/arrow_right.cursor"
+			oninstantiatelua="
+				self:RegisterWatchLua('ChatChannelMember', function(sourceWidget, trigger)
+						if (trigger.channelID == '{channelID=-1}') and (trigger.identID == ('{identID=-1}')) and (trigger.leave) then
+							self:GetWidget('overlay_chat_channel_window_memberlist_listbox'):EraseListItemByValue('{identID=-1}')
+						end
+					end,
+					false,
+					nil,
+					'identID', 'leave', 'channelID'
+				)
+				self:Sleep(1, function()
+					RegisterRockingScrollingLabel(self, '{playerName}', 'maindyn_16', 0, self:GetChildren()[1]:GetChildren()[2]:GetChildren()[1])
+				end)
+				globalDraggerRegisterSource(self, 12)
+			"
+			onstartdraglua="
+				local clientInfoDrag = LuaTrigger.GetTrigger('clientInfoDrag')
+				clientInfoDrag.clientDraggingName			= '{playerName}'
+				clientInfoDrag.clientDraggingUniqueID		= '{uniqueID}'
+				clientInfoDrag.clientDraggingIdentID		= '{identID}'
+				clientInfoDrag.clientDraggingCanSpectate	= false
+				clientInfoDrag.clientDraggingIsFriend		= {isFriend}
+				clientInfoDrag.clientDraggingIsOnline		= true
+				clientInfoDrag.dragActive					= true
+
+				clientInfoDrag:Trigger(false)
+			"			
+			onenddraglua="
+				local clientInfoDrag = LuaTrigger.GetTrigger('clientInfoDrag')
+				clientInfoDrag.dragActive			= false
+				clientInfoDrag:Trigger(false)
+			"
+			onrightclicklua="
+				ContextMenuMultiWindowTrigger.selectedUserIdentID 			= '{identID}'
+				ContextMenuMultiWindowTrigger.selectedUserUsername 		= '{playerName}'
+				ContextMenuMultiWindowTrigger.selectedUserIsInGame			= {inGame}
+				ContextMenuMultiWindowTrigger.selectedUserIsInParty		= {inParty}
+				ContextMenuMultiWindowTrigger.selectedUserIsInLobby		= {inLobby}
+				ContextMenuMultiWindowTrigger.spectatableGame			= {spectatableGame}
+				ContextMenuMultiWindowTrigger.contextMenuArea = 1
+				ContextMenuMultiWindowTrigger:Trigger(true)
+			"
+			ondoubleclicklua="mainUI.chatManager.InitPrivateMessage('{identID}', ContextMenuMultiWindowTrigger.contextMenuArea, '{playerName}')"
+			onmouseoverlua="self:SetColor('1 1 1 0.1')"
+			onmouseoutlua="self:SetColor('1 1 1 0')"
+		>
+			<panel hmargin="1s" vmargin="1s" noclick="1">
+				<panel width="100@" height="100%" noclick="1">
+					<image align="center" valign="center" texture="{accountIcon=/ui/shared/textures/user_icon.tga}" noclick="1"/>
+				</panel>
+				<panel x="-0.3h" y="-0.3h" align="right" width="-125@" noclick="1"	>
+					<label x="0.3h" y="0.3h" textvalign="center" color="{labelColor=white}" shadow="true" font="maindyn_16" content="{playerName}" noclick="1" />
+				</panel>
+			</panel>
+		</button>
+	</template>		
+	
+	<template name="chat_overlay_channel_invisible_template" >	
+		<panel name="overlay_chat_{type}{channelID}_parent" group="chat_overlay_channel_single_templates" visible="{visible=0}" valign="bottom" align="left" width="420s" x="530s" y="-60s" height="250s" noclick="0"
+			onmouseoutlua="
+				GetWidget('profile_preview_parent'):FadeOut(50)
+			"
+			oninstantiatelua="
+				self:Sleep(1, function() mainUI.ChatChannelTeamFocusRegister(self, '{channelID}', [=[{channelName}]=], '{type}') end)
+				{oninstantiatelua}
+			"		
+		>
+			
+			<instance name="dialogWrapper1" group="overlay_chat_{type}{channelID}_visobj" visible="0" outerpadding="+10s" innerpadding="+5s" />
+
+			<frame group="overlay_chat_{type}{channelID}_visobj" visible="0" texture="/ui/elements:rounded_bg_white" color="0 0 0 0.6" borderthickness="8s" noclick="1" />
+			
+			<panel noclick="1" name="overlay_chat_{type}{channelID}_parent_left_container" visible="1" width="100%" align="left" >
+				<!-- Chat Buffer -->
+				<panel name="overlay_chat_{type}{channelID}_buffer" noclick="true" y="38s" height="-80s">
+					<instance name="chatChannel" type="{type}" base="{base}" channelID="{channelID}" pin="1" 
+						channelName="{channelName}" bufferChannel="{bufferChannel}" group="{group}" isGameChat="false" />
+					
+					<!-- Drag/Drop Area -->
+					<panel name="overlay_chat_{type}{channelID}_droptarget_1" width="+4s" height="+4s" align="center" valign="center" visible="false"
+						oninstantiatelua="
+							self:RegisterWatchLua('mainPanelStatusDragInfo', function(widget, groupTrigger)
+								local mainPanelStatus = groupTrigger[1]
+								local globalDragInfo  = groupTrigger[2]
+								local clientInfoDrag  = groupTrigger[3]
+
+								widget:SetVisible(globalDragInfo.active and ((globalDragInfo.type == 4) or (globalDragInfo.type == 5) or (globalDragInfo.type == 20) or (globalDragInfo.type == 21)) )
+							end)
+						"	
+						onmouseoverlua="
+							globalDraggerReadTarget(self, function()
+								Links.SpawnLink('{channelID}', '{type=channel}')
+							end)
+						"								
+					>
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+					</panel>
+				</panel>
+				
+				<!-- Chat Input -->
+				<frame name="overlay_chat_{type}{channelID}_frame" group="overlay_chat_{type}{channelID}_visobj" visible="0" texture="/ui/elements:text_input_dark" borderthickness="6s" noclick="1" height="36s" valign="bottom">
+					<chatinputbuffer
+						name="overlay_chat_{type}{channelID}_input"
+						x="8s" y="-8s"
+						textcolor="1 1 1 1"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-85s"
+						grow="true"
+						valign="bottom"
+						oninstantiatelua="
+							mainUI.TeamInputBufferRegister(self, '{channelID=-1}', [=[{channelName}]=], '{type}')
+						"
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua="GetWidget('profile_preview_parent'):FadeOut(50)"
+						onsizelua="
+							self:GetWidget('overlay_chat_{type}{channelID}_buffer'):SetHeight(-(self:GetHeightFromString('56s') + self:GetHeight()))
+							self:GetWidget('overlay_chat_{type}{channelID}_frame'):SetHeight(self:GetHeightFromString('16s') + self:GetHeight())
+						"
+					/>						
+					<instance noclick="0" x="-5s" y="5s" height="25s" valign="top" width="64s" align="right"
+						name="standardButton" id="overlay_chat_{type}{channelID}_input_btn"
+						label="general_send"
+						font="maindyn_20"
+						onclicklua="
+							-- sound_chatSendMessage
+							-- PlaySound('/path_to/filename.wav')
+						"
+					/>						
+				</frame>
+
+			</panel>
+
+			<panel height="32s" noclick="1" group="overlay_chat_{type}{channelID}_visobj" visible="0" >
+				<instance name="ChatHeader"/>
+				<label name="overlay_chat_{type}{channelID}_header_label" noclick="1" x="1h" y="-0.25h" textvalign="center" style="labelBase" font="maindyn_22" color="white" content="{channelName=Channel Name}"/>
+			</panel>
+	
+		</panel>			
+	</template>		
+	
+	<template name="chat_overlay_channel_single_template" >	
+		<sizingframe name="overlay_chat_{type}{channelID}_parent" group="chat_overlay_channel_single_templates" visible="{visible=0}" align="left" width="{width=700s}" x="100s" y="450s" valign="top" height="440s" noclick="0" constraintoparent="1"
+			canmove="1" minwidth="340s" maxwidth="1100s" minheight="200s" maxheight="710s"
+			onmouseoutlua="
+				GetWidget('profile_preview_parent'):FadeOut(50)
+			"
+			oninstantiatelua="
+				self:Sleep(1, function() mainUI.ChatChannelFocusRegister(self, '{channelID}', [=[{channelName}]=], '{type}') end)
+				{oninstantiatelua}
+			"		
+		>
+			
+			<instance name="dialogWrapper1" outerpadding="+10s" innerpadding="+5s" />
+
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.6" borderthickness="8s" noclick="1" />
+			
+			<panel noclick="1" name="overlay_chat_{type}{channelID}_parent_left_container" visible="1" width="100%" align="left"
+			>
+				<!-- Chat Buffer -->
+				<panel name="overlay_chat_{type}{channelID}_buffer" noclick="true" y="38s" height="-80s">
+					<instance name="chatChannel" type="{type}" base="{base}" channelID="{channelID}" pin="1" 
+						channelName="{channelName}" bufferChannel="{bufferChannel}" group="{group}" isGameChat="false" />
+					
+					<!-- Drag/Drop Area -->
+					<panel name="overlay_chat_{type}{channelID}_droptarget_1" width="+4s" height="+4s" align="center" valign="center" visible="false"
+						oninstantiatelua="
+							self:RegisterWatchLua('mainPanelStatusDragInfo', function(widget, groupTrigger)
+								local mainPanelStatus = groupTrigger[1]
+								local globalDragInfo  = groupTrigger[2]
+								local clientInfoDrag  = groupTrigger[3]
+
+								widget:SetVisible(globalDragInfo.active and ((globalDragInfo.type == 4) or (globalDragInfo.type == 5) or (globalDragInfo.type == 20) or (globalDragInfo.type == 21)) )
+							end)
+						"	
+						onmouseoverlua="
+							globalDraggerReadTarget(self, function()
+								Links.SpawnLink('{channelID}', '{type=channel}')
+							end)
+						"								
+					>
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+					</panel>
+				</panel>
+				
+				<!-- Chat Input -->
+				<frame name="overlay_chat_{type}{channelID}_frame" texture="/ui/elements:text_input_dark" borderthickness="6s" noclick="1" height="36s" width="-18s" valign="bottom">
+					<chatinputbuffer
+						name="overlay_chat_{type}{channelID}_input"
+						x="8s" y="-8s"
+						textcolor="1 1 1 1"
+						color="invisible"
+						font="maindyn_18"
+						scrolltexture="/ui/_textures/elements/combobox.tga"
+						indent="0"
+						width="-85s"
+						grow="true"
+						valign="bottom"
+						oninstantiatelua="
+							self:Sleep(1, function() mainUI.InputBufferRegister(self, '{channelID=-1}', [=[{channelName}]=], '{type}') end)
+						"
+						onesclua="self:SetFocus(false)"
+						onmouseldownlua=""
+						onfocuslua=""
+						hscrollbar="0"
+						horizontal="false"		
+						onmouseoutlua="GetWidget('profile_preview_parent'):FadeOut(50)"
+						onsizelua="
+							self:GetWidget('overlay_chat_{type}{channelID}_buffer'):SetHeight(-(self:GetHeightFromString('56s') + self:GetHeight()))
+							self:GetWidget('overlay_chat_{type}{channelID}_frame'):SetHeight(self:GetHeightFromString('16s') + self:GetHeight())
+						"
+					/>						
+					<instance noclick="0" x="-5s" y="5s" height="25s" valign="top" width="64s" align="right"
+						name="standardButton" id="overlay_chat_{type}{channelID}_input_btn"
+						label="general_send"
+						font="maindyn_20"
+						onclicklua="
+							-- sound_chatSendMessage
+							-- PlaySound('/path_to/filename.wav')
+						"
+					/>						
+				</frame>
+
+			</panel>
+			
+			<panel noclick="1" name="overlay_chat_{type}{channelID}_parent_right_container" visible="0" width="170s" align="right" >
+				<panel noclick="1" y="-45s" height="-86s" valign="bottom" >
+					<panel x="-6s" width="4s" height="100%" color=".1 .1 .1 1" noclick="1" />
+					<listbox name="overlay_chat_{type}{channelID}_memberlist_listbox" style="simpleListbox" height="100%" width="-25s"
+						color="invisible"
+						itemheight="36s"
+						scrollbaroffset="5s"
+						select="true"
+						highlightcolor="invisible"
+						highlightbordercolor="invisible"
+						exteriorscrollbars="true"
+						scrollbarplaceholder="false"
+						scrolltexture="/ui/shared/textures/slider.tga"
+						scrollbarsize="24s"
+						handleheight="48s"
+						hscrollbar="0"
+						horizontal="false"							
+					/>
+					<!-- Drag/Drop Area -->
+					<panel name="overlay_chat_{type}{channelID}_droptarget_2" width="+10s" height="+10s" align="center" valign="center" visible="false"
+						oninstantiatelua="
+							self:RegisterWatchLua('mainPanelStatusDragInfo', function(widget, groupTrigger)
+								local mainPanelStatus = groupTrigger[1]
+								local globalDragInfo  = groupTrigger[2]
+								local clientInfoDrag  = groupTrigger[3]				
+								widget:SetVisible(globalDragInfo.active and ((globalDragInfo.type == 4) or (globalDragInfo.type == 5) or (globalDragInfo.type == 20) or (globalDragInfo.type == 21)) )
+							end)				
+						"		
+						onmouseoverlua="
+							globalDraggerReadTarget(self, function()
+								Links.SpawnLink('{channelID}', '{type=channel}')
+							end)					
+						"							
+					>
+						<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+						<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+					</panel>
+
+				</panel>	
+				<panel noclick="1" y="0" x="-4s" height="32s" width="140s" align="center" valign="bottom" visible="0" >
+					<instance name="simple_combobox_textured" id="overlay_chat_{type}{channelID}_parent_dd" comboboxName="overlay_chat_{type}{channelID}_parent_dd" texture="/ui/elements:rounded_bg_white" maxlistheight="3"
+						oninstantiatelua="
+							self:AddTemplateListItem('simpleDropdownItem', 'public', 'label', 'chat_stream_public')
+							self:AddTemplateListItem('simpleDropdownItem', 'member', 'label', 'chat_stream_member')
+							self:AddTemplateListItem('simpleDropdownItem', 'officer', 'label', 'chat_stream_officer')
+							self:SetSelectedItemByValue('public', true)
+						"					
+						onselectlua="
+							self:GetWidget('overlay_chat_{type}{channelID}_input'):SetStream(self:GetValue())
+						"
+					/> 
+					
+				</panel>					
+			</panel>
+			
+			<panel height="32s" noclick="1" >
+				<instance name="ChatHeader"/>
+				<label name="overlay_chat_{type}{channelID}_header_label" noclick="1" x="1h" y="-0.25h" textvalign="center" style="labelBase" font="maindyn_22" color="white" content="{channelName=Channel Name}"/>
+				
+				<panel noclick="1" align="right" grow="true" float="right" padding="0.8h" x="-0.25h" height="-0.2h" valign="center">
+					
+					<!-- Memberlist Btn -->
+					<panel x="-45s" width="85s" height="25s" align="right" valign="center" noclick="true" visible="{showMemberlist=1}" >
+						<button name="overlay_chat_{type}{channelID}_memberlist_button" width="100%" height="100%" passivechildren="true" visible="1" interactive="false" enabled="1" color="invisible"
+							onclicklua="
+								if self:GetWidget('overlay_chat_{type}{channelID}_parent_right_container'):IsVisible() then
+									self:GetWidget('overlay_chat_{type}{channelID}_parent_right_container'):FadeOut(100)
+									self:GetWidget('overlay_chat_{type}{channelID}_parent_left_container'):ScaleWidth('100%', 250, false)
+									mainUI.savedLocally.openMemberlists['{channelID}'] = nil
+								else
+									self:GetWidget('overlay_chat_{type}{channelID}_parent_right_container'):FadeIn(250)
+									self:GetWidget('overlay_chat_{type}{channelID}_parent_left_container'):ScaleWidth('-180s', 100, false)
+									mainUI.savedLocally.openMemberlists['{channelID}'] = true
+								end
+							"
+							oninstantiatelua="
+								if (mainUI.savedLocally.openMemberlists) and (mainUI.savedLocally.openMemberlists['{channelID}']) then
+									self:GetWidget('overlay_chat_{type}{channelID}_parent_right_container'):FadeIn(250)
+									self:GetWidget('overlay_chat_{type}{channelID}_parent_left_container'):ScaleWidth('-180s', 100, false)								
+								end
+							"
+						>
+							<panel align="center" valign="center">
+								<frame texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="4s" color=".8 .8 .8 1" rendermode="grayscale" />
+								<label name="overlay_chat_{type}{channelID}_member_label" style="labelBase" noclick="1" outline="true" outlinecolor="0 0 0 0.5" y="-2" content="0" width="-5s" align="right" textalign="center" textvalign="center" font="maindyn_20" color="white" />
+								<image texture="/ui/main/friends/textures/social.tga" x="-14s" width="28s" height="28s" valign="center" />
+							</panel>
+						</button>						
+					</panel>
+					
+					<!-- Ignore Btn -->
+					<instance name="iconLabelButton" id="overlay_chat_{type}{channelID}_ignore_button" label="general_ignore"
+						icon="/ui/_textures/icons/chat.tga" iconsize="95"
+						x="-310s" width="95s" height="25s" align="right" valign="center" borderthickness="4s" visible="{isPM=0}"
+					/>
+					
+					<!-- Friend Btn -->
+					<instance name="iconLabelButton" id="overlay_chat_{type}{channelID}_friend_button" label="general_add_friend"
+						icon="/ui/main/friends/textures/icon_friend_remove.tga" iconsize="95"
+						x="-168s" width="135s" height="25s" align="right" valign="center" borderthickness="4s" visible="{isPM=0}"
+					/>
+					
+					<!-- Invite Btn -->
+					<instance name="iconLabelButton" id="overlay_chat_{type}{channelID}_invite_button" label="player_profile_invite"
+						icon="/ui/main/notification/textures/party.tga" iconsize="95"
+						x="-67s" width="95s" height="25s" align="right" valign="center" borderthickness="4s" visible="{isPM=0}"
+					/>
+					
+					<!-- Min Btn -->
+					<instance name="iconButton" id="overlay_chat_{type}{channelID}_minimise_button"
+						icon="/ui/main/shared/textures/minimize.tga"
+						onclicklua="mainUI.chatManager.ClickedPinnedChatTab(self, [=[{channelName=-3}]=], '{channelID=-3}', false, true, '{type}')"
+						x="{minimiseBtnX=-5s}" width="25s" height="25s" align="right" valign="center" borderthickness="4s"
+					/>				
+					
+					<!-- Close Btn -->
+					<instance name="iconButton" id="overlay_chat_{type}{channelID}_close_button"
+						icon="/ui/main/shared/textures/close.tga"
+						onclicklua="mainUI.LeavePinnedChannel(self, '{channelID}')"
+						visible="{showCloseButton=0}"
+						x="-5s" width="25s" height="25s" align="right" valign="center" borderthickness="4s"
+					/>
+					
+					
+				</panel>
+			</panel>
+
+			<image noclick="1" height="16s" width="16s" x="1s" y="1s" align="right" valign="bottom" texture="/ui/shared/textures/framecontrol_resize.tga" />	
+		</sizingframe>			
+	</template>	
+	
+	<template name="footer_chat_tabs_large_pinned" >
+		<panel name="main_footer_chat_tab_{type}{channelID}" group="footer_chat_tabs_large_pinned_templates_{type}" height="32s" width="300s" color="invisible" passivechildren="0" sticky="1" stickytoinvis="0"
+			onmouseluplua="
+				mainUI.chatManager.stopTabDrag()
+				if (CursorInside(self) and not mainUI.chatManager.justDragged) then
+					mainUI.chatManager.ClickedPinnedChatTab(self, [=[{channelName=-3}]=], '{channelID=-3}', false, nil, '{type}')
+				end
+			"
+			onmouseldownlua="
+				mainUI.chatManager.justDragged = false
+				mainUI.chatManager.startTabDrag(self)
+			"
+			onmouseoutlua="
+				self:GetWidget('main_footer_chat_tab_{type}{channelID}_1'):SetTexture('/ui/main/footer/textures/chat_tab_off_l.tga')
+				self:GetWidget('main_footer_chat_tab_{type}{channelID}_2'):SetTexture('/ui/main/footer/textures/chat_tab_off_c.tga')
+				self:GetWidget('main_footer_chat_tab_{type}{channelID}_3'):SetTexture('/ui/main/footer/textures/chat_tab_off_r.tga')
+			"
+			onmouseoverlua="
+				self:GetWidget('main_footer_chat_tab_{type}{channelID}_1'):SetTexture('/ui/main/footer/textures/chat_tab_on_l.tga')
+				self:GetWidget('main_footer_chat_tab_{type}{channelID}_2'):SetTexture('/ui/main/footer/textures/chat_tab_on_c.tga')
+				self:GetWidget('main_footer_chat_tab_{type}{channelID}_3'):SetTexture('/ui/main/footer/textures/chat_tab_on_r.tga')
+			"		
+			onrightclicklua="
+				if ('{channelID}' == '-4') then
+					ContextMenuTrigger.channelID = '{channelID}'
+					ContextMenuTrigger.contextMenuArea = 5
+					ContextMenuTrigger:Trigger(true)				
+				elseif ('{channelID}' ~= '-3') then
+					ContextMenuTrigger.channelID = '{channelID}'
+					ContextMenuTrigger.contextMenuArea = 4
+					ContextMenuTrigger:Trigger(true)
+				end
+			"				
+		>
+			<!-- The order of these widgets is important, they are accessed in script via it -->
+			<image name="main_footer_chat_tab_{type}{channelID}_1" x="0" noclick="1" height="100%" width="50@" texture="/ui/main/footer/textures/chat_tab_off_l.tga" />
+			<panel name="main_footer_chat_tab_{type}{channelID}_2" x="5s" width="-15s" noclick="1" height="100%" texture="/ui/main/footer/textures/chat_tab_off_c.tga" float="right" />
+			<image name="main_footer_chat_tab_{type}{channelID}_3" x="14s" height="100%" align="right" width="100@" texture="/ui/main/footer/textures/chat_tab_off_r.tga" noclick="1" />
+			
+			<image name="main_footer_chat_tab_{type}{channelID}_4" x="2s" height="30s" width="30s" valign="center" texture="/ui/main/chat/textures/chat_min.tga" noclick="true" />
+			<label name="main_footer_chat_tab_{type}{channelID}_label" x="36s" width="-50s" group="footer_chat_tabs_large_pinned_label_templates_{type}" noclick="1" textalign="left" textvalign="center" font="maindyn_18" color="white" outline="true" outlinecolor="0 0 0 0.5" content="{channelName}" />
+			
+			<!-- Drag/Drop Area -->
+			<panel name="main_footer_chat_tab_{type}{channelID}_droptarget" width="+4s" height="+4s" align="center" valign="center" visible="0"
+				oninstantiatelua="
+					self:RegisterWatchLua('mainPanelStatusDragInfo', function(widget, groupTrigger)
+						local mainPanelStatus = groupTrigger[1]
+						local globalDragInfo  = groupTrigger[2]
+						local clientInfoDrag  = groupTrigger[3]				
+						widget:SetVisible(globalDragInfo.active and ((globalDragInfo.type == 4) or (globalDragInfo.type == 5) or (globalDragInfo.type == 20) or (globalDragInfo.type == 21)) )
+					end)				
+				"
+				onmouseoverlua="
+					globalDraggerReadTarget(self, function()
+						Links.SpawnLink('{channelID}', '{type=channel}')
+					end)					
+				"			
+				onclicklua=""
+				onmouseoutlua=""
+			>
+				<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color="1 1 1 .05" noclick="1"/>
+				<frame texture="/ui/shared/frames/border_double.tga" borderthickness="6s" bordercolor="#0cb9e5" color="invisible" noclick="1"/>
+			</panel>				
+			
+		</panel>
+	</template>		
+	
+	<template name="chat_channel_joiner_entry">
+		<panel height="40s" name="chat_channel_joiner_entry{id}">
+			<panel name="chat_channel_joiner_entry{id}UserBody" noclick="true" visible="{isUser=true}">
+				<button name="chat_channel_joiner_entry{id}UserButton" color="invisible" cangrab="true" dragexclusive="false">
+					<frame texture="/ui/main/shared/frames/social_entry.tga" borderthickness="4s"/>
+					
+					<panel noclick="true" passivechildren="true">
+						<!-- Icon, Maybe show group icon??
+						<panel width="100@" height="100%">
+							<image name="chat_channel_joiner_entry{id}UserIcon" texture="{userIcon=/ui/fe2/store/icons/account_icons/koalatea.tga}"/>
+						</panel>
+						-->
+										
+						<label name="chat_channel_joiner_entry{id}ChannelName" x="8s" height="60%" width="-45s" textvalign="center" style="labelBase" color="1 1 1 1" font="maindyn_20" content="{channelName}"/>
+						<label name="chat_channel_joiner_entry{id}MemberCount" height="60%" textvalign="center" textalign="right" style="labelBase" color=".8 .8 1 1" font="maindyn_20" x="-8s" content="{memberCount}"/>
+						<label name="chat_channel_joiner_entry{id}Topic" x="8s" y="-3s" height="40%" textvalign="center" textalign="left" valign="bottom" style="labelBase" color=".8 .8 .8 1" font="maindyn_14" content="{topic}"/>
+						<label name="chat_channel_joiner_entry{id}Language" x="-8s" y="-3s" height="40%" textvalign="center" textalign="right" valign="bottom" style="labelBase" color=".7 .7 .7 1" font="maindyn_14" content="{language}"/>
+						
+					</panel>			
+					<frame name="chat_channel_joiner_entry{id}UserDarken" color="0 0 0 0.5" texture="/ui/elements:rounded_Bg_white" borderthickness="0.5h" noclick="true" visible="false"/>
+					<frame texture="/ui/elements:roundframe" color="0 0 0 1" borderthickness="0.6h" noclick="1"/>
+				</button>
+			</panel>
+		</panel>
+	</template>	
+	
+</package>

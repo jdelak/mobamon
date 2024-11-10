@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="electricdeath" deferred="true" useentityeffectsscale="true">
+	<definitions>
+
+		<modifier
+			life="10000"
+			name="modifier0"
+			alpha="0"
+		/>
+		
+
+		<particlesystem name="system1" space="entity" scale="1">
+		
+			
+
+			<model 
+				life="3500"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				anim="death_1"
+				model="model.mdf"
+	
+			/>
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance0" modifier="modifier0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />	
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>
+
+
+
+
+
+
+

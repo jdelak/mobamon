@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="alt_info_building" luatable="true">
+
+	<childinterface file="/ui/game/shared/game_shared_templates.interface"/>
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<panel width="1" height="1"><!-- Center Point -->
+		<panel width="14h" height="1.25h" align="center" valign="bottom">
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="-1.1h" name="AltInfoBuildingLevelShadow"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="0.15h"/>
+			<panel color="invisible" name="AltInfoBuildingLevelGlowContainer" width="+0.4h" height="+0.4h" y="-1.25h" align="center" valign="center">
+				<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" rendermode="additive" name="AltInfoBuildingLevelGlow"/>
+			</panel>
+			
+			<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" width="+0.4h" height="+0.4h" align="center" valign="center" rendermode="additive" name="AltInfoBuildingHealthGlow"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h" y="-1.25h" name="AltInfoBuildingLevelBacker"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="-1.25h" name="AltInfoBuildingLevelInset"/>
+			<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" style="healthBackerColor" name="AltInfoBuildingHealthBarBacker"/>
+			<panel name="AltInfoBuildingLevelBar" x="0.25h" y="-1h" width="-0.5h" height="-0.5h" color="#FFCC00" texture="/ui/elements:rounded_bg_white_vert"/>
+			<frame name="AltInfoBuildingLevelCorners" texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="-1.25h"/>
+			<panel name="AltInfoBuildingHealthBar" x="0.25h" y="0.25h" width="-0.5h" height="-0.5h" color="#22EE33" texture="/ui/elements:rounded_bg_white_vert"/>
+			
+			<panel name="AltInfoBuildingHealthPips" x="0.25h" y="0.25h" width="-0.5h" height="-0.5h" texture="$invis" uscale="64p" utile="true"/>
+			
+			<frame texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="0.25h"/>
+			
+			<frame name="AltInfoBuildingShieldShadow" texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.25h" x="0.15h" y="1.35h"/>
+			<panel color="invisible" name="AltInfoBuildingShieldGlowContainer" width="+0.4h" height="+0.4h" y="1.25h" align="center" valign="center">
+				<frame texture="/ui/elements:squareglow" color="lime" borderthickness="0.25h" rendermode="additive" name="AltInfoBuildingShieldGlow"/>
+			</panel>
+			<frame name="AltInfoBuildingShieldBacker" texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.25h" y="1.25h"/>
+			<frame name="AltInfoBuildingShieldInset" texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.15h" hmargin="0.25h" vmargin="0.25h" y="1.25h"/>
+			<panel name="AltInfoBuildingShieldBar" x="0.25h" y="1.5h" width="-0.5h" height="-0.5h" color="#f5f2e2" texture="/ui/elements:rounded_bg_white_vert"/>
+			<panel name="AltInfoBuildingShieldPipContainer" x="0.25h" y="1h" width="-0.5h" height="-0.5h" texture="$invis" uscale="64p" utile="true" valign="bottom"/>
+			<frame name="AltInfoBuildingShieldCorners" texture="/ui/elements:rounded_corner_white" color="#333333" borderthickness="0.15h" width="-0.5h" height="-0.5h" x="0.25h" y="1.25h"/>
+			
+		</panel>
+	</panel>
+	
+	<!--<lua file="/ui/shared/styles.lua"/>-->
+	<lua file="/ui/game/alt_info/alt_info_building.lua"/>
+</interface>

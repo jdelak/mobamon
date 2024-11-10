@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Pal3"
+	
+	icon="icon.tga"
+	casttime="0"
+	castactiontime="0"
+	
+	anim="ability_3"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+	
+	actiontype="target_self"
+	manacost="20"
+	
+	queue="front"
+	inheritmovement="true"
+	
+	cooldowntime="1000"
+	hoverareacastrange="400"
+	alwaysshowtimer="true"
+
+
+>
+	<constant name="damage_per_second" value="25,30,35,40" adjustment="ability" />
+	<!-- tooltip only -->
+	<constant name="resistance" value="8,12,16,20" adjustment="none" />
+	
+	<onimpact>
+		<setactivemodifierkey entity="this_entity" name="burn_on" /> 
+	</onimpact>
+	
+	<modifier key="burn_on" modpriority="100" icon="cancel.tga" passiveeffect="effects/state_self.effect" >
+		<aura state="State_Pal_Ability3_Self" radius="400" notooltip="true" targetscheme="self" />
+		<aura state="State_Pal_Ability3" radius="400" notooltip="true" targetscheme="enemy_units" />
+		<onimpact>
+			<setactivemodifierkey entity="this_entity" name="" /> 
+		</onimpact>
+		<onframe>
+			<compare a="source_mana" b="5" op="le">
+				<setactivemodifierkey entity="this_entity" name="" /> 
+			</compare>
+			<setvar0 a="20" b="frametime" op="mult" />
+			<takemana target="source_entity" amount="1" b="var0" op="mult" />
+		</onframe>
+	</modifier>
+	
+</ability>

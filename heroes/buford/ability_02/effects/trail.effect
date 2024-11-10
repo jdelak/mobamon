@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" persistent="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="2.1">
+
+			<sound
+				volume=".25" 
+				sample="../sounds/sfx_trail.wav"
+				linearfalloff="true"
+				falloffstart="100"
+				falloffend="2000"
+			/>
+		
+<!--
+			<model
+				position="30 0 0"
+				life="300"
+				model="fire_bug/model.mdf"
+				anim="walk_1"
+				scale="2"
+				color="2 2 2"
+			/>
+
+			<model
+				position="-30 0 0"
+				life="300"
+				model="fire_bug/model.mdf"
+				anim="walk_1"
+				scale="2"
+				color="2 2 2"
+			/>
+-->
+
+			<simpleemitter
+				life="350"
+				spawnrate="24"
+				offsetsphere="15 15 0"
+				position="0 0 0"
+				depthbias="0"
+				particlelife="4000"
+			>
+				<particle
+				>
+				
+				
+<!--
+					<groundsprite
+						material="/shared/effects/smaterials/sand_poofy.material"
+						startsize="40"
+						midsize="75"
+						endsize="80"
+						midsizepos=".1"
+						color=".9 .4 .1"
+						life="3000"
+						minyaw="0"
+						maxyaw="360"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						minscale=".6"
+						maxscale=".6"
+					/>
+
+					<groundsprite
+						material="/shared/effects/smaterials/sand_poofy.material"
+						startsize="40"
+						midsize="75"
+						endsize="80"
+						midsizepos=".1"
+						color=".9 .4 .1"
+						life="3000"
+						minyaw="0"
+						maxyaw="360"
+						minyawspeed="-10"
+						maxyawspeed="10"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".8"
+						minscale=".6"
+						maxscale=".6"
+					/>
+-->
+
+
+
+
+
+					<model
+						position="0 0 0"
+						model="fx_model/model.mdf"
+						anim="idle"
+						minscale=".7"
+						maxscale="1"
+						minyaw="0"
+						maxyaw="360"
+					>
+<!--
+						<simpleemitter
+						count="3"
+							bone="_bone_fx_01"
+							spawnrate="2000"
+							minparticlelife="3500"
+							maxparticlelife="3500"
+							material="/shared/effects/smaterials/queso_area.material"
+							offsetsphere="15 15 0"
+						>
+							<particle
+								minangle="-20"
+								maxangle="20"
+								anchor="1"
+								color="1 .5 .1"
+								startalpha=".5"
+								midalpha=".5"
+								endalpha="0"
+								minscale=".75"
+								maxscale="1.25"
+								width="150"
+								height="150"
+								lockup="1"
+								lockright="1"
+								pitch="-90"
+							/>
+						</simpleemitter>
+-->
+
+
+
+						<billboard
+							bone="_bone_fx_01"
+							expirelife="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							minscale="4"
+							maxscale="6"
+							startcolor=".25 0 0"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							directionalspace="local"
+							depthbias="-50"
+						/>
+
+						<billboard
+							bone="_bone_fx_01"
+							expirelife="500"
+							material="/shared/effects/smaterials/whitedot.material"
+							minscale="1.4"
+							maxscale="2"
+							startcolor=".5 .35 0"
+							endcolor="0 0 0"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							directionalspace="local"
+							depthbias="-50"
+						/>
+
+						
+						<simpleemitter
+							life="4000"
+							bone="_bone_fx_01"
+							position="0 0 0"
+							spawnrate="4"
+							particlelife="2000"
+							direction="0 0 1"
+							offsetsphere="50 50 0"
+							minangle="0"
+							maxangle="1"
+						>
+							<particle
+								turn="true"
+							>
+
+
+								<simpleemitter
+									bone="_bone_fx_01"
+									position="0 0 15"
+									spawnrate="3300"
+									count="10"
+									minparticlelife="250"
+									maxparticlelife="750"
+									gravity="25"
+									minspeed="0"
+									maxspeed="300"
+									drag=".01"
+									material="/shared/effects/materials/whitedot.material"
+									offsetsphere="5 5 9"
+									minangle="0"
+									maxangle="20"
+									direction="0 0 1"
+									depthbias="-50"
+									directionalspace="world"
+								>
+									<particle 
+										minangle="0"
+										maxangle="360"
+										startcolor="1 1 0"
+										midcolor="1 .25 0"
+										endcolor="0 0 0"
+										midcolorpos=".75"
+										minstartsize="4"
+										maxstartsize="8"
+										endsize="0"
+									/>
+								</simpleemitter>
+
+<!--
+								<simpleemitter
+									count="3"
+									bone="_bone_fx_01"
+									position="0 0 0"
+									spawnrate="15"
+									particlelife="2000"
+									offsetsphere="30 30 0"
+								>
+									<particle
+										turn="true"
+									>
+										<billboard
+											position="0 0 0"
+											minlife="250"
+											maxlife="500"
+											startcolor="0 0 0"
+											midcolor="1 .5 0"
+											endcolor="0 0 0"
+											midcolorpos=".25"
+											material="/shared/effects/smaterials/whitedot_ground.material"
+											minscale=".3"
+											maxscale=".5"
+											depthbias="-50"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+										/>
+										
+										<billboard
+											delay="225"
+											position="0 0 0"
+											minlife="250"
+											maxlife="500"
+											startcolor="0 0 0"
+											midcolor="1 .5 0"
+											endcolor="0 0 0"
+											midcolorpos=".25"
+											material="/shared/effects/smaterials/whitedot_ground.material"
+											minscale=".15"
+											maxscale=".25"
+											depthbias="-50"
+											lockup="1"
+											lockright="1"
+											pitch="90"
+										/>
+									</particle>
+								</simpleemitter>
+-->
+
+							</particle>
+						</simpleemitter>
+
+						
+						
+
+						<simpleemitter
+							spawnrate="300"
+							minparticlelife="200"
+							maxparticlelife="500"
+							minspeed="0"
+							maxspeed="500"
+							position="0 0 0"
+							material="/shared/effects/smaterials/firesprite_swirl.material"	
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="30 0 0"
+							offsetsphere="8"
+							depthbias="0"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								startcolor="1 1 1"
+								midcolor="1 .25 0"
+								endcolor="1 .25 0"
+								startalpha="0"
+								midalpha=".4"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								minstartscale="15"
+								maxstartscale="40"
+								endscale="0"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						<simpleemitter
+							spawnrate="50"
+							minparticlelife="200"
+							maxparticlelife="500"
+							minspeed="0"
+							maxspeed="300"
+							position="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							minangle="0"
+							maxangle="1"
+							direction="0 0 1"
+							offsetradial="40 0 0"
+							offsetsphere="0"
+							depthbias="-50"
+							directionalspace="world"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								startcolor="0 0 0"
+								midcolor=".2 0 0"
+								endcolor=".2 0 0"
+								midcolorpos=".1"
+								startalpha="0"
+								midalpha=".65"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								minstartscale="30"
+								maxstartscale="40"
+								endscale="0"
+								turn="true"
+							/>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								minanglespeed="-90"
+								maxanglespeed="90"
+								startcolor="0 0 0"
+								midcolor=".2 .05 0"
+								endcolor=".2 .05 0"
+								midcolorpos=".1"
+								startalpha="0"
+								midalpha=".65"
+								endalpha="0"
+								midalphapos=".2"
+								startframe="0"
+								endframe="1"
+								minstartscale="30"
+								maxstartscale="40"
+								endscale="0"
+								turn="true"
+							/>
+						</simpleemitter>
+
+						
+						
+					</model>
+
+				</particle>
+			</simpleemitter>
+
+			<template name="">
+
+				<terrainemitter
+					life="333"
+					spawnrate="1000"
+					minparticlelife="250"
+					maxparticlelife="750"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					position="{zpos}"
+					material="/shared/effects/smaterials/firesprite_swirl.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="30"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor="1 1 0"
+						midcolor="1 1 0"
+						endcolor="1 0 0"
+						midcolorpos=".125"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="60"
+						endsize="0"
+						turn="true"
+					/>
+				</terrainemitter>
+				
+				<terrainemitter
+					life="333"
+					spawnrate="100"
+					minparticlelife="150"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="0"
+					maxspeed="150"
+					position="{zpos}"
+					material="/shared/effects/smaterials/whitedot.material"	
+					minangle="0"
+					maxangle="1"
+					direction="0 0 1"
+					depthbias="-20"
+					directionalspace="world"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-90"
+						maxanglespeed="90"
+						minstartscale=".5"
+						maxstartscale="1.5"
+						endscale="1"
+						startcolor=".5 .5 0"
+						endcolor=".5 0 0"
+						midcolorpos=".2"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".35"
+						startframe="0"
+						endframe="1"
+						startsize="60"
+						endsize="15"
+						turn="true"
+					/>
+				</terrainemitter>
+
+			</template>
+<!--
+			<instance name="" zpos="30 0 0"/>
+			<instance name="" zpos="-30 0 0"/>
+-->
+			<instance name="" zpos="0 0 0"/>
+			
+			
+			
+			
+			
+			<template name="">
+			
+				<simpleemitter
+				position="{zpos}"
+					count="1"
+					spawnrate="50"
+					particlelife="{zparticlelife}"
+					speed="{zspeed}"
+					direction="{zdirection}"
+					minangle="0"
+					maxangle="1"
+					directionalspace="local"
+				>
+					<particle
+						turn="true"
+					>
+						<model
+							life="{zlife}"
+							position="0 0 0"
+							model="fire_bug/model.mdf"
+							anim="walk_1"
+							scale="{zscale}"
+							startalpha="1"
+							midalpha="1"
+							endalpha="1"
+							midalphapos=".25"
+							color="1.4 1.2 1"
+							pitch="0"
+							yaw="0"
+						>
+						
+							<terrainemitter
+							delay="{zdelay}"
+								count="30"
+								spawnrate="1000"
+								minparticlelife="150"
+								maxparticlelife="500"
+								gravity="0"
+								minspeed="100"
+								maxspeed="250"
+								material="/shared/effects/smaterials/firesprite_swirl.material"	
+								minangle="0"
+								maxangle="1"
+								direction="0 0 1"
+								depthbias="0"
+								directionalspace="world"
+							>
+								<particle 
+									minangle="-360"
+									maxangle="360"
+									minanglespeed="-90"
+									maxanglespeed="90"
+									minstartscale=".5"
+									maxstartscale=".5"
+									endscale="1"
+									startcolor="1 1 0"
+									midcolor="1 1 0"
+									endcolor="1 0 0"
+									midcolorpos=".125"
+									startalpha="0"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".35"
+									startframe="0"
+									endframe="1"
+									startsize="60"
+									endsize="0"
+									turn="true"
+								/>
+							</terrainemitter>
+							
+							<terrainemitter
+							delay="{zdelay}"
+								count="5"
+								spawnrate="100"
+								minparticlelife="100"
+								maxparticlelife="500"
+								gravity="0"
+								minspeed="0"
+								maxspeed="150"
+								material="/shared/effects/smaterials/whitedot.material"	
+								minangle="0"
+								maxangle="1"
+								direction="0 0 1"
+								depthbias="-25"
+								directionalspace="world"
+							>
+								<particle 
+									minangle="-360"
+									maxangle="360"
+									minanglespeed="-90"
+									maxanglespeed="90"
+									minstartscale=".5"
+									maxstartscale="1.5"
+									endscale="1"
+									startcolor=".5 .5 0"
+									endcolor=".5 0 0"
+									midcolorpos=".2"
+									startalpha="0"
+									midalpha="1"
+									endalpha="0"
+									midalphapos=".35"
+									startframe="0"
+									endframe="1"
+									startsize="60"
+									endsize="15"
+									turn="true"
+								/>
+							</terrainemitter>
+							
+						</model>
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<!-- fast bug down the middle -->
+			<instance name="" zpos="0 0 0" zdirection="0 1 0" zspeed="1000" zlife="400" zparticlelife="400" zscale="2.5" zdelay=""/>  
+
+			<!-- bug right--> 
+			<instance name="" zpos="20 0 0" zdirection="0 1 0" zspeed="150" zlife="1500" zparticlelife="1300" zscale="2.1" zdelay="1200"/>
+			
+
+			<!--bug center slow litttttle guy -->
+			<instance name="" zpos="0 0 0" zdirection="0 1 0" zspeed="75" zlife="1200" zparticlelife="1000" zscale="1.8" zdelay="900"/>   
+			
+
+			<!--bug left -->
+			<instance name="" zpos="-10 0 0" zdirection="-.02 1 0" zspeed="325" zlife="1000" zparticlelife="800" zscale="2.3" zdelay="700"/> 
+
+		</particlesystem>
+	</definitions>
+	
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<waitfordeath  instance="instance1"/>
+</thread>
+
+</effect>

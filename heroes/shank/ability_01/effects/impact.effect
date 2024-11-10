@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".75">
+
+			
+
+
+			<simpleemitter
+				bone="_bone_center"
+				count="4"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_circle.material"
+				depthbias="-25"
+			>
+				<particle
+					color=".7 0 .35"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					scale="200"
+					turn="true"
+					minheight="2.2"
+					maxheight="3"
+				/>
+			</simpleemitter>
+
+			
+			
+<!--
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="3"
+				spawnrate="1055"
+				particlelife="100"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/cartoon_smack_white_add.material"
+				depthbias="-20"
+			>
+				<particle
+					color=".3 0 .15"
+					startalpha=".5"
+					midalpha=".5"
+					endalpha="0"
+					scale="125"
+					turn="true"
+				/>
+			</simpleemitter>
+-->
+			
+			
+			
+			
+			
+			
+<!--
+			<template name="wack">
+
+				<billboard
+				bone="_bone_centerofchest"
+					delay="{zdelay}"
+					life="250"
+					material="/shared/effects/smaterials/arc_impact_white.material"
+					color="1 0 .55"
+					position="0 0 -10"
+					startscale="0"
+					endscale="{zscale}"
+					depthbias="-60"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".75"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					roll="{zroll}"
+					directionalspace="world"
+				/>
+			
+			</template>
+			
+			<instance name="wack" zscale="7" zdelay="0" zcolor="1 .5 .75" zroll="90"/>
+			<instance name="wack" zscale="5" zdelay="0" zcolor="1 .5 .75" zroll="0"/>
+			
+
+			
+			<instance name="wack" zscale="7" zdelay="100" zcolor="1 .5 .75" zroll="270"/>
+			<instance name="wack" zscale="5" zdelay="100" zcolor="1 .5 .75" zroll="180"/>
+-->
+			
+			
+			
+
+			<billboard
+				bone="_bone_centerofchest"
+				startcolor="0 0 0"
+				midcolor=".7 0 .35"
+				endcolor="0 0 0"
+				midcolorpos=".2"
+				life="400"
+				startscale="4"
+				endscale="9"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+			/>
+
+		</particlesystem>
+
+		<modifier
+			name="modifier0"
+			life="500"
+			startcolor=".5 0 .25"
+			endcolor="1 1 1"
+		/>
+
+	</definitions>
+	
+	
+	
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

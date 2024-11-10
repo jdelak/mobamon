@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_enviro_reflect.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="128.0" fOpacity="1.0" fReflect="0.3" />
+	<phase name="shadow" cull="back" blend="none" />
+	<phase name="color" cull="back" blend="none">
+		<samplercube name="cube" texture="/world/sky/deadlock/1.tga" />
+		<sampler name="diffuse" texture="m_c_red.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="m_n.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="back" blend="translucent">
+		<samplercube name="cube" texture="/world/sky/deadlock/1.tga" />
+		<sampler name="diffuse" texture="m_c_red.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="m_n.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

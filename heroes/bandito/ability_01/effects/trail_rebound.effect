@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" useentityeffectscale="true" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".65">
+
+			<sound
+				delay="150"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.15"
+				sample="../sounds/sfx_trail.wav"
+			/>
+		
+		
+			<model
+				position="0 0 0"
+				expirelife="0"
+				model="poker_chip/model.mdf"
+				material="poker_chip/material_blue.material"
+				anim="idle"
+				color=".5 .75 1"
+				scale="3.85"
+				startalpha="1"
+				endalpha="0"
+				pitchspeed="-720"
+			/>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<template name="">
+
+				<trailemitter
+				position="{zpos}"
+					life="500"
+					spawnrate="50"
+					particlelife="850"
+					texpostime="850"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					midparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor="0 .2 .4"
+						midcolor="0 .2 .4"
+						endcolor="0 0 0"
+						startsize="85"
+						midsize="65"
+						endsize="65"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+			
+			</template>
+
+			<instance name="" zpos="0 15 0"/>
+			<instance name="" zpos="0 15 0"/>
+
+			<instance name="" zpos="25 0 0"/>
+
+			<instance name="" zpos="-40 -18 0"/>
+			<instance name="" zpos="-40 -18 0"/>
+
+			
+			
+
+			<!-- red chips
+			<model
+				delay="40"
+				position="20 -50 0"
+				expirelife="0"
+				model="poker_chip/model.mdf"
+				material="poker_chip/material_red.material"
+				anim="idle"
+				color="1.25 1 .75"
+				scale="1.75"
+				startalpha="1"
+				endalpha="0"
+				rollspeed="-720"
+			>
+				<simpleemitter
+					life="500"
+					spawnrate="4"
+					particlelife="2000"
+					position="0 0 0"
+					minspeed="25"
+					maxspeed="150"
+					inheritvelocity=".5"
+				>
+					<particle
+					>
+						<model
+							position="0 0 -25"
+							life="250"
+							model="poker_chip/model.mdf"
+							material="poker_chip/material_red.material"
+							anim="idle"
+							color="1.25 1 .75"
+							scale="1"
+							startalpha="1"
+							endalpha="1"
+							minrollspeed="0"
+							maxrollspeed="-720"
+						/>
+					</particle>
+				</simpleemitter>
+			</model>
+-->
+
+			<!-- blue chips
+			<model
+				position="0 0 0"
+				expirelife="0"
+				model="poker_chip/model.mdf"
+				material="poker_chip/material_blue.material"
+				anim="idle"
+				color=".5 .75 1"
+				scale="1.75"
+				startalpha="1"
+				endalpha="0"
+				rollspeed="360"
+			>
+				<simpleemitter
+					life="500"
+					spawnrate="4"
+					particlelife="2000"
+					position="0 0 0"
+					minspeed="25"
+					maxspeed="150"
+					inheritvelocity=".5"
+				>
+					<particle
+					>
+						<model
+							position="0 0 -25"
+							life="250"
+							model="poker_chip/model.mdf"
+							material="poker_chip/material_blue.material"
+							anim="idle"
+							color=".75 1 1.25"
+							scale="1"
+							startalpha="1"
+							endalpha="1"
+							minrollspeed="0"
+							maxrollspeed="-720"
+						/>
+
+					</particle>
+				</simpleemitter>
+			</model>
+-->
+
+			<!-- green chips
+			<model
+				delay="80"
+				position="-40 -60 0"
+				expirelife="0"
+				model="poker_chip/model.mdf"
+				material="poker_chip/material_green.material"
+				anim="idle"
+				color=".75 1 .5"
+				scale="1.75"
+				startalpha="1"
+				endalpha="0"
+				pitchspeed="-720"
+			>
+				<simpleemitter
+					life="500"
+					spawnrate="4"
+					particlelife="2000"
+					position="0 0 0"
+					minspeed="25"
+					maxspeed="150"
+					inheritvelocity=".2"
+				>
+					<particle
+					>
+
+						<model
+							position="0 0 -25"
+							life="250"
+							model="poker_chip/model.mdf"
+							material="poker_chip/material_green.material"
+							anim="idle"
+							color=".75 1 .5"
+							scale="1"
+							startalpha="1"
+							endalpha="1"
+							minrollspeed="0"
+							maxrollspeed="-720"
+						/>
+					
+					</particle>
+				</simpleemitter>
+			</model>
+-->
+			
+			
+
+			<billboard
+				expirelife="0"
+				startcolor="0 .35 1"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				material="/shared/effects/smaterials/whitedot.material"
+				scale="3"
+				depthbias="-100"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

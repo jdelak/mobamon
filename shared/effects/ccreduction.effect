@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			
+		
+
+			<template name="swirls">
+
+				<model
+					expirelife="0"
+					model="/shared/models/ccshield/orbit.mdf"
+					anim="idle"
+					scale="1.9"
+					yaw="{zyaw}"
+					pitch="{zpitch}"
+					position="0 0 70"
+				>
+					<billboard
+						expirelife="0"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/flare.material"
+						startcolor="0 0 0"
+						endcolor="0 0 0"
+						scale=".4"
+						depthbias="-25"
+					/>
+
+					<trailemitter
+						expirelife="0"
+						bone="_bone_fx"
+						spawnrate="50"
+						particlelife="750"
+						texpostime="750"
+						texposscale="0.0"
+						texstretchscale="1.0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							startcolor="1 .5 0"
+							midcolor=".25 0 0"
+							endcolor="0 0 0"
+							startsize="10"
+							endsize="0"
+						/>
+					</trailemitter>
+				</model>
+
+			</template>
+			
+			<instance name="swirls" zyaw="0" zpitch="45"/>
+			<instance name="swirls" zyaw="0" zpitch="-45"/>
+			<instance name="swirls" zyaw="90" zpitch="0"/>
+
+			<model
+				expirelife="300"
+				parentmodel="true"
+				parentskeleton="true"
+				startcolor=".2 .1 0"
+				endcolor="0 0 0"
+				scale="1"
+				material="/shared/effects/smaterials/shell_sludge.material"
+			/>
+
+			
+			<billboard
+				expirelife="250"
+				bone="_bone_centerofchest"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".25 .1 0"
+				endcolor="0 0 0"
+				scale="3"
+				depthbias="-35"
+			/>
+			
+			
+			<template name="swirls01">
+					<billboard
+					bone="{zbone}"
+						life="2000"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".8"
+						scale="1"
+						depthbias="-35"
+					/>
+			</template>
+			
+			<instance name="swirls01" zbone="_bone_Bip01 R Hand"/>
+			<instance name="swirls01" zbone="_bone_Bip01 L Hand"/>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

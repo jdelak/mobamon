@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="fur_ps" novs="true">
+	<dependency name="Data0" type="float4" source="SV_Position" />
+	<dependency name="Data1" type="float4" source="ABCD" />
+	<dependency name="Data2" type="float4" source="EFGH" />
+	
+	<dependency name="mWorldInverse" type="float4x4" source="mWorldInverse" />
+	<dependency name="mView" type="float4x4" source="mView" />
+	
+	<output name="OutObjectPosition" type="float3" solution="ObjectPosition" />
+	<output name="OutWorldPosition" type="float3" solution="WorldPosition" />
+	<output name="OutWorldPositionOffset" type="float3" solution="WorldPositionOffset" /> 
+	<output name="OutWorldNormal" type="float3" solution="WorldNormal" />
+	<output name="OutViewNormal" type="float3" solution="ViewNormal" />
+	<output name="OutViewPosition" type="float3" solution="ViewPosition" />
+	<output name="OutFurTangent" type="float3" solution="FurTangent" />
+	<output name="OutViewTangent" type="float3" solution="ViewTangent" />
+	
+	<dependency name="mLightWorldViewProjTex" type="float4x4" source="mLightWorldViewProjTex" />
+	<output name="OutTexCoordsLight" type="float4" solution="TexcoordLight" />
+	
+	<dependency name="Param" type="float4" source="vParam" />
+	<output name="OutOutlineColor" type="float4" solution="OutlineColor" />
+	
+	<output name="OutTexCoords" type="float3" solution="TexCoords"/>
+	
+	<?header0
+struct GFSDK_Hair_ShaderAttributes
+{
+	float3 P; // world coord position
+	float3 T; // world space tangent vector
+	float3 N; // world space normal vector
+	float3 texcoords; // texture coordinates on hair root (u,v), w: texcoord along the hair
+	float3 V; // world space view vector
+};
+
+struct GFSDK_Hair_Material
+{
+	float4	ambientColor; 
+	float4	rootColor; 
+	float4	tipColor; 
+	float4	specularColor; 
+
+	float	diffuseBlend;
+	int		receiveShadows;		
+	float	shadowSigma;
+	float	_reserved1;
+
+	float	specPrimaryScale;
+	float	specPrimaryPower;
+	float	specSecondaryScale;
+	float	specSecondaryPower;
+
+	float	specSecondaryOffset;
+	int		useRootColorTexture;
+	int		useTipColorTexture; 
+	float	rootTipColorWeight; 
+};
+
+struct GFSDK_Hair_ConstantBuffer
+{
+	row_major	float4x4	inverseViewProjection;	// inverse of view projection matrix
+	row_major	float4x4	inverseProjection;		// inverse of projection matrix
+	row_major	float4x4	inverseViewport;		// inverse of viewport transform
+	float4					camPosition;			// position of camera center
+
+	row_major	float4x4	viewMatrix;
+	row_major	float4x4	inverseViewMatrix;
+	row_major	float4x4	projectionMatrix;
+	row_major	float4x4	viewProjection;
+	row_major	float4x4	viewportMatrix;
+
+	GFSDK_Hair_Material		hairMaterial; // per hair instance material
+	
+	int						colorizeMode;	
+	float					lodDistanceFactor;		
+	float					lodDetailFactor;		
+	int						_reserved;
+
+	float4					_reserved_[23];	// 64 - 33 - 7 - 1 = 23
+
+};
+
+inline float4 GFSDK_Hair_ScreenToClip(float4 input, GFSDK_Hair_ConstantBuffer hairConstantBuffer)
+{
+	float4 sp;
+
+	sp.xy = mul( float4(input.x, input.y, 0.0f, 1.0f), hairConstantBuffer.inverseViewport).xy;
+	sp.z = input.z;
+	sp.w = 1.0f;
+
+	sp.xyz *= input.w; 
+
+	return sp;
+}
+
+inline float4 GFSDK_Hair_ScreenToView(float4 pixelPosition, GFSDK_Hair_ConstantBuffer hairConstantBuffer)
+{
+	float4 ndc = GFSDK_Hair_ScreenToClip(pixelPosition, hairConstantBuffer);
+	return mul(ndc, hairConstantBuffer.inverseProjection);
+}
+
+inline float4 GFSDK_Hair_ScreenToWorld(float4 pixelPosition, GFSDK_Hair_ConstantBuffer	hairConstantBuffer)
+{
+	float4 ndc = GFSDK_Hair_ScreenToClip(pixelPosition, hairConstantBuffer);
+	return mul(ndc, hairConstantBuffer.inverseViewProjection);
+}
+
+inline float2 GFSDK_Hair_UnpackFloat2(float packed)
+{
+	const float inv_base = 1.0f / 2048.0f;
+
+	float ubase = floor(packed);
+	float unpackedy = ubase * inv_base;
+	float unpackedx = packed - ubase;
+
+	return float2(unpackedx, unpackedy);
+}
+
+inline float GFSDK_Hair_UnpackSignedFloat(float x)
+{
+	return clamp(2.0f * (x - 0.5f), -1.0f, 1.0f);
+}
+
+inline float2 GFSDK_Hair_UnpackSignedFloat2(float x)
+{
+	float2 unpacked = GFSDK_Hair_UnpackFloat2(x);
+	float sx = GFSDK_Hair_UnpackSignedFloat(unpacked.x);
+	float sy = GFSDK_Hair_UnpackSignedFloat(unpacked.y);
+
+	return float2(sx, sy);
+}
+
+inline GFSDK_Hair_ShaderAttributes GFSDK_Hair_GetShaderAttributes(
+	float4 position, 
+	float4 ABCD, 
+	float4 EFGH, 
+	GFSDK_Hair_ConstantBuffer	hairConstantBuffer
+	)
+{
+	GFSDK_Hair_ShaderAttributes attr;
+
+	attr.T	 = ABCD.xyz;
+
+	attr.texcoords.xy = GFSDK_Hair_UnpackFloat2(EFGH.x);
+	attr.texcoords.z = ABCD.w;
+	
+	attr.N.xy = GFSDK_Hair_UnpackSignedFloat2(EFGH.y);
+	attr.N.z = EFGH.z;
+
+	attr.T = normalize(attr.T);
+	attr.N = normalize(attr.N);
+	
+	
+	attr.P = GFSDK_Hair_ScreenToWorld(position, hairConstantBuffer).xyz;
+
+	attr.V = hairConstantBuffer.camPosition.xyz - attr.P;
+	
+	return attr;
+}
+
+cbuffer cbPerFrame : register(b0)
+{
+	GFSDK_Hair_ConstantBuffer	g_hairConstantBuffer;
+}
+	?>
+<?hlsl
+	GFSDK_Hair_ShaderAttributes value;
+	
+	value = GFSDK_Hair_GetShaderAttributes(Data0, Data1, Data2, g_hairConstantBuffer);
+	
+	OutOutlineColor = float4(Param.rgb, Param.a * 127.0f / 255.0f + 128.0f / 255.0f);
+	
+	OutWorldPosition = g_hairConstantBuffer.camPosition.xyz + value.V;
+	OutObjectPosition = mul(float4(OutWorldPosition, 1.0f), mWorldInverse).xyz;
+	OutWorldNormal = value.N;
+	OutViewNormal = mul(float4(value.N, 0.0f), mView).xyz;
+	OutViewPosition = mul(float4(OutWorldPosition.xyz, 1.0f), mView).xyz;
+	OutWorldPositionOffset = value.V;
+	OutFurTangent = value.T;
+	OutViewTangent = mul(float4(value.T, 0.0f), mView).xyz;
+	
+	OutTexCoordsLight =  mul(float4(OutObjectPosition, 1.0f), mLightWorldViewProjTex);
+	
+	OutTexCoords = value.texcoords;
+?>
+</node>

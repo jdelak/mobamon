@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="deathrecap" luatable="true">
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	
+	
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	
+
+	<template name="deathRecapDamageHeroContainer">
+		<panel name="deathRecapTeamDamageIcon{id=1}Container" height="3.4h" sticky="true" stickytoinvis="false">
+			<panel x="90@" width="-90@" valign="center" height="-0.5h">
+				<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+				<label name="deathRecapTeamDamageLabel{id=1}" x="35@" textvalign="center" font="maindyn_12" style="whiteTextColor" shadow="true" content="{heroName=temp_deathrecap_heroname}"/>
+				<panel align="right" width="3.5h" valign="center" height="-0.5h" x="-0.25h">
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray0" borderthickness="0.25h"/>
+					<label name="deathRecapTeamDamagePercent{id=1}" textalign="center" textvalign="center" shadow="true" style="whiteTextColor" font="maindyn_11" content="45%"/>
+				</panel>
+			</panel>
+			<panel width="100@" height="100%">
+				<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" color="{iconColorStyle=#E41A1C}" borderthickness="0.5h"/>
+				<panel hmargin="0.25h" vmargin="0.25h">
+					<image name="deathRecapTeamDamageIcon{id=1}" texture="{icon=/heroes/legionnaire/icon.tga}"/>
+					<frame texture="/ui/elements:rounded_corner_white" color="{iconColorStyle=#E41A1C}" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				</panel>
+			</panel>
+		</panel>
+	</template>
+
+	<panel name="deathRecapContainer" align="center" valign="top" width="55h" y="10h" grow="true" visible="false">
+		<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.75h" x="0.4h" y="0.4h"/>
+		<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray1" borderthickness="0.75h"/>
+		<panel width="-1h" align="center" float="bottom" grow="true" reverse="true">
+			<panel height="0.5h"/>
+			<panel height="4h">
+				<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+				<label textalign="center" textvalign="center" font="maindyn_26" style="goldColor" shadow="true" shadowoffset="2" x="-10@" content="deathrecap_title"/>
+				<instance name="closeXButton" buttonName="deathRecapDismiss" width="80@" height="80%" x="-10@" align="right" valign="center" visible="true" onclicklua="ToggleDeathRecap() self:GetWidget('deathRecapContainer'):FadeOut(250)"/>
+			</panel>
+			<panel height="2h"/>
+			<panel height="10h">
+				<panel width="-30.5h">
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray2" borderthickness="0.5h"/>
+					<panel align="center" grow="true" height="3h" y="-1.5h">
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+						<label textalign="center" textvalign="center" fitx="true" fitxpadding="1.5h" font="maindyn_16" shadow="true" style="whiteTextColor" content="deathrecap_timerange"/>
+					</panel>
+					<panel hmargin="0.5h" valign="bottom" y="-0.5h" height="-2.75h">
+						<label wrap="true" style="whiteTextColor" shadow="true" font="maindyn_11" content="deathrecap_timerange_tip"/>
+						<instance name="simpleCombobox" height="3h" valign="bottom" id="deathRecapTimeRangeCombobox"/>
+					</panel>
+				</panel>
+				<panel align="right" width="30h">
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray2" borderthickness="0.5h"/>
+					<panel align="center" grow="true" height="3h" y="-1.5h">
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+						<label textalign="center" textvalign="center" fitx="true" fitxpadding="1.5h" font="maindyn_16" shadow="true" style="whiteTextColor" content="deathrecap_killedby"/>
+					</panel>
+					<panel hmargin="0.5h" valign="bottom" y="-0.5h" height="-2.75h">
+						<panel height="4h">
+							<panel width="100@" height="100%">
+								<image name="killerIcon" texture="/heroes/legionnaire/icon.tga"/>
+								<frame texture="/ui/elements:rounded_corner_white" style="backerPanelGray2" borderthickness="0.5h"/>
+							</panel>
+							<label name="killerHeroName" x="115@" textvalign="center" style="whiteTextColor" font="maindyn_20" content="temp_deathrecap_legionnaire" />
+						</panel>
+						<panel height="-4.5h" valign="bottom">
+							<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+							<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+							<panel hmargin="0.25h" vmargin="0.25h">
+								<panel width="100@" height="100%">
+									<image name="killerAbilityIcon" texture="/heroes/legionnaire/ability_01/icon.tga"/>
+									<frame texture="/ui/elements:rounded_corner_white" style="backerPanelGray3" borderthickness="0.5h"/>
+								</panel>
+								<label name="killerAbilityName" x="125@" textvalign="center" style="whiteTextColor" font="maindyn_12" content="temp_deathrecap_whirlingblade" />
+								<panel align="right" width="6h">
+									<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray0" borderthickness="0.5h"/>
+									<label name="killerDmg" textalign="center" textvalign="center" shadow="true" style="whiteTextColor" font="maindyn_11" content="656"/>
+								</panel>
+							</panel>
+						</panel>
+					</panel>
+				</panel>
+			</panel>
+			<panel height="2h"/>
+			<panel height="22h">
+				<panel width="-39.5h">
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray2" borderthickness="0.5h"/>
+					<panel align="center" grow="true" height="3h" y="-1.5h">
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+						<label textalign="center" textvalign="center" fitx="true" fitxpadding="1.5h" font="maindyn_16" shadow="true" style="whiteTextColor" content="deathrecap_bytype"/>
+					</panel>
+					
+					<panel hmargin="0.5h" valign="bottom" y="-0.5h" height="-2.75h">
+						<panel width="100%" height="100@" name="deathRecapDamagePieContainer">
+							<piegraph start="270" end="-90" detail="15" value="0" texture="/ui/_textures/elements/gradient_circle.tga" style="backerPanelGray2" noclick="true" name="deathRecapDamagePieOther"/><!-- Other/Empty Space -->
+							<piegraph start="270" end="-90" detail="15" value="0.65" texture="/ui/_textures/elements/gradient_circle.tga" style="goldColor" noclick="true" name="deathRecapDamagePiePhysical"/><!-- Physical  -->
+							<piegraph start="270" end="-90" detail="15" value="0.35" texture="/ui/_textures/elements/gradient_circle.tga" style="boldBlueColor" noclick="true" name="deathRecapDamagePieAbility"/><!-- Ability -->
+						</panel>
+						<panel valign="bottom" height="-105@">
+							<panel height="45%">
+								<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.25h" x="0.15h" y="0.15h"/>
+								<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.25h"/>
+								<panel hmargin="0.15h" vmargin="0.15h">
+									<panel width="100@" height="100%">
+										<frame texture="/ui/elements:rounded_bg_white" style="goldColor" borderthickness="0.25h"/>
+										<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.25h"/>
+									</panel>
+									<label x="125@" textvalign="center" style="whiteTextColor" shadow="true" font="maindyn_11" content="deathrecap_attack"/>
+									<panel align="right" width="3.5h" valign="center" height="-0.25h" x="-0.125h">
+										<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray0" borderthickness="0.25h"/>
+										<label name="deathRecapDamagePercentPhysical" textalign="center" textvalign="center" shadow="true" style="whiteTextColor" font="maindyn_11" content="45%"/>
+									</panel>
+								</panel>
+							</panel>
+							<panel height="45%" valign="bottom">
+								<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.25h" x="0.15h" y="0.15h"/>
+								<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.25h"/>
+								<panel hmargin="0.15h" vmargin="0.15h">
+									<panel width="100@" height="100%">
+										<frame texture="/ui/elements:rounded_bg_white" style="boldBlueColor" borderthickness="0.25h"/>
+										<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.25h"/>
+									</panel>
+									<label x="125@" textvalign="center" style="whiteTextColor" shadow="true" font="maindyn_11" content="deathrecap_ability"/>
+									<panel align="right" width="3.5h" valign="center" height="-0.25h" x="-0.125h">
+										<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray0" borderthickness="0.25h"/>
+										<label name="deathRecapDamagePercentAbility" textalign="center" textvalign="center" shadow="true" style="whiteTextColor" font="maindyn_11" content="35%"/>
+									</panel>
+								</panel>
+							</panel>
+						</panel>
+					</panel>
+				</panel>
+			
+				<panel align="right" width="39h">
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray2" borderthickness="0.5h"/>
+					<panel align="center" grow="true" height="3h" y="-1.5h">
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelShadow0" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_bg_white" style="backerPanelGray3" borderthickness="0.5h"/>
+						<label textalign="center" textvalign="center" fitx="true" fitxpadding="1.5h" font="maindyn_16" shadow="true" style="whiteTextColor" content="deathrecap_perhero"/>
+					</panel>
+
+					<panel hmargin="0.5h" valign="bottom" y="-0.5h" height="-2.75h">
+						<panel width="100@" height="100%" name="deathRecapTeamDamagePieContainer">
+							<piegraph start="270" end="-90" texture="/ui/_textures/elements/gradient_circle.tga" value="0.9" detail="15" style="playerColor1"  noclick="true" name="deathRecapTeamDamagePieHero1"/>
+							<piegraph start="270" end="-90" texture="/ui/_textures/elements/gradient_circle.tga" value=".8" detail="15" style="playerColor2"  noclick="true" name="deathRecapTeamDamagePieHero2"/>
+							<piegraph start="270" end="-90" texture="/ui/_textures/elements/gradient_circle.tga" value=".6" detail="15" style="playerColor3" noclick="true" name="deathRecapTeamDamagePieHero3"/>
+							<piegraph start="270" end="-90" texture="/ui/_textures/elements/gradient_circle.tga" value=".4" detail="15" style="playerColor4" noclick="true" name="deathRecapTeamDamagePieHero4"/>
+							<piegraph start="270" end="-90" texture="/ui/_textures/elements/gradient_circle.tga" value=".2" detail="15" style="playerColor5" noclick="true" name="deathRecapTeamDamagePieHero5"/>
+							<piegraph start="270" end="-90" texture="/ui/_textures/elements/gradient_circle.tga" value="1" detail="15" style="backerPanelGray2"  noclick="true" name="deathRecapTeamDamagePieHero6"/><!-- Environment -->
+						</panel>
+						<panel align="right" width="-103@" float="bottom" padding="0.5h" y="0.2h">
+							<instance name="deathRecapDamageHeroContainer" iconColorStyle="#1B9E77" id="1"/>
+							<instance name="deathRecapDamageHeroContainer" iconColorStyle="#D95F02" id="2"/>
+							<instance name="deathRecapDamageHeroContainer" iconColorStyle="#7570B3" id="3"/>
+							<instance name="deathRecapDamageHeroContainer" iconColorStyle="#E7298A" id="4"/>
+							<instance name="deathRecapDamageHeroContainer" iconColorStyle="#66A61E" id="5"/>
+							<instance name="deathRecapDamageHeroContainer" iconColorStyle="#222222" id="6" heroName="deathrecap_environment" icon="/ui/_textures/icons/icon_tower.tga"/>
+						</panel>
+					</panel>
+				</panel>
+			</panel>
+			<panel height="0.5h"/>
+		</panel>
+	</panel>
+	
+	<instance id="showDeathRecapButton" name="standardButton" width="28.5h" height="3.5h" align="right" valign="bottom" font="maindyn_12" x="-0.2h" y="-38.5h" label="deathrecap_show" visible="0" />
+
+	<lua file="/ui/shared/styles.lua"/>
+	<lua file="deathrecap.lua"/>
+</interface>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Zaku_Ability3"
+
+	model="/shared/models/invis.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	unitwalking="true"
+	cliffwalking="false"
+	buildingwalking="false"
+	
+	
+	canturn="false"
+	
+	passiveeffect="effects/gadget.effect"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="1.8"
+	modelscale="1.1"
+	effectscale="1.1"
+	boundsheight="64"
+	searchheight="100"
+	searchradius="70"
+	minsearchradius="32"
+	boundsradius="16"
+	collisionradius="8"
+	selectionradius="45"
+	targetoffset="0 0 54"	
+
+	sightrangeday="300"
+	sightrangenight="300"
+	drawonmap="true"
+	mapicon="icon_minimap.tga"
+	mapiconsize="0.04"
+	invulnerable="false"
+	canattack="false"
+
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="1000"
+	
+	immunity="GadgetImmunity"
+
+	hidealtinfo="false"
+	flying="false"
+	
+	maxhealth="1"
+	
+	canrotate="false"
+	ismobile="false"
+	
+	goldbountymin="35"
+	goldbountymax="35"
+
+	infoheight="275"
+
+	unittype="PseudoPet"
+
+	
+	hasdynamicpower="false"
+	prefertouchtargettrait="ally"
+
+>
+	<onspawn>
+		<setaccumulator value="0" />
+	</onspawn>
+
+	<onframe>
+		<compare a="accumulator" b="100" op="lt">
+			<setvar0 a="100" b="6" op="div" />
+			<setvar0 a="var0" b="frametime" op="mult" />
+			<setaccumulator value="var0" valueb="accumulator" valueop="add" />
+		</compare>
+		<else>
+			<setaccumulator value="100" />
+			<setactivemodifierkey name="charged" />
+			<playeffect effect="effects/sound.effect" source="this_entity" />
+		</else>
+	</onframe>
+
+
+	<ontouched>
+		<cantarget targetscheme="enemy_units">
+			<order command="attack" target="this_entity" source="target_entity" />
+		</cantarget>
+		<else>
+			<setvar0 a="accumulator" b="100" op="div"  />
+
+			<!-- heal -->
+			<getconstant name="heal" entity="this_proxy_entity" adjustmentsource="this_owner_entity" />
+			<setvar1 a="result" b="var0" op="mult" />
+			<heal target="target_entity" a="var1" effecttype="Assist"/>
+			<popup name="healdamage" target="source_entity" a="var1" />
+			
+			<!-- mana restore -->
+			<getconstant name="mana" entity="this_proxy_entity" adjustmentsource="this_owner_entity" />
+			<setvar1 a="result" b="var0" op="mult" />
+			<givemana amount="var1" />
+			<popup name="bonus_mana" target="source_entity" a="var1" />
+
+			<!-- power buff -->
+			<getconstant name="power" entity="this_proxy_entity" adjustmentsource="this_owner_entity" />
+			<setvar1 a="result" b="var0" op="mult" />
+			
+			<kill target="this_entity" source="" />
+			
+			
+			<playeffect effect="effects/heal.effect" target="target_entity" source="this_entity" occlude="true" />
+			
+		</else>
+	</ontouched>
+
+	<ondeath>
+		<playeffect effect="effects/death.effect" target="source_entity" source="source_entity" occlude="true" />
+		<addcharges entity="this_proxy_entity" count="1" />		
+	</ondeath>
+	
+	
+	<ondamaged>
+		<changedamage b="1" op="min"/>
+	</ondamaged>
+
+	<modifier key="charged" modpriority="100" showlifetime="false" lifetime="-1" prefertouch="true" touchrange="200"
+	
+	>
+		<onframe />
+	</modifier>
+	
+
+</pet>

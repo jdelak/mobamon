@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Iah_Ability2_Slow"
+
+	icon="/shared/icons/slow.tga"
+	
+	passiveeffect="effects/state_slowed.effect"
+	effecttype="Push CrowdControl"
+	movespeedslow="0.35"
+	
+	unitwalking="true"
+
+>
+	<onframe>
+		<distance target="this_owner_entity" source="source_entity" />
+		<compare a="result" b="30" op="gt" >
+			<cantarget effecttype="CrowdControl">
+				<push force="-50" frame="true" source="source_entity" />
+			</cantarget>	
+		</compare>
+	</onframe>
+</state>

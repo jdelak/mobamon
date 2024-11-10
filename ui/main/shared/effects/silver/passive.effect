@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".95">
+
+			<simpleemitter
+				position="0 800 0"
+				spawnrate="50"
+				minparticlelife="2500"
+				maxparticlelife="5000"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="100"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="60 0 20"
+				direction="0 0 0"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					startcolor="0 0 0"
+					midcolor=".15 .15 .15"
+					endcolor="0 0 0"
+					minheight="500"
+					maxheight="650"
+					minwidth="15"
+					maxwidth="80"
+					depthbias="-100"
+					position="0 0 0"
+				>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- poofs -->
+			<simpleemitter
+			timenudge="10000"
+				spawnrate=".6"
+				particlelife="10000"
+				offsetsphere="0"
+				position="0 0 0"
+				direction="0 0 0"
+			>
+				<particle
+				>
+					<billboard
+						spawnrate="500"
+						count="1"
+						minlife="6000"
+						maxlife="8000"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+						minroll="0"
+						maxroll="0"
+						roll="90"
+						lockup="true"
+						lockright="true"
+						startcolor="0 0 0"
+						midcolor=".08"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+
+						
+						startscale=".65"
+						minendscale=".9"
+						maxendscale=".95"
+						minwidth="50"
+						maxwidth="65"
+						height="100"
+
+						depthbias="-25"
+					>
+					</billboard>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			<billboard
+				expirelife="250"
+				position="0 0 2"
+				material="/shared/effects/smaterials/whitedot.material"
+				minroll="0"
+				maxroll="0"
+				roll="90"
+				lockup="true"
+				lockright="true"
+				startcolor=".65"
+				endcolor="0 0 0"
+
+				
+				scale=".65"
+				minwidth="60"
+				maxwidth="80"
+				height="100"
+
+				depthbias="0"
+			>
+			</billboard>
+			
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<waitfordeath instance="instance0"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

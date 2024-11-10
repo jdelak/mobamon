@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastion_Ability1_Close_1"
+
+	radius="750"
+	arc="60"
+	innerradiusoffset="550"
+	
+	lifetime="200"
+	impactdelay="50"
+	maximpactspertarget="1"
+	targetselection="all"
+	targetscheme="enemy_units_and_buildings"
+	effecttype=""
+	persist="true"
+	
+>
+	<onimpact>
+		<recordheroaggression  />
+		<aggression />
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+				<playeffect  effect="effects/impact.effect" target="target_entity" source="target_entity"/>
+			</onimpact>
+		</combatevent>
+	</onimpact>
+	
+</affector>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect useentityeffectscale="1">
+	<definitions>
+		
+		
+		<particlesystem name="system0" space="world"  scale="0.73">
+		
+		<billboard
+			position="0 30 -20"
+			bone="_bone_chest"
+			expirelife="1500"
+			startcolor=".3 .1 0"
+			endcolor="0 0 0"
+			size="62"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-10"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>
+		
+		<billboard
+			position="0 0 2"
+			bone="_bone_lefteye"
+			expirelife="1500"
+			startcolor=".4 1 1"
+			endcolor="0 0 0"
+			size="12"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-160"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>
+
+		<billboard
+			position="0 0 2"
+			bone="_bone_righteye"
+			expirelife="1500"
+			startcolor=".4 1 1"
+			endcolor="0 0 0"
+			size="12"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-60"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>
+		
+		<billboard
+			position="0 0 2"
+			bone="_bone_head"
+			expirelife="1500"
+			startcolor=".1 .25 .25"
+			endcolor="0 0 0"
+			size="162"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-50"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>	
+		
+		<billboard
+			position="0 0 -70"
+			bone="Bip01 Pelvis"
+			expirelife="1500"
+			startcolor=".2 .5 .5"
+			endcolor="0 0 0"
+			size="11"
+			material="/shared/effects/smaterials/whitedot.material"
+			directionalspace="local"
+			depthbias="-160"
+			minroll="-180"
+			maxroll="180"
+			rollspeed="-360"
+			loop="true"
+		/>	
+				
+		<simpleemitter		
+			bone="_bone_base"
+		
+			position="0 0  10"
+			spawnrate="40"			
+			particlelife="1200"
+			gravity="-3"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="11"
+			direction="0 0 1"
+			minangle="90"
+			maxangle="90"
+			drag="0.04"
+			depthbias="-12"
+
+			minspeed="322"
+			maxspeed="300"
+			directionalspace="local"
+			inheritvelocity="0.0"			
+		>
+			<particle
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-170"
+				maxanglespeed="170"
+				startsize="50"				
+				endsize="117"
+				
+				startcolor=".5 1 1"
+				endcolor=".8 .7 .7"	
+				
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".05"
+			/>
+		</simpleemitter>
+		
+		<simpleemitter		
+			bone="Bip01 Pelvis"
+		
+			position="0 0 -10"
+			spawnrate="40"			
+			particlelife="1200"
+			gravity="31"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="20 20 50"
+			direction="0 0 1"
+			minangle="-50"
+			maxangle="-90"
+			drag="0.14"
+			depthbias="-12"
+
+			minspeed="122"
+			maxspeed="200"
+			directionalspace="local"
+			inheritvelocity="0.0"			
+		>
+			<particle
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-170"
+				maxanglespeed="170"
+				startsize="50"				
+				endsize="117"
+				
+				startcolor=".5 1 1"
+				endcolor=".5 1 1"	
+				
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".15"
+			/>
+		</simpleemitter>
+
+
+
+		<simpleemitter		
+			bone="_bone_head"
+		
+			position="0 0 10"
+			spawnrate="10"			
+			particlelife="1800"
+			gravity="-4"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="5 5 5 "
+			direction="0 0 1"
+			minangle="-50"
+			maxangle="-90"
+			drag="0.04"
+			depthbias="-20"
+
+			minspeed="10"
+			maxspeed="20"
+			directionalspace="local"
+			inheritvelocity="0"			
+		>
+			<particle
+				anchor="1"
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-270"
+				maxanglespeed="270"
+				startsize="40"				
+				endsize="0"
+				
+				startcolor="1 1 1"
+				endcolor="1 1 1"		
+				
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".25"
+			/>
+		</simpleemitter>
+
+
+		<template name="hand">
+			<simpleemitter		
+				bone="{bone}"
+			
+				position="0 0 0"
+				spawnrate="10"			
+				particlelife="1800"
+				gravity="22"
+				material="/shared/effects/smaterials/baldir_puff.material"
+				offsetsphere="0 0 0 "
+				direction="0 0 1"
+				minangle="-50"
+				maxangle="-90"
+				drag="0.08"
+				depthbias="-100"
+
+				minspeed="20"
+				maxspeed="50"
+				directionalspace="local"
+				inheritvelocity="0.0"			
+			>
+				<particle
+					startanchor="1"
+					endanchor=""
+					minangle="-360"
+					maxangle="360"
+					minanglespeed="-270"
+					maxanglespeed="270"
+					startsize="40"				
+					endsize="3"
+					
+					startcolor=".5 1 1"
+					endcolor="1 .5 .5"	
+					
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".15"
+				/>
+			</simpleemitter>
+			
+			<billboard
+				position="0 0 2"
+				bone="{bone}"
+				expirelife="1500"
+				startcolor=".2 .5 .5"
+				endcolor="0 0 0"
+				size="112"
+				material="/shared/effects/smaterials/whitedot.material"
+				directionalspace="local"
+				depthbias="-160"
+				minroll="-180"
+				maxroll="180"
+				rollspeed="-360"
+				loop="true"
+			/>			
+			
+		</template>
+
+
+
+	<instance name="hand" bone="_bone_righthand" />
+	<instance name="hand" bone="_bone_lefthand" />
+
+
+
+		
+      </particlesystem>
+   </definitions>
+   <thread>
+   
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>   
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

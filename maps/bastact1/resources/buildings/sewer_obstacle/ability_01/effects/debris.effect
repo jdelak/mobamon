@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="entity" scale="1">
+					
+			<simpleemitter
+				count="1"
+				spawnrate="100"
+				particlelife="5000"
+				gravity="0"
+				drag="0"
+				acceleration="0"
+				position="0 0 0"
+			>
+				<particle>	
+			
+					<simpleemitter
+						count="1"
+						spawnrate="100"
+						particlelife="5000"
+						gravity="50"
+						drag="0"
+						acceleration="0"
+						position="0 0 800"
+						collide="1"
+						direction="0 0 1"
+						offsetsphere="5"
+						depthbias="0"
+						minangle="0"
+						maxangle="0"
+						directionalspace="world"
+						
+					>
+						<particle>
+							<model
+								life="1300"
+								model="rock_projectile/model.mdf"
+								startalpha="1"
+								midalpha="1"
+								endalpha="1"
+								color="1 1 1"
+								material="rock_projectile/material.material"
+								position="0 0 0"
+								minpitch="0"
+								maxpitch="360"
+							/>
+						</particle>
+					</simpleemitter>
+				</particle>
+			</simpleemitter>
+			
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

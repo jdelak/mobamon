@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Fetterstone_Ability3"
+
+	icon="icon.tga"
+	passiveeffect="effects/state_1.effect"
+	effecttype="StatusDebuff"
+	allowtransfer="true"
+	
+	powerpercharge="-1"
+	maxcharges="125"
+
+>
+	<oninflict>
+		<getconstant name="power_steal" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="100" op="div" />
+		<setvar0 a="target_power" b="var0" op="mult" />
+			
+		<addcharges count="var0" />
+		<addcharges entity="this_proxy_entity" count="var0" />
+		<changeaccumulator b="1" op="add" />
+	</oninflict>
+	
+	<onrefresh>
+		<compare a="accumulator" b="3" op="lt" >
+			<getconstant name="power_steal" adjustmentsource="this_entity" />
+			<setvar0 a="result" b="100" op="div" />
+			<setvar0 a="target_power" b="var0" op="mult" />
+				
+			<addcharges count="var0" />
+			<addcharges entity="this_proxy_entity" count="var0" />
+		</compare>
+		
+		<changeaccumulator b="1" op="add" />
+		
+		<compare a="accumulator" b="2" op="eq" >
+			<setactivemodifierkey name="Fetterstone_Ability3_Enemy_2" />
+		</compare>
+		<compare a="accumulator" b="3" op="eq" >
+			<setactivemodifierkey name="Fetterstone_Ability3_Enemy_3" />
+		</compare>
+	</onrefresh>
+	
+	<onexpired>
+		<removecharges entity="this_proxy_entity" count="charges" />
+	</onexpired>
+	
+	<modifier key="Fetterstone_Ability3_Enemy_2" modpriority="100" passiveeffect="effects/state_1.effect"
+	>
+	
+	</modifier>
+	
+	<modifier key="Fetterstone_Ability3_Enemy_3" modpriority="100" passiveeffect="effects/state_1.effect"
+	>
+	
+	</modifier>
+	
+</state>

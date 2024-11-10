@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="deathExplosionLarge">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".5" >
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2500"
+				volume=".85"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2500"
+				volume="1"
+				sample="../../sounds/voice/vo_ability_4_%.wav"
+			/>
+
+		</particlesystem>
+	</definitions>
+	
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+	<wait duration="20000"/>
+	<!-- <die /> -->
+</thread>
+</effect>

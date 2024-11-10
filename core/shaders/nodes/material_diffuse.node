@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_diffuse">
+	<parameter name="Diffuse" type="float3" default="0.0 0.0 0.0" />
+	<dependency name="Diffuse" type="*" source="Diffuse" />
+	<output name="MaterialDiffuse" type="*" solution="MaterialDiffuse" />
+	<case>
+		<dependency name="Diffuse" type="float" source="Diffuse" />
+		<output name="MaterialDiffuse" type="float3" solution="MaterialDiffuse" />
+		<?hlsl
+			MaterialDiffuse = float3(Diffuse, Diffuse, Diffuse);
+		?>
+		<?glsl
+			MaterialDiffuse = vec3(Diffuse);
+		?>
+	</case>
+	<case>
+		<dependency name="Diffuse" type="float3" source="Diffuse" />
+		<output name="MaterialDiffuse" type="float3" solution="MaterialDiffuse" />
+		<?hlsl
+			MaterialDiffuse = Diffuse;
+		?>
+		<?glsl
+			MaterialDiffuse = Diffuse;
+		?>
+	</case>
+	<case>
+		<dependency name="Diffuse" type="float4" source="Diffuse" />
+		<output name="MaterialDiffuse" type="float3" solution="MaterialDiffuse" />
+		<?hlsl
+			MaterialDiffuse = Diffuse.xyz;
+		?>
+		<?glsl
+			MaterialDiffuse = Diffuse.xyz;
+		?>
+	</case>
+</node>

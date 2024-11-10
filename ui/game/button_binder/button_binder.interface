@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="button_binder" luatable="true">
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	
+	<template name="buttonBinderModifierBox">
+		<panel noclick="true" height="100%" grow="true" float="right" padding="1h">
+			<label noclick="true" fitx="true" textvalign="center" color="white" font="maindyn_16" content="{keyName=CTRL}"/>
+			<panel noclick="true" width="100@" height="100%" align="right">
+				<instance name="tempSimpleCheckbox" id="buttonBinderModifier{keyName=CTRL}" interactive="false"/>
+			</panel>
+		</panel>
+
+	</template>
+
+	<panel visible="false" name="buttonBinder" blockinput="true">
+		<buttoncatcher name="buttonBinderCatcher" visible="false" color="invisible"/>
+		<buttoncatcher name="buttonBinderCatcherImpulse" visible="false" impulse="true" color="invisible"/>
+
+		<panel align="center" valign="center" width="40h" grow="true" regrow="true" noclick="true" name="buttonBinderContainer">
+			<panel noclick="true">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" width="+1h" height="+1h" align="center" valign="center" borderthickness="14s" color=".08 .08 .08 .95"/>
+			<frame texture="/ui/shared/frames/border_double.tga" width="+1h" height="+1h" align="center" valign="center" style="doubleFrame" borderthickness="14s" color="invisible"/>				
+			</panel>
+			
+			<panel width="-1.5h" align="center" grow="true" regrow="true" growinvis="false" float="bottom" padding="0.75h" noclick="true" y="-0.75h">
+				<panel height="0" sticky="true" stickytoinvis="false" noclick="true"/>
+				<panel height="4.0h" noclick="true" sticky="true" stickytoinvis="false">
+					<label textvalign="center" hmargin="1h" style="h2" content="options_bind_header" noclick="true"/>
+					<instance name="closeXButton" buttonName="buttonBinderClose" width="70@" height="70%" align="right" x="-15@" valign="center"/><!-- Also Cancels -->
+				</panel>
+				
+				<panel name="buttonBinderChooseModifier" grow="true" width="100%" float="bottom" padding="0.75h" sticky="true" stickytoinvis="false">
+					<!--
+					<panel height="2.5h">
+						<label textvalign="center" font="maindyn_20" color="white" content="buttonbinder_select_modifier"/>
+					</panel>
+					-->
+					
+					<panel height="3h" noclick="true">
+						<panel noclick="true" height="100%" align="center" grow="true" float="right" padding="3.5h">
+
+							<instance name="buttonBinderModifierBox" keyName="CTRL"/>
+							<instance name="buttonBinderModifierBox" keyName="ALT"/>
+							<instance name="buttonBinderModifierBox" keyName="SHIFT"/>
+						</panel>
+					</panel>
+				</panel>
+				<panel height="7.5h" sticky="true" stickytoinvis="false" noclick="true">
+					<label shadow="true" hmargin="1h" style="labelBase" font="maindyn_14" wrap="true" content="options_bind_instructions_button" noclick="true"/>
+					<panel height="3h" valign="bottom" grow="true" align="center" float="right" padding="0.5h" noclick="true">
+						<instance name="standardButton" width="11h" id="buttonBinderDefault" font="maindyn_18" label="options_bind_button_default"/>
+						<instance name="standardButton" width="14h" id="buttonBinderClear" font="maindyn_18" label="options_bind_button_clear"/>
+						<instance name="standardButton" width="11h" id="buttonBinderCancel" font="maindyn_18" label="general_cancel"/>
+					</panel>
+				</panel>
+				<panel height="0" sticky="true" stickytoinvis="false" noclick="true"/>
+			</panel>
+			
+		</panel>
+		
+	</panel>
+
+	<lua file="button_binder.lua"/>
+</interface>

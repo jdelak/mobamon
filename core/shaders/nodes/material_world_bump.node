@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_world_bump">
+	<dependency name="Normal" type="*" source="TangentBump" />
+	<dependency name="WorldNormal" type="float3" source="WorldNormal" />
+	<output name="Out" type="float3" solution="WorldBump" />
+	<case>
+		<dependency name="Normal" type="float3" source="TangentBump" />
+		<dependency name="WorldTangent" type="float3" source="WorldTangent" />
+		<dependency name="WorldBinormal" type="float3" source="WorldBinormal" />
+		<dependency name="NormalizeNormal" type="bool" source="MaterialNormalizeNormal" />
+		<?hlsl
+			float3x3 mRotation = float3x3(WorldTangent, WorldBinormal, WorldNormal);
+			
+			Out = mul(Normal, mRotation);
+			
+			if (NormalizeNormal)
+				Out = normalize(Out);
+		?>
+		<?glsl
+			mat3 mRotation = mat3(WorldTangent, WorldBinormal, WorldNormal);
+			
+			Out = mRotation * Normal;
+			
+			if (NormalizeNormal)
+				Out = normalize(Out);
+		?>
+	</case>
+	<case>
+		<dependency name="Normal" type="skip" source="TangentBump" />
+		<?hlsl
+			Out = WorldNormal;
+		?>
+		<?glsl
+			Out = WorldNormal;
+		?>
+	</case>
+</node>

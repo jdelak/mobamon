@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale=".95">
+
+			<model
+				expirelife="250"
+				model="paint_brush/model.mdf"
+				anim="idle"
+				color="1 .9 1"
+				startalpha="1"
+				endalpha="0"
+				scale="1"
+				directionalspace="world"
+				yaw="180"
+			>
+
+				<simpleemitter
+				life="1000"
+					bone="_bone_fx_01"
+					spawnrate="300"
+					particlelife="300"
+					material="/shared/effects/smaterials/goop_drop_white.material"
+					direction="0 0 1"
+					minangle="-10"
+					maxangle="10"
+					minspeed="100"
+					maxspeed="300"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						color=".8 0 .8"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						color="1 0 1"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>	
+				</simpleemitter>
+
+				<simpleemitter
+				life="1000"
+					bone="_bone_fx_01"
+					spawnrate="200"
+					particlelife="300"
+					material="/shared/effects/smaterials/whitedot.material"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="1"
+					minspeed="50"
+					maxspeed="100"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						color=".1 0 .1"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>	
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						color=".035 0 .1"
+						startsize="50"
+						endsize="0"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+					/>	
+				</simpleemitter>
+			
+
+				<billboard
+					bone="_bone_fx_01"
+					expirelife="250"
+					startcolor=".35 0 .35"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="2.5"
+					depthbias="-75"
+				/>
+
+				<billboard
+					bone="_bone_fx_02"
+					expirelife="250"
+					startcolor=".35 0 .35"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					scale="2.5"
+					depthbias="-75"
+				/>
+
+
+				<template name="">
+				
+					<simpleemitter
+					delay="{zdelay}"
+						bone="{zbone}"
+						count="{zcount}"
+						spawnrate="1500"
+						expirelife="250"
+						position="0 0 0"
+						offsetsphere="20 20 0"
+						direction="0 0 0"
+						offsetradial="0 0 0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								expirelife="250"
+								color="{zcolor}"
+								material="/shared/effects/smaterials/paint_dot.material"
+								minscale=".2"
+								maxscale=".7"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								startalpha="1"
+								endalpha="0"
+								roll="-45"
+								depthbias="-35"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</template>
+				
+				<instance name="" zdelay="475" zbone="_bone_fx_03" zcount="4" zcolor="1 0 1"/>
+				<instance name="" zdelay="575" zbone="_bone_fx_04" zcount="4" zcolor=".6 0 1"/>
+				<instance name="" zdelay="675" zbone="_bone_fx_05" zcount="4" zcolor="1 0 1"/>
+				<instance name="" zdelay="775" zbone="_bone_fx_06" zcount="4" zcolor=".6 0 1"/>
+				<instance name="" zdelay="875" zbone="_bone_fx_07" zcount="4" zcolor="1 0 1"/>
+				<instance name="" zdelay="975" zbone="_bone_fx_08" zcount="4" zcolor=".6 0 1"/>
+				<instance name="" zdelay="1075" zbone="_bone_fx_09" zcount="8" zcolor="1 0 1"/>
+
+
+
+
+
+			</model>
+		
+		
+			<template name="">
+				<groundsprite
+					delay="{zdelay}"
+					position="0 0 0"
+					life="{zlife}"
+					startalpha="1"
+					endalpha="1"
+					scale="1.5"
+					material="{zmaterial}"
+					color="1 0 1"
+					startframe="1"
+					endframe=".01"
+					directionalspace="world"
+				/>
+			</template>
+			
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_1.material" zdelay="0" zlife="250" />
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_2.material" zdelay="250" zlife="250" />
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_3.material" zdelay="500" zlife="250" />
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_4.material" zdelay="750" zlife="250" />
+			
+			<template name="">
+				<groundsprite
+					delay="{zdelay}"
+					position="0 0 0"
+					life="{zlife}"
+					startalpha="1"
+					endalpha="1"
+					scale="1.5"
+					material="{zmaterial}"
+					color="1 0 1"
+					directionalspace="world"
+				/>
+			</template>
+			
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_1.material" zdelay="250" zlife="750" />
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_2.material" zdelay="500" zlife="500" />
+			<instance name="" zmaterial="/shared/effects/smaterials/paint_spot_tracker_3.material" zdelay="750" zlife="250" />
+			
+			
+
+			<groundsprite
+				delay="1000"
+				position="0 0 0"
+				expirelife="250"
+				startalpha="1"
+				endalpha="0"
+				scale="1.5"
+				material="/shared/effects/smaterials/paint_spot_tracker.material"
+				color="1 0 1"
+				directionalspace="world"
+			/>
+
+
+<!--
+			<groundsprite
+				delay="500"
+				position="0 0 0"
+				life="300"
+				startsize="0"
+				endsize="190"
+				startalpha="1"
+				endalpha="1"
+				material="/shared/effects/smaterials/paint_spot_tracker.material"
+				color="1 0 1"
+
+			/>	
+-->
+			
+
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+
+
+<!--
+			<simpleemitter
+				delay="500"
+				count="150"
+				spawnrate="1500"
+				particlelife="1000"
+				position="0 0 25"
+				offsetsphere="12 12 0"
+				direction="0 0 1"
+				minspeed="100"
+				maxspeed="500"
+				offsetradial="0 0 0"
+			>
+				<particle
+					turn="true"
+				>
+				
+					<billboard
+						minlife="250"
+						maxlife="500"
+						color="1 0 1"
+						material="/shared/effects/smaterials/goop_drop_white.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="2"
+						midscale="1"
+						endscale=".5"
+						depthbias="-25"
+					/>
+
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				count="1"
+				position="0 -30 300"
+				spawnrate="2000"
+				particlelife="2000"
+				speed="600"
+				distancelife="1"
+				direction="0 .125 1"
+				minangle="0"
+				maxangle="1"
+				gravity="250"
+			>
+				<particle>
+
+					<template name="">
+
+						<simpleemitter
+							position="{zpos}"
+							spawnrate="125"
+							particlelife="{zparticlelife}"
+							material="/shared/effects/smaterials/goop_drop_white.material"
+						>
+							<particle 
+								minangle="-360"
+								maxangle="360"
+								color="1 0 1"
+								startsize="50"
+								endsize="0"
+								startalpha="1"
+								midalpha="1"
+								endalpha="0"
+							/>
+						</simpleemitter>
+						
+						
+						<billboard
+							minlife="250"
+							maxlife="500"
+							startcolor="1 0 1"
+							midcolor="1 0 1"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							scale=".5"
+							depthbias="-25"
+						/>
+						
+					
+					</template>
+					
+					<instance name="" zpos="12 0 0" zparticlelife="300"/>
+					<instance name="" zpos="-12 0 0" zparticlelife="600"/>
+					<instance name="" zpos="8 0 0" zparticlelife="300"/>
+					<instance name="" zpos="-8 0 0" zparticlelife="600"/>
+					<instance name="" zpos="0 0 0" zparticlelife="300"/>
+
+				</particle>
+				
+			</simpleemitter>
+-->
+			
+
+			
+			
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

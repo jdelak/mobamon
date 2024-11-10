@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1.1" >
+			<!--  -->
+
+			<sound
+				sample="../sounds/sfx_impact_%.wav"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+			/>
+
+			<simpleemitter
+				life="1000"
+				count="1"
+				spawnrate="100"
+				offsetsphere="0"
+				position="0 0 0"
+				depthbias="0"	
+				particlelife="2000"
+			>
+				<particle>
+				
+					<model
+						life="1000"
+						model="models/model.mdf"
+						anim="rain"
+						position="0 0 0"
+						pitch="0"
+						scale="1"
+					>
+						<template name="arrows">
+							<!-- <simpleemitter
+								life="1000"
+								bone="{newbone}"
+								spawnrate="25"
+								offsetsphere="50"
+								position="0 0 0"
+								depthbias="-50"	
+								particlelife="1000"
+								direction="0 0 1"
+								minangle="0"
+								maxangle="0"
+								directionalspace="local"
+							>
+								<particle
+									turn="true"
+								>
+									<billboard
+										bone="{newbone}"
+										life="300"
+										position="0 0 0"
+										material="/shared/effects/smaterials/whitedot.material"						
+										startcolor="0"
+										midcolor="0.2 .1 0"
+										endcolor="0"
+										minstartscale="3.5"
+										maxstartscale="4.5"
+										endscale="0"
+										depthbias="-50"	
+										directionalspace="local"
+										lockup="1"
+										lockright="1"
+										height="50"
+										width="2"
+									/>
+
+								</particle>
+							</simpleemitter> -->
+							
+							<!-- <simpleemitter
+								life="500"
+								bone="{newbone}"
+								spawnrate="20"
+								offsetsphere="20"
+								position="0 0 0"
+								depthbias="-50"	
+								particlelife="500"
+								direction="0 0 1"
+								minangle="0"
+								maxangle="0"
+								directionalspace="local"	
+							>
+								<particle
+									turn="true"
+								>
+									<billboard
+										bone="{newbone}"
+										life="300"
+										position="0 0 0"
+										material="/shared/effects/smaterials/whitedot.material"						
+										color="1 0.7 0"
+										startalpha="0"
+										midalpha="1"
+										endalpha="0"
+										minstartscale="0.5"
+										maxstartscale="1.5"
+										endscale="0"
+										depthbias="-50"	
+										directionalspace="local"
+									/>
+
+								</particle>
+							</simpleemitter> -->
+							
+							<trailemitter
+								bone="{newbone}"
+								life="1000"
+								delay="100"
+								spawnrate="50"
+								particlelife="200"
+								texpostime="1000"
+								texposscale="0"
+								texstretchscale=".2"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								depthbias="-50"	
+								
+							>
+								<particle
+									startcolor="0"
+									midcolor="1 0.7 0"
+									endcolor="0 0 0"
+									startsize="75"
+									endsize="0"
+									midcolorpos=".5"
+									midsizepos=".1"
+								/>
+							</trailemitter>
+							
+							
+							
+							<billboard
+								bone="{newbone}"
+								delay="100"
+								life="1000"
+								position="0 0 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								scale="4"
+								startcolor="0.25 0.17 0"
+								midcolor="0.25 0.17 0"
+								endcolor="0 0 0"
+								depthbias="-50"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								height="40"
+								width="20"
+								directionalspace="local"	
+							/>
+							
+							<billboard
+								bone="{newbone}"
+								delay="100"
+								life="1000"
+								position="0 5 0"
+								material="/shared/effects/smaterials/whitedot.material"
+								scale="4"
+								startcolor="0.5 0.35 0"
+								midcolor="0.5 0.35 0"
+								endcolor="0 0 0"
+								depthbias="-50"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+								height="40"
+								width="20"
+								directionalspace="local"	
+							/>
+							
+							<billboard
+								bone="{newbone}"
+								delay="100"
+								life="1000"
+								position="0 0 0"
+								material="/shared/effects/smaterials/archer_arrow_add.material"						
+								startcolor="1"
+								midcolor="1"
+								endcolor="0"
+								scale="3"
+								height="60"
+								width="20"
+								lockright="1"
+								lockup="1"	
+								pitch="-90"
+								depthbias="-50"	
+								directionalspace="local"	
+							/>
+							
+							<billboard
+								bone="{newbone}"
+								delay="100"
+								life="1000"
+								position="0 0 0"
+								material="/shared/effects/smaterials/archer_arrow_add.material"						
+								startcolor="1"
+								midcolor="1"
+								endcolor="0"
+								scale="3"
+								height="60"
+								width="20"
+								lockright="1"
+								lockup="1"	
+								pitch="-90"
+								yaw="90"
+								depthbias="-50"	
+								directionalspace="local"	
+							/>
+						</template>
+						
+						<instance name="arrows" newbone="_bone_arrow_001"/>
+						<instance name="arrows" newbone="_bone_arrow_002"/>
+						<instance name="arrows" newbone="_bone_arrow_003"/>
+						<instance name="arrows" newbone="_bone_arrow_004"/>
+						<instance name="arrows" newbone="_bone_arrow_005"/>
+						<instance name="arrows" newbone="_bone_arrow_006"/>
+						<instance name="arrows" newbone="_bone_arrow_007"/>
+						<instance name="arrows" newbone="_bone_arrow_008"/>
+						<instance name="arrows" newbone="_bone_arrow_009"/>
+						<instance name="arrows" newbone="_bone_arrow_010"/>
+						<instance name="arrows" newbone="_bone_arrow_011"/>
+						<instance name="arrows" newbone="_bone_arrow_012"/>
+						
+					</model>
+					
+					<billboard
+						delay="100"
+						life="700"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						scale="6"
+						startcolor="0.5 0.35 0"
+						midcolor="0.5 0.35 0"
+						endcolor="0 0 0"
+						depthbias="-50"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+
+					/>
+					
+					<light
+						delay="100"
+						life="700"
+						position="0 0 5"
+						startcolor="5 3 0"
+						midcolor="5 3 0"
+						endcolor="0"
+						falloffstart="100"
+						falloffend="300"
+					/>
+					
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	
+	<waitfordeath instance="instance0" />
+
+</thread>
+</effect>

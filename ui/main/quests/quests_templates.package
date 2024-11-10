@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<!-- Quest Card -->
+	<template name="splash_quest_item_card">
+		<panel group="{group=splash_quest_cards}" width="216s" height="250s" noclick="1" sticky="1" stickytoinvis="0" 	>
+			<panel width="196s" height="230s" valign="bottom" align="center" noclick="0" passivechildren="1" >
+				<image texture="/ui/main/quests/textures/quest_item_card.tga" width="100@" height="100%" align="center" noclick="1" />
+				<image texture="{backgroundTexture1=$checker}" width="100@" height="100%" align="center" noclick="1" />			
+				<panel grow="1" regrow="1" y="-17%" width="80%" align="center" valign="bottom" noclick="1">
+					<panel height="-14s" valign="bottom" noclick="1" color="0 0 0 .7"/>				
+					<image y="-16s" height="32s" texture="/ui/main/shared/textures/grad_vert.tga" color="0 0 0 .7" noclick="1" />				
+				</panel>			
+				<!-- 1 Reward -->
+				<panel y="18%" x="-13%" width="44@" height="44%" align="right" noclick="1" visible="{hasReward1=0}" 
+					oninstantiate="SetVisible({hasReward1=0} and !{hasReward2=0} and !{hasReward3=0})"
+				>
+					<image texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<instance
+						name="NumberValue"
+						labelId="" countShown="{showCount=0}"
+						valign="bottom" align="right" x="-2s" y="0" height="19s" font="subdyn_13"
+						label="{rewardText1=1}"
+					/>
+				</panel>
+				<!-- 2 Rewards -->
+				<panel y="22%" x="-12%" width="40@" height="40%" align="right" noclick="1" visible="{hasReward2=0}" 
+					oninstantiate="SetVisible({hasReward2=0} and !{hasReward3=0})"
+				>
+					<image texture="/ui/main/quests/textures/quest_chest_bg.tga" noclick="0" />					
+					<image x="-14%" y="1%" width="72@" height="72%" align="center" texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="14%" y="1%" width="72@" height="72%" align="center" texture="{rewardIcon2=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />					
+					<image texture="/ui/main/quests/textures/quest_chest_fg.tga" noclick="0" />
+					<panel grow="true" y="67%" height="24s" align="center" noclick="true" passivechildren="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+						<panel grow="1" height="100%" x="3s" noclick="1">
+							<label fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText1=1}" />
+							<label y="14s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText2=1}" />
+						</panel>
+					</panel>					
+				</panel>
+				<!-- 3 Rewards -->
+				<panel y="22%" x="-12%" width="40@" height="40%" align="right" noclick="1" visible="{hasReward3=0}"
+					oninstantiate="SetVisible({hasReward3=0})"
+				>					
+					<image texture="/ui/main/quests/textures/quest_chest_bg.tga" noclick="0" />					
+					<image x="-20%" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="20%" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon3=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="0" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon2=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />					
+					<image texture="/ui/main/quests/textures/quest_chest_fg.tga" noclick="0" />
+					<panel grow="true" y="57%" height="34s" align="center" noclick="true" passivechildren="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+						<panel grow="1" height="100%" x="3s" noclick="1">
+							<label fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText1=1}" />
+							<label y="14s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText2=1}" />
+							<label y="28s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText3=1}" />
+						</panel>
+					</panel>
+				</panel>			
+				<panel grow="1" regrow="1" y="-16%" width="80%" align="center" valign="bottom" noclick="1">		
+					<label textalign="center" y="-12s" fity="true" width="-8s" align="center" wrap="1" lineheight="17s" style="h1" font="subdyn_15" content="{questName1=Quest Name Here}" noclick="1" />
+				</panel>					
+				<image noclick="1" texture="{questTypeIcon=$invis}" x="5%" y="-3%" height="26%" width="26@" align="right" />		
+				<panel y="-4.0%" width="78%" height="10.4%" align="center" valign="bottom" noclick="1">
+					<instance name="progress_bar" id="splash_quest_item_card{id}1" startwidth="{oldProgressPercent}%" width="{progressPercent}%" borderthickness="4s" barstyle="barCommon" />
+					<instance name="progress_bar" id="splash_quest_item_card{id}2" width="{oldProgressPercent}%" borderthickness="4s" barstyle="barDefault" />
+					<modelpanel model="/ui/_models/16to1/button.mdf" anim="idle" effect="/ui/main/shared/effects/questbar_completed.effect" 
+						camerapos="0 -45 0" cameraangles="0 0 180" camerafov="70" cameranear="1" camerafar="1000" depthclear="false" depthcompress="true" noclick="true" 
+						visible="{isComplete=1}" 
+					/>					
+					<label textalign="center" y="-1s" fity="true" width="-12s" valign="center" align="center" wrap="1" style="h1" color="white" shadow="1" shadowcolor="black" font="maindyn_18" content="{progressLabel1=? / ?}" noclick="1" />
+				</panel>
+			</panel>
+		</panel>
+	</template>	
+	
+	
+	<template name="quest_item_card">
+		<panel name="quest_item_card_{id}" group="{group=profile_quests_entries}" width="216s" height="250s" noclick="1" sticky="1" stickytoinvis="0"
+			oninstantiatelua="
+				self:RegisterWatchLua('questsTrigger', function(widget, trigger)
+					if ((((Empty(trigger.selectedDisplayType) or (trigger.selectedDisplayType == '{displayType}')) and (Empty(trigger.searchString) or (string.find(string.lower('{questName1}'), string.lower(trigger.searchString), 1, true)))))) then
+						widget:GetWidget('main_center_content_quests_scrollbox'):ShowItemByValue('{index}')
+					else
+						widget:GetWidget('main_center_content_quests_scrollbox'):HideItemByValue('{index}')
+					end
+				end)				
+			"
+		>
+			<panel width="196s" height="230s" valign="bottom" align="center" noclick="0" passivechildren="1" >
+				<image texture="/ui/main/quests/textures/quest_item_card.tga" width="100@" height="100%" align="center" noclick="1" />
+				<image texture="{backgroundTexture1=$checker}" width="100@" height="100%" align="center" noclick="1" />			
+				<panel grow="1" regrow="1" y="-17%" width="80%" align="center" valign="bottom" noclick="1">
+					<panel height="-14s" valign="bottom" noclick="1" color="0 0 0 .7"/>				
+					<image y="-16s" height="32s" texture="/ui/main/shared/textures/grad_vert.tga" color="0 0 0 .7" noclick="1" />				
+				</panel>			
+				<!-- 1 Reward -->
+				<panel y="18%" x="-13%" width="44@" height="44%" align="right" noclick="1" visible="{hasReward1=0}" 
+					oninstantiate="SetVisible({hasReward1=0} and !{hasReward2=0} and !{hasReward3=0})"
+				>
+				
+					<image texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<instance
+						name="NumberValue"
+						labelId="" countShown="{showCount=0}"
+						valign="bottom" align="right" x="-2s" y="0" height="19s" font="subdyn_13"
+						label="{rewardText1=1}"
+					/>
+				</panel>
+				<!-- 2 Rewards -->
+				<panel y="22%" x="-12%" width="40@" height="40%" align="right" noclick="1" visible="{hasReward2=0}" 
+					oninstantiate="SetVisible({hasReward2=0} and !{hasReward3=0})"
+				>
+					<image texture="/ui/main/quests/textures/quest_chest_bg.tga" noclick="0" />					
+					<image x="-14%" y="1%" width="72@" height="72%" align="center" texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="14%" y="1%" width="72@" height="72%" align="center" texture="{rewardIcon2=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />					
+					<image texture="/ui/main/quests/textures/quest_chest_fg.tga" noclick="0" />
+					<panel grow="true" y="67%" height="24s" align="center" noclick="true" passivechildren="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+						<panel grow="1" height="100%" x="3s" noclick="1">
+							<label fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText1=1}" />
+							<label y="14s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText2=1}" />
+						</panel>
+					</panel>					
+				</panel>
+				<!-- 3 Rewards -->
+				<panel y="22%" x="-12%" width="40@" height="40%" align="right" noclick="1" visible="{hasReward3=0}"
+					oninstantiate="SetVisible({hasReward3=0})"
+				>					
+					<image texture="/ui/main/quests/textures/quest_chest_bg.tga" noclick="0" />					
+					<image x="-20%" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon1=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="20%" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon3=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />
+					<image x="0" y="6%" width="60@" height="60%" align="center" texture="{rewardIcon2=/ui/main/shared/textures/rewards_chest.tga}" noclick="1" />					
+					<image texture="/ui/main/quests/textures/quest_chest_fg.tga" noclick="0" />
+					<panel grow="true" y="57%" height="34s" align="center" noclick="true" passivechildren="true">
+						<frame texture="/ui/elements:rounded_bg_white" borderthickness="4s" color="0 0 0 .8"/>
+						<frame texture="/ui/elements:roundframe" borderthickness="4s" color=".9 .9 .9 1"/>
+						<panel grow="1" height="100%" x="3s" noclick="1">
+							<label fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText1=1}" />
+							<label y="14s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText2=1}" />
+							<label y="28s" fitx="true" fitxpadding="3s" fity="true" style="labelBase" align="center" font="subdyn_12" content="{rewardText3=1}" />
+						</panel>
+					</panel>
+				</panel>				
+				<panel grow="1" regrow="1" y="-16%" width="80%" align="center" valign="bottom" noclick="1">		
+					<image texture="/ui/main/shared/textures/rectangle_shadow.tga" height="100%" width="100%" align="center" valign="center" color="0 0 0 .5" />
+					<label textalign="center" y="-8s" fity="true" width="-12s" align="center" wrap="1" lineheight="17s" style="h1" font="subdyn_15" content="{questName1=Quest Name Here}" noclick="1" />
+				</panel>					
+				<image noclick="1" texture="{questTypeIcon=$invis}" x="5%" y="-3%" height="26%" width="26@" align="right" />		
+				<panel y="-4.0%" width="78%" height="10.4%" align="center" valign="bottom" noclick="1">
+					<instance name="progress_bar" id="quest_item_card{id}1" startwidth="{oldProgressPercent}%" width="{progressPercent}%" borderthickness="4s" barstyle="barCommon" />
+					<instance name="progress_bar" id="quest_item_card{id}2" width="{oldProgressPercent}%" borderthickness="4s" barstyle="barDefault" />
+					<modelpanel model="/ui/_models/16to1/button.mdf" anim="idle" effect="/ui/main/shared/effects/questbar_completed.effect" 
+						camerapos="0 -45 0" cameraangles="0 0 180" camerafov="70" cameranear="1" camerafar="1000" depthclear="false" depthcompress="true" noclick="true" 
+						visible="{isComplete=1}" 
+					/>					
+					<label textalign="center" y="-1s" fity="true" width="-8s" valign="center" align="center" wrap="1" style="h1" color="white" shadow="1" shadowcolor="black" font="maindyn_18" content="{progressLabel1=? / ?}" noclick="1" />
+				</panel>
+			</panel>
+		</panel>
+	</template>
+	
+	<!-- New wide lifetime stars -->
+	<template name="quest_lifetime_stars">
+		<panel width="810s" height="117s" noclick="1">
+			<image texture="/ui/main/quests/textures/quest_lifetime_stars.tga" width="800@" height="100%" noclick="1" />
+			<!-- Title -->
+			<label x="24@" y="21%" style="h1" font="maindyn_30" content="quest_type_earn_stars" noclick="1" />
+
+			<!-- Stars -->
+			<panel x="50%" y="18%" width="-28s" height="40%" float="right" padding="12s" noclick="1">
+				<instance name="playerProfileHeroEntry_level_star" index="1" id="{id}" color="1 1 85 0.25" />
+				<instance name="playerProfileHeroEntry_level_star" index="2" id="{id}" color="1 1 1 0.45" />
+				<instance name="playerProfileHeroEntry_level_star" index="3" id="{id}" color="1 1 85 0.25" />
+				<instance name="playerProfileHeroEntry_level_star" index="4" id="{id}" color="1 1 1 0.45" />
+				<instance name="playerProfileHeroEntry_level_star" index="5" id="{id}" color="1 1 85 0.25" />
+			</panel>
+			
+			
+			<!-- Progress Bar -->
+			<panel x="2.6%" y="-10.2%" width="82.8%" height="22.4%" valign="bottom" noclick="1">
+				<instance name="progress_bar" id="quest_lifetime_stars{id}1"  borderthickness="4s" width="44%" barstyle="barCommon" />
+				<label y="-2s" textalign="center" textvalign="center" style="labelBase" font="maindyn_24" content="34 Wins Needed" noclick="1" />
+			</panel>
+		</panel>		
+	</template>
+		
+	<template name="quest_lifetime_container_prize">
+		<panel height="100%" width="81@" noclick="1" sticky="1" stickytoinvis="0" visible="{visible=0}">
+			<panel color="#090b0b" x="-4%" y="-5%" align="center" valign="center" width="82%" height="82@" noclick="1" />
+			<image x="-2%" y="-7%" align="center" valign="center" width="78%" height="78@" texture="/ui/main/quests/textures/quest_reward_auros.tga" noclick="1" />
+			<image texture="/ui/main/shared/textures/iconframe_interactive_txt.tga" x="-2@" width="100@" align="center" noclick="1" />
+			<label x="-2%" y="-8%" textalign="center" textvalign="bottom" style="labelBase" font="subdyn_13" content="+1 Pet Lvl" noclick="1" />
+		</panel>
+	</template>
+	
+	<!-- Wide lifetime - MultiPrize -->
+	<template name="quest_lifetime_container">
+		<panel width="800s" height="116s" align="{align}" noclick="1">
+			<image texture="/ui/main/quests/textures/quest_lifetime_base.tga" width="800@" height="100%" noclick="1" />
+			<!-- Title/Sub -->
+			<label x="24@" y="17%" style="h1" font="maindyn_26" content="Reach Account Level 2" noclick="1" />
+			<label x="24@" y="40%" style="labelBase" color=".6 .6 .6 1" font="subdyn_15" content="Increase the level of all your pets when you complete this achievement!" noclick="1" />
+			<panel name="{id}progress_bar_container" x="0" height="50%" width="88.1%" valign="bottom" noclick="1">
+				<image width="-200@" height="100%" align="center" texture="/ui/main/quests/textures/quest_lifetime_progressback_center.tga" uscale="256s" onshow="SetUScale(GetHeight() # 's');" utile="true" noclick="1" />
+				<image width="200@" height="100%" align="left" texture="/ui/main/quests/textures/quest_lifetime_progressback_lcap.tga" noclick="1" />
+				<image width="200@" height="100%" align="right" texture="/ui/main/quests/textures/quest_lifetime_progressback_rcap.tga" noclick="1" />
+				<panel y="34.0%" width="-20s" height="45%" align="center" noclick="1">
+					<instance name="progress_bar" id="quest_lifetime_container{id}1"  borderthickness="4s" width="10%" barstyle="barCommon" />
+					<label y="-2s" textalign="center" textvalign="center" style="labelBase" font="maindyn_24" content="10%" noclick="1" />
+				</panel>
+			</panel>
+			<!-- Quest Reward(s) -->
+			<panel x="-14@" y="-3%" grow="1" regrow="1" growinvis="false" height="100%" align="right" float="right" padding="0" noclick="1">
+				<instance name="quest_lifetime_container_prize" id="quest_lifetime_container_prize_1" visible="1" />
+				<instance name="quest_lifetime_container_prize" id="quest_lifetime_container_prize_2" visible="0" />
+				<instance name="quest_lifetime_container_prize" id="quest_lifetime_container_prize_3" visible="0" />
+			</panel>
+		</panel>		
+	</template>
+	
+	
+	<!-- Category Template	-->
+	<template name="quests_menu_category_item_template" >
+		<panel noclick="0" height="74s" width="160s" align="center" name="quests_menu_category_item_{categoryname}" 
+			onloadlua="
+				libButton2.initializeButton(self, '{id}', 'standardButton2', '{rendermode=normal}')
+			"
+			onmouseoverlua="
+				simpleTipGrowYUpdate(true, nil, Translate('{categoryname}'), Translate('{categoryname}_tip', 'value', GetKeybindButton('game', 'Cmd', 'F6', 0)))
+			"
+			onmouseoutlua="
+				simpleTipGrowYUpdate(false) 
+			"
+		>
+			<panel name="quests_menu_category_item_{categoryname}Body" width="-40s" height="80%" valign="center" align="right" noclick="1">
+				<frame name="quests_menu_category_item_{categoryname}Backer" group="quests_menu_category_item_backers" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="6s" color=".8 .8 .8 1" noclick="1"/>
+			</panel>
+			<image name="icontype_{categoryname}" noclick="1" height="100%" width="100@" texture="/ui/main/quests/textures/{icon}" color="1 1 1 1" rendermode="normal"/>			
+			<!-- New Labels -->
+			<panel x="-8s" height="-22s" width="-100@" align="right" valign="center" noclick="1" >
+				<label name="quests_menu_category_item_{categoryname}_prog_label" height="60%" valign="top" textalign="center" style="labelBase" font="maindyn_30" content="0/0" noclick="1" />
+				<label name="quests_menu_category_item_{categoryname}_title_label" height="40%" valign="bottom" textalign="center" style="labelBase" font="subdyn_13" color=".7 .7 .7 1" content="{categoryname}" noclick="1" />
+			</panel>
+		</panel>
+	</template>
+	
+	<template name="quest_popup_entry_template">
+		<panel name="quest_popup_entry_{id}" noclick="1" sticky="1" stickytoinvis="0" >			
+			<panel noclick="1" x="94s" y="92s" height="35s" width="286s" visible="1" color=".15 .15 .15 1" >		
+				<instance name="progress_bar" startwidth="{oldProgressPercent}%" width="{progressPercent}%" id="quest_popup_entry_{id}_bar" barstyle="barCommon" borderthickness="6s" />
+				<instance name="progress_bar" width="{oldProgressPercent}%" id="quest_popup_entry_{id}_bar2" barstyle="barDefault" borderthickness="6s" />
+				<label name="quest_popup_entry_{id}_bar_label" noclick="1" fity="1" y="-2s" style="labelBase" font="maindyn_22" color="1 1 1 1" valign="center" align="center" textalign="center" content="{label2}" />
+			</panel>			
+			<image texture="/ui/main/quests/textures/quest_bg.tga" width="100%" height="50@" noclick="1" />			
+			<!-- icon - Hidden for now -->
+			<panel noclick="1" align="left" height="9.0h" width="9.0h" x="1.0h" y="1.25h" visible="0" >
+				<image noclick="1" texture="$checker" />
+				<label fity="1" fitx="1" valign="center" align="center" font="maindyn_36" color="1 1 1 1" outline="true" outlinecolor="0 0 0 1" content="{questindex}" />
+			</panel>			
+			<!-- title -->
+			<label name="quest_popup_entry_{id}_label" y="36s" width="-30s" align="center" fity="1" style="h1" textalign="center" content="{label1}" noclick="1" />	
+			<!-- Quest Type Icon -->
+			<image name="quest_popup_entry_{id}_icon_1" noclick="1" texture="{icon1=$checker}" x="30s" y="69s" height="56s" width="56s" align="left" />		
+			<!-- Reward Icon -->
+			<image name="quest_popup_entry_{id}_icon_2" noclick="1" texture="{icon2=$checker}" x="-36s" y="69s" height="56s" width="56s" align="right" />		
+		</panel>	
+	</template>	
+
+	<template name="questRewardCommodityPopup">
+		<panel name="questRewardCommodityPopup{id}" width="16h" height="8h" sticky="true" stickytoinvis="false" noclick="true" passivechildren="true" visible="1">
+			<image name="questRewardCommodityPopup{id}Icon" texture="{icon=/ui/main/shared/textures/gem.tga}" width="100@" height="100%" align="center" visible="false"/>
+			<label name="questRewardCommodityPopup{id}Count" textalign="center" textvalign="center" font="maindyn_16" color="white" outline="true" outlinecolor="0 0 0 1" content="{count}" visible="false" y="4h"/>
+		</panel>
+	</template>	
+	
+	<template name="questCommodityTotal">
+		<panel width="9h" name="questCommodityTotal{id}" visible="1" sticky="true" stickytoinvis="false" noclick="true" passivechildren="true">
+			<panel name="questCommodityTotal{id}Body" visible="0">
+				<panel width="100@" height="100%">
+					<image name="questCommodityTotal{id}Icon" texture="{icon=/ui/main/shared/textures/gem.tga}"/>
+				</panel>
+				<label name="questCommodityTotal{id}Count" width="-120@" align="right" textvalign="center" color="white" font="maindyn_20" outline="true" outlinecolor="0 0 0 0.55" content="0"/>
+			</panel>
+		</panel>	
+	</template>	
+	
+	<!-- ======================== -->
+	
+	<template name="quests_body">
+		<label group="profile_animation_quests_widgets" style="h1" textalign="center" font="maindyn_40" noclick="1" content="achievements_gamequests" />			
+		<label group="profile_animation_quests_widgets" y="45s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="achievements_gamequests_info" />
+		
+		<!-- Menu -->
+		<panel name="main_center_content_quests_menu" group="profile_animation_quests_widgets" x="15s" noclick="1" width="240s" height="450s" y="120s" align="left">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" style="doubleFrameBg" borderthickness="8s"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" color="invisible"/>
+			<panel y="18s" float="bottom" padding="10s" noclick="1">
+				<label fity="1" textalign="center" style="labelBase" font="maindyn_26" content="quest_finder" noclick="1" />
+				<instance name="quests_menu_category_item_template" categoryname="achievements_dailyquests" icon="quest_type_day.tga" />
+				<instance name="quests_menu_category_item_template" categoryname="achievements_weeklyquests" icon="quest_type_week.tga" />
+				<instance name="quests_menu_category_item_template" categoryname="achievements_monthlyquests" icon="quest_type_month.tga" />
+				<instance name="quests_menu_category_item_template" categoryname="achievements_lifetimequests" icon="quest_type_lifetime.tga" />				
+			</panel>			
+			<!-- search -->
+			<panel noclick="true" height="68s" x="-7s" align="center" valign="bottom" width="232s">
+				<panel height="32s" width="-20s" align="right" valign="center" noclick="1">
+					<frame texture="/ui/shared/frames/text_input.tga" borderthickness="4s" noclick="true"/>
+					<textbox 
+						name="quests_menu_search_input"
+						style="textBox1Input"  
+						font="maindyn_20"
+						textcolor="0 0 0 1" y="2s"
+						onesc="Cmd('script Quests.InputOnEsc()')"
+						onenter="Cmd('Script Quests.InputOnEnter()')"
+						onmousewheeldownlua="Quests.WheelDown()"
+						onmousewheeluplua="Quests.WheelUp()"
+					/>
+					<label name="quests_menu_search_input_cover" x="5s" y="-1s" noclick="true" textvalign="center" valign="center" color="0 0 0 0.7" font="maindyn_20" content="achievements_search"/>				
+					<instance name="iconButton" id="quests_menu_search_go_btn"
+						icon="/ui/main/shared/textures/search.tga" iconsize="80"
+						width="100@" height="100%" align="right" valign="center" borderthickness="4s"
+					/>						
+					<instance name="iconButton" id="quests_menu_search_close_btn"
+						icon="/ui/main/shared/textures/close.tga" iconsize="70"
+						visible="0"
+						width="100@" height="100%" align="right" valign="center" borderthickness="4s" colorized="1"
+					/>
+				</panel>
+			</panel>
+
+		</panel>
+		
+		<panel group="profile_animation_quests_widgets" x="260s" noclick="1" float="bottom" padding="15s" height="-120s" width="-260s" y="90s">
+		
+			<panel y="0" name="main_center_content_quests_content" noclick="1">
+
+				<listbox name="main_center_content_quests_scrollbox" width="865s" height="500s" color="invisible"
+					visible="1" valign="top" align="center" clip="1" itemwidth="210s" itemheight="250s"
+					noclick="0" float="right" wrap="row"
+					vscrollboxstep="4.0h"
+					scrollbarplaceholder="0"
+					scrolltexture="/ui/shared/textures/slider.tga"
+					handleheight="64s"
+					scrollbarsize="32s"
+					exteriorscrollbars="1"
+					vscrollbar="1"
+					hscrollbar="0"
+					horizontal="false"
+					clipx="0"
+					clipy="0"
+					clipwidth="0"
+					clipheight="0"
+					scrollbaroffset="0"
+					clipoffsetx="0"
+					clipoffsety="0"
+					onslide=""
+					hoverselect="false"
+					select="false"
+				>			
+				</listbox>				
+				
+				
+			</panel>		
+		
+		</panel>
+	
+	</template>
+
+</package>

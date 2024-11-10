@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="body_01">
+	<definitions>
+		<particlesystem name="system0" space="world">
+
+			<controller roll="0" scale="2.8">
+				<twopointemitter
+					position_a="0 0"
+					position_b="0 0 0"
+					spawnrate="340"
+					timenudge="-100"
+					minparticlelife="2800"
+					maxparticlelife="4600"	
+					angle="0"
+					offsetsphere="60 0 0"
+					material="/shared/effects/materials/neb_add.material"
+				>
+
+					<particle
+						startcolor="0.0 0.0 0.0"
+						midcolor=".4 .4 .3"
+						endcolor="-1 "
+						midcolorpos="0.5"
+						startalpha="1.0"
+						endalpha="1.0"
+						maxangle="360"
+						minendsize="36"
+						startsize="16"
+						maxendsize="39"
+						flare="0"
+						startanchor="1"
+						endanchor="1"						
+					/>		
+
+					<particle
+						startcolor="0.0 0.0 0.0"
+						midcolor=".4 .4 .3"
+						endcolor="-1 "
+						midcolorpos="0.5"
+						startalpha="1.0"
+						endalpha="1.0"
+						maxangle="360"
+						minendsize="36"
+						startsize="16"
+						maxendsize="39"
+						flare="0"
+						startanchor="1"
+						endanchor="1"						
+					/>	
+				</twopointemitter>				
+			</controller>				
+      </particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

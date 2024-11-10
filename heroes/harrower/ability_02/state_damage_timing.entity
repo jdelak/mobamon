@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Harrower_Ability2_DamageTiming"
+	
+	icon="/shared/icons/slow.tga"
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	impactinterval="150"
+	
+>
+
+	<onimpact>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<setvar0 a="result" b="accumulator" op="mult" />
+		<damage source="source_entity" effecttype="Magic" significant="true" amount="1" b="var0" op="mult" />
+		<playeffect effect="effects/impact.effect" target="target_entity" source="target_entity"/>
+	</onimpact>
+</state>

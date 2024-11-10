@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gadget
+	name="Gadget_TowerMaster_Vision"
+
+	icon=""
+	portrait=""
+	model=""
+	
+	preglobalscale="1.0"
+	modelscale="1.0"
+	effectscale="1.0"
+	boundsheight="0"
+	radiusheight="0"
+	boundsradius="0"
+	isselectable="false"
+	selectionradius="0"
+	targetoffset="0 0 0"
+
+	canrotate="false"
+	ismobile="false"
+
+	attacktype="none"
+	combattype="Ranged"
+
+	sightrangeday="100"
+	sightrangenight="100"
+	unitwalking="true"
+	canattack="false"
+	deathtime="0"
+	corpsetime="0"
+	
+	invulnerable="true"
+	hidealtinfo="true"
+	flying="false"
+	drawonmap="false"
+	lifetime="3000"
+>
+
+	<onexpired>
+		<compare a="accumulator" b="1" op="eq">
+			<playeffect effect="effects/death_sound.effect" visibility="enemies" target="source_position" source="source_position" occlude="false"/>
+		</compare>
+	</onexpired>
+</gadget>
+

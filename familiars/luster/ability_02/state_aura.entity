@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+    name="State_Greed_Ability"
+
+
+    ishidden="true"
+    icon="icon.tga"
+
+>
+    <onkilled>
+        <targettype type="player_controlled" />
+		<else>
+			<condition test="not_hasstate State_Luster_Killed" target="source_entity">
+				<pushentity entity="this_spawner_entity" />
+				<condition test="not_hasstate State_Luster_Not_Ready" target="stack_proxy_entity">	
+						<spawnprojectile name="Projectile_Luster_Return" source="source_entity" target="this_inflictor_entity" owner="this_inflictor_entity"/>
+						<applystate name="State_Luster_Killed" continuous="true" target="source_entity" />
+						<applystate name="State_Luster_Not_Ready" duration="15000" target="stack_proxy_entity" />
+						<playeffect effect="effects/convert.effect" source="this_owner_entity" target="this_owner_entity"/>
+						<playanim name="death_gib_1" target="source_entity" />
+						<setvar0 a="source_max_gold_split_bounty_per_player" source="source_entity" />
+						<givegold amount="var0" position="source_entity" target="this_inflictor_entity" />
+						<startcooldown entity="this_spawner_entity" />
+				</condition>
+			</condition>
+		</else>
+    </onkilled>
+	
+    <onframe>
+	</onframe>
+
+	<modifier key="Lustergoldpassive1" modpriority="100">
+		<onkilled>
+	        <targettype type="player_controlled" />
+			<else>
+				<condition test="not_hasstate State_Luster_Killed" target="source_entity">
+					<pushentity entity="this_spawner_entity" />
+					<condition test="not_hasstate State_Luster_Not_Ready" target="stack_proxy_entity">
+							<spawnprojectile name="Projectile_Luster_Return" source="source_entity" target="this_inflictor_entity" owner="this_inflictor_entity"/>
+							<applystate name="State_Luster_Killed" continuous="true" target="source_entity" />
+							<applystate name="State_Luster_Not_Ready" duration="15000" target="stack_proxy_entity" />
+							<playeffect effect="effects/convert.effect" source="this_owner_entity" target="this_owner_entity"/>
+							<playanim name="death_gib_1" target="source_entity" />
+							<setvar0 a="source_max_gold_split_bounty_per_player" source="source_entity" />
+							<givegold amount="2" target="this_inflictor_entity" position="this_inflictor_entity" />
+							<givegold amount="var0" position="source_entity" target="this_inflictor_entity" />
+							<startcooldown entity="this_spawner_entity" />
+					</condition>
+				</condition>
+			</else>
+	    </onkilled>
+	</modifier>
+
+	<modifier key="Lustergoldpassive2" modpriority="100">
+		<onkilled>
+	        <targettype type="player_controlled" />
+			<else>
+				<condition test="not_hasstate State_Luster_Killed" target="source_entity">
+					<pushentity entity="this_spawner_entity" />
+					<condition test="not_hasstate State_Luster_Not_Ready" target="stack_proxy_entity">
+							<spawnprojectile name="Projectile_Luster_Return" source="source_entity" target="this_inflictor_entity" owner="this_inflictor_entity"/>
+							<applystate name="State_Luster_Killed" continuous="true" target="source_entity" />
+							<applystate name="State_Luster_Not_Ready" duration="15000" target="stack_proxy_entity" />
+							<playeffect effect="effects/convert.effect" source="this_owner_entity" target="this_owner_entity"/>
+							<playanim name="death_gib_1" target="source_entity" />
+							<setvar0 a="source_max_gold_split_bounty_per_player" source="source_entity" />
+							<givegold amount="2" target="this_inflictor_entity" position="this_inflictor_entity" />
+							<givegold amount="var0" position="source_entity" target="this_inflictor_entity" />
+							<startcooldown entity="this_spawner_entity" />
+					</condition>
+				</condition>
+			</else>
+	    </onkilled>
+	</modifier>
+
+	<modifier key="Lustergoldpassive3" modpriority="100">
+		<onkilled>
+	        <targettype type="player_controlled" />
+			<else>
+				<condition test="not_hasstate State_Luster_Killed" target="source_entity">
+					<pushentity entity="this_spawner_entity" />
+					<condition test="not_hasstate State_Luster_Not_Ready" target="stack_proxy_entity">
+							<spawnprojectile name="Projectile_Luster_Return" source="source_entity" target="this_inflictor_entity" owner="this_inflictor_entity"/>
+							<applystate name="State_Luster_Killed" continuous="true" target="source_entity" />
+							<applystate name="State_Luster_Not_Ready" duration="15000" target="stack_proxy_entity" />
+							<playeffect effect="effects/convert.effect" source="this_owner_entity" target="this_owner_entity"/>
+							<playanim name="death_gib_1" target="source_entity" />
+							<setvar0 a="source_max_gold_split_bounty_per_player" source="source_entity" />
+							<givegold amount="2" target="this_inflictor_entity" position="this_inflictor_entity" />
+							<givegold amount="var0" position="source_entity" target="this_inflictor_entity" />
+							<startcooldown entity="this_spawner_entity" />
+					</condition>
+				</condition>
+			</else>
+	    </onkilled>
+	</modifier>
+</state>

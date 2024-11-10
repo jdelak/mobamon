@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_TowerMaster3"
+
+	
+	
+	icon="icon.tga"
+	actiontype="passive"
+
+	cooldowntime="5000"
+>
+	<ondamaged>
+		<applystate name="State_TowerMaster_Ability3" duration="5000" />
+		<isready>
+			<starttimer duration="4000" />
+			<startcooldown/>
+		</isready>
+	</ondamaged>
+
+	<ontimer>
+		<targettype type="alive" target="source_entity">
+			<spawnaffector name="Affector_TowerMaster_Ability3" target="source_position" />
+		</targettype>
+	</ontimer>
+	
+	<modifier key="tutorial3" modpriority="100"
+	>
+	
+		<ontimer>
+			<condition test="not_hasstate State_Tutorial3_PauseStun" target="source_entity">
+				<spawnaffector name="Affector_TowerMaster_Ability3" target="source_position" />
+			</condition>
+		</ontimer>
+	</modifier>
+	
+</ability>

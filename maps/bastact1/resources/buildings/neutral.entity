@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Mini_Spider_Enemy1"
+	
+	icon="icon.tga"
+	portrait="icon.tga"
+	model="model.mdf"
+	skin=""
+	
+	passiveeffect=""
+	spawneffect=""
+	respawneffect=""
+	selectsound=""
+	orderconfirmedsound=""
+	
+	preglobalscale="1.98"
+	modelscale=".75"
+	effectscale=".75"
+	boundsheight="64"
+	boundsradius="16"
+	selectionradius="36"
+	targetoffset="0 0 54"
+	searchradius="70"
+	minsearchradius="48"
+	searchheight="112"
+
+	movespeed="700"
+	turnrate="320"
+
+	maxhealth="2000"
+	healthregen="0"
+	maxmana="0"
+	manaregen="0"
+
+	armor="0"
+	magicarmor="0"
+
+	cancarryitems="false"
+	inventory0=""
+	inventory1=""
+	inventory2=""
+	inventory3=""
+	inventory4=""
+	inventory5=""
+	inventory6=""
+	inventory7=""
+
+
+	canattack="true"
+	ismobile="true"
+	attackduration="1000"
+	attackactiontime="550"
+	attackcooldown="1000"
+	attackdamagemin="14"
+	attackdamagemax="14"
+	attacknumanims="2"
+	attackoffset="21 95 90"
+	attackprojectile=""
+	attackrange="200"
+	attackstarteffect=""
+	attackactioneffect=""
+	attackimpacteffect="/shared/sounds/impacts/impact_medium.effect"
+	attacktype="melee"
+	combattype="Melee"
+	attackdamagetype="AttackDamage"
+	attacktargetscheme="player_controlled_units"
+
+	aggrorange="0"
+	sightrangeday="800"
+	sightrangenight="800"
+
+	experiencebounty="29"
+	goldbountymin="0"
+	goldbountymax="0"
+	splitgoldbounty="0"
+  
+	maxdivisiblebountyperplayer="30"
+	totaldivisiblebounty="30"
+	
+	unitwalking="false"
+	pathing="true"
+	
+	corpsetime="15000"
+	corpsefadetime="3900"
+	corpsefadeeffect="/shared/effects/corpse_sink.effect"
+	
+	
+>
+
+	<onframe>
+		
+		<areaofeffect
+			radius="800"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			center="this_entity"
+			ignoreinvulnerable="true"
+			maximpactspertarget="1"
+		>
+					
+			
+		
+			
+
+				
+			
+					<order command="attack" target="target_entity"/>
+						
+			 		
+					
+			
+					</areaofeffect>
+		
+						
+	</onframe>
+
+	<onrespawn>
+		<delete target="this_entity" />
+	</onrespawn>
+
+</pet>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<panel name="mainPets" noclick="true" visible="false">
+	
+		<!-- Pet and Feeding -->
+		<panel name="mainPetsFeed" x="385s" width="390s" valign="bottom" y="-45s" grow="true" visible="1" noclick="true" >
+						
+			<panel y="5s" height="300s" noclick="true" >
+				<panel y="-195s" x="50s" width="100@" noclick="true" group="pet_animation_widgets">
+				
+					<!-- Model (current pet) -->
+					<modelpanel
+						name="mainPetsCurrentPetModel" noclick="1" color="1 1 1 1"
+						depthclear="true" depthcompress="false"
+						lookat="false"
+						cameranear="750.0" camerafar="1500.0" cameradistance="30" cameraangles="0 0 0" camerafov="6"
+						camerapos="0 -1100 17" 
+						modelpos="0 50 0" modelangles="-20 0 -150" modelscale="0.625"
+						sunazimuth="270" sunaltitude="50" suncolor="0.9 0.9 0.9" ambientcolor="0.5 0.5 0.5"
+						resourcecontext="pets_model_pet"
+						anim="idle"
+						x="0" y="-30%" align="center" valign="center" width="400@" height="400%"
+					/>
+				</panel>
+			</panel>
+			<panel y="122s" x="50s" height="82s" width="350s" noclick="true" group="pet_animation_widgets">
+				<panel width="250s" align="center" float="right" padding="6s" noclick="true">
+					<instance name="gearsetPetEntry" id="1" />
+					<instance name="gearsetPetEntry" id="2" />
+					<instance name="gearsetPetEntry" id="3" />
+				</panel>
+			</panel>
+			<panel y="212s" x="7s" height="82s" noclick="true" group="pet_animation_widgets" >
+				<panel width="245s" align="center" noclick="true" >
+					<instance name="pet_main_btn_template" id="mainPetsskinUnlockButton" font="maindyn_36" shadow="false" visible="false" borderthickness="10s" label="corral_purchase_pet_skin" />
+					<instance name="pet_main_btn_template" id="mainPetsUnlockButton" font="maindyn_36" shadow="false" visible="false" borderthickness="10s" label="corral_unlock_pet" />
+				</panel>
+			</panel>
+		</panel>
+		
+		<!-- Pets List -->
+		<scrollbox name="mainPetsList_scrollbox"
+				y="20s" valign="center" width="374s" height="458s"
+				noclick="true"
+				onshow="SetClipAreaToChild(); SetVScrollbarStep('140s');"
+				scrolltexture="/ui/shared/textures/slider.tga"
+				scrollbaroffset="0h" scrollbarsize="32s" handlewidth="32s" handleheight="64s" vscrollbar="1" exteriorscrollbars="1"
+				hscrollbar="0" horizontal="false"	
+				onloadlua="
+					self:GetWidget('mainPetsList_scrollbox_vscroll'):SetVisible(0)
+					self:GetWidget('mainPetsList_scrollbox_vscroll'):SetCallback('onslide', function(widget)
+						local trigger_Corral		= LuaTrigger.GetTrigger('Corral')
+						local value = self:GetWidget('mainPetsList_scrollbox_vscroll'):GetValue()
+						if (tonumber(value) > 0) and (trigger_Corral.initialPetPicked) then
+							value = 1
+						else
+							value = 0
+						end
+						self:GetWidget('mainPetsList_ScrollBar'):SetValue(value)
+					end)
+				"
+				onslidelua="
+					local trigger_Corral		= LuaTrigger.GetTrigger('Corral')
+					if (not trigger_Corral.initialPetPicked) and self:GetWidget('mainPetsList_ScrollBar') then
+						self:GetWidget('mainPetsList_scrollbox_vscroll'):SetValue(0)
+						self:GetWidget('mainPetsList_ScrollBar'):SetValue(0)
+					end			
+				"
+			>
+			<panel name="mainPetsList" grow="1" growinvis="0" regrow="1" width="380s" float="bottom" padding="14s" visible="1">
+				<anchor y="8s"/>
+				<instance name="mainPetsListRow" id1="0" id2="1" id3="2"/>
+				<instance name="mainPetsListRow" id1="3" id2="4" id3="5" visible="1"/>
+				<instance name="mainPetsListRow" id1="6" id2="7" id3="8" visible="1"/>
+				<instance name="mainPetsListRow" id1="9" id2="10" id3="11" visible="1"/>
+				<instance name="mainPetsListRow" id1="12" id2="13" id3="14" visible="1"/>
+				<!--
+				<instance name="mainPetsListRow" id1="15" id2="16" id3="17" visible="1"/>
+				<instance name="mainPetsListRow" id1="18" id2="19" id3="20" visible="1"/>
+				-->
+			</panel>
+		</scrollbox>
+
+		<panel y="20s" valign="center" width="374s" height="458s" noclick="true" >
+			<scrollbar
+				name="mainPetsList_ScrollBar" align="right" valign="center" width="32s" height="100%" x="32s" group="pet_animation_widgets"
+				texture="/ui/shared/textures/slider.tga" vertical="true"
+				scrollbaroffset="0h" scrollbarsize="32s" handlewidth="32s" handleheight="64s" vscrollbar="1" exteriorscrollbars="1" step="1" minvalue="0" maxvalue="1"
+				hscrollbar="0" horizontal="false"		
+				onslidelua="
+					local trigger_Corral		= LuaTrigger.GetTrigger('Corral')
+					if (trigger_Corral.initialPetPicked) then
+						local value = self:GetValue()
+						value = math.min(1, value)
+						value = math.max(0, value)
+						value = value * 160
+						self:GetWidget('mainPetsList_scrollbox_vscroll'):SetValue(value .. 's')
+					else
+						self:GetWidget('mainPetsList_scrollbox_vscroll'):SetValue(0)
+					end
+				"
+			/>		
+		</panel>
+
+		<!-- First Time Message -->
+		<panel name="mainPetsSelectFirstPet" grow="1" x="40s" y="345s" width="300s" noclick="1" visible="0">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="14s" color=".08 .08 .08 1"/>
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="14s" color="invisible"/>
+			<panel y="15s" grow="1" width="100%" hmargin="15s" noclick="1" float="bottom">
+				<label fity="1" fitypadding="10s" textalign="center" style="h1" wrap="true" content="corral_first_header" sticky="true" stickytoinvis="false"/>
+				<label fity="1" fitypadding="20s" textalign="center" style="labelBase" font="maindyn_20" wrap="true" content="corral_first_info" sticky="true" stickytoinvis="false"/>
+			</panel>
+		</panel>
+				
+		<!-- Pet Info (mostly ability info) -->
+		<panel name="mainPetsInfo" align="left" x="755s" y="224s" width="520s" group="pet_animation_widgets" visible="1">
+			
+			<image texture="/ui/main/shared/textures/circular.tga" y="-130s" width="720s" height="730s" align="center" valign="center" color=".32 .71 .87 .6" noclick="1" />
+			
+			<panel x="0s">
+				<label name="mainPetsCurrentPetName" textalign="center" textvalign="center" height="3h" style="h1" font="maindyn_48" content="" sticky="true" stickytoinvis="false"/>
+				<label name="mainPetsCurrentPetLevel" textalign="center" y="34s" style="labelBase" color="0.8 0.8 0.8 1" font="maindyn_20" content="" sticky="true" stickytoinvis="false"/>
+				<label name="mainPetsCurrentPetDescription" textalign="center" y="68s" x="40s" width="85%" style="labelBase" font="maindyn_26" color="white" wrap="true" content="" sticky="true" stickytoinvis="false"/>
+			</panel>
+			
+			<panel y="140s" float="bottom" padding="10s" grow="true" regrow="true" growinvis="false" width="100%">
+				<instance name="mainPetsAbility" id="1"/>
+				<instance name="mainPetsAbility" id="2"/>
+				<instance name="mainPetsAbility" id="3"/>
+			</panel>
+		</panel>
+		
+		<!-- XP Bar and Contents -->
+		<panel name="mainPetsXP" align="left" x="758s" y="610s" width="520s" group="pet_animation_widgets" float="bottom" padding="0s" visible="0"> <!-- Prog 83 -->
+			<panel width="100%" height="75s" float="right" padding="6s">
+				<instance name="mainPetsXPSegment" id="1"/>
+				<instance name="mainPetsXPSegment" id="2"/>
+				<instance name="mainPetsXPSegment" id="3"/>
+				<instance name="mainPetsXPSegment" id="4"/>
+				<instance name="mainPetsXPSegment" id="5"/>
+				<instance name="mainPetsXPSegment" id="6"/>
+				<instance name="mainPetsXPSegment" id="7"/>
+				<instance name="mainPetsXPSegment" id="8"/>
+				<instance name="mainPetsXPSegment" id="9"/>
+			</panel>
+			
+			<label name="mainPetsNextUnlock" textalign="left" style="labelBase" color="0.8 0.8 0.8 1" font="maindyn_20" content="Next Unlock at Account Level 12" sticky="true" stickytoinvis="false"/>
+		</panel>
+		
+		<include file="/ui/main/pets/pets_prompts.package"/>
+		<include file="/ui/main/pets/pets_boost_food.package"/>
+		
+	</panel><!-- end mainPets (container) -->
+
+
+
+</package>

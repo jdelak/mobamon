@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Razer_Revealed"  
+	icon="icon.tga"
+	effecttype=""
+	ishidden="true"
+	revealed="true"
+	unitwalking="true"
+>
+	<onexpired>
+		<playeffect effect="effects\death.effect" target="target_position" source="target_position" occlude="true" />
+		<spawnprojectile name="Projectile_Razer_Smoke" source="target_position" target="source_entity" />
+		<delete target="target_entity" />
+		<expirestate name="State_Razer_Invis" target="source_entity" />
+	</onexpired>
+
+</state>

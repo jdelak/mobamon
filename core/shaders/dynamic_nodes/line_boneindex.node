@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="line_boneindex">
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="*" solution="ObjectBoneIndex" />
+	<case>
+		<dependency name="BoneIndex" type="uint4" source="BoneIndex" />
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<output name="Out" type="uint4" solution="ObjectBoneIndex" />
+		<?hlsl
+			Out = BoneIndex;
+		?>
+	</case>
+	<case>
+		<dependency name="BoneIndex" type="uint4" source="BoneIndex" />
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<output name="Out" type="uint4" solution="ObjectBoneIndex" />
+		<?hlsl
+			Out = BoneIndex;
+		?>
+	</case>
+	<case>
+		<dependency name="BoneIndex" type="float4" source="BoneIndex" />
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<output name="Out" type="float4" solution="ObjectBoneIndex" />
+		<?glsl
+			Out = BoneIndex;
+		?>
+	</case>
+	<case>
+		<dependency name="BoneIndex" type="int4" source="BoneIndex" />
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<output name="Out" type="int4" solution="ObjectBoneIndex" />
+		<?glsl
+			Out = BoneIndex;
+		?>
+	</case>
+</node>

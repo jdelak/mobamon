@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_SearchForEnemies"
+
+	radius="3000"
+	targetselection="all"
+	targetscheme="enemy_units"
+	lifetime="-1"
+	impactdelay="500"
+	maximpactspertarget="-1"
+	maxtotalimpacts="-1"
+	impactinterval="1000"
+>
+
+	<oninterval>
+		<areaofeffect
+			radius="3000"
+			targetselection="all"
+			targetscheme="enemy_units"
+			ignoreinvulnerable="false"
+			maximpactspertarget="1"
+			maxtotalimpacts="-1"
+			center="source_entity"
+		>
+		</areaofeffect>	
+		<else>
+			<setscriptvalue name="monsters_killed" value="1" />
+		 </else>
+	</oninterval>
+
+</affector>

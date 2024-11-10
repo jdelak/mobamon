@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+			
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="0.45"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<sound
+				life="3000"
+				delay="500"
+				volume="0.45"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_impact.wav"
+			/>
+
+ 			<template name="">
+				<trailemitter
+					bone="{zbone}"
+					position="0 0 0"
+					spawnrate="75"
+					particlelife="500"
+					texpostime="500"
+					texposscale="0.0"
+					texstretchscale=".4"
+					material="/shared/effects/smaterials/trail_blend.material"
+					subframepos="true"
+					startparticlealpha="1"
+					endparticlealpha="0"
+				>
+					<particle
+						startcolor=".3 .7 0"
+						midcolor=".3 .7 0"
+						endcolor=".3 .7 0"
+						midcolorpos=".2"
+						startsize="100"
+						endsize="0"
+						startalpha=".5"
+						endalpha="0"
+					/>
+				</trailemitter>
+
+				<trailemitter
+					spawnrate="75"
+					particlelife="500"
+					texpostime="500"
+					texposscale="0.0"
+					texstretchscale=".4"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					startparticlecolor="1 1 1"
+					endparticlecolor="0 0 0"
+				>
+					<particle
+						startcolor=".5 .5 0"
+						midcolor=".5 0 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="65"
+						midsize="65"
+						endsize="0"
+						midsizepos=".25"
+				 />
+				</trailemitter>
+			</template>
+			
+			<instance name=""/> 
+
+
+			<simpleemitter
+				count="1"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle
+				>
+				
+					<billboard
+						position="0 0 0"
+						life="400"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="1 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="300"
+						endsize="300"
+						depthbias="-25"
+					/>
+<!--
+					<billboard
+						position="0 0 0"
+						life="400"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".5 .5 0"
+						midcolor=".5 .5 0"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="200"
+						endsize="100"
+						depthbias="-25"
+					/>
+-->
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		<particlesystem name="system1" space="world" scale=".7">
+
+
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="100"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="25 25 25"
+				inheritvelocity=".1"
+			>
+				<particle
+					startcolor=".2 .15 0"
+					endcolor="0"
+					startscale="90"
+					endscale="90"
+					minheight="1"
+					maxheight="3"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<model
+				life="750"
+				model="pod_base/model.mdf"
+				anim="idle"
+				startscale=".25"
+				midscale=".75"
+				endscale="0"
+				midscalepos=".35"
+				startalpha="1"
+				endalpha="1"
+				color="1.2"
+				rollspeed="720"
+				roll="180"
+				minpitch="-90"
+				maxpitch="90"
+			/>
+
+			<light
+				expirelife="500"
+				startcolor="2 3 0"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				falloffend="200"
+				position="0 0 75"
+			/>
+
+
+		</particlesystem>
+
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnparticlesystem instance="instance1" particlesystem="system1" />
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+
+</effect>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			startalpha="0" 
+			endalpha="1"
+			life="1100"
+		/>		
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="1400"
+				falloffend="4000"
+				volume="0.35"
+				sample="../sounds/sfx_dharkwave_spawn.wav"
+			/>
+
+			<model
+				life="1100"
+				startalpha="0.5"
+				endalpha="0"
+				parentmodel="true"
+				parentskeleton="true"
+				material="/shared/effects/tp/tp2.material"				
+			>
+			</model>
+			
+			<light
+				position="0 0 100"
+				life="500"
+				startcolor="2.5 2.5 2.5"
+				midcolor="0.5 0.5 0.5"
+				endcolor="0.01"
+				midcolorpos=".2"
+				falloffstart="0"
+				falloffend="600"
+			/>
+			
+		</particlesystem>
+
+		<particlesystem name="system1" space="world" scale=".9">
+
+			<simpleemitter
+				position="0 0 50"
+				count="50"
+				spawnrate="5000"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 0 0"
+				minspeed="250"
+				maxspeed="600"
+				gravity="0"
+			>
+				<particle
+					turn="true"
+				> 
+				
+					<billboard
+						minlife="250"
+						maxlife="500"
+						color="0 0 0"
+						material="/shared/effects/smaterials/goop_drop.material"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+						midalphapos=".15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						directionalspace="local"
+						minstartscale="1"
+						maxstartscale="3"
+						endscale=".25"
+						depthbias="-50"
+					/>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

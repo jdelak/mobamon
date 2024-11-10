@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" >
+
+			<groundsprite
+				material="/shared/effects/smaterials/ring_ground.material"
+				startcolor=".4 0 0"
+				endcolor="0 0 0"
+				expirelife="500"
+				startsize="425"
+				endsize="425"
+			/>
+
+	</particlesystem>
+
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+	<waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+</thread>
+</effect>

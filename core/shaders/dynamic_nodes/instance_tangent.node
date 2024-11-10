@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="instance_tangent">
+	<dependency name="ObjectTangent" type="float3" source="ObjectTangent" />
+	<dependency name="InstanceRotate" type="float3x3" source="InstanceRotate" />
+	<output name="Out" type="float3" solution="WorldTangent" />
+	<?hlsl
+		Out = mul(ObjectTangent, InstanceRotate);
+	?>
+	<?glsl
+		Out = InstanceRotate * ObjectTangent;
+	?>
+</node>

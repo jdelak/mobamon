@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Eye_Of_Tempra_Empower_1"
+	
+	cost="1515"
+
+	casttime="0"
+	castactiontime="0"
+	casteffecttype="Magic"
+	targetradius="0"
+	targetmaterial=""
+	
+	showareacast="true" 
+	areacastmaterial="/shared/materials/area_cast_indicator_spokes.material"
+
+	actiontype="target_self"
+
+	
+>
+
+	<onimpact>
+		<setpos0 position="source_position" offsetspace="source_entity" offset="0 0 0" />
+		<killillusions />
+		<dispel type="StatusStealth" />
+		<breakchannel entity="target_entity" />
+		<spawnaffector name="Affector_Eye_Of_Tempra_Enchant1" target="pos0" />
+			
+		<spawnunit name="Gadget_Eye_Of_Tempra_Reveal" target="pos0" lifetime="2500" />
+		<startcooldown/>
+	</onimpact>
+
+</qualityitem>

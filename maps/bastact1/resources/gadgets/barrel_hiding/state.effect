@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" usentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			startcolor="0"
+			endcolor="0"
+			alpha="0" 
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				volume="1.0"
+				falloffstart="500"
+				falloffend="2400"
+				sample="/shared/sounds/sfx_fade_in.wav"
+			/>	
+						
+			<groundsprite
+				expirelife="500"
+				startcolor="0 0 0"
+				endcolor="0 0 0"
+				size="85"
+				startalpha=".5"
+				endalpha="0"
+				material="/shared/effects/smaterials/black_spot_ground.material"
+			/>
+			
+			<model
+				parentskeleton="1"
+				parentmodel="1"
+				expirelife="500"
+				material="black/material.material"
+				color=".25"
+				alpha=".6"
+				startscale="1"
+				endscale="1"
+			/>
+
+			<!-- <simpleemitter
+				position="0 0 -20"
+				spawnrate="50"
+				bone="_bone_centerofchest"
+				minparticlelife="300"
+				maxparticlelife="600"
+				material="/shared/effects/smaterials/snowy_smoke.material"
+				offsetsphere="30 30 0"
+				offsetradial="50 0 0"
+				direction="0 0 1"
+				depthbias="0"
+				directionalspace="world"
+			>
+				<particle 
+					startcolor="0"
+					endcolor="0"
+					startalpha="0"
+					midalpha=".2"
+					endalpha="0"
+					midalphapos=".25"
+					minangle="0"
+					maxangle="360"
+					minstartsize="100"
+					maxstartsize="200"
+					minendsize="0"
+					maxendsize="0"
+					minanglespeed="-60"
+					maxanglespeed="60"
+				/>
+			</simpleemitter>
+ -->
+
+
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="deferred_point_light_vs" nops="true">
+	<dependency name="HomogeneousPosition" type="float4" source="HomogeneousPosition" />
+	<dependency name="mProjInv" type="float4x4" source="mProjInv" />
+	<output name="Out" type="float3" solution="InterpolatedViewRay" />
+	<?hlsl
+		Out = mul(HomogeneousPosition, mProjInv).xyz;
+	?>
+	<?glsl
+		Out = (mProjInv * HomogeneousPosition).xyz;
+	?>
+</node>

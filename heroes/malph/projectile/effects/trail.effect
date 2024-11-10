@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale=".9">
+
+			<sound
+				life="3000"
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".35"
+				sample="../sounds/sfx_cast_%.wav"
+			/>
+
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="200"
+				maxparticlelife="400"
+				speed="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/sand_dots.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="180"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					color=".7 .6 .5"
+					startsize="50"
+					endsize="100"
+					startalpha="0"
+					midalpha=".65"
+					endalpha="0"
+					midalphapos=".25"
+					turn="true"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				spawnrate="100"
+				minparticlelife="150"
+				maxparticlelife="300"
+				speed="0"
+				acceleration="0"
+				position="0 0 0"
+				offsetsphere="10"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				directionalspace="local"
+			>
+				<particle 
+					turn="true"
+				>
+					<billboard
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						color=".7 .6 .5"
+						minlife="200"
+						maxlife="400"
+						minstartscale=".25"
+						maxstartscale=".5"
+						minendscale="1"
+						maxendscale="2"
+						depthbias="-100"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".25"
+						lockup="1"
+						lockright="1"
+						minpitch="45"
+						maxpitch="90"
+						directionalspace="local"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			<simpleemitter
+				spawnrate="50"
+				minparticlelife="300"
+				maxparticlelife="500"
+				speed="0"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="180"
+				direction="0 0 1"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					startcolor=".15 .1 0"
+					endcolor="0 0 0"
+					startscale="50"
+					minendscale="0"
+					maxendscale="25"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<model
+				position="0 0 0"
+				expirelife="0"
+				model="drill/model.mdf"
+				anim="idle"
+				color="1.2"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".2"
+				scale=".85"
+				rollspeed="1080"
+			>
+
+			</model>
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				count="6"
+				spawnrate="5000"
+				particlelife="2000"
+			>
+				<particle>
+				
+					<template name="">
+					
+						<billboard
+						bone="_bone_centerofchest"
+							delay="{zdelay}"
+							material="/shared/effects/smaterials/sand_poofy_no_center.material"
+							color=".7 .6 .5"
+							minlife="200"
+							maxlife="600"
+							position="0 0 0"
+							startscale="1"
+							minendscale="1"
+							maxendscale="3"
+							depthbias="-100"
+							startalpha="0"
+							midalpha=".65"
+							endalpha="0"
+							midalphapos=".25"
+							lockup="1"
+							lockright="1"
+							pitch="-45"
+							minroll="0"
+							maxroll="360"
+						/>
+						
+						<billboard
+							life="150"
+							startcolor=".175 .1 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							material="/shared/effects/smaterials/whitedot.material"
+							scale="3"
+							depthbias="-100"
+						/>
+
+					</template>
+					
+					<instance name="" zdelay="0"/>
+			
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

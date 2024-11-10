@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="Bastact1_State_Executioner2_Ability5"
+
+	icon="icon.tga"	
+	ishidden="true"
+	passiveeffect="effects/whirlwind_level_2.effect"
+	disarmed="true"
+	
+	effecttype=""
+	allowtransfer="true"
+	invulnerable="true"
+	impactinterval="1375"
+>
+
+	<oninflict>
+		<playanim name="ability_1_spin" target="source_entity"/>
+		<setaccumulator value="1" />
+		<propareaeffect center="source_entity" radius="300" anim="flamehit" />
+		
+		<areaofeffect
+			radius="550"
+			targetselection="all"
+			targetscheme="Rook_Bastact1_Ult"
+			effecttype="Magic Splash"
+			maxtotalimpacts="-1"
+			ignore="source_entity"
+			ignoreinvulnerable="false"
+		>
+			<combatevent effecttype="Counterable">				
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<setvar0 a="result" b="4" op="div" />
+					<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+
+		<propareaeffect center="source_entity" radius="300" anim="flamehit" />
+		<areaofeffect
+			radius="5000"
+			targetselection="closest"
+			targetscheme="Bastact1_Spinpos_Gadget"
+			effecttype="Magic Splash"
+			center="source_entity"
+			maxtotalimpacts="1"
+			ignore="proxy_entity"
+			ignoreinvulnerable="true"
+		>
+			
+			<setproxy target="target_entity" /> <!-- This, combined with the ignore="proxy_entity" line in the AOE check, makes sure he doesn't select the previously-selected gadget target -->
+
+			<spawnprojectile name="Bastact1_Projectile_Executioner_Ability5_Cast" target="target_entity" bind="source_entity" source="source_entity" pushentity="true" /> 
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</areaofeffect>
+
+		<compare a="result" b="0" op="gt">
+			<playeffect effect="effects/sound.effect" source="source_entity" target="source_entity" />
+		</compare>
+	</oninflict>
+
+	<onimpact>
+		<playanim name="ability_1_spin" target="source_entity"/>
+		<pushentityproxy entity="proxy_entity" />
+		<spawnprojectile name="Bastact1_Projectile_Executioner_Ability5_Cast" target="stack_entity" bind="source_entity" source="source_entity" /> 
+		<setproxy target="stack_entity" />
+
+		<setaccumulator value="1" valueb="accumulator" valueop="add" />
+		<compare a="accumulator" b="4" op="eq">
+			<playanim name="idle" target="source_entity" />
+		</compare>
+
+	</onimpact>
+
+	<onframe>
+		<areaofeffect
+			radius="335"
+			targetselection="all"
+			targetscheme="Rook_Bastact1_Ult"
+			effecttype="Magic Splash"
+			maxtotalimpacts="1"
+			ignore="source_entity"
+			ignoreinvulnerable="false"
+		>
+
+			<combatevent effecttype="Counterable">
+				
+				<onimpact>
+					<getconstant name="damage" adjustmentsource="this_entity" />
+					<setvar0 a="result" b="4" op="div" />
+					<damage effecttype="Magic Splash" amount="1" b="var0" op="mult" />
+					<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity" />
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+	</onframe>	
+
+	<onexpired>
+		<print text="expired" />
+		<applystate target="source_entity" name="State_Stunned" duration="6000" />
+		<playanim name="stunned_1" />
+	</onexpired>	
+</state>

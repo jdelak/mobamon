@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pet
+	name="Pet_Bo_Ability3"
+
+	model="effects/fountain/model.mdf"
+	icon="icon.tga"
+	portrait="icon.tga"
+	unitwalking="true"
+	cliffwalking="true"
+	buildingwalking="true"
+	diewithowner="true"
+	
+	
+canturn="false"
+	
+	passiveeffect="effects/state_fountain.effect"
+	isselectable="true"
+	iscontrollable="false"
+	preglobalscale="1.8"
+	modelscale="1.1"
+	effectscale="1.1"
+	boundsheight="150"
+	boundsradius="10"
+	
+	searchradius="70"
+	minsearchradius="48"
+	searchheight="212"
+	
+	targetoffset="0 0 0"
+
+	sightrangeday="1600"
+	sightrangenight="1600"
+	drawonmap="true"
+	invulnerable="false"
+	canattack="false"
+
+	corpsetime="0"
+	corpsefadetime="0"
+	deathtime="1000"
+	
+	lifetime="10000"
+	immunity="GadgetImmunity"
+	nothreat="true"
+
+	hidealtinfo="false"
+	
+	maxhealth="2"
+	
+	canrotate="false"
+	ismobile="false"
+	
+	goldbountymin="35"
+	goldbountymax="35"
+	experiencebounty="75"
+
+	infoheight="275"
+
+	unittype="PseudoPet"
+
+>
+
+	<aura state="State_Bo_Ability3_Regen" radius="550" targetscheme="ally_units" />
+	
+	<ondamaged>
+		<changedamage b="1" op="min"/>
+	</ondamaged>
+	
+	<onspawn>
+		<playeffect effect="effects/ring.effect" source="this_entity" occlude="true" visibility="allies"/>
+	</onspawn>
+	
+	<ondeath>
+		<resettimer entity="proxy_entity" />
+	</ondeath>
+	
+	<onexpired>
+		<resettimer entity="proxy_entity" />
+	</onexpired>
+</pet>

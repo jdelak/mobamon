@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_MoveGuard"
+
+	radius="250"
+	targetselection="all"
+	targetscheme="patrol_guard"
+	lifetime="-1"
+	maximpactspertarget="-1"
+	impactinterval="5000"
+
+>
+	<onimpact>
+		<condition test="hasstate State_IgnoreAffector_Guard_Enemy" target="target_entity" >
+		</condition>
+			<else>	
+				<wait duration="5000" />
+				<order command="move" source="target_entity" target="this_proxy_entity" queue="none" />
+			</else>
+	</onimpact>
+</affector>

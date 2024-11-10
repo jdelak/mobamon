@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Shank3"
+
+	icon="icon.tga"
+	
+	casttime="250"
+	castactiontime="250"
+
+	casteffect="effects/sound.effect"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="target_self"
+	
+	manacost="75"
+	cooldowntime="30000"
+	alwaysshowtimer="true"
+
+	maxcharges="3"
+>
+
+	<!--Display Only-->
+	<constant name="resistance" value="9,12,15,18" adjustment="none" />
+	<!--Display Only-->
+	<constant name="attackspeed" value="24,33,42,51" adjustment="none" />
+	
+	<onimpact>
+		<addcharges count="3"/>
+		<applystate name="State_Shank_Ability3_Press" target="source_entity" duration="4500" />
+		<applystate name="State_Shank_Ability3" target="source_entity" duration="4500" />
+		<starttimer duration="4500" />
+	</onimpact>
+	
+	<onattackstart>
+		<applystate name="State_Shank_Ability3" target="source_entity" duration="4500" />
+	</onattackstart>
+
+	<onattackimpact>
+		<addcharges/>
+		<starttimer duration="4500" />
+	</onattackimpact>
+	
+
+	<ontimer>
+		<setcharges a="0" />
+	</ontimer>
+
+	<ondeath>
+		<setcharges a="0" />
+	</ondeath>
+	
+	
+	
+	
+
+	<modifier key="gear_1" modpriority="1"
+	>
+		<!--Display Only-->
+		<constant name="resistance" value="9,12,15,18" adjustment="none" />
+		<!--Display Only-->
+		<constant name="attackspeed" value="24,33,42,51" adjustment="none" />
+
+		<onimpact>
+			<addcharges count="3"/>
+			<applystate name="State_Shank_Ability3_Press" target="source_entity" duration="4500" />
+			<applystate name="State_Shank_gear_1_Ability3" target="source_entity" duration="4500" />
+			<starttimer duration="4500" />
+		</onimpact>
+		
+		<onattackstart>
+			<applystate name="State_Shank_gear_1_Ability3" target="source_entity" duration="4500" />
+		</onattackstart>
+
+		<onattackimpact>
+			<addcharges/>
+			<starttimer duration="4500" />
+		</onattackimpact>
+
+		<ontimer>
+			<setcharges a="0" />
+		</ontimer>
+
+		<ondeath>
+			<setcharges a="0" />
+		</ondeath>
+
+	</modifier>
+
+</ability>

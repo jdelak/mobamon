@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="true" useentityeffectscale="1">
+	<definitions>
+	
+		<simpleemitter
+			name="trail_01"
+			life="1000"
+			spawnrate="100"
+			minparticlelife="1000"
+			maxparticlelife="3000"
+			startparticlealpha="1"
+			midparticlealpha="1"
+			endparticlealpha="0"
+			position="0 0 0"
+			speed="25"
+			material="/shared/effects/smaterials/drops.material"
+		>
+			<particle
+				color="1 0 1"
+				minstartsize="5"
+				maxstartsize="20"
+				minendsize="0"
+				maxendsize="10"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".1"
+			/>
+		</simpleemitter>
+		
+		<particlesystem name="system0" space="world" >
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume=".7"
+				sample="../sounds/impact.wav"
+			/>
+			
+			<trackeremitter
+				count="6"
+				bone="_bone_centerofchest"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				tracktype="linear"
+				trackspeed="8"
+				drag="0"
+				spawnrate="2000"
+				particlelife="3000"
+				gravity="-50"
+				offsetsphere="0 0 0"
+				minspeed="250"
+				maxspeed="700"
+				acceleration="60.0"
+				direction="0.0 0.0 1.0"
+				inheritvelocity="0.0"
+				distancelife="true"
+			>
+				<particle
+					emitter0="trail_01"
+				/>
+			</trackeremitter>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>
+

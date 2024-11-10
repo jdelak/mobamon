@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" usentityeffectscale="1">
+
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			startalpha="0" 
+			endalpha="1"
+			life="1100"
+		/>		
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="250"
+				falloffend="1500"
+				volume="0.15"
+				sample="/npcs/creeps/golem/sounds/sfx_spawn.wav"
+			/>
+
+			<model
+				life="1100"
+				startalpha="0.5"
+				endalpha="0"
+				parentmodel="true"
+				parentskeleton="true"
+				material="/shared/effects/tp/tp2.material"				
+			>
+			</model>
+			<light
+				position="0 0 100"
+				life="500"
+				startcolor="2.5 2.5 2.5"
+				midcolor="0.5 0.5 0.5"
+				endcolor="0.01"
+				midcolorpos=".2"
+				falloffstart="0"
+				falloffend="600"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier		 instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

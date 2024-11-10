@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Vex_Ability1"
+
+	
+	
+	icon="icon.tga"
+	passiveeffect=""
+	ishidden="true"
+	impactinterval="50"
+	maxcharges="4"
+
+>
+	<oninflict>
+		<playeffect effect="effects/sound.effect" target="this_proxy_entity" source="this_proxy_entity" />
+		<setaccumulator value="0" />
+	</oninflict>
+
+	<onimpact>
+		<compare a="accumulator" b="0" op="eq">
+			<setaccumulator value="1" />
+			<chance threshold="0.5">
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="-22 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="-10 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</chance>
+			<else>
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="-60 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="-20 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</else>
+		</compare>
+		<else>
+			<setaccumulator value="0" />
+			<chance threshold="0.5">
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="-100 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="-30 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</chance>
+			<else>
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="-140 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="-40 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</else>
+		</else>
+		
+		<compare a="accumulator" b="0" op="eq">
+			<chance threshold="0.5">
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="23 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="10 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</chance>
+			<else>
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="60 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="20 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</else>
+		</compare>
+		<else>
+			<chance threshold="0.5">
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="100 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="30 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</chance>
+			<else>
+					<setpos0 position="this_proxy_entity" offsetspace="this_proxy_entity" offset="140 0 0" />
+					<spawnprojectile
+					name="Projectile_Vex_Ability1_Orbit"
+					source="source_entity"
+					target="pos0"
+					offset="40 100 80"
+					offsetspace="this_proxy_entity"
+					/>
+			</else>
+		</else>
+
+	</onimpact>
+</state>

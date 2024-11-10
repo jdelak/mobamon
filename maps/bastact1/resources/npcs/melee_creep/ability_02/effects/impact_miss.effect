@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				life="3300"
+				falloffstart="500"
+				falloffend="3000"
+				volume="0.85"
+				sample="../../sounds/sfx_destroy.wav"
+			/>
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0.5"
+				endcolor="0"
+				life="200"
+				startscale="1"
+				endscale="10"
+				position="0 0 100"
+				depthbias="0"
+			/>
+			
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".7"
+				endcolor="0"
+				life="100"
+				startscale="1"
+				endscale="2"
+				position="0 0 100"
+				depthbias="0"
+			/>
+			
+			<billboard
+				life="100"
+				position="0 0 100"
+				startcolor="1"
+				endcolor="1"
+				startscale=".2"
+				
+				endscale="3"
+				depthbias="0"
+				material="/shared/effects/smaterials/refract_ripples.material"
+				rollspeed="-100"
+				roll="220"
+				param=".1"
+			/>
+			
+		</particlesystem>
+		
+		<particlesystem name="system1" space="world" scale="1">
+
+			<simpleemitter
+				life="150"
+				spawnrate="100"
+				speed="0"
+				offsetsphere="0"
+				particlelife="1000"
+				depthbias="0"
+				
+			>
+	
+				<particle>
+					<debris
+						position="0 0 100"
+						scale=".5"
+						minlife="150"
+						maxlife="350"
+						model="models_rimlight/model.mdf"
+						anim="idle"
+						minspeed="1000"
+						maxspeed="2000"
+						direction="0 0 0"
+						minrotationspeed="-90"
+						maxrotationspeed="90"
+						gravity="50"
+						color="1"
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						bounce="0"
+						reflect="0"
+						animpose="false"
+						offsetsphere="0"
+						
+					/>
+				</particle>	
+			</simpleemitter>
+			
+			<simpleemitter
+				life="500"
+				spawnrate="5000"
+				count="10"
+				minparticlelife="200"
+				maxparticlelife="400"
+				position="0 0 100"
+				gravity="0"
+				minspeed="300"
+				maxspeed="1000"
+				direction="0 0 1"
+				drag="0"
+				acceleration="0.0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				startparticlecolor="1"
+				endparticlecolor="0"
+				minangle="0"
+				maxangle="360"
+			>
+				<particle
+					height="20"
+					width="1"
+					scale="2"
+					startcolor="1 1 1"
+					endcolor="0 0 0.7"
+					startalpha="1"
+					endalpha="0"
+					flare="true"
+					turn="true"	
+				/>
+			</simpleemitter>
+						
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

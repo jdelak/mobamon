@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Rook3"
+
+	
+	icon="icon.tga"
+	
+	maxlevel="4"
+	requiredlevel="1,3,5,7"
+
+	actiontype="passive"
+	alwaysshowtimer="true"
+>
+	<!--tooltiponly-->
+	<constant name="damage" value="2,3,4,5" adjustment="item" />
+	<constant name="attackspeed" value="110,160,210,260" adjustment="ability" />
+
+	<onabilityimpact>
+		<casteffecttype entity="inflictor_entity" effecttype="NoResponse" />
+		<else>
+			<applystate name="State_Rook_Ability3_Buff" duration="6000" target="source_entity" proxy="this_entity" />
+			<starttimer duration="6000" />
+		</else>
+		<entitytype type="Ability_Rook1" target="inflictor_entity">
+			<applystate name="State_Rook_Ability3_Buff" duration="6000" target="source_entity" proxy="this_entity" />
+			<starttimer duration="6000" />
+		</entitytype>
+	</onabilityimpact>
+
+	<onattackimpact propagatetoillusions="false">
+		<cantarget targetscheme="enemy_units">
+			<applystate name="State_Rook_Ability3_Enemy" duration="4000" target="target_entity" proxy="this_entity" />
+		</cantarget>
+	</onattackimpact>
+
+
+
+</ability>

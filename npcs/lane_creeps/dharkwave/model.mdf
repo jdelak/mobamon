@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="high.model" low="high.model" >
+
+	<anim name="idle" clip="clips/default_1.clip" fps="30" loop="true" loopbackframe="1"/>
+
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="24" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2400 .15"/>
+	</anim>
+
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="24" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2400 .25"/>
+	</anim>
+	
+	<anim name="ability_1_run" clip="clips/ability_1_run.clip" fps="60" loop="true"/>
+	
+	<anim name="ability_1" clip="clips/ability_1.clip" fps="24" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_ability.wav 500 2400 .45"/>
+	</anim>
+	
+	<anim name="ability_1_freeze" clip="clips/ability_1.clip" startframe="0" numframes="1" fps="24" loop="true" loopbackframe="-1">
+	</anim>
+ 
+	<anim name="walk_1" clip="clips/walk_1.clip" fps="36" loop="true">
+		<frameevent frame="4" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="25" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="31" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="50" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="56" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="71" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="86" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="90" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="108" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="108" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="126" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+	</anim>
+
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_death_%.wav 500 2400 0.25"/>
+		<frameevent frame="1" cmd="StartEffect effects/creep_death.effect"/>
+	</anim>
+
+	<anim name="spawn" clip="clips/spawn_1.clip"/>
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+</model>

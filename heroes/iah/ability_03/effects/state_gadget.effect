@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="2.333">
+
+			<sound
+				life="6500"
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume=".55"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<template name="">
+
+
+				<billboard
+				position="{zpos}"
+					expirelife="250"
+					material="/shared/effects/smaterials/sand_groundsprite.material"
+					size="400"
+					color=".8 .7 .6"
+					startalpha=".5"
+					midalpha="0"
+					endalpha="0"
+					midalphapos=".65"
+					minroll="0"
+					maxroll="360"
+					rollspeed="20"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+				/>
+				
+
+			
+			</template>
+			
+			<instance name="" zpos="0 0 0"/>
+-->
+			
+			
+
+			
+			
+			
+			
+			<light
+				position="0 0 50"
+				expirelife="1250"
+				startcolor="2.5 1.25 0"
+				endcolor="0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+
+			<simpleemitter
+				spawnrate="25"
+				particlelife="2000"
+				offsetsphere="100 100 0"
+			>
+				<particle
+				>
+				
+					<billboard
+						life="1000"
+						material="/shared/effects/smaterials/sand_groundsprite.material"
+						startscale="2.5"
+						endscale="4"
+						color=".8 .7 .6"
+						startalpha="0"
+						midalpha=".3"
+						endalpha="0"
+						midalphapos=".2"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+					/>
+					
+					<billboard
+						life="1000"
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						startscale="1.25"
+						endscale="2"
+						color="1 .9 .5"
+						startalpha="0"
+						midalpha=".35"
+						endalpha="0"
+						midalphapos=".2"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+					/>
+					
+					<billboard
+						life="1000"
+						material="/shared/effects/smaterials/sand_poofy_no_center.material"
+						startscale="1.5"
+						endscale="3"
+						color="1 .9 .5"
+						startalpha="0"
+						midalpha=".35"
+						endalpha="0"
+						midalphapos=".2"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="5"
+				particlelife="2000"
+				offsetsphere="50 50 0"
+			>
+				<particle
+				>
+				
+					<billboard
+						life="1000"
+						material="/shared/effects/smaterials/sand_groundsprite.material"
+						startscale="2.5"
+						endscale="4"
+						color=".9 .8 .7"
+						startalpha="0"
+						midalpha=".5"
+						endalpha="0"
+						midalphapos=".2"
+						minroll="0"
+						maxroll="360"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						depthbias="-10"
+					/>
+				
+				</particle>
+			</simpleemitter>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				timenudge="2000"
+				spawnrate="4"
+				particlelife="1000"
+				offsetsphere="110 110 0"
+				directionalspace="world"
+			>
+				<particle
+				>
+
+					<model
+						life="250"
+						position="0 0 0"
+						model="cyclones/model.mdf"
+						anim="idle"
+						minscale=".35"
+						maxscale=".45"
+					>
+
+						<template name="wind">
+
+							<billboard	
+								expirelife="500"
+								bone="{bone}"
+								material="/shared/effects/smaterials/sand_spin_no_center.material"
+								position="0 0 {pos1}"
+								size="{size2}"
+								minroll="0"
+								maxroll="360"
+								rollspeed="{speed}"
+								color="1 .7 .3"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								yaw="0"
+								startalpha=".35"
+								endalpha="0"
+								depthbias="-50"
+							/>
+
+							<billboard	
+								expirelife="500"
+								bone="{bone}"
+								material="/shared/effects/smaterials/sand_spin_no_center.material"
+								position="0 0 {pos1}"
+								size="{size2}"
+								minroll="0"
+								maxroll="360"
+								rollspeed="{speed}"
+								color="1 .7 .3"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								yaw="0"
+								startalpha=".35"
+								endalpha="0"
+								depthbias="-50"
+							/>
+							
+							<billboard	
+								expirelife="500"
+								bone="{bone}"
+								material="/shared/effects/smaterials/twirl_blend.material"
+								position="0 0 {pos1}"
+								size="{size2}"
+								minroll="0"
+								maxroll="360"
+								rollspeed="{speed}"
+								color=".4 .3 .15"
+								lockup="true"
+								lockright="true"
+								pitch="90"
+								yaw="0"
+								startalpha=".25"
+								endalpha="0"
+
+							/>
+
+						</template>	
+
+						<instance name="wind" pos1="4" size2="80" speed="400" orbit="-10" origin="12" bone=""/>
+						<instance name="wind" pos1="8" size2="100" speed="400" orbit="-9" origin="25" bone="_bone_cyclone02"/>
+						<instance name="wind" pos1="12" size2="120" speed="400" orbit="-8" origin="35" bone="_bone_cyclone03"/>
+						<instance name="wind" pos1="15" size2="140" speed="400" orbit="-5" origin="50" bone="_bone_cyclone04"/>
+						<instance name="wind" pos1="20" size2="180" speed="400" orbit="-4" origin="60" bone="_bone_cyclone05"/>
+						<instance name="wind" pos1="25"  size2="220" speed="400" orbit="-2" origin="70" bone="_bone_cyclone06"/>
+						<instance name="wind" pos1="30" size2="280" speed="400" orbit="-2" origin="85" bone="_bone_cyclone07"/>
+
+						<template name="wheelDust">
+
+
+						</template>
+						
+						<instance name="wheelDust" zbone="_bone_cyclone01" zpos="0 0 5"/>
+
+					</model>
+				
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			<model
+				expirelife="1000"
+				position="0 0 0"
+				model="cyclones/model.mdf"
+				anim="idle"
+				startscale=".45"
+				endscale="0"
+			>
+
+				<template name="wind">
+
+					<billboard	
+						expirelife="500"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						color="1 .7 .3"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".75"
+						endalpha="0"
+						depthbias="-50"
+					/>
+
+					<billboard	
+						expirelife="500"
+						bone="{bone}"
+						material="/shared/effects/smaterials/sand_spin_no_center.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						color="1 .7 .3"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".75"
+						endalpha="0"
+						depthbias="-50"
+					/>
+					
+					<billboard	
+						expirelife="500"
+						bone="{bone}"
+						material="/shared/effects/smaterials/twirl_blend.material"
+						position="0 0 {pos1}"
+						size="{size2}"
+						minroll="0"
+						maxroll="360"
+						rollspeed="{speed}"
+						color=".4 .3 .15"
+						lockup="true"
+						lockright="true"
+						pitch="90"
+						yaw="0"
+						startalpha=".25"
+						endalpha="0"
+
+					/>
+
+					<orbiteremitter
+					position="0 0 50"
+						bone="{bone}"
+						spawnrate="50"
+						minparticlelife="250"
+						maxparticlelife="500"
+						origin="0 0 -{origin}" 
+						orbit="{orbit} 0 0 " 
+						speed="2"
+						direction="0 0 1" 
+						offset="0 0 0"
+						cylindrical="true" 
+						material="/shared/effects/smaterials/sand_poofy.material"
+						expirelife="500"
+						inheritvelocity="1"
+						depthbias="-50"
+					>
+						<particle
+							minangle="-360"
+							maxangle="360"
+							minanglespeed="0"
+							maxanglespeed="0"					
+							color="1 .9 .5"
+							startalpha="0"
+							midalpha=".15"
+							endalpha="0"
+							endalphapos=".2"
+							minsize="25"
+							maxsize="75"							
+						/>
+					</orbiteremitter>
+
+				</template>	
+
+				<instance name="wind" pos1="4" size2="80" speed="400" orbit="-10" origin="12" bone=""/>
+				<instance name="wind" pos1="8" size2="100" speed="400" orbit="-9" origin="25" bone="_bone_cyclone02"/>
+				<instance name="wind" pos1="12" size2="120" speed="400" orbit="-8" origin="35" bone="_bone_cyclone03"/>
+				<instance name="wind" pos1="15" size2="140" speed="400" orbit="-5" origin="50" bone="_bone_cyclone04"/>
+				<instance name="wind" pos1="20" size2="180" speed="400" orbit="-4" origin="60" bone="_bone_cyclone05"/>
+				<instance name="wind" pos1="25"  size2="220" speed="400" orbit="-2" origin="70" bone="_bone_cyclone06"/>
+				<instance name="wind" pos1="30" size2="280" speed="400" orbit="-2" origin="85" bone="_bone_cyclone07"/>
+
+				<template name="wheelDust">
+<!--
+					<simpleemitter
+						bone="{zbone}"
+						position="{zpos}"
+						spawnrate="75"
+						minparticlelife="750"
+						maxparticlelife="1250"
+						minspeed="0"
+						maxspeed="25"
+						material="/shared/effects/smaterials/sand_poofy.material"
+						minangle="0"
+						maxangle="1"
+						direction="0 0 1"
+						offsetsphere="10 10 0"
+						directionalspace="world"
+					>
+						<particle
+							minangle="0"
+							maxangle="360"
+							minanglespeed="-55"
+							maxanglespeed="55"
+							startsize="0"
+							midsize="125"
+							endsize="0"
+							midsizepos=".1"
+							color="1 .9 .5"
+							startalpha="0"
+							midalpha=".5"
+							endalpha="0"
+							midalphapos=".1"
+							turn="true"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+						/>
+					</simpleemitter>
+-->
+				</template>
+				
+				<instance name="wheelDust" zbone="_bone_cyclone01" zpos="0 0 5"/>
+
+			</model>
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				position="0 0 50"
+				spawnrate="150"
+				minparticlelife="500"
+				maxparticlelife="750"
+				gravity="0"
+				material="/shared/effects/smaterials/sand_dots.material"
+				offsetsphere="135 135 25"
+				direction="0 0 0"
+			>
+				<particle
+					minangle="0"
+					maxangle="360"
+					minanglespeed="0"
+					maxanglespeed="90"
+					startscale="15"
+					endscale="30"
+					lockup="true"
+					lockright="true"
+					pitch="90"
+					color="1 1 1"
+					startalpha=".75"
+					endalpha="0"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<billboard				
+				expirelife="250"
+				material="/shared/effects/materials/whitedot.material"
+				position="0 0 10"
+				depthbias="-50"
+				startcolor=".2 .1 0"
+				endcolor="0 0 0"
+				size="400"
+				startalpha="1"
+				endalpha="0"				
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		  <spawnparticlesystem instance="instance0" particlesystem="system0"/>
+  		  <waitfordeath instance="instance0" />
+	</thread>
+
+</effect>

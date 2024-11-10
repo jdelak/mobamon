@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+<definitions>
+
+<!-- 0 -->	
+<particlesystem name="system0" space="entity" scale="0.7">
+	
+	<sound delay="500" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="500" falloffend="2500" volume="0.45" channel="90015" />	
+	
+	<model bone="_bone_fx_critter05" position="0 -12 12" expirelife="250" model="../ability_02/effects/fire_bug/model.mdf" material="../ability_02/effects/fire_bug/material_firebug.material" anim="idle" scale="2.8" color="1.5" yaw="180" pitch="45" directionalspace="local">
+		<billboard bone="_bone_fireBody" expirelife="250" startcolor=".5 .075 0" endcolor="0 0 0" material="/shared/effects/smaterials/whitedot.material" scale=".5" depthbias="-15"/>
+	</model>
+	<model bone="_bone_fx_critter06" position="0 0 8" expirelife="250" model="../ability_01/effects/poison_bug/model.mdf" material="../ability_01/effects/poison_bug/material_poison_leech.material" anim="idle" scale="3.5" color="1.5" yaw="90" pitch="45" directionalspace="local">
+		<billboard bone="_bone_poisonBody" expirelife="250" startcolor="0 .4 0" endcolor="0 0 0" material="/shared/effects/smaterials/whitedot.material" scale=".5" depthbias="-15"/>
+	</model>
+	<model bone="_bone_fx_critter04" position="-12 0 10" expirelife="250" model="../ability_03/effects/leech/model.mdf" material="../ability_03/effects/leech/material_poison_leech.material" anim="idle" scale="3.5" color="1.5" yaw="90" pitch="25" directionalspace="local">
+		<billboard bone="_bone_leechBody" expirelife="250" startcolor=".3 0 .6" endcolor="0 0 0" material="/shared/effects/smaterials/whitedot.material" scale=".45" depthbias="-15"/>
+	</model>
+	
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

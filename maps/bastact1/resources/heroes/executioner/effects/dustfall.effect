@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="ability_03" deferred="true" useentityeffectsscale="true">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale=".5">
+
+			<sound
+				volume="1"
+				falloffstart="500"
+				falloffend="1500"
+				sample="../ability_05/sounds/sfx_cast_%.wav"
+			/>
+
+			<simpleemitter
+				life="1000"
+				count="1"
+				spawnrate="5"
+				speed="0"
+				offsetsphere="0"
+				particlelife="2000"
+				depthbias="0"
+				minangle="0"
+				maxangle="0"
+				position="0 0 900"
+			>
+				<particle
+					turn="1"
+					anglespeed="-1000"
+				>
+	
+				
+				<template name="dust">
+					<simpleemitter
+						mindelay="0"
+						maxdelay="1000"
+						life="500"
+						spawnrate="500"
+						minparticlelife="500"
+						maxparticlelife="800"
+						speed="0"
+						mingravity="100"
+						maxgravity="200"
+						drag="0"
+						acceleration="0"
+						position="{newposition}"
+						direction="0 0 1"
+						offsetsphere="70"
+						material="/shared/effects/smaterials/rocket_smoke_blend.material"
+						inheritvelocity="0"
+						minangle="0"
+						maxangle="0"
+						
+					>
+						<particle
+							color="1 .8 .5"
+							startalpha="0"
+							midalpha=".2"
+							endalpha="0"
+							minanglespeed="-200"
+							maxanglespeed="200"
+							minscale="1"
+							maxscale="10"
+							startscale="1"
+							endscale="3"
+						
+						/>
+
+					</simpleemitter>
+				</template>
+				
+				<instance name="dust" newposition="0 0 0"/>
+				<instance name="dust" newposition="0 100 100"/>
+				<instance name="dust" newposition="100 0 0"/>
+				<instance name="dust" newposition="100 100 100"/>
+				<instance name="dust" newposition="0 -100 0"/>
+				<instance name="dust" newposition="-100 0 0"/>
+				
+				</particle>	
+			</simpleemitter>
+		</particlesystem>
+
+	</definitions>
+
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>  
+	<waitfordeath instance="instance0" />
+</thread>
+
+</effect>
+
+
+
+
+
+
+

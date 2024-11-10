@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="post_luma_to_alpha_ps" novs="true">
+	<parameter name="Sampler" type="sampler2D" default="image" />
+	<dependency name="Sampler" type="sampler2D" source="Sampler" />
+	<dependency name="Texcoord" type="float2" source="Texcoord0" />
+	<dependency name="TexelSize" type="float2" source="vTexelSize" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="Out" type="float4" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			float3 f3Color = tex2D(Sampler, Texcoord).rgb;
+		
+			Out.rgb = f3Color;
+			Out.a = dot(f3Color, float3(0.299f, 0.587f, 0.114f)); // Compute luma
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			float3 f3Color = Sampler_texture.Sample(Sampler_sampler, Texcoord).rgb;
+		
+			Out.rgb = f3Color;
+			Out.a = dot(f3Color, float3(0.299f, 0.587f, 0.114f)); // Compute luma
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			vec3 f3Color = texture2D(Sampler, Texcoord).rgb;
+		
+			Out.rgb = f3Color;
+			Out.a = dot(f3Color, vec3(0.299, 0.587, 0.114)); // Compute luma
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			vec3 f3Color = texture(Sampler, Texcoord).rgb;
+		
+			Out.rgb = f3Color;
+			Out.a = dot(f3Color, vec3(0.299, 0.587, 0.114)); // Compute luma
+		?>
+	</case>
+</node>

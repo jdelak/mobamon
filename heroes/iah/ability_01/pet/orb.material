@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/orb.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="53.5" fGlossiness="7164.0" fOpacity="1.0" fReflect="1.0">
+		<vec2 name="vTex0a" value="0.0000 0.0000" valuespeed="0.0000 0.0000" />
+		<vec2 name="vTex0b" value="0.0000 0.0000" valuespeed="0.0000 -0.200" />
+		<vec2 name="vTex1a" value="0.0000 0.0000" valuespeed="-0.000 -0.40" />
+		<vec2 name="vTex1b" value="0.0000 0.0000" valuespeed="0.0000 0.0000" />
+	</parameters>
+	<phase name="outline" cull="back" layer="1" depthwrite="true" blend="none">
+		<sampler name="diffuse" texture="orb2.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="color" cull="back" layer="1" depthwrite="true" blend="translucent">
+		<sampler name="diffuse" texture="orb2.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap1" texture="normal.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap2" texture="normal.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap3" texture="normal2.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="refract" cull="back" refractive="true" depthwrite="true" blend="none">
+		<sampler name="diffuse" texture="orb2.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap1" texture="normal.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap2" texture="normal.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap3" texture="normal2.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

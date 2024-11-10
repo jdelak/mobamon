@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="rig.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model">
+
+	
+	
+	<skin name="jurassic">
+		<reference mesh="10k_Gator"		material="material_jurassic.material" />
+		<reference mesh="3kGator"		material="material_jurassic.material" />
+		<reference mesh="1.5kGator"		material="material_jurassic.material" />
+	</skin>	
+	
+	<skin name="blue">
+		<reference mesh="10k_Gator"		material="material_fire.material" />
+		<reference mesh="3kGator"		material="material_fire.material" />
+		<reference mesh="1.5kGator"		material="material_fire.material" />
+	</skin>
+	
+	<skin name="pink">
+		<reference mesh="10k_Gator"		material="material_pink.material" />
+		<reference mesh="3kGator"		material="material_pink.material" />
+		<reference mesh="1.5kGator"		material="material_pink.material" />
+	</skin>
+	
+	<skin name="green">
+		<reference mesh="10k_Gator"		material="material_green.material" />
+		<reference mesh="3kGator"		material="material_green.material" />
+		<reference mesh="1.5kGator"		material="material_green.material" />
+	</skin>	
+	
+
+	
+	
+	<anim name="ability_1" clip="clips/ability_1.clip"/>
+
+	<anim name="ability_2" clip="clips/ability_2.clip" />
+	
+	<anim name="ability_3" clip="clips/ability_3.clip"/>
+
+	<anim name="ability_4" clip="clips/ability_4.clip" loop="true"/>
+	
+	<anim name="ability_4Fire" clip="clips/ability_4Fire.clip" fps="70"/>
+	
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="36" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2400 0.55" />
+	</anim>
+
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="36" >
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/sfx_attack_%.wav 500 2400 0.55" />
+	</anim>
+	
+	<anim name="bored_1" clip="clips/bored_1.clip" />
+	
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1" >
+		<frameevent frame="1" cmd="StartEffect effects/death.effect 0" />
+		<frameevent frame="1" cmd="PlaySoundLinear sounds/voice/vo_death_%.wav 500 2400 0.35" />
+	</anim>
+	
+	<anim name="idle" clip="clips/default_1.clip" loop="true" />
+	
+	<anim name="emote_1" clip="clips/emote_1.clip" loop="false" >
+	<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_%.wav 1500 3000 1"/>
+	</anim>
+
+	<anim name="item_1" clip="clips/item_1.clip" />
+
+	<anim name="port_in" clip="clips/port_in.clip" />
+	
+	<anim name="port_out" clip="clips/port_out.clip" />
+	
+	<anim name="select_1" clip="clips/select_1.clip" loop="true" />
+
+	<anim name="spawn_1" clip="clips/port_in.clip" />
+	
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true" />
+
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" >
+		<frameevent frame="1" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="2" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 1200 0.15"/>
+		<frameevent frame="11" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="12" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 500 1200 0.15"/>
+	</anim>
+
+
+
+</model>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Shank_Ability2"
+	
+	icon="icon.tga"
+	
+	movespeedpercharge="10"
+	maxcharges="20"
+	
+	passiveeffect="effects/state_ally.effect"
+	
+	effecttype="StatusBuff"
+	allowtransfer="true"
+	impactinterval="1000"
+>
+	<oninflict>
+		<setcharges a="25" />
+	</oninflict>
+
+	<onimpact>
+		<setaccumulator value="1" />
+	</onimpact>
+
+	<onframe>
+		<compare a="accumulator" b="1" op="eq" >
+			<removecharge a="1" />
+		</compare>
+	</onframe>
+</state>

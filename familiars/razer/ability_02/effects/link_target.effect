@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="tracker" persistent="true">
+	<definitions>
+	
+		<simpleemitter
+			name="trail_01"
+			life="1000"
+			spawnrate="100"
+			startminparticlelife="2000"
+			startmaxparticlelife="2000"
+			endminparticlelife="500"
+			endmaxparticlelife="500"
+			startparticlealpha="1"
+			midparticlealpha="1"
+			endparticlealpha="0"
+			position="0 0 0"
+			speed="25"
+			material="/shared/effects/smaterials/whitedot.material"
+		>
+			<particle
+				startcolor=".2 0 1"
+				endcolor="0 0 0"
+				midcolorpos=".1"
+				minstartsize="5"
+				maxstartsize="20"
+				minendsize="0"
+				maxendsize="10"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".1"
+			/>
+		</simpleemitter>
+		
+		<particlesystem name="system0" space="world" >
+
+			<sound
+				linearfalloff="true"
+				falloffstart="0"
+				falloffend="2200"
+				volume=".7"
+				sample="../sounds/impact.wav"
+			/>
+			
+			<trackeremitter
+				count="10"
+				bone="_bone_centerofchest"
+				owner="source"
+				targetbone="_bone_centerofchest"
+				targetowner="target"
+				tracktype="linear"
+				trackspeed="8.0"
+				drag="0"
+				spawnrate="250"
+				particlelife="3000"
+				gravity="-50"
+				offsetsphere="25 25 25"
+				minspeed="50"
+				maxspeed="500"
+				acceleration="60.0"
+				direction="0.0 0.0 1.0"
+				inheritvelocity="0.0"
+				distancelife="true"
+			>
+				<particle
+					emitter0="trail_01"
+				/>
+			</trackeremitter>
+
+		</particlesystem>
+	</definitions>
+<thread>
+	<spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<waitfordeath instance="instance0" />
+</thread>
+</effect>
+

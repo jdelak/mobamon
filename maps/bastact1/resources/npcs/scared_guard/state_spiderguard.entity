@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_SpiderGuard_Dialogue"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	ishidden="true"
+	
+	lifetime="-1"
+	impactinterval="1850"
+	maximpactspertarget="1"
+
+>
+
+<oninflict>	
+	<condition test="not_hasstate State_Bastact1_SpiderGuard_Attack" target="target_entity" >
+		<setaccumulator entity="this_entity" value="2" valueb="1"/>
+		<areaofeffect
+			radius="1000"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			center="source_entity"
+			>
+			<setproxy entity="this_entity" target="target_entity" />
+		</areaofeffect>
+
+		<condition test="hasstate State_Bastact1_HasEgg" target="this_proxy_entity" >
+			<!-- Bastion has an egg -->
+			<teleport source="source_entity" target="this_proxy_entity" interpolate="true" positionmodifier="start" facetarget="true" />
+			<playanim name="surprised_1" target="source_entity" />
+	   		<playeffect effect="effects/spiderguard1.effect" source="source_entity" target="source_entity" />
+	   	</condition>
+	   	<else>
+	   		<!-- Logic for when Bastion does not have an egg -->
+	   		<teleport source="source_entity" target="this_proxy_entity" interpolate="true" positionmodifier="start" facetarget="true" />
+	   		<playanim name="surprised_1" target="source_entity" />
+	   		<playeffect effect="effects/spiderguard3.effect" source="source_entity" target="source_entity" />
+	   	</else>
+	</condition>
+</oninflict>	
+
+<onimpact>
+	<condition test="not_hasstate State_Bastact1_SpiderGuard_Attack" target="target_entity" >
+		<areaofeffect
+			radius="400"
+			targetselection="all"
+			targetscheme="player_controlled_units"
+			center="source_entity"
+		>
+			<pushentity entity="target_entity" />
+			<condition test="hasstate State_Bastact1_HasEgg" target="target_entity" >
+				<!-- Bastion has an egg -->
+				<compare a="accumulator" b="3" op="lt">
+					<scriptcondition name="guard_spider" value="0" >
+						<playeffect effect="effects/spiderguard2.effect" source="source_entity" target="source_entity" />
+					</scriptcondition>
+					<changeaccumulator b="5" op="add" />
+				</compare>
+	   		</condition>
+	   		<else>
+	   			<!-- Bastion does not have an egg -->
+	   			<compare a="accumulator" b="4" op="gt">
+					<playeffect effect="effects/spiderguard4.effect" source="source_entity" target="source_entity" />
+	   				<applystate name="State_Bastact1_SpiderGuard_Attack" source="source_entity" target="source_entity" proxy="stack_entity" duration="-1" />
+					<deactivatemodifierkey name="looking_for_spider" entity="source_entity" />
+				</compare>
+				
+	   			<compare a="accumulator" b="3" op="lt">
+					<scriptcondition name="guard_spider" value="0" >
+						<playeffect effect="effects/spiderguard4.effect" source="source_entity" target="source_entity" />
+						<applystate name="State_Bastact1_SpiderGuard_Attack" source="source_entity" target="source_entity" proxy="stack_entity" duration="-1" />
+						<deactivatemodifierkey name="looking_for_spider" entity="source_entity" />
+					</scriptcondition>
+					<changeaccumulator b="5" op="add" />
+				</compare>
+	   		</else>
+
+		</areaofeffect>
+	</condition>	
+</onimpact>	
+
+<onexpired>
+	<playanim name="cower_1" target="source_entity" />
+</onexpired>
+
+</state>

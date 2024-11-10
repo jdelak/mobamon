@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.75"
+				sample="../sounds/sfx_cast.wav"
+			/>
+
+			<light
+				position="0 0 35"
+				life="500"
+				startcolor="4 2 0"
+				midcolor="4 2 0"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="350"
+			/>
+			
+			
+			
+			
+			
+			<template name="">
+				<simpleemitter
+				delay="250"
+					bone="_bone_center"
+					position="0 35 15"
+					life="1000"
+					spawnrate="3300"
+					count="50"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="25"
+					minspeed="0"
+					maxspeed="750"
+					drag=".01"
+					material="/shared/effects/materials/whitedot.material"
+					offsetsphere="0 0 0"
+					minangle="0"
+					maxangle="20"
+					direction="-1 0 1"
+					depthbias="-50"
+					directionalspace="local"
+				>
+					<particle 
+						minangle="0"
+						maxangle="360"
+						startcolor="1 1 0"
+						midcolor="1 .25 0"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						minstartsize="10"
+						maxstartsize="20"
+						endsize="0"
+					/>
+				</simpleemitter>
+			</template>
+			
+			<instance name="" zmin="500" zmax="3000"/> 
+			
+			
+			
+			
+			
+			
+			
+	
+      </particlesystem>
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+      <waitfordeath instance="instance0" />
+   </thread>
+</effect>

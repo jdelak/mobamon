@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_Spider_Abilities"
+
+	icon=""
+	passiveeffect=""
+	effecttype=""
+	impactinterval="500"
+	ishidden="true"
+	duration="-1"
+
+>
+
+ <onimpact>
+	<changeaccumulator b="0" op="min" />
+
+		
+		<pushability entity="source_entity" slot="0" />
+		<canactivate entity="stack_entity">
+			<areaofeffect
+				radius="220"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				center="source_entity"
+				maxtotalimpacts="-1"
+			>
+				<changeaccumulator b="1" op="add" />
+				<useability slot="0"/>
+				<starttimer	entity="source_entity" duration="5000"/>
+			</areaofeffect>
+			</canactivate>
+			<else>
+			<areaofeffect
+				radius="220"
+				targetselection="all"
+				targetscheme="visible_enemy_heroes"
+				center="source_entity"
+				maxtotalimpacts="-1"
+			>
+				<changeaccumulator b="1" op="add" />
+				<order command="attack" source="source_entity" target="target_entity" queue="front" />
+				<starttimer	entity="source_entity" duration="5000"/>
+			</areaofeffect>
+			</else>	
+ </onimpact>	
+	
+</state>

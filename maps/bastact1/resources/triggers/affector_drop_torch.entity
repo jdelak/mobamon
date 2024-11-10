@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_DropTorch"
+	effect=""
+	radius="100"
+	targetselection="all"
+	targetscheme="all"
+	lifetime="-1"
+	maximpactspertarget="1"
+	diewithowner="false"
+
+>
+	<onimpact>
+		<entitytype type="Bastact1_Enemy_ExecutionerCinematic">
+			<print text="Torch affector has been hit" />
+			<setscriptvalue name="drop_status" value="1"/>
+			
+			<delete target="this_entity" />
+		</entitytype>
+	</onimpact>
+
+</affector>

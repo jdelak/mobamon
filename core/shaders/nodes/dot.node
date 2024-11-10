@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="dot">
+	<dependency name="A" type="*" />
+	<dependency name="B" type="*" />
+	<output type="float" name="Out" />
+	<case>
+		<dependency name="A" type="float" />
+		<dependency name="B" type="float" />
+	</case>
+	<case>
+		<dependency name="A" type="float2" />
+		<dependency name="B" type="float2" />
+	</case>
+	<case>
+		<dependency name="A" type="float3" />
+		<dependency name="B" type="float3" />
+	</case>
+	<case>
+		<dependency name="A" type="float4" />
+		<dependency name="B" type="float4" />
+	</case>
+	<?hlsl
+		Out = dot(A, B);
+	?>
+	<?glsl
+		Out = dot(A, B);
+	?>
+</node>

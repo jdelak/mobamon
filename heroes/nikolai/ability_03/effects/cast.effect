@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="cyclone" deferred="true" useentityeffectscale="1">
+	<definitions>
+
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				linearfalloff="true" 
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.45"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			
+			
+			
+
+			<template name="">
+			
+
+				<simpleemitter
+				count="50"
+					bone="{zbone}"
+					spawnrate="5000"
+					minparticlelife="250"
+					maxparticlelife="500"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+					offsetsphere="20"
+					depthbias="0"
+				>
+					<particle
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .06 .06"
+						endcolor="0 0 0"
+						startscale=".4"
+						minendscale="1"
+						maxendscale="2"
+						minwidth="200"
+						maxwidth="200"
+						height="200"
+					/>
+				</simpleemitter>
+
+
+				
+				
+				
+				
+				
+				<simpleemitter
+				delay="300"
+				count="35"
+					bone="{zbone}"
+					spawnrate="2000"
+					minparticlelife="200"
+					maxparticlelife="400"
+					gravity="0"
+					minspeed="22.0"
+					maxspeed="22"
+					acceleration="0"
+					timenudge="0"
+					position="0 0 0"
+					material="/shared/effects/smaterials/whitedot.material"
+					offsetsphere="50"
+					depthbias="0"
+				>
+					<particle
+					anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .125 .125"
+						endcolor="0 0 0"
+						minstartscale="50"
+						maxstartscale="150"
+						minendscale="0"
+						maxendscale="0"
+					/>
+				</simpleemitter>
+
+			
+			
+			</template>
+
+			<instance name="" zbone="_bone_mace_center"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<simpleemitter
+				bone="_bone_mace_center"
+				spawnrate="75"
+				minparticlelife="300"
+				maxparticlelife="300"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/materials/dust_smoke_02.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 .75 .5"
+					endcolor="0 0 0"
+					startsize="25"
+					endsize="75"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".35"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_mace_center"
+				spawnrate="75"
+				particlelife="300"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 .5 .35"
+					endcolor="0 0 0"
+					startsize="35"
+					endsize="70"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				bone="_bone_mace_center"
+				spawnrate="75"
+				particlelife="100"
+				gravity="-5"
+				position="0 0 0"
+				offsetsphere="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="25"
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 .5 .35"
+					endcolor="0 0 0"
+					startsize="35"
+					endsize="70"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				bone="_bone_mace_center"
+				spawnrate="300"
+				minparticlelife="100"
+				maxparticlelife="400"
+				gravity="0"
+				minspeed="22.0"
+				maxspeed="22"
+				acceleration="0"
+				timenudge="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="12"
+				depthbias="0"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .25 .25"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					minstartscale=".25"
+					maxstartscale=".5"
+					minendscale=".1"
+					maxendscale=".2"
+					minwidth="25"
+					maxwidth="25"
+					height="25"
+				/>
+			</simpleemitter>
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				bone="_bone_mace_center"
+				spawnrate="65"
+				gravity="10"
+				minparticlelife="250"
+				maxparticlelife="550"
+				offsetsphere="25 25 8"
+				minspeed="10.0"
+				maxspeed="30"
+				direction="0 0 1"
+				material="/shared/effects/materials/whitedot.material"
+			>
+				<particle
+					maxangle="359"
+					maxanglespeed="30"
+					minanglespeed="-30"
+					minstartscale="1"
+					maxstartscale="2"
+					minendscale="1"
+					maxendscale="2"
+					startcolor="0 1 .75"
+					midcolor="0 1 .75"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+				/>
+			</simpleemitter> 
+
+			<simpleemitter
+				bone="_bone_mace_center"
+				spawnrate="65"
+				mingravity="40"
+				maxgravity="50"
+				minparticlelife="250"
+				maxparticlelife="500"
+				offsetsphere="25 25 0"
+				minspeed="10"
+				maxspeed="25"
+				direction="0 0 1"
+				material="/shared/effects/materials/whitedot.material"
+			>
+				<particle
+					maxangle="359"
+					maxanglespeed="30"
+					minanglespeed="-30"
+					minstartscale="2"
+					maxstartscale="5"
+					minendscale="1"
+					maxendscale="2"
+					startcolor="0 1 .75"
+					midcolor="0 1 .75"
+					endcolor="0 0 0"
+					midcolorpos=".75"
+				/>
+			</simpleemitter> 
+-->
+			
+			
+			
+			
+			
+
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+</effect>

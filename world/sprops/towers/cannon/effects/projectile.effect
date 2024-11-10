@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+		
+		<particlesystem name="system0" space="world" scale=".9">
+
+			<simpleemitter
+				spawnrate="250"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="200"
+				maxspeed="500"
+				position="0 -25 0"
+				material="/shared/effects/smaterials/cartoon_dust.material"
+				minangle="0"
+				maxangle="5"
+				direction="0 1 0"
+				depthbias="50"
+				offsetsphere="15 15 15"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=".5 .4 .2"
+					midcolor="0 0 0"
+					endcolor="0 0 0"
+					startframe="0"
+					endframe="1"
+					startsize="50"
+					minendsize="0"
+					maxendsize="20"
+					startalpha="1"
+					midalpha=".5"
+					endalpha="0"
+					midalphapos=".15"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				spawnrate="250"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="200"
+				maxspeed="500"
+				position="0 -25 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				minangle="0"
+				maxangle="5"
+				direction="0 1 0"
+				depthbias="25"
+				offsetsphere="20 20 20"
+			>
+				<particle 
+					minangle="0"
+					maxangle="0"
+					minanglespeed="0"
+					maxanglespeed="0"
+					startcolor=".2 .05 0"
+					midcolor=".05 0 0"
+					endcolor="0 0 0"
+					startsize="100"
+					minendsize="0"
+					maxendsize="75"
+					turn="true"
+				/>
+			</simpleemitter>
+
+			
+
+			<model
+				model="ball/model.mdf"
+				anim="idle"
+				yawspeed="0"
+				scale="1.2"
+				startalpha="1"
+				position="0.0 0.0 0.0"
+				directionalspace="local"
+			>
+				<billboard
+					expirelife="250"
+					material="/shared/effects/smaterials/whitedot.material"
+					startcolor="1 0 0"
+					endcolor="0"
+					position="0 0 0"
+					size="110"
+					depthbias="50"
+				/>
+			</model>
+
+			
+			
+
+			<simpleemitter
+				spawnrate="150"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				minspeed="0"
+				maxspeed="50"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+				direction="0 0 0"
+				offsetsphere="35"
+			>
+				<particle 
+					startcolor="1 .75 .25"
+					midcolor="1 .25 0"
+					endcolor="0 0 0"
+					minsize="5"
+					maxsize="8"
+					turn="true"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>
+

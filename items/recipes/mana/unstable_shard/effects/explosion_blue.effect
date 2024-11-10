@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+	<definitions>
+	
+		<modifier
+			name="modifier0"
+			life="1000"
+			startcolor=".15"
+			endcolor="1"
+		/>
+	
+
+		<particlesystem name="system0" space="world" scale="1">
+
+      <sound
+				volume="0.65"
+				falloffstart="500"
+				falloffend="2400"
+				sample="../sounds/sfx_end.wav"
+			/>
+
+			<debris
+				bone="_bone_overhead"
+				scale=".25"
+				minlife="400"
+				maxlife="600"
+				model="/heroes/shank/ability_01/effects/rocks_debris/model.mdf"
+				anim="idle"
+				minspeed="1250"
+				maxspeed="2500"
+				direction="0 0 0"
+				minrotationspeed="-90"
+				maxrotationspeed="90"
+				gravity="350"
+				acceleration="0"
+				drag="0"
+				color="0 .5 1"
+				startalpha="1"
+				midalpha="1"
+				endalpha="0"
+				animpose="false"
+				offsetsphere="125 125 250"
+				directionalspace="world"
+			>
+				<template name="sparks">
+				
+					<billboard
+						bone="{zbone}"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .05 .1"
+						endcolor="0 0 0"
+						life="200"
+						size="200"
+						rollspeed="360"
+					/>
+
+				</template>
+				
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box003"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box004"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box005"/>
+				
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box012"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box013"/>
+				
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box019"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box020"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box021"/>
+				
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box031"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box028"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box036"/>
+				
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box001"/>
+				<instance name="sparks" zdelay="0" zlife="750" zbone="Box035"/>
+				
+				
+
+			</debris>
+			
+			<light
+				bone="_bone_overhead"
+				position="0 0 20"
+				life="700"
+				startcolor="0 5 10"
+				endcolor="0 0 0"
+				falloffstart="0"
+				falloffend="300"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_overhead"
+				position="0 0 0"
+				count="5"
+				spawnrate="50000"
+				particlelife="2000"
+				directionalspace="local"
+			>
+				<particle
+				>
+					<template name="">
+
+						<billboard
+							bone="_bone_overhead"
+							delay="0"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 .06 .25"
+							endcolor="0 0 0"
+							life="250"
+							startsize="100"
+							endsize="250"
+							depthbias="-150"
+							rollspeed="360"
+						/>
+
+						<billboard
+							bone="_bone_overhead"
+							delay="100"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 .03 .125"
+							endcolor="0 0 0"
+							life="250"
+							startsize="100"
+							endsize="250"
+							depthbias="-150"
+							rollspeed="360"
+						/>
+
+						<billboard
+							bone="_bone_overhead"
+							delay="200"
+							material="/shared/effects/smaterials/bulb_add.material"
+							startcolor="0 .015 .06"
+							endcolor="0 0 0"
+							life="250"
+							startsize="100"
+							endsize="250"
+							depthbias="-150"
+							rollspeed="360"
+						/>
+						
+						<billboard
+							bone="_bone_overhead"
+							material="/shared/effects/smaterials/whitedot.material"
+							startcolor="0 .1 .2"
+							endcolor="0 0 0"
+							life="500"
+							startsize="100"
+							endsize="600"
+							depthbias="-150"
+							rollspeed="360"
+						/>
+
+					</template>
+
+					<instance name="" zroll="0" zdelay="0"/>
+			
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+	<thread>
+		<camerashake2 scale="10" radius="1000" duration="400" frequency="30" />
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

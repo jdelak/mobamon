@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<economechanics>
+	<commodities>
+		<craftingcommodity 	name="ore" 			max="999" icon="/ui/icons/commodity_ore.tga" />
+		<craftingcommodity 	name="essence" 		max="999" icon="/ui/icons/commodity_essence.tga" />
+		<petcommodity 		name="food" 		max="999" petxp="10" icon="/ui/icons/commodity_petfood.tga" />
+		<petcommodity 		name="shards"		max="999" habitatxp="1" icon="/ui/icons/commodity_superfood.tga" />
+		<premiumcommodity	name="gems"			value="20" 	cost="0.99" icon="/ui/icons/gem.tga" />
+		<premiumcommodity	name="gemPack2"		value="100" 	cost="4.99" icon="/ui/icons/gem.tga" />
+		<premiumcommodity	name="gemPack5"		value="210" 	cost="9.99" icon="/ui/icons/gem.tga" />
+		<premiumcommodity	name="gemPack10"	value="430" 	cost="19.99" icon="/ui/icons/gem.tga" />
+		<premiumcommodity	name="gemPack25"	value="870" 	cost="39.99" icon="/ui/icons/gem.tga" />
+	</commodities>
+
+	<!-- for the purposes of this code, think of "level 1" as index 0 !-->
+	<petmechanics>
+		<initialoffering pets="Familiar_Mystik,Familiar_Pincer,Familiar_Tortus" />
+		<petxpboost cost="40,80,160,240"	boosts="95,225,480,770" icon="/ui/elements/full_chest_1.tga,/ui/elements/full_chest_2.tga" multiplier="2.0" />
+		<evolution levels="0,2,5" meta="8" >
+			<passive levels="5,6,8" />
+			<triggeredpassive levels="2,4,7" />
+			<activated levels="0,1,3" />
+		</evolution>
+
+		<petcost>
+			<pet name="Familiar_Mystik"		gemcost="50"	foodcost="1200" />
+			<pet name="Familiar_Pincer"		gemcost="50"	foodcost="1200" />
+			<pet name="Familiar_Tortus"		gemcost="50"	foodcost="1200" />
+			<pet name="Familiar_Bounder"	gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Fiki"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Ganker"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Luster"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Razer"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Topps"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Pusher"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Tinker"		gemcost="140"	foodcost="3000" />
+			<pet name="Familiar_Owl"		gemcost="140"	foodcost="3000" />
+		</petcost>
+
+		<petupgrades>
+			<pet name="Familiar_Bounder">
+				<gearset gear="default" 	gemcost="-1"  					 petselect="/familiars/bounder/model_2/icon.tga" 	model="/familiars/bounder/model_2/model.mdf"	/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0"  petselect="/familiars/bounder/model_1/icon.tga" 	model="/familiars/bounder/model_1/model.mdf"	/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0"  petselect="/familiars/bounder/model_3/icon.tga" 	model="/familiars/bounder/model_3/model.mdf"	/>
+			</pet>
+			<pet name="Familiar_Tortus">
+				<gearset gear="default" 	gemcost="-1"  					 petselect="/familiars/tortus/model_2/icon.tga" 	model="/familiars/tortus/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0"  petselect="/familiars/tortus/model_1/icon.tga" 	model="/familiars/tortus/model_1/model.mdf"		/>
+				<gearset gear="adult"		 gemcost="140" gemrentalcost="0" petselect="/familiars/tortus/model_3/icon.tga" 	model="/familiars/tortus/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Luster">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/luster/model_2/icon.tga" 		model="/familiars/luster/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/luster/model_1/icon.tga" 		model="/familiars/luster/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/luster/model_3/icon.tga" 		model="/familiars/luster/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Mystik">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/mystik/model_2/icon.tga" 		model="/familiars/mystik/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/mystik/model_1/icon.tga" 		model="/familiars/mystik/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/mystik/model_3/icon.tga" 		model="/familiars/mystik/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Pincer">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/pincer/model_2/icon.tga" 		model="/familiars/pincer/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/pincer/model_1/icon.tga" 		model="/familiars/pincer/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/pincer/model_3/icon.tga" 		model="/familiars/pincer/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Razer">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/razer/model_2/icon.tga" 		model="/familiars/razer/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/razer/model_1/icon.tga" 		model="/familiars/razer/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/razer/model_3/icon.tga" 		model="/familiars/razer/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Topps">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/topps/model_2/icon.tga" 		model="/familiars/topps/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/topps/model_1/icon.tga" 		model="/familiars/topps/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/topps/model_3/icon.tga" 		model="/familiars/topps/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Ganker">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/ganker/model_2/icon.tga" 		model="/familiars/ganker/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/ganker/model_1/icon.tga" 		model="/familiars/ganker/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/ganker/model_3/icon.tga"		model="/familiars/ganker/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Pusher">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/pusher/model_2/icon.tga" 		model="/familiars/pusher/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/pusher/model_1/icon.tga" 		model="/familiars/pusher/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/pusher/model_3/icon.tga" 		model="/familiars/pusher/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Tinker">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/tinker/model_2/icon.tga" 		model="/familiars/tinker/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/tinker/model_1/icon.tga"		model="/familiars/tinker/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/tinker/model_3/icon.tga"		model="/familiars/tinker/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Fiki">
+				<gearset gear="default" 	gemcost="-1"  					petselect="/familiars/fiki/model_2/icon.tga" 		model="/familiars/fiki/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/fiki/model_1/icon.tga" 		model="/familiars/fiki/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/fiki/model_3/icon.tga" 		model="/familiars/fiki/model_3/model.mdf"		/>
+			</pet>
+			<pet name="Familiar_Owl">
+				<gearset gear="default"	 	gemcost="-1"  					petselect="/familiars/owl/model_2/icon.tga" 		model="/familiars/owl/model_2/model.mdf"		/>
+				<gearset gear="baby" 		gemcost="140" gemrentalcost="0" petselect="/familiars/owl/model_1/icon.tga"		 	model="/familiars/owl/model_1/model.mdf"		/>
+				<gearset gear="adult" 		gemcost="140" gemrentalcost="0" petselect="/familiars/owl/model_3/icon.tga" 		model="/familiars/owl/model_3/model.mdf"		/>
+			</pet>
+		</petupgrades>
+	</petmechanics>
+
+
+	<!-- Gear Packs -->
+	
+	<!-- Ace -->
+	<heroupgrades hero="Hero_Ace">
+		<gearpack gear="Hero_Ace" gemcost="-1" storepreview="/heroes/ace/storepreview.tga" heroselect="/heroes/ace/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="aqua"		gemcost="60" gemrentalcost="6"  color="#9fe7ff" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<!--<dye skin="orange"		gemcost="80" gemrentalcost="8"  color="#ff4300" />-->
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/ace/gear_1/storepreview.tga" heroselect="/heroes/ace/gear_1/heroselect.tga" >
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#31A3DC" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#15C35A" />
+			<dye skin="clown"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="0" gemrentalcost="0" storepreview="/heroes/ace/gear_2/storepreview.tga" heroselect="/heroes/ace/gear_2/heroselect.tga" >
+			<!--<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#000000" />-->
+			<!--<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+			<!--<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />-->
+			<!--<dye skin="purple"		gemcost="80" gemrentalcost="8"  color="#7316ff" />-->
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+		</gearpack>
+		<gearpack gear="uber"	 gemcost="290" gemrentalcost="29" storepreview="/heroes/ace/gear_3/storepreview.tga" heroselect="/heroes/ace/gear_3/heroselect.tga" >
+			<dye skin="black"		gemcost="140" gemrentalcost="14"  color="#000000" />
+			<dye skin="aqua"		gemcost="100" gemrentalcost="10"  color="#9fe7ff" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#1dc119" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />
+			<!--<dye skin="yellow"		gemcost="130" gemrentalcost="13"  color="#e0b212" />-->
+			<!--<dye skin="pink"		gemcost="160" gemrentalcost="16"  color="#ee1f8f" />-->
+		</gearpack>
+		<gearpack gear="gear_4"  gemcost="160" gemrentalcost="16" storepreview="/heroes/ace/gear_4/storepreview.tga" heroselect="/heroes/ace/gear_4/heroselect.tga" >
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Aemon -->
+	<heroupgrades hero="Hero_Aemon">
+		<gearpack gear="Hero_Aemon" gemcost="-1" storepreview="/heroes/aemon/storepreview.tga" heroselect="/heroes/aemon/heroselect.tga">
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  	color="#DF0101" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  	color="#00BA41" />
+			<dye skin="camo"		gemcost="100" gemrentalcost="10"  	color="#10370e" />
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  	color="#2855e5" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Bandito -->
+	<heroupgrades hero="Hero_Bandito">
+		<gearpack gear="Hero_Bandito" gemcost="-1" storepreview="/heroes/bandito/storepreview.tga" heroselect="/heroes/bandito/heroselect.tga">
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  	color="#DF0101" />-->
+			<dye skin="purple"		gemcost="80" gemrentalcost="8"  	color="#A319A6" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  	color="#000000" />
+			<dye skin="gold"		gemcost="100" gemrentalcost="10"  	color="#FF8000" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Bastion -->
+	<heroupgrades hero="Hero_Bastion">
+		<gearpack gear="Hero_Bastion" gemcost="-1" storepreview="/heroes/bastion/storepreview.tga" heroselect="/heroes/bastion/heroselect.tga">
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<!--<dye skin="gold"		gemcost="60" gemrentalcost="6"  color="#febc0a" />-->
+			<!--<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />-->
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/bastion/gear_1/storepreview.tga" heroselect="/heroes/bastion/gear_1/heroselect.tga" >
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />
+			<!--<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />-->
+			<!--<dye skin="grey"		gemcost="80" gemrentalcost="8"  color="#9d9d9d" />-->
+			<!--<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />-->
+		</gearpack>
+		<!-- <gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/bastion/gear_2/storepreview.tga" heroselect="/heroes/bastion/gear_2/heroselect.tga" >
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<dye skin="purple"		gemcost="100" gemrentalcost="10"  color="#7316ff" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#e0b212" />
+		</gearpack>	-->
+		<gearpack gear="uber"	gemcost="290" gemrentalcost="29" storepreview="/heroes/bastion/gear_3/storepreview.tga" heroselect="/heroes/bastion/gear_3/heroselect.tga" >
+			<dye skin="green"		gemcost="120" gemrentalcost="12"  color="#1dc119" />
+			<dye skin="blue"		gemcost="120" gemrentalcost="12"  color="#2855e5" />
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#090909" />-->
+			<!--<dye skin="yellow"		gemcost="160" gemrentalcost="16"  color="#e0b212" />-->
+			<!--<dye skin="purple"		gemcost="100" gemrentalcost="10"  color="#e5004f" />-->
+			<!--<dye skin="teal"		gemcost="100" gemrentalcost="10"  color="#03d8bc" />-->
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Blazer -->
+	<heroupgrades hero="Hero_Blazer">
+		<gearpack gear="Hero_Blazer" gemcost="-1" storepreview="/heroes/blazer/storepreview.tga" heroselect="/heroes/blazer/heroselect.tga">
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  color="#2E2EFE" />
+			<dye skin="gold"		gemcost="100" gemrentalcost="10" color="#FF8000" />
+			<dye skin="yellowblack"	gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="mint"        gemcost="80" gemrentalcost="8"  color="#cff239" />
+			<dye skin="candy"		gemcost="80" gemrentalcost="8"  color="#38abe7" />
+			<!--<dye skin="pink"		gemcost="120" gemrentalcost="12"  color="#ee1f8f" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+			<!--<dye skin="purple"		gemcost="60" gemrentalcost="6"  color="#ff1f8f" />-->
+		</gearpack>
+		<gearpack gear="gear_1" 		gemcost="160" gemrentalcost="16" storepreview="/heroes/blazer/gear_1/storepreview.tga" heroselect="/heroes/blazer/gear_1/heroselect.tga">
+			<dye skin="gold"			gemcost="60" gemrentalcost="6"  color="#db971d" />
+			<dye skin="red"				gemcost="60" gemrentalcost="6"  color="#a4130b" />
+			<dye skin="white"			gemcost="80" gemrentalcost="8"  color="#FFFFFF" />
+		</gearpack>
+		<gearpack gear="gear_2" gemcost="160" gemrentalcost="16" storepreview="/heroes/blazer/gear_2/storepreview.tga" heroselect="/heroes/blazer/gear_2/heroselect.tga">
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#d21a1a" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="pink"		gemcost="60" gemrentalcost="6"  color="#ee1f8f" />
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  color="#113AC0" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Bo -->
+	<heroupgrades hero="Hero_Bo">
+		<gearpack gear="Hero_Bo" gemcost="-1" storepreview="/heroes/bo/storepreview.tga" heroselect="/heroes/bo/heroselect.tga">
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#6e9550" />
+			<dye skin="rwb"			gemcost="100" gemrentalcost="10" color="#ffffff" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="teal"		gemcost="80" gemrentalcost="8"  color="#338790" />
+			<dye skin="blueGreen"   gemcost="80" gemrentalcost="8"  color="#216578" />
+			<dye skin="purpleGreen" gemcost="80" gemrentalcost="8"  color="#712d80" />
+			<dye skin="redBlack"	gemcost="80" gemrentalcost="8"  color="#4a2216" />
+			<dye skin="leafGreen"   gemcost="80" gemrentalcost="8"  color="#acd989" />
+			<dye skin="brown"  		gemcost="80" gemrentalcost="8"  color="#8b5206" />
+			<dye skin="maroon"		gemcost="80" gemrentalcost="8"  color="#5d1007" />
+			<!--<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />-->
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/bo/gear_1/storepreview.tga" heroselect="/heroes/bo/gear_1/heroselect.tga">
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#04B404" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#FF0000" />
+			<dye skin="purple"		gemcost="60" gemrentalcost="6"  color="#DF01A5" />
+		</gearpack>
+		<gearpack gear="gear_3" gemcost="350" gemrentalcost="35" storepreview="/heroes/bo/gear_3/storepreview.tga" heroselect="/heroes/bo/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="160" gemrentalcost="16"  color="#000000" />
+			<dye skin="blue"		gemcost="100" gemrentalcost="10"  color="#109CEC" />
+			<dye skin="pink"		gemcost="120" gemrentalcost="12"  color="#EC10DA" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Buford -->
+	<heroupgrades hero="Hero_Buford">
+		<gearpack gear="Hero_Buford" gemcost="-1" storepreview="/heroes/buford/storepreview.tga" heroselect="/heroes/buford/heroselect.tga">
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  	color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8" 		color="#00BA41" />
+			<dye skin="jurassic"	gemcost="100" gemrentalcost="10"  	color="#A33101" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  	color="#E634DE" />
+		</gearpack>
+	</heroupgrades>	
+	
+
+	<!-- Caprice -->
+	<heroupgrades hero="Hero_Caprice">
+		<gearpack gear="Hero_Caprice" gemcost="-1" storepreview="/heroes/caprice/storepreview.tga" heroselect="/heroes/caprice/heroselect.tga">
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />
+			<dye skin="spooky"		gemcost="100" gemrentalcost="10"  color="#F29100" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ff81a8" />
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />-->
+			<!--<dye skin="purple"		gemcost="80" gemrentalcost="8"  color="#b206d0" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="0" storepreview="/heroes/caprice/gear_1/storepreview.tga" heroselect="/heroes/caprice/gear_1/heroselect.tga" >
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ff81a8" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="aqua"		gemcost="60" gemrentalcost="6"  color="#67cddc" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/caprice/gear_2/storepreview.tga" heroselect="/heroes/caprice/gear_2/heroselect.tga" >
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#FFFFFF" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#D680C9" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8" color="#000000" />
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+			<!--<dye skin="aqua"		gemcost="60" gemrentalcost="6"  color="#67cddc" />-->
+			<!--<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#1e1e1d" />-->
+		</gearpack>
+		<gearpack gear="uber"	gemcost="290" gemrentalcost="29" storepreview="/heroes/caprice/gear_3/storepreview.tga" heroselect="/heroes/caprice/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="140" gemrentalcost="14"  color="#1e1e1d" />
+			<dye skin="blue"		gemcost="100" gemrentalcost="10"  color="#2855e5" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#1dc119" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#ff4300" />
+			<!--<dye skin="pink"		gemcost="130" gemrentalcost="13"  color="#ff81a8" />-->
+			<!--<dye skin="purple"		gemcost="100" gemrentalcost="10"  color="#b206d0" />-->
+		</gearpack>
+		<gearpack gear="gear_4"  gemcost="0" gemrentalcost="0" storepreview="/heroes/caprice/gear_4/storepreview.tga" heroselect="/heroes/caprice/gear_4/heroselect.tga">
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Carter -->
+	<heroupgrades hero="Hero_Carter">
+		<gearpack gear="Hero_Carter" gemcost="-1" storepreview="/heroes/carter/storepreview.tga" heroselect="/heroes/carter/heroselect.tga">
+			<dye skin="purple"		gemcost="60" gemrentalcost="6"	color="#8e3ed5" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"    color="#d21a1a" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"    color="#1dc119" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  	color="#090909" />
+			<!--<dye skin="orange"		gemcost="60" gemrentalcost="6"    color="#d59b3e" />-->
+			<!--<dye skin="tiedye"		gemcost="60" gemrentalcost="6"    color="#f3f3f3" />-->
+			<!--<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />-->
+			<!--<dye skin="offwhite"	gemcost="80" gemrentalcost="8"  color="#e3e3e3" />-->
+			<!--<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#FFFF00" />-->
+		</gearpack>
+		<!-- <gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/carter/gear_1/storepreview.tga" heroselect="/heroes/carter/gear_1/heroselect.tga" >
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#FFFF00" />
+		</gearpack> -->
+		<gearpack gear="uber"	gemcost="290" gemrentalcost="29" storepreview="/heroes/carter/gear_3/storepreview.tga" heroselect="/heroes/carter/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="140" gemrentalcost="14"  color="#000000" />
+			<dye skin="white"		gemcost="120" gemrentalcost="12"  color="#FFFFFF" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#73FF00" />
+			<!--<dye skin="yellow"		gemcost="100" gemrentalcost="10"  color="#1dc119" />-->
+			<!--<dye skin="blue"		gemcost="130" gemrentalcost="13"  color="#e2cfb8" />-->
+			<!--<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />-->
+		</gearpack>
+	</heroupgrades>
+
+	
+	<!-- Chester -->
+	<heroupgrades hero="Hero_Chester">
+		<gearpack gear="Hero_Chester" gemcost="-1" storepreview="/heroes/chester/storepreview.tga" heroselect="/heroes/chester/heroselect.tga">
+			<dye skin="mime"		gemcost="60" gemrentalcost="6"  	color="#0B0B61" />
+			<dye skin="joker"		gemcost="80" gemrentalcost="8" 		color="#04B404" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  	color="#DF0101" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  	color="#151515" />
+		</gearpack>
+	</heroupgrades>	
+	
+	
+	<!-- Claudessa -->
+	<heroupgrades hero="Hero_Claudessa">
+		<gearpack gear="Hero_Claudessa" gemcost="-1" storepreview="/heroes/claudessa/storepreview.tga" heroselect="/heroes/claudessa/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<dye skin="gold"		gemcost="120" gemrentalcost="12"  color="#ffff00" />
+			<dye skin="ice"			gemcost="80" gemrentalcost="8"  color="#0174df" />
+			<!--<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />-->
+			<!--<dye skin="purple"		gemcost="60" gemrentalcost="6"  color="#ff1f8f" />-->
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/claudessa/gear_1/storepreview.tga" heroselect="/heroes/claudessa/gear_1/heroselect.tga">
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#29088A" />
+			<dye skin="flames"		gemcost="100" gemrentalcost="10"  color="#DF0101" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#FF00FF" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Eanu -->
+	<heroupgrades hero="Hero_Eanu">
+		<gearpack gear="Hero_Eanu" gemcost="-1" storepreview="/heroes/eanu/storepreview.tga" heroselect="/heroes/eanu/heroselect.tga">
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  	color="#DF0101" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  	color="#00BA41" />
+			<dye skin="silver"		gemcost="100" gemrentalcost="10"  	color="#f0fbff" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  	color="#E634DE" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Fetterstone -->
+	<heroupgrades hero="Hero_Fetterstone">
+		<gearpack gear="Hero_Fetterstone" gemcost="-1" storepreview="/heroes/fetterstone/storepreview.tga" heroselect="/heroes/fetterstone/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<dye skin="pink"		gemcost="120" gemrentalcost="12"  color="#ee1f8f" />
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+			<!--<dye skin="purple"		gemcost="60" gemrentalcost="6"  color="#ff1f8f" />-->
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/fetterstone/gear_1/storepreview.tga" heroselect="/heroes/fetterstone/gear_1/heroselect.tga">
+			<dye skin="purple"		gemcost="80" gemrentalcost="8"  color="#ff1f8f" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+			<!--<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />-->
+		</gearpack>
+	</heroupgrades>
+
+	
+	<!-- Flak -->
+	<heroupgrades hero="Hero_Flak">
+		<gearpack gear="Hero_Flak" gemcost="-1" storepreview="/heroes/flak/storepreview.tga" heroselect="/heroes/flak/heroselect.tga">
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  	color="#DF0101" />
+			<dye skin="purple"		gemcost="60" gemrentalcost="6"  	color="#A319A6" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  	color="#00BA41" />
+		</gearpack>
+	</heroupgrades>	
+	
+	
+	<!-- GoKong -->
+	<heroupgrades hero="Hero_GoKong">
+		<gearpack gear="Hero_GoKong" gemcost="-1" storepreview="/heroes/gokong/storepreview.tga" heroselect="/heroes/gokong/heroselect.tga">
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#E634DE" />
+			<dye skin="orange"		gemcost="80" gemrentalcost="8" color="#CE871B" />
+			<dye skin="zombie"		gemcost="100" gemrentalcost="10"  color="#96A49B" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Hale -->
+	<heroupgrades hero="Hero_Hale">
+		<gearpack gear="Hero_Hale" gemcost="-1" storepreview="/heroes/hale/storepreview.tga" heroselect="/heroes/hale/heroselect.tga">
+			<dye skin="orange"		gemcost="80" gemrentalcost="8"  color="#ff9c19" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="spooky"		gemcost="100" gemrentalcost="10"  color="#DF0101" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="gold"		gemcost="60" gemrentalcost="6"  color="#dfa824" />
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/hale/gear_1/storepreview.tga" heroselect="/heroes/hale/gear_1/heroselect.tga">
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="blue"		gemcost="100" gemrentalcost="10"  color="#0000FF" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#FF0000" />
+			<dye skin="pink"		gemcost="60" gemrentalcost="6"  color="#DF01A5" />
+		</gearpack>
+		<gearpack gear="gear_4" gemcost="0" gemrentalcost="0" storepreview="/heroes/hale/gear_4/storepreview.tga" heroselect="/heroes/hale/gear_4/heroselect.tga">
+		</gearpack>
+		<gearpack gear="uber" gemcost="160" gemrentalcost="16" storepreview="/heroes/hale/gear_3/storepreview.tga" heroselect="/heroes/hale/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="purple"		gemcost="100" gemrentalcost="10"  color="#7316ff" />
+			<!--<dye skin="gold"		gemcost="60" gemrentalcost="6"  color="#ff4300" />-->
+			<!--<dye skin="blood"		gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Harrower -->
+	<heroupgrades hero="Hero_Harrower">
+		<gearpack gear="Hero_Harrower" gemcost="-1" storepreview="/heroes/harrower/storepreview.tga" heroselect="/heroes/harrower/heroselect.tga">
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  color="#2351E8" />
+			<dye skin="pink"		gemcost="60" gemrentalcost="6"  color="#FF14C4" />
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#292929" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Iah -->
+	<heroupgrades hero="Hero_Iah">
+		<gearpack gear="Hero_Iah" gemcost="-1" storepreview="/heroes/iah/storepreview.tga" heroselect="/heroes/iah/heroselect.tga">
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  	color="#DF0101" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  	color="#00BA41" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  	color="#2855e5" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  	color="#000000" />
+		</gearpack>
+	</heroupgrades>	
+	
+	
+	<!-- Jin She -->
+	<heroupgrades hero="Hero_JinShe">
+		<gearpack gear="Hero_JinShe" gemcost="-1" storepreview="/heroes/jinshe/storepreview.tga" heroselect="/heroes/jinshe/heroselect.tga">
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#E634DE" />
+			<dye skin="purple"		gemcost="60" gemrentalcost="6" color="#A319A6" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#00BA41" />
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/jinshe/gear_1/storepreview.tga" heroselect="/heroes/jinshe/gear_1/heroselect.tga">
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  	color="#2855e5" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  	color="#000000" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="6"  	color="#E634DE" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  	color="#00BA41" />
+		</gearpack>
+	</heroupgrades>
+
+	
+	<!-- Lady Tinder -->
+	<heroupgrades hero="Hero_Ladytinder">
+		<gearpack gear="Hero_Ladytinder" gemcost="-1" storepreview="/heroes/lady_tinder/storepreview.tga" heroselect="/heroes/lady_tinder/heroselect.tga">
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#FF8800" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ff81a8" />
+			<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#ffe100" />
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />-->
+			<!--<dye skin="magenta"		gemcost="60" gemrentalcost="6"  color="#ff0088" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/lady_tinder/gear_1/storepreview.tga" heroselect="/heroes/lady_tinder/gear_1/heroselect.tga" >
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="maroon"		gemcost="60" gemrentalcost="6"  color="#a10047" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ff81a8" />
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#d21a1a" />
+			<!--<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#ffe100" />-->
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />-->
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/lady_tinder/gear_2/storepreview.tga" heroselect="/heroes/lady_tinder/gear_2/heroselect.tga" >
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ff81a8" />
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />-->
+			<!--<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#ffe100" />-->
+			<!--<dye skin="magenta"		gemcost="60" gemrentalcost="6"  color="#ff0088" />-->
+		</gearpack>
+		<!-- <gearpack gear="uber"	gemcost="350" gemrentalcost="35" storepreview="/heroes/lady_tinder/gear_3/storepreview.tga" heroselect="/heroes/lady_tinder/gear_3/heroselect.tga">
+			<dye skin="blue"		gemcost="160" gemrentalcost="16"  color="#2855e5" />
+			<dye skin="magenta"		gemcost="130" gemrentalcost="13"  color="#ff0088" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#ff4300" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ff81a8" />
+			<dye skin="yellow"		gemcost="100" gemrentalcost="10"  color="#ffe100" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />
+		</gearpack> -->
+	</heroupgrades>
+
+
+	<!-- Malady -->
+	<heroupgrades hero="Hero_Malady">
+		<gearpack gear="Hero_Malady" gemcost="-1" storepreview="/heroes/malady/storepreview.tga" heroselect="/heroes/malady/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#ee1515" />
+			<!--<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ff81a8" />-->
+			<!--<dye skin="limegreen"	gemcost="60" gemrentalcost="6"  color="#5afb3f" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/malady/gear_1/storepreview.tga" heroselect="/heroes/malady/gear_1/heroselect.tga" >
+			<dye skin="blue"		gemcost="80" gemrentalcost="8"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ff81a8" />
+			<dye skin="violet"		gemcost="60" gemrentalcost="6"  color="#4B0082" />
+			<!--<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />-->
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />-->
+		</gearpack>
+		<gearpack gear="uber" gemcost="0" storepreview="/heroes/malady/gear_3/storepreview.tga" heroselect="/heroes/malady/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="160" gemrentalcost="16"  color="#1e1e1d" />
+			<dye skin="blue"		gemcost="100" gemrentalcost="10"  color="#2855e5" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#1dc119" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#ee1515" />
+			<dye skin="pink"		gemcost="130" gemrentalcost="13"  color="#ff81a8" />
+			<dye skin="limegreen"	gemcost="100" gemrentalcost="10"  color="#5afb3f" />
+		</gearpack>
+	</heroupgrades>
+
+
+	<!-- Malph -->
+	<heroupgrades hero="Hero_Malph">
+		<gearpack gear="Hero_Malph" gemcost="-1" storepreview="/heroes/Malph/storepreview.tga" heroselect="/heroes/Malph/heroselect.tga">
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Midknight -->
+	<heroupgrades hero="Hero_Midknight">
+		<gearpack gear="Hero_Midknight" gemcost="-1" storepreview="/heroes/midknight/storepreview.tga" heroselect="/heroes/midknight/heroselect.tga">
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  	color="#000000" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8" 		color="#E634DE" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  	color="#00BA41" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Minerva -->
+	<heroupgrades hero="Hero_Minerva">
+		<gearpack gear="Hero_Minerva" gemcost="-1" storepreview="/heroes/minerva/storepreview.tga" heroselect="/heroes/minerva/heroselect.tga">
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />
+			<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />
+			<dye skin="dharkstone"	gemcost="100" gemrentalcost="10"  color="#1e1e1d" />			
+			<!--<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/minerva/gear_1/storepreview.tga" heroselect="/heroes/minerva/gear_1/heroselect.tga" >
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<!--<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />-->
+			<!--<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />-->
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/minerva/gear_2/storepreview.tga" heroselect="/heroes/minerva/gear_2/heroselect.tga" >
+			<dye skin="gold"		gemcost="60" gemrentalcost="6"  color="#febc0a" />
+			<dye skin="gray"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />
+			<!--<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />-->
+			<!--<dye skin="purple"		gemcost="80" gemrentalcost="8"  color="#7316ff" />-->
+		</gearpack>
+		<gearpack gear="uber" gemcost="0" storepreview="/heroes/minerva/gear_3/storepreview.tga" heroselect="/heroes/minerva/gear_3/heroselect.tga" >
+			<dye skin="black"		gemcost="160" gemrentalcost="16"  color="#000000" />
+			<dye skin="green"		gemcost="130" gemrentalcost="13"  color="#1dc119" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#ff4300" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#ee1f8f" />
+			<dye skin="yellow"		gemcost="100" gemrentalcost="10"  color="#FFFF00" />
+		</gearpack>
+	</heroupgrades>	
+
+
+	<!-- Moxie -->
+	<heroupgrades hero="Hero_Moxie">
+		<gearpack gear="Hero_Moxie" gemcost="-1" storepreview="/heroes/moxie/storepreview.tga" heroselect="/heroes/moxie/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#3be51d" />
+			<dye skin="nyan"		gemcost="120" gemrentalcost="12"  color="#f294f4" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#ff9c19" />
+			<dye skin="neon"		gemcost="100" gemrentalcost="10"  color="#8C008C" />
+			<dye skin="flash"		gemcost="100" gemrentalcost="10"  color="#da2717" />
+			<dye skin="spooky"		gemcost="100" gemrentalcost="10"  color="#1e1e1d" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#fb429c" />
+			<!--<dye skin="white"		gemcost="60" gemrentalcost="6"  color="#f5f6ea" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/moxie/gear_1/storepreview.tga" heroselect="/heroes/moxie/gear_1/heroselect.tga" >
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<dye skin="grey"		gemcost="60" gemrentalcost="6"  color="#a3a3a3" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#ff4300" />-->
+			<!--<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#fb429c" />-->
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="0" storepreview="/heroes/moxie/gear_2/storepreview.tga" heroselect="/heroes/moxie/gear_2/heroselect.tga" >
+			<dye skin="blue"		gemcost="100" gemrentalcost="10"  color="#2855e5" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#1dc119" />
+			<dye skin="purple"		gemcost="100" gemrentalcost="10"  color="#9135ec" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />
+			<dye skin="yellow"		gemcost="100" gemrentalcost="10"  color="#ffe100" />
+			<dye skin="black"		gemcost="120" gemrentalcost="12"  color="#1e1e1d" />
+		</gearpack>
+		<!-- <gearpack gear="uber"	gemcost="350" gemrentalcost="35" storepreview="/heroes/moxie/gear_3/storepreview.tga" heroselect="/heroes/moxie/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="160" gemrentalcost="16" color="#1e1e1d" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#3be51d" />
+			<dye skin="nyan"		gemcost="100" gemrentalcost="10"  color="#f294f4" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#ff9e00" />
+			<dye skin="pink"		gemcost="130" gemrentalcost="13"  color="#fb429c" />
+			<dye skin="white"		gemcost="100" gemrentalcost="10"  color="#f7f1f8" />
+		</gearpack> -->
+	</heroupgrades>
+
+
+	<!-- Nikolai -->
+	<heroupgrades hero="Hero_Nikolai">
+		<gearpack gear="Hero_Nikolai" gemcost="-1" storepreview="/heroes/nikolai/storepreview.tga" heroselect="/heroes/nikolai/heroselect.tga">
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8" color="#00BA41" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Pal -->
+	<heroupgrades hero="Hero_Pal">
+		<gearpack gear="Hero_Pal" gemcost="-1" storepreview="/heroes/Pal/storepreview.tga" heroselect="/heroes/Pal/heroselect.tga">
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"	color="#E634DE" />
+			<dye skin="iron"		gemcost="80" gemrentalcost="8"		color="#FA2413" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Ray -->
+	<heroupgrades hero="Hero_Ray">
+		<gearpack gear="Hero_Ray" gemcost="-1" storepreview="/heroes/ray/storepreview.tga" heroselect="/heroes/ray/heroselect.tga">
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10" color="#000000" />-->
+			<!--<dye skin="primary"		gemcost="60" gemrentalcost="6"  color="#9135ec" />-->
+			<!--<dye skin="fall"		gemcost="80" gemrentalcost="8"  color="#d21a1a" />-->
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#fb429c" />
+			<dye skin="nuclear"		gemcost="60" gemrentalcost="6"  color="#ffe100" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#3be51d" />
+			<dye skin="cableGuy"	gemcost="60" gemrentalcost="6"  color="#53bedf" />
+			<dye skin="nuclear2"    gemcost="60" gemrentalcost="6"  color="#9c55a0" />
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/ray/gear_1/storepreview.tga" heroselect="/heroes/ray/gear_1/heroselect.tga" >
+			<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#fb429c" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<!--<dye skin="tieDye"		gemcost="60" gemrentalcost="6"  color="#1c1c1c" />-->
+			<!--<dye skin="purple"		gemcost="80" gemrentalcost="8"  color="#572d75" />-->
+			<!--<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#40c3ca" />-->
+			<!--<dye skin="gray"		gemcost="60" gemrentalcost="6"  color="#a3a3a3" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#ff4300" />-->
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/ray/gear_2/storepreview.tga" heroselect="/heroes/ray/gear_2/heroselect.tga" >
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#1e1e1d" />
+			<dye skin="brown"		gemcost="60" gemrentalcost="6"  color="#a5682a" />
+			<dye skin="pink"		gemcost="60" gemrentalcost="6"  color="#fb429c" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+		</gearpack>
+		<gearpack gear="gear_3"  gemcost="350" gemrentalcost="35" storepreview="/heroes/ray/gear_3/storepreview.tga" heroselect="/heroes/ray/gear_3/heroselect.tga" >
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#fb429c" />
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#E51111" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />
+		</gearpack>
+		<gearpack gear="gear_4"  gemcost="0" gemrentalcost="0" storepreview="/heroes/ray/gear_4/storepreview.tga" heroselect="/heroes/ray/gear_4/heroselect.tga" >
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Rip -->
+	<heroupgrades hero="Hero_Rip">
+		<gearpack gear="Hero_Rip" gemcost="-1" storepreview="/heroes/rip/storepreview.tga" heroselect="/heroes/rip/heroselect.tga">
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  	color="#DF0101" />
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  	color="#000000" />
+			<dye skin="yellow"		gemcost="100" gemrentalcost="10"  	color="#FFFF00" />
+			<dye skin="pepperoni"	gemcost="125" gemrentalcost="12"  	color="#A33101" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Rook -->
+	<heroupgrades hero="Hero_Rook">
+		<gearpack gear="Hero_Rook" gemcost="-1" storepreview="/heroes/rook/storepreview.tga" heroselect="/heroes/rook/heroselect.tga">
+			<!--<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#000000" />-->
+			<!--<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#e0b212" />-->
+			<dye skin="blue"		gemcost="60" gemrentalcost="6" color="#2855e5" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8" color="#1dc119" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6" color="#d21a1a" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10" color="#ee1f8f" />
+			<dye skin="assassinRook" gemcost="100" gemrentalcost="10" color="#6c6c6c" />
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/rook/gear_1/storepreview.tga" heroselect="/heroes/rook/gear_1/heroselect.tga" >
+			<dye skin="blue"		gemcost="60"  gemrentalcost="6" color="#2855e5" />
+			<dye skin="gold"		gemcost="80"  gemrentalcost="8" color="#febc0a" />
+			<dye skin="green"		gemcost="60"  gemrentalcost="6" color="#1dc119" />
+			<dye skin="opera"		gemcost="100"  gemrentalcost="10" color="#d21a1a" />
+			<!--<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ee1f8f" />-->
+			<!--<dye skin="orange"		gemcost="80" gemrentalcost="8"  color="#ff4300" />-->
+		</gearpack>
+		<gearpack gear="gear_2" gemcost="0" storepreview="/heroes/rook/gear_2/storepreview.tga" heroselect="/heroes/rook/gear_2/heroselect.tga" >
+			<dye skin="brown"		gemcost="100" gemrentalcost="10"  color="#a24c00" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ee1f8f" />
+		</gearpack>
+		<gearpack gear="gear_4" gemcost="160" gemrentalcost="16" storepreview="/heroes/rook/gear_4/storepreview.tga" heroselect="/heroes/rook/gear_4/heroselect.tga" >
+			<dye skin="hunter"		gemcost="80" gemrentalcost="8"  color="#31724E" />
+			<dye skin="Black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="Legion"		gemcost="60" gemrentalcost="6"  color="#1A69A5" />
+			<!--<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />-->
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />-->
+			<!--<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ee1f8f" />-->
+		</gearpack>
+		<gearpack gear="uber" gemcost="290" gemrentalcost="29" storepreview="/heroes/rook/gear_3/storepreview.tga" heroselect="/heroes/rook/gear_3/heroselect.tga" >
+			<dye skin="black"		gemcost="140" gemrentalcost="14"  color="#000000" />
+			<dye skin="ruby"		gemcost="100" gemrentalcost="10"  color="#930000" />
+			<dye skin="emerald"		gemcost="100" gemrentalcost="10"  color="#00e265" />
+			<dye skin="sapphire"	gemcost="100" gemrentalcost="10"  color="#0439ff" />
+			<!--<dye skin="topaz"		gemcost="130" gemrentalcost="13"  color="#FF00FF" />-->
+			<!--<dye skin="obsidian"	gemcost="160" gemrentalcost="16"  color="#033436" />-->
+		</gearpack>
+	</heroupgrades>
+
+	
+	<!-- Shank -->
+	<heroupgrades hero="Hero_Shank">
+		<gearpack gear="Hero_Shank" gemcost="-1" storepreview="/heroes/shank/storepreview.tga" heroselect="/heroes/shank/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  color="#1dc119" />
+			<dye skin="pink"		gemcost="120" gemrentalcost="12"  color="#ee1f8f" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="inmate"		gemcost="60" gemrentalcost="6"  color="#dcaa31" />
+			<dye skin="spooky"		gemcost="120" gemrentalcost="12"  color="#E9A321" />
+			<!--<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />-->
+			<!--<dye skin="orange"		gemcost="80" gemrentalcost="8"  color="#ff9c19" />-->
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/shank/gear_1/storepreview.tga" heroselect="/heroes/shank/gear_1/heroselect.tga">
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />
+			<dye skin="pink"		gemcost="120" gemrentalcost="12"  color="#ee1f8f" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Trace -->
+	<heroupgrades hero="Hero_Trace">
+		<gearpack gear="Hero_Trace" gemcost="-1" storepreview="/heroes/trace/storepreview.tga" heroselect="/heroes/trace/heroselect.tga">
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  	color="#000000" />
+			<dye skin="green"		gemcost="80" gemrentalcost="8"  	color="#00BA41" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  	color="#DF0101" />
+		</gearpack>
+	</heroupgrades>	
+	
+	
+	<!-- Trixie -->
+	<heroupgrades hero="Hero_Trixie">
+		<gearpack gear="Hero_Trixie" gemcost="-1" storepreview="/heroes/trixie/storepreview.tga" heroselect="/heroes/trixie/heroselect.tga">
+			<dye skin="prentice"	gemcost="80" gemrentalcost="8"  color="#61210B" />
+			<dye skin="ranger"		gemcost="100" gemrentalcost="10" color="#E0ECF8" />
+			<dye skin="sorcerer"	gemcost="60" gemrentalcost="6"  color="#2E2EFE" />
+		</gearpack>
+		<gearpack gear="gear_1" gemcost="160" gemrentalcost="16" storepreview="/heroes/trixie/gear_1/storepreview.tga" heroselect="/heroes/trixie/gear_1/heroselect.tga">
+			<dye skin="alice"		gemcost="80" gemrentalcost="8"  color="#638CDF" />
+			<dye skin="elf"			gemcost="60" gemrentalcost="6"  color="#00FF33" />
+			<dye skin="jester"		gemcost="100" gemrentalcost="10"  color="#000000" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Vermillion -->
+	<heroupgrades hero="Hero_Vermillion">
+		<gearpack gear="Hero_Vermillion" gemcost="-1" storepreview="/heroes/vermillion/storepreview.tga" heroselect="/heroes/vermillion/heroselect.tga" >
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="orange"		gemcost="60" gemrentalcost="6"  color="#ff4300" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<!--<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#ee1f8f" />-->
+			<!--<dye skin="redwhiteblue" gemcost="100" gemrentalcost="10" color="#FFFFFF" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/vermillion/gear_1/storepreview.tga" heroselect="/heroes/vermillion/gear_1/heroselect.tga" >
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#d21a1a" />
+			<dye skin="tan"			gemcost="60" gemrentalcost="6"  color="#ddc07b" />
+			<!--<dye skin="violet"		gemcost="100" gemrentalcost="10"  color="#a41dfa" />-->
+			<!--<dye skin="irish"		gemcost="80" gemrentalcost="8"  color="#287b2c" />-->
+		</gearpack>
+		<gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/vermillion/gear_2/storepreview.tga" heroselect="/heroes/vermillion/gear_2/heroselect.tga" >
+			<dye skin="black"		gemcost="80" gemrentalcost="8"  color="#000000" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#4E34E3" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#DC31D7" />
+			<!--<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#d21a1a" />-->
+			<!--<dye skin="teal"		gemcost="60" gemrentalcost="6"  color="#03d8bc" />-->
+			<!--<dye skin="purple"		gemcost="60" gemrentalcost="6"  color="#7316ff" />-->
+		</gearpack>
+		<gearpack gear="uber"	 gemcost="350" gemrentalcost="35" storepreview="/heroes/vermillion/gear_3/storepreview.tga" heroselect="/heroes/vermillion/gear_3/heroselect.tga" >
+			<dye skin="black"		gemcost="160" gemrentalcost="16"  color="#000000" />
+			<dye skin="blue"		gemcost="160" gemrentalcost="16"  color="#2855e5" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#1dc119" />
+			<dye skin="purple"		gemcost="130" gemrentalcost="13"  color="#7316ff" />
+			<dye skin="red"			gemcost="100" gemrentalcost="10"  color="#d21a1a" />
+			<dye skin="silver"		gemcost="100" gemrentalcost="10"  color="#f0fbff" />
+		</gearpack>
+	</heroupgrades>
+	
+	
+	<!-- Vex -->
+	<heroupgrades hero="Hero_Vex">
+		<gearpack gear="Hero_Vex" gemcost="-1" storepreview="/heroes/vex/storepreview.tga" heroselect="/heroes/vex/heroselect.tga">
+			<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />
+			<dye skin="camo"		gemcost="80" gemrentalcost="8"  color="#10370e" />
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#424f49" />
+			<dye skin="classic"		gemcost="80" gemrentalcost="8"  color="#f5f6ea" />
+			<dye skin="pink"		gemcost="80" gemrentalcost="8"  color="#890d66" />
+			<!--<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#7b0202" />-->
+		</gearpack>
+		<gearpack gear="gear_1"  gemcost="160" gemrentalcost="16" storepreview="/heroes/vex/gear_1/storepreview.tga" heroselect="/heroes/vex/gear_1/heroselect.tga" >
+			<dye skin="whiteblue"	gemcost="80" gemrentalcost="8"  color="#f5f6ea" />
+			<dye skin="red"			gemcost="80" gemrentalcost="8"  color="#7b0202" />
+			<dye skin="pink"		gemcost="100" gemrentalcost="10"  color="#890d66" />
+			<dye skin="classic"		gemcost="60" gemrentalcost="6"  color="#f5f6ea" />
+			<!--<dye skin="black"		gemcost="100" gemrentalcost="10" color="#1e1e1d" />-->
+			<!--<dye skin="deepsea"		gemcost="60" gemrentalcost="6"  color="#424f49" />-->
+		</gearpack>
+		<!-- <gearpack gear="gear_2"  gemcost="160" gemrentalcost="16" storepreview="/heroes/vex/gear_2/storepreview.tga" heroselect="/heroes/vex/gear_2/heroselect.tga" >
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="green"		gemcost="60" gemrentalcost="6"  color="#1dc119" />
+			<dye skin="purple"		gemcost="60" gemrentalcost="6"  color="#9135ec" />
+			<dye skin="red"			gemcost="60" gemrentalcost="6"  color="#d21a1a" />
+			<dye skin="yellow"		gemcost="60" gemrentalcost="6"  color="#ffe100" />
+			<dye skin="black"		gemcost="60" gemrentalcost="6"  color="#1e1e1d" />
+		</gearpack> -->
+		<!-- <gearpack gear="uber"	gemcost="350" gemrentalcost="35" storepreview="/heroes/vex/gear_3/storepreview.tga" heroselect="/heroes/vex/gear_3/heroselect.tga">
+			<dye skin="black"		gemcost="160" gemrentalcost="16" color="#1e1e1d" />
+			<dye skin="green"		gemcost="100" gemrentalcost="10"  color="#3be51d" />
+			<dye skin="nyan"		gemcost="100" gemrentalcost="10"  color="#f294f4" />
+			<dye skin="orange"		gemcost="100" gemrentalcost="10"  color="#ff9e00" />
+			<dye skin="pink"		gemcost="130" gemrentalcost="13"  color="#fb429c" />
+			<dye skin="white"		gemcost="100" gemrentalcost="10"  color="#f7f1f8" />
+		</gearpack> -->
+	</heroupgrades>
+
+		
+	<!-- Zaku -->
+	<heroupgrades hero="Hero_Zaku">
+		<gearpack gear="Hero_Zaku" gemcost="-1" storepreview="/heroes/zaku/storepreview.tga" heroselect="/heroes/zaku/heroselect.tga">
+			<dye skin="blue"		gemcost="60" gemrentalcost="6"  color="#2855e5" />
+			<dye skin="red"			gemcost="80" gemrentalcost="8" color="#d21a1a" />
+			<dye skin="black"		gemcost="100" gemrentalcost="10"  color="#000000" />
+		</gearpack>
+	</heroupgrades>
+
+	
+	<craftmechanics>
+		<!-- Percentage of rental purchase that gets reduced from permanence cost -->
+		<renewdiscount gempercentage="0" orepercentage="0" />
+		<craftcost>
+			<craft days="0" gemcost="50" orecost="360" />
+			<craft days="1" gemcost="5"  orecost="36"  />
+			<craft days="3" gemcost="10" orecost="72"  />
+			<craft days="7" gemcost="15" orecost="144" />
+		</craftcost>
+	</craftmechanics>
+
+</economechanics>

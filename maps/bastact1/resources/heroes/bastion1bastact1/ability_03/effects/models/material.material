@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_opacity.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="0.0" fGlossiness="1024.0" fOpacity="1.0" fReflect="1.0" />
+	<phase name="shadow" cull="none" blend="alphatest">
+		<sampler name="diffuse" texture="color.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	
+	<phase name="color" cull="none" blend="translucent">
+		<sampler name="diffuse" texture="color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="fade" cull="none" blend="translucent">
+		<sampler name="diffuse" texture="color.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="normal.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+</material>

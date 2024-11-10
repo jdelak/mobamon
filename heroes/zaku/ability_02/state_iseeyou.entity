@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Zaku_Ability2_Iseeyou"
+	
+	icon=""
+	passiveeffect=""
+	
+	serverentity="true"
+	
+	effecttype=""
+	
+	impactinterval="150"
+>
+	<onimpact>
+		<areaofeffect
+			radius="230"
+			targetselection="all"
+			targetscheme="enemy_units"
+			effecttype="Magic Splash"
+			center="target_entity"
+		>
+			<recordheroaggression  />
+			<aggression />
+			<combatevent effecttype="Counterable">
+				<onimpact>
+					<recordheroaggression  />
+					<aggression />
+					<getconstant name="damage" />
+					<damage effecttype="Magic Splash" amount="1" b="result" op="mult" />
+					<playeffect effect="effects/impact.effect" source="inflictor_owner_entity" target="target_entity" />
+					<cantarget effecttype="CrowdControl" >
+						<applystate name="State_Zaku_Ability2_Immobilized" source="inflictor_owner_entity" inflictor="inflictor_owner_entity" target="target_entity" duration="1000,1400,1800,2200" />
+					</cantarget>
+				</onimpact>
+			</combatevent>
+		</areaofeffect>
+		<expire />
+	</onimpact>
+</state>

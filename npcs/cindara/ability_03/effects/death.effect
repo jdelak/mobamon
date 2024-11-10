@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect>
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<billboard
+				life="200"
+				expirelife="1000"
+				param="0.1"
+				startsize="100"
+				endsize="500"
+				startcolor="0 0 0"
+				midcolor=".25 .175 .1"
+				endcolor="0 0 0"
+				minwidth="1500"
+				maxwidth="2000"
+				height="50"
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+
+			<billboard
+				life="350"
+				expirelife="1000"
+				param="0.1"
+				startsize="100"
+				endsize="500"
+				startcolor="0 0 0"
+				midcolor=".125 .075 .025"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot.material"
+			/>
+
+			<billboard
+				life="350"
+				expirelife="1000"
+				param="0.1"
+				startsize="100"
+				endsize="500"
+				startalpha="0"
+				midalpha=".75"
+				endalpha="0"
+				material="/shared/effects/smaterials/refract_swell.material"
+			/>
+			
+			
+			
+			<simpleemitter
+			count="50"
+				minparticlelife="250"
+				maxparticlelife="500"
+				spawnrate="2500"
+				minspeed="750"
+				maxspeed="1500"
+				acceleration="0.0"
+				position="0 65 0"
+				drag="0.05"
+				material="/shared/effects/smaterials/flare.material"
+				offsetsphere="5"
+				direction="0 -1 0"
+				minangle="0"
+				maxangle="120"
+				depthbias="-75"
+			>
+				<particle
+					turn="true"
+					startcolor="1 1 1"
+					midcolor="1 .65 .25"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					size="35"
+					startscale="1"
+					endscale="0"
+				>
+				</particle>
+			</simpleemitter>
+			
+
+		</particlesystem>
+		
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+
+</effect>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="world" >
+		
+
+			<groundsprite
+				position="0 0 0"
+				life="3200"
+				material="/shared/effects/materials/whitedot_ground.material"
+				startcolor=".06 .125 0"
+				midcolor=".06 .125 0"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				size="600"
+			/>
+
+			<groundsprite
+			position="0 0 0"
+				life="3200"			
+				size="580"
+				color="0 0 0"
+				startalpha=".75"
+				midalpha=".75"
+				endalpha="0"
+				material="/shared/effects/smaterials/black_ring_ground.material"
+			/>
+
+			<groundsprite
+				material="/shared/effects/materials/ring_ground.material"
+				startcolor="0 0.25 0"
+				midcolor="0 0.25 0"
+				endcolor="0 0 0"
+				midcolorpos="0.9"
+				life="3200"
+				startsize="360"
+				endsize="360"
+				alpha="0.5"
+				
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				delay="2500"
+				count="6"
+				gravity="200"
+				spawnrate="30"
+				particlelife="1500"
+				position="0 0 45"
+				offsetsphere="0 0 10"
+			>
+				<particle
+				>
+					<billboard
+						life="300"
+						material="/shared/effects/materials/ring_ground.material"
+						size="710"
+						startcolor="0 0 0"
+						midcolor=".1 .35 0"
+						endcolor="0 0 0"
+						midcolorpos=".1"
+						depthbias="-25"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+
+      </particlesystem>
+	  
+   
+
+
+		
+   </definitions>
+   <thread>
+      <spawnparticlesystem instance="instance0" particlesystem="system0" />
+	<spawnmodifier instance="instance1" modifier="modifier0"/>
+
+      <waitfordeath instance="instance0" />
+	<waitfordeath instance="instance1" />
+      <!-- <die /> -->
+   </thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1" useentityeffectscale="1">
+
+
+<definitions>
+	
+	<modifier
+		name="modifier0"
+		life="6000"
+		startalpha="0"		
+		endalpha="0"
+		midcolorpos=".1"
+	/>
+	
+	<particlesystem name="system0" space="world" scale="1">
+		
+		
+		<simpleemitter				
+				
+				life="3500"
+				spawnrate="544"
+				particlelife="1000"
+				count="88"
+				
+				gravity="22"
+				
+				speed="400"
+				drag="0" 
+				acceleration="0.0"
+
+				position="0 0 0"
+				material="/shared/effects/materials/blood1.material"
+				delay="0"
+				startanchor="0"
+				endanchor="0"
+					
+			>
+				<particle
+					startcolor=".7 .3 0"
+					endcolor=".5 .1 0"
+					startalpha="1.0"
+					endalpha="0.0"
+					
+					
+				
+					startscale="55"
+					endscale="11"
+					 
+					
+					
+				/>	
+		</simpleemitter>
+		
+	
+		<sound
+			linearfalloff="true" 
+			falloffstart="1000"
+			falloffend="2200"
+			
+			volume=".8" 
+			sample="/heroes/devourer/ability_04/sounds/ability.wav"
+		/>	
+		<sound
+			mindelay="55"
+			maxdelay="150"
+			linearfalloff="true" 
+			falloffstart="0"
+			falloffend="1800"
+			volume="1"
+			sample="/shared/sounds/effects/gib_explode.wav"
+		/>
+
+
+		
+		<!--
+		<model				
+			parentmodel="true"
+			anim="idle"										
+			startscale="1"
+			midscale=".5"
+			endscale="2.1"	
+			startcolor="1 1 1"
+			endcolor="1 0 0 "				
+			life="100"								
+		/>		
+
+		<model				
+			delay="100"
+			parentmodel="true"
+			anim="idle"		
+			color="1 0 0"				
+			startscale="1"
+			midscale=".5"
+			endscale="2.5"				
+			life="50"								
+		/>	
+		-->
+			
+
+		<controller
+			scale="2"
+			life="6000"
+			delay="0"
+		>
+
+		
+			<model		
+				minscale="1"
+				maxscale="1.2"
+				model="newgib.mdf"
+				anim="idle"
+				startalpha="1"
+				minyaw="-360"
+				maxyaw="360"
+
+				midalpha="1"
+				midalphapos=".9"
+				endalpha="0"				
+				position="0 0 0"	
+				life="3500"								
+			/>		
+
+			<simpleemitter
+				life="2000"
+				spawnrate="15"
+				count="14"
+			>
+				<particle>
+					<model		
+						minscale=".8"
+						maxscale="1.4"
+						model="gib.mdf"
+						anim="death"
+						startalpha="1"
+						minyaw="-360"
+						maxyaw="360"
+						midalpha=".8"
+						endalpha="0"				
+						position="0 0 0"	
+						life="4000"
+					>
+					
+					
+						<simpleemitter
+							owner="gib"
+							bone="_bone_gib30"
+							life="600"
+							count="50"
+							particlelife="800"
+							
+							
+							gravity="15"
+							minspeed="0"
+							maxspeed="300"
+							drag="0" 
+							acceleration="0.0"
+							minangle="0" 
+							maxangle="15" 
+							position="0 0 0"
+							material="/shared/effects/materials/blood1.material"
+							delay="0"
+							startanchor="0"
+							endanchor="0"
+							inheritvelocity="0"	
+						>
+							<particle
+								startcolor=".5 .15 0"
+								endcolor=".2 .05 0"
+								startalpha="1"
+								endalpha="0.0"
+								angle="15"
+								anglespeed="20"
+								
+								
+								startscale="4"
+								endscale="8"
+								heightdistort="0.01" 
+								turn="true"
+								flare="false"
+							/>	
+						</simpleemitter>	
+						
+						<simpleemitter
+								owner="gib"
+								bone="_bone_gib39"
+								life="1500"
+								spawnrate="20"
+								particlelife="1000"
+								
+								
+								gravity="0"
+								minspeed="0"
+								maxspeed="10"
+								drag="0" 
+								acceleration="0.0"
+								minangle="-360" 
+								maxangle="145" 
+								position="0 0 0"
+								material="/shared/effects/materials/blood1.material"
+								delay="0"
+								startanchor="0"
+								endanchor="0"
+								inheritvelocity=".3"	
+							>
+								<particle
+									startcolor=".7 .3 0"
+									endcolor=".5 .1 0"
+									startalpha="1.0"
+									endalpha="0.0"
+									angle="45"
+									
+									turn="true"
+									startscale="8"
+									endscale="4"
+									 
+									
+									flare="false"
+								/>	
+						</simpleemitter>						
+						
+						
+						<simpleemitter
+								owner="gib"
+								bone="_bone_gib23"
+								life="1500"
+								spawnrate="20"
+								particlelife="1000"
+								
+								
+								gravity="0"
+								minspeed="0"
+								maxspeed="10"
+								drag="0" 
+								acceleration="0.0"
+								minangle="-360" 
+								maxangle="145" 
+								position="0 0 0"
+								material="/shared/effects/materials/blood1.material"
+								delay="0"
+								startanchor="0"
+								endanchor="0"
+								inheritvelocity=".3"	
+							>
+								<particle
+									startcolor=".7 .3 0"
+									endcolor=".5 .1 0"
+									startalpha="1.0"
+									endalpha="0.0"
+									angle="45"
+									
+									turn="true"
+									startscale="8"
+									endscale="4"
+									 
+									
+									flare="false"
+								/>	
+						</simpleemitter>
+					</model>
+				</particle>
+					
+			</simpleemitter>			
+
+			
+			<simpleemitter
+				life="401"
+				delay="0"
+				particlelife="5200"				
+				spawnrate="40"
+				speed="0"
+				gravity="0"
+				direction="0 0 0"			
+				material="/shared/effects/materials/blood_ground.material"
+				particledirectionalspace="local"
+				
+				offsetsphere="22 22 0"
+				position="0 0 0"	
+			>
+
+				<particle
+					scale="1"
+				> 
+					<groundsprite
+						life="3000"						
+						material="/shared/effects/materials/blood_ground.material"
+
+						minyaw="-360"	
+						maxyaw="360"
+						minsize="20"
+						maxsize="40"
+
+						position="0 0 0"
+
+						color=".4 .4 0"
+						
+			
+						midcolorpos=".1"
+
+						startalpha="1"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".1"
+							
+					/>						
+				</particle>
+			</simpleemitter>	
+
+			
+			<simpleemitter
+				life="401"
+				delay="730"
+				count="20"
+				particlelife="5200"				
+				spawnrate="40"
+				speed="160"
+				gravity="0"
+				direction="0 0 1"				
+				particledirectionalspace="global"				
+				drag=".2"	
+				minangle="90"
+				maxangle="90"
+				offsetsphere=" 0 0 0"
+				position="0 0 0"	
+			>
+
+				<particle
+					scale=".2"
+					turn="1.3"					
+				> 
+					<controller
+						position="0 96 64"
+						model="/tools/axis_b.mdf"
+						minscale="0.1"
+						maxscale="1"
+						directionalspace="local"		
+					>
+						
+						<groundsprite	
+							delay="222"
+							directionalspace="local"
+							life="3000"						
+							material="/shared/effects/materials/ground_blood_splat.material"
+							
+							startsize="140"			
+							endsize="500"
+							
+							
+							color=".4 .4 0"											
+							midcolorpos=".1"
+							startalpha=".5"
+							midalpha=".5"
+							endalpha="0"							
+							midalphapohs=".1"								
+						/>	
+					</controller>					
+				</particle>
+			</simpleemitter>	
+	
+	
+			<simpleemitter
+				delay="0"
+				count="23"
+				particlelife="900"				
+				spawnrate="11"
+				speed="220"
+				gravity="20"
+				direction="0 0 1"
+				minangle="0"
+				
+				maxangle="15"
+				particledirectionalspace="local"
+				material="/shared/effects/materials/venom_splash.material"
+				offsetsphere="11 11 0"
+				position="0 0 44"
+			>
+				<particle 
+				
+					startsize="20"				
+					endsize="100"
+					color="0.8 0 0"					
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>	
+		
+			<simpleemitter
+				delay="0"
+				count="71"
+				particlelife="1100"				
+				spawnrate="41"
+				speed="420"
+				gravity="20"
+				direction="0 0 1"
+				minangle="0"
+				
+				maxangle="5"
+				particledirectionalspace="local"
+				material="/shared/effects/materials/blood1.material"
+				offsetsphere="11 11 0"
+				position="0 0 44"
+			>
+				<particle 
+					minangle="-360"
+					maxangle="360"
+					startsize="20"				
+					endsize="70"
+					color="0.4 0 0"					
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>			
+
+
+		</controller>		
+		
+			
+			
+      </particlesystem>
+   </definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>  
+		<waitfordeath instance="instance0" />
+		<wait duration="6000"/>
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->

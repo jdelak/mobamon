@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<panel name="select_mode_spe_splash" noclick="0" color="0 0 0 0.75" visible="0">
+	
+		<!-- Draggable Topbar -->
+		<panel noclick="1" 
+			onloadlua="
+				self:RegisterWatchLua('mainPanelStatus', function(widget, trigger)
+					widget:SetVisible(not trigger.hideSecondaryElements)
+				end, false, nil, 'hideSecondaryElements')
+			"	
+		>
+			<panel name="spe_header_drag_bar_1" visible="1" height="50s" 
+				onclicklua="System.StartWindowDrag(select(2, ...), select(3, ...))" 
+				ondoubleclicklua="System.CenterWindow(true)" 
+				onmouseoverlua="UpdateCursor(object, true, { canLeftClick = true, canRightClick = false, canDrag = true })"
+				onmouseoutlua="UpdateCursor(object, false, { canLeftClick = true, canRightClick = false, canDrag = true })"
+				onstartdraglua=""
+				onenddraglua=""		
+			/>	
+
+			<panel name="spe_header_drag_bar_2" visible="1" height="25s" 
+				onclicklua="System.StartWindowDrag(select(2, ...), select(3, ...))" 
+				ondoubleclicklua="System.CenterWindow(true)" 
+				onstartdraglua=""
+				onenddraglua=""
+				onmouseoverlua="UpdateCursor(object, true, { canLeftClick = true, canRightClick = false, canDrag = true })"
+				onmouseoutlua="UpdateCursor(object, false, { canLeftClick = true, canRightClick = false, canDrag = true })"	
+			/>		
+		</panel>
+		
+		<!-- Backdrop Glow -->
+		<panel y="-75s" height="60%" valign="center">
+			<frame texture="/ui/elements:squareglow" color="0 0 0 1" borderthickness="10s" bordercolor="0 0 0 1" width="+10s" height="+10s" align="center" valign="center" noclick="1" />
+		</panel>
+	
+		<!-- Splash Image -->
+		<panel y="-75s" height="60%" valign="center" clip="1" >			
+			<splashimage
+				name="Cinematic_Startup_splash"
+				noclick="1"
+				visible="1"
+				bgcolor="black"
+				view="clip"
+				onhidelua="self:SetImage('')"
+				onshowlua="self:SetImage('/ui/main/origins/textures/child_of_the_dawn_act1.jpg')"
+			/>
+		</panel>
+		
+		<!-- Logos -->
+		<panel height="500s" valign="center" noclick="1">					
+			<image name="select_mode_spe_logo_image" x="320s" y="-60s" height="450s" width="900s" align="center" valign="top" texture="/ui/main/origins/textures/child_of_the_dawn_logo.tga" noclick="1" />
+			<label name="select_mode_spe_region_title1" x="20s" y="-150s" font="maindyn_48" content="origins_title_pt1" color="#feb438" outline="1" outlinecolor="0.53 0.34 0.01 0.22" align="center" valign="center" textalign="center" noclick="1" grow="1"/>
+			<label name="select_mode_spe_region_title2" x="20s" y="-100s" font="maindyn_72" content="origins_title_pt2" color="#fecb5a" outline="1" outlinecolor="0.53 0.34 0.01 0.22" align="center" valign="center" textalign="center" noclick="1" grow="1"/>
+			<label x="25s" y="-20s" font="maindyn_26" content="origins_act1" color="#fec038" outline="1" outlinecolor="0.53 0.34 0.01 0.22" align="center" valign="center" textalign="center" noclick="1" grow="1"/>
+		</panel>
+		
+		<!-- Alt graphic click to play -->
+		<panel y="-70s" name="selection_origins_primary_btn2" height="500s" valign="center" noclick="0"/>
+
+		<instance id="select_mode_spe_splash_sound_wrapper_1" name="dialogWrapper1" x="150s" inneralpha="0 0 0 .9" outerpadding="+2h" innerpadding="+1h" noclick="1" visible="0" parent_height="80s" parent_width="370s" align="center" valign="bottom" y="-56s" />
+		<panel name="select_mode_spe_splash_sound_wrapper_2" noclick="0" visible="0" color="invisible" height="80s" width="370s" align="center" valign="bottom" x="150s"  y="-56s" >		
+			<panel noclick="1" height="100%" width="100%" y="0" visible="1" onclicklua="" onrightclicklua="" >
+				<frame style="backerPanelShadow0" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" x="0.25h" y="0.25h" noclick="1"/>
+				<frame style="backerPanelGray3" texture="/ui/elements:rounded_bg_white" borderthickness="0.75h" noclick="1"/>
+				<image visible="01" texture="/ui/main/navigation/textures/alert.tga" x="10s" y="10s" width="40s" height="40s" align="left" valign="top" noclick="1" />
+				<label name="select_mode_spe_splash_sound_label" textalign="center" textvalign="center" valign="center" fity="1" x="50s" y="0.0h" width="-50s" shadow="true" shadowoffset="2" font="maindyn_18" color="white" outlinecolor="black" outline="1" content="origin_splash_goto_sound" noclick="1" wrap="1" />
+			</panel>
+		</panel>			
+		
+		<instance
+			name="standardButton" visible="1"
+			id="selection_origins_primary_btn" y="-56s" font="maindyn_36"
+			width="260s" align="right" height="80s" valign="bottom"
+			x="-14s"
+			borderthickness="14s"
+			label="origin_splash_start_btn"
+			disabledmouseover="true"
+			disabledmouseout="true"
+		/>
+
+		<!-- Secondary Button -->
+		<instance
+			name="standardButton" y="-145s"
+			id="selection_origins_secondary_btn" rendermode="grayscale" visible="1"
+			x="-18s" width="170s" height="34s" align="right" valign="bottom"
+			borderthickness="8s"
+			label="origin_splash_back_btn"
+		/>			
+		
+	</panel>	
+	<lua file="/ui/main/origins/origins.lua"/>
+</package>

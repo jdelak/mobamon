@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="electricdeath" deferred="true" useentityeffectsscale="true">
+	<definitions>
+
+		<modifier
+			life="900"
+			name="modifier0"
+			alpha="0"
+		/>
+		
+
+		<particlesystem name="system1" space="entity" scale="1">
+		
+			
+
+			<model 
+				delay="100"
+				life="200"
+				alpha="1"
+				
+				model="model.mdf"
+				parentskeleton="true"
+				
+				scale="1.0"
+				position="0 0 0"
+				directionalspace="local"
+				
+			/>
+
+			<model 
+				delay="350"
+				life="400"
+				alpha="1"
+				
+				
+				parentmodel="true"
+				parentskeleton="true"
+				
+				scale="1"
+				position="0 0 0"
+				directionalspace="local"
+				
+			/>
+
+
+			<model 
+				delay="750"
+				life="500"
+				alpha="1"
+				
+				model="model.mdf"
+				parentskeleton="true"
+				
+				scale="1"
+				position="0 0 0"
+				directionalspace="local"
+				
+			/>
+
+			<light
+				life="55"
+				delay="100"
+				startcolor="0 5 10"
+				midcolor="0 5 10"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="0"
+				falloffend="250"
+				position="0 0 50"
+				bone="_bone_centerofchest"
+			/>
+			
+			<light
+				life="55"
+				delay="750"
+				startcolor="0 5 10"
+				midcolor="0 5 10"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="0"
+				falloffend="250"
+				position="0 0 50"
+				bone="_bone_centerofchest"
+			/>
+
+			<template name="zap">
+			
+				<billboard
+					bone="{rbone}"
+					life="50"
+					position="0 0 0"
+					delay="{rdelay}"
+					height="{rheight}"
+					width="{rwidth}"
+					color="{rcolor}"
+					material="/shared/effects/smaterials/cartoon_zap.material"
+					startframe="6"
+					endframe="8"
+					framespeed=".25"
+					yaw="{ryaw}"
+					roll="{rroll}"
+					depthbias="{rdepthbias}"
+				/>
+				
+				<billboard
+					bone="{rbone}"
+					life="50"
+					position="0 0 0"
+					delay="{rdelay}"
+					height="{bheight}"
+					width="{bwidth}"
+					color="2 2 0"
+					material="/shared/effects/smaterials/cartoon_zap_yellow.material"
+					startframe="6"
+					endframe="8"
+					framespeed=".25"
+					yaw="{ryaw}"
+					roll="{rroll}"
+					depthbias="{rdepthbias}"
+					
+				/>
+			</template>	
+
+			<instance name="zap" rheight="250" rwidth="-200" rbone="_bone_centerofchest" bheight="200" bwidth="200" rdepthbias="50" rcolor="0 .5 .5" rdelay="200" ryaw="180" rroll="0"/>	
+			<instance name="zap" rheight="150" rwidth="150" rbone="_bone_centerofchest" rdelay="200" rdepthbias="50" rcolor="1 1 1"/>	
+			<instance name="zap" rheight="150" rwidth="150" rbone="_bone_centerofchest" rdelay="200" rdepthbias="50" rcolor="1 1 1"/>	
+			<instance name="zap" rheight="250" rwidth="200" bheight="200" bwidth="200" rbone="_bone_centerofchest" rdepthbias="50" rcolor="0 .5 .5" rdelay="800" ryaw="180" rroll="200"/>
+			<instance name="zap" rheight="150" rwidth="150" rbone="_bone_centerofchest" rdelay="800" rdepthbias="50" rcolor="1 1 1"/>	
+			<instance name="zap" rheight="150" rwidth="150" rbone="_bone_centerofchest" rdelay="800" rdepthbias="50" rcolor="1 1 1"/>	
+			
+
+
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance0" modifier="modifier0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />	
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>
+
+
+
+
+
+
+

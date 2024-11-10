@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="default_1.max" file="high.model" type="K2" high="high.model" med="med.model" low="low.model"  >
+
+	<skin name="black">
+		<reference mesh="10kGoblin"			material="material_black.material" />
+		<reference mesh="10kGrinCart"		material="material_black.material" />
+		<reference mesh="3kGoblin"			material="material_black_low.material" />
+		<reference mesh="3kGrinCart"		material="material_black_low.material" />
+		<reference mesh="1kGoblin"			material="material_black_low.material" />
+		<reference mesh="1kGrinCart"		material="material_black_low.material" />
+	</skin>
+
+	<skin name="blue">
+		<reference mesh="10kGoblin"			material="material_blue.material" />
+		<reference mesh="10kGrinCart"		material="material_blue.material" />
+		<reference mesh="3kGoblin"			material="material_blue_low.material" />
+		<reference mesh="3kGrinCart"		material="material_blue_low.material" />
+		<reference mesh="1kGoblin"			material="material_blue_low.material" />
+		<reference mesh="1kGrinCart"		material="material_blue_low.material" />
+	</skin>
+	
+	<skin name="green">
+		<reference mesh="10kGoblin"			material="material_green.material" />
+		<reference mesh="10kGrinCart"		material="material_green.material" />
+		<reference mesh="3kGoblin"			material="material_green_low.material" />
+		<reference mesh="3kGrinCart"		material="material_green_low.material" />
+		<reference mesh="1kGoblin"			material="material_green_low.material" />
+		<reference mesh="1kGrinCart"		material="material_green_low.material" />
+	</skin>
+	
+	<skin name="offwhite">
+		<reference mesh="10kGoblin"			material="material_offwhite.material" />
+		<reference mesh="10kGrinCart"		material="material_offwhite.material" />
+		<reference mesh="3kGoblin"			material="material_offwhite_low.material" />
+		<reference mesh="3kGrinCart"		material="material_offwhite_low.material" />
+		<reference mesh="1kGoblin"			material="material_offwhite_low.material" />
+		<reference mesh="1kGrinCart"		material="material_offwhite_low.material" />
+	</skin>
+	
+	<skin name="red">
+		<reference mesh="10kGoblin"			material="material_red.material" />
+		<reference mesh="10kGrinCart"		material="material_red.material" />
+		<reference mesh="3kGoblin"			material="material_red_low.material" />
+		<reference mesh="3kGrinCart"		material="material_red_low.material" />
+		<reference mesh="1kGoblin"			material="material_red_low.material" />
+		<reference mesh="1kGrinCart"		material="material_red_low.material" />
+	</skin>
+	
+	<skin name="yellow">
+		<reference mesh="10kGoblin"			material="material_yellow.material" />
+		<reference mesh="10kGrinCart"		material="material_yellow.material" />
+		<reference mesh="3kGoblin"			material="material_yellow_low.material" />
+		<reference mesh="3kGrinCart"		material="material_yellow_low.material" />
+		<reference mesh="1kGoblin"			material="material_yellow_low.material" />
+		<reference mesh="1kGrinCart"		material="material_yellow_low.material" />
+	</skin>
+	
+		<skin name="orange">
+		<reference mesh="10kGoblin"			material="material_orange.material" />
+		<reference mesh="10kGrinCart"		material="material_orange.material" />
+		<reference mesh="3kGoblin"			material="material_orange_low.material" />
+		<reference mesh="3kGrinCart"		material="material_orange_low.material" />
+		<reference mesh="1kGoblin"			material="material_orange_low.material" />
+		<reference mesh="1kGrinCart"		material="material_orange_low.material" />
+	</skin>
+	
+	<skin name="purple">
+		<reference mesh="10kGoblin"			material="material_purple.material" />
+		<reference mesh="10kGrinCart"		material="material_purple.material" />
+		<reference mesh="3kGoblin"			material="material_purple_low.material" />
+		<reference mesh="3kGrinCart"		material="material_purple_low.material" />
+		<reference mesh="1kGoblin"			material="material_purple_low.material" />
+		<reference mesh="1kGrinCart"		material="material_purple_low.material" />
+	</skin>
+	
+	<skin name="tiedye">
+		<reference mesh="10kGoblin"			material="material_tiedye.material" />
+		<reference mesh="10kGrinCart"		material="material_tiedye.material" />
+		<reference mesh="3kGoblin"			material="material_tiedye_low.material" />
+		<reference mesh="3kGrinCart"		material="material_tiedye_low.material" />
+		<reference mesh="1kGoblin"			material="material_tiedye_low.material" />
+		<reference mesh="1kGrinCart"		material="material_tidye_low.material" />
+		
+	</skin>
+
+	<anim name="idle" clip="clips/default_1.clip" loop="true"/>
+	
+	<anim name="bored" clip="clips/bored_1.clip"/>
+	
+	<anim name="item_1" clip="clips/item_1.clip"/>
+	
+	<anim name="item_channel_1" clip="clips/item_channel_1.clip" loop="true"/>
+	
+	<anim name="item_self_1" clip="clips/item_self_1.clip"/>
+	
+	<anim name="capture" clip="clips/item_1.clip" loop="true"/>
+
+	<anim name="emote_1" clip="clips/emote_1.clip" fps="30" loop="false" >
+		<frameevent frame="1" cmd="PlayStreamLinear sounds/voice/vo_emote_3.wav 1500 3000 0.95"/>
+	</anim>
+	
+	<anim name="death_1" clip="clips/death_1.clip" loop="true" loopbackframe="-1">
+		<frameevent frame="2" cmd="PlaySoundLinear sounds/sfx_foley_death.wav 500 2200 .65"/>
+	</anim>
+
+	
+	<anim name="walk_1" clip="clips/walk_1.clip" loop="true" fps="22">
+		<frameevent frame="5" cmd="StartEffect /shared/effects/footstep_l_#GetTerrainType()#.effect"/>
+		<frameevent frame="5" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .2"/>
+		<frameevent frame="20" cmd="StartEffect /shared/effects/footstep_r_#GetTerrainType()#.effect"/>
+		<frameevent frame="20" cmd="PlaySoundLinear sounds/sfx_foley_%.wav 400 2000 .2"/>
+	</anim>
+
+	<anim name="attack_1" clip="clips/attack_1.clip" fps="26"/>
+			
+	<anim name="attack_2" clip="clips/attack_2.clip" fps="26"/>
+	
+	<anim name="ability_2" clip="clips/ability_2.clip" fps="45"/>
+
+	<anim name="ability_3" clip="clips/ability_3.clip"/>
+
+	<anim name="ability_4" clip="clips/ability_4.clip" blendtime="100"/>
+
+	<anim name="stunned_1" clip="clips/stunned_1.clip" loop="true"/>
+	
+	<anim name="port_out" clip="clips/port_out.clip" />
+	
+	<anim name="port_in" clip="clips/port_in.clip"/>
+	
+	<anim name="spawn_1" clip="clips/spawn_1.clip"/>
+	
+</model>

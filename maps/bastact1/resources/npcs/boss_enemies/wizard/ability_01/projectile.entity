@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastact1_Enemy_Wizard_Ability1"
+
+	speed="1800"
+	gravity="0"
+
+	modelscale="1"
+	effectscale="1"
+	model="/shared/models/invis.mdf"
+
+	traileffect="effects/fireball.effect"
+	deatheffect="effects/impact.effect"
+	canturn="0"
+	
+	flying="true"
+	flyheight="90"
+	
+	touchradius="50"
+	touchradiusdiradjust="true"
+	touchpropradius="90"
+	touchpropanim="hit"
+	hazardradius="250"
+	hazardoffset="160"
+	maxtouches="1"
+	touchtargetscheme="enemy_heroes"
+	toucheffecttype="Magic"
+	touchprojectileblockers="true"
+>	
+	<ontouch>
+		<cantarget targetscheme="enemy_units" >
+			<damage effecttype="Magic" amount="150" />
+			<kill target="this_entity" />
+		</cantarget>
+		<else>
+			<kill target="this_entity" />
+		</else>
+	</ontouch>
+	
+</projectile>
+

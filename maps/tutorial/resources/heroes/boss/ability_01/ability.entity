@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Tutorial_Boss1"
+
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="200"
+	castactiontime="200"
+
+	actiontype="target_position"
+	targetradius="70"
+	casteffecttype="Magic"
+	targetscheme="enemy_units"
+	casteffect="effects/cast.effect"
+	
+	manacost="0"
+	cooldowntime="0"
+
+	range="1200"
+	forcerange="1200"
+	allowoutofrangecast="true"
+	allowoutofboundscast="true"
+	
+>
+	
+	<onimpact>
+		<setent1 name="tutorial_hero" />
+		<applystate name="State_Tutorial_Boss_Ability1" target="source_entity" duration="3100" proxy="ent1" />
+	</onimpact>
+	
+	
+</ability>

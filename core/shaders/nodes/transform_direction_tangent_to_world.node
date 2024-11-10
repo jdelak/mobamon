@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="transform_direction_tangent_to_world">
+	<dependency name="Value" type="float3" />
+	<dependency name="Normal" type="float3" source="WorldNormal" />
+	<dependency name="Tangent" type="float3" source="WorldTangent" />
+	<dependency name="Binormal" type="float3" source="WorldBinormal" />
+	<output name="Out" type="float3" />
+	<?hlsl
+		float3x3 mRotation = float3x3(Tangent, Binormal, Normal);
+		Out = mul(Value, mRotation);
+	?>
+	<?glsl
+		mat3 mRotation = mat3(Tangent, Binormal, Normal);
+		Out = mRotation * Value;
+	?>
+</node>

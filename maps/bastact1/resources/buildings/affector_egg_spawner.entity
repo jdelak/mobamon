@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Bastact1_EggSpawner"
+	lifetime="-1"
+	impactinterval="10000"
+>
+	<oninterval>
+		<areaofeffect
+			radius="70"
+			targetselection="all"
+			targetscheme="throwable_objects"
+			maximpactspertarget="1"
+		>
+		</areaofeffect>
+		<else>
+			<areaofeffect
+				radius="200"
+				targetselection="all"
+				targetscheme="throwable_objects"
+				maximpactspertarget="1"
+				>
+			</areaofeffect>
+			<else>
+				<spawnunit source="source_entity" target="this_position" name="Bastact1_ThrowableSpiderEgg" count="1" />
+			</else>
+		</else>
+	</oninterval>
+
+</affector>

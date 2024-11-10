@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Luster_Return"
+
+	gravity="100"
+	lifetime="700"
+	useexactlifetime="true"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	canturn="true"
+	
+
+
+	traileffect="effects/trail.effect"
+	impacteffect="effects/impact.effect"
+	
+	touchradius="60"
+	noentercombat="true"
+>
+
+	<onimpact>
+		<setactivemodifierkey entity="target_entity" name="" />
+		<getconstant name="damage" />
+		<damage source="this_owner_entity" amount="1" b="result" op="mult" effecttype="Magic" />
+	</onimpact>
+
+</projectile>
+
+

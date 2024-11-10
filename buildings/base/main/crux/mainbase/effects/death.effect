@@ -1,0 +1,1597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+
+	<definitions>
+	
+
+
+		<particlesystem deferred="true" name="system0" space="world" scale="1">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2500"
+				volume="0.85"
+				sample="../sounds/sfx_destroy.wav"
+			/>
+
+			<simpleemitter
+				delay="{zdelay}"
+				life="3250"
+				bone="_bone_fx_04New"
+				spawnrate="250"
+				particlelife="250"
+				material="/shared/effects/smaterials/starish.material"
+				depthbias="0"
+				offsetsphere="0"
+				direction="0 0 0"
+				speed="100"
+			>
+				<particle
+					minangle="-45"
+					maxangle="45"
+					anchor="1"
+					startcolor="1"
+					endcolor="0 .35 1"
+					midcolorpos=".75"
+					startscale="100"
+					minendscale="150"
+					maxendscale="200"
+					startalpha="1"
+					midalpha="1"
+					endalpha="0"
+				/>
+			</simpleemitter>
+			
+			
+			
+			
+			
+			
+
+			<light
+				position="0 0 300"
+				life="3000"
+				startcolor="0 0 0"
+				midcolor="0 4 10"
+				endcolor="0 0 0"
+				midcolorpos=".85"
+				falloffstart="0"
+				falloffend="700"
+
+			/>
+
+			<simpleemitter
+				life="3250"
+				bone="_bone_fx_04New"
+				spawnrate="200"
+				particlelife="610"
+				gravity="0"
+				speed="0"
+				position="0 0 0"
+				acceleration="11"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="150"
+				drag="0.01"
+				direction="1 0 0"
+			>
+				<particle
+					startstickiness="0"
+					endstickiness="1"
+					startcolor=".15 .8 1"
+					midcolor=".15 .8 1"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="4"
+					midsize="4"
+					endsize="0"
+					turn="1"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				life="3250"
+				bone="_bone_fx_04New"
+				spawnrate="500"
+				minparticlelife="250"
+				maxparticlelife="500"
+				gravity="0"
+				speed="0"
+				position="0 0 35"
+				acceleration="11"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="70"
+				drag="0.01"
+				direction="1 0 0"
+			>
+				<particle
+					startcolor=".15 .8 1"
+					midcolor=".15 .8 1"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="4"
+					midsize="4"
+					endsize="0"
+					turn="1"
+					anchor="1"
+				/>
+			</simpleemitter>
+			
+			
+		
+
+
+
+
+			<simpleemitter
+				life="3250"
+				timenudge="5000"
+				bone="_bone_fx_04New"
+				spawnrate=".3"
+				particlelife="1000"
+				offsetsphere="0 0 0"
+				direction="0 -1 0"
+			>
+				<particle
+					turn="true"
+				>
+
+					<simpleemitter
+						count="25"
+						bone="_bone_fx_04New"
+						spawnrate="5000"
+						particlelife="1000"
+						offsetsphere="0 0 0"
+						direction="0 -1 0"
+					>
+						<particle
+							turn="true"
+						>
+							<billboard
+								spawnrate="500"
+								count="1"
+								minlife="1000"
+								maxlife="1000"
+								position="0 0 0"
+								material="/shared/effects/materials/whitedot.material"
+								directionalspace="local"
+								yaw="180"
+								roll="180"
+								lockup="true"
+								lockright="true"
+								minwidth="30"
+								maxwidth="60"
+								pitch="90"
+								startcolor="0 0 0"
+								midcolor="0 .075 .15"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								minheight="100"
+								maxheight="700"
+								depthbias="-100"
+							/>
+
+							<billboard
+								spawnrate="500"
+								count="1"
+								minlife="1000"
+								maxlife="1000"
+								position="0 0 0"
+								material="/shared/effects/materials/whitedot.material"
+								directionalspace="local"
+								yaw="180"
+								roll="180"
+								lockup="true"
+								lockright="true"
+								minwidth="30"
+								maxwidth="60"
+								pitch="90"
+								startcolor="0 0 0"
+								midcolor=".075"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								minheight="100"
+								maxheight="200"
+								depthbias="-100"
+							/>
+						</particle>
+					</simpleemitter>
+
+				</particle>
+			</simpleemitter>
+
+
+
+
+
+
+
+
+
+
+		
+
+
+			
+			
+
+			
+
+			<model
+				life="3500"
+				position="0 0 -125"
+				bone="_bone_fx_04New"
+				expirelife="250"
+				startcolor="1 1 1"
+				endcolor="1 1 1"
+				size="100"
+				model="/world/sprops/well/crux/effects/hammer/model.mdf"
+				anim="idle"
+				startalpha="1"
+				endalpha="1"
+				yaw="135"
+				yawspeed="47"
+				directionalspace="world"
+			>
+			</model>
+<!--
+			<model
+			delay="3500"
+				expirelife="250"
+				position="0 0 -125"
+				bone="_bone_fx_04New"
+				startcolor="1 1 1"
+				endcolor="1 1 1"
+				size="100"
+				model="/world/sprops/well/crux/effects/hammer/model.mdf"
+				anim="towards_camera"
+				startalpha="1"
+				endalpha="0"
+				yawspeed="0"
+			>
+
+				<simpleemitter
+				life="750"
+					bone="_bone_fx_01"
+					spawnrate="500"
+					minparticlelife="500"
+					maxparticlelife="500"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="-100"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="0 .25 1"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="100"
+						endsize="25"
+					/>
+				</simpleemitter>
+				
+				<template name="light">
+					<simpleemitter
+						bone="_bone_fx_01"
+						delay="{zdelay}"
+						spawnrate="100"
+						particlelife="1000"
+						material="/shared/effects/materials/whitedot.material"
+						offsetsphere="0 0 0"
+						position="0 0 0"
+						depthbias="0"
+					>
+						<particle
+						anchor="1"
+							minangle="0"
+							maxangle="360"
+							width="{zwidth}"
+							minheight="{zminheight}"
+							maxheight="{zmaxheight}"
+							startcolor="0 .5 1"
+							endcolor="0 0 0"
+
+						/>
+					</simpleemitter>
+				</template>
+
+
+				<instance name="light" zdelay="1250" zwidth="25" zminheight="100" zmaxheight="500"/>
+				
+				<billboard
+					bone="_bone_fx_01"
+					expirelife="250"
+					startcolor="0 .35 1"
+					endcolor="0 0 0"
+					size="225"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-200"
+				/>
+				
+				
+				
+				
+				<simpleemitter
+					life="750"
+					bone="_bone_fx_01"
+					startspawnrate="150"
+					spawnrate="250"
+					minparticlelife="250"
+					maxparticlelife="1000"
+					position="0 0 0"
+					material="/shared/effects/smaterials/muzzle_flash_white.material"
+					offsetsphere="50"
+					depthbias="0"
+					direction="0 0 0"
+					speed="0"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".2 .65 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="20"
+						maxstartscale="60"
+						endsize="0"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+					
+				<light
+					bone="_bone_fx_01"
+					position="0 0 100"
+					expirelife="250"
+					startcolor="0 2.5 10"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="350"
+					loop="true"
+				/>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="500"
+					particlelife="610"
+					gravity="0"
+					speed="0"
+					position="0 0 0"
+					acceleration="11"
+					material="/shared/effects/smaterials/muzzle_flash_white.material"
+					offsetsphere="100"
+					drag="0.01"
+					direction="1 0 0"
+				>
+					<particle
+						startstickiness="0"
+						endstickiness="1"
+						startcolor=".15 .8 1"
+						midcolor=".15 .8 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="4"
+						maxstartscale="8"
+						endscale="0"
+						turn="1"
+					/>
+				</simpleemitter>
+				
+				
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="250"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					material="/shared/effects/smaterials/powersteal.material"
+					depthbias="-50"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".05 .15 .25"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						minstartscale="50"
+						maxstartscale="100"
+						endscale="0"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+						flare="true"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				<template name="">
+
+					
+					<simpleemitter
+						delay="1000"
+						bone="_bone_fx_01"
+						position="{zpos}"
+						particlelife="3000"
+						spawnrate="5"
+						gravity="{zgravity}"
+						speed="0"
+						drag="0.0015"
+						acceleration="0"
+						offsetsphere="35 35 150"
+						depthbias="-100"
+					>
+						<particle
+						>
+							<billboard
+								life="3000"
+								startcolor="0 0 0"
+								midcolor="0 .25 .5"
+								endcolor="0"
+								midcolorpos=".2"
+								startsize="80"
+								endsize="0"
+								depthbias="-50"
+								material="/shared/effects/materials/whitedot.material"
+								width="16"
+								height="350"
+								minroll="0"
+								maxroll="0"
+								lockup="1"
+							/>
+							
+							<billboard
+								life="2000"
+								startcolor="0 0 0"
+								midcolor=".3 .4 .5"
+								endcolor="0"
+								midcolorpos=".2"
+								startsize="80"
+								endsize="0"
+								depthbias="-50"
+								material="/shared/effects/materials/whitedot.material"
+								width="15"
+								height="50"
+								lockup="1"
+							/>
+						</particle>
+					</simpleemitter>
+				
+				</template>
+				
+				<instance name="" zgravity="-5" zpos="0 -15 0"/> 
+				<instance name="" zgravity="5" zpos="0 -15 -200"/> 
+				
+				
+				
+
+			</model>
+-->			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<model
+			delay="3500"
+				expirelife="250"
+				position="0 0 -125"
+				bone="_bone_fx_04New"
+				startcolor="1 1 1"
+				endcolor="1 1 1"
+				size="100"
+				model="/world/sprops/well/crux/effects/hammer/model.mdf"
+				anim="towards_camera"
+				startalpha="1"
+				endalpha="0"
+				yaw="135"
+				directionalspace="world"
+			>
+
+				<simpleemitter
+				life="750"
+					bone="_bone_fx_01"
+					spawnrate="500"
+					minparticlelife="500"
+					maxparticlelife="500"
+					material="/shared/effects/materials/whitedot.material"
+					depthbias="-100"
+				>
+					<particle 
+						minangle="-360"
+						maxangle="360"
+						startcolor="0 .25 1"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						startsize="100"
+						endsize="25"
+					/>
+				</simpleemitter>
+				
+				<template name="light">
+					<simpleemitter
+						bone="_bone_fx_01"
+						delay="{zdelay}"
+						spawnrate="100"
+						particlelife="1000"
+						material="/shared/effects/materials/whitedot.material"
+						offsetsphere="0 0 0"
+						position="0 0 0"
+						depthbias="0"
+					>
+						<particle
+						anchor="1"
+							minangle="0"
+							maxangle="360"
+							width="{zwidth}"
+							minheight="{zminheight}"
+							maxheight="{zmaxheight}"
+							startcolor="0 .5 1"
+							endcolor="0 0 0"
+
+						/>
+					</simpleemitter>
+				</template>
+
+
+				<instance name="light" zdelay="1250" zwidth="25" zminheight="100" zmaxheight="500"/>
+				
+				<billboard
+					bone="_bone_fx_01"
+					expirelife="250"
+					startcolor="0 .35 1"
+					endcolor="0 0 0"
+					size="225"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-200"
+				/>
+				
+				
+				
+				
+				<simpleemitter
+					life="750"
+					bone="_bone_fx_01"
+					startspawnrate="150"
+					spawnrate="250"
+					minparticlelife="250"
+					maxparticlelife="1000"
+					position="0 0 0"
+					material="/shared/effects/smaterials/muzzle_flash_white.material"
+					offsetsphere="50"
+					depthbias="0"
+					direction="0 0 0"
+					speed="0"
+				>
+					<particle
+						startcolor="0 0 0"
+						midcolor=".2 .65 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="20"
+						maxstartscale="60"
+						endsize="0"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				
+					
+				<light
+					bone="_bone_fx_01"
+					position="0 0 100"
+					expirelife="250"
+					startcolor="0 2.5 10"
+					endcolor="0 0 0"
+					falloffstart="0"
+					falloffend="350"
+					loop="true"
+				/>
+
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="500"
+					particlelife="610"
+					gravity="0"
+					speed="0"
+					position="0 0 0"
+					acceleration="11"
+					material="/shared/effects/smaterials/muzzle_flash_white.material"
+					offsetsphere="100"
+					drag="0.01"
+					direction="1 0 0"
+				>
+					<particle
+						startstickiness="0"
+						endstickiness="1"
+						startcolor=".15 .8 1"
+						midcolor=".15 .8 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="4"
+						maxstartscale="8"
+						endscale="0"
+						turn="1"
+					/>
+				</simpleemitter>
+				
+				
+				
+				<simpleemitter
+					bone="_bone_fx_01"
+					spawnrate="250"
+					minparticlelife="500"
+					maxparticlelife="1000"
+					material="/shared/effects/smaterials/powersteal.material"
+					depthbias="-50"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".05 .15 .25"
+						endcolor="0 0 0"
+						midcolorpos=".2"
+						minstartscale="50"
+						maxstartscale="100"
+						endscale="0"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+						flare="true"
+					/>
+				</simpleemitter>
+				
+				
+				
+				
+				
+				
+				<template name="">
+
+					
+					<simpleemitter
+						delay="1000"
+						bone="_bone_fx_01"
+						position="{zpos}"
+						particlelife="3000"
+						spawnrate="5"
+						gravity="{zgravity}"
+						speed="0"
+						drag="0.0015"
+						acceleration="0"
+						offsetsphere="35 35 150"
+						depthbias="-100"
+					>
+						<particle
+						>
+							<billboard
+								life="3000"
+								startcolor="0 0 0"
+								midcolor="0 .25 .5"
+								endcolor="0"
+								midcolorpos=".2"
+								startsize="80"
+								endsize="0"
+								depthbias="-50"
+								material="/shared/effects/materials/whitedot.material"
+								width="16"
+								height="350"
+								minroll="0"
+								maxroll="0"
+								lockup="1"
+							/>
+							
+							<billboard
+								life="2000"
+								startcolor="0 0 0"
+								midcolor=".3 .4 .5"
+								endcolor="0"
+								midcolorpos=".2"
+								startsize="80"
+								endsize="0"
+								depthbias="-50"
+								material="/shared/effects/materials/whitedot.material"
+								width="15"
+								height="50"
+								lockup="1"
+							/>
+						</particle>
+					</simpleemitter>
+				
+				</template>
+				
+				<instance name="" zgravity="-5" zpos="0 -15 0"/> 
+				<instance name="" zgravity="5" zpos="0 -15 -200"/> 
+				
+				
+				
+
+			</model>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<billboard
+				bone="_bone_fx_04New"
+				life="2000"
+				startcolor="0 .5 1"
+				midcolor="0 .1 .25"
+				endcolor="0 0 0"
+				startsize="350"
+				midsize="350"
+				endsize="350"
+				midsizepos=".1"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+				depthbias="-200"
+			/>
+
+			<simpleemitter
+				life="2000"
+				timenudge="5000"
+				spawnrate="5"
+				particlelife="3000"
+				gravity="-1.5"
+				minspeed="0"
+				maxspeed="100"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="120 120 50"
+				position="0 -25 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .1 .4"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					startheight="110"
+					endheight="600"
+					width="20"
+					depthbias="-75"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				life="2000"
+				timenudge="5000"
+				spawnrate="4"
+				particlelife="3000"
+				gravity="-1.5"
+				speed="4"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="120 120 0"
+				position="0 -25 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor="0 .1 .2"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					minstartheight="750"
+					maxstartheight="1750"
+					endheight="750"
+					width="50"
+					depthbias="-75"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				life="2000"
+				timenudge="5000"
+				position="0 -15 250"
+				particlelife="3000"
+				spawnrate="5"
+				gravity="-5"
+				speed="0"
+				drag="0.0015"
+				acceleration="0"
+				offsetsphere="75 75 250"
+				depthbias="-100"
+			>
+				<particle
+				>
+					<billboard
+						life="3000"
+						startcolor="0 0 0"
+						midcolor="0 .25 .5"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="-50"
+						material="/shared/effects/materials/whitedot.material"
+						width="16"
+						height="400"
+						minroll="0"
+						maxroll="0"
+						lockup="1"
+					/>
+					
+					<billboard
+						life="2000"
+						startcolor="0 0 0"
+						midcolor=".3 .4 .5"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="-50"
+						material="/shared/effects/materials/whitedot.material"
+						width="16"
+						height="60"
+						lockup="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+
+			<simpleemitter
+				life="3250"
+				spawnrate="500"
+				particlelife="610"
+				gravity="-25"
+				speed="0"
+				position="0 -15 250"
+				acceleration="11"
+				material="/shared/effects/materials/whitedot.material"
+				offsetsphere="45 45 500"
+				drag="0.01"
+				direction="1 0 0"
+			>
+				<particle
+					startcolor=".15 .8 1"
+
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="6"
+					midsize="6"
+					endsize="0"
+					turn="1"
+				/>
+			</simpleemitter>
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+				
+
+			<template name="">
+				<billboard
+					delay="{zdelay}"
+					bone="_bone_fx_04New"
+					life="4000"
+					startcolor="0 0 0"
+					midcolor="0 .25 1"
+					endcolor="0 0 0"
+					midcolorpos=".2"
+					size="{zsize}"
+					material="/shared/effects/smaterials/whitedot.material"
+					depthbias="-200"
+					startalpha="{zalpha}"
+					endalpha="0"
+				/>
+			</template>
+			
+			<instance name="" zdelay="0" zsize="1000"/>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				life="3250"
+				bone="_bone_fx_04New"
+				spawnrate="1250"
+				particlelife="500"
+				position="0 0 0"
+				acceleration="11"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="225"
+				drag="0.01"
+				direction="1 0 0"
+				depthbias="0"
+			>
+				<particle
+					startstickiness="0"
+					endstickiness="1"
+					startcolor="0 0 0"
+					midcolor="0 .125 .125"
+					endcolor="0 0 0"
+					minstartsize="50"
+					maxstartsize="100"
+					endsize="0"
+					turn="1"
+					heightdistort="0.02"
+				/>
+			</simpleemitter>
+
+			
+
+			
+			
+			
+
+			<template name="">
+			
+				<simpleemitter
+					delay="{zdelay}"
+					life="{zlife}"
+					bone="_bone_fx_04New"
+					startspawnrate="{zstartspawnrate}"
+					endspawnrate="{zendspawnrate}"
+					minparticlelife="{zminparticlelife}"
+					maxparticlelife="{zmaxparticlelife}"
+					material="/shared/effects/smaterials/powersteal.material"
+					depthbias="-50"
+					offsetsphere="0 0 0"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor=".2 .7 1"
+						endcolor=".125 .35 .5"
+						midcolorpos=".35"
+						minstartscale="75"
+						maxstartscale="150"
+						endscale="0"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+						flare="true"
+					/>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zdelay="0" zstartspawnrate="100" zendspawnrate="200" zlife="1800" zminparticlife="400" zmaxparticlelife="600"/>  
+			<instance name="" zdelay="1800" zstartspawnrate="300" zendspawnrate="500" zlife="1450" zminparticlife="150" zmaxparticlelife="300"/>  
+
+			<simpleemitter
+				life="3250"
+				bone="_bone_fx_04New"
+				startspawnrate="150"
+				endspawnrate="400"
+				minparticlelife="100"
+				maxparticlelife="300"
+				position="0 0 0"
+				material="/shared/effects/smaterials/muzzle_flash_white.material"
+				offsetsphere="250"
+				depthbias="0"
+				direction="0 0 0"
+				speed="0"
+			>
+				<particle
+				startstickiness="0"
+				endstickiness="1"
+					startcolor="0 0 0"
+					midcolor=".2 .65 1"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					minstartscale="20"
+					maxstartscale="80"
+					endsize="0"
+				/>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+
+
+			
+
+			<template name="green">
+
+				<simpleemitter
+					delay="{zdelay}"
+					life="3250"
+					bone="_bone_fx_04New"
+					startspawnrate="0"
+					endspawnrate="50"
+					minparticlelife="150"
+					maxparticlelife="300"
+					material="/shared/effects/smaterials/bulb_add.material"
+					depthbias="0"
+					offsetsphere="50"
+				>
+					<particle
+						anchor="1"
+						startcolor="0 0 0"
+						midcolor="0 .5 1"
+						endcolor="0 0 0"
+						midcolorpos=".75"
+						startscale="{zstartscale}"
+						endscale="0"
+						minangle="0"
+						maxangle="360"
+						turn="true"
+
+					/>
+				</simpleemitter>
+			
+			</template>
+			
+			
+			<instance name="green" zdelay="0" zstartscale="150" zspawnrate="75"/>
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+			<simpleemitter
+				life="3250"
+				timenudge="5000"
+				position="0 0 2000"
+				particlelife="3000"
+				spawnrate="60"
+				gravity="0"
+				minspeed="1000"
+				maxspeed="4000"
+				acceleration="0"
+				offsetsphere="40 40 200"
+				depthbias="-100"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 -1"
+			>
+				<particle
+				>
+					<billboard
+						life="500"
+						startcolor="0 0 0"
+						midcolor=".6"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="0"
+						material="/shared/effects/materials/whitedot.material"
+						minwidth="5"
+						maxwidth="30"
+						minheight="100"
+						maxheight="300"
+						minroll="0"
+						maxroll="0"
+						lockup="1"
+					/>
+				</particle>
+			</simpleemitter>	
+
+			<simpleemitter
+				life="3500"
+				timenudge="5000"
+				position="0 0 1500"
+				minparticlelife="1500"
+				maxparticlelife="2500"
+				spawnrate="5"
+				gravity="0"
+				minspeed="0"
+				maxspeed="1000"
+				acceleration="0"
+				offsetsphere="30 30 500"
+				depthbias="-100"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 -1"
+			>
+				<particle
+				>
+					<billboard
+						life="750"
+						startcolor="0 0 0"
+						midcolor="0 .3 1"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="-50"
+						material="/shared/effects/materials/whitedot.material"
+						minwidth="200"
+						maxwidth="300"
+						minheight="2000"
+						maxheight="3000"
+						minroll="0"
+						maxroll="0"
+						lockup="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+
+			
+
+
+
+	
+					
+					
+					
+					
+					
+		
+			<template name="lightning">
+
+				<billboard
+					life="3500"
+					position="0 0 1300"
+					startheight="150"
+					endheight="250"
+					width="1100"
+					color="0 .1 1"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+					startframe="0"
+					endframe="1"
+					framespeed="{zframespeed}"
+					lockup="true"
+					lockright="true"
+					roll="{zroll}"
+				/>
+
+			</template>
+
+			<instance name="lightning" zroll="-90" zframespeed="2"/>
+	
+
+			<template name="lightning">
+
+				<billboard
+					life="3500"
+					position="0 0 1500"
+					startheight="150"
+					endheight="200"
+					width="1500"
+					color="0 .1 1"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+					startframe="0"
+					endframe="1"
+					framespeed="{zframespeed}"
+					lockup="true"
+					lockright="true"
+					roll="{zroll}"
+
+				/>
+
+				<billboard
+					life="3500"
+					position="0 0 1500"
+					startheight="150"
+					endheight="200"
+					width="1500"
+					color=".2"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+					startframe="0"
+					endframe="1"
+					framespeed="{zframespeed}"
+					lockup="true"
+					lockright="true"
+					roll="{zroll}"
+				/>
+				
+				<billboard
+					life="3500"
+					position="0 0 1500"
+					startheight="100"
+					endheight="150"
+					width="1500"
+					color=".4"
+					material="/shared/effects/smaterials/animated_round_energy_additive.material"
+					startframe="0"
+					endframe="1"
+					framespeed="{zframespeed}"
+					lockup="true"
+					lockright="true"
+					roll="{zroll}"
+				/>
+
+			</template>
+
+			<instance name="lightning" zroll="-90" zframespeed="3"/>	
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+	
+				
+
+
+
+			<billboard
+				delay="3500"
+				bone="_bone_fx_04New"
+				life="1000"
+				startcolor="0 .5 1"
+				endcolor="0 0 0"
+				startsize="0"
+				endsize="2000"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-170"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<billboard
+				delay="3500"
+				bone="_bone_fx_04New"
+				life="250"
+				startcolor="0 .5 1"
+				endcolor="0 0 0"
+				startsize="250"
+				endsize="1500"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-170"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+			<light
+				delay="3500"
+				position="0 0 300"
+				life="250"
+				startcolor="0 5 10"
+				endcolor="0 0 0"
+				midcolorpos=".85"
+				falloffstart="0"
+				startfalloffend="700"
+				endfalloffend="1000"
+
+			/>	
+
+			<billboard
+				bone="_bone_fx_04New"
+				position="0 0 0"
+				delay="3500"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor="0 .125 .25"					
+				endcolor="0 0 0"
+				life="250"	
+				startsize="450"
+				endsize="800"
+				depthbias="-150"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				bone="_bone_fx_04New"
+				position="0 0 0"
+				delay="3600"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor="0 .125 .25"						
+				endcolor="0 0 0"
+				life="250"	
+				startsize="450"
+				endsize="800"
+				depthbias="-150"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				bone="_bone_fx_04New"
+				position="0 0 0"
+				delay="3700"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor="0 .125 .25"				
+				endcolor="0 0 0"
+				life="250"	
+				startsize="450"
+				endsize="800"
+				depthbias="-150"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+
+
+			<billboard
+				bone="_bone_fx_04New"
+				position="0 0 0"
+				delay="3800"
+				material="/shared/effects/smaterials/bulb_add.material"				
+				startcolor="0 0 0"				
+				midcolor="0 .05 .1"				
+				endcolor="0 0 0"
+				life="500"	
+				startsize="1000"
+				endsize="1100"
+				depthbias="-150"
+				lockup="1"
+				lockright="1"
+				pitch="90"
+			/>
+			
+			<billboard
+				bone="_bone_fx_04New"
+				delay="3500"
+				life="400"
+				color="1 1 1"
+				startalpha="1"
+				endalpha="0"
+				midalphapos=".75"
+				startparam=".75"
+				endparam="0"
+				startsize="250"
+				endsize="4000"
+				depthbias="-150"
+				position="0 0 20"
+				material="/shared/effects/materials/refract_ring.material"
+				lockup="true"
+				lockright="true"
+				pitch="90"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+<!--
+			<template name="">
+			
+				<terrainemitter
+					count="1"
+					position="{zpos}"
+					spawnrate="2000"
+					particlelife="10000"
+					minangle="0"
+					maxangle="0"
+					offsetsphere="100 100 0"
+				>
+					<particle
+					>
+
+						<billboard
+							delay="{zdelay}"
+							life="1000"
+							position="0 0 0"
+							height="750"
+							width="750"
+							startcolor=".15 .35 .5"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-150"
+						/>
+						
+						<billboard
+							delay="{zdelaylonger}"
+							life="1000"
+							position="0 0 0"
+							height="750"
+							width="750"
+							startcolor=".15 .35 .5"
+							endcolor="0 0 0"
+							material="/shared/effects/smaterials/whitedot.material"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+							depthbias="-150"
+						/>
+
+					</particle>
+				</terrainemitter>
+			
+			</template>
+			
+			<instance name="" zdelay="0" zdelaylonger="200" zpos="300 0 0" /> 
+			<instance name="" zdelay="300" zdelaylonger="500" zpos="-300 100 0" /> 
+			<instance name="" zdelay="450" zdelaylonger="650" zpos="0 400 0" /> 
+			
+			<instance name="" zdelay="850" zdelaylonger="1050" zpos="300 0 0" /> 
+			<instance name="" zdelay="1150" zdelaylonger="1350" zpos="-300 100 0" /> 
+			<instance name="" zdelay="1250" zdelaylonger="1450" zpos="0 400 0" /> 
+			
+			
+			
+			<instance name="" zdelay="1750" zdelaylonger="1950" zpos="300 0 0" /> 
+			<instance name="" zdelay="2050" zdelaylonger="2250" zpos="-300 100 0" /> 
+			<instance name="" zdelay="2150" zdelaylonger="2350" zpos="0 400 0" /> 
+-->
+			
+			
+			<template name="">
+			
+				<simpleemitter
+					delay="{zdelay}"
+					position="{zpos}"
+					count="100"
+					life="3250"
+					bone="_bone_fx_04New"
+					spawnrate="2000"
+					minparticlelife="100"
+					maxparticlelife="300"
+					material="/shared/effects/smaterials/muzzle_flash_white.material"
+					offsetsphere="50"
+					depthbias="0"
+					direction="0 0 0"
+					speed="{zspeed}"
+				>
+					<particle
+						startcolor="1 1 1"
+						midcolor=".25 .75 1"
+						endcolor="0 0 0"
+						midcolorpos=".25"
+						minstartscale="40"
+						maxstartscale="80"
+						endsize="0"
+					/>
+				</simpleemitter>
+			
+
+			</template>
+			
+			<instance name="" zdelay="3600" zpos="0 0 0" zspeed="300"/> 
+			<instance name="" zdelay="3700" zpos="0 -100 -50" zspeed="300"/> 
+			<instance name="" zdelay="3700" zpos="0 75 75" zspeed="300"/> 
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+      <spawnparticlesystem instance="instance0"  particlesystem="system0" />	
+	  <spawnmodifier instance="instance1" modifier="modifier0"/>  
+	  <camerashake2 scale="12" radius="1200" duration="3500" frequency="22" />
+	  <waitfordeath instance="instance0" />
+	  <waitfordeath instance="instance1" />	 
+	</thread>
+
+</effect>

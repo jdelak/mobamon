@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="scene_refract">
+	<parameter name="Params" type="float3" default="500.0 10.0 0.25" />
+	<dependency name="Refraction" type="float3" />
+	<dependency name="Params" type="float3" source="Params" />
+	<dependency name="CameraDistance" type="float" source="CameraDistance" />
+	<output name="Out" type="float2" />
+	<?hlsl
+		Out = (Refraction.xy * float2(-1.0f, 1.0f)) / Refraction.z / ((CameraDistance + Params.x) / Params.y) * Params.z;
+	?>
+	<?glsl
+		Out = (Refraction.xy * vec2(-1.0f, 1.0f)) / Refraction.z / ((CameraDistance + Params.x) / Params.y) * Params.z;
+	?>
+</node>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="tower_projectile" deferred="true">
+	<definitions>
+		<particlesystem name="system0" space="entity">
+
+
+
+		
+      </particlesystem>
+	
+      <particlesystem name="system1" space="world" scale="1.5">
+	  
+
+				<simpleemitter
+				
+					spawnrate="260"
+							
+					particlelife="250"			
+					gravity="5"
+					speed="100"
+					acceleration="0"
+					position="0 0 0"
+
+
+					material="/shared/effects/smaterials/baldir_puff.material"
+					offsetsphere="1 1 1"
+					minangle="0"
+					maxangle="180"
+					direction="0 0 1"
+					offsetdirection="0 0 0"
+					offsetradial="0 0 0"
+					inheritvelocity="0.25"
+				>
+					<particle
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-170"
+						maxanglespeed="170"
+						startsize="55"				
+						endsize="2"
+						
+						startcolor=".5 1 1"
+						endcolor=".5 1 1"	
+				
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+				</simpleemitter>
+
+		
+	  
+
+	  
+		<trailemitter
+			spawnrate="400"
+
+			particlelife="210"
+			texpostime="5000"
+		 	texposscale="3"
+		 	texstretchscale="0"
+			material="/shared/effects/materials/spirit_03.material"
+		>
+			<particle
+				 startalpha="0"
+				 midalpha="1"
+				 endalpha="0.0"
+				 startcolor=".2 .7 1"
+				 midcolor="0 .0 .0"
+				 endcolor="0 0 0"
+				 startsize="60"
+				 endsize="10"
+				 midsizepos=".3"
+
+		 />
+
+		</trailemitter>	  
+	  
+
+		<simpleemitter
+		
+			spawnrate="100"
+
+			particlelife="50"			
+			gravity="0"
+			speed="30"
+			drag="0"
+			acceleration="0"
+			position="0 0 0"
+
+
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="1 1 1"
+			minangle="360"
+			maxangle="180"
+			direction="1 0 0"
+			offsetdirection="0 0 0"
+			offsetradial="0 0 0"
+			inheritvelocity="0.25"
+			
+		>
+
+			<particle
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-170"
+				maxanglespeed="170"
+				startsize="22"				
+				endsize="60"
+				
+				startcolor=".5 1 1"
+				endcolor=".5 1 1"	
+				anchor="1"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".15"
+			/>
+
+		</simpleemitter>
+
+		<simpleemitter
+		
+			spawnrate="130"
+			particlelife="150"			
+			gravity="0"
+			speed="40"
+			drag="0"
+			acceleration="0"
+			position="0 0 0"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="1 1 1"
+			minangle="360"
+			maxangle="180"
+			direction="1 0 0"
+			offsetdirection="0 0 0"
+			offsetradial="0 0 0"
+			inheritvelocity=".25"					
+		>
+
+
+			<particle
+				minangle="-360"
+				maxangle="360"
+				minanglespeed="-170"
+				maxanglespeed="170"
+				startsize="22"				
+				endsize="60"
+				
+				startcolor=".5 1 1"
+				endcolor=".5 1 1"	
+				anchor="1"
+				startalpha="0"
+				midalpha="1"
+				endalpha="0"
+				midalphapos=".15"
+			/>
+
+		</simpleemitter>
+
+		<simpleemitter
+
+			position="0  0 0"
+			spawnrate="130"			
+			particlelife="400"
+			gravity="-31"
+			material="/shared/effects/smaterials/baldir_puff.material"
+			offsetsphere="5 5 5"
+			direction="0 0 1"
+			minangle="-50"
+			maxangle="-90"
+			drag="0.14"
+			depthbias="-12"
+			
+			minspeed="15"
+			maxspeed="15"
+			directionalspace="local"
+			inheritvelocity="0.2"	
+		>
+
+					<particle
+						minangle="-360"
+						maxangle="360"
+						minanglespeed="-170"
+						maxanglespeed="170"
+						startsize="22"				
+						endsize="60"
+						
+						startcolor=".5 1 1"
+						endcolor=".5 1 1"	
+						anchor="1"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						midalphapos=".15"
+					/>
+
+
+		</simpleemitter>
+		
+		
+		
+		
+		
+			<billboard
+	
+				material="/shared/effects/materials/flare_01.material"
+				color=".2 1 1"
+				size="120"
+			/>		
+
+			<light
+				position="0 0 50"
+				expirelife="500"
+				startcolor="2 4 4"
+				endcolor="0 0 0"			
+				
+				falloffstart="10"
+				falloffend="300"
+			/>			
+		
+		
+		
+		
+
+
+
+      </particlesystem>
+   </definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+
+

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<!--
+	===========================	
+	Includes / Triggers
+	===========================
+	-->
+	<include file="/ui/game/map_objectives/map_objectives_templates.package"/>
+	
+	<trigger name="spe_abilities1"/>
+	<trigger name="spe_abilities2"/>
+	<trigger name="spe_abilities3"/>
+	<trigger name="spe_abilities4"/>
+	<trigger name="spe_abilities5"/>
+	
+	<!-- Start Objective Triggers -->
+	<trigger name="spe_objective1"/>
+	<trigger name="spe_objective2"/>
+	<trigger name="spe_objective3"/>
+	<trigger name="spe_objective4"/>
+	<trigger name="spe_objective5"/>
+	<trigger name="spe_objective6"/>
+	<trigger name="spe_objective7"/>
+	
+	<trigger name="spe_objective1Unlock"/>
+	<trigger name="spe_objective2Unlock"/>
+	<trigger name="spe_objective3Unlock"/>
+	<trigger name="spe_objective4Unlock"/>
+	<trigger name="spe_objective5Unlock"/>
+	<trigger name="spe_objective6Unlock"/>
+	<trigger name="spe_objective7Unlock"/>
+	
+	<trigger name="spe_objective1Complete"/>
+	<trigger name="spe_objective2Complete"/>
+	<trigger name="spe_objective3Complete"/>
+	<trigger name="spe_objective4Complete"/>
+	<trigger name="spe_objective5Complete"/>
+	<trigger name="spe_objective6Complete"/>
+	<trigger name="spe_objective7Complete"/>
+	<!-- End Objective Triggers -->
+	
+	<!--
+	===========================	
+	Objectives Bar
+	===========================
+	-->
+	<panel name="Objective_Container" width="9h" align="left" valign="top" visible="0" noclick="1">
+		<panel name="Objective_Act1" align="left" valign="top" float="bottom" padding="1.5h" visible="1" >
+			<panel name="Objective_Spacer" width="100%" height="0h" />
+			
+			<instance name="Objective_Holder" icon="key" status="locked" number="01"/>
+			<instance name="Objective_Holder" icon="spiders" status="locked" number="02"/>
+			<instance name="Objective_Holder" icon="rook" status="locked" number="03"/>
+			<instance name="Objective_Holder" icon="dragon" status="locked" number="04"/>
+			<instance name="Objective_Holder" icon="wizard" status="locked" number="05"/>
+			<instance name="Objective_Holder" icon="axe" status="locked" number="06"/>
+			<instance name="Objective_Holder" icon="egg" status="locked" number="07"/>
+		</panel>
+	</panel>
+	
+	<!--
+	===========================	
+	Objectives Popup
+	===========================
+	-->
+	<panel name="Objective_Popup_Container" y="-15h" width="60h" height="25h" valign="bottom" align="center" visible="0" noclick="1">
+		<image name="Objective_Popup_Glow" y="20%" width="25%" height="60%" texture="/ui/game/map_objectives/textures/glow.tga" align="center" valign="center" color="1 0.9 0.6 0.5" noclick="1"/>
+		<image name="Objective_Popup_Particles" y="20%" width="25%" height="60%" texture="/ui/game/map_objectives/textures/particles.tga" align="center" valign="center" color="1 0.9 0.6 0.3" noclick="1"/>
+			
+		<panel height="60%" valign="bottom" float="bottom" noclick="1">
+			<!-- Stone Top -->
+			<panel height="40%" noclick="1">
+				<image name="Objective_Popup_StoneTop" width="80%" texture="/ui/game/map_objectives/textures/objective_popup_stoneTop.tga" align="center" noclick="1"/>
+			</panel>
+			
+			<!-- Text Area -->
+			<panel name="Objectives_Popup_Text" width="75%" height="45%" texture="/ui/game/map_objectives/textures/objective_popup_textBG.tga" align="center" color="#111114" noclick="1">
+				<image height="0.2h" texture="/ui/game/map_objectives/textures/objective_popup_textBG.tga" color="#6f6454" valign="top" noclick="1"/>
+				<image height="0.2h" texture="/ui/game/map_objectives/textures/objective_popup_textBG.tga" color="#6f6454" valign="bottom" noclick="1"/>
+				<panel height="15h" y="-10.5h" width="15.0h" name="Objective_Popup_TopLine" texture="/ui/game/map_objectives/textures/objective_activeLine.tga" color="#dcc9ad" align="left" valign="top" noclick="1" />
+				<panel height="15h" y="4.3h" width="15.0h" name="Objective_Popup_BottomLine" texture="/ui/game/map_objectives/textures/objective_activeLine.tga" color="#dcc9ad" align="left" valign="bottom" noclick="1" />
+				
+				<label name="Objectives_Popup_Title" y="15%" font="maindyn_18" color="#ffa800" content="objective_complete" textalign="center" align="center" noclick="1"/>
+				<label name="Objectives_Popup_Description" y="50%" font="maindyn_14" color="#f0f0f0" content="spe_objective0" textalign="center" align="center" noclick="1"/>
+			</panel>
+			
+			<!-- Stone Bottom -->
+			<panel height="20%" width="75%" align="center" noclick="1">
+				<image name="Objective_Popup_StoneBottom" width="60%" texture="/ui/game/map_objectives/textures/objective_popup_stoneBottom.tga" align="center" noclick="1"/>
+			</panel>
+		</panel>
+		
+		<!-- Rune -->
+		<panel height="71%" align="center" valign="top" noclick="1">
+			<panel width="80%" align="center" noclick="1">
+				<image name="Objectives_Popup_RuneGlow" texture="/ui/game/map_objectives/textures/objective_popup_glow.tga" align="center" valign="bottom" color="0.9 0.75 0.55 0.3" noclick="1"/>
+				<image name="Objectives_Popup_RuneGlowFades" texture="/ui/game/map_objectives/textures/objective_popup_glow.tga" align="center" valign="bottom" color="0.9 0.75 0.55 0.6" noclick="1"/>
+				<image name="Objective_Popup_RuneParticles" y="20%" width="55%" height="120%" texture="/ui/game/map_objectives/textures/particles.tga" align="center" valign="center" color="1 1 0.8 0.4" noclick="1"/>
+			</panel>
+			
+			<panel y="10%" width="26%" align="center" valign="center" noclick="1">
+				<!-- Ability Icon Sample -->
+				<image width="55%" height="55@" name="Objectives_Popup_Rune" texture="/maps/bastact1/resources/heroes/bastion1BastAct1/ability_01/icon.tga" align="center" valign="center" noclick="1"/>
+				<image width="70%" height="70@" name="Objectives_Popup_RuneBorder" texture="/ui/main/shared/textures/iconframe_displayinfo2.tga" align="center" valign="center" noclick="1"/>
+				
+				<!-- Objective Icon Sample -->
+				<!--<image width="80%" height="80@" name="Objectives_Popup_Rune" texture="/ui/game/map_objectives/textures/objective_axe_complete.tga" align="center" valign="center" noclick="1"/>-->
+			</panel>
+		</panel>
+	</panel>
+	
+	<lua file="/ui/game/map_objectives/map_objectives.lua"/>
+</package>

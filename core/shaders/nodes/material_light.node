@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="material_light">
+	<parameter name="Light" type="float3" default="0.0 0.0 0.0" />
+	<dependency name="Light" type="*" source="Light" />
+	<output name="MaterialLight" type="*" solution="MaterialLight" />
+	<case>
+		<dependency name="Light" type="float" source="Light" />
+		<output name="MaterialLight" type="float3" solution="MaterialLight" />
+		<?hlsl
+			MaterialLight = float3(Light, Light, Light);
+		?>
+		<?glsl
+			MaterialLight = vec3(Light);
+		?>
+	</case>
+	<case>
+		<dependency name="Light" type="float3" source="Light" />
+		<output name="MaterialLight" type="float3" solution="MaterialLight" />
+		<?hlsl
+			MaterialLight = Light;
+		?>
+		<?glsl
+			MaterialLight = Light;
+		?>
+	</case>
+	<case>
+		<dependency name="Light" type="float4" source="Light" />
+		<output name="MaterialLight" type="float3" solution="MaterialLight" />
+		<?hlsl
+			MaterialLight = Light.xyz;
+		?>
+		<?glsl
+			MaterialLight = Light.xyz;
+		?>
+	</case>
+</node>

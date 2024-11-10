@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="" deferred="true" useentityeffectscale="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.45"
+				sample="../sounds/sfx_state.wav"
+			/>
+
+			<template name="lightning">
+
+				<beam
+					life="500"
+					owner_a="target"
+					owner_b="source"
+					bone_a="{bone_a}"
+					bone_b="{bone_b}"
+					startsize="50"
+					midsize="{zsize}"
+					endsize="50"
+					color=".25 .5 0"
+					material="/shared/effects/smaterials/animated_energy_additive.material"
+					framespeed="{zframespeed}"
+					loop="true"
+				/>
+
+				<beam
+					life="500"
+					owner_a="target"
+					owner_b="source"
+					bone_a="{bone_a}"
+					bone_b="{bone_b}"
+					startsize="30"
+					midsize="60"
+					endsize="30"
+					color=".175 .2 .1"
+					material="/shared/effects/smaterials/animated_energy_additive.material"
+					framespeed="{zframespeed}"
+					loop="true"
+				/>
+
+				<beam
+					life="500"
+					owner_a="target"
+					owner_b="source"
+					bone_a="{bone_a}"
+					bone_b="{bone_b}"
+					startsize="50"
+					midsize="{zsize}"
+					endsize="50"
+					startcolor="0 0 0"
+					midcolor="{zcolor}"
+					endcolor="0 0 0"
+					material="/shared/effects/smaterials/animated_shockstick.material"
+					framespeed="{zframespeed}"
+					loop="true"
+				/>
+
+			</template>
+
+			<instance name="lightning" bone_a="_bone_fx_01" bone_b="_bone_centerofchest" zcolor=".25 1 0" zlife="400" zpos="0 0 0" zsize="70" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" bone_a="_bone_fx_01" bone_b="_bone_centerofchest" zcolor=".25 .5 0" zlife="400" zpos="0 0 0" zsize="130" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" bone_a="_bone_fx_01" bone_b="_bone_centerofchest" zcolor=".25 1 0" zlife="400" zpos="0 0 0" zsize="70" zframespeed="10" zdelay="0"/>
+			<instance name="lightning" bone_a="_bone_fx_01" bone_b="_bone_centerofchest" zcolor=".25 .5 0" zlife="400" zpos="0 0 0" zsize="130" zframespeed="10" zdelay="0"/>
+
+			<template name="">
+			
+				<simpleemitter
+					delay="{zdelay}"
+					owner="{zowner}"
+					spawnrate="1.5"
+					bone="{zbone}"
+					particlelife="1500"
+				>
+					<particle
+					>
+						<simpleemitter
+							bone="{zbone}"
+							count="50"
+							spawnrate="3000"
+							minparticlelife="350"
+							maxparticlelife="750"
+							gravity="10"
+							mainspeed="100"
+							maxspeed="300"
+							drag="0"
+							acceleration="0"
+							position="0 0 0"
+							pitchspeed="79"
+							material="/shared/effects/smaterials/whitedot.material"
+							offsetsphere="0 0 0"
+							direction="0 0 1"
+						>
+							<particle
+								startcolor=".5 1 .1"
+								midcolor=".5 1 .1"
+								endcolor="0 0 0"
+								midcolorpos=".85"
+								startsize="4"
+								midsize="8"
+								endsize="4"
+							/>
+						</simpleemitter>
+
+						<billboard
+							bone="{zbone}"
+							life="200"
+							startcolor=".55"
+							endcolor="0 0 0"
+							size="250"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+						/>
+
+					</particle>
+				</simpleemitter>
+				
+				<simpleemitter
+					delay="{zdelay}"
+					owner="{zowner}"
+					count="1.5"
+					spawnrate="2000"
+					bone="{zbone}"
+					particlelife="1500"
+				>
+					<particle
+					>
+						<simpleemitter
+							bone="{zbone}"
+							count="50"
+							spawnrate="3000"
+							minparticlelife="350"
+							maxparticlelife="750"
+							gravity="10"
+							mainspeed="100"
+							maxspeed="300"
+							drag="0"
+							acceleration="0"
+							position="0 0 0"
+							pitchspeed="79"
+							material="/shared/effects/smaterials/whitedot.material"
+							offsetsphere="0 0 0"
+							direction="0 0 1"
+						>
+							<particle
+								startcolor=".5 1 .1"
+								midcolor=".5 1 .1"
+								endcolor="0 0 0"
+								midcolorpos=".85"
+								startsize="4"
+								midsize="8"
+								endsize="4"
+							/>
+						</simpleemitter>
+
+						<billboard
+							bone="{zbone}"
+							life="200"
+							startcolor=".55"
+							endcolor="0 0 0"
+							size="250"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+						/>
+
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zowner="target" zbone="_bone_fx_01" zdelay="200"/>
+
+			<template name="">
+			
+				<simpleemitter
+					delay="{zdelay}"
+					owner="{zowner}"
+					spawnrate="1.5"
+					bone="{zbone}"
+					particlelife="1500"
+				>
+					<particle
+					>
+						<billboard
+							bone="{zbone}"
+							life="200"
+							startcolor=".55"
+							endcolor="0 0 0"
+							size="250"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+						/>
+					</particle>
+				</simpleemitter>
+				
+				<simpleemitter
+					delay="{zdelay}"
+					owner="{zowner}"
+					count="1.5"
+					spawnrate="2000"
+					bone="{zbone}"
+					particlelife="1500"
+				>
+					<particle
+					>
+						<billboard
+							bone="{zbone}"
+							life="200"
+							startcolor=".55"
+							endcolor="0 0 0"
+							size="250"
+							material="/shared/effects/smaterials/whitedot.material"
+							depthbias="-50"
+						/>
+					</particle>
+				</simpleemitter>
+
+			</template>
+			
+			<instance name="" zowner="source" zbone="_bone_centerofchest" zdelay="200"/>
+
+			<model
+				parentmodel="true"
+				parentskeleton="true"
+				position="0 0 0"
+				life="300"
+				scale="1.0"
+				color=".25 1 0"
+				material="material.material"
+				startalpha="1"
+				midalpha="0"
+				endalpha="1"
+				loop="true"
+			/>
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

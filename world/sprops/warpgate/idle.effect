@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true">
+
+	<definitions>
+	
+		
+		<particlesystem name="system0" space="world" scale="1">
+	<!--
+			<simpleemitter
+				spawnrate="10"
+				particlelife="2500"
+				gravity="-1.5"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="55 55 0"
+				position="0 0 -125"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".3 .1 .5"
+					endcolor="0 0 0"
+					scale="3.1"
+					midalphapos="0.9"
+					startheight="110"
+					endheight="600"
+					width="20"
+					depthbias="0"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+				>
+				</particle>
+			</simpleemitter>
+	-->
+	
+			<meshemitter
+				
+				mesh="_invis_test"				
+				spawnrate="155"
+				minparticlelife="1200"
+				maxparticlelife="1800"
+				gravity="0"
+				speed="0"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/materials/dust_smoke_06.material"
+				framespeed="1"
+				offsetsphere="0 0 0"
+				position="0 0 -10"
+				direction="0 -.5 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="40"
+				timenudge="1000"
+			>
+				<particle
+					heightdistort="0.00"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					minangle="0"
+					maxangle="100"
+					startcolor="0"
+					midcolor="0"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					size="55"
+					lockup="1"
+					lockright="1"
+					pitch="90"
+					startsize="22"
+						
+					depthbias="100"
+					startalpha="0"
+					midalpha="1"
+					endalpha="0"
+					midalphapos=".5"
+				>
+				</particle>
+			</meshemitter>	
+	
+	
+			<meshemitter
+				mesh="_invis_test"				
+				spawnrate="455"
+				minparticlelife="1200"
+				maxparticlelife="1800"
+				gravity="0"
+				speed="32"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/materials/dust_smoke_06.material"
+				framespeed="1"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				direction="0 -.5 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="-40"
+			>
+				<particle
+					heightdistort="0.00"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					minangle="0"
+					maxangle="100"
+					startcolor="1 0 1"
+					midcolor=".4 0 .4"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					size="11"
+					midalphapos="0.9"
+					startsize="22"
+					endsize="0"		
+
+					startalpha="0"
+					midalpha="1"
+					endalpha="1"
+					minalphapos=".2"
+				>
+				</particle>
+			</meshemitter>
+
+			<!-- This is the main neb -->
+			
+			<meshemitter
+				mesh="_invis_test"				
+				spawnrate="35"
+				particlelife="1800"
+				gravity="0"
+				speed="60"
+				drag="0.01"
+				acceleration="0"
+				material="/shared/effects/materials/fire_add.material"
+				framespeed="1"
+				offsetsphere="0 0 0"
+				position="0 0 0"
+				direction="0 0 1"
+				minangle="0"
+				maxangle="11"
+				depthbias="-40"
+			>
+				<particle
+					heightdistort="0.06"
+					startcolor="0 0 0"
+					turn="1"
+					midcolor=" .5 .2 .5"
+					endcolor=".3 0 .3"
+					size="11"
+					midalphapos="0.9"
+					startsize="100"
+					endsize="0"
+					minangle="0"
+					maxangle="100"
+					
+				>
+				</particle>
+			</meshemitter>
+
+	<!--				
+			<template name="charge">
+				<trackeremitter
+					bone="{bone}"
+					position="0 0 0"
+					targetposition="0 0 0"
+					targetbone="{target}"
+					tracktype="linear"
+					trackspeed="2"
+					minpawnrate="1"
+					maxspawnrate="14"
+					particlelife="130"
+					speed="500"
+					acceleration="0"
+					direction="0 0 1"
+					minangle="0"
+					maxangle="44"
+					
+					inheritvelocity="0"
+					distancelife="1"
+					offsetsphere="10 10 10"
+				>
+					<particle>
+					
+		
+						<trailemitter
+							life="260"
+							spawnrate="75"
+							particlelife="130"
+							offsetsphere="5"
+							texpostime="130"
+							texposscale="0"
+							texstretchscale="1"
+							position="0 0 0"
+							drag="1"
+							
+							material="/shared/effects/smaterials/arrow_trail.material"
+						>
+							<particle
+								startcolor=".5 1 1"
+								midcolor=".4 .2 1"
+								endcolor="0 0 0"
+								
+								
+								startsize="5"
+								midsize="0"
+								endsize="0"
+								midcolorpos=".1"
+								midsizepos=".5"
+								
+							/>
+						</trailemitter>
+					</particle>
+				</trackeremitter>
+			</template>
+		
+			<instance name="charge" bone="_bone_fx_001" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_003" target="_bone_fx_center" />			
+			<instance name="charge" bone="_bone_fx_004" target="_bone_fx_center" />				
+			<instance name="charge" bone="_bone_fx_005" target="_bone_fx_center" />				
+			<instance name="charge" bone="_bone_fx_007" target="_bone_fx_center" />				
+			<instance name="charge" bone="_bone_fx_009" target="_bone_fx_center" />				
+			<instance name="charge" bone="_bone_fx_011" target="_bone_fx_center" />			
+			<instance name="charge" bone="_bone_fx_013" target="_bone_fx_center" />			
+			<instance name="charge" bone="_bone_fx_015" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_017" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_019" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_021" target="_bone_fx_center" />			
+			<instance name="charge" bone="_bone_fx_023" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_025" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_027" target="_bone_fx_center" />			
+			<instance name="charge" bone="_bone_fx_029" target="_bone_fx_center" />
+			<instance name="charge" bone="_bone_fx_031" target="_bone_fx_center" />				
+
+			-->
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+		
+	</thread> 
+</effect>

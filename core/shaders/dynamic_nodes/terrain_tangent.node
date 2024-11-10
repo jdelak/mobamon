@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="terrain_tangent">
+	<dependency name="Data1" type="float4" source="Data1" />
+	<dependency name="ShaderModel" type="*" source="ShaderModel" />
+	<output name="OutObject" type="float3" solution="ObjectTangent" />
+	<output name="OutSign" type="float" solution="ObjectTangentSign" />
+	<output name="OutWorld" type="float3" solution="WorldTangent" />
+	<case>
+		<dependency name="ShaderModel" type="hlsl" source="ShaderModel" />
+		<?hlsl
+			OutObject = Data1.xyz / 255.0f * 2.0f - 1.0f;
+			OutSign = 1.0f;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="hlsl5" source="ShaderModel" />
+		<?hlsl
+			OutObject = Data1.xyz * 2.0f - 1.0f;
+			OutSign = 1.0f;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl120" source="ShaderModel" />
+		<?glsl
+			OutObject = Data1.xyz / 255.0f * 2.0f - 1.0f;
+			OutSign = 1.0f;
+			OutWorld = OutObject;
+		?>
+	</case>
+	<case>
+		<dependency name="ShaderModel" type="glsl" source="ShaderModel" />
+		<?glsl
+			OutObject = Data1.xyz / 255.0f * 2.0f - 1.0f;
+			OutSign = 1.0f;
+			OutWorld = OutObject;
+		?>
+	</case>
+</node>

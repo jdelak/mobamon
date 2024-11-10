@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_SpringBoots_Delay"
+
+	radius=""
+	lifetime=""
+
+	impactdelay="0"
+>
+	<onimpact>
+		<unbind target="source_entity" />
+		<spawnaffector name="Affector_SpringBoots" target="target_entity" />
+		<spawnunit name="Gadget_SpringBoots" target="target_position" pushentity="true" />
+		<setpos0 position="stack_position"  />
+		<spawnprojectile name="Projectile_SpringBoots" source="target_entity" pushentity="true" target="stack_position" bind="target_entity" bindturn="true" bindstate="State_SpringBoots" />
+		<setpos0 position="source_position" positionend="pos0" positionmodifier="pointonline" positionvalue="651" />
+		<spawnprojectile name="Projectile_SpringBoots_Cliff" source="source_entity" target="pos0" proxy="stack_entity" offsetspace="source_entity" offset="0 50 0" />
+	</onimpact>
+</affector>

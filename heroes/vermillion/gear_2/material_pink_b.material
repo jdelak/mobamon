@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<material>
+	<parameters shader="/shared/shaders/standard_colored.shader" vDiffuseColor="1.0 1.0 1.0" fSpecularLevel="1.0" fGlossiness="32.0" fOpacity="1.0" fReflect="1.0">
+		<vec3 name="vTeamColor" value="0 0 1 0.1" />
+	</parameters>
+	<phase name="shadow" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="color_pink_b.tga" repeat_u="true" repeat_v="true" />
+	</phase>
+	<phase name="color" cull="back" blend="alphatest">
+		<sampler name="diffuse" texture="color_pink_b.tga" repeat_u="true" repeat_v="true" />
+		<sampler name="normalmap" texture="normal_b.tga" repeat_u="true" repeat_v="true" />
+		
+	</phase>
+	<phase name="fade" cull="back" colorwrite="false" alphawrite="false" depthwrite="true" blend="alphatest">
+		<sampler name="diffuse" texture="color_pink_b.tga" repeat_u="true" repeat_v="true" />
+		<multipass cull="back" blend="translucent">
+			<sampler name="diffuse" texture="color_pink_b.tga" repeat_u="true" repeat_v="true" />
+			<sampler name="normalmap" texture="normal_b.tga" repeat_u="true" repeat_v="true" />
+			
+		</multipass>
+	</phase>
+</material>

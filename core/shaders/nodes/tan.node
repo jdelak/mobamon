@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="tan">
+	<parameter name="Phase"	 type="float" default="0" />
+	<parameter name="Amplitute"	 type="float" default="1" />
+	<dependency name="Amplitute" type="*" source="Amplitute" />
+	<dependency name="Frequency" type="float" />
+	<dependency name="Phase" type="float" source="Phase" />
+	<dependency name="Time" type="float" source="fTime" />
+	<output type="*" name="Out" />
+	<case>
+		<dependency name="Amplitute" type="float" />
+		<output type="float" name="Out" />
+	</case>
+	<case>
+		<dependency name="Amplitute" type="float2" />
+		<output type="float2" name="Out" />
+	</case>
+	<case>
+		<dependency name="Amplitute" type="float3" />
+		<output type="float3" name="Out" />
+	</case>
+	<case>
+		<dependency name="Amplitute" type="float4" />
+		<output type="float4" name="Out" />
+	</case>
+	<?hlsl
+		Out = Amplitute * tan((Time * Frequency) + Phase);
+	?>
+	<?glsl
+		Out = Amplitute * tan((Time * Frequency) + Phase);
+	?>
+</node>

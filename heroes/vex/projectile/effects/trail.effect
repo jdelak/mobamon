@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="cyclone" deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				life="4000"
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.25"
+				sample="..\sounds\sfx_attack_%.wav"
+			/>
+			
+			<billboard
+				life="300"
+				startscale="0"
+				endscale="10"
+				material="/shared/effects/smaterials/streak_flare.material"
+			/>
+
+			
+			<trailemitter
+				
+				position="0 0 0"
+				spawnrate="32"
+				particlelife="350"
+				texpostime="350"
+				texposscale="0.0"
+				texstretchscale=".4"
+				material="/shared/effects/smaterials/arrow_trail.material"
+				subframepos="true"
+				
+			>
+				<particle
+					color="0 .5 1"
+					
+					startsize="32"
+					alpha="1"
+					endsize="0"
+					midsizepos="0.25"
+			/>
+			</trailemitter>	
+			
+			<simpleemitter
+				spawnrate="33"
+				particlelife="5000"
+				minangle="0"
+				maxangle="0"				
+				direction="0 0 0"
+				inheritvelocity="0.1"
+				
+			>
+				<particle
+					turn="true"
+					lockup="true"
+					lockright="true"					
+				>
+					<model
+						life="255"
+						model="ring/ring.mdf"
+						startscale="0"
+						midscale=".6"
+						endscale=".0"
+						rollspeed="200"
+						midscalepos=".02"
+						startcolor="1"
+						endcolor="0"
+						lockup="1"
+						lockright="1"						
+						directionalspace="local"
+					/>
+				
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+				spawnrate="3333"
+				count="1"
+				particlelife="5000"
+				minangle="0"
+				maxangle="0"				
+				direction="0 0 0"
+				inheritvelocity="0.1"
+				
+			>
+				<particle
+					turn="true"
+					lockup="true"
+					lockright="true"					
+				>
+					<billboard
+						life="200"
+						startscale="14"
+						endscale="0"
+						material="/shared/effects/smaterials/streak_flare.material"
+					/>
+
+				
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+		
+		
+		
+		
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		
+		
+      	<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<!-- <die /> -->
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

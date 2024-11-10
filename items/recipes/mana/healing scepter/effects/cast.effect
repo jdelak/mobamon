@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1.35">
+		
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../sounds/sfx_cast.wav"
+			/>
+			
+			
+			
+			
+			<model
+				life="300"
+				model="scepter/model.mdf"
+				anim="idle"
+				color="1"
+				startalpha=".65"
+				midalpha=".65"
+				endalpha="0"
+				midalphapos=".8"
+				position="0 0 275"
+				pitch="0"
+				startscale="5"
+				midscale="7.5"
+				endscale="7.5"
+			/>
+			
+			
+			
+			
+			
+			
+			
+			<trackeremitter
+				count="10"
+				position="0 0 320"
+				targetbone="_bone_centerofchest"
+				tracktype="angular"
+				trackspeed="20"
+				spawnrate="2000"
+				particlelife="2000"
+				speed="500"
+				distancelife="1"
+				offsetsphere="0 0 0"
+			>
+				<particle>
+<!--
+					<billboard
+						expirelife="250"
+						material="/shared/effects/materials/whitedot.material"
+						startcolor="1 .5 0"
+						midcolor="1 .5 0"
+						endcolor="0  0 0"
+						size="10"
+					/>
+-->
+					
+					
+					<trailemitter
+						spawnrate="50"
+						particlelife="800"
+						texpostime="800"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/materials/arrow_trail.material"
+					>
+						<particle
+							 startcolor="0 1 0"
+							 midcolor="0 0 0"
+							 endcolor="0 0 0"
+							 startsize="10"
+							 midsize="10"
+							 endsize="10"
+							 midsizepos="0.2"
+					 />
+					</trailemitter>
+					
+					
+					
+				</particle>
+			</trackeremitter>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				delay="200"
+				count="1"
+				spawnrate="3000"
+				particlelife="1500"
+				speed="200"
+				gravity="0"
+				drag="0"
+				position="0 0 0"
+				minangle="0"
+				maxangle="0"
+				direction="0 0 1"
+			>
+				<particle
+					anglespeed="800"
+					turn="true"
+				>
+					<!-- Bone moves to center animation -->
+					<model
+						life="1500"
+						model="twirl/model.mdf"
+						anim="idle"
+						position="0 0 0"
+						pitch="90"
+						startscale="1"
+						endscale="3"
+					>
+						<!--Green sparkles-->
+						<simpleemitter
+							life="800"
+							bone="_bone_emissionpoint"
+							spawnrate="50"
+							particlelife="500"
+							speed="0"
+							gravity="0"
+							drag="0"
+							acceleration="0"
+							position="0 0 0"
+							direction="0 0 1"
+							offsetsphere="10 10 10"
+							material="/shared/effects/smaterials/star_additive.material"
+							
+						>
+							<particle
+								startcolor=".2 0.5 .2"
+								endcolor="0 0 0"
+								minanglespeed="-200"
+								maxanglespeed="200"
+								startsize="5"
+								midsize="10"
+								endsize="0"
+								minscale=".2"
+								maxscale=".7"
+							/>
+
+							<particle
+								startcolor=".2 .2 0"
+								endcolor="0 0 0"
+								minanglespeed="-200"
+								maxanglespeed="200"
+								startsize="5"
+								midsize="10"
+								endsize="0"
+								minscale=".2"
+								maxscale=".7"
+							/>
+
+						</simpleemitter>
+						
+						<!--Green Trail-->
+						<trailemitter
+							bone="_bone_emissionpoint"
+							life="1100"
+							spawnrate="75"
+							particlelife="1000"
+							offsetsphere="0"
+							texpostime="1000"
+							texposscale="0"
+							texstretchscale="1"
+							position="0 0 0"
+							speed="0"
+							material="/shared/effects/smaterials/whitedot.material"
+							inheritvelocity="0"
+							startparticlecolor="1 1 1"
+							endparticlecolor="0 0 0"
+
+						>
+							<particle
+								startcolor="0 0 0"
+								midcolor="0 1 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="20"
+								midsize="20"
+								endsize="0"
+								midsizepos=".1"
+							/>
+						</trailemitter>
+						
+						<trailemitter
+							bone="_bone_emissionpoint"
+							life="1100"
+							spawnrate="75"
+							particlelife="1000"
+							offsetsphere="0"
+							texpostime="1000"
+							texposscale="0"
+							texstretchscale="1"
+							position="0 0 0"
+							speed="0"
+							material="/shared/effects/smaterials/whitedot.material"
+							inheritvelocity="0"
+							startparticlecolor="1 1 1"
+							endparticlecolor="0 0 0"
+
+						>
+							<particle
+								startcolor="0 0 0"
+								midcolor="0 1 0"
+								endcolor="0 0 0"
+								midcolorpos=".25"
+								startsize="20"
+								midsize="20"
+								endsize="0"
+								midsizepos=".1"
+							/>
+						</trailemitter>
+						
+						<!--Swirl top-->
+						<billboard
+							bone="_bone_emissionpoint"
+							life="800"
+							startcolor="0 .65 0"
+							midcolor="0 .65 0"
+							endcolor="0"
+							midcolorpos=".25"
+							startsize="125"
+							midsize="0"
+							endsize="0"
+							depthbias="-50"
+							material="/shared/effects/smaterials/whitedot.material"
+						/>
+						
+						<billboard
+							bone="_bone_emissionpoint"
+							life="800"
+							startcolor=".6 .3 0"
+							midcolor=".6 .3 0"
+							endcolor="0"
+							midcolorpos=".25"
+							startsize="60"
+							midsize="0"
+							endsize="0"
+							depthbias="-50"
+							material="/shared/effects/smaterials/whitedot.material"
+						/>
+						
+
+						<!-- flash of light -->
+						<billboard
+							bone="_bone_emissionpoint"
+							life="500"
+							startcolor=".35 .7 0"
+							midcolor=".35 .7 0"
+							endcolor="0"
+							midcolorpos=".25"
+							startsize="125"
+							midsize="0"
+							endsize="0"
+							depthbias="-50"
+							material="/shared/effects/smaterials/whitedot.material"
+							startheight="12"
+							midheight="12"
+							endheight="0"
+							startwidth="200"
+							midwidth="200"
+							endwidth="0"
+						/>
+						
+						
+						<!-- flash of light -->
+						<billboard
+							bone="_bone_emissionpoint"
+							life="250"
+							startcolor="1 1 1"
+							midcolor="0 .75 0"
+							endcolor="0"
+							midcolorpos=".25"
+							startsize="125"
+							endsize="0"
+							depthbias="-50"
+							material="/shared/effects/smaterials/whitedot.material"
+							startheight="10"
+							endheight="10"
+							startwidth="200"
+							endwidth="0"
+							roll="30"
+						/>
+						
+
+						
+					</model>
+				</particle>
+			</simpleemitter>
+			
+			<!--God Rays-->
+			<simpleemitter
+				life="300"
+				
+				spawnrate="100"
+				particlelife="500"
+				minspeed="100"
+				maxspeed="200"
+				gravity="0"
+				drag="0"
+				minangle="0"
+				maxangle="0"
+				acceleration="0"
+				position="0 0 150"
+				direction="0 0 -1"
+				offsetsphere="25 25 65"
+				depthbias="50"
+				material="/shared/effects/smaterials/whitecircleblurred_additive.material"
+			>
+				<particle
+					turn="true"
+					lockup="true"
+					startcolor="0 0 0"
+					midcolor=".06 .25 0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					scale="10"
+					minstartheight="10"
+					maxstartheight="50"
+					endheight="0"
+					minwidth=".5"
+					maxwidth="1"
+				>	
+				</particle>
+			</simpleemitter>
+		
+			<!--Ground Flash
+			<billboard
+				delay="200"
+				position="0 0 0"
+				life="900"
+				startcolor="0 10 0"
+				endcolor="0 0 0"
+				midcolorpos=".3"
+				startsize="100"
+				endsize="200"
+				depthbias="-50"
+				material="/shared/effects/smaterials/whitedot.material"
+				lockup="true"
+				lockkright="true"
+				pitch="90"
+			/>
+-->
+
+			<light
+				delay="200"
+				life="500"
+				startcolor="2.5 5 0"
+				endcolor="0 0 0"
+				midcolorpos=".5"
+				falloffstart="0"
+				startfalloffend="100"
+				endfalloffend="250"
+				position="0 0 25"
+			/>
+
+
+		</particlesystem>
+		
+		<modifier
+			name="modifier0"
+			life="600"
+			startcolor="1 3 1"
+			endcolor="1"
+		/>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+	</thread>
+</effect>

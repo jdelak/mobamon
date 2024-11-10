@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="1">
+	<definitions>
+
+		<modifier
+			name="modifier0"
+			life="400"
+			startcolor=".25 .75 0"
+			endcolor="1 1 1"
+		/>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2200"
+				volume="0.45" 
+				sample="../sounds/sfx_cast_heal.wav"
+			/>
+			
+			<model
+				parentskeleton="true"
+				life="300"
+				startcolor="0 0 0"
+				midcolor=".25 2 0"
+				endcolor="0 0 0"
+				alpha="1"
+				model="staff/model.mdf"
+				material="/shared/effects/smaterials/shell_sludge.material"
+			/>
+			
+		</particlesystem>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+		<spawnmodifier instance="instance1" modifier="modifier0"/> 
+		<waitfordeath instance="instance0"/>
+		<waitfordeath instance="instance1"/>
+	</thread>
+</effect>
+
+<!-- [min|max][start|mid|end]property[speed][position] -->
+

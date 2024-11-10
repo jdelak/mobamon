@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+	<definitions>
+		<particlesystem name="system0" space="entity" scale="1">
+
+			<sound
+				volume="1.0"
+				falloffstart="500"
+				falloffend="2500"
+				sample="../../sounds/sfx_trishot_impact_%.wav"
+			/> 
+
+			<simpleemitter
+				lifetime="1000"
+				particlelife="1000"
+				count="1"
+				spawnrate="100"
+				position="0 0 0"
+			>
+				<particle 
+				>
+			
+					<!-- sparks -->
+					<simpleemitter
+						life="1000"
+						count="50"
+						spawnrate="11340"
+						minparticlelife="250"
+						maxparticlelife="500"
+						gravity="12.0"
+						minspeed="750"
+						maxspeed="1500"
+						drag="0.005"
+						acceleration="0.0"
+						offsetsphere="25"
+						material="/shared/effects/smaterials/black_circle_edge_blurred.material"
+						particledirectionalspace="local"
+						minangle="0"
+						maxangle="90"
+					>
+						<particle
+							startheightdistort="0.25"
+							endheightdistort="0"
+							startsize="8"
+							endsize="4"
+							color="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							turn="1"
+						>
+						</particle>
+					</simpleemitter>
+
+					<!-- impact -->
+					<billboard
+						delay="0"
+						life="400"
+						position="0 0 100"		
+						color="0"
+						startalpha="0"
+						midalpha="1"
+						endalpha="0"
+						startsize="0"
+						endsize="700"
+						depthbias="10"
+						lockup="1"
+						lockright="1"
+						pitch="90"
+						material="/shared/effects/smaterials/circle_centeralpha_black.material"
+					/>
+					
+					<!-- vortext -->
+					<!-- <model
+						life="800"
+						model="models/model.mdf"
+						anim="rise"
+						alpha="0"
+						color="1"
+						position="0 0 0"
+						scale="1"
+					>
+						<beam
+							life="500"
+							bone_a="_bone_bottom"
+							bone_b="_bone_top"
+							loop="0"
+							startsize="300"
+							midsize="200"
+							endsize="0"
+							color="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							material="/shared/effects/smaterials/wizard_vortex_white.material"
+							framespeed="1"
+							depthbias="0"
+						/>
+						
+						<beam
+							life="500"
+							bone_a="_bone_bottom"
+							bone_b="_bone_top"
+							loop="0"
+							startsize="300"
+							midsize="200"
+							endsize="0"
+							color="0"
+							startalpha="0"
+							midalpha="1"
+							endalpha="0"
+							material="/shared/effects/smaterials/wizard_vortex_white.material"
+							framespeed="1"
+							depthbias="0"
+						/>
+						
+						<template name="bottomspot">
+							<billboard
+								life="500"
+								color="0"
+								position="0 0 5"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								scale="1"
+								startsize="300"
+								midsize="200"
+								endsize="0"
+								material="/shared/effects/smaterials/whitecircleblurred.material"
+								depthbias="0"
+								lockup="1"
+								lockright="1"
+								pitch="90"
+							/>
+						</template>
+						
+						<instance name="bottomspot"/>
+						<instance name="bottomspot"/> -->
+						
+						<simpleemitter
+							
+							life="800"
+							count="100"
+							spawnrate="500"
+							minparticlelife="500"
+							maxparticlelife="1000"
+							gravity="0.0"
+							minspeed="1200"
+							maxspeed="2400"
+							drag="0.02"
+							acceleration="0.0"
+							position="0"
+							minangle="0"
+							maxangle="60"
+							direction="0 0 1"
+							offsetsphere="8 8 8"
+							material="/shared/effects/smaterials/cartoon_dust_stun_purple.material"	
+							particledirectionalspace="local"
+							depthbias="100"
+						>
+							<particle
+								minangle="-180"
+								maxangle="180"
+								minanglespeed="-150"
+								maxanglespeed="150"
+								color=".5"
+								startsize="100"
+								endsize="0"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".2"
+							/>
+						</simpleemitter>
+						
+						<simpleemitter
+							delay="500"
+							life="5000"
+							count="3"
+							spawnrate="2"
+							minparticlelife="1500"
+							maxparticlelife="1500"
+							gravity="-10.0"
+							minspeed="0"
+							maxspeed="100"
+							drag="0.0"
+							acceleration="0.0"
+							position="0 0 100"
+							minangle="0"
+							maxangle="0"
+							direction="0 1 1"
+							offsetsphere="0"
+							material="/shared/effects/smaterials/sleep_zs.material"
+							particledirectionalspace="local"
+							depthbias="100"
+						>
+							<particle
+								color="0"
+								startsize="10"
+								endsize="100"
+								startalpha="0"
+								midalpha="1"
+								endalpha="0"
+								midalphapos=".2"
+							/>
+						</simpleemitter>
+					<!-- </model> -->
+				</particle>
+			</simpleemitter>
+		</particlesystem>
+		
+		<modifier
+			name="modifier0"
+			life="1000"
+			startcolor="1"
+			midcolor="0"
+			endcolor="1"
+		/>
+		
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnmodifier instance="instance1" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

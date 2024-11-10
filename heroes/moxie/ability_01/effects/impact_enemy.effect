@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+			
+			<sound
+				sample="../sounds/sfx_impact.wav"
+				volume="0.65"
+				linearfalloff="true"
+				falloffstart="500"
+				falloffend="2000"
+			/>
+<!--
+			<simpleemitter
+			count="10"
+				spawnrate="100"
+				particlelife="1000"
+				minangle="0"
+				maxangle="1"
+				direction="0 1 0"
+				offsetsphere="100 100 0"
+			>
+				<particle
+					turn="1"
+				>	
+					<groundsprite
+						position="0 0 0"
+						life="250"
+						material="/shared/effects/smaterials/earth_cracks_add_blue.material"
+						minsize="100"
+						maxsize="175"
+						startcolor=".5 .5 1"
+						midcolor=".5 .5 1"
+						endcolor="0 0 0"
+						minyaw="0"
+						maxyaw="360"
+						startframe="1"
+						endframe=".001"
+					/>
+
+				</particle>
+			</simpleemitter>
+-->
+		
+		
+
+			<light
+				life="300"
+				startcolor="1.5 2 2.5"
+				midcolor="0 2 8"
+				endcolor="0 0 0"
+				midcolorpos=".75"
+				falloffstart="0"
+				falloffend="250"
+				position="0 0 50"
+			/>
+
+			<groundsprite
+				life="150"
+				position="0 0 0"
+				startcolor=".5 .75 1"
+				endcolor="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground.material"
+				size="150"
+			/>
+
+			<simpleemitter
+				position="0 0 0"
+				bone="_bone_centerofchest"
+				count="2"
+				particlelife="1000"
+				spawnrate="5000"
+				offsetsphere="0 0 0"
+				minangle="0"
+				maxangle="1"
+				direction="0 0 0"
+				speed="0"
+			>
+				<particle
+					turn="true"
+				>
+
+				
+					<billboard
+						bone="_bone_origin"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						life="100"
+						startcolor="0 .4 1"
+						endcolor="0 0 0"
+						scale="4"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+
+					/>
+
+					<template name="flashes">
+						<billboard
+							delay="{zdelay}"
+							bone="_bone_origin"
+							position="0 0 0"
+							material="/shared/effects/smaterials/ring_half.material"
+							life="50"
+							startcolor="{zcolor}"
+							endcolor="0 0 0"
+							startscale="{zscale}"
+							endscale="{zscale}"
+							directionalspace="local"
+							lockright="1"
+							lockup="1"
+							pitch="90"
+						/>
+					</template>
+
+					<instance name="flashes" zdelay="0" zcolor=".15 .7 1" zscale="1.5"/>
+					<instance name="flashes" zdelay="25" zcolor=".15 .7 1" zscale="2"/>
+					<instance name="flashes" zdelay="50" zcolor=".08 .35 .5" zscale="2.5"/>
+					<instance name="flashes" zdelay="75" zcolor=".08 .35 .5" zscale="3"/>
+
+				</particle>
+			</simpleemitter>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+			<billboard
+				bone="_bone_centerofchest"
+				position="0 0 15"
+				material="/shared/effects/smaterials/whitedot.material"
+				life="125"
+				startcolor="0 .2 1"
+				endcolor="0 0 0"
+				scale="10"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				depthbias="-25"
+			/>
+
+			<billboard
+				bone="_bone_centerofchest"
+				position="0 0 15"
+				material="/shared/effects/smaterials/flare.material"
+				life="125"
+				startcolor="0 .4 1"
+				endcolor="0 0 0"
+				scale="8"
+				lockright="1"
+				lockup="1"
+				pitch="90"
+				depthbias="-25"
+				width="100"
+			/>
+		
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				position="0 0 15"
+				count="35"
+				spawnrate="11340"
+				minparticlelife="1000"
+				maxparticlelife="1500"
+				gravity="25"
+				minspeed="25"
+				maxspeed="75"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="50 50 50"
+				material="/shared/effects/smaterials/flare.material"
+				particledirectionalspace="local"
+				depthbias="-25"
+			>
+				<particle
+					minsize="16"
+					maxsize="22"
+					startcolor="1 1 1"
+					midcolor=".2 .65 1"
+					endcolor=".25 .65 1"
+					midcolorpos=".25"
+					turn="1"
+					
+				>
+				</particle>
+			</simpleemitter>
+		
+			<simpleemitter
+				bone="_bone_centerofchest"
+				position="0 0 15"
+				count="22"
+				spawnrate="11340"
+				minparticlelife="1000"
+				maxparticlelife="1500"
+				gravity="25"
+				minspeed="25"
+				maxspeed="75"
+				drag="0.005"
+				acceleration="0.0"
+				offsetsphere="50 50 50"
+				material="/shared/effects/smaterials/flare.material"
+				particledirectionalspace="local"
+				collide="true"
+				depthbias="-25"
+			>
+				<particle
+					minsize="12"
+					maxsize="16"
+					startcolor="1 1 1"
+					midcolor=".2 .65 1"
+					endcolor=".25 .65 1"
+					midcolorpos=".25"
+					turn="1"
+					
+				>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<simpleemitter
+				bone="_bone_centerofchest"
+				count="2"
+				position="0 0 0"
+				particlelife="1000"
+				spawnrate="50"
+				offsetsphere="50 50 50"
+			>
+				<particle
+					turn="1"
+				>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						life="50"
+						color="0 0 .5"
+						scale="10"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="-35"
+					/>
+					
+					<billboard
+						life="50"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						color=".2"
+						scale="4"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						depthbias="-35"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/flare.material"
+						life="50"
+						color="0 .5 1"
+						scale="10"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="75"
+						width="10"
+						depthbias="-35"
+					/>
+
+					<billboard
+						position="0 0 0"
+						material="/shared/effects/smaterials/ring_half.material"
+						life="50"
+						color="0 .5 1"
+						startscale="10"
+						endscale="5"
+						midscalepos=".55"
+						directionalspace="local"
+						lockright="1"
+						lockup="1"
+						pitch="90"
+						roll="90"
+						height="50"
+						width="10"
+						depthbias="-35"
+					/>
+				</particle>
+			</simpleemitter>
+			
+			
+			
+			
+			
+		
+		
+		
+		
+		</particlesystem>
+
+		<modifier
+			life="400"
+			startcolor="9"
+			midcolor="0 2.5 10"
+			endcolor="1"
+			midcolorpos=".8"
+		/>
+
+   	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+		<spawnmodifier instance="instance0"/>
+		<waitfordeath  instance="instance0"/>
+		<waitfordeath  instance="instance1"/>
+	</thread>
+
+</effect>

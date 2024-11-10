@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability2_Bastact1_Enemy_Wizard"
+
+	icon="icon.tga"
+	
+	anim="ability_1"
+	casttime="0"
+	castactiontime="0"
+	channeltime="1200"
+	ischanneling="true"
+	casteffect=""
+
+	actiontype="target_position"
+	targetscheme="all"
+	targetradius="100"
+	targetmaterial=""
+	manacost="0"
+	cooldowntime="3000"
+	
+	range="999999"
+	forcerange="false"
+	
+	allowoutofboundscast="true"
+	allowoutofrangecast="true"
+
+	showlinecast="false"
+>
+	<onimpact>
+		<spawnunit source="source_entity" target="source_entity" name="Gadget_Bastact1_Wizard_Effect" count="1" lifetime="1500"/>
+	</onimpact>
+
+  	<onchannelend>
+  		<areaofeffect
+			radius="2000"
+			targetselection="random"
+			targetscheme="Bastact1_Wizard_Point"
+			center="source_entity"
+			maxtotalimpacts="1"
+			maximpactspertarget="1"
+			source="source_entity"
+			innerradiusoffset="1000"
+		>
+			<spawnunit source="source_entity" target="source_entity" name="Bastact1_Wizard_Point" count="1"/>
+			<teleport source="source_entity" target="target_entity"/>
+			<delete entity="target_entity"/>
+			<playanim name="ability_2" target="source_entity"/>
+
+			<setaccumulator value="0" />
+		</areaofeffect>	
+  	</onchannelend>
+	
+	
+	
+	
+</ability>

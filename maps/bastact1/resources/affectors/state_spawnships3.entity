@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Bastact1_SpawnShips3"
+
+	passiveeffect=""  
+	icon="icon.tga"
+	ishidden="true"
+
+	impactinterval="10000"
+	duration="90000"
+>
+	<oninflict>
+		<changeaccumulator b="1" op="add" />
+	</oninflict>
+
+	<onimpact>
+
+		<compare a="accumulator" b="1" op="eq" >
+			
+		</compare>
+
+		<compare a="accumulator" b="2" op="eq" >
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true" />
+			<setactivemodifierkey entity="stack_entity" name="little" />
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true" />
+			<setactivemodifierkey entity="stack_entity" name="little" />
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true" />
+			<setactivemodifierkey entity="stack_entity" name="little" />
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true" />
+			<setactivemodifierkey entity="stack_entity" name="little" />
+		</compare>
+		
+		<compare a="accumulator" b="3" op="eq" >
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="kamikaze" />
+		</compare>
+
+		<compare a="accumulator" b="4" op="eq" >
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true" />
+			<setactivemodifierkey entity="stack_entity" name="tank" />
+		</compare>
+
+		<compare a="accumulator" b="5" op="eq" >
+			
+		</compare>
+
+		<compare a="accumulator" b="6" op="eq" >
+			<!-- break before phase2 -->
+		</compare>
+
+		<compare a="accumulator" b="7" op="eq" >
+			
+		</compare>
+
+		<compare a="accumulator" b="8" op="eq" >
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="little" />
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="little" />
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="little" />
+		</compare>
+
+		<compare a="accumulator" b="9" op="eq" >
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="regular" />
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="regular" />	
+		</compare>
+
+		<compare a="accumulator" b="10" op="eq" >
+			
+		</compare>
+
+		<compare a="accumulator" b="11" op="eq" >
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="tank" />	
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="tank" />	
+			<spawnunit name="Bastact1_Boat" count="1" target="this_owner_entity" source="this_owner_entity" pushentity="true"/>
+			<setactivemodifierkey entity="stack_entity" name="regular" />	
+
+			<setscriptvalue name="LastShipWaveSpawned" value="1" />
+		</compare>
+
+		<changeaccumulator b="1" op="add" />
+	</onimpact>
+
+</state>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qualityitem
+	name="Item_Energizer_Empower_4"
+	
+	cost="750"
+
+	modifierkey="energizer_empower_4"
+>
+	<!-- Tooltip only -->
+	<constant name="active_movespeed_enchant" value="50" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+	<constant name="active_duration_enchant" value="2" adjustment="none" qualityvalue="0" qualityadjustment="legendary" op="add" />
+
+	<onimpact>
+		<playeffect effect="effects/aoe.effect" source="source_position" target="" occlude="true" />
+
+		<areaofeffect
+			radius="750"
+			targetselection="all"
+			targetscheme="ally_units"
+			effecttype=""
+			ignoreinvulnerable="true"
+		>
+			<applystate name="State_Energizer_Buff" duration="2000" pushentity="true" />
+		</areaofeffect>
+		<playanim name="item_1" target="source_entity" />
+	</onimpact>
+
+</qualityitem>

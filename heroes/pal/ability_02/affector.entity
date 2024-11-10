@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Pal_Ability2"
+
+	radius="150"
+	lifetime="-1"
+
+	hazardradius="200"
+
+	targetselection="all"
+	targetscheme="enemy_nonboss_units_and_buildings"
+	maximpactspertarget="1"
+	maxtotalimpacts="1"
+	
+	effecttype=""
+	impacteffect=""
+>
+
+	<onimpact>
+		<playeffect effect="effects/impact.effect" source="target_entity" target="target_entity"/>
+		<applystate name="State_Pal_Ability2_Disable" duration="200" target="source_entity" />
+		<startcooldown entity="tool_entity" duration="20000" />
+		<cantarget effecttype="CrowdControl" target="target_entity" >
+			<applystate target="target_entity" name="State_Stunned" duration="1300"  />
+		</cantarget>
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic" amount="1" b="result" op="mult" />
+		<recordheroaggression  />
+		<aggression />
+		<expirestate name="State_Pal_Ability2" target="source_entity" />
+		<delete target="this_entity" />
+	</onimpact>
+
+</affector>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<template name="main_customization_region_template">
+		<panel name="main_customization_region_{id}" height="42s" sticky="1" stickytoinvis="0">
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" height="38s" color="#060d11" borderthickness="3s" noclick="1"/>			
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" x="5s" y="5s" height="28s" width="28s" color="#0d1a22" borderthickness="3s" noclick="1"/>
+			<image name="main_customization_region_{id}_tick" x="2s" y="-2s" width="34s" height="34s" visible="{selectedVis}" texture="/ui/main/shared/textures/stylized_check.tga" noclick="1"/>
+			<image x="40s" y="20s" width="14s" height="14s" texture="/ui/main/play/textures/population_pip.tga" color="{pop1Color}" visible="{activityVis}" noclick="1"/>
+			<image x="49s" y="20s" width="14s" height="14s" texture="/ui/main/play/textures/population_pip.tga" color="{pop2Color}" visible="{activityVis}" noclick="1"/>
+			<image x="58s" y="20s" width="14s" height="14s" texture="/ui/main/play/textures/population_pip.tga" color="{pop3Color}" visible="{activityVis}" noclick="1"/>
+			<image x="67s" y="20s" width="14s" height="14s" texture="/ui/main/play/textures/population_pip.tga" color="{pop4Color}" visible="{activityVis}" noclick="1"/>
+			<image x="76s" y="20s" width="14s" height="14s" texture="/ui/main/play/textures/population_pip.tga" color="{pop5Color}" visible="{activityVis}" noclick="1"/>			
+			<label x="-5s" y="4s" content="{ping}" color=".5 .5 .5 1" textalign="right" font="subdyn_11" noclick="1"/>
+			<label name="main_customization_region_{id}_label" content="{regionName}" x="40s" y="2s" font="maindyn_18" color="{labelColor}" outline="1" noclick="1"/>
+			<image texture="/ui/main/play/textures/play_option_sep.tga" y="2s" valign="bottom" width="100%" height="4s" color="1 1 1 .4" noclick="1" />
+		</panel>
+	</template>
+
+	
+	<!-- Region Selection -->
+	<panel name="main_region_selection_container" y="-24s" visible="0" noclick="true">
+		<panel name="main_region_selection_background" color="#081015cd"/>
+		<image texture="/ui/main/shared/textures/circular.tga" width="580s" height="600s" align="center" valign="center" y="-15s" color="#00d2ffb0" noclick="1" />
+		<modelpanel model="/shared/models/invis.mdf" noclick="true" y="-15s" camerapos="0 0 0"	cameraangles="0 0 0" camerafov="115" depthclear="true" depthcompress="true" onshowlua="self:SetEffect('/ui/main/shared/effects/generic_highlight_rays.effect', '0.18', '0.67', '0.84')" />			
+		<frame name="main_region_selection_backing" texture="/ui/elements:rounded_bg_white" color="#0a1a20" align="center" valign="center" y="-15s" grow="1" width="270s" borderthickness="8s" noclick="1">
+			<frame y="4s" height="30s" width="-8s" align="center" texture="/ui/shared/frames/blue_btn_up.tga" borderthickness="4s" color=".6 .6 .6 1" sticky="1" stickytoinvis="0" noclick="1">
+				<instance buttonName="main_region_selection_close" name="closeXButton" onclicklua="self:GetWidget('main_dye_selection_container'):FadeOut(125)" visible="1" height="25s" width="25s" x="-4s" valign="center" align="right"/>
+				<label name="main_customization_region_title" x="6s" content="pregame_general_region" textvalign="center" style="labelBase" font="maindyn_20" noclick="1"/>
+			</frame>
+			<panel x="4s" y="38s" grow="1" width="-8s" float="bottom" noclick="1">
+				<panel name="main_customization_region_container" grow="1" width="100%" float="bottom" padding="3s"/>
+				<panel height="10s" noclick="1" />
+			</panel>
+		</frame>	
+		
+		<instance
+			name="standardButton"
+			id="main_region_selection_ok_btn" y="-40s" align="center" valign="bottom" width="220s" height="70s"
+			font="maindyn_40" label="general_ok" outlinecolor="0 0 0 .5"
+			borderthickness="6s" glow="1"
+		/>
+
+	</panel>
+	
+	<lua file="/ui/main/region_select/region_select.lua"/>
+</package>

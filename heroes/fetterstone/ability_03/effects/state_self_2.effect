@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="1">
+
+	<definitions>
+	
+
+		<modifier
+			name="modifier0"
+			expirelife="250"
+			startcolor=".75"
+			endcolor="1"
+			alpha="1"
+		/>
+
+	
+		<particlesystem name="system0" space="entity" scale=".75">
+
+			<template name="orbs">
+
+				<model
+					expirelife="250"
+					delay="{zdelay}"
+					bone="_bone_center"
+					model="../../ability_02/effects/orbit/orbit.mdf"
+					anim="idle"
+					startscale="1.85"
+					endscale="{zscale}"
+					roll="{zroll}"
+					yaw="{zyaw}"
+					pitch="{zpitch}"
+					position="0 0 30"
+					yawspeed="{zyawspeed}"
+					directionalspace="world"
+				>
+					<model
+						expirelife="250"
+						bone="_bone_fx"
+						model="../../ability_01/effects/projectile/gem_singles/model.mdf"
+						material="../../ability_01/effects/projectile/gem_singles/material.material"
+						anim="idle"
+						scale=".5"
+						color="6"
+						rollspeed="720"
+						position="0 0 0"
+						startalpha=".5"
+						endalpha="0"
+					/>
+
+					<billboard
+						expirelife="250"
+						bone="_bone_fx"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor="0 .15 .5"
+						endcolor="0 0 0"
+						scale="1.1"
+						depthbias="-25"
+					/>
+
+					<trailemitter
+						expirelife="250"
+						bone="_bone_fx"
+						spawnrate="50"
+						particlelife="400"
+						texpostime="400"
+						texposscale="0.0"
+						texstretchscale=".4"
+						position="0 0 0"
+						material="/shared/effects/smaterials/whitedot.material"
+						startparticlecolor="1 1 1"
+						endparticlecolor="0 0 0"
+					>
+						<particle
+							 startcolor="0 .25 .5"
+							 midcolor="0 .25 .5"
+							 endcolor="0 0 0"
+							 midcolorpos=".1"
+							 startsize="15"
+							 midsize="15"
+							 endsize="15"
+							 midsizepos="0.2"
+							 alpha="0"
+					 />
+					</trailemitter>
+
+				</model>
+			
+			</template>
+
+<!--			<instance name="orbs" zdelay="0" zroll="45" zyaw="80" zyawspeed="180" zpitch="0" zscale="2.15"/>
+
+			<instance name="orbs" zdelay="0" zroll="-45" zyaw="180" zyawspeed="360" zpitch="0" zscale="2.05"/>
+
+			<instance name="orbs" zdelay="0" zroll="0" zyaw="0" zyawspeed="540" zpitch="45" zscale="1.95"/>
+-->
+
+		</particlesystem>
+
+
+		<particlesystem name="system1" space="entity" scale="2.25">
+
+			<billboard
+				bone="_bone_centerofchest"
+				life="500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				midcolor=".5 .2 .05"
+				endcolor="0 0 0"
+				depthbias="-65"
+				scale="3"
+				loop="true"
+			/>
+
+			<simpleemitter
+			bone="_bone_centerofchest"
+				spawnrate="20"
+				minparticlelife="750"
+				maxparticlelife="1250"
+				material="/shared/effects/smaterials/powersteal.material"
+				depthbias="-50"
+				offsetsphere="0 0 0"
+			>
+				<particle
+					startcolor="0 0 0"
+					endcolor=".5 .35 .15"
+					midcolor="0 0 0"
+					minstartscale="50"
+					maxstartscale="110"
+					minangle="0"
+					maxangle="360"
+					endscale="0"
+					turn="true"
+					flare="true"
+				/>
+			</simpleemitter>
+
+			<simpleemitter
+				bone="_bone_centerofchest"
+				spawnrate="50"
+				minparticlelife="1000"
+				maxparticlelife="1250"
+				material="/shared/effects/smaterials/whitedot.material"
+				depthbias="-50"
+			>
+				<particle
+					anchor="1"
+					startcolor="0 0 0"
+					endcolor=".45 .3 .1"
+					midcolor="0 0 0"
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-5"
+					maxanglespeed="5"
+					width="5"
+					minstartheight="175"
+					maxstartheight="350"
+					endheight="0"
+					flare="false"
+					turn="false"
+				/>
+			</simpleemitter>
+
+		</particlesystem>
+
+	</definitions>
+
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<spawnmodifier instance="instance2" modifier="modifier0"/>
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		<waitfordeath instance="instance2" />
+	</thread>
+
+</effect>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Tutorial_Thief_Dash"
+	
+	speed="9000"
+	gravity="0"
+
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	traileffect="effects/smoke.effect"
+
+	pathing="true"
+
+	canturn="true"
+	touchradius="120"
+	hazardradius="250"
+	hazardoffset="130"
+	touchradiusdiradjust="true"
+	maxtouches="1"
+	touchtargetscheme="enemy_units"
+	toucheffecttype="Magic"
+
+>
+
+	<onimpact>
+		<setent0 name="clearing_position" />
+		<setpos0 position="source_entity" positionend="ent0" positionmodifier="pointonline" positionvalue="10" />
+		<order command="move" source="source_entity" target="pos0" />
+	</onimpact>
+	
+</projectile>

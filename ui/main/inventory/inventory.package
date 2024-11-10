@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+
+	<panel name="inventory" align="center" y="120s" height="-170s" width="-110s" noclick="1" visible="0">
+		<label style="h1" font="maindyn_40" noclick="1" textalign="center" content="inventory_title" group="inventory_animation_widgets" />
+		<label style="labelBase" font="maindyn_26" noclick="1" textalign="center" y="45s" content="inventory_overview" group="inventory_animation_widgets" />
+
+		<!-- Filters			
+		<panel x="24s" y="12s" height="69s" width="420s" noclick="true">
+			<panel align="center" grow="true" height="100%" float="right" padding="2s" noclick="true">
+				<instance name="inventory_content_category_tab" id="All" icon="/ui/main/shared/textures/herorole_all.tga"/>
+				<instance name="inventory_content_category_tab" id="PhysDamage" icon="/ui/main/shared/textures/herorole_physdmg.tga"/>
+				<instance name="inventory_content_category_tab" id="MagDamage" icon="/ui/main/shared/textures/herorole_magdmg.tga"/>
+				<instance name="inventory_content_category_tab" id="Survival" icon="/ui/main/shared/textures/herorole_survival.tga"/>
+				<instance name="inventory_content_category_tab" id="CC" icon="/ui/main/shared/textures/herorole_cc.tga"/>
+				<instance name="inventory_content_category_tab" id="Utility" icon="/ui/main/shared/textures/herorole_utility.tga"/>				
+			</panel>
+		</panel>
+		<label name="inventory_content_category_info" x="3s" y="80s" fity="true" textalign="center" font="maindyn_18" style="labelBase" color=".8 .8 .8 1" content="inventory_content_category_info_all"/>			
+		 -->	
+		
+		<panel name="inventory_content_parent" y="90s" width="-290s" align="center" height="452s" noclick="true" visible="1" >
+
+			<panel name="inventory_content_listbox_container" height="100%" valign="center" noclick="1">
+				<panel height="33.0%" width="-32s">
+					<panel align="center" grow="true" float="right" padding="0" height="-8s">
+						<instance name="inventorySlot" index="1" />
+						<instance name="inventorySlot" index="2" />
+						<instance name="inventorySlot" index="3" />
+						<instance name="inventorySlot" index="4" />
+						<instance name="inventorySlot" index="5" />
+						<instance name="inventorySlot" index="6" />					
+					</panel>
+				</panel>
+				<panel height="33.0%" valign="center" width="-32s">
+					<panel align="center" grow="true" float="right" padding="0" height="-8s">
+						<instance name="inventorySlot" index="7" />
+						<instance name="inventorySlot" index="8" />
+						<instance name="inventorySlot" index="9" />
+						<instance name="inventorySlot" index="10" />
+						<instance name="inventorySlot" index="11" />
+						<instance name="inventorySlot" index="12" />					
+					</panel>
+				</panel>
+				<panel height="33.0%" valign="bottom" width="-32s">
+					<panel align="center" grow="true" float="right" padding="0" height="-8s">
+						<instance name="inventorySlot" index="13" />
+						<instance name="inventorySlot" index="14" />
+						<instance name="inventorySlot" index="15" />
+						<instance name="inventorySlot" index="16" />
+						<instance name="inventorySlot" index="17" />
+						<instance name="inventorySlot" index="18" />				
+					</panel>
+				</panel>
+				
+				<scrollbar
+					name="inventoryScrollbar"
+					width="28s" align="right" texture="/ui/shared/textures/slider.tga" scrollbarsize="28s" handleheight="56s"
+					vertical="true"
+					hscrollbar="0"
+					horizontal="false"
+					step="1"
+					group="inventory_animation_widgets"
+				/>
+				
+				<panel name="inventoryScrollPanel" hover="false" processonlyscroll="true" color="invisible"/>
+			</panel>
+
+			<!-- Right side Navi -->
+			<panel noclick="true" height="100%" x="100%" visible="0">
+				<panel x="22s" y="0" width="156s" noclick="true" group="inventory_animation_widgets">
+					<panel name="inventoryNavScrollFrame" noclick="1">
+						<frame texture="/ui/elements:squareglow" y="-6s" width="+10s" height="+8s" color="1 1 1 .7" borderthickness="10s" align="center" rendermode="additive"/>
+						<frame noclick="true" y="-2s" width="+4s" align="center" texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="8s" />
+						<frame noclick="true" y="-2s" width="+4s" align="center" texture="/ui/elements:thick" color="#FFDD33" borderthickness="8s" />
+					</panel>
+					<panel noclick="true" float="bottom" padding="4s">
+						<instance name="inventoryNavItemRow" row="0"  id1="1" id2="2" id3="3" id4="4" />
+						<instance name="inventoryNavItemRow" row="1"  id1="5" id2="6" id3="7" id4="8" />
+						<instance name="inventoryNavItemRow" row="2"  id1="9" id2="10" id3="11" id4="12" />
+						<instance name="inventoryNavItemRow" row="3"  id1="13" id2="14" id3="15" id4="16" />
+						<instance name="inventoryNavItemRow" row="4"  id1="17" id2="18" id3="19" id4="20" />
+						<instance name="inventoryNavItemRow" row="5"  id1="21" id2="22" id3="23" id4="24" />
+						<instance name="inventoryNavItemRow" row="6"  id1="25" id2="26" id3="27" id4="28" />
+						<instance name="inventoryNavItemRow" row="7"  id1="29" id2="30" id3="31" id4="32" />
+						<instance name="inventoryNavItemRow" row="8"  id1="33" id2="34" id3="35" id4="36" />
+						<instance name="inventoryNavItemRow" row="9"  id1="37" id2="38" id3="39" id4="40" />
+						<instance name="inventoryNavItemRow" row="10" id1="41" id2="42" id3="43" id4="44" />
+						<instance name="inventoryNavItemRow" row="11" id1="45" id2="46" id3="47" id4="48" />
+					</panel>
+					
+					<label name="inventoryNavExtraCountTop" height="34s" y="-32s" noclick="true" textalign="center" textvalign="center" color="white" outline="true" font="maindyn_24" content="+16"/>
+					
+					<label name="inventoryNavExtraCount" height="34s" y="32s" valign="bottom" noclick="true" textalign="center" textvalign="center" color="white" outline="true" font="maindyn_24" content="+16"/>
+
+					<panel name="inventoryNavScrollPanel" hover="false" color="invisible"/><!-- processonlyscroll="true" -->
+				</panel>
+			</panel>
+		</panel>
+
+		<!-- Inventory Button -->
+		<panel valign="bottom" width="180s" height="72s" noclick="true">
+			<instance name="standardButton" id="crafting_open_crafting_btn" borderthickness="8s" font="maindyn_22" wrap="1" labelX="-7s" labelWidth="-20s" 
+				labelAlign="right" label="crafting_back_to_crafting" rendermode="grayscale" group="inventory_animation_widgets" width="120s" align="right"
+			/>		
+			<image width="92s" height="92s" valign="center" texture="/ui/main/inventory/textures/inventory.tga" noclick="1" group="inventory_animation_widgets" />
+		</panel>			
+		
+	</panel>
+
+	<lua file="inventory.lua"/>
+	
+</package>

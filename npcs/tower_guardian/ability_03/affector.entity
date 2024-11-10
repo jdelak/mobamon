@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_TowerGuardian_Ability3"
+
+	radius="450"
+	innerradiusoffset="250"
+	angle="0"
+	
+	impactinterval="130"
+	maximpactsperinterval="1"
+	maxintervals="5"
+	targetselection="random_angle_distance"
+	targetscheme="nothing"
+	
+	effect="effects/area.effect"
+>
+	<onimpact>
+		<compare a="param" b="4" op="eq">
+			<spawnunit name="Gadget_TowerGuardian_Ability3_5" target="target_position" count="1" proxy="this_proxy_entity" pushentity="true" />
+			<playeffect effect="effects/charging_5.effect" source="proxy_entity" target="proxy_entity" occlude="true"/>
+			<setparam a="5" />
+		</compare>
+		<compare a="param" b="3" op="eq">
+			<spawnunit name="Gadget_TowerGuardian_Ability3_4" target="target_position" count="1" proxy="this_proxy_entity" pushentity="true" />
+			<playeffect effect="effects/charging_4.effect" source="proxy_entity" target="proxy_entity" occlude="true"/>
+			<setparam a="4" />
+		</compare>
+		<compare a="param" b="2" op="eq">
+			<spawnunit name="Gadget_TowerGuardian_Ability3_3" target="target_position" count="1" proxy="this_proxy_entity" pushentity="true" />
+			<playeffect effect="effects/charging_3.effect" source="proxy_entity" target="proxy_entity" occlude="true"/>
+			<setparam a="3" />
+		</compare>
+		<compare a="param" b="1" op="eq">
+			<spawnunit name="Gadget_TowerGuardian_Ability3_2" target="target_position" count="1" proxy="this_proxy_entity" pushentity="true" />
+			<playeffect effect="effects/charging_2.effect" source="proxy_entity" target="proxy_entity" occlude="true"/>
+			<setparam a="2" />
+		</compare>
+		<compare a="param" b="0" op="eq">
+			<spawnunit name="Gadget_TowerGuardian_Ability3" target="target_position" count="1" proxy="this_proxy_entity" pushentity="true" />
+			<playeffect effect="effects/charging_1.effect" source="proxy_entity" target="proxy_entity" occlude="true"/>
+			<setparam a="1" />
+		</compare>
+	</onimpact>
+</affector>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Trixie_Ability1_Damage3"
+	
+	icon="icon.tga"
+	ishidden="true"
+
+>
+
+	<oninflict>
+		<cantarget targetscheme="enemy_units" >
+		<getconstant name="damage" adjustmentsource="this_entity" />
+		<damage effecttype="Magic Splash" amount="1.5" b="result" op="mult"/>
+		<setaccumulator value="0.6" />
+		<recordheroaggression  />
+		<aggression />
+		<expirestate name="State_Trixie_Ability1_Damage" target="this_owner_entity" />
+		</cantarget>
+			<cantarget targetscheme="enemy_buildings" >
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Splash" amount=".75" b="result" op="mult"/>
+				<setaccumulator value="0.6" />
+				<recordheroaggression  />
+				<aggression />
+				<expirestate name="State_Trixie_Ability1_Damage" target="this_owner_entity" />
+			</cantarget>
+	</oninflict>
+	
+
+</state>

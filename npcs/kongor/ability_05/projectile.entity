@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Kongor_Ability5"
+
+	speed="1500"
+	gravity="4000"
+
+	modelscale="1"
+	effectscale="1.0"
+
+	impactdistance="0"
+>
+	<onimpact>
+		<setscriptvalue name="Kongor_Tower" value="1" />
+		<targettype type="alive" target="source_entity" >
+			<attack target="this_proxy_entity" startcooldown="false" />
+			<order command="attack" target="this_proxy_entity"  force="true" forceduration="60000" />
+			<applystate name="State_Kongor_TowerDisarm" target="target_entity" duration="2000" />
+		</targettype>
+	</onimpact>
+	
+	
+</projectile>

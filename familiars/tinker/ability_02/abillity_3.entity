@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ability
+	name="Ability_Tinker_TriggeredPassive_3"
+
+	icon="icon.tga"
+	maxlevel="15"
+	actiontype="passive"
+	manacost="0"
+
+	cooldowntime="25000"
+
+	stunneddurationmultiplier="-0.5"
+	slowresistance="0.5"
+	
+>
+	<!-- tool tip only -->
+	<constant name="passive" value="50" adjustment="none" />
+	
+	<onframe propagatetoillusions="false" >
+		<isready>
+			<haseffecttype name="CrowdControl StatusDisable">
+				<applystate name="State_Tinker_TriggeredPassive_3" duration="3000" target="source_entity" />
+				<setactivemodifierkey name="tinker_PA" />
+				<startcooldown />
+			</haseffecttype>
+		</isready>
+	</onframe>
+	
+	<modifier key="tinker_PA" modpriority="100" stunneddurationmultiplier="0" slowresistance="0">
+		<onframe>
+			<isready>
+				<haseffecttype name="CrowdControl StatusDisable" />
+				<else>
+					<setactivemodifierkey name="" />
+				</else>
+			</isready>
+		</onframe>
+	 </modifier>
+
+</ability>

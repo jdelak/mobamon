@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" >
+
+	<definitions>
+		<particlesystem name="system1" space="entity" scale="0.8">
+					
+
+			<simpleemitter
+				life="2300"
+				spawnrate="333"
+				particlelife="2500"
+				count="1"
+				minangle="0"
+				maxangle="10" 
+				minspeed="0"
+				maxspeed="1"
+				drag="0.008"
+				position="0 0 -50"
+				
+				offsetsphere="12 12 12"
+				
+			>
+				<particle>
+					<light
+						position="0 0 0"
+						life="400"
+						startcolor="10"
+						midcolor="10 3 1"
+						midcolorpos=".1"
+						endcolor="0"
+						falloffstart="0"
+						falloffend="400"
+					/>
+					
+					<billboard
+						delay="0"
+						life="300"
+						position="0 0 0"			
+						startcolor="1 0.5 0"
+						midcolor="1 0.1 0"
+						endcolor="0"
+						startsize="50"
+						endsize="500"
+						depthbias="-100"
+						lockup="1"
+						pitch="90"
+						maxroll="360"
+						material="/shared/effects/materials/pulse.material"
+					/>	
+				
+		
+					<billboard
+						life="300"
+						position="0 0 50"
+						midalpha="1"			
+						startalpha="0"
+						endalpha="0"
+						startsize="10"
+						endsize="1100"
+						depthbias="-100"
+						startparam="0.25"
+						endparam="0"
+						lockup="1"
+						pitch="90"
+						material="/shared/effects/materials/refract_ring.material"
+					/>	
+
+				</particle>
+			
+			</simpleemitter>
+
+			<simpleemitter
+				life="200"
+				count="100"
+				spawnrate="1000"
+				minparticlelife="200"
+				maxparticlelife="400"
+				minangle="0"
+				maxangle="10" 
+				minspeed="100"
+				maxspeed="600"
+				drag="0.001"
+				position="0 0 0"
+				directionalspace="world"
+				material="/shared/effects/smaterials/rocket_smoke_blend.material"
+				offsetsphere="12 12 12"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-40"
+					maxanglespeed="40"
+					startcolor=".1"
+					midcolor=".3 .3 .3"
+					endcolor=".1" 
+					startscale="0"
+					midscale="50"
+					endscale="100"
+					startalpha="0"
+					midalpha=".5"
+					endalpha="0"													
+				 />			
+
+			</simpleemitter>
+		
+			<model
+				position="0 0 0"
+				life="200"
+				model="models/bang.mdf"
+				anim="idle"
+				scale="2"
+				startscale="1"					
+				startcolor="1"
+				midcolor="2"
+				endcolor="0"
+				yaw="0"
+				pitch="0"
+			/>	
+
+		</particlesystem>		
+		
+	</definitions>
+
+	<thread>
+		
+		<spawnparticlesystem instance="instance1" particlesystem="system1"/>
+		
+		 <camerashake2 scale="10.0" radius="1500" duration="300" frequency="22" />
+		  
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+
+</effect>

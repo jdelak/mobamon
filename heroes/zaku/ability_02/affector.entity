@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<affector
+	name="Affector_Zaku_Ability2"
+	
+	visibility="allies"
+	radius="175"
+	lifetime="-1"
+	targetselection="all"
+	targetscheme="visible_enemy_units"
+	effecttype=""
+	effect="effects/area.effect"
+	maxtotalimpacts="1"
+>
+	<onimpact>
+		<spawnunit name="Gadget_Zaku_Ability2b" target="this_position" pushentity="true" />
+		<applystate name="State_Zaku_Ability2_Iseeyou" duration="500" target="stack_entity" />
+		<kill target="this_proxy_entity" source="" />
+		<delete target="this_entity" />
+	</onimpact>
+</affector>

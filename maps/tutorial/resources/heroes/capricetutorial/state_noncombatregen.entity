@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_NonCombatRegenTutorial"
+	
+	ishidden="true"
+	icon="../icons/noncombat.tga"
+	
+	passiveeffect=""
+	manaregenmultiplier="0.5"
+	manaproportionregen="0.0037"
+	healthregenmultiplier="1.0"
+	healthproportionregen="0.016"
+	modifierkey="out_of_combat_regen"
+>
+	<onframe>
+		<compare a="accumulator" b="0" op="eq">
+	<!--		<applystate name="State_OOC_Charges" continuous="true" /> -->
+			<setaccumulator value="1" />
+		</compare>
+		<compare a="target_health" b="target_maxhealth" op="lt">
+			<applystate name="State_OOC_Regen_Effects" duration="100" />
+		</compare>
+		<compare a="target_mana" b="target_maxmana" op="lt">
+			<applystate name="State_OOC_Regen_Effects" duration="100" />
+		</compare>
+	</onframe>
+	
+	
+	<modifier key="in_combat" modpriority="100" 
+		manaregenmultiplier="0.000"
+		healthregenmultiplier="0.000"
+		healthproportionregen="0.0"
+		manaproportionregen="0.0"
+		ishidden="true"
+		passiveeffect=""
+		modifierkey=""
+	>
+		<onframe>
+			<compare a="accumulator" b="1" op="eq">
+				<setcharges a="0" />
+				<setaccumulator value="0" />
+			</compare>
+		</onframe>
+	</modifier>		
+</state>

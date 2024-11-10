@@ -1,0 +1,253 @@
+-- Game Menu
+
+local gameMenu = {
+	-- menuButtonRoot	= object:GetWidget('gameMenuButton'),
+	menuButton		= object:GetWidget('gameMenuButton'),
+	concedeLabel	= object:GetWidget('gameMenuConcedeLabel'),
+	pauseLabel		= object:GetWidget('gameMenuPauseLabel'),
+	root			= object:GetWidget('gameMenuBG'),
+	container		= object:GetWidget('gameMenuContainer'),
+	containerWidth	= object:GetWidget('gameMenuContainer'):GetWidth(),
+	containerHeight	= object:GetWidget('gameMenuContainer'):GetHeight(),
+	quitConfirm	= {
+		background		= object:GetWidget('quitConfirmBG'),
+		container		= object:GetWidget('quitConfirmContainer'),
+		containerWidth	= object:GetWidget('quitConfirmContainer'):GetWidth(),
+		containerHeight = object:GetWidget('quitConfirmContainer'):GetHeight(),
+		closeButton		= object:GetWidget('quitConfirmClose')
+	},
+	disconnectConfirm	= {
+		background		= object:GetWidget('disconnectConfirmBG'),
+		container		= object:GetWidget('disconnectConfirmContainer'),
+		containerWidth	= object:GetWidget('disconnectConfirmContainer'):GetWidth(),
+		containerHeight = object:GetWidget('disconnectConfirmContainer'):GetHeight(),
+		closeButton		= object:GetWidget('disconnectConfirmClose')
+	},
+	closeButton	= object:GetWidget('gameMenuClose'),
+	buttonNames = {
+		'Options',
+		'Concede',
+		'Quit',
+		'Pause',
+		'Disconnect'
+	},
+	buttons = {},
+	buttonActions = {},
+	keyButtonContainer	= object:GetWidget('gameMenuButtonKey'),
+	keyButtonBacker		= object:GetWidget('gameMenuButtonKeyBacker')
+}
+
+gameMenu.buttonActions.Options = function(sourceWidget)
+	-- sourceWidget:UICmd("Set('_gameOptionsQueued', true); ToggleMenu()")
+	-- sourceWidget:UICmd("Set('_gameOptionsQueued', true)")
+	-- fix later hah
+	ToggleMenu()
+end
+
+gameMenu.buttonActions.Concede = function(sourceWidget)
+	local votePermissions	= LuaTrigger.GetTrigger('VotePermissions')
+	if not votePermissions.cannotConcede then
+		CallVote('concede')
+	end
+end
+
+gameMenu.buttonActions.Pause = function(sourceWidget)
+	local votePermissions	= LuaTrigger.GetTrigger('VotePermissions')
+	
+	println('votePermissions.isPaused ' .. tostring(votePermissions.isPaused) )
+	println('votePermissions.canUnpause ' .. tostring(votePermissions.canUnpause) )
+	println('votePermissions.havePausesRemaining ' .. tostring(votePermissions.havePausesRemaining) )
+	
+	if votePermissions.isPaused then
+		if votePermissions.canUnpause then
+			sourceWidget:UICmd("Unpause()")
+		end
+	else
+		if votePermissions.havePausesRemaining then
+			-- sourceWidget:UICmd("CallVote('pause')")
+			CallVote('pause')
+		end
+	end
+end
+
+gameMenu.buttonActions.Disconnect = function(sourceWidget)
+	gameMenu.disconnectConfirmOpen()
+end
+
+gameMenu.buttonActions.Quit = function(sourceWidget)
+	gameMenu.quitConfirmOpen()
+end
+
+gameMenu.disconnectConfirmOpen = function()
+	gameMenu.disconnectConfirm.background:FadeIn(100)
+	gameMenu.disconnectConfirm.container:SetPassiveChildren(true)
+	libAnims.bounceIn(gameMenu.disconnectConfirm.container, gameMenu.disconnectConfirm.containerWidth, gameMenu.disconnectConfirm.containerHeight, true, false, false, false, false, false, function() gameMenu.disconnectConfirm.container:SetPassiveChildren(false) end)
+end
+
+gameMenu.disconnectConfirmClose = function()
+	gameMenu.disconnectConfirm.background:FadeOut(100)
+	gameMenu.disconnectConfirm.container:FadeOut(100)
+end
+
+gameMenu.quitConfirmOpen = function()
+	gameMenu.quitConfirm.background:FadeIn(100)
+	gameMenu.quitConfirm.container:SetPassiveChildren(true)
+	libAnims.bounceIn(gameMenu.quitConfirm.container, gameMenu.quitConfirm.containerWidth, gameMenu.quitConfirm.containerHeight, true, false, false, false, false, false, function() gameMenu.quitConfirm.container:SetPassiveChildren(false) end)
+end
+
+gameMenu.quitConfirmClose = function()
+	gameMenu.quitConfirm.background:FadeOut(100)
+	gameMenu.quitConfirm.container:FadeOut(100)
+end
+
+gameMenu.quitConfirm.closeButton:SetCallback(
+	'onclick', function(sourceWidget)
+		gameMenu.quitConfirmClose()
+	end
+)
+
+gameMenu.disconnectConfirm.closeButton:SetCallback(
+	'onclick', function(sourceWidget)
+		gameMenu.disconnectConfirmClose()
+	end
+)
+
+gameMenu.open = function()
+	PlaySound('/path_to/game_menu/open.wav')
+	gameMenu.root:FadeIn(100)
+	gameMenu.container:SetPassiveChildren(true)
+	libAnims.bounceIn(gameMenu.container, gameMenu.containerWidth, gameMenu.containerHeight, true, false, false, false, false, false, function() gameMenu.container:SetPassiveChildren(false) end)
+end
+
+--[[
+gameMenu.menuButton:RegisterWatchLua('ShopActive', function(widget, trigger)
+	if trigger.isActive then
+		widget:SlideX(styles_gameMenuButtonShopOpen, styles_shopTransitionTime)
+	else
+		widget:SlideX(styles_gameMenuButtonShopClosed, styles_shopTransitionTime)
+	end
+end)
+--]]
+
+--[[
+gameMenu.menuButtonRoot:RegisterWatchLua('gamePanelInfo', function(widget, trigger)
+	if trigger.shopOpen then
+		widget:SlideX(libGeneral.HtoP(63), styles_shopTransitionTime)
+	else
+		widget:SlideX(libGeneral.HtoP(15), styles_shopTransitionTime)
+	end
+end, false, nil, 'shopOpen')
+--]]
+
+gameMenu.menuButton:SetCallback('onclick', function(widget) 
+	PlaySound('/ui/sounds/sfx_ui_back.wav')
+	gameMenu.open()
+end)
+
+gameMenu.menuButton:SetCallback('onmouseover', function(widget) 
+		simpleTipGrowYUpdate(true, nil, Translate('game_button_menu'), Translate('game_button_menu_tip'))
+end)
+
+gameMenu.menuButton:SetCallback('onmouseout', function(widget)
+	simpleTipGrowYUpdate(false)
+end)
+
+gameMenu.keyButtonContainer:RegisterWatchLua('ModifierKeyStatus', function(widget, trigger) widget:SetVisible(trigger.moreInfoKey) end)
+
+gameMenu.keyButtonBacker:RegisterWatchLua('ModifierKeyStatus', function(widget, trigger)
+	if trigger.moreInfoKey then
+		widget:SetColor(styles_colors_hotkeyCanSet)
+		widget:SetBorderColor(styles_colors_hotkeyCanSet)
+	else
+		widget:SetColor(styles_colors_hotkeyNoSet)
+		widget:SetBorderColor(styles_colors_hotkeyNoSet)
+	end
+end)
+
+object:GetWidget('gameMenuButtonKey'):SetCallback('onclick', function(widget)
+	local binderData	= LuaTrigger.GetTrigger('buttonBinderData')
+	local oldButton		= nil
+	binderData.show			= true
+	binderData.table		= 'ui'
+	binderData.action		= 'ToggleMenu'
+	binderData.param		= ''
+	binderData.keyNum		= 0	-- 0 for leftclick, 1 for rightclick
+	binderData.impulse		= true
+	binderData.oldButton	= (GetKeybindButton('ui', 'ToggleMenu', '', 0) or 'None')
+	binderData:Trigger()
+end)
+
+gameMenu.closeButton:SetCallback(
+	'onclick', function(sourceWidget)
+		PlaySound('/path_to/game_menu/close.wav')
+		gameMenu.root:FadeOut(150)
+		gameMenu.container:FadeOut(150)
+	end
+)
+
+gameMenu.pauseLabel:RegisterWatchLua('VotePermissions', function(widget, trigger)
+	if trigger.isPaused then
+		if trigger.canUnpause then
+			widget:SetText(Translate('game_menu_unpause'))
+			widget:SetColor(1,1,1)
+			widget:SetEnabled(true)
+		else
+			widget:SetText(Translate('game_menu_cantunpause'))
+			widget:SetColor(0.65, 0.65, 0.65)
+			widget:SetEnabled(false)
+		end
+	else
+		if trigger.canCallVote and trigger.havePausesRemaining then
+			widget:SetText(Translate('game_menu_pause'))
+			widget:SetColor(1,1,1)
+			widget:SetEnabled(true)
+		else
+			widget:SetText(Translate('game_menu_cantpause'))
+			widget:SetColor(0.65, 0.65, 0.65)
+			widget:SetEnabled(false)
+		end
+
+	end
+end, true, nil, 'isPaused', 'canUnpause', 'canVote', 'canCallVote')
+
+gameMenu.concedeLabel:RegisterWatchLua('VotePermissions', function(widget, trigger)
+	if trigger.cannotConcede or not (trigger.canCallVote) then
+		widget:SetText(Translate('game_menu_cantconcede'))
+		widget:SetColor(0.65, 0.65, 0.65)
+		widget:SetEnabled(false)
+	else
+		widget:SetText(Translate('game_menu_concede'))
+		widget:SetColor(1,1,1)
+		widget:SetEnabled(true)
+	end
+end, true, nil, 'cannotConcede', 'canVote', 'canCallVote')
+
+for k,v in ipairs(gameMenu.buttonNames) do
+	object:GetWidget('gameMenu'..v):SetCallback('onclick', function(widget)
+		PlaySound('/shared/sounds/ui/ccpanel/button_click_02.wav')
+		gameMenu.buttonActions[v](sourceWidget)
+	end)
+end
+
+object:GetWidget('quitYes'):SetCallback('onclick', function(widget)
+	PlaySound('/ui/sounds/ui_quit.wav')
+	widget:Sleep(500, function() Cmd('Quit') end)
+end)
+
+object:GetWidget('quitNo'):SetCallback('onclick', function(widget)
+	gameMenu.quitConfirm.container:UICmd("SleepWidget(1, '')")
+	gameMenu.quitConfirm.container:FadeOut(100)
+	gameMenu.quitConfirm.background:FadeOut(100)
+end)
+
+
+object:GetWidget('disconnectYes'):SetCallback('onclick', function(widget)
+	gameMenu.disconnectConfirm.container:SetVisible(false)
+	gameMenu.disconnectConfirm.background:SetVisible(false)
+	Disconnect()
+end)
+
+object:GetWidget('disconnectNo'):SetCallback('onclick', function(widget)
+	gameMenu.disconnectConfirm.container:FadeOut(100)
+	gameMenu.disconnectConfirm.background:FadeOut(100)
+end)

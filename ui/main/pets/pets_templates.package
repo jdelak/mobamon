@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<!-- Big Red -->
+	<template name="pet_main_btn_template">
+		<panel name="{id}" width="{width=100%}" height="{height=100%}" x="{x}" y="{y}" align="{align}" valign="{valign}" noclick="true" sticky="{sticky}" stickytoinvis="{stickytoinvis=true}" visible="{visible=true}"
+			onloadlua="
+				libButton2.initializeButton(self, '{id}', 'navButton', nil, true)
+			"
+		>
+			<button name="{id}Button" passivechildren="true" interactive="{interactive=false}" enabled="{enabled=true}" color="invisible"
+				onclicklua="{onclicklua}"
+				disabledmouseover="true"
+				disabledmouseout="true"
+			>
+				<panel name="{id}Body" align="center" valign="center">
+				
+					<!-- Container for pulse effect - that way its visibility/etc. can change independently of the effect. -->
+					<panel name="{id}PulseEffect" visible="false">
+						<!-- The frame inside this will pulse outward and fade out. -->
+						<frame name="{id}PulseEffectFrame" texture="/ui/shared/frames/button_glow.tga" borderthickness="18s" bordercolor="#33f5ffa3" color="#33f5ffa3"  width="+18s" height="+18s" align="center" valign="center" noclick="1" />
+					</panel>
+					
+					<frame name="{id}Background" texture="/ui/shared/frames/stnd_btn_up.tga" borderthickness="{borderthickness=10s}" rendermode="{rendermode=normal}" />
+					<image texture="{icon}" hflip="{hflip=0}" x="{iconx}" y="{icony}" width="{iconsize}" height="{iconsize}" valign="center" />
+
+					<panel width="100%" align="left">
+						<label name="{id}Label" y="6s" textalign="center" font="maindyn_30" color="{labelcolor=white}" outline="1" outlinecolor="0 0 0 .5" content=""/>
+						
+						<!-- Divider-->
+						<panel color="0 0 0 0.08" width="90%" height="1s" align="center" valign="center" y="3s"/>
+						<panel color="1 1 1 0.08" width="90%" height="1s" align="center" valign="center" y="4s"/>
+						
+						<panel name="{id}_Resources">
+							<!-- New Resources | One or Two -->
+							<panel name="{id}_Resources_One" x="-5s" y="50s" align="center" grow="1" regrow="1" float="right" visible="0">
+								<image name="{id}_Resources_One_Icon" texture="/ui/main/shared/textures/commodity_seal.tga" width="25s" height="25s"/>
+								<label name="{id}_Resources_One_Label" fitx="1" textvalign="center" textalign="left" font="maindyn_20" color="0.95 0.8 1 1" outline="1" outlinecolor="0 0 0 0.4" content="0"/>
+							</panel>
+							
+							<panel name="{id}_Resources_Two" y="50s" align="center" grow="1" regrow="1" float="right" visible="1">
+								<image name="{id}_Resources_Two_Icon1" texture="/ui/main/shared/textures/commodity_seal.tga" width="25s" height="25s"/>
+								<label name="{id}_Resources_Two_Label1" fitx="1" textvalign="center" textalign="left" font="maindyn_20" color="0.95 0.8 1 1" outline="1" outlinecolor="0 0 0 0.4" content="0"/>
+								
+								<label width="50s" textvalign="center" textalign="center" font="maindyn_24" color="1 0.7 0.7 1" outline="1" outlinecolor="0 0 0 0.27" content="corral_unlockpet_or"/>
+								
+								<image name="{id}_Resources_Two_Icon2" texture="/ui/main/shared/textures/commodity_seal.tga" width="25s" height="25s"/>
+								<label name="{id}_Resources_Two_Label2" fitx="1" textvalign="center" textalign="left" font="maindyn_20" color="1 .75 .75 1" outline="1" outlinecolor="0 0 0 0.4" content="0"/>
+							</panel>
+						</panel>
+					</panel>
+				</panel>
+			</button>
+		</panel>
+	</template>		
+	
+	<!-- Individual Pets -->
+	<template name="mainPetsListEntry">
+		<panel name="mainPetsListEntry{id}Container" group="pet_animation_widgets" onloadlua="RegisterRadialEase(self)" valign="{valign}" align="{align}" width="100@" height="100%">
+			<panel name="mainPetsListEntry{id}" noclick="1">
+				<frame noclick="1" texture="/ui/elements:squareglow" color="0 0 0 .6" x="1s" y="3s" width="-12s" height="+8s" align="center" valign="center" borderthickness="10s" />
+				<frame name="mainPetsListEntry{id}hoverGlow" texture="/ui/shared/frames/frameglow.tga" y="-2%" width="90%" height="70%" borderthickness="12s" color=".4 .9 1 .5" align="center" valign="top" rendermode="additive" noclick="1" visible="0" />
+				<image name="mainPetsListEntry{id}Icon" width="66@" height="66%" align="center" y="11s"/><!-- Pet Icon -->
+				<frame texture="/ui/shared/frames/inner_glow.tga" width="66@" height="66%" borderthickness="14s" bordercolor="0 0 0 .7" align="center" y="11s" noclick="1"  />			
+				<image name="mainPetsListEntry{id}Backer" texture="/ui/main/shared/textures/iconframe_interactive_txt2.tga" />
+				<panel name="mainPetsListEntry{id}SelectFrame" visible="false" noclick="1">
+					<image texture="/ui/main/shared/textures/iconframe_interactive_txt2_hover.tga" noclick="1" />
+				</panel>
+				<panel name="mainPetsListEntry{id}Selected" visible="false" noclick="1">
+					<image texture="/ui/main/shared/textures/iconframe_interactive_txt2_selected.tga" rendermode="additive" color="1 1 1 .7" noclick="1" />
+				</panel>
+				<label name="mainPetsListEntry{id}Name" y="-9s" valign="bottom" fity="1" textalign="center" font="subdyn_15" style="labelBase" color="1 1 1 .8" content="---"/><!-- Pet Name -->
+				<panel name="mainPetsListEntry{id}Lock" width="46s" height="46s" align="left" x="6s" y="-2s" texture="/ui/main/pregame/textures/locked.tga" color=".8 .8 .8 1"/><!-- Lock -->
+				<panel name="mainPetsListEntry{id}Boost" visible="0" width="36s" height="36s" align="right" x="-8s" y="-3s" texture="/ui/main/shared/textures/boosted_pets.tga"/><!-- RMM Boosted Bonus -->
+				<button name="mainPetsListEntry{id}Button" color="invisible"/>
+			</panel>
+		</panel>
+	</template>
+
+	<!-- Rows of pets within Pets List -->
+	<template name="mainPetsListRow">
+		<panel height="140s" visible="1" sticky="1" stickytoinvis="0" >
+			<instance name="mainPetsListEntry" valign="top" align="left" id="{id1}"/>
+			<instance name="mainPetsListEntry" valign="top" align="center" id="{id2}"/>
+			<instance name="mainPetsListEntry" valign="top" align="right" id="{id3}"/>
+		</panel>
+	</template>
+	
+	<!-- Pet Gearsets -->
+	<template name="gearsetPetEntry">
+		<panel name="gearsetPetEntry{id}" height="85%" width="85@">
+			<frame name="gearsetPetEntry{id}Glow" noclick="1" texture="/ui/elements:squareglow" color="0 0 0 .6" x="1s" y="3s" width="+6s" height="+6s" align="center" valign="center" borderthickness="10s" />
+			
+			<frame name="gearsetPetEntry{id}SelectedGlow" noclick="1" texture="/ui/elements:squareglow" color="0.01 0.85 0.91 0.9" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" rendermode="additive" visible="0"/>
+			<frame name="gearsetPetEntry{id}HoverGlow" noclick="1" texture="/ui/elements:squareglow" color="#ffa200" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" rendermode="additive" visible="0"/>
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="6s" color=".04 .04 .04 1"/>
+			
+			<!-- Pet Icon -->
+			<image name="gearsetPetEntry{id}Icon" width="93@" height="93%" align="center" valign="center" />
+			<frame texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" bordercolor="0.1 0.1 0.1 1" color="invisible"/>
+			
+			<frame name="gearsetPetEntry{id}SelectedBorder" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" bordercolor="0.01 0.85 0.91 1" color="invisible" visible="0"/>
+			<frame name="gearsetPetEntry{id}HoverBorder" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="6s" bordercolor="#ffa200" color="invisible" visible="0"/>				
+			<image name="gearsetPetEntry{id}Lock" texture="/ui/main/pregame/textures/locked.tga" color=".8 .8 .8 1" width="46@" height="46%" align="left" valign="top" y="-4s" x="-8s"/>
+			
+			<button name="gearsetPetEntry{id}Button" color="invisible"/>
+		</panel>
+	</template>
+	
+	<!-- Pet Abilities -->
+	<template name="mainPetsAbility">
+		<panel name="mainPetsAbility{id}" align="center" height="80s" width="80%" noclick="1">				
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" noclick="1" borderthickness="8s" color="0.08 0.08 0.08 0.8"/>
+			<frame texture="/ui/shared/frames/border_double.tga" noclick="1" style="doubleFrame" borderthickness="8s" color="invisible"/>	
+			
+			<frame name="mainPetsAbility{id}backerGlow" noclick="true" texture="/ui/elements:squareglow" color="0.01 0.85 0.91 0.9" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" rendermode="additive" visible="0"/>
+			<frame name="mainPetsAbility{id}Base" noclick="1" texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0.08 0.08 0.08 1"/>
+			<frame name="mainPetsAbility{id}Border" noclick="1" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="8s" bordercolor="0.01 0.85 0.91 1" color="invisible"/>	
+			
+			<button name="mainPetsAbility{id}Button" color="invisible" noclick="0"/>
+			
+			<panel width="80@" height="80%" align="left" valign="center" y="0s" x="8s" noclick="1">
+				<panel width="100@" height="100%" align="center" valign="center" color="0.11 0.11 0.11 1" noclick="1"/>	
+				
+				<!-- Ability Icon -->
+				<image name="mainPetsAbility{id}Icon" width="93@" height="93%" align="center" valign="center" noclick="1"/>	
+				<frame name="mainPetsListEntry{id}Border" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="4s" bordercolor="0 0 0 0.7" color="invisible" noclick="1"/>	
+				
+				<panel width="35@" height="35%" name="mainPetsAbility{id}Key" align="right" valign="top" y="-2s" x="3s" noclick="1">
+					<instance id="pet_activated_ability_hotkey" name="petAbilityBindableHotkey" width="100@" height="100%" align="right"
+						labelY="-0.15h"
+						onrefreshlua="
+							local button = GetKeybindButton('game', 'ActivateTool', '18')
+							if button then
+								self:SetText(button)
+							else
+								self:SetText('')
+							end
+						"
+					/>	
+				</panel>
+			</panel>
+			<panel width="336s" y="-3s" valign="center" align="right" grow="1" regrow="1" growinvis="0" float="bottom" noclick="1">
+				<label name="mainPetsAbility{id}Name" fity="1" width="330s" textalign="left" style="labelBase" font="maindyn_24" color="1 1 1 1" wrap="true" content="Ability Name" noclick="1"/>
+				<label name="mainPetsAbility{id}Description" fity="1" width="330s" textalign="left" style="labelBase" font="subdyn_15" color="0.6 0.6 0.6 1" wrap="true" lineheight="17s" content="Ability Description" noclick="1"/>
+			</panel>
+			<label name="mainPetsAbility{id}Level" width="20s" content="3" font="maindyn_20" textalign="right" align="right" valign="top" color="1 1 1 0.35" y="3s" x="-9s" visible="0" noclick="1"/>
+			<label name="mainPetsAbility{id}Locked" width="20s" content="corral_locked_ability" font="maindyn_14" textalign="right" align="right" valign="top" color="1 1 1 0.35" y="5s" x="-9s" visible="0" noclick="1"/>
+		</panel>
+	</template>
+	
+	<template name="petAbilityBindableHotkey">
+		<panel name="{id}" style="{style}" align="{align}" valign="{valign}" width="{width=100%}" height="{height=100%}" noclick="1">
+			<panel name="{id}Body" align="center" valign="center" noclick="1" passivechildren="true">
+				<frame name="{id}Backer" texture="/ui/elements:key" visible="1" borderthickness="{borderthickness=33@}" noclick="1"/>
+				<frame name="{id}Highlight" texture="/ui/elements:rounded_bg_white" rendermode="additive" color="#FFCC0011" noclick="1"/>
+				<label name="{id}Label" color="black" outline="true" outlinecolor="#DDDDDD" textalign="center" textvalign="center" noclick="1" font="{font=maindyn_14}" content="-" y="{labelY}"
+					onshowlua="{onrefreshlua}"
+					onrefreshlua="{onrefreshlua}"
+				/>
+			</panel>
+			<button name="{id}ButtonTip" hmargin="5@" vmargin="5%" noclick="1" interactive="false" color="invisible"/>
+			<button name="{id}Button" hmargin="5@" vmargin="5%" noclick="0" interactive="false" color="invisible"
+				onloadlua="libButton2.initializeButton(self, '{id}', 'key')"
+			/>
+		</panel>
+	</template>	
+	
+	<!-- Pet Level XP Segments -->
+	<template name="mainPetsXPSegment">
+		<panel name="mainPetsXPSegment{id}" width="9.6%">
+			<panel height="60@" width="60%" align="center" valign="top">
+				<frame name="mainPetsXPSegment{id}Glow" noclick="1" texture="/ui/elements:squareglow" color="0 0 0 .9" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" />
+				<frame name="mainPetsXPSegment{id}backerGlow" noclick="1" texture="/ui/elements:squareglow" color="0.01 0.85 0.91 0.8" width="+8s" height="+8s" align="center" valign="center" borderthickness="10s" visible="0"/>
+				<panel height="85%" width="85@" align="center" valign="center" color="0.11 0.11 0.11 1"/>
+				
+				<!-- Ability Icon -->
+				<image name="mainPetsXPSegment{id}Icon" texture="/familiars/mystik/ability_01/icon.tga" height="85%" width="85@" align="center" valign="center" />
+				<frame name="mainPetsXPSegment{id}Frame" texture="/ui/shared/frames/border_double.tga" style="doubleFrame" borderthickness="4s" bordercolor="0 0 0 1" color="invisible"/>
+				<image name="mainPetsXPSegment{id}Arrow" texture="/ui/main/pets/textures/drop_arrow.tga" y="12s" height="35%" width="50@" align="center" valign="bottom" color="0.33 0.4 0.43 1"/>
+			</panel>
+			<panel height="42%" width="100%" align="center" valign="bottom">
+				<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" color="0.38 0.58 0.73 1"/>	
+				<panel y="-1s" x="1s" width="95%" height="91%" align="left" valign="center">
+					<frame name="mainPetsXPSegment{id}BarQueued" texture="/ui/shared/frames/rounded_bg_white.tga" borderthickness="4s" color="0.16 0.64 0.79 0.5" align="left" valign="center" visible="1"/>
+					<frame name="mainPetsXPSegment{id}Bar" texture="/ui/shared/frames/rounded_bg_white.tga" borderthickness="4s" color="0.16 0.64 0.79 1" align="left" valign="center" visible="0"/>
+				</panel>
+				<label name="mainPetsXPSegment{id}Label" y="4s" textalign="center" valign="center" style="labelBase" font="maindyn_20" color="1 1 1 1" outline="1" outlinecolor="0 0 0 0.7" content="0"/>
+			</panel>
+			
+			<button name="mainPetsXPSegment{id}Button" color="invisible"/>
+		</panel>
+	</template>
+</package>

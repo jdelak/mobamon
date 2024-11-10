@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect persistent="true" deferred="true" useentityeffectscale="true">
+	<definitions>
+		<modifier
+			life="600"
+			name="modifier0"
+			startcolor="5 2.5 1"
+			endcolor="1 1 1"
+		/>
+
+		<particlesystem name="system1" space="world" scale="1">
+		
+			<sound
+			life="1000"
+				volume="0.35"
+				falloffstart="0"
+				falloffend="1200"
+				sample="/npcs/cindara/sounds/sfx_cindara_impact.wav"
+			/>
+			
+			
+			
+			<light
+				position="0 0 50"
+				life="3000"
+				startcolor="0 0 0"
+				midcolor="10 2.5 0"
+				endcolor="0 0 0"
+				midcolorpos=".25"
+				falloffstart="25"
+				falloffend="450"
+			/>
+
+			<simpleemitter
+				life="500"
+				position="0 0 700"
+				particlelife="5000"
+				gravity="0"
+				spawnrate="500"
+				minspeed="100"
+				maxspeed="300"
+				drag="0.0015"
+				acceleration="0"
+				offsetsphere="50 50 400"
+				offsetradial="50 0 20"
+				direction="0 0 -1"
+				minangle="0"
+				maxangle="0"
+
+
+			>
+				<particle
+				>
+					<billboard
+						minlife="500"
+						maxlife="1000"
+						startcolor="0 0 0"
+						midcolor="1 .5 0"
+						endcolor="0"
+						midcolorpos=".2"
+						minscale=".05"
+						maxscale=".1"
+						depthbias="0"
+						material="/shared/effects/materials/whitedot.material"
+					/>
+				</particle>
+			</simpleemitter>
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			<simpleemitter
+				life="300"
+				position="0 0 900"
+				particlelife="2000"
+				spawnrate="800"
+				minspeed="2000"
+				maxspeed="6000"
+				drag="0.0015"
+				acceleration="0"
+				offsetsphere="50 50 500"
+				direction="0 0 -1"
+				minangle="0"
+				maxangle="1"
+			>
+				<particle
+				>
+					<billboard
+						life="500"
+						startcolor="0 0 0"
+						midcolor=".1 .05 0"
+						endcolor="0"
+						midcolorpos=".2"
+						startsize="80"
+						endsize="0"
+						depthbias="0"
+						material="/shared/effects/materials/whitedot.material"
+						minwidth="20"
+						maxwidth="60"
+						minheight="100"
+						maxheight="600"
+						minroll="0"
+						maxroll="0"
+						lockup="1"
+					/>
+				</particle>
+			</simpleemitter>
+
+			<billboard
+				material="/shared/effects/smaterials/whitedot.material"				
+				startcolor=".5 .25 0"				
+				endcolor="0 0 0"
+				life="1000"	
+				position="0 0 25"
+				startsize="500"
+				endsize="500"
+				depthbias="-150"
+				lockup="1"				
+				lockright="1"
+				pitch="90"				
+			/>
+
+			<simpleemitter
+				life="500"
+				position="0 0 150"
+				spawnrate="60"
+				particlelife="1000"
+				gravity="0"
+				speed="200"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="20 20 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="1500"
+					maxstartheight="3000"
+					endheight="100"
+					width="50"
+					depthbias="-100"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+			<simpleemitter
+				life="500"
+				position="0 0 150"
+				spawnrate="30"
+				particlelife="1000"
+				gravity="0"
+				speed="200"
+				drag="0"
+				acceleration="0"
+				material="/shared/effects/smaterials/whitedot.material"
+				offsetsphere="20 20 0"
+				direction="0 0 1"
+			>
+				<particle
+					startcolor="0 0 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					scale="3.1"
+					minstartheight="1500"
+					maxstartheight="3000"
+					minendheight="100"
+					maxendheight="1500"
+					width="50"
+					depthbias="-100"
+					position="0 0 4"
+					lockup="true"
+					pitch="0"
+					anchor="1"
+				>
+				</particle>
+			</simpleemitter>
+
+		</particlesystem>
+	</definitions>
+
+	<thread>
+		<spawnmodifier instance="instance0" modifier="modifier0" />
+		<spawnparticlesystem instance="instance1" particlesystem="system1" />
+		<waitfordeath instance="instance0" />
+		<waitfordeath instance="instance1" />
+		
+	</thread>
+</effect>

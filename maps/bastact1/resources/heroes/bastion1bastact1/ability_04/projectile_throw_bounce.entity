@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Bastact1_Bastion1_Throw_Bounce"
+
+	gravity="10000"
+	lifetime="10000"
+	speed="700"
+
+	canrotate="true"
+	touchradius="50"
+	touchcliffs="false"
+
+	maxtouches="1"
+	touchtargetscheme="enemy_units_and_buildings"
+	toucheffecttype="Magic"
+
+	modelscale="1.0"
+	model="/shared/models/invis.mdf"
+	traileffect=""
+	
+	deatheffect=""		
+	>
+	
+	<ontouch>
+		<playeffect effect="effects/impact.effect" source="target_entity" target=""/>
+		<setproxy entity="this_proxy_entity" target="target_entity" />
+		<kill target="this_proxy_entity" source="" />
+		<kill target="this_entity" />
+	</ontouch>
+  
+</projectile>

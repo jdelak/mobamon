@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectscale="true">
+	<definitions>
+		<particlesystem name="system0" space="world" scale="1.5">
+
+			<template name="flashes">
+
+				<simpleemitter
+					bone="_bone_centerofchest"
+					spawnrate="52"
+					count="3"
+					particlelife="300"
+					gravity="0"
+					drag=".1"
+					acceleration="0.0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/materials/3d_slash.material"
+				>
+					<particle
+					anchor="1"
+						size="{zsize}"
+						startframe="0.0"
+						endframe="1.0"
+						color=".25 0 1"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						yaw="-45"
+						depthbias="-50"
+					/>
+				</simpleemitter>
+				
+				<simpleemitter
+				delay="150"
+					bone="_bone_centerofchest"
+					spawnrate="52"
+					count="3"
+					particlelife="300"
+					gravity="0"
+					drag=".1"
+					acceleration="0.0"
+					position="{zpos}"
+					offsetsphere="0 0 0"
+					material="/shared/effects/materials/3d_slash.material"
+				>
+					<particle
+					anchor="1"
+						size="{zsize}"
+						startframe="0.0"
+						endframe="1.0"
+						color=".25 0 1"
+						lockup="1"
+						lockright="1"
+						pitch="-90"
+						yaw="45"
+						depthbias="-50"
+					/>
+				</simpleemitter>
+			</template>
+
+			<instance name="flashes" zpos="0 5 25" zsize="90"/>
+			<instance name="flashes" zpos="0 0 25" zsize="180" />
+			<instance name="flashes" zpos="0 -5 25" zsize="90" />
+
+
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" persistent="true">
+	<definitions>
+	
+		<particlesystem name="system0" space="world" scale="1">
+		
+			<billboard
+				position="0 0 2"
+				bone="_bone_1"
+				expirelife="500"
+				startcolor=".3 .1 0"
+				endcolor="0 0 0"
+				size="40"
+				material="/shared/effects/smaterials/whitedot.material"
+				
+			/>
+
+			<billboard
+				position="0 0 2"
+				bone="_bone_1"
+				expirelife="1500"
+				startcolor=".3 .2 0"
+				endcolor="0 0 0"
+				size="20"
+				material="/shared/effects/smaterials/whitedot.material"
+				
+			/>
+
+			<simpleemitter	
+				bone="_bone_1"						
+				life="5000"
+				spawnrate="61"
+				minparticlelife="250"
+				maxparticlelife="300"						
+				material="/shared/effects/smaterials/firesprite_01.material"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 0 0"
+					midcolor=".2 .1 .0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="28"
+					endsize="4"		
+					depthbias="-20"								
+				/>					
+			
+			</simpleemitter>
+
+			<simpleemitter	
+				bone="_bone_1"						
+				life="5000"
+				spawnrate="41"
+				minparticlelife="250"
+				maxparticlelife="300"						
+				material="/shared/effects/smaterials/whitedot.material"
+				
+			>
+				<particle 
+					minangle="0"
+					maxangle="360"
+					minanglespeed="-6"
+					maxanglespeed="6"
+					startcolor="0 0 0"
+					midcolor=".2 .1 .0"
+					endcolor="0 0 0"
+					midcolorpos=".25"
+					startsize="125"
+					endsize="4"		
+					depthbias="-20"								
+				/>					
+			
+			</simpleemitter>		
+	
+
+		</particlesystem>
+	</definitions>
+	
+<thread>
+		<spawnparticlesystem instance="instance1" particlesystem="system0" />
+
+		<waitfordeath  instance="instance1"/>
+</thread>
+</effect>

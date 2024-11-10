@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<state
+	name="State_Pal_Ability1_Trace"
+	
+	icon="icon.tga"
+	ishidden="true"
+	impactinterval="600"
+
+>
+	<onimpact>
+		<compare a="accumulator" b="0" op="eq" >
+			<setaccumulator value="1" />
+		</compare>
+	</onimpact>
+
+	<onframe> 
+		<compare a="accumulator" b="1" op="eq" >
+			<lineofeffect radius="75" maxtotalimpacts="1" start="this_owner_entity" end="this_proxy_entity" targetselection="all" targetscheme="enemy_nonboss_units" effecttype="Magic">
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="150" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<playeffect effect="effects/impact_right.effect" source="pos1" occlude="true"/>
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="300" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="450" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" occlude="true"/>
+				<playeffect effect="effects/impact_center.effect" source="pos1"/>
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="600" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="750" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<playeffect effect="effects/impact_left.effect" source="pos1"/>
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="900" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="1050" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<setpos1 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="0" />
+				<spawnunit name="Gadget_Pal_Ability1_Explosion" target="pos1" />
+				<setaccumulator value="2" />
+				<setpos2 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="1000" />
+				<setpos3 position="this_owner_entity" positionend="this_proxy_entity" positionmodifier="pointonline" positionvalue="50" />
+				<playeffect effect="effects/link_explosion.effect" source="pos3" target="pos2" occlude="true"/>
+			</lineofeffect>
+		</compare>
+		<compare a="accumulator" b="2" op="eq" >
+			<lineofeffect radius="170" start="this_owner_entity" end="this_proxy_entity" targetselection="all" targetscheme="enemy_nonboss_units" effecttype="Magic">
+				<pushentity entity="target_entity" />
+				<areaofeffect radius="1400" targetselection="closest" targetscheme="PalGadgetLeft" ignoreinvulnerable="true" maxtotalimpacts="1"> 
+					<distance source="stack_entity" target="target_entity" /> 
+					<setaccumulator value="result" />
+					<kill source="" />
+				</areaofeffect>
+				<areaofeffect radius="1400" targetselection="closest" targetscheme="PalGadgetRight" ignoreinvulnerable="true" maxtotalimpacts="1">
+					<distance source="stack_entity" target="target_entity" /> 
+					<compare a="result" b="accumulator" op="gt" >
+						<setpos0 position="this_owner_entity" positionend="target_entity" positionmodifier="pointpastline" positionvalue="500000" />
+						<push force="600" duration="300" source="pos0" target="stack_entity" />
+						<playeffect effect="effects/impact_enemy.effect" source="stack_entity" target="stack_entity" occlude="true"/>
+						<getconstant name="damage" adjustmentsource="source_entity" />
+						<damage effecttype="Magic Splash" amount="1" b="result" op="mult" target="stack_entity" />
+						<recordheroaggression  />
+						<aggression />
+						<cantarget effecttype="CrowdControl" target="stack_entity">
+							<applystate target="stack_entity" name="State_Stunned" duration="300"  />
+						</cantarget>
+					</compare>
+					<else>
+						<setpos0 position="this_owner_entity" positionend="target_entity" positionmodifier="pointpastline" positionvalue="500000" />
+						<push force="-600" duration="300" source="pos0" target="stack_entity" />
+						<playeffect effect="effects/impact_enemy.effect" source="stack_entity" target="stack_entity" occlude="true"/>
+						<getconstant name="damage" adjustmentsource="source_entity" />
+						<damage effecttype="Magic Splash" amount="1" b="result" op="mult" target="stack_entity" />
+						<recordheroaggression  />
+						<aggression />
+						<cantarget effecttype="CrowdControl" target="stack_entity">
+							<applystate target="stack_entity" name="State_Stunned" duration="300"  />
+						</cantarget>
+					</else>
+					<kill source="" />
+					<setaccumulator value="3" />
+				</areaofeffect>
+			</lineofeffect>
+			<delete target="this_owner_entity" source="" />
+			<delete target="this_proxy_entity" source="" />
+			<expire />
+		</compare>
+	</onframe>
+
+</state>

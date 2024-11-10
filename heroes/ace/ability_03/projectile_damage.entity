@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectile
+	name="Projectile_Ace_Ability3_Damage"
+
+	speed="1800"
+	traileffect="effects/shoot.effect"
+	modelscale="1"
+	model="/shared/models/invis.mdf"
+	pitch="90"
+
+	effectscale="1.0"
+	
+	impacteffect="effects/impact_enemy.effect"
+	
+	canturn="true"
+	flying="true"
+	flyheight="80"
+	
+	
+>
+	<onspawn>
+		<playeffect effect="effects/shoot_start.effect" target="this_position" source="this_position" occlude="true" />
+	</onspawn>
+
+	<onimpact>
+		<kill target="this_proxy_entity" source="" />
+		<combatevent effecttype="Counterable">
+			<onimpact>
+				<getconstant name="damage" adjustmentsource="this_entity" />
+				<damage effecttype="Magic Indirect" significant="true" amount="1" b="result" op="mult"/>
+				<applystate name="State_Ace_Ability3_Slow" duration="3000" />
+			</onimpact>
+		</combatevent>
+	</onimpact>
+
+</projectile>

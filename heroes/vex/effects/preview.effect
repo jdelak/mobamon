@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect deferred="true" useentityeffectsscale="true">
+<definitions>
+
+<!-- 0 -->
+<particlesystem name="system0" space="entity" scale="1">
+
+			<!-- Passives -->
+			<template name="passive1" parentmodel="true" parentskeleton="true" directionalspace="local">
+				<billboard depthbias="-20" delay="300" bone="_bone_fx04" life="300" startscale="18" endscale="0" color="1 .6 .4" angle="120" material="/shared/effects/smaterials/streak_flare_orange.material"/>
+				<billboard depthbias="-20" delay="600" bone="_bone_fx02" life="300" startscale="18" endscale="0" color="1 .6 .4" angle="120" material="/shared/effects/smaterials/streak_flare_orange.material"/>
+				<template name="jet" parentmodel="true" parentskeleton="true" directionalspace="local">
+					<light depthbias="-20" bone="{bone}" color="2 1 1" falloffstart="00" falloffend="320" position="0 0 -60" life="2000"/>
+					<billboard bone="{bone}" life="1600" startscale="3" endscale="6" color="1 .6 .4" angle="120" material="/shared/effects/smaterials/streak_flare_orange.material"/>
+					<trailemitter depthbias="-20" bone="{bone}" delay="1800" life="2000" position="0 0 0" spawnrate="40" particlelife="150" texpostime="150" texposscale="0.0" texstretchscale=".4" material="/shared/effects/smaterials/trail_add.material" subframepos="true" directionalspace="local" particledirectionalspace="local">
+						<particle startcolor="1 .5 .2" midcolor=".7 .2 0" endcolor="0 0 0" startsize="80" alpha=".4" endsize="0" midsizepos="0.25"/>
+					</trailemitter>
+					<simpleemitter depthbias="-20" delay="500" bone="{bone}" spawnrate="180" life="2000" particlelife="550" gravity="5" speed="1200" acceleration="0" position="0 0 0" material="/shared/effects/smaterials/rocket_smoke_blend.material" minangle="0" maxangle="5" direction="0 0 -1" offsetdirection="0 0 0" offsetradial="0 0 0" directionalspace="local" particledirectionalspace="local">
+						<particle minangle="0" maxangle="0" life="2000" minanglespeed="0" maxanglespeed="0" startcolor="1 1 1" midcolor="1 .8 .7" endcolor="1 1 1" startframe="0" endframe="1" startsize="25" endsize="0" startalpha="1" endalpha="0" turn="true"/>
+					</simpleemitter>
+					<simpleemitter depthbias="-20" delay="500" bone="{bone}" spawnrate="80" particlelife="150" life="2000" gravity="5" speed="1200" acceleration="0" position="0 0 0" material="/shared/effects/smaterials/rocket_smoke_add.material" minangle="0" maxangle="5" direction="0 0 -1" offsetdirection="0 0 0" offsetradial="0 0 0" directionalspace="local" particledirectionalspace="local">
+						<particle minangle="0" maxangle="0" minanglespeed="0" maxanglespeed="0" startcolor=" .4 .4 .4" midcolor=".4 .2 0" endcolor=".2 0 0" startframe="0" endframe="1" startsize="25" endsize="20" startalpha="1" endalpha="0" turn="true"/>
+					</simpleemitter>
+				</template>
+				<instance name="jet" bone="_bone_fx04"/>
+				<instance name="jet" bone="_bone_fx02"/>
+			</template>
+	
+
+		
+			<!-- Vex Rockets -->
+			<template name="rockets" parentmodel="true" parentskeleton="true"  directionalspace="local" particledirectionalspace="local">
+				<sound delay="{zdelay}" sample="sounds/sfx_trail_%.wav" linearfalloff="true" falloffstart="500" falloffend="7400" volume="0.38" channel="90053"/>	
+				<trackeremitter bone="_bone_centerofchest" delay="{zdelay}" count="8" life="1550" targetposition="{zpos}" tracktype="angular" trackspeed="3" spawnrate="500" particlelife="1500" speed="1000" acceleration="0" direction="0 0 1" inheritvelocity="0" distancelife="1" offsetsphere="5 5 5" directionalspace="local">
+					<particle directionalspace="local" particledirectionalspace="local" turn="1">
+						<model model="rocket/model.mdf" anim="idle" position="0 0 0" scale="0.5" pitch="-90" pitchspeed="0" turn="true" directionalspace="local" loop="true">
+							<billboard bone="_bone_flare" expirelife="250" startscale="0" endscale="10" color="1 1 .4" material="/shared/effects/smaterials/streak_flare_orange.material" directionalspace="local"/>
+							<light color="4 2 1" expirelife="250" falloffstart="00" falloffend="320" position="0 0 -60" directionalspace="local"/>
+							<simpleemitter bone="_bone_flare" expirelife="250" spawnrate="180" particlelife="550" gravity="5" speed="100" acceleration="0" position="0 0 0" material="/shared/effects/smaterials/rocket_smoke_blend.material" minangle="0" maxangle="30" direction="0 0 1" offsetdirection="0 0 0" offsetradial="0 0 0" inheritvelocity="0.05" directionalspace="local" particledirectionalspace="local">
+								<particle minangle="0" maxangle="0" minanglespeed="0" maxanglespeed="0" startcolor="1 1 1" midcolor="1 .8 .7" endcolor="1 1 1" startframe="0" endframe="1" startsize="25" endsize="0" startalpha="1" endalpha="0" turn="true"/>
+							</simpleemitter>
+							<simpleemitter bone="_bone_flare" expirelife="250" spawnrate="80" particlelife="150" gravity="5" speed="100" acceleration="0" position="0 0 0" material="/shared/effects/smaterials/rocket_smoke_add.material" minangle="0" maxangle="30" direction="0 0 1" offsetdirection="0 0 0" offsetradial="0 0 0" inheritvelocity="0.05" directionalspace="local" particledirectionalspace="local">
+								<particle minangle="0" maxangle="0" minanglespeed="0" maxanglespeed="0" startcolor=" .4 .4 .4" midcolor=".4 .2 0" endcolor=".2 0 0" startframe="0" endframe="1" startsize="25" endsize="20" startalpha="1" endalpha="0" turn="true"/>
+							</simpleemitter>				
+						</model>			
+					</particle>
+				</trackeremitter>
+			</template>		
+			<instance name="rockets" zpos="200 200 0" zdelay="600"/>
+			<instance name="rockets" zpos="-200 200 0" zdelay="1100"/>
+			<instance name="passive1"/>
+			
+			<!-- Effects -->
+			<sound delay="0" volume="0.35" sample="sounds/sfx_cast.wav" linearfalloff="true" falloffstart="300" falloffend="3000" channel="90053"/>
+			<sound delay="100" volume="0.28" sample="sounds/sfx_cast_begin.wav" linearfalloff="true" falloffstart="500" falloffend="7400" channel="90053"/>
+			<sound delay="300" volume="0.47" sample="sounds/v_%.wav" linearfalloff="true" falloffstart="2500" falloffend="5400" channel="90053"/>
+			
+
+			
+
+
+			
+			<sound delay="2550" sample="sounds/sfx_impact_%.wav" linearfalloff="true" falloffstart="500" falloffend="7400" volume="0.28" channel="90053"/>	
+			<sound delay="3050" sample="sounds/sfx_impact_%.wav" linearfalloff="true" falloffstart="500" falloffend="7400" volume="0.28" channel="90053"/>	
+			
+			
+</particlesystem>
+
+</definitions>
+<thread>
+<!-- Order -->
+<spawnparticlesystem instance="instance0" particlesystem="system0"/>
+<waitfordeath instance="instance0"/>
+</thread>
+</effect>

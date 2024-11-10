@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<effect name="cyclone" deferred="true">
+	<definitions>
+
+		<particlesystem name="system0" space="world" scale="1">
+
+			<sound
+				falloffstart="500"
+				falloffend="2400"
+				volume="0.65"
+				sample="../sounds/sfx_state.wav"
+			/>
+
+			<light
+				bone="_bone_fx_light01"
+				expirelife="1000"
+				startcolor="10 0 0"
+				endcolor="0 0 0"
+				falloffstart="25"
+				falloffend="100"
+				position="0 0 12"
+			/>
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				timenudge="2000"
+				bone="_bone_fx_light01"
+				spawnrate="25"
+				minparticlelife="1000"
+				maxparticlelife="1000"
+				gravity="0"
+				minspeed="0"
+				maxspeed="1"
+				acceleration="0"
+
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+				offsetsphere="0"
+				depthbias="0"
+			>
+				<particle
+					anchor="1"
+					startcolor="0 0 0"
+					midcolor=".15 0 0"
+					endcolor="0 0 0"
+					midcolorpos=".1"
+					minstartscale=".25"
+					maxstartscale=".25"
+					endscale="1"
+					minwidth="150"
+					maxwidth="150"
+					height="150"
+				/>
+			</simpleemitter>
+			
+			
+			
+			<simpleemitter
+				timenudge="2000"
+				bone="_bone_fx_light01"
+				spawnrate=".5"
+				particlelife="2000"
+				gravity="0"
+				minspeed="0"
+				maxspeed="1"
+				acceleration="0"
+
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+				offsetsphere="0"
+				depthbias="0"
+			>
+				<particle
+					anchor="1"
+					startcolor="0 0 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					minstartscale=".45"
+					maxstartscale=".55"
+					endscale=".75"
+					minwidth="150"
+					maxwidth="150"
+					height="150"
+				/>
+			</simpleemitter>
+			
+			<simpleemitter
+				timenudge="2000"
+				bone="_bone_fx_light01"
+				spawnrate=".5"
+				particlelife="2000"
+				gravity="0"
+				minspeed="0"
+				maxspeed="1"
+				acceleration="0"
+				position="0 0 0"
+				material="/shared/effects/smaterials/whitedot_ground_inverted.material"
+				offsetsphere="0"
+				depthbias="0"
+			>
+				<particle
+					anchor="1"
+					startcolor="0 0 0"
+					midcolor=".1 .05 0"
+					endcolor="0 0 0"
+					minstartscale=".75"
+					maxstartscale=".85"
+					endscale="1.05"
+					minwidth="150"
+					maxwidth="150"
+					height="150"
+				/>
+			</simpleemitter>
+			
+
+			<model
+				bone="_bone_fx_light01"
+				model="../../effects/spinning_light/model.mdf"
+				material="../../material.material"
+				anim="idle"
+				color="1"
+				startalpha="1"
+				endalpha="0"
+				yawspeed="270"
+			>
+			
+				<template name="">
+<!--
+					<simpleemitter
+						timenudge="2000"
+						bone="_bone_fx_03"
+						spawnrate="10"
+						particlelife="5000"
+						material="/shared/effects/smaterials/lightray.material"
+						offsetsphere="0 0 0"
+						position="0 0 0"
+						directionalspace="local"
+						direction="0 1 0"
+						minangle="0"
+						maxangle="1"
+					>
+						<particle
+							anchor="1"
+							turn="true"
+							minangle="0"
+							maxangle="360"
+							size="20"
+							minwidth="75"
+							maxwidth="250"
+							minheight="75"
+							maxheight="150"
+							startcolor=".07 0 0"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+
+						/>
+					</simpleemitter>
+-->
+					<simpleemitter
+						timenudge="2000"
+						bone="_bone_fx_03"
+						spawnrate="20"
+						particlelife="5000"
+						material="/shared/effects/smaterials/whitedot.material"
+						offsetsphere="0 0 0"
+						position="0 0 0"
+						directionalspace="local"
+						direction="0 1 0"
+						minangle="0"
+						maxangle="1"
+					>
+						<particle
+							anchor="1"
+							turn="true"
+							minangle="0"
+							maxangle="360"
+							size="20"
+							minwidth="25"
+							maxwidth="50"
+							minheight="500"
+							maxheight="500"
+							startcolor=".1 0 0"
+							midcolor="0 0 0"
+							endcolor="0 0 0"
+							midcolorpos=".25"
+							lockup="1"
+							lockright="1"
+							pitch="90"
+
+						/>
+					</simpleemitter>
+					
+				</template>
+		
+				<instance name="" zbone="_bone_fx_03" zroll="0" zpos="0 0 0"/>
+
+
+				<template name="">
+
+					<billboard
+						bone="_bone_fx_03"
+						expirelife="600"
+						material="/shared/effects/smaterials/lightray.material"
+						startcolor=".025 0 0"
+						endcolor="0 0 0"
+						size="20"
+						depthbias="-25"
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						pitch="{zpitch}"
+						width="300"
+						height="50"
+					/>
+					
+					<billboard
+						bone="_bone_fx_03"
+						expirelife="600"
+						material="/shared/effects/smaterials/lightray.material"
+						startcolor=".025 0 0"
+						endcolor="0 0 0"
+						size="20"
+						depthbias="-25"
+						directionalspace="local"
+						lockup="1"
+						lockright="1"
+						pitch="{zpitch}"
+						width="300"
+						height="600"
+					/>
+
+
+				</template>
+				
+				<instance name="" zpitch="90"/>
+				<instance name="" zpitch="60"/>
+				<instance name="" zpitch="-60"/>
+
+
+	
+			</model>
+			
+			
+			
+			
+			
+			
+			
+
+			<simpleemitter
+				bone="_bone_fx_03"
+				minspeed="75"
+				maxspeed="200"
+				spawnrate="15"
+				gravity="10"
+				offsetsphere="15"
+				particlelife="2000"
+				direction="0 -1 0"
+				minangle="0"
+				maxangle="25"
+				directionalspace="local"
+			>
+				<particle
+				>
+					<model
+						bone="_bone_fx_03"
+						model="/npcs/neutrals/rare/projectile/effects/coin/model.mdf"
+						color="1 1 1"
+						minyaw="-360"
+						maxyaw="360"
+						minlife="600"
+						maxlife="800"
+						minpitch="-360"
+						maxpitch="360"
+						scale="2.25"
+						startalpha="1"
+						midalpha="1"
+						endalpha="1"
+					/>
+					
+					<billboard
+						bone="_bone_fx_03"
+						minlife="600"
+						maxlife="800"
+						material="/shared/effects/smaterials/whitedot.material"
+						startcolor=".15 .075 0"
+						endcolor="0 0 0"
+						size="50"
+						depthbias="-25"
+					/>
+
+				</particle>
+			</simpleemitter>
+
+	
+			<billboard
+				bone="_bone_fx_03"
+				expirelife="500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor=".25 .075 0"
+				endcolor="0 0 0"
+				size="100"
+				depthbias="-25"
+			/>
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			<template name="">
+			
+				<model
+					expirelife="250"
+					bone="{zbone}"
+					model="../../effects/wheel/model.mdf"
+					material="../../material.material"
+					anim="idle"
+					color="1 1 1"
+					startalpha="1"
+					endalpha="0"
+					directionalspace="local"
+					yaw="90"
+					roll="90"
+					yawspeed="{zyawspeed}"
+					scale="1.1"
+				/>
+
+			</template>
+			
+			<instance name="" zbone="_bone_gambler_reel1" zyawspeed="180"/>
+			<instance name="" zbone="_bone_gambler_reel2" zyawspeed="450"/>
+			<instance name="" zbone="_bone_gambler_reel3" zyawspeed="90"/>
+			
+			
+			
+			
+			
+			
+			<billboard
+				bone="_bone_fx_wheel01"
+				life="1500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				midcolor=".5 .15 0"
+				endcolor="0 0 0"
+				size="100"
+				depthbias="-25"
+				loop="true"
+			/>
+			
+			<billboard
+				bone="_bone_fx_wheel02"
+				life="1500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				midcolor=".5 .15 0"
+				endcolor="0 0 0"
+				size="100"
+				depthbias="-25"
+				loop="true"
+			/>
+			
+			<billboard
+				bone="_bone_fx_wheel02"
+				life="1500"
+				material="/shared/effects/smaterials/whitedot.material"
+				startcolor="0 0 0"
+				midcolor=".5 .15 0"
+				endcolor="0 0 0"
+				size="100"
+				depthbias="-25"
+				loop="true"
+			/>
+			
+
+		</particlesystem>
+	</definitions>
+	<thread>
+		<spawnparticlesystem instance="instance0" particlesystem="system0" />
+		<waitfordeath instance="instance0" />
+	</thread>
+</effect>

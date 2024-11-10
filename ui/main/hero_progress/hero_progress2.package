@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	
+	<include file="hero_progress_templates.package"/>
+
+	<template name="hero_progress_body">
+		<!-- Hero Menu -->
+		<panel name="playerProfile_heroProgressMenu" group="profile_animation_hero_progress_widgets" x="-516s" noclick="1" width="476s" height="560s" y="24s" align="left"><!-- x="-23s" -->
+			<frame texture="/ui/shared/frames/rounded_bg_solid.tga" borderthickness="8s" color="0 0 0 .5"/>
+			<frame texture="/ui/elements:roundframe" borderthickness="8s" bordercolor="#283036" color="invisible"/>
+			
+			<listbox
+				name="playerProfileHeroProgressEntryListbox" style="simpleListbox" vscrollbar="1" hscrollbar="0" handleheight="56s" handlewidth="28s" scrollbarsize="28s" scrollbarplaceholder="false" scrollbaroffset="8s" x="-10s" align="right" valign="center" width="-20s" height="-20s" wrap="row"
+				itemwidth="91s" itemheight="108s" select="false" highlightcolor="invisible" highlightbordercolor="invisible"
+			>
+
+			</listbox>
+		</panel>		
+
+		<!-- Hero Mastery -->
+		<panel align="left" x="20s" y="220s" width="420s" height="192s" noclick="1" group="profile_animation_hero_progress_widgets">
+			<label style="h1" textalign="center" font="maindyn_40" noclick="1" content="player_profile_hero_mastery" />			
+			<label name="playerProfileHeroProgressEntry_prog_title" y="45s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="player_profile_hero_mastery_progress" />			
+			
+			<!-- Hero Progression -->
+			<panel name="playerProfileHeroProgressEntry_prog_parent" width="308s" height="88s" y="104s" align="center" noclick="0">
+				<panel height="60s" float="right" padding="3s" noclick="1" >
+					<instance name="playerProfileHeroProgressEntry_level_star" index="1" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="2" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="3" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="4" />
+					<instance name="playerProfileHeroProgressEntry_level_star" index="5" />
+				</panel>
+				<panel name="playerProfileHeroProgressEntry_prog_meter" visible="1" noclick="1">
+					<panel height="18s" valign="bottom" width="-28s" noclick="1">
+						<frame texture="/ui/shared/frames/std_btn_inset.tga" borderthickness="4s" bordercolor=".6 .6 .6 1" color=".6 .6 .6 1" noclick="1">
+							<panel hmargin="2s" vmargin="3s" noclick="1" passivechildren="1">
+								<instance name="progress_bar" id="playerProfileHeroProgressEntry_level_bar" width="0%" borderthickness="3s" barstyle="barCommon" noclick="1"  />
+							</panel>
+						</frame>
+					</panel>
+					<panel height="24s" width="24s" align="right" valign="bottom" noclick="1">
+						<image texture="/ui/shared/textures/star.tga" noclick="1" />
+						<label x="1s" y="1s" textalign="center" textvalign="center" font="subdyn_13" color="0 0 0 .7" content="+" noclick="1"/>
+					</panel>
+				</panel>
+				<label name="playerProfileHeroProgressEntry_prog_nometer" x="1s" outline="1" textalign="center" textvalign="bottom" font="maindyn_20" color="white" content="stat_name_hero_mastered" visible="0" noclick="1"/>
+				<panel name="playerProfileHeroProgressEntry_prog_hover" noclick="1" visible="0">
+					<frame texture="/ui/shared/frames/std_btn_inset.tga" y="2s" align="center" valign="center" width="+8s" height="+8s" borderthickness="8s" bordercolor=".1 .1 .1 0.85" color=".1 .1 .1 0.85" noclick="1">
+						<label name="playerProfileHeroProgressEntry_label_1" x="1s" y="1s" height="65%" textalign="center" outline="1" textvalign="center" font="maindyn_24" color="white" content="stat_name_hero_wins_x" noclick="1"/>
+						<label name="playerProfileHeroProgressEntry_label_2" x="1s" y="-10s" height="35%" valign="bottom" outline="1" textalign="center" textvalign="center" font="maindyn_18" color="white" content="stat_name_hero_wins_next_star_x" noclick="1"/>
+					</frame>
+				</panel>
+				
+				<panel name="playerProfileHeroProgressEntry_rating_parent_1" y="26s" height="24s" valign="bottom" noclick="0"
+					onmouseoverlua="
+						simpleTipGrowYUpdate(true, nil, Translate('selection_rating_title'), Translate('selection_rating_desc'), 250)
+					"
+					onmouseoutlua="
+						simpleTipGrowYUpdate(false)
+					"					
+				>
+					<label name="playerProfileHeroProgressEntry_rating_label_1" style="labelBase" textalign="center" textvalign="center" font="subdyn_15" color="1 1 1 1" outlinecolor="0 0 0 1" content="1500000" noclick="1"/>
+				
+					<panel noclick="1" grow="1" regrow="1" align="right" valign="center" x="-30s" >
+						<label fitx="true" fity="1" style="labelClickable" font="maindyn_20" content="?" noclick="1" />						
+					</panel>				
+				
+				</panel>					
+				
+			</panel>						
+		</panel>		
+
+		<instance group="profile_animation_hero_progress_widgets" name="vr" align="center" y="226s" x="-200s" height="300s" />
+		
+		<!-- Funzone -->
+		<panel visible="1" group="profile_animation_hero_progress_widgets" align="center" x="0" y="220s" width="380s" height="306s" noclick="1">
+
+		</panel>
+		
+		<instance group="profile_animation_hero_progress_widgets" name="vr" align="center" y="226s" x="200s" height="300s" />
+		
+		<!-- Rewards -->
+		<panel group="profile_animation_hero_progress_widgets" align="right" x="-40s" y="220s" width="360s" height="306s" noclick="1">
+			<label style="h1" textalign="center" font="maindyn_40" noclick="1" content="player_profile_hero_rewards" />
+			<label y="45s" textalign="center" style="labelBase" font="maindyn_22" color="1 1 1 1" noclick="1" content="player_profile_hero_rewards2" />
+			
+			<instance name="playerProfileHeroProgressFrame" id="playerProfileHeroProgressFrameMastered" frame="hp_mastered" y="100s" x="-122s" earnedLabel="player_profile_hero_progress_earned_master" />
+			<instance name="playerProfileHeroProgressFrame" id="playerProfileHeroProgressFrameDivision4" frame="hp_division4" y="100s" earnedLabel="player_profile_hero_progress_earned_div4" />
+			<instance name="playerProfileHeroProgressFrame" id="playerProfileHeroProgressFrameDivision5" frame="hp_division5" y="100s" x="122s" earnedLabel="player_profile_hero_progress_earned_div5" />
+		</panel>
+		
+		<!-- Overhaul Hero Menu -->
+		<panel valign="bottom" height="220s">
+			<panel name="playerProfileHero_hero_select_container" noclick="1">
+				<!-- center -->
+				<frame texture="/ui/shared/frames/bevel_top_blue.tga" y="45s" height="-45s" borderthickness="5s" color="1 1 1 1"/>
+				<!-- right -->
+				<frame texture="/ui/shared/frames/bevel_top_blue.tga" width="60s" height="47s" borderthickness="5s" align="right" color="1 1 1 1"/>
+				<frame texture="/ui/shared/frames/std_btn_inset.tga" x="-5s" y="5s" align="right" borderthickness="4s" color="#aee3f672" width="50s" height="36s"/>					
+				<panel y="43s" width="58s" height="6s" color="#0c2027" align="right" noclick="1" />
+				<image texture="/ui/main/shared/textures/inside_corner_nub.tga" x="-58s" y="37s" width="10s" height="10s" align="right" hflip="1" color="1 1 1 1" noclick="1" />					
+				<!-- left -->
+				<frame texture="/ui/shared/frames/bevel_top_blue.tga" width="240s" height="47s" borderthickness="5s" color="1 1 1 1" group="heroselect_filter_container_group" />
+				<panel y="43s" width="238s" height="6s" color="#0c2027" noclick="1" />
+				<image texture="/ui/main/shared/textures/inside_corner_nub.tga" x="238s" y="37s" width="10s" height="10s" color="1 1 1 1" noclick="1" />
+									
+				<!-- Hero filters -->
+				<frame group="playerProfileHero_filter_container_group" texture="/ui/shared/frames/std_btn_inset.tga" x="5s" y="5s" borderthickness="4s" color="#aee3f672" width="230s" height="36s">						
+					<panel name="heroselect_filter_0" x="8s" y="6s" width="35s">
+						<label name="playerProfileHero_filter_0Text" content="heroselect_filter_All" font="maindyn_20" textalign="center" color=".3 .9 1" noclick="1"/>
+					</panel>
+					<image name="playerProfileHero_filter_1" texture="/ui/main/pregame/textures/filter_cc.tga" 		x="46s"  y="3s" width="30s" height="30s" font="maindyn_20" color=".8 .9 1 1"/>
+					<image name="playerProfileHero_filter_2" texture="/ui/main/pregame/textures/filter_abl_dmg.tga"	x="80s"  y="3s" width="30s" height="30s" font="maindyn_20" color=".8 .9 1 1"/>
+					<image name="playerProfileHero_filter_3" texture="/ui/main/pregame/textures/filter_atk_dmg.tga" 	x="117s" y="3s" width="30s" height="30s" font="maindyn_20" color=".8 .9 1 1"/>
+					<image name="playerProfileHero_filter_4" texture="/ui/main/pregame/textures/filter_suv.tga" 	 	x="154s" y="3s" width="30s" height="30s" font="maindyn_20" color=".8 .9 1 1"/>
+					<image name="playerProfileHero_filter_5" texture="/ui/main/pregame/textures/filter_sup.tga" 	 	x="186s" y="3s" width="30s" height="30s" font="maindyn_20" color=".8 .9 1 1"/>
+				</frame>
+				<!-- Swap to Grid view-->
+				<image name="playerProfileHero_toggle_view" texture="/ui/main/pregame/textures/attribute_grid.tga" align="right" x="-12s" y="5s"  width="36s" height="36s" color=".8 .9 1 .6"/>
+			
+				<!-- Heroes (Holds instantiated main_pregame_hero_template's)-->
+				<panel align="center" width="-30s" y="50s" height="-110s" clip="1">
+					<panel name="playerProfileHero_container"/>
+				</panel>
+				
+				<!-- Left/Right Scroll Arrows
+					- Hovering should auto-scroll the list left or right. And also go away when nothing to scroll to. So either left or right slides out if you are scrolled all the way to the start/end of the list. thx -adam 
+					- Hover should change texture of scrol tab: 'scroll_tab_up.tga' | 'scroll_tab_over.tga'
+				-->
+				<panel name="playerProfileHero_scroll_parent" y="40s" height="128s" noclick="1">
+					<panel name="playerProfileHero_scroll_left" width="32s" align="left">
+						<image name="playerProfileHero_scroll_left_image" texture="/ui/main/pregame/textures/scroll_tab_up.tga" noclick="1" />
+						<image texture="/ui/shared/textures/arrow_rounded.tga" hflip="1" x="-6s" width="10s" height="10s" align="center" valign="center" color="1 1 1 .8" noclick="1" />
+					</panel>						
+					<panel name="playerProfileHero_scroll_right" width="32s" align="right">
+						<image name="playerProfileHero_scroll_right_image" texture="/ui/main/pregame/textures/scroll_tab_up.tga" hflip="1" noclick="1" />
+						<image texture="/ui/shared/textures/arrow_rounded.tga" hflip="0" x="6s" width="10s" height="10s" align="center" valign="center" color="1 1 1 .8" noclick="1" />
+					</panel>
+				</panel>					
+				
+				<panel name="playerProfileHero_slider_container_parent" y='-42s' height='20s' valign='bottom' align="center" width="-12s" color="0.0323 0.132 0.153 1">
+					<panel name="playerProfileHero_slider_container" y='2s' height='-4s'>
+						<frame texture="/ui/elements:rounded_bg_white" color="0.0323 0.132 0.153 1" borderthickness="2s" noclick="1" />
+						
+						<panel name="playerProfileHero_slider" width="50%" color="invisible" y='1s' height='-2s'>
+							<frame texture="/ui/elements:rounded_bg_solid" color="#084958" borderthickness="3s" noclick="1" />
+							<panel width="10s" height="-6s" valign="center" align="center" noclick="1">
+								<frame texture="/ui/elements:rounded_bg_white" width="2s" align="left" color="0 0 0 .4" borderthickness="1s" noclick="1" />
+								<frame texture="/ui/elements:rounded_bg_white" width="2s" align="center" color="0 0 0 .4" borderthickness="1s" noclick="1" />
+								<frame texture="/ui/elements:rounded_bg_white" width="2s" align="right" color="0 0 0 .4" borderthickness="1s" noclick="1" />
+							</panel>
+							
+						</panel>
+					</panel>
+				</panel>
+				
+			</panel>
+		</panel>
+		
+	</template>
+	
+</package>

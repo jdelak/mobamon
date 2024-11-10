@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface name="game_test">
+
+	<childinterface file="/ui/game/shared/game_styles.interface"/>
+	<include file="/ui/shared/templates_elements_simple.package"/>
+	
+
+	<template name="optionsCombobox">
+		<panel height="2.5h" width="{width=100%}">
+			<panel float="right" padding="0.5h" noclick="true">
+				<panel width="{labelWidth=14h}" noclick="true" passivechildren="true"><!-- Label Portion -->
+					<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+					<panel hmargin="0.75h" vmargin="0.75h">
+						<label textvalign="center" shadow="true" style="whiteTextColor" font="maindyn_14" content="{label}" noclick="true"/>
+					</panel>
+				</panel>
+				<combobox
+					width="{boxWidth=-14.5h}"
+					color="invisible"
+					itemheight="2.5h"
+					scrolltexture="/ui/_textures/elements/combobox.tga"
+					handleheight="5h" handlewidth="2.5h"
+					scrollbarsize="2.5h"
+					highlight="over"
+					highlightcolor="invisible"
+					highlightbordercolor="invisible"
+					maxlistheight="6"
+					onloadlua="{onloadlua}"
+					cvar="{cvar}"
+					name="{comboboxName}"
+					hscrollbar="0"
+					horizontal="false"					
+				>
+					<widgetstate statename="up">
+						<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						<panel hmargin="0.5h" vmargin="0.5h">
+							<panel align="right" width="100@" height="100%">
+								<image texture="/ui/elements:arrow_rounded" rotation="90" color="0 0 0 0.5" x="0.2h" y="0.2h"/>
+								<image texture="/ui/elements:arrow_rounded" rotation="90" style="whiteTextColor"/>
+							</panel>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="over">
+						<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+						<frame texture="/ui/elements:rounded_button_bg_white" color="#907c3e" borderthickness="0.5h"/>
+						<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						<panel hmargin="0.5h" vmargin="0.5h">
+							<panel align="right" width="100@" height="100%">
+								<image texture="/ui/elements:arrow_rounded" rotation="90" color="0 0 0 0.5" x="0.2h" y="0.2h"/>
+								<image texture="/ui/elements:arrow_rounded" rotation="90" style="whiteTextColor"/>
+							</panel>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="disabled">
+						<panel color="gray"/>
+					</widgetstate>
+					<widgetstate statename="itembg">
+						<panel align="center" width="-1.5h" valign="center" height="-0.25h">
+							<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+							<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="listbg">
+						<panel height="+1h" valign="center">
+							<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.25" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+							<frame texture="/ui/elements:rounded_button_bg_white" color="#333333" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+							<panel hmargin="0.25h" vmargin="0.25h" noclick="true">
+								<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.5h"/>
+								<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+							</panel>
+						</panel>
+					</widgetstate>
+					<widgetstate statename="itemhighlight">
+						<panel align="center" width="-1.5h" valign="center" height="-0.25h">
+							<frame texture="/ui/elements:rounded_button_bg_white" color="#514213" borderthickness="0.5h" rendermode="additive"/>
+						</panel>
+					</widgetstate>
+				</combobox>
+			</panel>
+		</panel>
+	</template>
+
+	<template name="optionsCheckboxState">
+		<widgetstate statename="{statename}" x="{x}" y="{y}">
+			<panel width="{boxSize}" height="{boxSize}" valign="center">
+				<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.5" borderthickness="0.5h" x="0.25h" y="0.25h"/>
+				<frame texture="/ui/elements:rounded_bg_white" color="#333333" borderthickness="0.5h"/>
+				<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				<panel hmargin="0.25h" vmargin="0.25h">
+					<frame texture="/ui/elements:rounded_bg_white" color="#0B0B0B" borderthickness="0.5h"/>
+					<frame texture="/ui/elements:roundframe" color="black" borderthickness="0.5h"/>
+				</panel>
+				<panel align="center" valign="center" width="1.5h" height="1.5h">
+					<image color="0 0 0 0.5" texture="/ui/_textures/elements/closex3.tga" x="0.15h" y="0.15h" visible="{checked=false}" />
+					<image texture="/ui/_textures/elements/closex3.tga" color="#999999" visible="{checked=false}" />
+				</panel>
+			</panel>
+			<panel width="{labelWidth}" align="right">
+				<frame texture="/ui/elements:rounded_bg_white" color="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" color="#0F0F0F" borderthickness="0.5h"/>
+				<panel hmargin="0.75h" vmargin="0.5h">
+					<label color="{labelColor=#f5f2e2}" shadow="true" shadowoffset="2" font="{font=maindyn_14}" textvalign="center" content="{label}"/>
+				</panel>
+			</panel>
+		</widgetstate>
+	</template>
+
+	<template name="optionsCheckbox">
+		<button width="{width=100%}" color="invisible" height="{height=3h}" align="{align}" numstates="2" valign="{valign}" x="{x}" y="{y}" cvar="{cvar}" passivechildren="true" onloadlua="{onloadlua}" oneventlua="{oneventlua}" onclicklua="{onclicklua}" name="{checkboxName}" onshow="{onshow}">
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" statename="up"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" statename="over" over="true"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" statename="down" x="1" y="1"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" statename="disabled"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" checked="true" statename="up2"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" checked="true" statename="over2" over="true"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" labelColor="#FFCC00" checked="true" statename="down2" x="1" y="1"/>
+			<instance name="optionsCheckboxState" label="{label}" boxSize="{boxSize=2.65h}" font="{font=maindyn_14}" labelWidth="{labelWidth=-3h}" checked="true" statename="disabled2"/>
+		</button>
+	</template>
+
+	<!-- ============================================================================ -->
+	<!-- ============================================================================ -->
+
+	<instance name="standardButton" id="gameTestButton" label="game_test_title" align="left" height="2.75h" width="11.0h" y="0.5h" x="6h"/>
+
+	<!-- Test Menu -->
+	<panel align="center" valign="center" width="33h" grow="true" name="testMenu" cangrab="true" visible="false">
+		<panel noclick="true">
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#151515" borderthickness="1h"/>
+		</panel>
+		<panel align="center" width="-1.5h" grow="true" float="bottom" padding="0.5h" noclick="true">
+			<panel height="0.25h" noclick="true"/>
+			<panel height="4.5h" noclick="true">
+				<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#333333" borderthickness="0.5h"/>
+				<label textvalign="center" hmargin="1h" shadow="true" color="#FFDD33" font="maindyn_18" content="game_test_title" noclick="true"/>
+				<instance name="closeXButton" buttonName="testMenuClose" width="70@" height="70%" align="right" x="-15@" valign="center"/>
+			</panel>
+			<panel grow="true" width="100%" noclick="true">
+				<panel noclick="true">
+					<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#222222" borderthickness="0.5h"/>
+				</panel>
+				<panel grow="true" float="bottom" padding="0.75h" align="center" width="-1.5h" noclick="true">
+					<panel height="0" noclick="true"/>
+					<panel height="4h" noclick="true">
+						<instance name="standardButton" id="gameTestRefreshButton" label="game_test_refresh" width="48%"/>
+						<instance name="standardButton" id="gameTestKillButton" label="game_test_kill" width="48%" align="right"/>
+					</panel>
+					<panel height="2" noclick="true">
+						<panel height="1" color="0 0 0 0.4" noclick="true" />
+						<panel height="1" color="1 1 1 0.05" noclick="true" y="1" />
+					</panel>
+					<panel height="4h" noclick="true">
+						<panel width="8h" noclick="true">
+							<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#0B0B0B" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:roundframe" noclick="true" color="black" borderthickness="0.5h"/>
+							<label align="center" width="-1h" textvalign="center" textalign="center" color="#FFCC33" shadow="true" font="maindyn_16" noclick="true" content="game_test_exp"/>
+						</panel>
+						<panel width="-8.5h" align="right" noclick="true" float="right" padding="0.6h" >
+							<instance name="standardButton" id="gameTestAddSmallXPButton" label="+150" width="10h"/>
+							<instance name="standardButton" id="gameTestAddLargeXPButton" label="+1500" width="11h" />
+						</panel>
+					</panel>
+					<panel height="4h" noclick="true">
+						<panel width="8h" noclick="true">
+							<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#0B0B0B" borderthickness="0.5h"/>
+							<frame texture="/ui/elements:roundframe" noclick="true" color="black" borderthickness="0.5h"/>
+							<label align="center" width="-1h" textvalign="center" textalign="center" color="#FFCC33" shadow="true" font="maindyn_16" noclick="true" content="game_test_level"/>
+						</panel>
+						<panel width="-8.5h" align="right" noclick="true" float="right" padding="0.6h">
+							<instance name="standardButton" id="gameTestAddLevelButton" label="+" width="4.5h" font="maindyn_24"/>
+							<instance name="standardButton" id="gameTestResetLevelButton" label="game_test_reset" width="9.5h"/>
+							<instance name="standardButton" id="gameTestMaxLevelButton" label="game_test_max" width="6.5h"/>
+						</panel>
+					</panel>
+					<panel height="4h" noclick="true">
+						<instance name="standardButton" id="gameTestGiveGoldButton" label="game_test_gold" width="30h" align="center"/>
+					</panel>
+					<panel height="2" noclick="true">
+						<panel height="1" color="0 0 0 0.4" noclick="true" />
+						<panel height="1" color="1 1 1 0.05" noclick="true" y="1" />
+					</panel>
+					<panel height="4h" noclick="true" float="right" padding="0.6h">
+						<panel width="10h" noclick="true">
+							<instance name="optionsCheckbox" cvar="sv_spawncreeps" checkboxName="gameTestSpawnCreeps" label="game_test_creeps"/>
+						</panel>
+						<instance name="standardButton" id="gameTestCreepSpawnButton" label="game_test_spawn" width="10.5h" />
+						<instance name="standardButton" id="gameTestCreepKillButton" label="game_test_kill" width="8.5h" align="right"/>
+					</panel>
+
+					<panel height="0"/>
+					<panel height="2" noclick="true">
+						<panel height="1" color="0 0 0 0.4" noclick="true" />
+						<panel height="1" color="1 1 1 0.05" noclick="true" y="1" />
+					</panel>
+					<panel height="4h" noclick="true">
+						<instance name="standardButton" id="gameTestSpawnerButton" label="game_test_spawner" width="30h" align="center"/>
+					</panel>
+					<panel height="0" noclick="true"/>
+				</panel>
+			</panel>
+			<panel height="0.25h" noclick="true"/>
+		</panel>
+	</panel>
+
+	<!-- Entity Spawner -->
+	<panel align="center" valign="center" width="54h" grow="true" name="testMenuSpawner" cangrab="true" visible="false">
+		<panel noclick="true">
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h"/>
+			<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#151515" borderthickness="1h"/>
+		</panel>
+		<panel align="center" width="-1.5h" grow="true" float="bottom" padding="0.5h" noclick="true">
+			<panel height="0.25h" noclick="true"/>
+			<panel height="3.5h" noclick="true">
+				<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.25" borderthickness="0.5h" x="0.15h" y="0.15h"/>
+				<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#333333" borderthickness="0.5h"/>
+				<label textvalign="center" hmargin="1h" shadow="true" color="#FFDD33" font="maindyn_18" content="game_test_entities_items" noclick="true"/>
+				<instance name="closeXButton" buttonName="testMenuSpawnerClose" width="70@" height="70%" align="right" x="-15@" valign="center"/>
+			</panel>
+			<panel grow="true" width="100%" noclick="true">
+				<panel noclick="true">
+					<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="0 0 0 0.5" borderthickness="1h" x="0.25h" y="0.25h"/>
+					<frame texture="/ui/elements:rounded_bg_white" noclick="true" color="#222222" borderthickness="0.5h"/>
+				</panel>
+				<panel grow="true" float="bottom" padding="0.75h" align="center" width="-1.5h" noclick="true" reverse="true">
+					<panel height="0" noclick="true"/>
+					<instance name="optionsCombobox" comboboxName="gameTestBoxEntityType" labelWidth="10h" boxWidth="-10.5h" label="game_test_entity" cvar="" />
+					<instance name="optionsCombobox" comboboxName="gameTestBoxTeam" labelWidth="10h" boxWidth="-10.5h" label="game_test_team" cvar="" />
+					<instance name="optionsCombobox" comboboxName="gameTestBoxPlayer" labelWidth="10h" boxWidth="-10.5h" label="game_test_player" cvar="" />
+					<instance name="optionsCombobox" comboboxName="gameTestBoxPrecache" labelWidth="10h" boxWidth="-10.5h" label="game_test_precache" cvar="" />
+					<panel height="3h" noclick="true">
+						<instance name="standardButton" id="gameTestSpawnButton" label="game_test_spawn" width="12h" align="center"/>
+					</panel>
+					<panel height="2" noclick="true">
+						<panel height="1" color="0 0 0 0.4" noclick="true" />
+						<panel height="1" color="1 1 1 0.05" noclick="true" y="1" />
+					</panel>
+					<instance name="optionsCombobox" comboboxName="gameTestBoxItemType" labelWidth="10h" boxWidth="-10.5h" label="game_test_itemtype" cvar="" />
+					<panel height="3h" noclick="true">
+						<instance name="standardButton" id="gameTestGiveItemButton" label="game_test_giveitem" width="12h" align="center"/>
+					</panel>
+					<panel height="0" noclick="true"/>
+				</panel>
+			</panel>
+			<panel height="0.25h" noclick="true"/>
+		</panel>
+	</panel>
+
+	<lua file="game_test.lua"/>
+
+</interface>
